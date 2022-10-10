@@ -1,24 +1,70 @@
 import classNames from 'classnames';
 import Image from 'next/image'
 import { useState } from 'react';
+
 import Text from '../atoms/Text';
+import Button from '../button/Button';
+
+import NavLink, { MenuItem } from '../NavLink/NavLink';
+
 const MainNavbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const toggleMenu = ()=> setIsOpen(!isOpen);
+    const toggleMenu = () => setIsOpen(!isOpen);
+
+    const menuItems: MenuItem[] = [
+        {
+            title: 'Anasayfa',
+            path: '/',
+            isActive: true
+        },
+        {
+            title: 'Hakkımda',
+            path: '/about',
+            isActive: false
+        },
+        {
+            title: 'İletişim',
+            path: '/contact',
+            isActive: false
+        },
+    ]
     return (
-        <div className="h-[66px] border-2 border-black px-[23px] flex justify-between items-center md:max-w-[1064px] md:mx-auto">
-            <div className='self-start md:hidden'>
-                <Image src="/images/png/logo-v1.png" width={100} height={120} />
+        <>
+            <div className='h-[66px] md:h-[150px]   bg-primary-2'>
+                <div className="h-full px-[23px] flex justify-between items-center md:max-w-[1064px] md:mx-auto">
+
+                    <div className='self-start md:hidden z-10' >
+                        <Image src="/images/png/logo-v1.png"  width={100} height={120} />
+                    </div>
+                    <div className='self-start hidden md:block'>
+                        <Image src="/images/png/logo-v1.png" width={98} height={110} layout="fixed" />
+                    </div>
+
+                    <div className='md:flex hidden gap-[20px] '>
+                        {
+                            menuItems.map((item) => <NavLink item={item} key={item.title} />)
+                        }
+
+                    </div>
+
+                    <div className='flex items-center gap-[4px] md:hidden' onClick={toggleMenu}>
+                        <Text className='text-secondary '>MENU</Text>
+                        <Image src="/images/svg/menu.svg" width={24} height={24} />
+                    </div>
+
+                    <Button className="hidden md:block">
+                        <Text className='text-[14px]' type='bold'>Giriş Yap</Text>
+                    </Button>
+
+                </div>
+
+
             </div>
-            <div className='self-start hidden md:block'>
-                <Image src="/images/png/logo-v1.png" width={98} height={110} layout="fixed" />
-            </div>
-            <div className='flex items-center gap-[4px] md:hidden' onClick={toggleMenu}>
-                <Text className='text-secondary '>MENU</Text>
-                <Image src="/images/svg/menu.svg" width={24} height={24} />
-            </div>
+
+
+
             {/* Mobile menu */}
-            <div className={classNames(['bg-secondary md:hidden absolute top-0 left-0 w-full h-full px-[20px] flex flex-col'],{
+            <div className={classNames(['bg-secondary md:hidden absolute top-0 left-0 w-full h-full px-[20px] flex flex-col z-10'], {
                 'hidden': !isOpen,
             })}>
                 <div className="h-[66px]  flex justify-between items-center md:max-w-[1064px] md:mx-auto">
@@ -53,7 +99,7 @@ const MainNavbar = () => {
                     <Text className='text-[14px] text-secondary' type='bold'> Giriş Yap </Text>
                 </button>
             </div>
-        </div>
+        </>
     );
 }
 
