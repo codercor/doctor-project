@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+@font-face {
+    font-family: NexaBold;
+    font-weight: bold;
+    src: url("/fonts/NexaBold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: NexaRegular;
+    font-weight: normal;
+    src: url("/fonts/NexaRegular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: NexaLight;
+    font-weight: lighter;
+    src: url("/fonts/NexaLight.otf") format("opentype");
+}
