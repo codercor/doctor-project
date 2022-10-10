@@ -14,7 +14,7 @@ const MainNavbar = () => {
                 <Image src="/images/png/logo-v1.png" width={98} height={110} layout="fixed" />
             </div>
             <div className='flex items-center gap-[4px] md:hidden' onClick={toggleMenu}>
-                <Text className='text-green-700 '>MENU</Text>
+                <Text className='text-secondary '>MENU</Text>
                 <Image src="/images/svg/menu.svg" width={24} height={24} />
             </div>
             {/* Mobile menu */}
