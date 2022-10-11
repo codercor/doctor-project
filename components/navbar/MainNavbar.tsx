@@ -30,8 +30,8 @@ const MainNavbar = () => {
     ]
     return (
         <>
-            <div className='h-[66px] md:h-[150px]   bg-primary-2'>
-                <div className="h-full px-[23px] flex justify-between items-center md:max-w-[1064px] md:mx-auto">
+            <div className='h-[66px] md:h-[150px] md:static z-10 top-0  sticky   bg-primary-2'>
+                <div className="h-full px-[23px]  flex justify-between items-center md:max-w-[1064px] md:mx-auto">
 
                     <div className='self-start md:hidden z-10' >
                         <Image src="/images/png/logo-v1.png"  width={100} height={120} />
@@ -64,7 +64,7 @@ const MainNavbar = () => {
 
 
             {/* Mobile menu */}
-            <div className={classNames(['bg-secondary md:hidden absolute top-0 left-0 w-full h-full px-[20px] flex flex-col z-10'], {
+            <div className={classNames(['bg-secondary md:hidden fixed top-0 left-0 w-full h-full px-[20px] flex flex-col z-10'], {
                 'hidden': !isOpen,
             })}>
                 <div className="h-[66px]  flex justify-between items-center md:max-w-[1064px] md:mx-auto">

@@ -26,7 +26,7 @@ const RSCardData = [
     },
 ]
 
-const RSCard = (rscardData: any) => <div className="flex items-center rounded-sm rounded-tr-3xl rounded-bl-3xl w-[90%] mx-auto  md:w-[280px] md:h-[125px] bg-primary-3 overflow-hidden">
+const RSCard = (rscardData: any) => <div className="flex items-center rounded-sm rounded-tr-3xl rounded-bl-3xl w-[90%] mx-auto  md:w-[100%] md:h-[125px] bg-primary-3 overflow-hidden">
     <span className="ml-[-20px]" >
         <Image src={rscardData.image} height={120} width={120} />
     </span>
@@ -46,7 +46,7 @@ const HomeFunctionalMedicineSection = () => {
                         Fonksiyonel Tıp, kronik hastalıkların kök nedenlerini saptayıp bu sorunların düzeltilmesine odaklanan bütünsel bir tıp bakışıdır. Organ odaklı değil sistem odaklı olarak yaklaşarak hastalık tanılarının tedavilerinden çok, temeldeki sorunun iyileştirmesi amaçlanır.
                     </Text>
                 </div>
-                <div className="md:place-self-start md:self-center mx-auto md:mx-0 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-[28px] flex flex-col gap-[20px] md:w-fit">
+                <div className="md:place-self-start w-full md:self-center mx-auto md:mx-0 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-[28px] flex flex-col gap-[20px] md:w-fit">
                     {RSCardData.map((data, index) => <RSCard key={index} {...data} />)}
                 </div>
             </div>
