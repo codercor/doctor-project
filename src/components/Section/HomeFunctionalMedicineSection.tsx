@@ -1,7 +1,6 @@
 import Section from ".";
 import Image from 'next/image';
-import HomeFirstSectionCard from "../Card/HomeFirstSectionCard";
-import Text from "../atoms/Text";
+import Text from "@components/Text/Text";
 
 const RSCardData = [
     {

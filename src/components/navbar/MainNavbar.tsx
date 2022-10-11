@@ -2,10 +2,10 @@ import classNames from 'classnames';
 import Image from 'next/image'
 import { useState } from 'react';
 
-import Text from '../atoms/Text';
-import Button from '../button/Button';
+import Text from '@components/Text/Text';
+import Button from '@components/button/Button';
 
-import NavLink, { MenuItem } from '../NavLink/NavLink';
+import NavLink, { MenuItem } from '@components/NavLink/NavLink';
 
 const MainNavbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +34,7 @@ const MainNavbar = () => {
                 <div className="h-full px-[23px]  flex justify-between items-center md:max-w-[1064px] md:mx-auto">
 
                     <div className='self-start md:hidden z-10' >
-                        <Image src="/images/png/logo-v1.png"  width={100} height={120} />
+                        <Image src="/images/png/logo-v1.png" width={100} height={120} />
                     </div>
                     <div className='self-start hidden md:block'>
                         <Image src="/images/png/logo-v1.png" width={98} height={110} layout="fixed" />

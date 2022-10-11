@@ -1,5 +1,5 @@
-import Button from "../button/Button";
-import Text from "../atoms/Text";
+import Button from "@components/button/Button";
+import Text from "@components/Text/Text";
 import Image from 'next/image';
 const HomeFirstSectionCard = () => {
     return (

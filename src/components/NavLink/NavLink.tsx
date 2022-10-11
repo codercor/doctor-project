@@ -1,4 +1,4 @@
-import Text from "../atoms/Text";
+import Text from "@components/Text/Text";
 import classNames from "classnames";
 export type MenuItem = {
     title: string,

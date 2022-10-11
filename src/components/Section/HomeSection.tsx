@@ -1,6 +1,6 @@
-import Section from ".";
+import Section from "@components/Section";
 import Image from 'next/image';
-import HomeFirstSectionCard from "../Card/HomeFirstSectionCard";
+import HomeFirstSectionCard from "@components/Card/HomeFirstSectionCard";
 
 const HomeSection = () => {
     return (
