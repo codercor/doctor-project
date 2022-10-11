@@ -37,15 +37,15 @@ const RSCard = (rscardData: any) => <div className="flex items-center rounded-sm
 
 const HomeFunctionalMedicineSection = () => {
     return (
-        <Section className="h-fit pb-10 md:pb-0 md:h-[420px] bg-primary-2">
-            <div className="md:grid md:grid-cols-2 md:gap-[40px]  md:place-content-center h-full md:max-w-[1920px] md:mx-auto ">
-                <div className="flex flex-col py-8 pd:my-0 md:place-self-end w-[90%] mx-auto md:self-center  md:w-[60%]">
+        <Section className="h-fit pb-10 md:pb-0 w-full md:h-[420px] bg-primary-2">
+            <div className="md:flex md:flex-row h-full w-fit md:max-w-[1920px] mx-auto">
+                <div className="flex flex-col py-8 md:my-0  w-[90%] mx-auto md:mx-auto md:self-center  md:w-[50%]">
                     <Text className="md:text-[34px] text-[28px] text-active-onPrimary" type="bold">Fonksiyonel Tıp Nedir ?</Text>
                     <Text className="md:text-[18px] text-[16px] text-active-onPrimary" type="light">
                         Fonksiyonel Tıp, kronik hastalıkların kök nedenlerini saptayıp bu sorunların düzeltilmesine odaklanan bütünsel bir tıp bakışıdır. Organ odaklı değil sistem odaklı olarak yaklaşarak hastalık tanılarının tedavilerinden çok, temeldeki sorunun iyileştirmesi amaçlanır.
                     </Text>
                 </div>
-                <div className="md:place-self-start w-full md:self-center mx-auto md:mx-0 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-[28px] flex flex-col gap-[20px] md:w-fit">
+                <div className="md:place-self-start w-full md:self-center mx-auto md:mx-auto md:grid md:grid-cols-2 md:grid-rows-2 md:gap-[28px] flex flex-col gap-[20px] md:w-fit">
                     {RSCardData.map((data, index) => <RSCard key={index} {...data} />)}
                 </div>
             </div>

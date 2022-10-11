@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -32,6 +32,12 @@ module.exports = {
       backgroundImage:{
         "home-section-1": "url('/images/png/home-section-1.png')",
         "home-section-1m": "url('/images/png/home-section-1m.png')",
+        "e1": "url('/images/png/e1.png')",
+        "e2": "url('/images/png/e2.png')",
+        "e3": "url('/images/png/e3.png')",
+        "e4": "url('/images/png/e4.png')",
+        "e5": "url('/images/png/e5.png')",
+        "e6": "url('/images/png/e6.png')",
       }
     },
   },
