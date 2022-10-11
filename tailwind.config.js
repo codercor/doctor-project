@@ -15,6 +15,7 @@ module.exports = {
         "secondary": "#4D5628",
         "primary-1": "#E3E6D5;",
         "primary-2": "rgb(238, 239, 232)",
+        "primary-3": "rgb(226, 228, 211)",
         "onSecondary-2": "#D2D5C2",
       },
       colors: {
