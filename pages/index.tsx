@@ -1,6 +1,7 @@
 import Button from "@components/Button";
 import Container from "@components/Container";
 import Content from "@components/Content";
+import Footer from "@components/Footer";
 import ArrowIcon from "@components/Icon/ArrowIcon";
 import Navbar from "@components/Navbar";
 import Banner from "@components/Section/FirstBanner";
@@ -117,6 +118,7 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </div>
+          
           </div>
         </Container>
       </Container>
@@ -157,12 +159,21 @@ const Home: NextPage = () => {
           <Text type="h4" className="text-[34px] mt-[80px] mb-[60px] text-quaternary-flat">Basında Nazan Uysal Harzadın</Text>
           <div className="bg-[url(/images/png/avakado.png)] overflow-visible rounded-xl relative  bg-center h-[460px] w-full">
             <span className="hidden md:block absolute bottom-[-60px] left-[-150px]">
-              <Image  src="/images/svg/brandmark4.svg" width={392} height={130} />
+              <Image src="/images/svg/brandmark4.svg" width={392} height={130} />
             </span>
           </div>
 
         </Container>
       </Container>
+      <Container className="!max-w-[100vw]  h-[304px] bg-[url(/images/png/kara-uzum.png)] bg-center">
+        <Container className="!max-w-full backdrop-brightness-75 h-full bg-center">
+          <Container className="md:!max-w-[1200px] h-full items-center  flex flex-col justify-center px-[20px] md:px-0">
+            <Text type="paragraph" className="text-[26px] text-[white]">İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza başlayın.</Text>
+            <Button className="mt-[40px]" type="tertiary-flat" >Tüm Eğitimler</Button>
+          </Container>
+        </Container>
+      </Container>
+      <Footer />
     </div>
   );
 }
