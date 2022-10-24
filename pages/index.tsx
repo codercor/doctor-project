@@ -1,53 +1,17 @@
 import Button from "@components/Button";
+import TrainingCard from "@components/Card/TrainingCard";
 import Container from "@components/Container";
-import Content from "@components/Content";
 import Footer from "@components/Footer";
-import ArrowIcon from "@components/Icon/ArrowIcon";
 import Navbar from "@components/Navbar";
+import BeforeFooter from "@components/Section/BeforeFooter";
 import Banner from "@components/Section/FirstBanner";
 import InfoBanner from "@components/Section/InfoBanner";
 import Text from "@components/Text";
-import classNames from "classnames";
 import { NextPage } from "next";
 import Image from "next/image";
 
-type TrainingCardProps = {
-  image: string;
-  title: string;
-  description: string;
-  price: string;
-  className?: string;
-  imageClassName?: string;
-  type?: "column" | "row";
-  contentClassName?: string;
-}
 
-const TrainingCard = ({ image, title, description, price, imageClassName, className, contentClassName = "" }: TrainingCardProps) => {
 
-  const mainClassName = classNames("bg-[white] w-full h-fit overflow-hidden justify-center items-top flex-col", className);
-
-  return <div className={mainClassName}>
-    <div className={classNames(imageClassName)}>
-      <Image src={image} layout="fill" objectFit="cover" />
-    </div>
-    <div className={classNames("  ", contentClassName)}>
-      <div className="leading-none">
-        <Text type="body" className="text-quaternary-flat">
-          {title}
-        </Text>
-      </div>
-      <div className="leading-none mt-[7px]">
-        <Text type="paragraph" className="text-gray-text font-nexa-regular text-[12px] ">
-          {description}
-        </Text>
-      </div>
-      <Button type="quaternary-flat" className="mt-[12px] pt-[5px] pb-[5px] pl-[20px] pr-[10px] flex gap-2 items-center rounded-[5px]">
-        <Text className="text-[#C3BFE8] font-nexa-regular text-[14px]">Detaylar</Text>
-        <ArrowIcon color="#C3BFE8" />
-      </Button>
-    </div>
-  </div>
-}
 
 const trainings = [
   {
@@ -118,7 +82,7 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </div>
-          
+
           </div>
         </Container>
       </Container>
@@ -165,14 +129,7 @@ const Home: NextPage = () => {
 
         </Container>
       </Container>
-      <Container className="!max-w-[100vw]  h-[304px] bg-[url(/images/png/kara-uzum.png)] bg-center">
-        <Container className="!max-w-full backdrop-brightness-75 h-full bg-center">
-          <Container className="md:!max-w-[1200px] h-full items-center  flex flex-col justify-center px-[20px] md:px-0">
-            <Text type="paragraph" className="text-[26px] text-[white]">İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza başlayın.</Text>
-            <Button className="mt-[40px]" type="tertiary-flat" >Tüm Eğitimler</Button>
-          </Container>
-        </Container>
-      </Container>
+      <BeforeFooter />
       <Footer />
     </div>
   );

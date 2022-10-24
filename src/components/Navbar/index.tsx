@@ -43,7 +43,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const toggleMenu = () => setIsOpen(!isOpen);
     return (
-        <div className="md:h-auto flex md:backdrop-blur-[0.5px] justify-between absolute z-20 w-full top-0 left-0 md:px-0 px-[20px]">
+        <div className="md:h-auto flex  justify-between absolute z-20 w-full top-0 left-0 md:px-0 px-[20px]">
             <Logo />
             <div className="md:flex hidden  flex-col gap-[20px] md:flex-row md:justify-between md:items-center">
                 {navs.map((nav: Route) => <NavbarItem key={nav.text} route={nav} />)}
@@ -73,7 +73,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex flex-col mt-[50px] gap-[20px]">
                     {navs.map((nav: Route) => <Text key={nav.text} className='text-purple-800 text-[18px]' type='h6'> {nav.text.toUpperCase()} </Text>)}
-                    
+
                 </div>
                 <div className="flex flex-col mt-[50px]">
                     <Text className='text-purple-800 text-[18px]' type='h6'>İLETİŞİM</Text>
@@ -83,9 +83,9 @@ const Navbar = () => {
                 <div className="flex flex-col mt-[50px]">
                     <Text className='text-purple-800 text-[18px]' type='overline'>TAKİP ET</Text>
                     <div className='flex gap-[20px] mt-[16px]'>
-                        <Image src="/images/svg/instagram.svg"  width={24} height={24} />
-                        <Image src="/images/svg/youtube.svg"  width={24} height={24} />
-                        <Image src="/images/svg/medium.svg"  width={24} height={24} />
+                        <Image src="/images/svg/instagram.svg" width={24} height={24} />
+                        <Image src="/images/svg/youtube.svg" width={24} height={24} />
+                        <Image src="/images/svg/medium.svg" width={24} height={24} />
                     </div>
 
                 </div>
