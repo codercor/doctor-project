@@ -25,6 +25,10 @@ const NavbarItem = ({ route }: NavbarItemProps) => {
 
 const navs = [
     {
+        text: "Anasayfa",
+        href: "/"
+    },
+    {
         text: "Hakkımda",
         href: "/hakkimda"
     },
