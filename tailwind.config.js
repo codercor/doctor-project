@@ -1,4 +1,89 @@
 /** @type {import('tailwindcss').Config} */
+const colors = {
+  "primary-light": "#EEEFE8",
+  "secondary-light": "#E8EDEE",
+  "tertiary-light": "#E8EEE8",
+  "quaternary-light": "#FAFBF5",
+  "primary": "#E9EDD9",
+  "secondary": "#4E929D",
+  "tertiary": "#6CAFBA",
+  "quaternary": "#80C5D0",
+  "primary-flat": "#A9C8CD",
+  "secondary-flat": "#98A170",
+  "tertiary-flat": "#8C88BB",
+  "quaternary-flat": "#3A356B",
+  white: {
+    default: "#D2D5C2",
+    100: "#D2D5C2",
+    200: "#D8DACA",
+    300: "#DDE0D1",
+    400: "#E3E5D9",
+    500: "#E9EAE1",
+    600: "#EEEFE8",
+    700: "#F4F5F0",
+    800: "#F9FAF7",
+  },
+  purple: {
+    default: "#E3E2F1",
+    100: "#E3E2F1",
+    200: "#C7C4E2",
+    300: "#ABA7D4",
+    400: "#8F8AC5",
+    500: "#746DB7",
+    600: "#5A52A6",
+    700: "#4A4388",
+    800: "#3A356B",
+    p: "#3C3575",
+  },
+  black: {
+    default: "#DFE2E2",
+    100: "#0A0B0B",
+    200: "#272B2B",
+    300: "#444B4B",
+    400: "#616B6B",
+    500: "#7F8B8B",
+    600: "#9FA8A8",
+    700: "#BFC5C5",
+    800: "#DFE2E2",
+  },
+  blue: {
+    default: "#E8F2F4",
+    100: "#4E929D",
+    200: "#5EA4AF",
+    300: "#75B1BB",
+    400: "#8CBEC6",
+    500: "#A3CBD1",
+    600: "#BAD8DD",
+    700: "#D1E5E8",
+    800: "#E8F2F4",
+  },
+  green: {
+    default: "#F1F2EB",
+    100: "#8C9761",
+    200: "#9BA573",
+    300: "#A9B287",
+    400: "#B8BF9B",
+    500: "#C6CCAF",
+    600: "#D4D9C3",
+    700: "#E2E5D7",
+    800: "#F1F2EB",
+  },
+  deepgreen: {
+    default: "#ECF0DE",
+    100: "#4D5628",
+    200: "#6A7737",
+    300: "#889846",
+    400: "#A2B35B",
+    500: "#B4C27C",
+    600: "#C7D19D",
+    700: "#DAE1BD",
+    800: "#ECF0DE",
+    x: '#6F745B'
+  },
+  gray: {
+    text: "#8E8E8E",
+  }
+}
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -12,24 +97,15 @@ module.exports = {
         'nexa-bold': ['NexaBold'],
       },
       backgroundColor: {
-        "secondary": "#4D5628",
-        "primary-1": "#E3E6D5;",
-        "primary-2": "rgb(238, 239, 232)",
-        "primary-3": "rgb(226, 228, 211)",
-        "onSecondary-2": "#D2D5C2",
+        ...colors,
       },
       colors: {
-        "secondary": "#4D5628",
-        "onSecondary": "rgba(211, 219, 179, 1)",
-        "onSecondary-2": "#D2D5C2",
-        "onPrimary-2": "rgba(165, 166, 158, 1)",
-        "active-onPrimary":"rgba(77, 86, 40, 1)"
-        
+        ...colors,
       },
-      borderColor:{
-        "active-onPrimary":"rgba(77, 86, 40, 1)"
+      borderColor: {
+        ...colors,
       },
-      backgroundImage:{
+      backgroundImage: {
         "home-section-1": "url('/images/png/home-section-1.png')",
         "home-section-1m": "url('/images/png/home-section-1m.png')",
         "e1": "url('/images/png/e1.png')",
@@ -41,5 +117,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }
