@@ -62,7 +62,7 @@ const Footer = () => {
             </Container>
             <Container className="h-[48px] !max-w-[100vw] bg-secondary">
                 <Container className="h-full flex  !max-w-[1240px]  items-center">
-                    <Text type="overline" className="text-[white]">Prof.Dr. Nazan Uysal Harzadin © 2022</Text>
+                    <Text type="overline" className="text-[white] md:ml-0 ml-[40px]">Prof.Dr. Nazan Uysal Harzadin © 2022</Text>
                 </Container>
             </Container>
         </Container>

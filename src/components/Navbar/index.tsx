@@ -72,7 +72,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="flex flex-col mt-[50px] gap-[20px]">
-                    {navs.map((nav: Route) => <Text key={nav.text} className='text-purple-800 text-[18px]' type='h6'> {nav.text.toUpperCase()} </Text>)}
+                    {navs.map((nav: Route) => <div onClick={()=>{ Router.push(nav.href) }}> <Text key={nav.text}  className='text-purple-800 text-[18px]' type='h6'> {nav.text.toUpperCase()} </Text></div>)}
 
                 </div>
                 <div className="flex flex-col mt-[50px]">
