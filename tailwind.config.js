@@ -95,6 +95,7 @@ module.exports = {
         'nexa-regular': ['NexaRegular'],
         'nexa-light': ['NexaLight'],
         'nexa-bold': ['NexaBold'],
+        "montserrat": ["Montserrat"],
       },
       backgroundColor: {
         ...colors,

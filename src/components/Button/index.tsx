@@ -17,11 +17,11 @@ const Button = ({ children, className, type = "transparent-white", direction = "
         "left": "rounded-br-[20px] rounded-tl-[20px]",
         "right": " rounded-tr-[20px] rounded-bl-[20px]",
     }
-    const classNames = classnames("px-[34px] py-[15px] text-[white] border-[1.4px]  ", typeStyle[type], directionStyle[direction], className)
+    const classNames = classnames("cursor-pointer px-[34px] py-[15px] text-[white] border-[1.4px]  ", typeStyle[type], directionStyle[direction], className)
     return (
-        <button className={classNames}>
+        <div className={classNames}>
             {children}
-        </button>
+        </div>
     );
 }
 

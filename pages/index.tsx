@@ -13,7 +13,7 @@ import Image from "next/image";
 
 
 
-const trainings = [
+export const trainings = [
   {
     image: "/images/png/yesilzemin-muz.png",
     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
@@ -126,7 +126,6 @@ const Home: NextPage = () => {
               <Image src="/images/svg/brandmark4.svg" width={392} height={130} />
             </span>
           </div>
-
         </Container>
       </Container>
       <BeforeFooter />
