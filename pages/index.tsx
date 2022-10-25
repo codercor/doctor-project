@@ -1,5 +1,5 @@
 import Button from "@components/Button";
-import TrainingCard from "@components/Card/TrainingCard";
+import TrainingCard, { TrainingCardProps } from "@components/Card/TrainingCard";
 import Container from "@components/Container";
 import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
@@ -9,37 +9,75 @@ import InfoBanner from "@components/Section/InfoBanner";
 import Text from "@components/Text";
 import { NextPage } from "next";
 import Image from "next/image";
+import {v4} from 'uuid'
 
 
 
-
-export const trainings = [
+export const trainings: Array<TrainingCardProps> = [
   {
     image: "/images/png/yesilzemin-muz.png",
     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
     description: "Eğitimlerimizde fonksiyonel beslenmenin neden önemli olduğunu anlatacağız. Sağlıklı mutfak ve sağlıklı tabak nasıl oluşturulur...",
-    price: "1000 TL",
-    imageClassName: "h-[153px] relative rounded-br-[30px] overflow-hidden",
-    className: "w-full rounded-tl-[30px] flex",
-    contentClassName: "my-[18px] mx-[12px]"
+    price: "1000",
+    backgroundColor: "!bg-[white]",
+    detailHref: "/egitimler/1",
+    detailOnImage: false,
+    detailPos: "bl",
+    imageRounded: "br",
+    boxRounded: "tl",
+    priceBackgroundColor: "!bg-[#ffffff]",
+    priceOnImage: true,
+    pricePos: "br",
+    type: "vertical",
+    showBuyButton: false,
+    detailButtonDirection: "left",
+    width:314,
+    height:328,
+    sizeType:"sm"
   },
   {
     image: "/images/png/badem.png",
     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
     description: "Eğitimlerimizde fonksiyonel beslenmenin neden önemli olduğunu anlatacağız...",
-    price: "1000 TL",
-    imageClassName: "h-[94px] relative rounded-br-[20px] overflow-hidden",
-    className: "w-full rounded-bl-[30px] flex",
-    contentClassName: "my-[18px]  mx-[12px]"
+    price: "1000",
+    backgroundColor: "!bg-[#FFFFFF]",
+    detailHref: "/egitimler/1",
+    detailOnImage: false,
+    detailPos: "bl",
+    imageRounded: "br",
+    boxRounded: "bl",
+    priceBackgroundColor: "!bg-[#ffffff]",
+    priceOnImage: true,
+    pricePos: "br",
+    type: "vertical",
+    showBuyButton: false,
+    detailButtonDirection: "left",
+    height: 247,
+    mHeight: 237,
+    width: 314,
+    sizeType:"sm"
   },
   {
-    image: "/images/png/yulaf.png",
+    image: "/images/png/badem.png",
     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-    description: "Eğitimlerimizde fonksiyonel beslenmenin neden önemli olduğunu anlatacağız. Sağlıklı mutfak ve sağlıklı tabak nasıl oluşturulur...",
-    price: "1000 TL",
-    imageClassName: "h-full w-full order-2 md:rounded-bl-[20px] relative overflow-hidden",
-    className: "w-full md:h-[60%] h-[50%]  rounded-tr-[20px]  place-center grid grid-cols-2 md:grid-cols-[7fr,4fr] grid-cols-[7fr,3fr]",
-    contentClassName: "order-1 h-full flex flex-col items-start justify-center w-fit  md:mb-[17px]  mx-[16px] "
+    description: "Eğitimlerimizde fonksiyonel beslenmenin neden önemli olduğunu anlatacağız...",
+    price: "1000",
+    backgroundColor: "!bg-[#FFFFFF]",
+    detailHref: "/egitimler/1",
+    detailOnImage: false,
+    detailPos: "bl",
+    imageRounded: "br",
+    boxRounded: "bl",
+    priceBackgroundColor: "!bg-[#ffffff]",
+    priceOnImage: true,
+    pricePos: "bl",
+    type: "horizontal",
+    showBuyButton: false,
+    detailButtonDirection: "left",
+    height: 188,
+    width: 440,
+    mHeight: 227,
+    sizeType:"sm"
   }
 ]
 
@@ -53,7 +91,7 @@ const Home: NextPage = () => {
       </Container>
       <Banner />
       <InfoBanner />
-      <Container className="bg-[#EFEEF5] md:!max-w-[100%] md:h-[704px]">
+      <Container className="bg-[#F2F4EE] md:!max-w-[100%] md:h-[704px]">
         <div className="w-full absolute h-full overflow-hidden ">
           <span className="absolute hidden md:block bottom-[-220px] rotate-45 left-[-80px]">
             <Image src="/images/png/tabak.png" layout="fixed" width={600} height={900} />
@@ -70,18 +108,16 @@ const Home: NextPage = () => {
               <Text type="paragraph" className="text-[white]">Tüm Eğitimler</Text>
             </Button>
           </div>
-          <div className="mt-[55px] overflow-hidden items-center md:items-start flex gap-[20px] md:flex-row flex-col ">
-            <div className="flex flex-col h-[575px] w-[314px] gap-[20px] ">
-              {trainings.slice(0, 2).map((training, index) => <TrainingCard key={index * Math.floor(Math.random() * 100)} {...training} />)}
-            </div>
-            <div className="flex flex-col md:h-[400px] h-[505px] justify-start gap-[20px] md:w-[440px] w-[314px]">
-              {trainings.slice(2, 3).map((training, index) => <TrainingCard key={index * Math.floor(Math.random() * 100)} {...training} />)}
-              <div className="h-[196px]  bg-no-repeat bg-cover bg-[url('/images/png/sebzeler.png')] grid place-content-center px-[22px] py-[30px]">
+          <div className="mt-[55px] mb-[55px] overflow-hidden items-center md:items-start flex gap-[20px] md:flex-row flex-col ">
+            <div className="flex flex-col w-[328px] md:w-[775px]  md:flex-wrap md:h-[750px] h-[1100px] gap-[20px] ">
+              {trainings.map((training, index) => <TrainingCard key={v4()} {...training} />)}
+              <div className="h-[196px] md:w-[440px] w-[328px] bg-no-repeat bg-cover bg-[url('/images/png/sebzeler.png')] grid place-content-center px-[22px] py-[30px]">
                 <div className="leading-none bg-purple-100 bg-opacity-80  rounded-md rounded-tr-[20px] rounded-bl-[20px] py-[20px] px-[43.335px] text-center">
                   <Text type="h6" className="text-[#6D669D]">“Fonksiyonel beslenme ve yaşam tarzı değişikliği ile daha sağlıklı bir yaşam mümkün”</Text>
                 </div>
               </div>
             </div>
+            
 
           </div>
         </Container>

@@ -4,10 +4,13 @@ import Text from "@components/Text";
 import TL from "@components/Text/TL";
 import classNames from "classnames";
 import Image from "next/image";
-
+import { useEffect, useMemo, useState } from "react";
+import { useMediaQuery } from 'react-responsive'
 export type TrainingCardProps = {
     width?: number;
     height?: number;
+    mWidth?: number;
+    mHeight?: number;
     image: string;
     title: string;
     description: string;
@@ -24,10 +27,15 @@ export type TrainingCardProps = {
     priceBackgroundColor: string;
     showBuyButton?: boolean;
     detailButtonDirection: "left" | "right";
+    sizeType?: "sm" | "md";
+    isMobile?: boolean;
 }
+
 const TrainingCard = ({
     width = 482,
     height = 380,
+    mWidth = 314,
+    mHeight = 328,
     image,
     title,
     description,
@@ -44,14 +52,37 @@ const TrainingCard = ({
     priceBackgroundColor,
     showBuyButton = false,
     detailButtonDirection = "right",
+    sizeType = "md",
+    isMobile = false
 }: TrainingCardProps) => {
+
+
+
+    const _width = (!isMobile ? width : mWidth)
+    const _height = (!isMobile ? height : mHeight)
+
+
+    console.log("isDesktopOrLaptop", isMobile, _width, _height);
+
+    const buttonSizeMixin = {
+        "w-[113px] h-[36px] !pl-[24px]": sizeType == "sm",
+        "w-[134px] h-[48px]": sizeType == "md"
+    }
+    const descriptionMixin = {
+        "!text-[12px] mt-[7px]": sizeType == "sm",
+        "!text-[14px] mt-[14px] ": sizeType == "md"
+    }
+    const titleMixin = {
+        "!text-[14px]": sizeType == "sm",
+        "!text-[16px]": sizeType == "md"
+    }
+
 
     const boxClassName = classNames({
         "relative flex overflow-hidden !leading-none": true,
-        [`w-[${width}px] min-w-[${width}px] h-[${height}px] !min-h-[${height}px] !max-h-[${height}px]`]: true,
-        "flex flex-col": type === "vertical",
-        "flex flex-row-reverse": type === "horizontal",
-        "flex flex-row": type === "horizontal-reverse",
+        "flex-col": type === "vertical",
+        "flex-row-reverse": type === "horizontal",
+        "flex-row": type === "horizontal-reverse",
         "rounded-tl-[30px]": boxRounded === "tl",
         "rounded-tr-[30px]": boxRounded === "tr",
         "rounded-bl-[30px]": boxRounded === "bl",
@@ -59,7 +90,8 @@ const TrainingCard = ({
         "rounded-[30px]": boxRounded === "all",
         "rounded-none": boxRounded === "none" || !boxRounded,
         [backgroundColor]: backgroundColor,
-    });
+    })
+
 
     const imageClassName = classNames({
         "relative": true,
@@ -74,7 +106,8 @@ const TrainingCard = ({
     });
 
     const priceClassName = classNames({
-        "absolute w-[134px] h-[48px] border-none m-[18px]": true,
+        "absolute  border-none m-[18px]": true,
+        ...buttonSizeMixin,
         "bg-purple-800 leading-none": true,
         "overflow-visible flex items-center text-center justify-between": true,
         "bottom-0 left-0": pricePos === "bl",
@@ -85,7 +118,8 @@ const TrainingCard = ({
     });
 
     const detailClassName = classNames({
-        "absolute w-[134px] h-[48px] m-[18px]": true,
+        "absolute  m-[18px]": true,
+        ...buttonSizeMixin,
         "bg-purple-800 leading-none": true,
         "overflow-hidden flex items-center text-center justify-between": true,
         "bottom-0 left-0": detailPos === "bl",
@@ -94,9 +128,11 @@ const TrainingCard = ({
         "top-0 right-0": detailPos === "tr",
     });
 
-    const contentClassName = classNames("relative flex flex-col items-center  justify-between  p-[18px] pt-[24px]", {
+    const contentClassName = classNames("relative flex flex-col items-center  justify-between  p-[18px] ", {
         "h-[55%]": type === "vertical",
         "h-full w-[60%]": type === "horizontal" || type === "horizontal-reverse",
+        "pt-[24px]": sizeType == "md",
+        "pt-[16px]": sizeType == "sm",
     })
 
     const DetailButton = () => <Button direction={detailButtonDirection} type="quaternary-flat" className={detailClassName}>
@@ -108,13 +144,24 @@ const TrainingCard = ({
     const PriceWithBuyButton = () => <Button direction="right" type="transparent-white" className={priceClassName}>
         <Text type="body" className="!text-[20px] text-[#3A356B]">{price}<TL /></Text>
         {showBuyButton &&
-            <Button type="tertiary-flat" className="absolute bottom-0 left-[120px] !bg-[#C3BFE8] !border-none  w-[134px] h-[48px]">Satın Al</Button>
+            <Button type="tertiary-flat" className={classNames("absolute flex items-center bottom-0 left-[120px] !bg-[#C3BFE8] !border-none", {
+                ...buttonSizeMixin
+            })}  >Satın Al</Button>
         }
     </Button>
     const PriceButtonOnImage = () => <Button direction="right" type="transparent-white" className={priceClassName}>
-        <Text type="body" className="!text-[20px] text-[#3A356B]">{price}<TL /></Text>
+        <Text type="body" className={classNames(" text-[#3A356B]", {
+            "!text-[20px]": sizeType == "md",
+            "!text-[16px]": sizeType == "sm",
+        })}>{price}<TL /></Text>
     </Button>
-    return <div className={boxClassName}>
+    return <div className={boxClassName} style={{
+        minWidth: _width + "px",
+        minHeight: _height + "px",
+        height: _height + "px",
+        width: _width + "px",
+    }}>
+        <span className="hidden"> {_width} {_height} </span>
         <div className={imageClassName} >
             <Image src={image} layout="fill" objectFit="cover" />
             {priceOnImage && <PriceButtonOnImage />}
@@ -122,8 +169,10 @@ const TrainingCard = ({
         </div>
         <div className={contentClassName}>
             <div>
-                <Text type="h4" className="!text-[16px] text-[#3A356B]">{title}</Text>
-                <Text type="h5" className="text-[#7A7C6D] mt-[14px] !text-[14px] font-nexa-regular">{description}</Text>
+                <Text type="h4" className={classNames("text-[#3A356B]", { ...titleMixin })}>{title}</Text>
+                <Text type="h5" className={classNames("text-[#7A7C6D]  font-nexa-regular", {
+                    ...descriptionMixin
+                })}>{description}</Text>
             </div>
             {!detailOnImage && <DetailButton />}
             {!priceOnImage &&

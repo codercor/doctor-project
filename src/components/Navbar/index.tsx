@@ -51,7 +51,7 @@ const Navbar = () => {
             <Logo />
             <div className="md:flex hidden  flex-col gap-[20px] md:flex-row md:justify-between md:items-center">
                 {navs.map((nav: Route) => <NavbarItem key={nav.text} route={nav} />)}
-                <div>
+                <div className="flex">
                     <Button type="transparent-white" direction="right">
                         <Text type="paragraph">Kayıt Ol</Text>
                     </Button>
