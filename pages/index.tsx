@@ -9,79 +9,88 @@ import InfoBanner from "@components/Section/InfoBanner";
 import Text from "@components/Text";
 import { NextPage } from "next";
 import Image from "next/image";
-import {v4} from 'uuid'
+import { useMediaQuery } from "react-responsive";
+import { v4 } from 'uuid'
 
 
 
-export const trainings: Array<TrainingCardProps> = [
-  {
-    image: "/images/png/yesilzemin-muz.png",
-    title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-    description: "Eğitimlerimizde fonksiyonel beslenmenin neden önemli olduğunu anlatacağız. Sağlıklı mutfak ve sağlıklı tabak nasıl oluşturulur...",
-    price: "1000",
-    backgroundColor: "!bg-[white]",
-    detailHref: "/egitimler/1",
-    detailOnImage: false,
-    detailPos: "bl",
-    imageRounded: "br",
-    boxRounded: "tl",
-    priceBackgroundColor: "!bg-[#ffffff]",
-    priceOnImage: true,
-    pricePos: "br",
-    type: "vertical",
-    showBuyButton: false,
-    detailButtonDirection: "left",
-    width:314,
-    height:328,
-    sizeType:"sm"
-  },
-  {
-    image: "/images/png/badem.png",
-    title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-    description: "Eğitimlerimizde fonksiyonel beslenmenin neden önemli olduğunu anlatacağız...",
-    price: "1000",
-    backgroundColor: "!bg-[#FFFFFF]",
-    detailHref: "/egitimler/1",
-    detailOnImage: false,
-    detailPos: "bl",
-    imageRounded: "br",
-    boxRounded: "bl",
-    priceBackgroundColor: "!bg-[#ffffff]",
-    priceOnImage: true,
-    pricePos: "br",
-    type: "vertical",
-    showBuyButton: false,
-    detailButtonDirection: "left",
-    height: 247,
-    mHeight: 237,
-    width: 314,
-    sizeType:"sm"
-  },
-  {
-    image: "/images/png/badem.png",
-    title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-    description: "Eğitimlerimizde fonksiyonel beslenmenin neden önemli olduğunu anlatacağız...",
-    price: "1000",
-    backgroundColor: "!bg-[#FFFFFF]",
-    detailHref: "/egitimler/1",
-    detailOnImage: false,
-    detailPos: "bl",
-    imageRounded: "br",
-    boxRounded: "bl",
-    priceBackgroundColor: "!bg-[#ffffff]",
-    priceOnImage: true,
-    pricePos: "bl",
-    type: "horizontal",
-    showBuyButton: false,
-    detailButtonDirection: "left",
-    height: 188,
-    width: 440,
-    mHeight: 227,
-    sizeType:"sm"
-  }
-]
 
 const Home: NextPage = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+  const trainings: Array<TrainingCardProps> = [
+    {
+      image: "/images/png/yesilzemin-muz.png",
+      title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
+      description: "Eğitimlerimizde fonksiyonel beslenmenin neden önemli olduğunu anlatacağız. Sağlıklı mutfak ve sağlıklı tabak nasıl oluşturulur...",
+      price: "1000",
+      backgroundColor: "!bg-[white]",
+      detailHref: "/egitimler/1",
+      detailOnImage: false,
+      detailPos: "bl",
+      imageRounded: "br",
+      boxRounded: "tl",
+      priceBackgroundColor: "!bg-[#ffffff]",
+      priceOnImage: true,
+      pricePos: "br",
+      type: "vertical",
+      showBuyButton: false,
+      detailButtonDirection: "left",
+      height: 328,
+      width: 314,
+      mWidth: 340,
+      mHeight: 257,
+      sizeType: "sm",
+      isMobile
+    },
+    {
+      image: "/images/png/badem.png",
+      title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
+      description: "Eğitimlerimizde fonksiyonel beslenmenin neden önemli olduğunu anlatacağız...",
+      price: "1000",
+      backgroundColor: "!bg-[#FFFFFF]",
+      detailHref: "/egitimler/1",
+      detailOnImage: false,
+      detailPos: "bl",
+      imageRounded: "br",
+      boxRounded: "bl",
+      priceBackgroundColor: "!bg-[#ffffff]",
+      priceOnImage: true,
+      pricePos: "br",
+      type: "vertical",
+      showBuyButton: false,
+      detailButtonDirection: "left",
+      height: 247,
+      width: 314,
+      mWidth: 340,
+      mHeight: 257,
+      sizeType: "sm",
+      isMobile
+    },
+    {
+      image: "/images/png/badem.png",
+      title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
+      description: "Eğitimlerimizde fonksiyonel beslenmenin neden önemli olduğunu anlatacağız...",
+      price: "1000",
+      backgroundColor: "!bg-[#FFFFFF]",
+      detailHref: "/egitimler/1",
+      detailOnImage: false,
+      detailPos: "bl",
+      imageRounded: "br",
+      boxRounded: "bl",
+      priceBackgroundColor: "!bg-[#ffffff]",
+      priceOnImage: true,
+      pricePos: "br",
+      type: isMobile ? "vertical" : "horizontal",
+      showBuyButton: false,
+      detailButtonDirection: "left",
+      height: 188,
+      width: 440,
+      mWidth: 340,
+      mHeight: 257,
+      sizeType: "sm",
+      isMobile
+    }
+  ]
   return (
     <div className="overflow-hidden">
       <Container>
@@ -100,7 +109,7 @@ const Home: NextPage = () => {
             <Image src="/images/png/bogurtlen-cilek.png" layout="fixed" width={800} height={400} />
           </span>
         </div>
-        <Container className="md:max-w-[1455px] px-[20px] md:px-0 flex justify-around md:flex-row flex-col">
+        <Container className="md:max-w-[1455px] h-full px-[20px] md:px-0 flex justify-around md:flex-row flex-col">
           <div className="flex gap-4 md:text-left text-center items-center md:items-start mt-[80px] flex-col md:max-w-[535px] md:h-full md:mb-0 mb-5">
             <Text type="h4" className="text-purple-800" >Eğitimler</Text>
             <Text type="paragraph" className="text-secondary-flat">Fonksiyonel Tıp, kronik hastalıkların kök nedenlerini saptayıp bu sorunların düzeltilmesine odaklanan bütünsel bir tıp bakışıdır. Organ odaklı değil sistem odaklı olarak yaklaşarak hastalık tanılarının tedavilerinden çok, temeldeki sorunun iyileştirmesi amaçlanır.</Text>
@@ -108,18 +117,27 @@ const Home: NextPage = () => {
               <Text type="paragraph" className="text-[white]">Tüm Eğitimler</Text>
             </Button>
           </div>
-          <div className="mt-[55px] mb-[55px] overflow-hidden items-center md:items-start flex gap-[20px] md:flex-row flex-col ">
-            <div className="flex flex-col w-[328px] md:w-[775px]  md:flex-wrap md:h-[750px] h-[1100px] gap-[20px] ">
+            {/*     <div className="flex border-2 border-red-500 flex-col w-[328px] md:w-[775px]  md:flex-wrap md:h-[750px] h-[1100px] gap-[20px] ">
               {trainings.map((training, index) => <TrainingCard key={v4()} {...training} />)}
               <div className="h-[196px] md:w-[440px] w-[328px] bg-no-repeat bg-cover bg-[url('/images/png/sebzeler.png')] grid place-content-center px-[22px] py-[30px]">
                 <div className="leading-none bg-purple-100 bg-opacity-80  rounded-md rounded-tr-[20px] rounded-bl-[20px] py-[20px] px-[43.335px] text-center">
                   <Text type="h6" className="text-[#6D669D]">“Fonksiyonel beslenme ve yaşam tarzı değişikliği ile daha sağlıklı bir yaşam mümkün”</Text>
                 </div>
               </div>
+            </div> */}
+            <div className="flex md:pb-0 pb-10 flex-col md:w-[775px] mx-auto w-full justify-start items-start md:h-full   flex-wrap gap-[20px]">
+              {
+                trainings.map((training, index) =>
+                  <TrainingCard {...training} key={v4()} />)
+              }
+              <div className="h-[196px] md:w-[440px] self-center w-[328px] bg-no-repeat bg-cover bg-[url('/images/png/sebzeler.png')] grid place-content-center px-[22px] py-[30px]">
+                <div className="leading-none bg-purple-100 bg-opacity-80  rounded-md rounded-tr-[20px] rounded-bl-[20px] py-[20px] px-[43.335px] text-center">
+                  <Text type="h6" className="text-[#6D669D]">“Fonksiyonel beslenme ve yaşam tarzı değişikliği ile daha sağlıklı bir yaşam mümkün”</Text>
+                </div>
+              </div>
             </div>
-            
 
-          </div>
+
         </Container>
       </Container>
       <Container className="bg-primary  md:!max-w-[100%] ">
