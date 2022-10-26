@@ -78,7 +78,6 @@ const colors = {
     600: "#C7D19D",
     700: "#DAE1BD",
     800: "#ECF0DE",
-    x: '#6F745B'
   },
   gray: {
     text: "#8E8E8E",
