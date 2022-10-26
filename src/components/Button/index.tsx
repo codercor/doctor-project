@@ -4,9 +4,10 @@ type Props = {
     className?: string;
     type?: "transparent-white" | "secondary" | "tertiary-flat" | "quaternary-flat";
     direction?: "left" | "right";
+    onClick?: () => void;
 }
 
-const Button = ({ children, className, type = "transparent-white", direction = "left" }: Props) => {
+const Button = ({ children, className, type = "transparent-white", direction = "left",onClick=()=>{} }: Props) => {
     const typeStyle = {
         "transparent-white": "bg-transparent text-white border-white",
         "secondary": "bg-secondary text-white  border-secondary",
@@ -19,7 +20,7 @@ const Button = ({ children, className, type = "transparent-white", direction = "
     }
     const classNames = classnames("cursor-pointer px-[34px] py-[15px] text-[white] border-[1.4px]  ", typeStyle[type], directionStyle[direction], className)
     return (
-        <div className={classNames}>
+        <div onClick={onClick} className={classNames}>
             {children}
         </div>
     );

@@ -52,10 +52,14 @@ const Navbar = () => {
             <div className="md:flex hidden  flex-col gap-[20px] md:flex-row md:justify-between md:items-center">
                 {navs.map((nav: Route) => <NavbarItem key={nav.text} route={nav} />)}
                 <div className="flex">
-                    <Button type="transparent-white" direction="right">
+                    <Button onClick={() => {
+                        Router.push("/auth/register")
+                    }} type="transparent-white" direction="right">
                         <Text type="paragraph">Kayıt Ol</Text>
                     </Button>
-                    <Button type="secondary" >
+                    <Button onClick={() => {
+                        Router.push("/auth/login")
+                    }} type="secondary" >
                         <Text type="paragraph">Giriş Yap</Text>
                     </Button>
                 </div>
@@ -76,7 +80,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="flex flex-col mt-[50px] gap-[20px]">
-                    {navs.map((nav: Route) => <div  key={nav.text} onClick={()=>{ Router.push(nav.href) }}> <Text  className='text-purple-800 text-[18px]' type='h6'> {nav.text.toUpperCase()} </Text></div>)}
+                    {navs.map((nav: Route) => <div key={nav.text} onClick={() => { Router.push(nav.href) }}> <Text className='text-purple-800 text-[18px]' type='h6'> {nav.text.toUpperCase()} </Text></div>)}
 
                 </div>
                 <div className="flex flex-col mt-[50px]">
