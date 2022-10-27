@@ -33,10 +33,6 @@ const navs = [
         href: "/hakkimda"
     },
     {
-        text: "Fonksiyonel Beslenme",
-        href: "/fonksiyonel-beslenme"
-    },
-    {
         text: "Eğitimler",
         href: "/egitimler"
     },
