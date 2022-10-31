@@ -16,12 +16,6 @@ type Route = {
 type NavbarItemProps = {
     route: Route
 }
-const NavbarItem = ({ route }: NavbarItemProps) => {
-    const handleClick = () => Router.push(route.href);
-    return (<div onClick={handleClick}><Text type="paragraph" className="text-[white] cursor-pointer font-bold text-[18px]">
-        {route.text}
-    </Text></div>)
-}
 
 const navs = [
     {
@@ -39,9 +33,17 @@ const navs = [
 ]
 
 
-const Navbar = () => {
+const Navbar = ({ backColor }: { backColor: string }) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const toggleMenu = () => setIsOpen(!isOpen);
+    const NavbarItem = ({ route }: NavbarItemProps) => {
+        const handleClick = () => Router.push(route.href);
+        const color = backColor === "dark" ? "text-[white]" : "text-[black]";
+        return (<div onClick={handleClick}><Text type="paragraph" className={classNames("cursor-pointer font-bold text-[18px]", color)}>
+            {route.text}
+        </Text></div>)
+    }
+
     return (
         <div className="md:h-auto flex  justify-between absolute z-20 w-full top-0 left-0 md:px-0 px-[20px]">
             <Logo />
@@ -50,7 +52,7 @@ const Navbar = () => {
                 <div className="flex">
                     <Button onClick={() => {
                         Router.push("/auth/register")
-                    }} type="transparent-white" direction="right">
+                    }} type={backColor === "light" ? "transparent-secondary" : "transparent-white"} direction="right">
                         <Text type="paragraph">Kayıt Ol</Text>
                     </Button>
                     <Button onClick={() => {

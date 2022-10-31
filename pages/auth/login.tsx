@@ -1,34 +1,33 @@
-import Container from "@components/Container";
-import LandingLayout from "@components/Layouts/LandingLayout";
+import Button from "@components/Button";
+import Input from "@components/Input/Input";
+import AuthLayout from "@components/Layouts/AuthLayout";
 import Text from "@components/Text";
+
 
 const Login = () => {
     return (
-        <LandingLayout>
-            <Container className="h-[170px] .bg-[url(/images/png/kara-uzum.png)] bg-tertiary-flat bg-no-repeat bg-cover !min-w-full">
-            </Container>
-            <Container className="md:h-[1100px] h-[550px] grid place-content-center bg-tertiary-flat bg-no-repeat bg-cover !min-w-full">
-                <div className="md:w-[1440px] md:h-[900px] h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px] bg-secondary-light">
-                    <div className="border-2 border-red-500 w-[380px] h-[402px] flex flex-col items-center">
-                        <Text type="h3" className="text-white !text-[34px]">Giriş Yap</Text>
-                        <div className="flex flex-col w-full leading-none">
-                            <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">E-posta</Text>
-                            <input className="h-[48px] bg-white-100 rounded-[5px_20px_0_20px]" type="email" />
+        <AuthLayout>
+            <div className="md:w-[1440px] md:h-full h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px]">
+                <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">
+                    <Text type="h3" className="text-white !text-[34px]">Giriş Yap</Text>
+                    <Input text="E-posta" type="email" />
+                    <Input text="Şifre" type="password" />
+                    <div className="mt-[20px] flex justify-between w-full">
+                        <div className="flex items-center leading-none gap-2">
+                            <input className="h-[24px] appearance-none w-[24px] bg-primary-flat checked:accent-white-100  checked:after:rounded-[5px_0px_5px_0] relative checked:after:w-[24px] checked:after:h-[24px] checked:after:absolute checked:after:grid checked:after:place-content-center checked:after:top-0 checked:left-0 checked:after:bg-primary-flat checked:after:content-['✓']" type="checkbox" />
+                            <Text type="h4" className="!text-[14px] !py-[10px]">Beni Hatırla</Text>
                         </div>
-                        <div className="flex flex-col w-full  leading-none">
-                            <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Şifre,</Text>
-                            <input className="h-[48px] bg-white-100 rounded-[5px_20px_0_20px]" type="email" />
-                        </div>
-                        <div>
-                            <input className="h-[20px] appearance-none w-[20px] bg-white-100 checked:accent-white-100  checked:after:rounded-[5px_0px_5px_0] relative checked:after:w-[0px] checked:after:h-[20px] checked:after:absolute checked:after:grid checked:after:place-content-center checked:after:top-0 checked:after:bg-[#D2D5C2] checked:after:content-['✓']" type="checkbox" />
-                        </div>
+                        <Text type="h4" className="!text-[14px] font-nexa-light  !py-[10px]">Şifremi Unuttum</Text>
                     </div>
-                    <div className="bg-green-500 w-[610px] h-[620px]">
-                        x
-                    </div>
+                    <Button type="secondary" className="w-full mt-[20px] h-[48px] leading-none flex items-center justify-center">
+                        <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Giriş Yap</Text>
+                    </Button>
                 </div>
-            </Container>
-        </LandingLayout>
+                <div className="bg-[url(/images/png/login.png)] grid place-content-center bg-cover bg-no-repeat w-[610px] h-[620px]">
+                    <Text type="paragraph" className="text-[25px] text-center text-[white] h-[186px] w-[448px]">İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza başlayın.</Text>
+                </div>
+            </div>
+        </AuthLayout>
     );
 }
 

@@ -2,7 +2,7 @@ import classnames from "classnames";
 type Props = {
     children: React.ReactNode;
     className?: string;
-    type?: "transparent-white" | "secondary" | "tertiary-flat" | "quaternary-flat";
+    type?: "transparent-white" | "secondary" | "tertiary-flat" | "quaternary-flat" | "transparent-secondary";
     direction?: "left" | "right";
     onClick?: () => void;
 }
@@ -10,6 +10,7 @@ type Props = {
 const Button = ({ children, className, type = "transparent-white", direction = "left",onClick=()=>{} }: Props) => {
     const typeStyle = {
         "transparent-white": "bg-transparent text-white border-white",
+        "transparent-secondary": "bg-transparent text-secondary border-secondary",
         "secondary": "bg-secondary text-white  border-secondary",
         "tertiary-flat": "bg-tertiary-flat text-white border-tertiary-flat",
         "quaternary-flat": "bg-quaternary-flat text-white border-quaternary-flat",

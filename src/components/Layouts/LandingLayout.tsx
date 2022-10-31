@@ -3,12 +3,12 @@ import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
 import BeforeFooter from "@components/Section/BeforeFooter";
 
-const LandingLayout = ({ children }: { children: any }) => {
+const LandingLayout = ({ children, backColor="dark" }: { children: any, backColor?:"dark" | "light" }) => {
     return (
         <div className="overflow-hidden">
             <Container>
                 <Container className="md:!max-w-[1455px]">
-                    <Navbar />
+                    <Navbar backColor={backColor} />
                 </Container>
             </Container>
             {children}
