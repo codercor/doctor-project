@@ -33,7 +33,7 @@ const navs = [
 ]
 
 
-const Navbar = ({ backColor }: { backColor: string }) => {
+const Navbar = ({ backColor="dark" }: { backColor?: string }) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const toggleMenu = () => setIsOpen(!isOpen);
     const NavbarItem = ({ route }: NavbarItemProps) => {
