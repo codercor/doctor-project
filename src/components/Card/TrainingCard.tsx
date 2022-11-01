@@ -62,7 +62,6 @@ const TrainingCard = ({
     const _height = (!isMobile ? height : mHeight)
 
 
-    console.log("isDesktopOrLaptop", isMobile, _width, _height);
 
     const buttonSizeMixin = {
         "w-[113px] h-[36px] !pl-[24px]": sizeType == "sm",

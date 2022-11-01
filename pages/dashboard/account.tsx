@@ -24,7 +24,7 @@ const Account = () => {
                             <Edit className="text-[white] text-[16px]" />
                         </div>
                     </div>
-                    <div className="max-w-[450px] w-[450px] flex flex-col">
+                    <div className="max-w-[450px] w-full flex flex-col">
                         <Input text="Ad Soyad" type="text" />
                         <Input text="Eposta" type="email" />
                         <Input text="Telefon" type="text" />
