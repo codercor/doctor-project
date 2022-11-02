@@ -1,36 +1,25 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../store';
+import { UserCredentials, UserState } from './user.types';
+import { loginRequest, registerRequest } from './user.utils';
 
 
-export interface UserState {
-    Id: string;
-    Role: string;
-    IsAdmin: boolean;
-    Information: {
-        Id: string;
-        FullName: string;
-        Phone: string;
-        Address: string;
-    };
-    BillingDetail: {
-        Id: string;
-        Name: string;
-        Surname: string;
-        Email: string;
-        IdentityNumber: string;
-        RegistrationAddress: string;
-        City: string;
-        Country: string;
-    }
-}
+
 
 const initialState: UserState = {
     Id: '',
-    Role: '',
     IsAdmin: false,
+    Token: null,
+    IsAuthenticated: false,
+    Email: '',
+    AuthProcess: {
+        IsLoading: false,
+        IsError: false,
+        ErrorMessage: ''
+    },
     Information: {
         Id: '',
-        FullName: '',
+        Fullname: '',
         Phone: '',
         Address: ''
     },
@@ -47,25 +36,75 @@ const initialState: UserState = {
 };
 
 
-export const fetchUser = createAsyncThunk(
-    'user/fetchUser',
-    async (userId:string,thunkAPI) => {
-        console.log(thunkAPI.getState());
-        return 1;
-    }
-);
+export const login = createAsyncThunk(
+    'user/login',
+    async (credentials: UserCredentials) => {
+        return (await loginRequest(credentials));
+    });
+export const register = createAsyncThunk(
+    'user/register',
+    async (credentials: UserCredentials) => {
+        return (await registerRequest(credentials));
+    });
 
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
-    //extraReducers: (builder) => { },
+    reducers: {
+        logout(state) {
+            state = initialState;
+            return state;
+        }
+    },
+    extraReducers: (builder) => {
+        builder.
+            addCase(login.pending, (state) => {
+                state.AuthProcess.IsLoading = true;
+                state.AuthProcess.IsError = false;
+                state.AuthProcess.ErrorMessage = '';
+            }).
+            addCase(login.fulfilled, (state, action) => {
+                state.Id = action.payload.Id;
+                state.IsAdmin = action.payload.IsAdmin;
+                state.Email = action.payload.Email;
+                state.Token = action.payload.Token;
+                state.Information = action.payload.Information;
+                state.BillingDetail = action.payload.BillingDetail;
+                state.IsAuthenticated = true;
+            }).addCase(login.rejected, (state, action) => {
+                state.AuthProcess.IsError = true;
+                state.AuthProcess.ErrorMessage = "Giriş yapılamadı.Tekrar deneyin";
+                state.AuthProcess.IsLoading = false;
+                state.IsAuthenticated = false;
+                return state;
+            }).addCase(register.pending, (state) => {
+                state.AuthProcess.IsLoading = true;
+                state.AuthProcess.IsError = false;
+                state.AuthProcess.ErrorMessage = '';
+            }).addCase(register.fulfilled, (state, action) => {
+                state.Id = action.payload.Id;
+                state.IsAdmin = action.payload.IsAdmin;
+                state.Token = action.payload.Token;
+                state.Email = action.payload.Email;
+                state.Information = action.payload.Information;
+                state.BillingDetail = action.payload.BillingDetail;
+                state.IsAuthenticated = true;
+            }).addCase(register.rejected, (state, action) => {
+                state.AuthProcess.IsError = true;
+                state.AuthProcess.ErrorMessage = "Kayıt olunamadı.Eposta adresi kullanımda olabilir.";
+                state.AuthProcess.IsLoading = false;
+                state.IsAuthenticated = false;
+                return state;
+            });
+    },
 });
 
-//export const { } = userSlice.actions;
+export const {
+    logout
+} = userSlice.actions;
 
-export const selectCount = (state: RootState) => state.user;
+export const selectUser = (state: RootState) => state.user;
 
 // // We can also write thunks by hand, which may contain both sync and async logic.
 // // Here's an example of conditionally dispatching actions based on current state.

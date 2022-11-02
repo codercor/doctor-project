@@ -24,7 +24,19 @@
       ],
       "@components/*": [
         "src/components/*"
-      ]
+      ],
+      "@config":[
+        "src/config"
+      ],
+      "@config/*":[
+        "src/config/*" 
+      ],
+      "@app":[
+        "src/app"
+      ],
+      "@app/*":[
+        "src/app/*"
+      ],
     },
     "incremental": true
   },

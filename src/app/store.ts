@@ -1,12 +1,43 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import userReducer, { fetchUser } from './User/user.slice'
-export const store = configureStore({
-    reducer: {
-        user: userReducer,
-    },
+
+import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+import userReducer from './User/user.slice'
+import { getPersistConfig } from 'redux-deep-persist';
+import {
+    FLUSH,
+    PAUSE,
+    PERSIST,
+    persistReducer,
+    PURGE,
+    REGISTER,
+    REHYDRATE,
+} from "redux-persist"
+const rootReducer = combineReducers({
+    user: userReducer,
+})
+const persistConfig = getPersistConfig({
+    key: "root",
+    version: 1,
+    storage,
+    whitelist: ["user"],
+    rootReducer
 });
 
-store.dispatch(fetchUser("1"))
+
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            // immutableCheck: false,
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+            // thunk: false,
+        }),
+});
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
@@ -16,3 +47,11 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     unknown,
     Action<string>
 >;
+
+
+console.log(persistConfig,store);
+
+
+
+
+

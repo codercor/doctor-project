@@ -5,12 +5,13 @@ import Navbar from "@components/Navbar";
 import BeforeFooter from "@components/Section/BeforeFooter";
 import Text from "@components/Text";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { Home, Person, MarkChatUnread, CalendarToday, Settings, PowerSettingsNew } from '@mui/icons-material';
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import NavButton, { DNavButtonProps } from "@components/Button/DNavButton";
 import DashBoardNavbar from "@components/Navbar/DashBoardNavbar";
+import useAuth from "src/hooks/auth.hook";
 
 
 const dashboardNavs: DNavButtonProps[] = [
@@ -42,6 +43,13 @@ const dashboardNavs: DNavButtonProps[] = [
 ]
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+    const { user,logout } = useAuth()
+    const router = useRouter();
+    useEffect(() => {
+        if (!user.IsAuthenticated) {
+            router.push("/auth/login")
+        }
+    }, [user])
     return (
         <div className="overflow flex w-full h-screen border-2 border-green-100">
             <div className="relative md:min-w-[18%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]">
@@ -53,7 +61,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 </div>
                 <div className="absolute bottom-0 left-0 w-full">
                     <div className="px-[30px] mb-[34px]">
-                        <Button className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] bg-quaternary-flat">
+                        <Button onClick={()=>logout()} className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] bg-quaternary-flat">
                             <PowerSettingsNew className="text-[white]" />
                             <Text className="text-[white]">
                                 Çıkış Yap
