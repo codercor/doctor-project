@@ -15,9 +15,11 @@ const formatDate = (date: string) => {
     console.log("date", date);
     const newDate = new Date(date)
     console.log("newDate", newDate);
-
+    //fix the hours problem
+    newDate.setHours(newDate.getHours() + 3);
     //iso format
-    const isoDate = newDate.toISOString().slice(0,19)
+    const isoDate = newDate.toISOString().slice(0,19) 
+
 
     return isoDate
 }
