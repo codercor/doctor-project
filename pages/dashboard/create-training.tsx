@@ -16,15 +16,8 @@ const formatDate = (date: string) => {
     const newDate = new Date(date)
     console.log("newDate", newDate);
 
-    //toIsoString timezone problem fix
-    let hours = newDate.getHours();
-    let minutes = newDate.getMinutes();
-    let seconds = newDate.getSeconds();
-    let month = newDate.getMonth() + 1;
-    let day = newDate.getDate();
-    let year = newDate.getFullYear();
-    let isoDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`
-    console.log("isoDate", isoDate);
+    //iso format
+    const isoDate = newDate.toISOString().slice(0,19)
 
     return isoDate
 }
@@ -71,8 +64,6 @@ const CreateTraining = () => {
     }
     const handleGeneralDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.name === 'StartDate' || e.target.name === 'EndDate') {
-            console.log("value", e.target.value);
-            
             setTrainingData({ ...trainingData, GeneralDetail: { ...trainingData.GeneralDetail, [e.target.name]: formatDate(e.target.value) } })
         } else {
             setTrainingData({ ...trainingData, GeneralDetail: { ...trainingData.GeneralDetail, [e.target.name]: e.target.value } })
@@ -117,9 +108,9 @@ const CreateTraining = () => {
                             <textarea value={trainingData.Details} name="Details" onChange={handleChange} className="bg-primary-flat rounded-[5px_20px_0_20px] h-[147px] p-4" ></textarea>
                         </div>
                         <Input value={trainingData.GeneralDetail.VideoLink} name="VideoLink" onChange={handleGeneralDetailChange} text="Eğitim Videosu (Youtube URL)" />
-                        <div className="flex flex-row gap-4">
-                            <Input type="datetime-local" value={formatDate(trainingData.GeneralDetail.StartDate)} name="StartDate" onChange={handleGeneralDetailChange} text="Başlangıç Tarihi" />
-                            <Input type="datetime-local" value={formatDate(trainingData.GeneralDetail.EndDate)} name="EndDate" onChange={handleGeneralDetailChange} text="Bitiş Tarihi" />
+                        <div className="flex flex-row gap-4"> 
+                            <Input type="datetime-local" value={trainingData.GeneralDetail.StartDate} name="StartDate" onChange={handleGeneralDetailChange} text="Başlangıç Tarihi" />
+                            <Input type="datetime-local" value={trainingData.GeneralDetail.EndDate} name="EndDate" onChange={handleGeneralDetailChange} text="Bitiş Tarihi" />
                         </div>
                         <ImageUpload onChange={(e) => {
                             console.log("value ", e.target.files);
