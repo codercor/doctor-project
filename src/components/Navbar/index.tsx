@@ -33,7 +33,7 @@ const navs = [
 ]
 
 
-const Navbar = ({ backColor="dark" }: { backColor?: string }) => {
+const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const toggleMenu = () => setIsOpen(!isOpen);
     const NavbarItem = ({ route }: NavbarItemProps) => {
@@ -95,7 +95,14 @@ const Navbar = ({ backColor="dark" }: { backColor?: string }) => {
                     </div>
 
                 </div>
-                <button className="bg-quaternary-light mt-auto mb-[36px] rounded-tl-[20px] rounded-br-[20px] h-[48px] w-full ">
+                <button onClick={() => {
+                    Router.push("/auth/register")
+                }} className="bg-quaternary-light mt-auto mb-[6px] rounded-tl-[20px] rounded-br-[20px] h-[48px] w-full ">
+                    <Text className='text-[14px] text-purple-800' type='body'> Kayıt Ol </Text>
+                </button>
+                <button onClick={() => {
+                    Router.push("/auth/login")
+                }} className="bg-quaternary-light  mb-[36px] rounded-tl-[20px] rounded-br-[20px] h-[48px] w-full ">
                     <Text className='text-[14px] text-purple-800' type='body'> Giriş Yap </Text>
                 </button>
             </div>

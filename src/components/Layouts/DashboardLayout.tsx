@@ -6,44 +6,86 @@ import BeforeFooter from "@components/Section/BeforeFooter";
 import Text from "@components/Text";
 import Image from "next/image";
 import React, { useEffect } from "react";
-import { Home, Person, MarkChatUnread, CalendarToday, Settings, PowerSettingsNew } from '@mui/icons-material';
-import classNames from "classnames";
+import { Home, Person, MarkChatUnread, CalendarToday, Settings, PowerSettingsNew, School, PeopleAlt, Article } from '@mui/icons-material';
 import { useRouter } from "next/router";
 import NavButton, { DNavButtonProps } from "@components/Button/DNavButton";
 import DashBoardNavbar from "@components/Navbar/DashBoardNavbar";
 import useAuth from "src/hooks/auth.hook";
 
 
-const dashboardNavs: DNavButtonProps[] = [
-    {
-        text: "Anasayfa",
-        href: "/dashboard",
-        Icon: Home
-    },
-    {
-        text: "Hesabım",
-        href: "/dashboard/account",
-        Icon: Person
-    },
-    {
-        text: "Chat",
-        href: "/dashboard/chat",
-        Icon: MarkChatUnread
-    },
-    {
-        text: "Randevu Al",
-        href: "/dashboard/appointment",
-        Icon: CalendarToday
-    },
-    {
-        text: "Ayarlar",
-        href: "/dashboard/settings",
-        Icon: Settings
-    }
-]
+
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-    const { user,logout } = useAuth()
+    const { user, logout } = useAuth()
+    const dashboardNavs: DNavButtonProps[] = user.IsAdmin ? [
+        {
+            text: "Anasayfa",
+            href: "/dashboard",
+            Icon: Home
+        },
+        {
+            text: "Hesabım",
+            href: "/dashboard/account",
+            Icon: Person
+        },
+        {
+            text: "Eğitimler",
+            href: "/dashboard/trainings",
+            Icon: School
+        },
+        {
+            text: "Eğitim Dökümanları",
+            href: "/dashboard/training-documents",
+            Icon: Article
+        },
+        {
+            text: "Kullanıcı yönetimi",
+            href: "/dashboard/user-management",
+            Icon: PeopleAlt
+        },
+       
+        {
+            text: "Randevu Yönetimi",
+            href: "/dashboard/appointment-management",
+            Icon: CalendarToday
+        },
+        {
+            text: "Chat",
+            href: "/dashboard/chat",
+            Icon: MarkChatUnread
+        },
+        {
+            text: "Ayarlar",
+            href: "/dashboard/settings",
+            Icon: Settings
+        }
+    ] : [
+        {
+            text: "Anasayfa",
+            href: "/dashboard",
+            Icon: Home
+        },
+        {
+            text: "Hesabım",
+            href: "/dashboard/account",
+            Icon: Person
+        },
+        {
+            text: "Chat",
+            href: "/dashboard/chat",
+            Icon: MarkChatUnread
+        },
+        {
+            text: "Randevu Al",
+            href: "/dashboard/appointment",
+            Icon: CalendarToday
+        },
+        {
+            text: "Ayarlar",
+            href: "/dashboard/settings",
+            Icon: Settings
+        }
+    ]
     const router = useRouter();
     useEffect(() => {
         if (!user.IsAuthenticated) {
@@ -51,8 +93,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         }
     }, [user])
     return (
-        <div className="overflow flex w-full h-screen border-2 border-green-100">
-            <div className="relative md:min-w-[18%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]">
+        <div className="overflow-auto  flex w-full h-screen border-2 border-green-100">
+            <div className="sticky top-0  md:min-w-[18%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]">
                 <div className="md:w-[125px] md:h-[43px] relative md:mt-[40px]">
                     <Image src="/images/svg/brandmark6.svg" layout="fill" objectFit="contain" />
                 </div>
@@ -61,7 +103,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 </div>
                 <div className="absolute bottom-0 left-0 w-full">
                     <div className="px-[30px] mb-[34px]">
-                        <Button onClick={()=>logout()} className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] bg-quaternary-flat">
+                        <Button onClick={() => logout()} className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] bg-quaternary-flat">
                             <PowerSettingsNew className="text-[white]" />
                             <Text className="text-[white]">
                                 Çıkış Yap

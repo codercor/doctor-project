@@ -5,7 +5,6 @@ import useAuth from "src/hooks/auth.hook";
 
 const DashBoardNavbar = () => {
     const { user } = useAuth();
-    console.log(user);
     
     return <div className="md:min-h-[160px] flex items-center justify-between bg-cover bg-[url(/images/png/panel-navbar.png)] rounded-[20px_5px_20px_5px] px-[32px]">
         <div className="w-[289px] h-[97px] bg-opacity-80 bg-secondary flex items-center  gap-[10px] pl-[20px] rounded-[20px_5px_20px_5px]" >

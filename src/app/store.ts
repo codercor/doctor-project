@@ -2,6 +2,7 @@
 import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import userReducer from './User/user.slice'
+import trainingReducer from './Training/training.slice'
 import { getPersistConfig } from 'redux-deep-persist';
 import {
     FLUSH,
@@ -14,6 +15,7 @@ import {
 } from "redux-persist"
 const rootReducer = combineReducers({
     user: userReducer,
+    training: trainingReducer,
 })
 const persistConfig = getPersistConfig({
     key: "root",
@@ -49,7 +51,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 >;
 
 
-console.log(persistConfig,store);
+console.log(persistConfig, store);
 
 
 

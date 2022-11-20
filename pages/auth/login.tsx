@@ -11,7 +11,7 @@ import useAuth from "src/hooks/auth.hook";
 const Login = () => {
     const router = useRouter();
     const [credentials, setCredentials] = useState<UserCredentials>({
-        Email: 'batuhannbaki@gmail.com',
+        Email: 'selami@gmail.com',
         Password: '159753@Bbng'
     });
     const { user, login, error } = useAuth();
@@ -46,7 +46,7 @@ const Login = () => {
                         <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Giriş Yap</Text>
                     </Button>
                 </div>
-                <div className="bg-[url(/images/png/login.png)] grid place-content-center bg-cover bg-no-repeat w-[610px] h-[620px]">
+                <div className="bg-[url(/images/png/login.png)] hidden md:grid place-content-center bg-cover bg-no-repeat w-[610px] h-[620px]">
                     <Text type="paragraph" className="text-[25px] text-center text-[white] h-[186px] w-[448px]">İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza başlayın.</Text>
                 </div>
             </div>

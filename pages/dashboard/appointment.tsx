@@ -1,6 +1,6 @@
 import DashboardLayout from "@components/Layouts/DashboardLayout";
 
-const Account = () => {
+const Appointment = () => {
     return (
         <DashboardLayout>
 
@@ -8,4 +8,4 @@ const Account = () => {
     );
 }
 
-export default Account;
+export default Appointment;

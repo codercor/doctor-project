@@ -1,3 +1,4 @@
+import { store } from '@app/store';
 import axios from 'axios';
 export const API = `https://doktor-projesi-jg2xw.ondigitalocean.app/api`;
 
@@ -17,14 +18,19 @@ export const USER_BILLING = `${USER}/billing/:UserId`;
 
 export const USER_INFORMATION = `${USER}/information/:UserId`;
 
+export const TRAINING = `/education`;
+export const TRAINING_IMAGE = `${TRAINING}/image`;
+export const TRAINING_DOCUMENTS = `${TRAINING}/document`;
 
 const request = axios.create({
     baseURL: API,
 });
 request.interceptors.request.use(
-    (config) => {
+    (config: any) => {       // tslint:disable-next-line
+        store.getState().user.Token ? (config.headers.Authorization = `Bearer ${store.getState().user.Token}`) : null;
         return config;
     }, (error) => {
+        console.log("Error", error);
         return Promise.reject(error);
     });
 

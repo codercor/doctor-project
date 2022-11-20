@@ -5,9 +5,10 @@ type Props = {
     type?: "transparent-white" | "secondary" | "tertiary-flat" | "quaternary-flat" | "transparent-secondary";
     direction?: "left" | "right";
     onClick?: () => void;
+    disabled?: boolean;
 }
 
-const Button = ({ children, className, type = "transparent-white", direction = "left",onClick=()=>{} }: Props) => {
+const Button = ({disabled=false, children, className, type = "transparent-white", direction = "left", onClick = () => { } }: Props) => {
     const typeStyle = {
         "transparent-white": "bg-transparent text-white border-white",
         "transparent-secondary": "bg-transparent text-secondary border-secondary",

@@ -10,16 +10,15 @@ const useAuth = () => {
     const login = (credendtials: UserCredentials) => dispatch(_login(credendtials));
     const register = (credendtials: UserCredentials) => dispatch(_register(credendtials));
     const logout = () => dispatch(_logout());
-    const error = {
-        IsError: user.AuthProcess.IsError,
-        ErrorMessage: user.AuthProcess.ErrorMessage
-    }
     return {
         user,
         login,
         register,
-        error,
-        logout
+        logout,
+        error:{
+            IsError: user.AuthProcess.IsError,
+            ErrorMessage: user.AuthProcess.ErrorMessage
+        }
     }
 }
 

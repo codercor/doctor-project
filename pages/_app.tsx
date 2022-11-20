@@ -5,10 +5,10 @@ import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
+const persistor = persistStore(store, {}, function () {
+  persistor.persist();
+});
 function MyApp({ Component, pageProps }: AppProps) {
-  const persistor = persistStore(store, {}, function () {
-    persistor.persist();
-  });
   return (<>
     <NextNProgress height={10} color="#8C88BB" />
     <Provider store={store}>

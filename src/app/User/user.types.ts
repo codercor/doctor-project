@@ -3,11 +3,17 @@ export interface UserState {
     IsAdmin: boolean;
     IsAuthenticated: boolean;
     Email: string;
-    AuthProcess:{
+    ParasutId: string | null;
+    AuthProcess: {
         IsLoading: boolean;
         IsError: boolean;
         ErrorMessage: string;
-    }
+    },
+    UserProcess: {
+        IsLoading: boolean,
+        IsError: boolean,
+        ErrorMessage: string | null
+    },
     Token: string | null;
     Information: {
         Id: string;
@@ -30,4 +36,27 @@ export interface UserState {
 export interface UserCredentials {
     Email: string;
     Password: string;
+}
+export interface UserRegisterCredentials {
+    Email: string;
+    Password: string;
+    ConfirmPassword: string;
+}
+
+export type UserInformation = {
+    Fullname: string,
+    Phone: string,
+    Address: string,
+    Email: string
+}
+
+export type UserBillingDetail = {
+    Id: string,
+    Name: string,
+    Surname: string,
+    Email: string,
+    IdentityNumber: string,
+    RegistrationAddress: string,
+    City: string,
+    Country: string
 }
