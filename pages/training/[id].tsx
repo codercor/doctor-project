@@ -5,11 +5,12 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { DateRange, Download, HourglassBottom, PunchClock, School, Timelapse, TimelapseSharp, Timeline } from '@mui/icons-material'
 import Button from '@components/Button'
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { TrainingDataType } from '@app/Training/training.types'
 import useTraining from 'src/hooks/training.hook'
 import { Loading } from 'pages/dashboard/create-training'
 import { v4 } from 'uuid'
+import useUser from 'src/hooks/user.hook'
 
 const TrainingDocumentCard = ({ title, url }: { title: string, url: string }) => {
     const handleDownload = () => {
@@ -39,7 +40,7 @@ const TrainingSection = ({ Order, Content, StartDate, Time }: { Order: number, C
     </div>
 }
 
-const BuyKit = ({ price, totalLength }: { price: number, totalLength: number }) => {
+const BuyKit = ({ id, price, totalLength }: { id: string, price: number, totalLength: number }) => {
     return <>
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>
@@ -55,7 +56,9 @@ const BuyKit = ({ price, totalLength }: { price: number, totalLength: number }) 
             </div>
             <Text>{totalLength}dk</Text>
         </div>
-        <Button type="quaternary-flat" className='flex justify-center text-center mb-2' >
+        <Button onClick={() => {
+            Router.push('/training/buy?id=' + id)
+        }} type="quaternary-flat" className='flex justify-center text-center mb-2' >
             Satın Al
         </Button>
     </>
@@ -66,6 +69,7 @@ const getYoutubeId = (url: string) => {
 }
 
 const TrainingContent = ({ training }: { training: TrainingDataType | null }) => {
+    const { user: { IsAdmin } } = useUser()
     if (!training) return <Loading message="Yükleniyor..." />
     return <div className="h-[1135px] pb-10 flex justify-center items-center w-full bg-[white] ">
         <div className="w-[1196px]  flex justify-center items-center h-full bg-[#F4F4F4] ">
@@ -92,7 +96,7 @@ const TrainingContent = ({ training }: { training: TrainingDataType | null }) =>
                 </div>
             </div>
             <div className="w-[30%] h-full bg-[#F4F4F4] pt-[42px] pl-[32px] pr-[30px]">
-                <BuyKit price={training.Price} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />
+                {!IsAdmin && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
                 <Text type='h6' className='text-secondary-flat'>Eğitim Konuları</Text>
                 <div className="w-full scrollbar-thin scrollbar-thumb-tertiary-light overflow-auto h-[90%]">
                     {

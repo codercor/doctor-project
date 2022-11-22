@@ -7,6 +7,8 @@ import React from "react";
 import Image from "next/image";
 import classNames from "classnames";
 import CloseIcon from "@components/Icon/CloseIcon";
+import useAuth from "src/hooks/auth.hook";
+import useUser from "src/hooks/user.hook";
 
 type Route = {
     text: string;
@@ -32,7 +34,16 @@ const navs = [
     },
 ]
 
-
+const authendicatedNavs = [
+    {
+        text: "Eğitimlerim",
+        href: "/dashboard"
+    },
+    {
+        text: "Çıkış Yap",
+        href: "/logout"
+    },
+]
 const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const toggleMenu = () => setIsOpen(!isOpen);
@@ -43,23 +54,37 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
             {route.text}
         </Text></div>)
     }
+    const { user: { IsAuthenticated } } = useUser()
+    const { logout } = useAuth();
 
     return (
         <div className="md:h-auto flex  justify-between absolute z-20 w-full top-0 left-0 md:px-0 px-[20px]">
             <Logo />
             <div className="md:flex hidden  flex-col gap-[20px] md:flex-row md:justify-between md:items-center">
-                {navs.map((nav: Route) => <NavbarItem key={nav.text} route={nav} />)}
+                {(navs).map((nav: Route) => <NavbarItem key={nav.text} route={nav} />)}
                 <div className="flex">
-                    <Button onClick={() => {
+                    {IsAuthenticated ? <>
+                        <><Button onClick={() => {
+                            Router.push("/dashboard")
+                        }} type={backColor === "light" ? "transparent-secondary" : "transparent-white"} direction="right">
+                            <Text type="paragraph">Panelim</Text>
+                        </Button>
+                            <Button onClick={() => {
+                                logout();
+                            }} type="secondary" >
+                                <Text type="paragraph">Çıkış Yap</Text>
+                            </Button></>
+
+                    </> : <><Button onClick={() => {
                         Router.push("/auth/register")
                     }} type={backColor === "light" ? "transparent-secondary" : "transparent-white"} direction="right">
                         <Text type="paragraph">Kayıt Ol</Text>
                     </Button>
-                    <Button onClick={() => {
-                        Router.push("/auth/login")
-                    }} type="secondary" >
-                        <Text type="paragraph">Giriş Yap</Text>
-                    </Button>
+                        <Button onClick={() => {
+                            Router.push("/auth/login")
+                        }} type="secondary" >
+                            <Text type="paragraph">Giriş Yap</Text>
+                        </Button></>}
                 </div>
             </div>
             <div onClick={() => setIsOpen(true)} className="flex items-center gap-2 mt-[23px] h-fit md:hidden">

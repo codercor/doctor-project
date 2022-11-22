@@ -1,3 +1,5 @@
+import { TrainingDocumentationType } from "@app/Training/training.types";
+
 export interface UserState {
     Id: string;
     IsAdmin: boolean;
@@ -30,6 +32,10 @@ export interface UserState {
         RegistrationAddress: string;
         City: string;
         Country: string;
+    },
+    UsersTrainings: Array<BoughtTraining>;
+    UsersTrainingsProcess: {
+        IsLoading: boolean;
     }
 }
 
@@ -59,4 +65,28 @@ export type UserBillingDetail = {
     RegistrationAddress: string,
     City: string,
     Country: string
+}
+export interface BoughtTrainingEducationSection {
+    Id: string,
+    Order: number | string,
+    Content: string,
+    ZoomUrl: string,
+    Password: string,
+}
+
+export type BoughtTraining = {
+    Id: string,
+    Name: string,
+    Details: string,
+    Price: string | number,
+    Image: string,
+    GeneralDetail: {
+        Id: string,
+        StartDate: string,
+        EndDate: string,
+        AccessEndDate: string,
+        VideoLink: string,
+    },
+    EducationSections: Array<BoughtTrainingEducationSection & { ZoomURL: string }>,
+    Documentation: Array<TrainingDocumentationType>
 }

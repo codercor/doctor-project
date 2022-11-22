@@ -4,20 +4,46 @@ import Text from "@components/Text";
 import { School, ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
 import TrainingCard, { TrainingCardProps } from "@components/Card/TrainingCard";
 import { useMediaQuery } from "react-responsive";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { v4 } from "uuid";
 import DashBoardNavbar from "@components/Navbar/DashBoardNavbar";
 import useUser from "src/hooks/user.hook";
+import { Loading } from "pages/dashboard/create-training";
 
 
 
-const MyTrainings = () => <div className="h-[462px] bg-[#F4F4F4] p-[32px]">
-    <Text className="text-[#4D5628] text-[14px] font-nexa-regular">Eğitimlerim</Text>
-    <div className="w-full h-full  grid place-content-center">
-        <School className="text-[#BABCAC] mx-auto text-[32px]" />
-        <Text className="text-[#BABCAC] text-[14px] font-nexa-regular">Satın aldığınız eğitim bulunmamaktadır.</Text>
+const MyTrainings = () => {
+    const {
+        getUsersTrainings,
+        user: {
+            UsersTrainings,
+            UsersTrainingsProcess: {
+                IsLoading
+            }
+        }
+    } = useUser();
+
+    useEffect(() => {
+        getUsersTrainings();
+    }, [])
+
+
+    return <div className="h-[462px] bg-[#F4F4F4] p-[32px]">
+        <Text className="text-[#4D5628] text-[14px] font-nexa-regular">Eğitimlerim</Text>
+        {IsLoading ? <div className="z-[100] fixed top-0 left-0"> <Loading message="Eğitimler yükleniyor" /></div> : UsersTrainings.length < 1 ? <div className="w-full h-full  grid place-content-center">
+            <School className="text-[#BABCAC] mx-auto text-[32px]" />
+            <Text className="text-[#BABCAC] text-[14px] font-nexa-regular">Satın aldığınız eğitim bulunmamaktadır.</Text>
+        </div> : <div>
+
+            {UsersTrainings.map((item) => <div>  {item.Name}
+            <ul>
+                {item.EducationSections.map((subItem) => <li key={subItem.ZoomURL}>  {subItem.Content} -  {subItem.ZoomURL} </li>)}
+            </ul>
+            </div>)}
+
+        </div>}
     </div>
-</div>
+}
 
 const AllTrainingsFloating = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })

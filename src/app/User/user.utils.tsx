@@ -1,4 +1,4 @@
-import request, { AUTH_LOGIN, AUTH_REGISTER, USER_BILLING, USER_INFORMATION, USER_WITH_ID } from '@config'
+import request, { AUTH_LOGIN, AUTH_REGISTER, USER_BILLING, USER_INFORMATION, USER_WITH_ID, TRAININGS_WITH_USER_ID } from '@config'
 import { AxiosError } from 'axios';
 import { UserBillingDetail, UserCredentials, UserInformation } from './user.types';
 
@@ -68,6 +68,19 @@ export const updatePasswordRequest = async (id: string, newPassword: string) => 
         );
         console.log("update Password Request", response.data);
         return response.data;
+    } catch (err: any) {
+        throw new Error(err.response.data.message)
+    }
+}
+
+export const fetchUsersTrainingsRequest = async (id: string) => {
+    try {
+        const response = await request.get(
+            TRAININGS_WITH_USER_ID.replace(':UserId', id),
+        );
+        console.log("users trainings data", response.data);
+        let filtered = response.data.map((item: any) => item.Education);
+        return filtered;
     } catch (err: any) {
         throw new Error(err.response.data.message)
     }

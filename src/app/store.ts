@@ -3,6 +3,7 @@ import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/t
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import userReducer from './User/user.slice'
 import trainingReducer from './Training/training.slice'
+import paymentReducer from './Payment/payment.slice'
 import { getPersistConfig } from 'redux-deep-persist';
 import {
     FLUSH,
@@ -16,6 +17,7 @@ import {
 const rootReducer = combineReducers({
     user: userReducer,
     training: trainingReducer,
+    payment: paymentReducer
 })
 const persistConfig = getPersistConfig({
     key: "root",

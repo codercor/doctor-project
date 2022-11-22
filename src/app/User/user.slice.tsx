@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../store';
 import { UserCredentials, UserState, UserInformation, UserBillingDetail } from './user.types';
-import { fetchUserRequest, loginRequest, registerRequest, updateUserRequest, updateUserBillingDetailRequest, updatePasswordRequest } from './user.utils';
+import { fetchUserRequest, loginRequest, registerRequest, updateUserRequest, updateUserBillingDetailRequest, updatePasswordRequest, fetchUsersTrainingsRequest } from './user.utils';
 
 
 
@@ -38,6 +38,10 @@ const initialState: UserState = {
         RegistrationAddress: '',
         City: '',
         Country: ''
+    },
+    UsersTrainings: [],
+    UsersTrainingsProcess: {
+        IsLoading: false,
     }
 };
 
@@ -90,6 +94,13 @@ export const updateUserPassword = createAsyncThunk(
         return result;
     });
 
+export const fetchUsersTrainings = createAsyncThunk(
+    'user/fetchUsersTrainings',
+    async (_, thunkApi) => {
+        const state = thunkApi.getState() as RootState;
+        const id = state.user.Id;
+        return (await fetchUsersTrainingsRequest(id));
+    });
 
 
 export const userSlice = createSlice({
@@ -189,7 +200,14 @@ export const userSlice = createSlice({
                 state.UserProcess.IsError = true;
                 state.UserProcess.ErrorMessage = "Şifre güncellenemedi.";
                 state.UserProcess.IsLoading = false;
-            })
+            }).addCase(fetchUsersTrainings.pending, (state) => {
+                state.UsersTrainingsProcess.IsLoading = true;
+            }).addCase(fetchUsersTrainings.fulfilled, (state, action) => {
+                state.UsersTrainingsProcess.IsLoading = false;
+                state.UsersTrainings = action.payload;
+            }).addCase(fetchUsersTrainings.rejected, (state, action) => {
+                state.UsersTrainingsProcess.IsLoading = false;
+            });
 
     },
 });

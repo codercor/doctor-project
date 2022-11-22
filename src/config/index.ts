@@ -22,6 +22,11 @@ export const TRAINING = `/education`;
 export const TRAINING_IMAGE = `${TRAINING}/image`;
 export const TRAINING_DOCUMENTS = `${TRAINING}/document`;
 
+
+export const PAYMENT = '/purchase'
+
+export const TRAININGS_WITH_USER_ID = `${PAYMENT}/:UserId`;
+
 const request = axios.create({
     baseURL: API,
 });
