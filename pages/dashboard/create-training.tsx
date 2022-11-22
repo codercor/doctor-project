@@ -66,6 +66,8 @@ const CreateTraining = () => {
     }
     const handleGeneralDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.name === 'StartDate' || e.target.name === 'EndDate') {
+            console.log("e.target.value", e.target.value);
+            
             setTrainingData({ ...trainingData, GeneralDetail: { ...trainingData.GeneralDetail, [e.target.name]: formatDate(e.target.value) } })
         } else {
             setTrainingData({ ...trainingData, GeneralDetail: { ...trainingData.GeneralDetail, [e.target.name]: e.target.value } })

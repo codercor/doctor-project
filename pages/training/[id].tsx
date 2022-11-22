@@ -39,21 +39,21 @@ const TrainingSection = ({ Order, Content, StartDate, Time }: { Order: number, C
     </div>
 }
 
-const BuyKit = () => {
+const BuyKit = ({ price, totalLength }: { price: number, totalLength: number }) => {
     return <>
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>
                 <School />
                 <Text>Fiyat</Text>
             </div>
-            <Text>1.000₺</Text>
+            <Text>{price}₺</Text>
         </div>
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>
                 <TimelapseSharp />
                 <Text>Süre</Text>
             </div>
-            <Text>230dk</Text>
+            <Text>{totalLength}dk</Text>
         </div>
         <Button type="quaternary-flat" className='flex justify-center text-center mb-2' >
             Satın Al
@@ -77,7 +77,7 @@ const TrainingContent = ({ training }: { training: TrainingDataType | null }) =>
                 <div className='w-[744px] h-[370px]  mt-[24px]'>
                     {(() => {
                         try {
-                           return <iframe className='w-full h-full' src={getYoutubeId(training.GeneralDetail.VideoLink)} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                            return <iframe className='w-full h-full' src={getYoutubeId(training.GeneralDetail.VideoLink)} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         } catch (error) {
                             return <h1> Video arızalı </h1>
                         }
@@ -92,7 +92,7 @@ const TrainingContent = ({ training }: { training: TrainingDataType | null }) =>
                 </div>
             </div>
             <div className="w-[30%] h-full bg-[#F4F4F4] pt-[42px] pl-[32px] pr-[30px]">
-                <BuyKit />
+                <BuyKit price={training.Price} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />
                 <Text type='h6' className='text-secondary-flat'>Eğitim Konuları</Text>
                 <div className="w-full scrollbar-thin scrollbar-thumb-tertiary-light overflow-auto h-[90%]">
                     {
@@ -107,10 +107,13 @@ const TrainingContent = ({ training }: { training: TrainingDataType | null }) =>
 }
 
 export default function TrainingDetailPage() {
-    const bgClass = "bg-[url(/images/png/hakkimda-ayakta.png)]"
     const { query } = useRouter();
-    const [trainingData, setTrainingData] = useState<TrainingDataType | null>(null)
+    type OneTraining = TrainingDataType & { Id?: string, Image?: string }
+    const [trainingData, setTrainingData] = useState<OneTraining | null>(null)
     const { getTrainingById, oneTraining } = useTraining();
+    const bgClass = "bg-[url('" + ((oneTraining as OneTraining)?.Image as string) + "')]"
+    console.log("bgClass", bgClass);
+
     console.log("query", query.id);
 
     useEffect(() => {
@@ -128,10 +131,11 @@ export default function TrainingDetailPage() {
     if (!trainingData) return <Loading message='Eğitim yükleniyor...' />
     return (
         <LandingLayout>
-            <Container className={"h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom  md:bg-cover " + bgClass}>
+            <Container className={"h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom  overflow-hidden rounded-br-[150px] md:bg-cover " + bgClass}>
                 <Container className="md:!max-w-[1455px] grid  place-items-end  justify-center pb-20 md:pb-22 h-full">
-                    <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold"> {oneTraining?.Name} </Text>
+                    <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold z-50"> {oneTraining?.Name} </Text>
                 </Container>
+                <Image src={trainingData?.Image as string} layout="fill" objectFit="cover" />
             </Container>
             <TrainingContent training={oneTraining} />
         </LandingLayout>

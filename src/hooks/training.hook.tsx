@@ -26,7 +26,8 @@ const useTraining = () => {
         getTrainingById,
         oneTraining: training.oneTraining,
         deleteTrainingById,
-        deleteTrainingProcess: training.deleteTrainingProcess
+        deleteTrainingProcess: training.deleteTrainingProcess,
+        editTrainingProcess: training.editTrainingProcess,
     }
 }
 

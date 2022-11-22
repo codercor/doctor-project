@@ -10,6 +10,14 @@ export const createTrainingRequest = async (trainingData: TrainingDataType) => {
         throw new Error(err.response.data.message)
     }
 }
+export const editTrainingRequest = async (trainingData: TrainingDataType, id: string) => {
+    try {
+        const response = await request.put(TRAINING + '/' + id, trainingData);
+        return response.data;
+    } catch (err: any) {
+        throw new Error(err.response.data.message)
+    }
+}
 
 export const uploadTrainingImageRequest = async (trainingId: string, image: File) => {
     try {
@@ -58,7 +66,7 @@ export const getAdminTrainingsRequest = async (page: number) => {
 
 export const getTrainingByIdRequest = async (id: string) => {
     try {
-        console.log("training id", id,`${TRAINING}/${id}`);
+        console.log("training id", id, `${TRAINING}/${id}`);
 
         const response = await request.get(`${TRAINING}/${id}`);
         return response.data;

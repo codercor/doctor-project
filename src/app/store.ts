@@ -51,8 +51,6 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 >;
 
 
-console.log(persistConfig, store);
-
 
 
 

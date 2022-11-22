@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../store';
 import { TrainingDataType, TrainingBranchProps, TrainingBranchType } from './training.types';
-import { createTrainingRequest, uploadTrainingDocumentsRequest, uploadTrainingImageRequest, getAdminTrainingsRequest, getTrainingByIdRequest, deleteTrainingByIdRequest as _deleteTrainingByIdRequest } from './training.utils';
+import { createTrainingRequest, uploadTrainingDocumentsRequest, uploadTrainingImageRequest, getAdminTrainingsRequest, getTrainingByIdRequest, deleteTrainingByIdRequest as _deleteTrainingByIdRequest, editTrainingRequest } from './training.utils';
 import Router from 'next/router'
 
 export type TrainingSliceProps = {
@@ -11,6 +11,11 @@ export type TrainingSliceProps = {
         loadingMessage: string
     },
     deleteTrainingProcess: {
+        loading: boolean,
+        error: null | string | undefined
+        loadingMessage: string
+    },
+    editTrainingProcess: {
         loading: boolean,
         error: null | string | undefined
         loadingMessage: string
@@ -26,6 +31,11 @@ const initialState: TrainingSliceProps = {
         loadingMessage: ''
     },
     deleteTrainingProcess: {
+        loading: false,
+        error: null,
+        loadingMessage: ''
+    },
+    editTrainingProcess: {
         loading: false,
         error: null,
         loadingMessage: ''
@@ -63,6 +73,34 @@ export const createTraining = createAsyncThunk(
         return createdTraining;
     });
 
+export const editTraining = createAsyncThunk(
+    'training/editTraining',
+    async (data: {
+        trainingData: TrainingDataType,
+        image: File | null,
+        documents: FileList | null,
+        Id: string
+    }, thunkApi) => {
+        thunkApi.dispatch(setEditLoadingMessage('Eğitim güncelleniyor...'));
+        let editedTraining = (await editTrainingRequest(data.trainingData, data.Id));
+        console.log("editedTraining", editedTraining);
+        //upload Images 
+        console.log("data.image", data.image);
+
+        if (data.image) {
+            thunkApi.dispatch(setEditLoadingMessage('Eğitim resmi güncelleniyor...'));
+            await uploadTrainingImageRequest(data.Id, data.image);
+        }
+        //upload Documents
+        if (data?.documents) {
+            thunkApi.dispatch(setEditLoadingMessage('Eğitim belgeleri güncelleniyor...'));
+            await uploadTrainingDocumentsRequest(data.Id, data.documents);
+        }
+
+        return editedTraining;
+    });
+
+
 export const getAdminTrainings = createAsyncThunk(
     'training/getAdminTrainings',
     async (page: number, thunkApi) => {
@@ -93,6 +131,9 @@ export const trainingSlice = createSlice({
     reducers: {
         setLoadingMessage: (state, action: PayloadAction<string>) => {
             state.createTrainingProcess.loadingMessage = action.payload;
+        },
+        setEditLoadingMessage: (state, action: PayloadAction<string>) => {
+            state.editTrainingProcess.loadingMessage = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -146,11 +187,22 @@ export const trainingSlice = createSlice({
                 state.deleteTrainingProcess.loading = false;
                 state.deleteTrainingProcess.error = action.error.message;
                 state.deleteTrainingProcess.loadingMessage = '';
+            }).addCase(editTraining.pending, (state) => {
+                state.editTrainingProcess.loading = true;
+            }).addCase(editTraining.fulfilled, (state, action) => {
+                state.editTrainingProcess.loading = false;
+                state.editTrainingProcess.error = null;
+                state.editTrainingProcess.loadingMessage = '';
+                Router.push('/dashboard/trainings');
+            }).addCase(editTraining.rejected, (state, action) => {
+                state.editTrainingProcess.loading = false;
+                state.editTrainingProcess.error = action.error.message;
+                state.editTrainingProcess.loadingMessage = '';
             })
     },
 });
 
-export const { setLoadingMessage } = trainingSlice.actions;
+export const { setLoadingMessage, setEditLoadingMessage } = trainingSlice.actions;
 
 export const selectTraining = (state: RootState) => state?.training;
 

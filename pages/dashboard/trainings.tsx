@@ -27,7 +27,9 @@ const Training = ({ training }: { training: TrainingDataType }) => {
             }} type="secondary" className="bg-[#9AA567] w-fit !p-4 gap-1 flex rounded-sm min-h-[36px]">
                 <Visibility className="text-[white] text-[16px]" />
             </Button>
-            <Button type="secondary" className="bg-[#E49B4F] w-fit opacity-50 !p-4 gap-1 flex rounded-sm min-h-[36px]">
+            <Button onClick={() => {
+                window.open(`/dashboard/edit-training/${training.Id}`, '_blank')
+            }} type="secondary" className="bg-[#E49B4F] w-fit  !p-4 gap-1 flex rounded-sm min-h-[36px]">
                 <Edit className="text-[white] text-[16px]" />
             </Button>
             <Button
