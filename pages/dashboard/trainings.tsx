@@ -5,7 +5,7 @@ import { Input } from '@mui/material'
 import React, { useEffect } from 'react'
 import Image from 'next/image'
 import Button from '@components/Button'
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 import useTraining from 'src/hooks/training.hook'
 import { TrainingCardProps } from '@components/Card/TrainingCard'
 import { TrainingSliceProps } from '@app/Training/training.slice'
@@ -13,9 +13,7 @@ import { TrainingDataType } from 'src/types/Training'
 import { v4 } from 'uuid'
 import { CircularProgress } from '@mui/material'
 const Training = ({ training }: { training: TrainingDataType }) => {
-    const router = useRouter();
     const { deleteTrainingById } = useTraining();
-
     return <div className="flex  items-center mt-4  justify-between px-4 bg-[white] w-full h-[85px]">
         <div className="flex flex-col items-start justify-start gap-2">
             <Text type='overline' className="text-[#4E929D] text-left !font-nexa-bold text-[14px]"> Eğitim adı </Text>
@@ -23,12 +21,12 @@ const Training = ({ training }: { training: TrainingDataType }) => {
         </div>
         <div className="flex flex-row items-start justify-start gap-2">
             <Button onClick={() => {
-                window.open(`/training/${training.Id}`, '_blank')
+                Router.push(`/training/${training.Id}`)
             }} type="secondary" className="bg-[#9AA567] w-fit !p-4 gap-1 flex rounded-sm min-h-[36px]">
                 <Visibility className="text-[white] text-[16px]" />
             </Button>
             <Button onClick={() => {
-                window.open(`/dashboard/edit-training/${training.Id}`, '_blank')
+                Router.push(`/dashboard/edit-training/${training.Id}`)
             }} type="secondary" className="bg-[#E49B4F] w-fit  !p-4 gap-1 flex rounded-sm min-h-[36px]">
                 <Edit className="text-[white] text-[16px]" />
             </Button>
