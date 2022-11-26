@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../store';
-import { UserCredentials, UserState, UserInformation, UserBillingDetail } from './user.types';
-import { fetchUserRequest, loginRequest, registerRequest, updateUserRequest, updateUserBillingDetailRequest, updatePasswordRequest, fetchUsersTrainingsRequest } from './user.utils';
+import { UserCredentials, UserState, UserInformation, UserBillingDetail, BannerData } from './user.types';
+import { fetchUserRequest, loginRequest, registerRequest, updateUserRequest, updateUserBillingDetailRequest, updatePasswordRequest, fetchUsersTrainingsRequest, adminUpdateBannerRequest } from './user.utils';
 
 
 
@@ -42,8 +42,13 @@ const initialState: UserState = {
     UsersTrainings: [],
     UsersTrainingsProcess: {
         IsLoading: false,
-    }
+    },
+    UpdateHomePageProcess: {
+        IsLoading: false,
+        IsError: false,
+    },
 };
+
 
 
 export const login = createAsyncThunk(
@@ -73,8 +78,12 @@ export const updateUser = createAsyncThunk(
         return (await updateUserRequest(id, data));
     });
 
-
-
+export const adminUpdateBanner = createAsyncThunk(
+    'user/adminUpdateBanner',
+    async (data: BannerData, thunkApi) => {
+        let result = (await adminUpdateBannerRequest(data));
+        return result;
+    });
 
 export const updateUserBillingDetail = createAsyncThunk(
     'user/updateUserBillingDetail',
@@ -207,7 +216,18 @@ export const userSlice = createSlice({
                 state.UsersTrainings = action.payload;
             }).addCase(fetchUsersTrainings.rejected, (state, action) => {
                 state.UsersTrainingsProcess.IsLoading = false;
-            });
+            }).addCase(adminUpdateBanner.pending, (state) => {
+                state.UpdateHomePageProcess.IsLoading = true
+                state.UpdateHomePageProcess.IsError = false;
+            }).addCase(adminUpdateBanner.fulfilled, (state, action) => {
+                state.UpdateHomePageProcess.IsLoading = false;
+                state.UpdateHomePageProcess.IsError = false;
+            }).addCase(adminUpdateBanner.rejected, (state, action) => {
+                state.UpdateHomePageProcess.IsLoading = false;
+                state.UpdateHomePageProcess.IsError = true;
+            })
+
+
 
     },
 });

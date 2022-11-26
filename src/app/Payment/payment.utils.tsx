@@ -8,7 +8,6 @@ export const paymentRequest = async (credentials: PaymentCredentials) => {
         const response = await request.post(PAYMENT, credentials);
         return response.data;
     } catch (error) {
-        const err = error as AxiosError;
-        return err.response?.data;
+        throw (error as any).response.data;
     }
 }

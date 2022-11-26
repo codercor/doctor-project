@@ -11,7 +11,7 @@ import useAuth from "src/hooks/auth.hook";
 const Login = () => {
     const router = useRouter();
     const [credentials, setCredentials] = useState<UserCredentials>({
-        Email: 'selami@gmail.com',
+        Email: 'nurettin@gmail.com',
         Password: '159753@Bbng'
     });
     const { user, login, error } = useAuth();
@@ -19,7 +19,7 @@ const Login = () => {
         login(credentials);
     }
     useEffect(() => {
-        if(user.IsAuthenticated) router.push('/dashboard');
+        if (user.IsAuthenticated) router.push('/dashboard');
     }, [user])
 
     return (
@@ -40,7 +40,9 @@ const Login = () => {
                             <input className="h-[24px] appearance-none w-[24px] bg-primary-flat checked:accent-white-100  checked:after:rounded-[5px_0px_5px_0] relative checked:after:w-[24px] checked:after:h-[24px] checked:after:absolute checked:after:grid checked:after:place-content-center checked:after:top-0 checked:left-0 checked:after:bg-primary-flat checked:after:content-['✓']" type="checkbox" />
                             <Text type="h4" className="!text-[14px] !py-[10px]">Beni Hatırla</Text>
                         </div>
-                        <Text type="h4" className="!text-[14px] font-nexa-light  !py-[10px]">Şifremi Unuttum</Text>
+                        <div onClick={()=>{
+                            router.push('/auth/forgot-password')
+                        }} > <Text type="h4" className="!text-[14px] font-nexa-light  !py-[10px]">Şifremi Unuttum</Text></div>
                     </div>
                     <Button onClick={submitLogin} type="secondary" className="w-full mt-[20px] h-[48px] leading-none flex items-center justify-center">
                         <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Giriş Yap</Text>

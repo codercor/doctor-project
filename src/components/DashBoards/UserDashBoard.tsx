@@ -4,15 +4,17 @@ import Text from "@components/Text";
 import { School, ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
 import TrainingCard, { TrainingCardProps } from "@components/Card/TrainingCard";
 import { useMediaQuery } from "react-responsive";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
 import DashBoardNavbar from "@components/Navbar/DashBoardNavbar";
 import useUser from "src/hooks/user.hook";
 import { Loading } from "pages/dashboard/create-training";
+import useTraining from "src/hooks/training.hook";
 
 
 
 const MyTrainings = () => {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
     const {
         getUsersTrainings,
         user: {
@@ -29,17 +31,47 @@ const MyTrainings = () => {
 
 
     return <div className="h-[462px] bg-[#F4F4F4] p-[32px]">
-        <Text className="text-[#4D5628] text-[14px] font-nexa-regular">Eğitimlerim</Text>
+        <Text className="text-[#4D5628] text-[20px] font-nexa-bold">Eğitimlerim</Text>
         {IsLoading ? <div className="z-[100] fixed top-0 left-0"> <Loading message="Eğitimler yükleniyor" /></div> : UsersTrainings.length < 1 ? <div className="w-full h-full  grid place-content-center">
             <School className="text-[#BABCAC] mx-auto text-[32px]" />
             <Text className="text-[#BABCAC] text-[14px] font-nexa-regular">Satın aldığınız eğitim bulunmamaktadır.</Text>
-        </div> : <div>
+        </div> : <div className="flex mt-2 gap-12 border-red-500 overflow-auto  scrollbar-thumb-secondary scrollbar-thin p-4 shadow-2xl">
 
-            {UsersTrainings.map((item) => <div>  {item.Name}
-            <ul>
-                {item.EducationSections.map((subItem) => <li key={subItem.ZoomURL}>  {subItem.Content} -  {subItem.ZoomURL} </li>)}
-            </ul>
-            </div>)}
+            {UsersTrainings.filter(item=>item?.Image).map((item) => {
+                console.log("item", item);
+                
+                const exampleProps = {
+                    image: item.Image as string || '',
+                    title: item.Name as string || '',
+                    description: item.Details as string || '',
+                    backgroundColor: "!bg-[#EFEEF5]",
+                    detailHref: `/trainings/${item.Id}`,
+                    detailOnImage: false,
+                    detailPos: "br",
+                    imageRounded: "br",
+                    boxRounded: "tl",
+                    priceBackgroundColor: "!bg-[#ffffff]",
+                    priceOnImage: true,
+                    pricePos: "tl",
+                    type: "vertical",
+                    showBuyButton: false,
+                    detailButtonDirection: "right",
+                    width: 378,
+                    mWidth: 314,
+                    height: 328,
+                    mHeight: 250,
+                    isMobile,
+                    sizeType: isMobile ? "sm" : "md",
+                    showPrice: false,
+                    Id: item.Id as string || '',
+                }
+                console.log("exampleProps", exampleProps);
+                
+                //@ts-ignore
+                return <TrainingCard  key={v4()} {...exampleProps} />
+            }
+            )
+            }
 
         </div>}
     </div>
@@ -47,6 +79,42 @@ const MyTrainings = () => {
 
 const AllTrainingsFloating = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+    const { publicTrainings, getPublicTrainings } = useTraining();
+    useEffect(() => {
+        if (publicTrainings.length < 1) getPublicTrainings(1);
+    }, [])
+    const [trainings, setTrainings] = useState<TrainingCardProps[]>([]);
+
+    useEffect(() => {
+        if (publicTrainings.length > 0) {
+            setTrainings(publicTrainings.map((item) => ({
+                image: item.Image as string || '',
+                title: item.Name as string || '',
+                description: item.Details as string || '',
+                price: (item.Price * ((100 - item.DiscountRate) / 100)).toFixed(1).toString(),
+                backgroundColor: "!bg-[#EFEEF5]",
+                detailHref: `/trainings/${item.Id}`,
+                detailOnImage: true,
+                detailPos: "br",
+                imageRounded: "br",
+                boxRounded: "tl",
+                priceBackgroundColor: "!bg-[#ffffff]",
+                priceOnImage: true,
+                pricePos: "bl",
+                type: "vertical",
+                showBuyButton: false,
+                detailButtonDirection: "right",
+                width: 378,
+                mWidth: 314,
+                height: 328,
+                mHeight: 250,
+                isMobile,
+                sizeType: isMobile ? "sm" : "md"
+
+            })))
+        }
+    }, [publicTrainings.length])
+
     const trainingMock: TrainingCardProps =
     {
         image: "/images/png/yesilzemin-muz.png",
@@ -90,7 +158,7 @@ const AllTrainingsFloating = () => {
         </div>
         <div ref={floatingContainerRef} className="flex h-fit overflow-scroll md:flex-row items-center md:items-start scrollbar-thin">
             {
-                (new Array(12).fill(trainingMock)).map((training, index) => {
+                trainings.map((training, index) => {
                     return <div key={v4()} className="mx-[14px]">
                         <TrainingCard  {...training} />
                     </div>

@@ -161,7 +161,7 @@ const CreateTraining = () => {
                                 ))
                             }
                         </div>
-                        <Button disabled onClick={handleSubmit} type="secondary" className=" self-end mt-10 bg-tertiary w-[224px] h-[56px] !px-[16px] !py-[14px] gap-1 flex justify-center items-center !rounded-[10px_5px_10px_5px] min-h-[36px]">
+                        <Button  onClick={handleSubmit} type="secondary" className=" self-end mt-10 bg-tertiary w-[224px] h-[56px] !px-[16px] !py-[14px] gap-1 flex justify-center items-center !rounded-[10px_5px_10px_5px] min-h-[36px]">
                             <Add className="text-[white]" fontSize="medium" />
                             <Text className="text-[20px]">Eğitimi Ekle</Text>
                         </Button>

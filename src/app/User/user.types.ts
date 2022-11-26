@@ -36,7 +36,11 @@ export interface UserState {
     UsersTrainings: Array<BoughtTraining>;
     UsersTrainingsProcess: {
         IsLoading: boolean;
-    }
+    },
+    UpdateHomePageProcess: {
+        IsLoading: boolean;
+        IsError: boolean;
+    },
 }
 
 export interface UserCredentials {
@@ -54,6 +58,11 @@ export type UserInformation = {
     Phone: string,
     Address: string,
     Email: string
+}
+export type BannerData = {
+    Title: string,
+    Description: string,
+    Image: string | File,
 }
 
 export type UserBillingDetail = {

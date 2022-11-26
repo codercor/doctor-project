@@ -1,26 +1,34 @@
 import request, { TRAINING, TRAINING_IMAGE, TRAINING_DOCUMENTS } from '@config'
 import { TrainingDataType } from './training.types';
-
+import toast from 'react-hot-toast';
 
 export const createTrainingRequest = async (trainingData: TrainingDataType) => {
+    const _toast = toast.loading('Eğitim oluşturuluyor...');
     try {
         const response = await request.post(TRAINING, trainingData);
+        toast.success('Eğitim oluşturuldu.', { id: _toast });
         return response.data;
     } catch (err: any) {
+        toast.error('Eğitim oluşturulamadı.', { id: _toast });
         throw new Error(err.response.data.message)
     }
 }
 export const editTrainingRequest = async (trainingData: TrainingDataType, id: string) => {
+    const _toast = toast.loading('Eğitim güncelleniyor...');
     try {
         const response = await request.put(TRAINING + '/' + id, trainingData);
+        toast.success('Eğitim güncellendi.', { id: _toast });
         return response.data;
     } catch (err: any) {
+        toast.error('Eğitim güncellenemedi.', { id: _toast });
         throw new Error(err.response.data.message)
     }
 }
 
 export const uploadTrainingImageRequest = async (trainingId: string, image: File) => {
+    const _toast = toast.loading('Eğitim resmi yükleniyor...');
     try {
+
         const formData = new FormData();
         formData.append('Image', image);
         formData.append("EducationId", trainingId);
@@ -30,13 +38,16 @@ export const uploadTrainingImageRequest = async (trainingId: string, image: File
             },
             data: formData
         });
+        toast.success('Eğitim resmi yüklendi.', { id: _toast });
         return response.data;
     } catch (err: any) {
+        toast.error('Eğitim resmi yüklenemedi.', { id: _toast });
         throw new Error(err.response.data.message)
     }
 }
 
 export const uploadTrainingDocumentsRequest = async (trainingId: string, documents: FileList) => {
+    const _toast = toast.loading('Eğitim belgeleri yükleniyor...');
     try {
         const formData = new FormData();
         for (let i = 0; i < documents.length; i++) {
@@ -49,8 +60,10 @@ export const uploadTrainingDocumentsRequest = async (trainingId: string, documen
             },
             data: formData
         });
+        toast.success('Eğitim belgeleri yüklendi.', { id: _toast });
         return response.data;
     } catch (err: any) {
+        toast.error('Eğitim belgeleri yüklenemedi.', { id: _toast });
         throw new Error(err.response.data.message)
     }
 }
@@ -76,8 +89,20 @@ export const getTrainingByIdRequest = async (id: string) => {
 }
 
 export const deleteTrainingByIdRequest = async (id: string) => {
+    const _toast = toast.loading('Eğitim siliniyor...');
     try {
         const response = await request.delete(`${TRAINING}/${id}`);
+        toast.success('Eğitim silindi.', { id: _toast });
+        return response.data;
+    } catch (err: any) {
+        toast.error('Eğitim silinemedi.', { id: _toast });
+        throw new Error(err.response.data.message)
+    }
+}
+
+export const getPublicTrainingsRequest = async (page: number) => {
+    try {
+        const response = await request.get(`${TRAINING}?page=${page}`);
         return response.data;
     } catch (err: any) {
         throw new Error(err.response.data.message)

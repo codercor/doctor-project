@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../store';
 import { PaymentState, PaymentCredentials } from './payment.types';
 import { paymentRequest } from './payment.utils';
-
+import Router from 'next/router';
 
 
 
@@ -22,7 +22,11 @@ export const payment = createAsyncThunk(
         const state = thunkAPI.getState() as RootState;
         const credentials = state.payment.paymentCredentials;
         if (!credentials) return Promise.reject('No payment credentials');
-        return (await paymentRequest(credentials));
+        try {
+            return (await paymentRequest(credentials));
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        }
     });
 
 
@@ -42,8 +46,13 @@ export const paymentSlice = createSlice({
             state.paymentProcess.loading = false;
             state.htmlContent = action.payload.HtmlContent;
         }).addCase(payment.rejected, (state, action: any) => {
+            console.log("payload", action.payload);
             state.paymentProcess.loading = false;
-            state.paymentProcess.error = action.payload.ErrorMessage;
+            state.paymentProcess.error = action.payload.Message;
+
+            if (action.payload.Message == "Kullanıcı faturalandırma bilgileri doldurulmalı") {
+                Router.push("/dashboard/settings/invoice-settings")
+            }
         });
     }
 });

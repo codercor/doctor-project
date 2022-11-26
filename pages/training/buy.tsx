@@ -29,6 +29,7 @@ export default function TrainingDetailPage() {
     }, [query.id]);
 
     useEffect(() => {
+        //@ts-ignore
         if (oneTraining) setTrainingData(oneTraining);
     }, [oneTraining]);
 

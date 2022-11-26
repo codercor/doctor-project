@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text'
-import { Delete, Edit, PanoramaFishEye, Visibility } from '@mui/icons-material'
+import { Delete, Edit, PanoramaFishEye, School, Visibility } from '@mui/icons-material'
 import { Input } from '@mui/material'
 import React, { useEffect } from 'react'
 import Image from 'next/image'
@@ -74,7 +74,11 @@ export default function Trainings() {
                         (deleteTrainingProcess.loading) ? <div className="w-[400px] h-[400px] mx-auto animate-pulse text-center bg-secondary-light flex flex-col justify-center items-center gap-2 rounded-full">
                             <div>  <CircularProgress /></div>
                             <Text type="h1" className="text-secondary !text-[20px]  w-full text-center">Siliniyor...</Text>
-                        </div> : adminTrainings.map((training) => <Training key={v4()} training={training} />)}
+                        </div> : adminTrainings.length ? adminTrainings.map((training) => <Training key={v4()} training={training} />) :
+                            <div className='w-full h-full flex justify-center items-center flex-col gap-[10px]'>
+                                <School />
+                                <Text> Hiç eğitim yok... </Text>
+                            </div>}
                 </div>
             </div>
         </DashboardLayout>

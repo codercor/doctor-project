@@ -3,15 +3,16 @@ import LandingLayout from '@components/Layouts/LandingLayout'
 import Text from '@components/Text'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { DateRange, Download, HourglassBottom, PunchClock, School, Timelapse, TimelapseSharp, Timeline } from '@mui/icons-material'
+import { DateRange, Download, HourglassBottom, Key, PunchClock, School, Timelapse, TimelapseSharp, Timeline, VideoCallRounded, VideocamTwoTone } from '@mui/icons-material'
 import Button from '@components/Button'
 import Router, { useRouter } from 'next/router'
-import { TrainingDataType } from '@app/Training/training.types'
+import { TrainingBranchType, TrainingDataType } from '@app/Training/training.types'
 import useTraining from 'src/hooks/training.hook'
 import { Loading } from 'pages/dashboard/create-training'
 import { v4 } from 'uuid'
 import useUser from 'src/hooks/user.hook'
-
+import Link from 'next/link'
+import { Zoom } from '@mui/material'
 const TrainingDocumentCard = ({ title, url }: { title: string, url: string }) => {
     const handleDownload = () => {
         window.open(url, '_blank')
@@ -24,8 +25,9 @@ const TrainingDocumentCard = ({ title, url }: { title: string, url: string }) =>
     </div>
 }
 
-const TrainingSection = ({ Order, Content, StartDate, Time }: { Order: number, Content: string, StartDate: string, Time: string }) => {
-    return <div className='transition-all duration-700 hover:whitespace-normal truncate w-full max-h-[100px]  h-fit mt-4  flex flex-col items-start justify-between p-[10px] text-ellipsis text-[#6E7846] hover:text-[white] hover:bg-secondary  bg-[#FFFFFF]'>
+const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, ZoomStartURL }: { Order: number, Content: string, StartDate: string, Time: string, ZoomURL?: string, Password?: string, ZoomStartURL?: string }) => {
+    const { user: { IsAdmin } } = useUser();
+    return <div className='transition-all duration-700 hover:whitespace-normal truncate w-full  h-fit mt-4  flex flex-col items-start justify-between p-[10px] text-ellipsis text-[#6E7846] hover:text-[white] hover:bg-secondary  bg-[#FFFFFF]'>
         <Text type='paragraph' className='text-inherit   h-fit hover:text-clip hover:whitespace-normal  truncate  text-[16px] w-[99%]'>{Order}-{Content}</Text>
         <div className="w-full flex justify-between">
             <div className='flex'>
@@ -37,10 +39,26 @@ const TrainingSection = ({ Order, Content, StartDate, Time }: { Order: number, C
                 <Text type='paragraph' className='text-inherit text-[16px]'>{Time}dk</Text>
             </div>
         </div>
+        {(IsAdmin && ZoomStartURL) && <Button type='quaternary-flat' onClick={() => {
+            window.open(ZoomStartURL, '_blank')
+        }} className='text-center !rounded-md w-full mt-4'> <VideocamTwoTone /> Zoom&apos;u Başlat </Button>}
+        {(ZoomURL || Password) && <div className='w-full bg-inherit hover:bg-[white] hover:font-nexa-bold hover:text-[black] shadow-2xl mt-5 pb-4 bg-quaternary-light'>
+            {ZoomURL && <div className='flex flex-col  w-full h-[50px] items-center justify-center'>
+                <div className='flex items-center min-h-[50px] justify-center'>
+                    <VideoCallRounded />
+                    <Link target="_blank" href={ZoomURL} > Zoom`&apos;a gir </Link>
+                </div>
+                <div className='flex items-center'>
+                    <Key />
+                    <Text type='paragraph' className='text-inherit text-[16px]'>{Password}</Text>
+                </div>
+            </div>}
+        </div>}
     </div>
 }
 
 const BuyKit = ({ id, price, totalLength }: { id: string, price: number, totalLength: number }) => {
+    const { user: { IsAuthenticated } } = useUser()
     return <>
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>
@@ -57,7 +75,8 @@ const BuyKit = ({ id, price, totalLength }: { id: string, price: number, totalLe
             <Text>{totalLength}dk</Text>
         </div>
         <Button onClick={() => {
-            Router.push('/training/buy?id=' + id)
+            if (IsAuthenticated) Router.push('/training/buy?id=' + id)
+            else Router.push('/auth/login')
         }} type="quaternary-flat" className='flex justify-center text-center mb-2' >
             Satın Al
         </Button>
@@ -68,8 +87,10 @@ const getYoutubeId = (url: string) => {
     return 'https://www.youtube.com/embed/' + url.split('v=')[1].split('&')[0]
 }
 
-const TrainingContent = ({ training }: { training: TrainingDataType | null }) => {
+const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | null, hasUser: boolean }) => {
     const { user: { IsAdmin } } = useUser()
+    console.log("User has", hasUser);
+
     if (!training) return <Loading message="Yükleniyor..." />
     return <div className="h-[1135px] pb-10 flex justify-center items-center w-full bg-[white] ">
         <div className="w-[1196px]  flex justify-center items-center h-full bg-[#F4F4F4] ">
@@ -96,12 +117,13 @@ const TrainingContent = ({ training }: { training: TrainingDataType | null }) =>
                 </div>
             </div>
             <div className="w-[30%] h-full bg-[#F4F4F4] pt-[42px] pl-[32px] pr-[30px]">
-                {!IsAdmin && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
+                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
+
                 <Text type='h6' className='text-secondary-flat'>Eğitim Konuları</Text>
                 <div className="w-full scrollbar-thin scrollbar-thumb-tertiary-light overflow-auto h-[90%]">
                     {
-                        training.EducationSections && training.EducationSections.map((item, index) => {
-                            return <TrainingSection key={v4()} Order={item.Order} Content={item.Content} StartDate={item.StartDate} Time={item.Time.toString()} />
+                        training.EducationSections && training.EducationSections.map((item: TrainingBranchType & { ZoomURL?: string, Password?: string, StartURL?:string }, index) => {
+                            return <TrainingSection ZoomStartURL={item.StartURL} ZoomURL={(hasUser ? item?.ZoomURL : undefined)} Password={(hasUser ? item.Password : undefined)} key={v4()} Order={item.Order} Content={item.Content} StartDate={item.StartDate} Time={item.Time.toString()} />
                         })
                     }
                 </div>
@@ -112,36 +134,49 @@ const TrainingContent = ({ training }: { training: TrainingDataType | null }) =>
 
 export default function TrainingDetailPage() {
     const { query } = useRouter();
-    type OneTraining = TrainingDataType & { Id?: string, Image?: string }
+    type OneTraining = TrainingDataType & { Id?: string, Image?: string, }
     const [trainingData, setTrainingData] = useState<OneTraining | null>(null)
     const { getTrainingById, oneTraining } = useTraining();
-    const bgClass = "bg-[url('" + ((oneTraining as OneTraining)?.Image as string) + "')]"
-    console.log("bgClass", bgClass);
 
     console.log("query", query.id);
+    const { user: { IsAuthenticated, UsersTrainings, IsAdmin }, getUsersTrainings } = useUser();
+    const [hasUser, setHasUser] = useState(false)
+    const [ownTraining, setOwnTraining] = useState(null)
+    useEffect(() => {
+        if (IsAdmin) return;
+        if (IsAuthenticated && UsersTrainings.length < 1) {
+            getUsersTrainings()
+        } else if (IsAuthenticated && UsersTrainings.length > 0) {
+            console.log("UsersTrainings", UsersTrainings);
+            if (UsersTrainings.filter(item=>item).find(item => item.Id == query.id)) {
+                setHasUser(true)
+                setOwnTraining(UsersTrainings.filter(item=>item).find(item => item.Id == query.id) as any)
+            } else {
+                setHasUser(false)
+            }
+        }
+    }, [IsAuthenticated, UsersTrainings.length, query.id])
+
 
     useEffect(() => {
         if (query.id) getTrainingById("" + query.id);
     }, [query.id]);
 
     useEffect(() => {
+        //@ts-ignore
         if (oneTraining) setTrainingData(oneTraining);
     }, [oneTraining]);
-
-
-
-
 
     if (!trainingData) return <Loading message='Eğitim yükleniyor...' />
     return (
         <LandingLayout>
-            <Container className={"h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom  overflow-hidden rounded-br-[150px] md:bg-cover " + bgClass}>
+            <Container className={"h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom  overflow-hidden rounded-br-[150px] md:bg-cover "}>
                 <Container className="md:!max-w-[1455px] grid  place-items-end  justify-center pb-20 md:pb-22 h-full">
                     <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold z-50"> {oneTraining?.Name} </Text>
                 </Container>
-                <Image src={trainingData?.Image as string} layout="fill" objectFit="cover" />
+                <Image src={trainingData?.Image as string || ''} layout="fill" objectFit="cover" />
             </Container>
-            <TrainingContent training={oneTraining} />
+            <TrainingContent hasUser={hasUser} training={hasUser ? ownTraining : oneTraining} />
         </LandingLayout>
     )
 }

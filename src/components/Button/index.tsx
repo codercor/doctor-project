@@ -8,7 +8,7 @@ type Props = {
     disabled?: boolean;
 }
 
-const Button = ({disabled=false, children, className, type = "transparent-white", direction = "left", onClick = () => { } }: Props) => {
+const Button = ({ disabled = false, children, className, type = "transparent-white", direction = "left", onClick = () => { } }: Props) => {
     const typeStyle = {
         "transparent-white": "bg-transparent text-white border-white",
         "transparent-secondary": "bg-transparent text-secondary border-secondary",
@@ -20,9 +20,11 @@ const Button = ({disabled=false, children, className, type = "transparent-white"
         "left": "rounded-br-[20px] rounded-tl-[20px]",
         "right": " rounded-tr-[20px] rounded-bl-[20px]",
     }
-    const classNames = classnames("cursor-pointer px-[34px] py-[15px] text-[white] border-[1.4px]  ", typeStyle[type], directionStyle[direction], className)
+    const classNames = classnames("cursor-pointer px-[34px] py-[15px] text-[white] border-[1.4px]  ", typeStyle[type], directionStyle[direction], className, {
+        "!cursor-not-allowed !opacity-50": disabled
+    })
     return (
-        <div onClick={onClick} className={classNames}>
+        <div onClick={(disabled ? () => null : onClick)} className={classNames}>
             {children}
         </div>
     );

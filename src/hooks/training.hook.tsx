@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectTraining, setLoadingMessage as _setLoadingMessage, TrainingSliceProps, getAdminTrainings as _getAdminTrainings, getTrainingById as _getTrainingById, deleteTrainingById as _deleteTrainingById } from "src/app/Training/training.slice";
+import { selectTraining, setLoadingMessage as _setLoadingMessage, TrainingSliceProps, getAdminTrainings as _getAdminTrainings, getTrainingById as _getTrainingById, deleteTrainingById as _deleteTrainingById, getPublicTrainings } from "src/app/Training/training.slice";
 import { } from "src/app/Training/training.types";
 
 
@@ -28,6 +28,9 @@ const useTraining = () => {
         deleteTrainingById,
         deleteTrainingProcess: training.deleteTrainingProcess,
         editTrainingProcess: training.editTrainingProcess,
+        publicTrainings: training.publicTrainings,
+        publicTrainingsProcess: training.publicTrainingsProcess,
+        getPublicTrainings: (page: number) => dispatch(getPublicTrainings(page))
     }
 }
 

@@ -6,6 +6,7 @@ import classNames from "classnames";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { useMediaQuery } from 'react-responsive'
+import Router from "next/router";
 export type TrainingCardProps = {
     width?: number;
     height?: number;
@@ -14,7 +15,7 @@ export type TrainingCardProps = {
     image: string;
     title: string;
     description: string;
-    price: string;
+    price?: string;
     detailHref: string;
     detailOnImage: boolean;
     priceOnImage: boolean;
@@ -53,9 +54,12 @@ const TrainingCard = ({
     showBuyButton = false,
     detailButtonDirection = "right",
     sizeType = "md",
-    isMobile = false
-}: TrainingCardProps) => {
+    isMobile = false,
+    Id,
+    showPrice = true,
+}: TrainingCardProps & { Id?: string, showPrice?: boolean }) => {
 
+    console.log("Data", title);
 
 
     const _width = (!isMobile ? width : mWidth)
@@ -134,7 +138,7 @@ const TrainingCard = ({
         "pt-[16px]": sizeType == "sm",
     })
 
-    const DetailButton = () => <Button direction={detailButtonDirection} type="quaternary-flat" className={detailClassName}>
+    const DetailButton = () => <Button direction={detailButtonDirection} type="quaternary-flat" onClick={() => Router.push("/training/" + Id)} className={detailClassName}>
         <Text type="body" className="!text-[14px] text-[white]">Detaylar</Text>
         <span>
             <ArrowIcon color="#ffffff" />
@@ -143,7 +147,7 @@ const TrainingCard = ({
     const PriceWithBuyButton = () => <Button direction="right" type="transparent-white" className={priceClassName}>
         <Text type="body" className="!text-[20px] text-[#3A356B]">{price}<TL /></Text>
         {showBuyButton &&
-            <Button type="tertiary-flat" className={classNames("absolute flex items-center bottom-0 left-[120px] !bg-[#C3BFE8] !border-none", {
+            <Button type="tertiary-flat" onClick={() => Router.push("/training/" + Id)} className={classNames("absolute flex items-center bottom-0 left-[120px] !bg-[#C3BFE8] !border-none", {
                 ...buttonSizeMixin
             })}  >Satın Al</Button>
         }
@@ -163,8 +167,8 @@ const TrainingCard = ({
         <span className="hidden"> {_width} {_height} </span>
         <div className={imageClassName} >
             <Image src={image} layout="fill" objectFit="cover" />
-            {priceOnImage && <PriceButtonOnImage />}
-            {detailOnImage && <DetailButton />}
+            {(priceOnImage && showPrice) && <PriceButtonOnImage />}
+            {(detailOnImage) && <DetailButton />}
         </div>
         <div className={contentClassName}>
             <div>

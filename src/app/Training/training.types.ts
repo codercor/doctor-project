@@ -13,10 +13,12 @@ export interface TrainingDocumentationType {
 }
 
 export type TrainingDataType = {
+    Id?: string;
     Name: string;
     Details: string;
     DiscountRate: number;
     Price: number;
+    Image?: string | null;
     GeneralDetail: {
         StartDate: string;
         EndDate: string;

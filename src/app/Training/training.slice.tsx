@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../store';
 import { TrainingDataType, TrainingBranchProps, TrainingBranchType } from './training.types';
-import { createTrainingRequest, uploadTrainingDocumentsRequest, uploadTrainingImageRequest, getAdminTrainingsRequest, getTrainingByIdRequest, deleteTrainingByIdRequest as _deleteTrainingByIdRequest, editTrainingRequest } from './training.utils';
+import { createTrainingRequest, uploadTrainingDocumentsRequest, uploadTrainingImageRequest, getAdminTrainingsRequest, getTrainingByIdRequest, deleteTrainingByIdRequest as _deleteTrainingByIdRequest, editTrainingRequest, getPublicTrainingsRequest } from './training.utils';
 import Router from 'next/router'
 
 export type TrainingSliceProps = {
@@ -20,8 +20,12 @@ export type TrainingSliceProps = {
         error: null | string | undefined
         loadingMessage: string
     },
+    publicTrainingsProcess: {
+        loading: boolean,
+    },
     adminTrainings: TrainingDataType[],
-    oneTraining: TrainingDataType | null
+    oneTraining: TrainingDataType | null,
+    publicTrainings: TrainingDataType[],
 }
 
 const initialState: TrainingSliceProps = {
@@ -40,8 +44,12 @@ const initialState: TrainingSliceProps = {
         error: null,
         loadingMessage: ''
     },
+    publicTrainingsProcess: {
+        loading: false,
+    },
     adminTrainings: [],
-    oneTraining: null
+    oneTraining: null,
+    publicTrainings: [],
 };
 
 
@@ -125,6 +133,16 @@ export const deleteTrainingById = createAsyncThunk(
         return training;
     })
 
+export const getPublicTrainings = createAsyncThunk(
+    'training/getPublicTrainings',
+    async (page: number = 1, thunkApi) => {
+        thunkApi.dispatch(setPublicTrainingsLoading(true));
+        const trainings = await getPublicTrainingsRequest(page);
+        thunkApi.dispatch(setPublicTrainingsLoading(false));
+        return trainings;
+    })
+
+
 export const trainingSlice = createSlice({
     name: 'training',
     initialState,
@@ -134,6 +152,9 @@ export const trainingSlice = createSlice({
         },
         setEditLoadingMessage: (state, action: PayloadAction<string>) => {
             state.editTrainingProcess.loadingMessage = action.payload;
+        },
+        setPublicTrainingsLoading: (state, action: PayloadAction<boolean>) => {
+            state.publicTrainingsProcess.loading = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -198,11 +219,18 @@ export const trainingSlice = createSlice({
                 state.editTrainingProcess.loading = false;
                 state.editTrainingProcess.error = action.error.message;
                 state.editTrainingProcess.loadingMessage = '';
+            }).addCase(getPublicTrainings.pending, (state) => {
+                state.publicTrainingsProcess.loading = true;
+            }).addCase(getPublicTrainings.fulfilled, (state, action) => {
+                state.publicTrainingsProcess.loading = false;
+                state.publicTrainings = action.payload;
+            }).addCase(getPublicTrainings.rejected, (state, action) => {
+                state.publicTrainingsProcess.loading = false;
             })
     },
 });
 
-export const { setLoadingMessage, setEditLoadingMessage } = trainingSlice.actions;
+export const { setLoadingMessage, setEditLoadingMessage, setPublicTrainingsLoading } = trainingSlice.actions;
 
 export const selectTraining = (state: RootState) => state?.training;
 

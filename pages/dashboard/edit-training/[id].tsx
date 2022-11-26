@@ -5,7 +5,7 @@ import DashboardLayout from "@components/Layouts/DashboardLayout";
 import Text from "@components/Text";
 import DocumentsUpload from "@components/Upload/DocumentsUpload";
 import ImageUpload from "@components/Upload/ImageUpload";
-import { Add, AddAPhoto, Close, Delete, DocumentScanner, Edit } from "@mui/icons-material";
+import { Add, AddAPhoto, Close, Delete, DocumentScanner, Edit, Refresh } from "@mui/icons-material";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import useTraining from "src/hooks/training.hook";
@@ -135,7 +135,7 @@ const EditTraining = () => {
                 <div className="md:h-full flex flex-col   rounded-[30px_5px] bg-[#F4F4F4]">
                     <div className="w-full h-fit flex flex-col bg-[#F4F4F4] text-start items-center justify-start py-[26px] px-[30px]">
                         <div className="flex justify-between w-full bg-[#F4F4F4]">
-                            <Text type="h3" className="text-[#4E929D] !text-[20px] w-full">Eğitim Ekle</Text>
+                            <Text type="h3" className="text-[#4E929D] !text-[20px] w-full">Eğitim düzenle</Text>
                         </div>
                     </div>
                     <div className='overflow-auto  w-full flex h-full bg-[#F4F4F4] '>
@@ -172,7 +172,7 @@ const EditTraining = () => {
                             }
                             {trainingData?.Documentations?.length > 0 ? <div key={v4()} className="w-full h-fit relative">
                                 {(trainingData?.Documentations.map((doc: TrainingDocumentationType) =>
-                                    <div className='relative h-[100px] mt-4 border-2 flex flex-col justify-center items-center text-[40px] min-w-[100px] w-[100px]'>
+                                    <div key={v4()} className='relative h-[100px] mt-4 border-2 flex flex-col justify-center items-center text-[40px] min-w-[100px] w-[100px]'>
 
                                         <DocumentScanner fontSize='inherit' />
                                         <Text className="truncate w-full"> {doc?.EducationId}</Text>
@@ -227,9 +227,9 @@ const EditTraining = () => {
                                     ))
                                 }
                             </div>
-                            <Button disabled onClick={handleSubmit} type="secondary" className=" self-end mt-10 bg-tertiary w-[224px] h-[56px] !px-[16px] !py-[14px] gap-1 flex justify-center items-center !rounded-[10px_5px_10px_5px] min-h-[36px]">
-                                <Add className="text-[white]" fontSize="medium" />
-                                <Text className="text-[20px]">Eğitimi Ekle</Text>
+                            <Button  onClick={handleSubmit} type="secondary" className=" self-end justify-self-end  mt-10 bg-tertiary w-[224px] h-[56px] !px-[16px] !py-[14px] gap-1 flex justify-center items-center !rounded-[10px_5px_10px_5px] min-h-[36px]">
+                                <Refresh className="text-[white]" fontSize="medium" />
+                                <Text className="text-[20px]">Güncelle</Text>
                             </Button>
 
                         </div>

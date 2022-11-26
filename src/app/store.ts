@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import userReducer from './User/user.slice'
 import trainingReducer from './Training/training.slice'
 import paymentReducer from './Payment/payment.slice'
+import chatReducer from './Chat/chat.slice'
 import { getPersistConfig } from 'redux-deep-persist';
 import {
     FLUSH,
@@ -17,7 +18,8 @@ import {
 const rootReducer = combineReducers({
     user: userReducer,
     training: trainingReducer,
-    payment: paymentReducer
+    payment: paymentReducer,
+    chat: chatReducer,
 })
 const persistConfig = getPersistConfig({
     key: "root",

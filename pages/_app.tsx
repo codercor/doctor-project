@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from '../src/app/store';
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
+import { Toaster } from 'react-hot-toast';
 const persistor = persistStore(store, {}, function () {
   persistor.persist();
 });
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Component {...pageProps} />
+        <Toaster/>
       </PersistGate>
     </Provider>
   </>)
