@@ -93,13 +93,13 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
 
     if (!training) return <Loading message="Yükleniyor..." />
     return <div className="h-[1135px] pb-10 flex justify-center items-center w-full bg-[white] ">
-        <div className="w-[1196px]  flex justify-center items-center h-full bg-[#F4F4F4] ">
-            <div className="w-[70%] overflow-auto scrollbar-thin scrollbar-thumb-tertiary-light bg-[#F9FBFC] max-w-[70%] h-full pt-[42px] pl-[32px] pr-[40px]">
+        <div className="md:w-[1196px] h-auto w-full flex-col md:flex-row  flex justify-center items-center md:h-full bg-[#F4F4F4] ">
+            <div className="w-full md:w-[70%] overflow-auto scrollbar-thin scrollbar-thumb-tertiary-light bg-[#F9FBFC] md:max-w-[70%] h-full pt-[42px] px-[10px] md:pl-[32px] md:pr-[40px]">
                 <Text type='h6' className='text-secondary-flat'>Eğitim Detayı</Text>
                 <Text type="paragraph" className='font-nexa-bold text-[#949493] mt-[30px]'>
                     {training.Details}
                 </Text>
-                <div className='w-[744px] h-[370px]  mt-[24px]'>
+                <div className='w-[360px] h-[300px] md:w-[744px] md:h-[370px]  mt-[24px]'>
                     {(() => {
                         try {
                             return <iframe className='w-full h-full' src={getYoutubeId(training.GeneralDetail.VideoLink)} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
@@ -116,7 +116,7 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
                     })}
                 </div>
             </div>
-            <div className="w-[30%] h-full bg-[#F4F4F4] pt-[42px] pl-[32px] pr-[30px]">
+            <div className="md:w-[30%] w-full h-full bg-[#F4F4F4] pt-[42px] pl-[32px] pr-[30px]">
                 {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
 
                 <Text type='h6' className='text-secondary-flat'>Eğitim Konuları</Text>
