@@ -6,6 +6,8 @@ import EarningChart from "@components/Chart/EarningChart";
 import { useEffect, useState } from "react";
 import { adminGetLastSalesRequest, getAdminStats } from "@app/User/user.utils";
 import CircularProgress from '@mui/material/CircularProgress';
+import Router from "next/router";
+import LastSalesTable from "@components/Table/LastSalesTable";
 
 type TableRowType = {
     date: string;
@@ -45,54 +47,6 @@ const rows: TableRowType[] = [
     // },
 ];
 
-const LastSalesTable = () => {
-    const [list, setList] = useState<any[]>([]);
-    const [IsLoading, setIsLoading] = useState(false);
-
-    const handleLoadMore = () => { }
-
-    useEffect(() => {
-        setIsLoading(true);
-        adminGetLastSalesRequest().then(res => {
-            setList(res.slice(0, 5));
-            setIsLoading(false);
-        }).catch(err => {
-            setIsLoading(false);
-        })
-    }, [])
-
-
-    return <>
-        {IsLoading ? <CircularProgress /> : <TableContainer>
-
-            <Table aria-label="collapsible table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell align="left">Tarih</TableCell>
-                        <TableCell align="left">Kullanıcı</TableCell>
-                        <TableCell align="left">Eğitim</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-
-                    {list.map((row, index) => (
-                        <TableRow
-                            key={row.Id}
-                            className={"border-2 p-0 leading-none h-[10px] " + (index % 2 != 0 ? 'bg-[#DEEEF0]' : '')}
-                        >
-                            <TableCell className="leading-none" component="th" scope="row">
-                                -- TODO --
-                            </TableCell>
-                            <TableCell className="leading-none" align="left">{row.User.Information.Fullname || 'İsim yok'}</TableCell>
-                            <TableCell className="leading-none" align="left">{row.Education?.Name || 'Eğitim ismi yok'}</TableCell>
-                        </TableRow>
-                    ))}
-
-                </TableBody>
-            </Table>
-        </TableContainer >}
-    </>
-}
 
 
 const StatsCard = ({ title, value }: { title: string, value: string }) => <div className="bg-[#DEEEF0] flex flex-col items-start justify-center p-[18px] w-[247px] h-[100px]">
@@ -114,7 +68,9 @@ const AdminDashBoard = () => {
             <div className="w-full h-[390px] justify-around flex mt-2">
                 <div className="w-full h-full">
                     <LastSalesTable />
-                    <div className="w-full cursor-pointer transition-colors hover:bg-[#eeeeee] h-[50px] text-[black] text-[10px] flex flex-col justify-center items-center">
+                    <div onClick={() => {
+                        Router.push("/dashboard/last-sales")
+                    }} className="w-full cursor-pointer transition-colors hover:bg-[#eeeeee] h-[50px] text-[black] text-[10px] flex flex-col justify-center items-center">
                         <Text type="paragraph" className="text-[12px]" > Daha fazla göster </Text>
                         <ArrowDownward sx={{ fontSize: '12px' }} />
                     </div>
@@ -127,7 +83,7 @@ const AdminDashBoard = () => {
         {stats && <div className="h-[462px]  bg-[#F4F4F4] p-[32px]">
             <Text type="h6" className="text-[#4D5628] text-[14px] font-nexa-regular">Eğitim İstatislikleri</Text>
             <div className="flex justify-between mt-2" >
-                <StatsCard title="Kazanç" value={stats.Earned+"₺"} />
+                <StatsCard title="Kazanç" value={stats.Earned + "₺"} />
                 <StatsCard title="Toplam Satın Alınan" value={stats.Purchased} />
                 <StatsCard title="Toplam Üye" value={stats.UsersCount} />
                 <StatsCard title="Toplam Eğitim" value={stats.Education} />
