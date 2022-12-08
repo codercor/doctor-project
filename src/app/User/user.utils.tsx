@@ -1,4 +1,4 @@
-import request, { AUTH_LOGIN, AUTH_REGISTER, USER_BILLING, USER_INFORMATION, USER_WITH_ID, TRAININGS_WITH_USER_ID, BANNER, PRESS, FORGOT_PASSWORD, FORGOT_PASSWORD_CHECK_HASH, FORGOT_PASSWORD_RESET } from '@config'
+import request, { AUTH_LOGIN, AUTH_REGISTER, USER_BILLING, USER_INFORMATION, USER_WITH_ID, TRAININGS_WITH_USER_ID, BANNER, PRESS, FORGOT_PASSWORD, FORGOT_PASSWORD_CHECK_HASH, FORGOT_PASSWORD_RESET, PAYMENT, USER, STATS } from '@config'
 import { AxiosError } from 'axios';
 import { BannerData, UserBillingDetail, UserCredentials, UserInformation } from './user.types';
 import toast from 'react-hot-toast';
@@ -224,6 +224,39 @@ export const resetPasswordRequest = async (UserId: string, Hash: string, Passwor
         return response.data;
     } catch (err: any) {
         toast.error('Şifre sıfırlanamadı.', { id: _toast });
+        throw new Error(err.response.data.message)
+    }
+}
+
+export const adminGetLastSalesRequest = async () => {
+    try {
+        const response = await request.get(
+            PAYMENT
+        );
+        return response.data;
+    } catch (err: any) {
+        throw new Error(err.response.data.message)
+    }
+}
+
+export const adminGetUsers = async () => {
+    try {
+        const response = await request.get(
+            USER
+        );
+        return response.data;
+    } catch (err: any) {
+        throw new Error(err.response.data.message)
+    }
+}
+
+export const getAdminStats = async () => {
+    try {
+        const response = await request.get(
+            STATS
+        );
+        return response.data;
+    } catch (err: any) {
         throw new Error(err.response.data.message)
     }
 }

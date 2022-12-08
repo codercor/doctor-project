@@ -80,9 +80,9 @@ const Home: NextPage = () => {
         <Container className="md:!max-w-[1200px] md:h-[706px] items-center flex flex-col px-[20px] md:px-0">
           <Text type="h4" className="text-[34px] mt-[80px] mb-[60px] text-quaternary-flat">Basında Nazan Uysal Harzadın</Text>
           <div className="bg-[url(/images/png/avakado.png)] overflow-visible rounded-xl relative  bg-center h-[460px] w-full">
-            <div className="w-[630px] h-[315px] absolute top-[30px] left-[40%] rounded-2xl overflow-hidden ">
+            <div className="md:w-[630px] w-full h-[315px] absolute md:top-[30px] top-[20%]  md:left-[40%] rounded-2xl overflow-hidden ">
               <Carousel autoPlay >
-                {presses.map((item) => <div key={v4()} className=" flex items-center gap-[20px] px-[10px] w-[630px] h-[315px] relative text-left bg-white-300 bg-opacity-70">
+                {presses.map((item) => <div key={v4()} className=" flex items-center gap-[20px] px-[10px] w-full h-[300px] md:w-[630px] md:h-[315px] relative text-left bg-white-300 bg-opacity-70">
                   <div className="min-w-[170px] h-[170px] relative hover:min-w-[190px] hover:h-[190px]">
                     <Image src={item.Image} layout="fill" objectFit="cover" />
                   </div>

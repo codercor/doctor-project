@@ -26,6 +26,9 @@ export const CHAT_LINES = `/chat`
 export const CHAT_LINE_WITH_ID = `/chat/:lineId`
 export const PAYMENT = '/purchase'
 
+
+export const STATS = `/admin/statistics`
+
 export const TRAININGS_WITH_USER_ID = `${PAYMENT}/:UserId`;
 
 const request = axios.create({

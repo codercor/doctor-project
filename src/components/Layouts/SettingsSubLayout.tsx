@@ -16,7 +16,6 @@ const SettingsSubLayout = ({ children }: { children: React.ReactNode }) => {
                 </div>
                 <div className="w-full">
                     {IsAdmin && <SettingsMenuButton text="Anasayfa Düzeni" href="/dashboard/settings/home-page-edit" />}
-                    {IsAdmin && <SettingsMenuButton text="Sözleşmeler" href="/dashboard/settings/home-page-edit" />}
                     {!IsAdmin && <SettingsMenuButton text="Satın Alma Geçmişi" href="/dashboard/settings/order-history" />}
                     {!IsAdmin && <SettingsMenuButton text="Fatura Ayarları" href="/dashboard/settings/invoice-settings" />}
                     <SettingsMenuButton text="Şifre Güncelleme" href="/dashboard/settings/change-password" />
