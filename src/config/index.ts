@@ -20,15 +20,22 @@ export const USER_BILLING = `${USER}/billing/:UserId`;
 export const USER_INFORMATION = `${USER}/information/:UserId`;
 
 export const TRAINING = `/education`;
+export const ADMIN_TRAINING = `/admin/educations`;
 export const TRAINING_IMAGE = `${TRAINING}/image`;
 export const TRAINING_DOCUMENTS = `${TRAINING}/document`;
 export const CHAT_LINES = `/chat`
 export const CHAT_LINE_WITH_ID = `/chat/:lineId`
 export const PAYMENT = '/purchase'
+export const PAYMENT_FREE_TRAINING = `${PAYMENT}/free`
 
+export const ORDER_HISTORY_WITH_USER_ID = `${PAYMENT}/:UserId`;
 
 export const STATS = `/admin/statistics`
 
+export const ATTACH_VIDEO_FOLDER = `${TRAINING}/video`
+
+
+//TODO change this url and util function
 export const TRAININGS_WITH_USER_ID = `${PAYMENT}/:UserId`;
 
 const request = axios.create({

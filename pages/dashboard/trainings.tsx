@@ -11,7 +11,7 @@ import { TrainingCardProps } from '@components/Card/TrainingCard'
 import { TrainingSliceProps } from '@app/Training/training.slice'
 import { TrainingDataType } from 'src/types/Training'
 import { v4 } from 'uuid'
-import { CircularProgress } from '@mui/material'
+import { CircularProgress, Pagination } from '@mui/material'
 const Training = ({ training }: { training: TrainingDataType }) => {
     const { deleteTrainingById } = useTraining();
     return <div className="flex  items-center mt-4  justify-between px-4 bg-[white] w-full h-[85px]">
@@ -42,15 +42,22 @@ const Training = ({ training }: { training: TrainingDataType }) => {
 }
 
 export default function Trainings() {
+    const [page, setPage] = React.useState(1);
     const router = useRouter()
     const handleGoToCreate = () => {
         router.push('/dashboard/create-training')
     }
-    const { adminTrainings, refetchAdminTrainings, deleteTrainingProcess } = useTraining();
+    //fix ref type error
+    const ref = React.createRef<HTMLDivElement>();
+
+    const { adminTrainings, refetchAdminTrainings, deleteTrainingProcess, loadingProcess } = useTraining();
+
 
     useEffect(() => {
-        refetchAdminTrainings(1);
-    }, [])
+        console.log("çekelim", page);
+
+        refetchAdminTrainings(page);
+    }, [page])
 
 
 
@@ -59,25 +66,33 @@ export default function Trainings() {
             <div className=" md:h-[798px] flex flex-col  rounded-[30px_5px] bg-[#F4F4F4]">
                 <div className="w-full h-fit flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
                     <div className="flex justify-between w-full">
-                        <Text type="h3" className="text-[#4E929D] !text-[20px] w-full">Tüm Eğitimler</Text>
+                        <Text type="h3" className="text-[#4E929D] !text-[20px] w-full">Tüm Eğitimler   </Text>
                         <Button type="secondary" onClick={handleGoToCreate} className="bg-tertiary w-[160px] py-2 px-0 justify-center gap-1 flex items-center rounded-sm min-h-[36px]">
                             <Edit className="text-[white] text-[12px]" />
                             <Text className='text-[12px]'>Eğitim ekle</Text>
                         </Button>
                     </div>
                 </div>
-                <div className='overflow-auto scrollbar-thin scrollbar-thumb-quaternary-flat w-full pt-4  h-full px-4'>
-
+                <div ref={ref} className='overflow-auto scrollbar-thin scrollbar-thumb-quaternary-flat w-full pt-4  h-full px-4'>
                     {
-                        (deleteTrainingProcess.loading) ? <div className="w-[400px] h-[400px] mx-auto animate-pulse text-center bg-secondary-light flex flex-col justify-center items-center gap-2 rounded-full">
+                        loadingProcess.loading ? <div className="w-[400px] h-[400px] mx-auto animate-pulse text-center bg-secondary-light flex flex-col justify-center items-center gap-2 rounded-full">
                             <div>  <CircularProgress /></div>
-                            <Text type="h1" className="text-secondary !text-[20px]  w-full text-center">Siliniyor...</Text>
-                        </div> : adminTrainings.length ? adminTrainings.map((training) => <Training key={v4()} training={training} />) :
-                            <div className='w-full h-full flex justify-center items-center flex-col gap-[10px]'>
-                                <School />
-                                <Text> Hiç eğitim yok... </Text>
-                            </div>}
+                            <Text type="h1" className="text-secondary !text-[20px]  w-full text-center">Yükleniyor...</Text>
+                        </div> : <>
+                            {
+                                (deleteTrainingProcess.loading) ? <div className="w-[400px] h-[400px] mx-auto animate-pulse text-center bg-secondary-light flex flex-col justify-center items-center gap-2 rounded-full">
+                                    <div>  <CircularProgress /></div>
+                                    <Text type="h1" className="text-secondary !text-[20px]  w-full text-center">Siliniyor...</Text>
+                                </div> : adminTrainings.length ? adminTrainings.map((training) => <Training key={v4()} training={training} />) :
+                                    <div className='w-full h-full flex justify-center items-center flex-col gap-[10px]'>
+                                        <School />
+                                        <Text> Hiç eğitim yok... </Text>
+                                    </div>}
+                        </>
+                    }
+
                 </div>
+                <Pagination siblingCount={page} onChange={(e: any, value: number) => { setPage(value) }} count={page + 1} />
             </div>
         </DashboardLayout>
     )

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../store';
 import { PaymentState, PaymentCredentials } from './payment.types';
-import { paymentRequest } from './payment.utils';
+import { paymentRequest, freePaymentRequest } from './payment.utils';
 import Router from 'next/router';
 
 
@@ -28,6 +28,20 @@ export const payment = createAsyncThunk(
             return thunkAPI.rejectWithValue(error);
         }
     });
+interface FreePaymentCredentials {
+    EducationId: string,
+    UserId: string
+}
+export const freePayment = createAsyncThunk(
+    'payment/freePayment',
+    async (freePaymentCredentials: FreePaymentCredentials, thunkAPI) => {
+        try {
+            return (await freePaymentRequest(freePaymentCredentials));
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error);
+        }
+    });
+
 
 
 
@@ -53,6 +67,14 @@ export const paymentSlice = createSlice({
             if (action.payload.Message == "Kullanıcı faturalandırma bilgileri doldurulmalı") {
                 Router.push("/dashboard/settings/invoice-settings")
             }
+        }).addCase(freePayment.pending, (state) => {
+            state.paymentProcess.loading = true;
+        }).addCase(freePayment.fulfilled, (state, action) => {
+            state.paymentProcess.loading = false;
+            Router.push("/dashboard")
+        }).addCase(freePayment.rejected, (state, action: any) => {
+            state.paymentProcess.loading = false;
+            state.paymentProcess.error = action.payload.Message;
         });
     }
 });

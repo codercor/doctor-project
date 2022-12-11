@@ -72,7 +72,8 @@ export default function PaymentForm({ EducationId, UserId }: { EducationId: stri
                     <div className="mb-3 flex -mx-2">
                         <div className="px-2">
                             <label className="flex items-center cursor-pointer">
-                                <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" className="h-8 ml-3" />
+                                <img src="/images/png/card-types.png" className="h-8 ml-3" />
+                                <img src="/images/svg/iyzico_black.svg" className="h-8 ml-3" />
                             </label>
                         </div>
                     </div>

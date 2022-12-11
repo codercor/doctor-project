@@ -1,4 +1,10 @@
-import request, { AUTH_LOGIN, AUTH_REGISTER, USER_BILLING, USER_INFORMATION, USER_WITH_ID, TRAININGS_WITH_USER_ID, BANNER, PRESS, FORGOT_PASSWORD, FORGOT_PASSWORD_CHECK_HASH, FORGOT_PASSWORD_RESET, PAYMENT, USER, STATS } from '@config'
+import request, {
+    AUTH_LOGIN, AUTH_REGISTER, USER_BILLING,
+    USER_INFORMATION, USER_WITH_ID, TRAININGS_WITH_USER_ID,
+    BANNER, PRESS, FORGOT_PASSWORD, FORGOT_PASSWORD_CHECK_HASH,
+    FORGOT_PASSWORD_RESET, PAYMENT, USER, STATS, ORDER_HISTORY_WITH_USER_ID,
+    ATTACH_VIDEO_FOLDER
+} from '@config'
 import { AxiosError } from 'axios';
 import { BannerData, UserBillingDetail, UserCredentials, UserInformation } from './user.types';
 import toast from 'react-hot-toast';
@@ -257,6 +263,38 @@ export const getAdminStats = async () => {
         );
         return response.data;
     } catch (err: any) {
+        throw new Error(err.response.data.message)
+    }
+}
+
+
+export const getUserOrderHistoryRequest = async (UserId: string) => {
+    try {
+        const response = await request.get(
+            ORDER_HISTORY_WITH_USER_ID.replace(':UserId', UserId)
+        );
+        return response.data;
+    } catch (err: any) {
+        throw new Error(err.response.data.message)
+    }
+}
+export const attachDriveItemToTraining = async (
+    TrainingId: string,
+    DriveItemId: string
+) => {
+    let _toast = toast.loading("Eşleştirme yapılıyor");
+    try {
+        const response = await request.post(
+            ATTACH_VIDEO_FOLDER,
+            {
+                FileId: DriveItemId,
+                EducationId: TrainingId
+            }
+        );
+        toast.success("Eşleştirme yapıldı", { id: _toast });
+        return response.data;
+    } catch (err: any) {
+        toast.error("Eşleştirme yapılamadı", { id: _toast });
         throw new Error(err.response.data.message)
     }
 }

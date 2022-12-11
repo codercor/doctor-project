@@ -9,45 +9,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Router from "next/router";
 import LastSalesTable from "@components/Table/LastSalesTable";
 
-type TableRowType = {
-    date: string;
-    training: string;
-    user: string;
-}
-const rows: TableRowType[] = [
-    {
-        date: "11.10.2022 11:32",
-        training: "Fonksiyonel Tıp ve Fonksiyonel Beslenme 1",
-        user: "G** U**"
-    },
-    {
-        date: "10.10.2022 15:12",
-        training: "Fonksiyonel Tıp ve Fonksiyonel Beslenme 2",
-        user: "B** B**"
-    },
-    {
-        date: "09.10.2022 10:32",
-        training: "Fonksiyonel Tıp ve Fonksiyonel Beslenme 3",
-        user: "E** B**"
-    },
-    {
-        date: "08.10.2022 11:32",
-        training: "Fonksiyonel Tıp ve Fonksiyonel Beslenme 4",
-        user: "P** Ğ**"
-    },
-    {
-        date: "07.10.2022 15:12",
-        training: "Fonksiyonel Tıp ve Fonksiyonel Beslenme 5",
-        user: "M** T**"
-    },
-    // {
-    //     date: "10.10.2022 15:12",
-    //     training: "Fonksiyonel Tıp ve Fonksiyonel Beslenme 2",
-    //     user: "B** B**"
-    // },
-];
-
-
 
 const StatsCard = ({ title, value }: { title: string, value: string }) => <div className="bg-[#DEEEF0] flex flex-col items-start justify-center p-[18px] w-[247px] h-[100px]">
     <Text type="paragraph" className="text-[#74ADB7] text-[14px] !font-nexa-bold">{title}</Text>

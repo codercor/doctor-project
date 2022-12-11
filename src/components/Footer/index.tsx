@@ -18,7 +18,7 @@ const Footer = () => {
             <Container className="h-[calc(100%-48px)] !max-w-[100vw] bg-primary-flat">
                 <Container className="h-[calc(100%-48px)] flex flex-col  !max-w-[1240px] bg-primary-flat">
                     <div className="flex md:flex-row flex-col md:items-start items-center">
-                        <div className="md:block border border-red-500 flex flex-col items-center ">
+                        <div className="md:block flex flex-col items-center ">
                             <Logo />
                             <div className="mt-4">
                                 <Image src="/images/svg/cert.svg" width={140} height={36} />

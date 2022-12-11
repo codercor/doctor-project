@@ -41,6 +41,22 @@ export interface UserState {
         IsLoading: boolean;
         IsError: boolean;
     },
+    orderHistory?: Array<OrderHistoyItem>;
+    getOrderHistoryProcess: {
+        IsLoading: boolean;
+        IsError: boolean;
+    },
+}
+
+export interface OrderHistoyItem {
+    Id: string;
+    Detail: {
+        Id: string;
+        PurchaseId: string;
+        EInvoiceLink: string | null;
+        Price: string;
+    },
+    Date: string;
 }
 
 export interface UserCredentials {

@@ -25,10 +25,19 @@ export type TrainingDataType = {
         MaxParticipant: number;
         VideoLink: string;
     },
+    Videos?: Array<VideoType>;
+    EndDate?: string;
     EducationSections: Array<TrainingBranchType>,
     Sections?: Array<TrainingBranchType>,
     Documentations?: Array<TrainingDocumentationType>,
 }
+
+export interface VideoType {
+    Id: string;
+    EducationId: string;
+    Link: string;
+}
+
 export interface TrainingBranchProps extends TrainingBranchType {
     onChanges?: (data: TrainingBranchType, order: number) => void;
     onDelete?: () => void;

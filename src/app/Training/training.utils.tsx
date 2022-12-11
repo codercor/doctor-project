@@ -1,4 +1,4 @@
-import request, { TRAINING, TRAINING_IMAGE, TRAINING_DOCUMENTS } from '@config'
+import request, { TRAINING, TRAINING_IMAGE, TRAINING_DOCUMENTS,ADMIN_TRAINING } from '@config'
 import { TrainingDataType } from './training.types';
 import toast from 'react-hot-toast';
 
@@ -70,7 +70,7 @@ export const uploadTrainingDocumentsRequest = async (trainingId: string, documen
 
 export const getAdminTrainingsRequest = async (page: number) => {
     try {
-        const response = await request.get(`${TRAINING}?page=${page}`);
+        const response = await request.get(`${ADMIN_TRAINING}?page=${page}`);
         return response.data;
     } catch (err: any) {
         throw new Error(err.response.data.message)

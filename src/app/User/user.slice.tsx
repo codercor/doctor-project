@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../store';
 import { UserCredentials, UserState, UserInformation, UserBillingDetail, BannerData } from './user.types';
-import { fetchUserRequest, loginRequest, registerRequest, updateUserRequest, updateUserBillingDetailRequest, updatePasswordRequest, fetchUsersTrainingsRequest, adminUpdateBannerRequest } from './user.utils';
+import { fetchUserRequest, loginRequest, registerRequest, updateUserRequest, updateUserBillingDetailRequest, updatePasswordRequest, fetchUsersTrainingsRequest, adminUpdateBannerRequest, getUserOrderHistoryRequest } from './user.utils';
 
 
 
@@ -47,6 +47,11 @@ const initialState: UserState = {
         IsLoading: false,
         IsError: false,
     },
+    orderHistory: [],
+    getOrderHistoryProcess: {
+        IsLoading: false,
+        IsError: false,
+    }
 };
 
 
@@ -110,6 +115,15 @@ export const fetchUsersTrainings = createAsyncThunk(
         const id = state.user.Id;
         return (await fetchUsersTrainingsRequest(id));
     });
+
+export const getUserOrderHistory = createAsyncThunk(
+    'user/getUserOrderHistory',
+    async (_, thunkApi) => {
+        const state = thunkApi.getState() as RootState;
+        const id = state.user.Id;
+        return (await getUserOrderHistoryRequest(id));
+    });
+
 
 
 export const userSlice = createSlice({
@@ -225,8 +239,16 @@ export const userSlice = createSlice({
             }).addCase(adminUpdateBanner.rejected, (state, action) => {
                 state.UpdateHomePageProcess.IsLoading = false;
                 state.UpdateHomePageProcess.IsError = true;
-            })
-
+            }).addCase(getUserOrderHistory.pending, (state) => {
+                state.getOrderHistoryProcess.IsLoading = true;
+            }).addCase(getUserOrderHistory.fulfilled, (state, action) => {
+                state.getOrderHistoryProcess.IsLoading = false;
+                state.getOrderHistoryProcess.IsError = false;
+                state.orderHistory = action.payload;
+            }).addCase(getUserOrderHistory.rejected, (state, action) => {
+                state.getOrderHistoryProcess.IsLoading = false;
+                state.getOrderHistoryProcess.IsError = true;
+            });
 
 
     },

@@ -3,7 +3,7 @@ import LandingLayout from '@components/Layouts/LandingLayout'
 import Text from '@components/Text'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { DateRange, Download, HourglassBottom, Key, PunchClock, School, Timelapse, TimelapseSharp, Timeline, VideoCallRounded, VideocamTwoTone } from '@mui/icons-material'
+import { DateRange, Download, HourglassBottom, Key, PlayArrow, PunchClock, School, Timelapse, TimelapseSharp, Timeline, VideoCallRounded, VideocamTwoTone } from '@mui/icons-material'
 import Button from '@components/Button'
 import Router, { useRouter } from 'next/router'
 import { TrainingBranchType, TrainingDataType } from '@app/Training/training.types'
@@ -25,8 +25,18 @@ const TrainingDocumentCard = ({ title, url }: { title: string, url: string }) =>
     </div>
 }
 
-const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, ZoomStartURL }: { Order: number, Content: string, StartDate: string, Time: string, ZoomURL?: string, Password?: string, ZoomStartURL?: string }) => {
+const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, ZoomStartURL, EndDate = "" }: { Order: number, Content: string, StartDate: string, Time: string, ZoomURL?: string, Password?: string, ZoomStartURL?: string, EndDate?: string }) => {
     const { user: { IsAdmin } } = useUser();
+    console.log("END DATE", new Date(EndDate).getTime(), "Today", new Date().getTime(), "END DAY > TODAY", new Date(EndDate).getTime() > new Date().getTime())
+
+    const [isZoomOpen, setIsZoomOpen] = useState(false)
+
+    useEffect(() => {
+        if (new Date(EndDate).getTime() > new Date().getTime()) {
+            setIsZoomOpen(true)
+        }
+    }, [EndDate])
+
     return <div className='transition-all duration-700 hover:whitespace-normal truncate w-full  h-fit mt-4  flex flex-col items-start justify-between p-[10px] text-ellipsis text-[#6E7846] hover:text-[white] hover:bg-secondary  bg-[#FFFFFF]'>
         <Text type='paragraph' className='text-inherit   h-fit hover:text-clip hover:whitespace-normal  truncate  text-[16px] w-[99%]'>{Order}-{Content}</Text>
         <div className="w-full flex justify-between">
@@ -39,10 +49,10 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
                 <Text type='paragraph' className='text-inherit text-[16px]'>{Time}dk</Text>
             </div>
         </div>
-        {(IsAdmin && ZoomStartURL) && <Button type='quaternary-flat' onClick={() => {
+        {(IsAdmin && ZoomStartURL && isZoomOpen) && <Button type='quaternary-flat' onClick={() => {
             window.open(ZoomStartURL, '_blank')
         }} className='text-center !rounded-md w-full mt-4'> <VideocamTwoTone /> Zoom&apos;u Başlat </Button>}
-        {(ZoomURL || Password) && <div className='w-full bg-inherit hover:bg-[white] hover:font-nexa-bold hover:text-[black] shadow-2xl mt-5 pb-4 bg-quaternary-light'>
+        {((ZoomURL || Password) && isZoomOpen) && <div className='w-full bg-inherit hover:bg-[white] hover:font-nexa-bold hover:text-[black] shadow-2xl mt-5 pb-4 bg-quaternary-light'>
             {ZoomURL && <div className='flex flex-col  w-full h-[50px] items-center justify-center'>
                 <div className='flex items-center min-h-[50px] justify-center'>
                     <VideoCallRounded />
@@ -86,10 +96,27 @@ const BuyKit = ({ id, price, totalLength }: { id: string, price: number, totalLe
 const getYoutubeId = (url: string) => {
     return 'https://www.youtube.com/embed/' + url.split('v=')[1].split('&')[0]
 }
+interface VideoDataType {
+    title: string,
+    url: string
+}
+const TrainingVideoCard = ({ url, title }: VideoDataType) => {
+    return <div onClick={
+        () => {
+            window.open(url, '_blank')
+        }
+    } className="w-[100px]  h-[100px] bg-black-300">
+        <div className='w-full cursor-pointer h-full flex items-center justify-center flex-col text-[white]'>
+            <h2> {title} </h2>
+            <PlayArrow fontSize="large" />
+        </div>
+    </div>
+}
 
 const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | null, hasUser: boolean }) => {
     const { user: { IsAdmin } } = useUser()
     console.log("User has", hasUser);
+    console.log("TRAINING", training);
 
     if (!training) return <Loading message="Yükleniyor..." />
     return <div className="h-[1135px] pb-10 flex justify-center items-center w-full bg-[white] ">
@@ -115,6 +142,15 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
                         return <TrainingDocumentCard key={v4()} title={`Döküman ${index + 1}.pdf`} url={item.Link} />
                     })}
                 </div>
+                <div className='w-full mt-10'>
+                    <Text type='h6' className='text-secondary-flat'>Videolar</Text>
+                    <div className="flex w-full gap-2">
+                    {training?.Videos && training?.Videos.map((item, index) => {
+                        return <TrainingVideoCard key={v4()} title={`Video ${index + 1}`} url={item.Link} />
+                    })}
+                    </div>
+                  
+                </div>
             </div>
             <div className="md:w-[30%] w-full h-full bg-[#F4F4F4] pt-[42px] pl-[32px] pr-[30px]">
                 {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
@@ -122,8 +158,8 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
                 <Text type='h6' className='text-secondary-flat'>Eğitim Konuları</Text>
                 <div className="w-full scrollbar-thin scrollbar-thumb-tertiary-light overflow-auto h-[90%]">
                     {
-                        training.EducationSections && training.EducationSections.map((item: TrainingBranchType & { ZoomURL?: string, Password?: string, StartURL?:string }, index) => {
-                            return <TrainingSection ZoomStartURL={item.StartURL} ZoomURL={(hasUser ? item?.ZoomURL : undefined)} Password={(hasUser ? item.Password : undefined)} key={v4()} Order={item.Order} Content={item.Content} StartDate={item.StartDate} Time={item.Time.toString()} />
+                        training.EducationSections && training.EducationSections.map((item: TrainingBranchType & { ZoomURL?: string, Password?: string, StartURL?: string }, index) => {
+                            return <TrainingSection EndDate={training?.GeneralDetail.EndDate} ZoomStartURL={item.StartURL} ZoomURL={(hasUser ? item?.ZoomURL : undefined)} Password={(hasUser ? item.Password : undefined)} key={v4()} Order={item.Order} Content={item.Content} StartDate={item.StartDate} Time={item.Time.toString()} />
                         })
                     }
                 </div>
@@ -148,9 +184,9 @@ export default function TrainingDetailPage() {
             getUsersTrainings()
         } else if (IsAuthenticated && UsersTrainings.length > 0) {
             console.log("UsersTrainings", UsersTrainings);
-            if (UsersTrainings.filter(item=>item).find(item => item.Id == query.id)) {
+            if (UsersTrainings.filter(item => item).find(item => item.Id == query.id)) {
                 setHasUser(true)
-                setOwnTraining(UsersTrainings.filter(item=>item).find(item => item.Id == query.id) as any)
+                setOwnTraining(UsersTrainings.filter(item => item).find(item => item.Id == query.id) as any)
             } else {
                 setHasUser(false)
             }
