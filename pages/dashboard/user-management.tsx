@@ -76,8 +76,8 @@ export default function UserManagement() {
                         <select onChange={(e) => {
                             setAscDesc(e.target.value);
                         }} className='disabled:bg-primary disabled:rounded-none duration-500 transition-all border-n h-[48px] pl-[20px] focus:outline-none w-full placeholder:text-[#3B6369] bg-[#EBF3F4] rounded-[5px_20px_0_20px]' placeholder='Tümü' >
-                            <option value="asc"> A'dan Z'ye </option>
-                            <option value="dsc" > Z'den A'ya </option>
+                            <option value="asc"> A&apos;dan Z&apos;ye </option>
+                            <option value="dsc" > Z&apos;den A&apos;ya </option>
                         </select>
                     </div>
                     <div className='bg-quaternary-flat text-[white] min-w-[70px] rounded-[10px_20px_10px_20px]  h-full grid place-content-center' > <Refresh /> </div>
