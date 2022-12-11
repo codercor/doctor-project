@@ -37,15 +37,15 @@ const MyTrainings = () => {
             <Text className="text-[#BABCAC] text-[14px] font-nexa-regular">Satın aldığınız eğitim bulunmamaktadır.</Text>
         </div> : <div className="flex mt-2 gap-12 border-red-500 overflow-auto  scrollbar-thumb-secondary scrollbar-thin p-4 shadow-2xl">
 
-            {UsersTrainings.filter(item=>item?.Image).map((item) => {
+            {UsersTrainings.filter(item => item?.Image).map((item) => {
                 console.log("item", item);
-                
+
                 const exampleProps = {
                     image: item.Image as string || '',
                     title: item.Name as string || '',
                     description: item.Details as string || '',
                     backgroundColor: "!bg-[#EFEEF5]",
-                    detailHref: `/trainings/${item.Id}`,
+                    detailHref: `/training?id=${item.Id}`,
                     detailOnImage: false,
                     detailPos: "br",
                     imageRounded: "br",
@@ -66,9 +66,9 @@ const MyTrainings = () => {
                     Id: item.Id as string || '',
                 }
                 console.log("exampleProps", exampleProps);
-                
+
                 //@ts-ignore
-                return <TrainingCard  key={v4()} {...exampleProps} />
+                return <TrainingCard key={v4()} {...exampleProps} />
             }
             )
             }
@@ -87,59 +87,39 @@ const AllTrainingsFloating = () => {
 
     useEffect(() => {
         if (publicTrainings.length > 0) {
-            setTrainings(publicTrainings.map((item) => ({
-                image: item.Image as string || '',
-                title: item.Name as string || '',
-                description: item.Details as string || '',
-                price: (item.Price * ((100 - item.DiscountRate) / 100)).toFixed(1).toString(),
-                backgroundColor: "!bg-[#EFEEF5]",
-                detailHref: `/trainings/${item.Id}`,
-                detailOnImage: true,
-                detailPos: "br",
-                imageRounded: "br",
-                boxRounded: "tl",
-                priceBackgroundColor: "!bg-[#ffffff]",
-                priceOnImage: true,
-                pricePos: "bl",
-                type: "vertical",
-                showBuyButton: false,
-                detailButtonDirection: "right",
-                width: 378,
-                mWidth: 314,
-                height: 328,
-                mHeight: 250,
-                isMobile,
-                sizeType: isMobile ? "sm" : "md"
+            setTrainings(publicTrainings.map((item) => {
+                console.log("IIITem", item);
 
-            })))
+                return ({
+                    image: item.Image as string || '',
+                    title: item.Name as string || '',
+                    description: item.Details as string || '',
+                    price: (item.Price * ((100 - item.DiscountRate) / 100)).toFixed(1).toString(),
+                    backgroundColor: "!bg-[#EFEEF5]",
+                    detailHref: `/training?id=${item.Id}`,
+                    detailOnImage: true,
+                    detailPos: "br",
+                    imageRounded: "br",
+                    boxRounded: "tl",
+                    priceBackgroundColor: "!bg-[#ffffff]",
+                    priceOnImage: true,
+                    pricePos: "bl",
+                    type: "vertical",
+                    showBuyButton: false,
+                    detailButtonDirection: "right",
+                    width: 378,
+                    mWidth: 314,
+                    height: 328,
+                    mHeight: 250,
+                    isMobile,
+                    sizeType: isMobile ? "sm" : "md"
+
+                })
+            }
+            ))
         }
     }, [publicTrainings.length])
 
-    const trainingMock: TrainingCardProps =
-    {
-        image: "/images/png/yesilzemin-muz.png",
-        title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-        description: "Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.",
-        price: "1000",
-        backgroundColor: "!bg-[#EFEEF5]",
-        detailHref: "/egitimler/1",
-        detailOnImage: true,
-        detailPos: "br",
-        imageRounded: "br",
-        boxRounded: "tl",
-        priceBackgroundColor: "!bg-[#ffffff]",
-        priceOnImage: true,
-        pricePos: "bl",
-        type: "vertical",
-        showBuyButton: false,
-        detailButtonDirection: "right",
-        width: 378,
-        mWidth: 314,
-        height: 328,
-        mHeight: 250,
-        isMobile,
-        sizeType: isMobile ? "sm" : "md"
-    }
     const floatingContainerRef = useRef<HTMLDivElement>(null)
     return <div>
         <div className="flex justify-between mb-[34px]">

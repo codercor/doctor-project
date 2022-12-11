@@ -21,12 +21,12 @@ const Training = ({ training }: { training: TrainingDataType }) => {
         </div>
         <div className="flex flex-row items-start justify-start gap-2">
             <Button onClick={() => {
-                Router.push(`/training/${training.Id}`)
+                Router.push(`/training?id=${training.Id}`)
             }} type="secondary" className="bg-[#9AA567] w-fit !p-4 gap-1 flex rounded-sm min-h-[36px]">
                 <Visibility className="text-[white] text-[16px]" />
             </Button>
             <Button onClick={() => {
-                Router.push(`/dashboard/edit-training/${training.Id}`)
+                Router.push(`/dashboard/edit-training?id=${training.Id}`)
             }} type="secondary" className="bg-[#E49B4F] w-fit  !p-4 gap-1 flex rounded-sm min-h-[36px]">
                 <Edit className="text-[white] text-[16px]" />
             </Button>

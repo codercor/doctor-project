@@ -118,7 +118,7 @@ const EducationSection = () => {
       let formattedTrainings = publicTrainings.slice(0, 3).map((t, i) => {
         return {
           backgroundColor: "!bg-[white]",
-          detailHref: "/egitimler/1",
+          detailHref: "/training?id=" + t.Id,
           detailOnImage: false,
           detailPos: "bl",
           imageRounded: "br",

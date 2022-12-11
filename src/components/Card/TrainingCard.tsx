@@ -138,7 +138,7 @@ const TrainingCard = ({
         "pt-[16px]": sizeType == "sm",
     })
 
-    const DetailButton = () => <Button direction={detailButtonDirection} type="quaternary-flat" onClick={() => Router.push("/training/" + Id)} className={detailClassName}>
+    const DetailButton = () => <Button direction={detailButtonDirection} type="quaternary-flat" onClick={() => Router.push(detailHref)} className={detailClassName}>
         <Text type="body" className="!text-[14px] text-[white]">Detaylar</Text>
         <span>
             <ArrowIcon color="#ffffff" />
@@ -147,7 +147,7 @@ const TrainingCard = ({
     const PriceWithBuyButton = () => <Button direction="right" type="transparent-white" className={priceClassName}>
         <Text type="body" className="!text-[20px] text-[#3A356B]">{price}<TL /></Text>
         {showBuyButton &&
-            <Button type="tertiary-flat" onClick={() => Router.push("/training/" + Id)} className={classNames("absolute flex items-center bottom-0 left-[120px] !bg-[#C3BFE8] !border-none", {
+            <Button type="tertiary-flat" onClick={() => Router.push(detailHref)} className={classNames("absolute flex items-center bottom-0 left-[120px] !bg-[#C3BFE8] !border-none", {
                 ...buttonSizeMixin
             })}  >Satın Al</Button>
         }

@@ -164,7 +164,7 @@ const Egitimler = () => {
                     description: t.Details as string || '',
                     price: (t.Price * ((100 - t.DiscountRate) / 100)).toFixed(1).toString(),
                     backgroundColor: "!bg-[#EFEEF5]",
-                    detailHref: `/trainings/${t.Id}`,
+                    detailHref: `/training?id=${t.Id}`,
                     detailOnImage: isMobile ? true : false,
                     detailPos: "br",
                     imageRounded: "br",
