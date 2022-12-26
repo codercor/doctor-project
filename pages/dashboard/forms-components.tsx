@@ -8,12 +8,10 @@ import SozlesmeModal from "@components/SozlesmeModal/SozlesmeModal";
 import React, { useEffect } from "react";
 import { loremIpsum } from "lorem-ipsum";
 import Router from "next/router";
-import { v4 } from "uuid";
-import SecondForm from "@components/Forms/BasvuruForms/SecondForm/SecondForm";
-export default function Forms() {
+export default function FormsComponents() {
   const [acikRiza, setAcikRiza] = React.useState({
-    open: false,
-    accepted: true,
+    open: true,
+    accepted: false,
   });
 
   useEffect(() => {
@@ -21,33 +19,6 @@ export default function Forms() {
       Router.router?.back();
     }
   }, [acikRiza]);
-
-  const [selectedStep, setSelectedStep] = React.useState(1);
-
-  const [forms, setForms] = React.useState([
-    {
-      step: 1,
-      component: () => <FirstForm />,
-    },
-    {
-      step: 2,
-      component: () => (
-        <SecondForm selectedStep={2} setSelectedStep={setSelectedStep} />
-      ),
-    },
-    {
-      step: 3,
-      component: () => (
-        <SecondForm selectedStep={3} setSelectedStep={setSelectedStep} />
-      ),
-    },
-    {
-      step: 4,
-      component: () => (
-        <SecondForm selectedStep={4} setSelectedStep={setSelectedStep} />
-      ),
-    },
-  ]);
 
   return (
     <DashboardLayout>
@@ -68,27 +39,30 @@ export default function Forms() {
         />
       )}
       <div className="bg-[white]">
-        <FormSteps
-          selectedStep={selectedStep}
-          setSelectedStep={setSelectedStep}
-        />
+        {/* <FormSteps  /> */}
         <div className="my-[10px]">
           <FormAlert
             text="Göndermiş olduğunuz form onaylanmıştır"
             status="confirmed"
           />
-            <FormAlert
+          <FormAlert
             text="Göndermiş olduğunuz form beklemede"
             status="pending"
           />
+          <FormAlert
+            text="Göndermiş olduğunuz form incelemede"
+            status="inReview"
+          />
+          <FormAlert
+            text="Göndermiş olduğunuz form reddedildi"
+            status="rejected"
+          />
         </div>
-
         <div className="mt-[30px]">
-          {forms.map((form) => {
-            if (form.step === selectedStep) {
-              return form.component();
-            }
-          })}
+          <FirstForm />
+        </div>
+        <div className="mt-[30px]">
+          <FormsListTable />
         </div>
       </div>
     </DashboardLayout>
