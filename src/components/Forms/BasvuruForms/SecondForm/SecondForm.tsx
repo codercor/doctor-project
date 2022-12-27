@@ -199,7 +199,10 @@ export default function SecondForm({ selectedStep, setSelectedStep }: any) {
                   </>
                 )}
               </div>
-              <Form2Footer parts={23} setter={setPart} active={part} />
+              <Form2Footer parts={
+                selectedStep == 2 ? 4 : selectedStep == 3 ? 23 : 0
+
+              } setter={setPart} active={part} />
             </form>
           );
         }}
