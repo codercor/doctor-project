@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import FormDivider from "../FormDivider/FormDivider";
 import FormInput, {
-  FormInputRadio,
   FormInputSelect,
   FormInputTextArea,
 } from "../FormInput/FormInput";
@@ -10,6 +9,8 @@ import * as Yup from "yup";
 import FormSectionHeader from "../FormSectionHeader/FormSectionHeader";
 // @ts-ignore-next-line
 import CountryCityService from "countries-cities";
+import FormInputSelectOne from "../FormInput/FormInputSelectOne";
+import { textValidationSchema } from "../validationSchemes";
 
 const initialValues = {
   fullName: "",
@@ -24,6 +25,7 @@ const initialValues = {
   usedSupplementsAndTime: "",
   shortStory: "",
   purposeOfMeeting: "",
+  meetingType: "",
 };
 const countries = CountryCityService.getCountries().map((country: string) => {
   if (country === "Turkey") {
@@ -40,23 +42,22 @@ const validationSchema = Yup.object({
       /^[a-zA-ZşŞıİçÇöÖüÜ]+(?:[\s-][a-zA-ZşŞıİçÇöÖüÜ]+){1,3}$/,
       "Geçerli bir isim giriniz"
     ),
-  age: Yup.number()
-    .required("Zorunlu alan")
-    .min(10, "Yaşınız 10'dan küçük olamaz"),
+  age: Yup.number().required("Zorunlu alan"),
   gender: Yup.string()
     .required("Zorunlu alan")
     .oneOf(["kadın", "erkek", "diger"], "Cinsiyet seçiniz"),
   email: Yup.string()
     .email("Geçerli bir email giriniz")
     .required("Zorunlu alan"),
-  phone: Yup.string().required("Zorunlu alan"),
-  country: Yup.string().required("Zorunlu alan"),
-  city: Yup.string().required("Zorunlu alan"),
-  identifiedDiseases: Yup.string().required("Zorunlu alan"),
-  currentMedicationsAndTreatments: Yup.string().required("Zorunlu alan"),
-  usedSupplementsAndTime: Yup.string().required("Zorunlu alan"),
-  shortStory: Yup.string().required("Zorunlu alan"),
-  purposeOfMeeting: Yup.string().required("Zorunlu alan"),
+  phone: textValidationSchema,
+  country: textValidationSchema,
+  city: textValidationSchema,
+  identifiedDiseases: textValidationSchema,
+  currentMedicationsAndTreatments: textValidationSchema,
+  usedSupplementsAndTime: textValidationSchema,
+  shortStory: textValidationSchema,
+  purposeOfMeeting: textValidationSchema,
+  meetingType: textValidationSchema,
 });
 
 export default function FirstForm() {
@@ -176,7 +177,7 @@ export default function FirstForm() {
                   type="text"
                 />
               </div>
-              <div className="flex h-[120px]  w-[full]">
+              <div className="flex min-h-[120px]  w-[full]">
                 <FormInputTextArea
                   error={errors.usedSupplementsAndTime}
                   name="usedSupplementsAndTime"
@@ -207,10 +208,25 @@ export default function FirstForm() {
                   type="text"
                 />
               </div>
+              <div className="flex h-[120px] w-[full]">
+                <FormInputSelectOne
+                  error={errors.meetingType}
+                  name="meetingType"
+                  value={values.meetingType}
+                  label="Görüşme şekli tercihiniz ?"
+                  options={[
+                    { value: "yuzyuze", label: "Yüz yüze" },
+                    { value: "online", label: "Online" },
+                  ]}
+                />
+              </div>
               <button
                 className="w-[250px] rounded-[20px_5px] text-[white] bg-[#4E929D] h-[50px] border-2"
                 value="Formu Gönder"
                 onClick={(e) => {
+                  console.log("values", values);
+                  console.log("errors", errors);
+
                   e.preventDefault();
                   //if dirty go to dirt fields
                   if (dirty) {

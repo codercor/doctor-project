@@ -4,67 +4,127 @@ import FormInput, {
   FormInputSelect,
   FormInputTextArea,
 } from "../../FormInput/FormInput";
-import { Formik } from "formik";
+import { Field, Formik } from "formik";
 import * as Yup from "yup";
 import FormSectionHeader from "../../FormSectionHeader/FormSectionHeader";
 // @ts-ignore-next-line
-import CountryCityService from "countries-cities";
 import FormSteps, { FormSubSteps } from "@components/Forms/FormSteps/FormSteps";
-
+import { v4 } from "uuid";
+import FormInputSelectMulti from "@components/Forms/FormInput/FormInputSelectMulti";
+import FormInputSelectOne from "@components/Forms/FormInput/FormInputSelectOne";
+import {
+  multiSelectValidationSchema,
+  singleSelectValidationSchema,
+  textValidationSchema,
+} from "@components/Forms/validationSchemes";
+import classNames from "classnames";
+import Form2Footer from "@components/Forms/Form2Footer/Form2Footer";
+import SubStep2Part1 from "@components/Forms/SubSteps/SubStep2Part1";
+import SubStep1Part1 from "@components/Forms/SubSteps/SubStep1Part1";
+import SubStep1Part2 from "@components/Forms/SubSteps/SubStep1Part2";
+import SubStep1Part3 from "@components/Forms/SubSteps/SubStep1Part3";
+import SubStep1Part4 from "@components/Forms/SubSteps/SubStep1Part4";
+/* 
+#1 Şu anda bir yeme bozukluğunuz var mı? Veya yiyecek ve bedenle ilgili rahatsız edici veya sorunlu davranışlar yaşıyor musunuz?
+(örneğin; tıkanırcasına yeme, yiyecek kısıtlama, telafi edici egzersiz, kronik diyet, yo-yo veya hızlı kilo verme diyetleri, "temiz" yemeye verimsiz saplantı v patolojik saplantı vb.)
+#2  En sevdiğin yiyecek ne?
+#3  En sık yediğin yiyecekler hangileri?
+#4  Yiyeceklerinizi kim hazırlıyor?
+#5  Yediklerinizi kim satın alıyor?
+#6  Hangi sıklıkla yemek pişiriyorsunuz?
+#7  Sence en besleyici gıdayı hayatında ne zaman yedin?
+#8  Sence en az besleyici gıdayı hayatında ne zaman yedin?
+*/
 const initialValues = {
-  fullName: "",
-  age: "0",
-  gender: "",
-  email: "",
-  phone: "",
-  country: "Turkey",
-  city: "Istanbul",
-  identifiedDiseases: "",
-  currentMedicationsAndTreatments: "",
-  usedSupplementsAndTime: "",
-  shortStory: "",
-  purposeOfMeeting: "",
+  subStep1: {
+    parrentTolarance: "",
+    motherMilk: "",
+    solidFood: "",
+    babyAllergy: "",
+    childFoodReact: "",
+    childFoodAccess: "",
+    childFoodDisorder: "",
+    foodDisorder: "",
+    favoriteFood: "",
+    mostEatenFood: "",
+    foodPreparedBy: "",
+    foodPurchasedBy: "",
+    cookingFrequency: "",
+    mostNutritiousFood: "",
+    leastNutritiousFood: "",
+    extraInfo: "",
+    purposeOfFinal: "",
+  },
+  subStep2: {
+    name: "",
+    age: "",
+    date: "",
+    birthDate: "",
+    email: "",
+    address: "",
+    city: "",
+    phoneCell: "",
+    geneticHistory: "",
+    geneticHistoryOther: "",
+    lastHealt: "",
+    emergencyContact: "",
+    emergencyContactRelation: "",
+    emergencyContactPhoneCell: "",
+    whereDidYouHear: "",
+  },
 };
-const countries = CountryCityService.getCountries().map((country: string) => {
-  if (country === "Turkey") {
-    return { value: country, label: "Türkiye" };
-  }
-  return { value: country, label: country };
-});
 
 const validationSchema = Yup.object({
-  //min >= 2 words required
-  fullName: Yup.string()
-    .required("Zorunlu alan") //min 2 max 3 words
-    .matches(
-      /^[a-zA-ZşŞıİçÇöÖüÜ]+(?:[\s-][a-zA-ZşŞıİçÇöÖüÜ]+){1,3}$/,
-      "Geçerli bir isim giriniz"
-    ),
-  age: Yup.number()
-    .required("Zorunlu alan")
-    .min(10, "Yaşınız 10'dan küçük olamaz"),
-  gender: Yup.string()
-    .required("Zorunlu alan")
-    .oneOf(["kadın", "erkek", "diger"], "Cinsiyet seçiniz"),
-  email: Yup.string()
-    .email("Geçerli bir email giriniz")
-    .required("Zorunlu alan"),
-  phone: Yup.string().required("Zorunlu alan"),
-  country: Yup.string().required("Zorunlu alan"),
-  city: Yup.string().required("Zorunlu alan"),
-  identifiedDiseases: Yup.string().required("Zorunlu alan"),
-  currentMedicationsAndTreatments: Yup.string().required("Zorunlu alan"),
-  usedSupplementsAndTime: Yup.string().required("Zorunlu alan"),
-  shortStory: Yup.string().required("Zorunlu alan"),
-  purposeOfMeeting: Yup.string().required("Zorunlu alan"),
+  subStep1: Yup.object({
+    parrentTolarance: singleSelectValidationSchema,
+    motherMilk: singleSelectValidationSchema,
+    solidFood: singleSelectValidationSchema,
+    babyAllergy: singleSelectValidationSchema,
+    childFoodReact: singleSelectValidationSchema,
+    childFoodAccess: singleSelectValidationSchema,
+    childFoodDisorder: singleSelectValidationSchema,
+    foodDisorder: textValidationSchema,
+    favoriteFood: textValidationSchema,
+    mostEatenFood: textValidationSchema,
+    foodPreparedBy: textValidationSchema,
+    foodPurchasedBy: textValidationSchema,
+    cookingFrequency: textValidationSchema,
+    mostNutritiousFood: textValidationSchema,
+    leastNutritiousFood: textValidationSchema,
+    extraInfo: textValidationSchema,
+    purposeOfFinal: textValidationSchema,
+  }),
+  subStep2: Yup.object({
+    name: textValidationSchema,
+    age: textValidationSchema,
+    date: textValidationSchema,
+    birthDate: textValidationSchema,
+    email: textValidationSchema,
+    address: textValidationSchema,
+    city: textValidationSchema,
+    phoneCell: textValidationSchema,
+    geneticHistory: textValidationSchema,
+    geneticHistoryOther: Yup.string().when("geneticHistory", {
+      is: (geneticHistory: string) => geneticHistory === "Diğer",
+      then: Yup.string().required("Bu alan zorunludur"),
+    }),
+    lastHealt: textValidationSchema,
+    emergencyContact: textValidationSchema,
+    emergencyContactRelation: textValidationSchema,
+    emergencyContactPhoneCell: textValidationSchema,
+    whereDidYouHear: textValidationSchema,
+  }),
 });
 
+export const OPTIONS_EHB = [
+  { value: "evet", label: "Evet" },
+  { value: "hayır", label: "Hayır" },
+  { value: "bilmiyorum", label: "Bilmiyorum" },
+];
+
 export default function SecondForm({ selectedStep, setSelectedStep }: any) {
-  const [cities, setCities] = useState<any[]>(
-    CountryCityService.getCities("Turkey").map((city: string) => {
-      return { value: city, label: city };
-    })
-  );
+  const [part, setPart] = useState(1);
+  const [isMale, setIsMale] = useState(false);
   return (
     <>
       <FormSubSteps
@@ -88,161 +148,58 @@ export default function SecondForm({ selectedStep, setSelectedStep }: any) {
         }) => {
           return (
             <form onSubmit={handleSubmit}>
-              <div className="w-full">
-                <FormSectionHeader> Kişisel Bilgiler </FormSectionHeader>
-                <div className="flex h-[120px] gap-[30px]  w-[full]">
-                  <FormInput
-                    error={errors.fullName}
-                    name="fullName"
-                    value={values.fullName}
-                    onChange={handleChange}
-                    label="Adınız ve Soyadınız"
-                    type="text"
-                  />
-                  <FormInput
-                    error={errors.age}
-                    name="age"
-                    value={values.age}
-                    onChange={handleChange}
-                    label="Yaşınız"
-                    type="number"
-                  />
-                  <FormInputSelect
-                    error={errors.gender}
-                    name="gender"
-                    value={values.gender}
-                    onChange={handleChange}
-                    label="Cinsiyetiniz"
-                    options={[
-                      { value: "kadın", label: "Kadın" },
-                      { value: "erkek", label: "Erkek" },
-                      { value: "diger", label: "Diğer" },
-                    ]}
-                  />
-                </div>{" "}
-                <div className="flex h-[120px] gap-[30px]  w-[full]">
-                  <FormInput
-                    error={errors?.email}
-                    name="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    label="Eposta adresiniz"
-                    type="email"
-                  />
-                  <FormInput
-                    error={errors.phone}
-                    name="phone"
-                    value={values.phone}
-                    onChange={handleChange}
-                    label="Telefon numaranız"
-                    type="text"
-                  />
-                </div>{" "}
-                <div className="flex h-[120px] gap-[30px]  w-[full]">
-                  <FormInputSelect
-                    error={errors.country}
-                    name="country"
-                    value={values.country}
-                    onChange={(e) => {
-                      const selectedCountry = e.currentTarget.value;
-                      let cities =
-                        CountryCityService.getCities(selectedCountry) || [];
-                      setCities(
-                        cities.map((city: string) => {
-                          return { value: city, label: city };
-                        })
-                      );
-                      handleChange(e);
-                    }}
-                    label="Ülkeniz"
-                    type="text"
-                    options={countries}
-                  />
-                  <FormInputSelect
-                    error={errors.city}
-                    name="city"
-                    value={values.city}
-                    onChange={handleChange}
-                    label="Şehir"
-                    type="text"
-                    options={cities}
-                  />
-                </div>
-                <div className="flex h-[120px] gap-[30px]  w-[full]">
-                  <FormInputTextArea
-                    error={errors.identifiedDiseases}
-                    name="identifiedDiseases"
-                    value={values.identifiedDiseases}
-                    onChange={handleChange}
-                    label="Tanımlanan hastalıklarınız"
-                    type="text"
-                  />
-                </div>
-                <div className="flex h-[200px] gap-[30px]  w-[full]">
-                  <FormInputTextArea
-                    error={errors.currentMedicationsAndTreatments}
-                    name="currentMedicationsAndTreatments"
-                    value={values.currentMedicationsAndTreatments}
-                    onChange={handleChange}
-                    label="Kullandığınız ilaçlar ve tedaviler"
-                    type="text"
-                  />
-                </div>
-                <div className="flex h-[120px]  w-[full]">
-                  <FormInputTextArea
-                    error={errors.usedSupplementsAndTime}
-                    name="usedSupplementsAndTime"
-                    value={values.usedSupplementsAndTime}
-                    onChange={handleChange}
-                    label="Kullandığınız takviyeler ve süreleri"
-                    type="text"
-                  />
-                </div>{" "}
-                <FormDivider />
-                <div className="flex h-[120px] gap-[30px]  w-[full]">
-                  <FormInputTextArea
-                    error={errors.shortStory}
-                    name="shortStory"
-                    value={values.shortStory}
-                    onChange={handleChange}
-                    label="Kısa bir öykünüz"
-                    type="text"
-                  />
-                </div>
-                <div className="flex h-[120px] w-[full]">
-                  <FormInputTextArea
-                    error={errors.purposeOfMeeting}
-                    name="purposeOfMeeting"
-                    value={values.purposeOfMeeting}
-                    onChange={handleChange}
-                    label="Randevu amacı"
-                    type="text"
-                  />
-                </div>
-                <button
-                  className="w-[250px] rounded-[20px_5px] text-[white] bg-[#4E929D] h-[50px] border-2"
-                  value="Formu Gönder"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    //if dirty go to dirt fields
-                    if (dirty) {
-                      let dirtyField = Object.keys(errors)[0];
-                      let element =
-                        window.document.getElementsByName(dirtyField)[0];
-                      if (element) {
-                        element.scrollIntoView({
-                          behavior: "smooth",
-                          block: "center",
-                        });
-                      }
-                    } else {
-                      submitForm();
-                    }
-                  }}
-                >
-                  Formu Gönder
-                </button>
+              <div className="w-full flex flex-col gap-[10px]">
+                {selectedStep == 2 && (
+                  <>
+                    {part == 1 && (
+                      <SubStep1Part1
+                        values={values}
+                        errors={errors}
+                        handleChange={handleChange}
+                      />
+                    )}
+                    {part == 2 && (
+                      <SubStep1Part2
+                        values={values}
+                        errors={errors}
+                        handleChange={handleChange}
+                      />
+                    )}
+                    {part == 3 && (
+                      <SubStep1Part3
+                        values={values}
+                        errors={errors}
+                        handleChange={handleChange}
+                      />
+                    )}
+                    {part == 4 && (
+                      <SubStep1Part4
+                        values={values}
+                        errors={errors}
+                        handleChange={handleChange}
+                      />
+                    )}
+                  </>
+                )}
+                {selectedStep == 3 && (
+                  <>
+                    <button
+                      className="border-2 border-red-500"
+                      onClick={() => setIsMale(!isMale)}
+                    >
+                      {isMale ? "Erkek" : "Kadın"}
+                    </button>
+                    {part == 1 && (
+                      <SubStep2Part1
+                        values={values}
+                        errors={errors}
+                        handleChange={handleChange}
+                      />
+                    )}
+                  </>
+                )}
               </div>
+              <Form2Footer parts={23} setter={setPart} active={part} />
             </form>
           );
         }}
