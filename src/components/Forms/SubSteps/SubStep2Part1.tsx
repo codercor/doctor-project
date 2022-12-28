@@ -156,6 +156,38 @@ export default function SubStep2Part1({
           onChange={handleChange}
         />
       </div>
+      <div className="flex flex-col min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+        <div>
+          <FormInputSelectOne
+            label="Beni nereden duydunuz?"
+            value={values.subStep2?.whereDidYouHear}
+            error={errors.subStep2?.whereDidYouHear}
+            name="subStep2.whereDidYouHear"
+            options={[
+              { label: "üniversiteden", value: "Üniversiteden" },
+              { label: "IFM web sitesi", value: "IFM web sitesi" },
+              { label: "Bir doktor önerdi", value: "Bir doktor önerdi" },
+              { label: "Bir arkadaş/aile üyelerinden biri önerdi", value: "Bir arkadaş/aile üyelerinden biri önerdi" },
+              { label: "Sosyal medya", value: "Sosyal medya" },
+              { label: "Kafkas", value: "Kafkas" },
+              {
+                label: "Diğer",
+                value: "Diğer",
+              },
+            ]}
+          />
+        </div>
+        {values.subStep2.geneticHistory == "Diğer" && (
+          <FormInput
+            label="Diğer"
+            name="subStep2.whereDidYouHearOther"
+            value={values.subStep2?.whereDidYouHearOther}
+            error={errors.subStep2?.whereDidYouHearOther}
+            type="text"
+            onChange={handleChange}
+          />
+        )}
+      </div>
     </>
   );
 }

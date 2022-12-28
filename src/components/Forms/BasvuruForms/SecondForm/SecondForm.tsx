@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormDivider from "../../FormDivider/FormDivider";
 import FormInput, {
   FormInputSelect,
@@ -24,17 +24,10 @@ import SubStep1Part1 from "@components/Forms/SubSteps/SubStep1Part1";
 import SubStep1Part2 from "@components/Forms/SubSteps/SubStep1Part2";
 import SubStep1Part3 from "@components/Forms/SubSteps/SubStep1Part3";
 import SubStep1Part4 from "@components/Forms/SubSteps/SubStep1Part4";
-/* 
-#1 Şu anda bir yeme bozukluğunuz var mı? Veya yiyecek ve bedenle ilgili rahatsız edici veya sorunlu davranışlar yaşıyor musunuz?
-(örneğin; tıkanırcasına yeme, yiyecek kısıtlama, telafi edici egzersiz, kronik diyet, yo-yo veya hızlı kilo verme diyetleri, "temiz" yemeye verimsiz saplantı v patolojik saplantı vb.)
-#2  En sevdiğin yiyecek ne?
-#3  En sık yediğin yiyecekler hangileri?
-#4  Yiyeceklerinizi kim hazırlıyor?
-#5  Yediklerinizi kim satın alıyor?
-#6  Hangi sıklıkla yemek pişiriyorsunuz?
-#7  Sence en besleyici gıdayı hayatında ne zaman yedin?
-#8  Sence en az besleyici gıdayı hayatında ne zaman yedin?
-*/
+import SubStep2Part2 from "@components/Forms/SubSteps/SubStep2Part2";
+import SubStep2Part3 from "@components/Forms/SubSteps/SubStep2Part3";
+import SubStep2Part4 from "@components/Forms/SubSteps/SubStep2Part4";
+
 const initialValues = {
   subStep1: {
     parrentTolarance: "",
@@ -71,6 +64,43 @@ const initialValues = {
     emergencyContactRelation: "",
     emergencyContactPhoneCell: "",
     whereDidYouHear: "",
+    whereDidYouHearOther: "",
+    currentDisease: [
+      {
+        problem: "",
+        severity: "",
+        treatment: "",
+        success: "",
+      }
+    ],
+    allergies: [
+      {
+        food: "",
+        reaction: "",
+      }
+    ],
+    sleepHours: "",
+    sleepDifficulty: "",
+    sleepQuality: "",
+    sleepProblem: "",
+    snore: "",
+    wakeUp: "",
+    sleepPills: "",
+    sleepPillsDetail: "",
+    diet: [],
+    foodSensitivity: "",
+    foodSensitivityDetail: "",
+    foodAvoid: "",
+    foodAvoidDetail: "",
+    foodsReaction: [],
+    foodsReactionDetail: "",
+    foodsLike: "",
+    foodsLikeDetail: "",
+    threeMeal: "",
+    threeMealDetail: "",
+    skipMeal: "",
+    skipMealDetail: "",
+    outsideMeal: "",
   },
 };
 
@@ -113,6 +143,69 @@ const validationSchema = Yup.object({
     emergencyContactRelation: textValidationSchema,
     emergencyContactPhoneCell: textValidationSchema,
     whereDidYouHear: textValidationSchema,
+    whereDidYouHearOther: Yup.string().when("whereDidYouHear", {
+      is: (whereDidYouHear: string) => whereDidYouHear === "Diğer",
+      then: Yup.string().required("Bu alan zorunludur"),
+    }),
+    currentDisease: Yup.array().of(
+      Yup.object().shape({
+        problem: Yup.string().required("Zorunlu"),
+        severity: Yup.string().required("Zorunlu"),
+        treatment: Yup.string().required("Zorunlu"),
+        success: Yup.string().required("Zorunlu"),
+      })
+    ),
+    allergies: Yup.array().of(
+      Yup.object().shape({
+        food: Yup.string().required("Zorunlu"),
+        reaction: Yup.string().required("Zorunlu"),
+      })
+    ),
+    sleepHours: Yup.string().required("Bu alan zorunludur"),
+    sleepDifficulty: Yup.string().required("Bu alan zorunludur"),
+    sleepQuality: Yup.string().required("Bu alan zorunludur"),
+    sleepProblem: Yup.string().required("Bu alan zorunludur"),
+    snore: Yup.string().required("Bu alan zorunludur"),
+    wakeUp: Yup.string().required("Bu alan zorunludur"),
+    sleepPills: Yup.string().required("Bu alan zorunludur"),
+    sleepPillsDetail: Yup.string().when("sleepPills", {
+      is: (sleepPills: string) => sleepPills === "evet",
+      then: Yup.string().required("Bu alan zorunludur"),
+    }),
+    diet: Yup.array().of(
+      Yup.string().required("Bu alan zorunludur")
+    ),
+    foodSensitivity: Yup.string().required("Bu alan zorunludur"),
+    foodSensitivityDetail: Yup.string().when("foodSensitivity", {
+      is: "evet",
+      then: Yup.string().required("Bu alan zorunludur")
+    }),
+    foodAvoid: Yup.string().required("Bu alan zorunludur"),
+    foodAvoidDetail: Yup.string().when("foodAvoid", {
+      is: "evet",
+      then: Yup.string().required("Bu alan zorunludur")
+    }),
+    foodsReaction: Yup.array().required("Bu alan zorunludur"),
+    foodsReactionDetail: Yup.string().when("foodsReaction", {
+      is: (val: any) => val.includes("diğer"),
+      then: Yup.string().required("Bu alan zorunludur")
+    }),
+    foodsLike: Yup.string().required("Bu alan zorunludur"),
+    foodsLikeDetail: Yup.string().when("foodsLike", {
+      is: "evet",
+      then: Yup.string().required("Bu alan zorunludur")
+    }),
+    threeMeal: Yup.string().required("Bu alan zorunludur"),
+    threeMealDetail: Yup.string().when("threeMeal", {
+      is: "hayır",
+      then: Yup.string().required("Bu alan zorunludur")
+    }),
+    skipMeal: Yup.string().required("Bu alan zorunludur"),
+    skipMealDetail: Yup.string().when("skipMeal", {
+      is: "evet",
+      then: Yup.string().required("Bu alan zorunludur")
+    }),
+    outsideMeal: Yup.string().required("Bu alan zorunludur"),
   }),
 });
 
@@ -123,7 +216,10 @@ export const OPTIONS_EHB = [
 ];
 
 export default function SecondForm({ selectedStep, setSelectedStep }: any) {
-  const [part, setPart] = useState(1);
+  const [part, setPart] = useState(Number(localStorage.getItem("part")) || 1);
+  useEffect(() => {
+    localStorage.setItem("part", part.toString());
+  }, [part]);
   const [isMale, setIsMale] = useState(false);
   return (
     <>
@@ -144,6 +240,7 @@ export default function SecondForm({ selectedStep, setSelectedStep }: any) {
           values,
           errors,
           submitForm,
+          setFieldValue,
           dirty,
         }) => {
           return (
@@ -196,6 +293,31 @@ export default function SecondForm({ selectedStep, setSelectedStep }: any) {
                         handleChange={handleChange}
                       />
                     )}
+                    {part == 2 && (
+                      <SubStep2Part2
+                        values={values}
+                        errors={errors}
+                        handleChange={handleChange}
+                        setFieldValue={setFieldValue}
+                      />
+                    )}
+                    {part == 3 && (
+                      <SubStep2Part3
+                        values={values}
+                        errors={errors}
+                        handleChange={handleChange}
+                        setFieldValue={setFieldValue}
+                      />
+                    )}
+                    {part == 4 && (
+                      <SubStep2Part4
+                        values={values}
+                        errors={errors}
+                        handleChange={handleChange}
+                        setFieldValue={setFieldValue}
+                      />
+                    )}
+
                   </>
                 )}
               </div>

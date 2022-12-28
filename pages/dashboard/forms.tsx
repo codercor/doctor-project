@@ -22,7 +22,11 @@ export default function Forms() {
     }
   }, [acikRiza]);
 
-  const [selectedStep, setSelectedStep] = React.useState(1);
+  const [selectedStep, setSelectedStep] = React.useState(Number(localStorage.getItem("selectedStep")) || 1);
+
+  useEffect(() => {
+    localStorage.setItem("selectedStep", selectedStep.toString());
+  }, [selectedStep]);
 
   const [forms, setForms] = React.useState([
     {
@@ -77,7 +81,7 @@ export default function Forms() {
             text="Göndermiş olduğunuz form onaylanmıştır"
             status="confirmed"
           />
-            <FormAlert
+          <FormAlert
             text="Göndermiş olduğunuz form beklemede"
             status="pending"
           />
