@@ -6,7 +6,7 @@ import BeforeFooter from "@components/Section/BeforeFooter";
 import Text from "@components/Text";
 import Image from "next/image";
 import React, { useEffect } from "react";
-import { Home, Person, MarkChatUnread, CalendarToday, Settings, PowerSettingsNew, School, PeopleAlt, Article, CheckCircleOutlineSharp, TaskSharp, TaskOutlined } from '@mui/icons-material';
+import { Home, Person, MarkChatUnread, CalendarToday, Settings, PowerSettingsNew, School, PeopleAlt, Article, CheckCircleOutlineSharp, TaskSharp, TaskOutlined, Assignment } from '@mui/icons-material';
 import { useRouter } from "next/router";
 import NavButton, { DNavButtonProps } from "@components/Button/DNavButton";
 import DashBoardNavbar from "@components/Navbar/DashBoardNavbar";
@@ -74,6 +74,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             text: "Chat",
             href: "/dashboard/chat",
             Icon: MarkChatUnread
+        },
+        {
+            text: "Tahliller",
+            href: "/dashboard/assays",
+            Icon: Assignment
         },
         {
             text: "Formlar",

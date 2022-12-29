@@ -5,15 +5,16 @@ import { Close } from '@mui/icons-material'
 import { Add, AddAPhoto, Delete, Edit, DocumentScanner } from "@mui/icons-material";
 type UploadProps = {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-    value: FileList | null
+    value: FileList | null,
+    title?: string
 }
 
 
 
-export default function DocumentsUpload({ onChange, value }: UploadProps) {
+export default function DocumentsUpload({ onChange, value, title = "Eğitim Dökümanları" }: UploadProps) {
     const ref = React.useRef<HTMLInputElement>(null);
     const PreviewComponent = ({ name }: { name: string }) => <div className='relative border-2 flex flex-col justify-center items-center text-[40px] min-w-[100px] w-[100px] h-full'>
-       
+
         <DocumentScanner fontSize='inherit' />
         <Text> {name}</Text>
         <div onClick={
@@ -36,7 +37,7 @@ export default function DocumentsUpload({ onChange, value }: UploadProps) {
         <div className="mt-1" onClick={() => {
             ref.current?.click();
         }} >
-            <Text type="h4" className="text-secondary !text-[14px] !py-[10px]"> Eğitim Dökümanları </Text>
+            <Text type="h4" className="text-secondary !text-[14px] !py-[10px]"> {title} </Text>
             {!value || value?.length < 1 ? <div className="cursor-pointer md:wfull md:h-[168px] outline-dotted outline-2 outline-secondary rounded-[5px_20px_0_20px] flex justify-center flex-col items-center px-[50px] py-[20px] text-center text-secondary" >
                 <Add />
                 <Text type="h4" className="!text-[14px] !py-[10px]">Döküman(pdf) Yükle</Text>
@@ -47,7 +48,7 @@ export default function DocumentsUpload({ onChange, value }: UploadProps) {
                 <div className='overflow-auto scrollbar-thin scrollbar-thumb-secondary md:wfull md:h-[168px] outline-dotted outline-2 outline-secondary rounded-[5px_20px_0_20px] flex justify-start gap-2 items-center px-[50px] py-[20px] text-center text-secondary'>
                     {
                         Array.from(value).map((file, index) => {
-                            return <PreviewComponent key={file.name+index} name={file.name} />
+                            return <PreviewComponent key={file.name + index} name={file.name} />
                         })
                     }
                 </div>}
