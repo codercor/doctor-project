@@ -39,6 +39,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             Icon: Article
         },
         {
+            text: "Tahliller",
+            href: "/dashboard/assays-management",
+            Icon: Assignment
+        },
+        {
             text: "Kullanıcı yönetimi",
             href: "/dashboard/user-management",
             Icon: PeopleAlt
@@ -108,12 +113,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 <div className="md:w-[125px] md:h-[43px] relative md:mt-[40px]">
                     <Image src="/images/svg/brandmark6.svg" layout="fill" objectFit="contain" />
                 </div>
-                <div className="flex flex-col mt-[60px]">
+                <div className="flex flex-col mt-[60px] h-[calc(100vh-350px)] overflow-scroll scrollbar-thin scrollbar-track-[#d4ee5e8] scrollbar-thumb-[white]">
                     {dashboardNavs.map((nav, index) => <NavButton key={index} {...nav} />)}
                 </div>
-                <div className="absolute bottom-0 left-0 w-full">
+                <div className="absolute bottom-0  h-[200px] flex flex-col justify-end left-0 w-full">
                     <div className="px-[30px] mb-[34px]">
-                        <Button onClick={() => logout()} className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] bg-quaternary-flat">
+                        <Button onClick={() => logout()} className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] bg-[red]">
                             <PowerSettingsNew className="text-[white]" />
                             <Text className="text-[white]">
                                 Çıkış Yap

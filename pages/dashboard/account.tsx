@@ -64,6 +64,8 @@ const Account = () => {
                         <Input disabled={true} name="Email" value={user.Email} text="Eposta" type="email" />
                         <Input disabled={!isEdit} name="Phone" value={_userInfo.Phone} onChange={handleChange} text="Telefon" type="text" />
                         <Input disabled={!isEdit} name="Address" value={_userInfo.Address} onChange={handleChange} text="Adres" type="text" />
+                        <Input disabled={true}  inputClassName="opacity-50" name="Address" value="31.07.1999" onChange={handleChange} text="Doğum Tarihi" type="text" />
+                        <Input disabled={true} inputClassName="opacity-50" name="Address" value="Kadın" onChange={handleChange} text="Cinsiyet" type="text" />
                         <Button onClick={handleSave} type="secondary" className="w-[200px] self-end mt-[20px] h-[48px] leading-none flex items-center justify-center">
                             <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Kaydet</Text>
                         </Button>

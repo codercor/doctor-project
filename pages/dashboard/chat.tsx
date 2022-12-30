@@ -51,11 +51,14 @@ const ChatBox = () => {
     const [message, setMessage] = useState('');
     useEffect(() => {
         setMessage('');
+        console.log("Messages", Messages,"ID",Id);
+        
     },[Messages]);
+    
     return <div className="px-[30px] w-full h-full flex flex-col bg-[#F9FBFC]">
         <div className="w-full h-[30px] text-center flex items-center justify-center sticky top-0 bg-[#F9FBFC]"> <Text className="text-gray-300">11 Ekim 2022</Text> </div>
         <div className="w-full  overflow-auto h-full flex flex-col-reverse">
-            {Messages.map((item) => <ChatMessage key={v4()} message={item} isMe={item.RecieverId == Id} />)}
+            {Messages.map((item) => <ChatMessage key={v4()} message={item} isMe={!(item.SenderId == Id)} />)}
         </div>
         {SelectedChatLineId && <div className="flex my-[30px] items-center justify-start w-full min-h-[52px] bg-[transparent]">
             <div className="w-[90%] h-full">

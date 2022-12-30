@@ -67,9 +67,9 @@ export default function Trainings() {
                 <div className="w-full h-fit flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
                     <div className="flex justify-between w-full">
                         <Text type="h3" className="text-[#4E929D] !text-[20px] w-full">Tüm Eğitimler   </Text>
-                        <Button type="secondary" onClick={handleGoToCreate} className="bg-tertiary w-[160px] py-2 px-0 justify-center gap-1 flex items-center rounded-sm min-h-[36px]">
+                        <Button type="secondary" onClick={handleGoToCreate} className="bg-tertiary !min-w-[180px]  justify-center gap-1 flex items-center !min-h-[30px]">
                             <Edit className="text-[white] text-[12px]" />
-                            <Text className='text-[12px]'>Eğitim ekle</Text>
+                            <Text className='text-[12px] w-full'>Eğitim ekle</Text>
                         </Button>
                     </div>
                 </div>
