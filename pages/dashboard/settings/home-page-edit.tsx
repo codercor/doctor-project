@@ -114,7 +114,7 @@ const EditBanner = () => {
 
     return <div className='flex flex-col w-full h-fit p-[32px]'>
         <div className="flex justify-between items-center"> <Text type="h5" className='text-deepgreen-200'>Anasayfa Düzeni</Text></div>
-        <div className="flex justify-between items-center  mt-2 mb-2"> <Text type="h6" className='text-deepgreen-200'>Banner</Text></div>
+        <div className="flex justify-between items-center  mt-2 mb-2"> <Text type="h6" className='text-deepgreen-200'>Banner Resmi (düzenlemek için yeniden seçilmesi zorunlu) </Text></div>
         <Divider />
         <EditBannerImage setImageFile={(f) => { setEditedBannerData({ Image: f }) }} image={bannerData.Image} />
         <Input value={bannerData.Title} onChange={(e) => {

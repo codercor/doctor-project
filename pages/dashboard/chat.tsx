@@ -12,17 +12,19 @@ import toast from 'react-hot-toast';
 import { v4 } from "uuid";
 import useUser from "src/hooks/user.hook";
 
-const ChatUserCard = ({ chatLine }: { chatLine: ChatLine }) => {
+const ChatUserCard = ({ chatLine, onClick, active }: { chatLine: ChatLine, onClick: () => void, active: boolean }) => {
     const { getChatLineMessages } = useChat();
     return <div onClick={() => {
         getChatLineMessages(chatLine.ChatLineId);
-    }} className="bg-[#D0E4E8] h-[97px] flex items-center justify-start p-[20px]">
+        onClick()
+    }} className={classNames("bg-[#D0E4E8] transition-all hover:bg-[white] duration-1000 hover:rounded-[5px_20px] hover:border-2  h-[97px] flex items-center justify-start p-[20px]", {
+        "!bg-[white] transtion-all  border-2 rounded-[20px_5px] border-[#D0E4E8]": active
+    })}>
         <div className="bg-[#4E929D] w-[60px] h-[60px] rounded-full text-[white] grid place-content-center">
             <Star className="text-[34px]" />
         </div>
         <div className="flex flex-col ml-[20px]">
             <Text className="text-[14px]"> {chatLine.UserName || 'İsimsiz kullanıcı'} </Text>
-            <Text className="text-[14px] text-[#878787]"> Mesajları görmek için tıklayın </Text>
         </div>
     </div>
 }
@@ -33,13 +35,16 @@ const ChatMessage = ({ isMe = true, message }: ChatMessageProps) => {
     return <div className={classNames("flex p-[20px] h-fit mt-[20px] w-[80%] ", {
         "self-end": !isMe,
     })}>
-        <div className="flex  items-center justify-center min-w-[60px] h-[60px] rounded-full bg-secondary">
+        {isMe && <div className="flex text-[white] items-center justify-center min-w-[60px] h-[60px] rounded-full bg-secondary">
             <Star />
-        </div>
+        </div>}
         <div className="h-fit mt-[36px] ml-2 leading-none  w-[calc(100%-80px)] bg-[white] pt-[3px] rounded-[10px_3px_10px_3px] pl-[5px]">
             <Text className="text-[12px] w-full h-auto"> {new Date(message?.created_at).toLocaleDateString()} </Text>
             <Text className="text-[16px] break-words max-h-auto h-fit">{message?.Message}</Text>
         </div>
+        {!isMe && <div className="flex  text-[white] items-center justify-center min-w-[60px] h-[60px] rounded-full bg-secondary">
+            <Star />
+        </div>}
     </div>
 }
 
@@ -51,10 +56,10 @@ const ChatBox = () => {
     const [message, setMessage] = useState('');
     useEffect(() => {
         setMessage('');
-        console.log("Messages", Messages,"ID",Id);
-        
-    },[Messages]);
-    
+        console.log("Messages", Messages, "ID", Id);
+
+    }, [Messages]);
+
     return <div className="px-[30px] w-full h-full flex flex-col bg-[#F9FBFC]">
         <div className="w-full h-[30px] text-center flex items-center justify-center sticky top-0 bg-[#F9FBFC]"> <Text className="text-gray-300">11 Ekim 2022</Text> </div>
         <div className="w-full  overflow-auto h-full flex flex-col-reverse">
@@ -83,6 +88,7 @@ const ChatBox = () => {
 const Chat = () => {
     const { chat: { ChatLinesLoading }, getChatLines, ChatLines } = useChat();
     const [toastId, setToastId] = useState<string>('');
+    const [activeLineId, setActiveLineId] = useState<string | null>(null);
     useEffect(() => {
         if (ChatLinesLoading) {
             setToastId(toast.loading('Mesaj listesi Yükleniyor...'))
@@ -105,7 +111,11 @@ const Chat = () => {
                         <Text type="h3" className="text-secondary !text-[20px] w-full">Mesajlar</Text>
                     </div>
                     <div className="w-full">
-                        {ChatLines.map((item) => <ChatUserCard chatLine={item} key={v4()} />)}
+                        {ChatLines.map((item) => <ChatUserCard active={
+                            activeLineId == item.ChatLineId
+                        } onClick={() => {
+                            setActiveLineId(item.ChatLineId);
+                        }} chatLine={item} key={v4()} />)}
                     </div>
                 </div>
                 <ChatBox />

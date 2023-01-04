@@ -113,7 +113,12 @@ export default function UserManagement() {
                                         })
                                     }</TableCell>
 
-                                    <TableCell className="leading-none" align="left">{row.IsPatient ? <Button type='quaternary-flat' className="!w-[108px] h-[36px] !p-[0] grid place-content-center"> Hasta </Button> : <Button type='tertiary-flat' className="!w-[108px] h-[36px] !p-[0] grid place-content-center"> Randevulu </Button>}</TableCell>
+                                    <TableCell className="leading-none" align="left">{row.IsPatient ?
+                                        <button className="!w-[108px] h-[36px] uppercase text-[#3A356B] font-nexa-regular bg-[#DDDAFF] border-[1px] border-[#A09AD9] !p-[0] grid place-content-center">
+                                            Hasta </button> :
+                                        <button className="!w-[108px] h-[36px] uppercase text-[#98A170] font-nexa-regular bg-[#FBFFEC] border-[1px] border-[#D8E0B2] !p-[0] grid place-content-center">
+                                            Randevulu </button>}</TableCell>
+
                                 </TableRow>
                             ))}
 
