@@ -6,7 +6,7 @@ import BeforeFooter from "@components/Section/BeforeFooter";
 import Text from "@components/Text";
 import Image from "next/image";
 import React, { useEffect } from "react";
-import { Home, Person, MarkChatUnread, CalendarToday, Settings, PowerSettingsNew, School, PeopleAlt, Article, CheckCircleOutlineSharp, TaskSharp, TaskOutlined, Assignment } from '@mui/icons-material';
+import { Home, Person, MarkChatUnread, CalendarToday, Settings, PowerSettingsNew, School, PeopleAlt, Article, CheckCircleOutlineSharp, TaskSharp, TaskOutlined, Assignment, TaskTwoTone, BookmarkSharp, BookmarkAdded } from '@mui/icons-material';
 import { useRouter } from "next/router";
 import NavButton, { DNavButtonProps } from "@components/Button/DNavButton";
 import DashBoardNavbar from "@components/Navbar/DashBoardNavbar";
@@ -42,6 +42,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             text: "Tahliller",
             href: "/dashboard/assays-management",
             Icon: Assignment
+        },
+        {
+            text: "Formlar",
+            href: "/dashboard/forms-management",
+            Icon: TaskTwoTone
+        },
+        {
+            text:'Reçetelerim',
+            href:'/dashboard/prescriptions',
+            Icon:BookmarkAdded
         },
         {
             text: "Kullanıcı yönetimi",
@@ -113,7 +123,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 <div className="md:w-[125px] md:h-[43px] relative md:mt-[40px]">
                     <Image src="/images/svg/brandmark6.svg" layout="fill" objectFit="contain" />
                 </div>
-                <div className="flex flex-col mt-[60px] h-[calc(100vh-350px)] overflow-scroll scrollbar-thin scrollbar-track-[#d4ee5e8] scrollbar-thumb-[white]">
+                <div className="flex flex-col pr-4 mt-[60px] h-[calc(100vh-350px)] overflow-scroll scrollbar-thin scrollbar-track-[#d4ee5e8] scrollbar-thumb-[white]">
                     {dashboardNavs.map((nav, index) => <NavButton key={index} {...nav} />)}
                 </div>
                 <div className="absolute bottom-0  h-[200px] flex flex-col justify-end left-0 w-full">
