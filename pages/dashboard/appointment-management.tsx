@@ -17,10 +17,10 @@ interface Appointment {
     updated_at: string;
 }
 
-const StatusBox = ({
+export const StatusBox = ({
     type
 }: {
-    type: "Acil" | "Randevulu" | "user"
+    type: "Acil" | "Randevulu" | "user" | string
 }) => {
     return <div className={classNames("w-[110px] h-[30px] flex items-center justify-center", {
         "bg-[#fed5d5] border-[1px] border-[#e18c8c] text-[#cd2d2d]": type === "Acil",
