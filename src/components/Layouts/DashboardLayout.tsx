@@ -49,8 +49,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             Icon: TaskTwoTone
         },
         {
-            text:'Reçetelerim',
-            href:'/dashboard/prescriptions',
+            text:'Reçetele Yönetimi',
+            href:'/dashboard/prescriptions-management',
             Icon:BookmarkAdded
         },
         {
