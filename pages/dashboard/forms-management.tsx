@@ -27,7 +27,7 @@ const FormTypeGrid = ({ active = 1, setActive }: { active?: number, setActive: (
             "IFM Kadın Değerlendirme",
             "Tıbbi Semptom Değerlendirme",
             "MSQ Takip Formu"
-        ].map((text, index) => <div onClick={() => setActive(index)}> <Item isActive={index == active} key={v4()} text={text} /></div>)}
+        ].map((text, index) => <div key={v4()} onClick={() => setActive(index)}> <Item isActive={index == active}  text={text} /></div>)}
     </div>
 
 }

@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text';
-import { Add, ArrowDropDown, ArrowDropUp, Close, RefreshRounded, SortByAlpha } from '@mui/icons-material';
+import { Add, ArrowDropDown, ArrowDropUp, Cancel, Close, RefreshRounded, SortByAlpha } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react'
 import DocumentsUpload from '@components/Upload/DocumentsUpload';
 import { Pagination } from '@mui/material'
@@ -9,6 +9,7 @@ import classNames from 'classnames';
 import { v4 } from 'uuid';
 import { UserInformation, UserState } from '@app/User/user.types';
 import request from '@config';
+import { LocalLoading } from './appointment-management';
 interface IPrescriptionItem {
     Id: string;
     UserId: string;
@@ -72,19 +73,47 @@ interface INewPrespriptionModal {
 }
 const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespriptionModal, setter: (newData: INewPrespriptionModal) => void, finishEvent: () => void }) => {
     //api'den gelen patient listesi
-    const [patientResult, setPatientResult] = useState<any[]>([]);
     //listeden bir patient seçildiğinde çalıştırılacak fonksiyon
-    const selectPatient = (patient: { Id: string }) => {
+    const selectPatient = (Id: string) => {
         setter({
             ...data, data: {
                 ...data.data,
-                UserId: patient.Id
+                UserId: Id
             }
         })
     }
+
+
+    const [searchResults, setSearchResults] = useState<UserState[]>([]);
+    const [selectedPatient, setSelectedPatient] = useState<UserState | null>(null);
+    const [searchKey, setSearchKey] = useState('');
+
     const handleSearchPatient = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log(e.currentTarget.value);
+        setSearchKey(e.currentTarget.value);
     }
+
+    const searchPatient = (key: string) => {
+        request.post(`/search/user`, {
+            key
+        }).then(res => {
+            console.log(res.data);
+            setSearchResults(res.data);
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+
+    useEffect(() => {
+        if (!selectedPatient && searchKey.length > 0) {
+            console.log("g 1");
+            
+            searchPatient(searchKey);
+        } else {
+            console.log("g 2");
+            setSearchResults([]);
+        }
+    }, [searchKey, selectedPatient]);
 
     const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
         setter({
@@ -103,7 +132,6 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
         })
     }
 
-
     const handleSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         setter({
             ...data, data: {
@@ -115,6 +143,22 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
 
     const handleCreatePrescription = () => {
         console.log(data);
+        let formData = new FormData();
+        formData.append('Name', data.data.Name);
+        formData.append('UserId', data.data.UserId);
+        formData.append('Description', data.data.Description);
+        formData.append('File', data.data.File![0]);
+        request.post('/userprescriptions', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(res => {
+            console.log("EKLENDI", res);
+            setSelectedPatient(null);
+        }).catch(err => {
+            console.log("EKLENEMEDI ", err);
+            setSelectedPatient(null);
+        })
         finishEvent();
     }
 
@@ -139,6 +183,37 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
         }
     }, [data.data])
 
+    const UserResultsItem = ({ item, cancel = false }: { item: UserState, cancel?: boolean }) => {
+        return (
+            <div onClick={() => {
+                setSelectedPatient(item)
+                item?.Id && selectPatient(item.Id)
+            }} className="w-full h-[40px] border-t-[1px] flex items-center px-4">
+                <p>
+                    {item.Information.Fullname}
+                </p>
+                {
+                    cancel && (<button onClick={(
+                        e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                    ) => {
+                        e.stopPropagation();
+                        //setSelectedPatient işleminden sonra rerender edilmemesinin nedeni : https://stackoverflow.com/questions/53253940/react-hooks-usestate-not-updating-immediately
+                        setSelectedPatient(null)
+                        setSearchKey('');
+                        
+                    }} className="ml-auto">
+                        <Cancel />
+                    </button>)
+                }
+            </div>
+        )
+    }
+
+    const UserResults = () => {
+        return (<div className="w-full max-h-[400px] absolute top-[50px] z-[99] bg-[white] left-0 border-[#4E929D]-500 border-2">
+            {searchResults.map((item, index) => <UserResultsItem key={index} item={item} />)}
+        </div>)
+    }
 
     return data.open ? <div onClick={(e) => {
         handleCancel();
@@ -149,13 +224,15 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
         }} className="w-[904px] relative min-h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
             <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold">Reçete Oluştur</h1>
             <p className='text-[#5C5C5C] text-[16px]'> Hastaya reçete oluşturmak için gerekli alanları doldurunuz.</p>
-            <div className="flex flex-col gap-4 mt-[45px] mb-2">
-                <FormInput onChange={handleSearchPatient} placeholder='Hasta Ara*' />
+            <div className="flex flex-col gap-4 mt-[45px] mb-2 relative">
+                {!selectedPatient && <FormInput onChange={handleSearchPatient} placeholder='Hasta Ara*' />}
+                {!selectedPatient && <UserResults />}
+                {selectedPatient && <UserResultsItem item={selectedPatient as UserState} cancel={true} />}
                 <FormInput label='Reçete Adı' onChange={handleChangeTitle} />
                 <FormInputTextArea onChange={handleChangeDescription} label='Açıklama' />
                 <DocumentsUpload title="Reçete" value={data.data.File} onChange={handleSelectFile} />
             </div>
-            <button onClick={handleCreatePrescription} className={classNames('text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px]', {
+            <button disabled={!valid} onClick={handleCreatePrescription} className={classNames('text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px]', {
                 "opacity-50 cursor-not-allowed": !valid,
             })}>
                 Oluştur
@@ -193,8 +270,10 @@ export default function PrescriptionsManagement() {
         setLoading(true);
         request.get(`/userprescriptions?page=${page}`).then((resp) => {
             setLoading(false);
+            console.log("GEELDI");
+
             console.log(resp.data);
-            setPrescriptions(resp.data.data);
+            setPrescriptions(resp.data);
             setPagination({
                 page: resp.data.current_page,
                 per_page: resp.data.per_page,
@@ -213,7 +292,7 @@ export default function PrescriptionsManagement() {
     }, [])
 
     const [newPrespriptionModal, setNewPrespriptionModal] = useState<INewPrespriptionModal>({
-        open: true,
+        open: false,
         data: {
             Name: '',
             UserId: 'dadada',
@@ -224,7 +303,19 @@ export default function PrescriptionsManagement() {
 
 
     return <DashboardLayout>
-        <NewPrespriptionModal finishEvent={() => fetchPrescriptions(pagination.page)} data={newPrespriptionModal} setter={setNewPrespriptionModal} />
+        {loading && <LocalLoading message='Reçeteler getiriliyor...' />}
+        <NewPrespriptionModal finishEvent={() => {
+            setNewPrespriptionModal({
+                open: false,
+                data: {
+                    Name: '',
+                    UserId: '',
+                    Description: '',
+                    File: null
+                }
+            })
+            fetchPrescriptions(pagination.page)}
+            } data={newPrespriptionModal} setter={setNewPrespriptionModal} />
         <div className=" md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
             <div className="w-full flex  text-start items-center justify-between  py-[26px] px-[10px]">
                 <div className="flex flex-col justify-between w-full">
@@ -248,7 +339,9 @@ export default function PrescriptionsManagement() {
 
             <div className="w-[80%] gap-[10px] mt-[10px] mb-[30px] flex">
                 <input type="text" placeholder='Ad Soyad ya da E-posta adresine göre arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
-                <button className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
+                <button onClick={() => {
+                    fetchPrescriptions();
+                }} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
                     <RefreshRounded />
                 </button>
             </div>

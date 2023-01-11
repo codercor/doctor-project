@@ -95,6 +95,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             href: "/dashboard/assays",
             Icon: Assignment
         },
+        
+        {
+            text: "Reçetelerim",
+            href: "/dashboard/prescriptions",
+            Icon: BookmarkSharp
+        },
         {
             text: "Formlar",
             href: "/dashboard/forms",
