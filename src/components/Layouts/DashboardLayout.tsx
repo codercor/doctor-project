@@ -6,11 +6,13 @@ import BeforeFooter from "@components/Section/BeforeFooter";
 import Text from "@components/Text";
 import Image from "next/image";
 import React, { useEffect } from "react";
-import { Home, Person, MarkChatUnread, CalendarToday, Settings, PowerSettingsNew, School, PeopleAlt, Article, CheckCircleOutlineSharp, TaskSharp, TaskOutlined, Assignment, TaskTwoTone, BookmarkSharp, BookmarkAdded } from '@mui/icons-material';
+import { Home, Person, MarkChatUnread, CalendarToday, Settings, PowerSettingsNew, School, PeopleAlt, Article, CheckCircleOutlineSharp, TaskSharp, TaskOutlined, Assignment, TaskTwoTone, BookmarkSharp, BookmarkAdded, MenuBook } from '@mui/icons-material';
 import { useRouter } from "next/router";
 import NavButton, { DNavButtonProps } from "@components/Button/DNavButton";
 import DashBoardNavbar from "@components/Navbar/DashBoardNavbar";
 import useAuth from "src/hooks/auth.hook";
+import { Fab, Menu } from "@mui/material";
+import classNames from "classnames";
 
 
 
@@ -49,9 +51,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             Icon: TaskTwoTone
         },
         {
-            text:'Reçetele Yönetimi',
-            href:'/dashboard/prescriptions-management',
-            Icon:BookmarkAdded
+            text: 'Reçetele Yönetimi',
+            href: '/dashboard/prescriptions-management',
+            Icon: BookmarkAdded
         },
         {
             text: "Kullanıcı yönetimi",
@@ -95,7 +97,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             href: "/dashboard/assays",
             Icon: Assignment
         },
-        
+
         {
             text: "Reçetelerim",
             href: "/dashboard/prescriptions",
@@ -123,16 +125,26 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             router.push("/auth/login")
         }
     }, [user])
+    const [showMenu, setShowMenu] = React.useState(true);
     return (
-        <div className="overflow-auto  flex w-full h-screen border-2 border-green-100">
-            <div className="sticky top-0  md:min-w-[18%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]">
+        <div className="overflow-auto   flex w-full h-screen">
+            <div className="md:hidden w-fit h-fit  absolute bottom-[30px] right-[30px]">
+                <Fab size="small" onClick={() => {
+                    setShowMenu(!showMenu)
+                }} className="bg-primary" aria-label="add">
+                    <MenuBook />
+                </Fab>
+            </div>
+            <div className={classNames("md:sticky fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[18%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
+                hidden: !showMenu
+            })}>
                 <div className="md:w-[125px] md:h-[43px] relative md:mt-[40px]">
                     <Image src="/images/svg/brandmark6.svg" layout="fill" objectFit="contain" />
                 </div>
-                <div className="flex flex-col pr-4 mt-[60px] h-[calc(100vh-350px)] overflow-scroll scrollbar-thin scrollbar-track-[#d4ee5e8] scrollbar-thumb-[white]">
+                <div className="flex flex-col pr-4 mt-[60px] md:h-[calc(100vh-350px)] h-[calc(100vh-250px)] overflow-scroll scrollbar-thin scrollbar-track-[#d4ee5e8] scrollbar-thumb-[white]">
                     {dashboardNavs.map((nav, index) => <NavButton key={index} {...nav} />)}
                 </div>
-                <div className="absolute bottom-0  h-[200px] flex flex-col justify-end left-0 w-full">
+                <div className="absolute bottom-0  h-[150px] md:h-[200px] flex flex-col justify-end left-0 w-full">
                     <div className="px-[30px] mb-[34px]">
                         <Button onClick={() => logout()} className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] bg-[red]">
                             <PowerSettingsNew className="text-[white]" />

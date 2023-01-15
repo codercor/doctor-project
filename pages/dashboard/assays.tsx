@@ -11,22 +11,62 @@ import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from
 import React, { useEffect, useState } from 'react'
 import Collapse from '@mui/material/Collapse';
 import DocumentsUpload from '@components/Upload/DocumentsUpload';
+import request from '@config';
+import useUser from 'src/hooks/user.hook';
+import { Assay } from './assays-management';
+import { LocalLoading } from './appointment-management';
 export default function Assays() {
-    interface Assay {
 
-    }
+    const { user: { Id } } = useUser()
     const [assays, setAssays] = useState<any[]>([]);
+    const [page, setPage] = useState(1);
+    const getAssays = async () => {
+        try {
+            if (!Id) return
+            const res = await request.get(`/userassays/${Id}?page=${page}`);
+            console.log("DATA", res.data);
+            setAssays(res.data);
+        } catch (error) {
+            console.log("error", error);
 
-    const Row = () => {
-        const [open, setOpen] = useState(true);
+        }
+    }
+
+    useEffect(() => {
+        getAssays();
+    }, [page])
+
+    const Row = ({ assay }: { assay: Assay }) => {
+        const [open, setOpen] = useState(false);
         const [assayFiles, setAssayFiles] = useState<FileList | null>(null);
+        const [loading, setLoading] = useState(false);
+        function sendAssay(): void {
+            if (!assayFiles) return
+            setLoading(true);
+            let form = new FormData();
+            form.append("File", assayFiles[0]);
+            request.post(`/userassays/${assay.Id}?_METHOD=PUT`, form, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                data: form
+            }).then(() => {
+                setLoading(false);
+                getAssays();
+            }).catch(() => {
+                setLoading(false);
+                getAssays();
+            })
+        }
+
         return <div className='flex flex-col w-full'>
             <div className='w-full flex p-3 border-t-[1px]'>
                 <div className='flex-[5]'>
-                    <Text type="h3" className="text-secondary !text-[14px]">Kan Tahlili</Text>
+                    <Text type="h3" className="text-secondary !text-[14px]"> {assay.Name} </Text>
                 </div>
                 <div className='flex-[2]'>
-                    <StepStatus status='pending' />
+                    <StepStatus status={assay.Status} />
+
                 </div>
                 <div className='flex-[1]'>
                     <button onClick={() => {
@@ -45,7 +85,8 @@ export default function Assays() {
                         console.log("değişti", e.currentTarget?.files);
                         setAssayFiles(e.currentTarget?.files)
                     }} />
-                    <button className='bg-[#4E929D] text-[white] rounded-[20px_5px] self-end w-[146px] h-[50px]'>Gönder</button>
+                    <button onClick={() => sendAssay()} className='bg-[#4E929D] text-[white] rounded-[20px_5px] self-end w-[146px] h-[50px]'>Gönder</button>
+                    {loading && <LocalLoading message='Yükleniyor...' />}
                 </div>}
         </div>
     }
@@ -69,9 +110,11 @@ export default function Assays() {
                     <div className='flex-[1]'>  </div>
                 </div>
                 <div className='w-full border-2'>
-                    <Row />
-                    <Row />
-                    <Row />
+                    {
+                        assays.map((assay, index) => {
+                            return <Row assay={assay} key={index} />
+                        })
+                    }
                 </div>
             </div>
         </div>
