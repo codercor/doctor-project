@@ -18,7 +18,7 @@ interface IPrescriptionItem {
     created_at: string;
     updated_at: string;
     Name: string;
-    user: null | UserState;
+    user: null | any;
 }
 const Row = ({ data }: { data: IPrescriptionItem }) => {
     return <div className='flex flex-col w-full'>
@@ -26,7 +26,7 @@ const Row = ({ data }: { data: IPrescriptionItem }) => {
             <div className='flex-[6]'>
                 <p>
                     {
-                        data.user?.Information?.Fullname || 'YOK'
+                        data.user?.information?.Fullname || 'YOK'
                     }
                 </p>
             </div>
@@ -41,7 +41,7 @@ const Row = ({ data }: { data: IPrescriptionItem }) => {
             <div className='flex-[4]'>
                 <p>
                     {
-                        data.user?.Information?.Phone || 'YOK'
+                        data.user?.information?.Phone || 'YOK'
                     }
                 </p>
             </div>
@@ -107,7 +107,7 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
     useEffect(() => {
         if (!selectedPatient && searchKey.length > 0) {
             console.log("g 1");
-            
+
             searchPatient(searchKey);
         } else {
             console.log("g 2");
@@ -140,9 +140,10 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
             }
         })
     }
-
+    const [valid, setValid] = useState(false);
     const handleCreatePrescription = () => {
         console.log(data);
+        setValid(false)
         let formData = new FormData();
         formData.append('Name', data.data.Name);
         formData.append('UserId', data.data.UserId);
@@ -155,11 +156,12 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
         }).then(res => {
             console.log("EKLENDI", res);
             setSelectedPatient(null);
+            finishEvent();
         }).catch(err => {
             console.log("EKLENEMEDI ", err);
             setSelectedPatient(null);
+            finishEvent();
         })
-        finishEvent();
     }
 
     const handleCancel = () => {
@@ -173,7 +175,7 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
         })
     }
 
-    const [valid, setValid] = useState(false);
+
 
     useEffect(() => {
         if (data.data.Name && data.data.UserId && data.data.Description && data.data.File) {
@@ -200,7 +202,7 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
                         //setSelectedPatient işleminden sonra rerender edilmemesinin nedeni : https://stackoverflow.com/questions/53253940/react-hooks-usestate-not-updating-immediately
                         setSelectedPatient(null)
                         setSearchKey('');
-                        
+
                     }} className="ml-auto">
                         <Cancel />
                     </button>)
@@ -251,45 +253,51 @@ export default function PrescriptionsManagement() {
     const [prescriptions, setPrescriptions] = useState<IPrescriptionItem[]>([]);
     const [loading, setLoading] = useState(false);
 
-    interface IPagination {
-        page: number;
-        per_page: number;
-        prev_page_url: string | null;
-        next_page_url: string | null;
-        last_page: number;
+    const [keyword, setKeyword] = useState<string>('');
+    const getSearchResults = () => {
+        ///api/search/assay?page=21
+        if (keyword.trim().length < 1) return;
+        //setLoading(true);
+        request.post(`/search/prescriptions?page=${page}`, {
+            key: keyword
+        }).then((resp) => {
+            //setLoading(false);
+            console.log("GEELDI");
+            console.log(resp.data);
+            setPrescriptions(resp.data);
+            setPage(page)
+        }).catch((err) => {
+            //   setLoading(false);
+            console.log(err);
+        })
     }
-    const [pagination, setPagination] = useState<IPagination>({
-        page: 1,
-        per_page: 10,
-        prev_page_url: null,
-        next_page_url: null,
-        last_page: 1
-    })
+    const [page, setPage] = useState(1)
 
-    const fetchPrescriptions = (page = 1) => {
+    const fetchPrescriptions = () => {
         setLoading(true);
         request.get(`/userprescriptions?page=${page}`).then((resp) => {
             setLoading(false);
             console.log("GEELDI");
-
             console.log(resp.data);
             setPrescriptions(resp.data);
-            setPagination({
-                page: resp.data.current_page,
-                per_page: resp.data.per_page,
-                prev_page_url: resp.data.prev_page_url,
-                next_page_url: resp.data.next_page_url,
-                last_page: resp.data.last_page
-            })
+            setPage(page)
         }).catch((err) => {
             setLoading(false);
             console.log(err);
         })
     }
 
+    const refresh = () => {
+        if (keyword.trim().length > 0) {
+            getSearchResults();
+        } else {
+            fetchPrescriptions();
+        }
+    }
+
     useEffect(() => {
-        fetchPrescriptions();
-    }, [])
+        refresh()
+    }, [page, keyword])
 
     const [newPrespriptionModal, setNewPrespriptionModal] = useState<INewPrespriptionModal>({
         open: false,
@@ -300,6 +308,7 @@ export default function PrescriptionsManagement() {
             File: null
         }
     });
+
 
 
     return <DashboardLayout>
@@ -314,8 +323,9 @@ export default function PrescriptionsManagement() {
                     File: null
                 }
             })
-            fetchPrescriptions(pagination.page)}
-            } data={newPrespriptionModal} setter={setNewPrespriptionModal} />
+            fetchPrescriptions();
+        }
+        } data={newPrespriptionModal} setter={setNewPrespriptionModal} />
         <div className=" md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
             <div className="w-full flex  text-start items-center justify-between  py-[26px] px-[10px]">
                 <div className="flex flex-col justify-between w-full">
@@ -338,9 +348,11 @@ export default function PrescriptionsManagement() {
             </div>
 
             <div className="w-[80%] gap-[10px] mt-[10px] mb-[30px] flex">
-                <input type="text" placeholder='Ad Soyad ya da E-posta adresine göre arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
+                <input type="text" value={keyword} onChange={
+                    (e) => { setKeyword(e.currentTarget.value) }
+                } placeholder='Ad Soyad ya da E-posta adresine göre arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
                 <button onClick={() => {
-                    fetchPrescriptions();
+                    refresh()
                 }} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
                     <RefreshRounded />
                 </button>
@@ -362,8 +374,8 @@ export default function PrescriptionsManagement() {
                 </div>
             </div>
             <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
-                fetchPrescriptions(value);
-            }} count={pagination.last_page} />
+                setPage(value)
+            }} count={page + 1} />
         </div>
     </DashboardLayout>
 }
