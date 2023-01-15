@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text'
-import { Check, Close, MenuOpen, RefreshRounded, SortByAlpha } from '@mui/icons-material'
+import { Check, Close, MenuOpen, RefreshRounded, Search, SortByAlpha } from '@mui/icons-material'
 import React, { useEffect, useState } from 'react'
 import { Pagination } from '@mui/material'
 import classNames from 'classnames'
@@ -8,6 +8,7 @@ import request from '@config'
 import { v4 } from 'uuid'
 import FormInputSelectOne from '@components/Forms/FormInput/FormInputSelectOne'
 import { Loading } from './create-training'
+import FormInput from '@components/Forms/FormInput/FormInput'
 interface Appointment {
     Id: string;
     UserId: string;
@@ -36,7 +37,48 @@ export const StatusBox = ({
     </div>
 }
 
-const Row = ({ appointment, afterUpdate }: { appointment: Appointment, afterUpdate: () => void }) => {
+const CreateAssayModal = ({ userId, finishEvent }: { userId: string, finishEvent: () => void }) => {
+    const [key, setKey] = useState('');
+    const [assayName, setAssayName] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const handleCreateAssay = async () => {
+        try {
+            setIsLoading(true);
+            const res = await request.post('/userassays', {
+                Name: assayName,
+                UserId: userId
+            });
+            console.log("res", res);
+            setIsLoading(false);
+            finishEvent();
+        } catch (error) {
+            console.log("error", error);
+            setIsLoading(false);
+            finishEvent();
+        }
+    }
+
+
+    return <>
+        <div onClick={(e) => {
+            finishEvent();
+        }} className="z-[999] grid place-content-center h-screen top-0 left-0 w-screen fixed bg-[black] bg-opacity-25">
+            <div onClick={(e) => e.stopPropagation()} className='w-[400px] p-[20px] relative flex flex-col gap-[10px] rounded-[20px_5px] max-h-[300px] bg-[white]'>
+                <div className="flex h-[50px]">
+                    <h1 className='text-[#184E57] text-[24px] leading-none mb-[10px] font-nexa-bold '> Tahlil Talebi Oluştur </h1>
+                    <button onClick={() => { finishEvent() }} className='w-[30px] right-[20px] top-[20px] absolute text-[white] h-[30px] hover:bg-[#df7676] hover:shadow-deepgreen-100 duration-200 grid place-content-center hover:animate-spin transition-all hover:shadow-inner bg-[#4E929D] rounded-full'>
+                        <Close />
+                    </button>
+                </div>
+                {isLoading && <LocalLoading message='Tahlil talebiniz oluşturuluyor...' />}
+                <FormInput placeholder='Tahlil adı' value={assayName} onChange={(e) => { setAssayName(e.currentTarget.value) }} />
+                <button onClick={() => handleCreateAssay()} disabled={!(assayName)} className='bg-[#4E929D] disabled:opacity-25  text-[white] w-[120px] h-[40px] text-[14px]'> Tahlil Talep Et </button>
+            </div>
+        </div>
+    </>
+}
+
+const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () => void }) => {
     const [open, setOpen] = useState(false);
     const [noteEdit, setNoteEdit] = useState(false);
     const [updateTheUserModal, setUpdateTheUserModal] = useState(false);
@@ -64,25 +106,25 @@ const Row = ({ appointment, afterUpdate }: { appointment: Appointment, afterUpda
 
     return <div onClick={() => {
         setUpdateTheUserModal(true)
-    }} className='flex flex-col w-full'>
+    }} className='flex border-2 flex-col w-full'>
         {
             isLoading && <LocalLoading message="Güncelleniyor" />
         }
-        <div className='w-full   flex  gap-[20px] border-t-[1px]'>
-            <div className='flex-[6] border-2'>
+        <div className='w-full   p-3 flex  gap-[20px] border-t-[1px]'>
+            <div className='flex-[6]'>
                 <p>
                     {
-                        appointment.UserId
+                        appointment.user?.information?.Fullname || "Ad yok"
                     }
                 </p>
             </div>
-            <div className='flex-[6] border-2'>
-                <p>{appointment.UserId}</p>
+            <div className='flex-[6]'>
+                <p>{appointment.user?.Email || 'Email yok'}</p>
             </div>
-            <div className='flex-[4] border-2'>
-                <p> {appointment.UserId} </p>
+            <div className='flex-[4]'>
+                <p> {appointment.user?.information?.Phone || 'Telefon yok'} </p>
             </div>
-            <div className='flex-[4] border-2'>
+            <div className='flex-[4]'>
                 <p>
                     {
                         new Date(appointment.Date).toLocaleDateString("tr-TR", {
@@ -93,18 +135,23 @@ const Row = ({ appointment, afterUpdate }: { appointment: Appointment, afterUpda
                     }
                 </p>
             </div>
-            <div className='flex-[2] border-2'>
+            <div className='flex-[2]'>
                 {
                     appointment.Status === "Acil" ? <StatusBox type="Acil" /> : <StatusBox type="Randevulu" />
                 }
             </div>
-            <div className='flex-[2] border-2 border-red-500'>
-                <button onClick={() => {
-                    //setOpen(!open)
-                }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
+            <div className='flex-[2] '>
+                <button onClick={(e) => {
+                    e.stopPropagation()
+                    setOpen(true)
+                }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-full h-[30px] text-[#4E929D]'>
                     <MenuOpen />
                 </button>
             </div>
+            {open && <CreateAssayModal userId={appointment.user.Id} finishEvent={() => {
+                setOpen(false)
+                afterUpdate()
+            }} />}
         </div>
         {
             updateTheUserModal && <div onClick={(e) => {
@@ -171,17 +218,10 @@ const SelectStatus = ({ value, onChange }: {
 }
 export const LocalLoading = ({ message }: { message: string }) => <div className="z-[100] fixed top-0 left-0"> <Loading message={message} /></div>
 export default function AppointmentManagement() {
-    const [appointments, setAppointments] = useState<Appointment[]>([
-        {
-            Id: "1",
-            UserId: "1",
-            Date: "09.01.2022",
-            Status: "Acil",
-            created_at: "09.01.2022",
-            updated_at: "09.01.2022"
-        },
-    ])
+    const [appointments, setAppointments] = useState<any[]>([])
     const [isLoading, setIsLoading] = useState(false)
+    const [page, setPage] = useState(1)
+    const [keyword, setKeyword] = useState("")
     const getAppointments = async () => {
         const { data } = await request.get("/userappointments");
         console.log("Appointments", data);
@@ -190,8 +230,8 @@ export default function AppointmentManagement() {
 
     const getAndSetAppointments = async () => {
         setIsLoading(true)
-        getAppointments().then((data: Appointment[]) => {
-            setAppointments(data)
+        request.get(`/userappointments?page=${page}`).then((res) => {
+            setAppointments(res.data)
             setIsLoading(false)
         }).catch((err) => {
             console.log("err", err)
@@ -199,9 +239,24 @@ export default function AppointmentManagement() {
         })
     }
 
+    const search = async () => {
+        request.post(`/search/appointment?page=${page}`, {
+            key: keyword
+        }).then((res) => {
+            setAppointments(res.data)
+        }).catch((err) => {
+            console.log("err", err)
+        })
+    }
+
+    const refresh = () => {
+        if (keyword.length > 0) search()
+        else getAndSetAppointments()
+    }
+
     useEffect(() => {
-        getAndSetAppointments()
-    }, [])
+        refresh()
+    }, [page, keyword])
 
     return (
         <DashboardLayout>
@@ -215,11 +270,8 @@ export default function AppointmentManagement() {
                         <Text type="h3" className="text-[#4D5628] font-nexa-light !text-[14px] w-full">Tüm randevularınızı yönetin.</Text>
                     </div>
                 </div>
-                <div className="w-[60%] gap-[10px] mt-[10px] mb-[30px] flex">
-                    <input type="text" placeholder='Ad Soyad ya da E-posta adresine göre arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
-                    <button className='bg-[#EBF3F4] rounded-[20px_5px] w-[160px]'>
-                        <SortByAlpha />
-                    </button>
+                <div className="w-full gap-[10px] mt-[10px] mb-[30px] flex justify-between">
+                    <input type="text" onChange={(e) => { setKeyword(e.currentTarget.value) }} placeholder='Ad Soyad ile arayın' className='bg-[#D4E5E8] w-[60%] rounded-[20px_5px] pl-[15px]' />
                     <button onClick={() => {
                         getAndSetAppointments()
                     }} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
@@ -228,14 +280,14 @@ export default function AppointmentManagement() {
                 </div>
                 <div className="w-full flex flex-col">
                     <div className='w-full flex  gap-[20px] border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                        <Text type="h3" className="text-secondary flex-[6] !text-[14px] border-2">Ad Soyad</Text>
-                        <Text type="h3" className="text-secondary flex-[6] !text-[14px] border-2">E-posta</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px] border-2">Telefon</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px] border-2">Randevu Tarihi</Text>
-                        <Text type="h3" className="text-secondary flex-[2] !text-[14px] border-2">Durum</Text>
-                        <Text type="h3" className="text-secondary flex-[2] !text-[14px] border-2"></Text>
+                        <div className='flex-[6]'> <p className="text-secondary  !text-[14px]">Ad Soyad</p> </div>
+                        <div className='flex-[6]'> <p className="text-secondary  !text-[14px]">E-posta</p> </div>
+                        <div className='flex-[4]'> <p className="text-secondary  !text-[14px] ">Telefon</p> </div>
+                        <div className='flex-[4]'> <p className="text-secondary  !text-[14px]">Randevu Tarihi</p> </div>
+                        <div className='flex-[2]'> <p className="text-secondary  !text-[14px]">Durum</p> </div>
+                        <div className='flex-[2]'>  <p className="text-secondary  !text-[14px]"> ------ </p> </div>
                     </div>
-                    <div className='w-full border-2 max-h-[600px] overflow-auto p-3 scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>
+                    <div className='w-full  max-h-[600px] overflow-auto  scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>
                         {
                             appointments.map((appointment: Appointment) => {
                                 return <Row afterUpdate={() => {
@@ -245,7 +297,9 @@ export default function AppointmentManagement() {
                         }
                     </div>
                 </div>
-                <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => { }} count={4} />
+                <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
+                    setPage(value)
+                }} count={page + 1} />
             </div>
         </DashboardLayout>
     )

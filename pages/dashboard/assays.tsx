@@ -15,6 +15,7 @@ import request from '@config';
 import useUser from 'src/hooks/user.hook';
 import { Assay } from './assays-management';
 import { LocalLoading } from './appointment-management';
+import { Pagination } from '@mui/material'
 export default function Assays() {
 
     const { user: { Id } } = useUser()
@@ -117,6 +118,9 @@ export default function Assays() {
                     }
                 </div>
             </div>
+            <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
+                setPage(value)
+            }} count={page + 1} />
         </div>
     </DashboardLayout>
 }
