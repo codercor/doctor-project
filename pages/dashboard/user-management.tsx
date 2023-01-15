@@ -4,10 +4,12 @@ import { FormInputSelect } from '@components/Forms/FormInput/FormInput';
 import Input from '@components/Input/Input';
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import request from '@config';
+import { Pagination } from '@mui/material'
 import { Close, Refresh } from '@mui/icons-material';
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react'
+import { LocalLoading } from './appointment-management';
 interface IChangeIsPatientModal {
     open: boolean,
     data: {
@@ -99,65 +101,49 @@ const ChangeIsPatientModal = ({ data, setter, finishEvent }: { data: IChangeIsPa
 export default function UserManagement() {
     const [list, setList] = useState<any[]>([]);
     const [IsLoading, setIsLoading] = useState(false);
-    const [filtered, setFiltered] = useState<Array<any>>([]);
-    const [ascDesc, setAscDesc] = useState<string>("asc");
-
-
+    const [keyword, setKeyword] = useState("");
+    const [page, setPage] = useState(1);
     const fetchUsers = () => {
         setIsLoading(true);
-        adminGetUsers().then(res => {
-            console.log("rees", res)
-
-            let res2 = res.map((item: any) => {
+        request.get(`/user?page=${page}`).then(res => {
+            let results = res.data.map((item: any) => {
                 if (!item.Information.Fullname) item.Information.Fullname = "isimsiz";
                 if (!item.Information.Phone) item.Information.Phone = "telefon yok";
                 return item;
             })
-
-            setList(res2);
+            setList(results);
             setIsLoading(false);
-            setFiltered((res2 as any[]).sort((a, b) => {
-                if (a.Information.Fullname.toLowerCase() < b.Information.Fullname.toLowerCase()) return -1;
-                if (a.Information.Fullname.toLowerCase() > b.Information.Fullname.toLowerCase()) return 1;
-                return 0;
-            }));
-
         }).catch(err => {
+            console.log("get users error", err);
             setIsLoading(false);
         })
     }
-
-    useEffect(() => {
-        fetchUsers();
-    }, [])
-
-
-
-    const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let filteredList = list.filter(item => {
-            //item.Email, .Phone, .Fullname
-            if (!e.target.value) return true;
-            return item.Email.includes(e.target.value) || item.Information.Phone.includes(e.target.value) || item.Information.Fullname.includes(e.target.value)
+    const search = () => {
+        setIsLoading(true);
+        request.post(`/search/user?page=${page}`, {
+            key: keyword
+        }).then(res => {
+            setIsLoading(false);
+            setList(res.data);
+        }).catch(err => {
+            console.log("search error", err);
+            setIsLoading(false);
         })
-        setFiltered(filteredList);
     }
-
-
+    const refresh = () => {
+        if (keyword.trim().length > 0) search();
+        else fetchUsers()
+    }
     useEffect(() => {
-        if (ascDesc == "asc") {
-            setFiltered([...filtered].sort((a, b) => {
-                if (a.Information.Fullname.toLowerCase() < b.Information.Fullname.toLowerCase()) return -1;
-                if (a.Information.Fullname.toLowerCase() > b.Information.Fullname.toLowerCase()) return 1;
-                return 0;
-            }))
-        } else {
-            setFiltered([...filtered].sort((a, b) => {
-                if (a.Information.Fullname.toLowerCase() > b.Information.Fullname.toLowerCase()) return -1;
-                if (a.Information.Fullname.toLowerCase() < b.Information.Fullname.toLowerCase()) return 1;
-                return 0;
-            }))
-        }
-    }, [ascDesc])
+        refresh();
+    }, [keyword,page])
+
+
+
+
+
+
+
 
 
     const [isPatientModal, setIsPatientModal] = useState<IChangeIsPatientModal>({
@@ -168,7 +154,8 @@ export default function UserManagement() {
         }
     });
 
-    return (
+    return (<>
+        {IsLoading && <LocalLoading message="Kullanıcılar yükleniyor..." />}
         <DashboardLayout>
             {
                 isPatientModal.open && <ChangeIsPatientModal data={isPatientModal} setter={setIsPatientModal} finishEvent={() => {
@@ -179,23 +166,17 @@ export default function UserManagement() {
                             IsPatient: null
                         }
                     })
-                    fetchUsers();
+                    refresh()
                 }} />
             }
             <div className=" md:h-[798px] flex flex-col rounded-[30px_5px] p-[20px] bg-[#F4F4F4]">
                 <h1 className='text-secondary-flat font-medium text-[18px] mb-[20px]'> Kullanıcı Yönetimi  </h1>
                 <div className='w-full h-[54px] gap-1 flex justify-between mb-2'>
-                    <Input onChange={handleFilter} placeholder='E-Posta, telefon numarası veya kullanıcı adına göre ara' />
-                    <div className="min-w-[40%]">
-                        <select onChange={(e) => {
-                            setAscDesc(e.target.value);
-                        }} className='disabled:bg-primary disabled:rounded-none duration-500 transition-all border-n h-[48px] pl-[20px] focus:outline-none w-full placeholder:text-[#3B6369] bg-[#EBF3F4] rounded-[5px_20px_0_20px]' placeholder='Tümü' >
-                            <option value="asc"> A&apos;dan Z&apos;ye </option>
-                            <option value="dsc" > Z&apos;den A&apos;ya </option>
-                        </select>
-                    </div>
+                    <Input onChange={(e) => {
+                        setKeyword(e.currentTarget.value)
+                    }} placeholder='E-Posta, telefon numarası veya kullanıcı adına göre ara' />
                     <div onChange={() => {
-                        fetchUsers();
+                        refresh()
                     }} className='bg-quaternary-flat text-[white] min-w-[70px] rounded-[10px_20px_10px_20px]  h-full grid place-content-center' > <Refresh /> </div>
                 </div>
                 <TableContainer className='bg-[white] '>
@@ -211,7 +192,7 @@ export default function UserManagement() {
                         </TableHead>
                         <TableBody>
 
-                            {filtered.map((row, index) => (
+                            {list.map((row, index) => (
                                 <TableRow
                                     key={row.Id}
                                     className={"border-2 p-0 leading-none h-[10px] " + (index % 2 != 0 ? 'bg-[#DEEEF0]' : '')}
@@ -248,9 +229,13 @@ export default function UserManagement() {
                             ))}
 
                         </TableBody>
+
                     </Table>
+                    <Pagination siblingCount={3} variant="text" className="mt-[20px] mb-[30px]" onChange={(e: any, value: number) => {
+                        setPage(value)
+                    }} count={page + 1} />
                 </TableContainer >
             </div>
-        </DashboardLayout>
+        </DashboardLayout></>
     )
 }

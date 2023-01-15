@@ -163,7 +163,6 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
             finishEvent();
         })
     }
-
     const handleCancel = () => {
         setter({
             data: {
