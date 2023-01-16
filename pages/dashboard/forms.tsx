@@ -10,11 +10,25 @@ import { loremIpsum } from "lorem-ipsum";
 import Router from "next/router";
 import { v4 } from "uuid";
 import SecondForm from "@components/Forms/BasvuruForms/SecondForm/SecondForm";
+import request from "@config";
+import useUser from "src/hooks/user.hook";
 export default function Forms() {
   const [acikRiza, setAcikRiza] = React.useState({
     open: false,
     accepted: true,
   });
+
+  // const [contracts, setContracts] = React.useState({
+  //   IsPatientUserAgreement: true,
+  //   IsPatientIlluminationText: true,
+  // })
+  // const { user: { Id: userId } } = useUser()
+  // useEffect(() => {
+  //   request.post(`/log/check/${userId}`).then((res)=>{
+  //     console.log("sözleşmeler :", res);
+      
+  //   })
+  // }, [])
 
   useEffect(() => {
     if (!acikRiza.accepted && !acikRiza.open) {
@@ -66,8 +80,7 @@ export default function Forms() {
               paragraphUpperBound: 5,
             })
           }
-          closeWithValue={(val: boolean) =>
-            setAcikRiza({ open: false, accepted: val })
+          closeWithValue={(val: boolean) => { if (val) setAcikRiza({ open: false, accepted: val }) }
           }
         />
       )}

@@ -72,7 +72,7 @@ const ChangeIsPatientModal = ({ data, setter, finishEvent }: { data: IChangeIsPa
                                 value: "true"
                             },
                             {
-                                label: "Randevulu",
+                                label: "Kullanıcı",
                                 value: "false"
                             }
                         ]
@@ -119,15 +119,12 @@ export default function UserManagement() {
         })
     }
     const search = () => {
-        setIsLoading(true);
         request.post(`/search/user?page=${page}`, {
             key: keyword
         }).then(res => {
-            setIsLoading(false);
             setList(res.data);
         }).catch(err => {
             console.log("search error", err);
-            setIsLoading(false);
         })
     }
     const refresh = () => {
@@ -223,7 +220,7 @@ export default function UserManagement() {
                                         <button className="!w-[108px] h-[36px] uppercase text-[#3A356B] font-nexa-regular bg-[#DDDAFF] border-[1px] border-[#A09AD9] !p-[0] grid place-content-center">
                                             Hasta </button> :
                                         <button className="!w-[108px] h-[36px] uppercase text-[#98A170] font-nexa-regular bg-[#FBFFEC] border-[1px] border-[#D8E0B2] !p-[0] grid place-content-center">
-                                            Randevulu </button>}</TableCell>
+                                            Kullanıcı </button>}</TableCell>
 
                                 </TableRow>
                             ))}
