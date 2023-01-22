@@ -9,6 +9,7 @@ import {v4} from 'uuid'
 import FormInputSelectOne from '@components/Forms/FormInput/FormInputSelectOne'
 import {Loading} from './create-training'
 import toast from "react-hot-toast";
+import FormInput from "@components/Forms/FormInput/FormInput";
 
 interface Appointment {
     Id: string;
@@ -19,6 +20,46 @@ interface Appointment {
     updated_at: string;
 }
 
+const CreateAssayModal = ({ userId, finishEvent }: { userId: string, finishEvent: () => void }) => {
+    const [key, setKey] = useState('');
+    const [assayName, setAssayName] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const handleCreateAssay = async () => {
+        try {
+            setIsLoading(true);
+            const res = await request.post('/userassays', {
+                Name: assayName,
+                UserId: userId
+            });
+            console.log("res", res);
+            setIsLoading(false);
+            finishEvent();
+        } catch (error) {
+            console.log("error", error);
+            setIsLoading(false);
+            finishEvent();
+        }
+    }
+
+
+    return <>
+        <div onClick={(e) => {
+            finishEvent();
+        }} className="z-[999] grid place-content-center h-screen top-0 left-0 w-screen fixed bg-[black] bg-opacity-25">
+            <div onClick={(e) => e.stopPropagation()} className='w-[400px] p-[20px] relative flex flex-col gap-[10px] rounded-[20px_5px] max-h-[300px] bg-[white]'>
+                <div className="flex h-[50px]">
+                    <h1 className='text-[#184E57] text-[24px] leading-none mb-[10px] font-nexa-bold '> Tahlil Talebi Oluştur </h1>
+                    <button onClick={() => { finishEvent() }} className='w-[30px] right-[20px] top-[20px] absolute text-[white] h-[30px] hover:bg-[#df7676] hover:shadow-deepgreen-100 duration-200 grid place-content-center hover:animate-spin transition-all hover:shadow-inner bg-[#4E929D] rounded-full'>
+                        <Close />
+                    </button>
+                </div>
+                {isLoading && <LocalLoading message='Tahlil talebiniz oluşturuluyor...' />}
+                <FormInput placeholder='Tahlil adı' value={assayName} onChange={(e) => { setAssayName(e.currentTarget.value) }} />
+                <button onClick={() => handleCreateAssay()} disabled={!(assayName)} className='bg-[#4E929D] disabled:opacity-25  text-[white] w-[120px] h-[40px] text-[14px]'> Tahlil Talep Et </button>
+            </div>
+        </div>
+    </>
+}
 export const StatusBox = ({
                               type
                           }: {
@@ -90,7 +131,9 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
                         new Date(appointment.Date).toLocaleDateString("tr-TR", {
                             year: "numeric",
                             month: "long",
-                            day: "numeric"
+                            day: "numeric",
+                            hour: "numeric",
+                            minute: "numeric"
                         })
                     }
                 </p>
@@ -201,7 +244,6 @@ export default function AppointmentManagement() {
     const [page, setPage] = useState(1)
     const [searchKey, setSearchKey] = useState("")
     const [isLoading, setIsLoading] = useState(false)
-    const [page, setPage] = useState(1)
     const [keyword, setKeyword] = useState("")
     const getAppointments = async () => {
         const {data} = await request.get("/userappointments?page=" + page);

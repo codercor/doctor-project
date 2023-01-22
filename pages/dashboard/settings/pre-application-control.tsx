@@ -3,48 +3,33 @@ import Input from "@components/Input/Input";
 import DashboardLayout from "@components/Layouts/DashboardLayout";
 import SettingsSubLayout from "@components/Layouts/SettingsSubLayout";
 import Text from "@components/Text";
-import request from "@config";
 import styled from "@emotion/styled";
-import Switch, {SwitchProps} from '@mui/material/Switch';
-import {useEffect, useState} from "react";
+import Switch, { SwitchProps } from '@mui/material/Switch';
+import { useEffect, useState } from "react";
 import useUser from "src/hooks/user.hook";
-import {request} from '@config'
+import { request } from '@config'
+import { toast } from "react-hot-toast";
 const Settings = () => {
     const [checked, setChecked] = useState(false);
-    const [id, setId] = useState("");
-    const refresh = () => {
-        request.get("/appointmentsettings").then(res => {
-            setChecked(res.data[0].Status);
-            setId(res.data[0].Id);
-        })
-    }
-    useEffect(() => {
-        refresh()
-    }, []);
-    useEffect(() => {
-        request.put(`/appointmentsettings/${id}`, {
-            Status: checked
-        }).then(() => {
-            refresh()
-        }).catch(() => {
-            refresh()
-        })
-    }, [checked]);
+    const [Id, setId] = useState(null)
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
-        request.put("/appointmentsettings/"+Id, {
+        request.put("/appointmentsettings/" + Id, {
             Status: event.target.checked
+        }).then(()=>{
+            toast.success("Başarıyla Güncellendi")
+        }).catch(()=>{
+            toast.error("Çok sık güncelleme yapıldı daha sonra tekrar deneyin")
         })
     };
-    const [Id, setId] = useState(null)
+
     useEffect(() => {
         if (!Id) {
-            request.get("/appointmentsettings").then(({data}) => {
+            request.get("/appointmentsettings").then(({ data }) => {
                 setId(data[0].Id)
                 setChecked(data[0].Status)
             })
-        }else{
-
         }
     }, []);
 
@@ -63,7 +48,7 @@ const Settings = () => {
                                 checked={checked}
                                 onChange={handleChange}
                                 readOnly={false}
-                                inputProps={{'aria-label': 'controlled'}}
+                                inputProps={{ 'aria-label': 'controlled' }}
                             />
                         </div>
                     </div>

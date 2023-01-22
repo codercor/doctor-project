@@ -155,6 +155,7 @@ export const userSlice = createSlice({
             state.Information = action.payload.Information;
             state.BillingDetail = action.payload.BillingDetail;
             state.IsAuthenticated = true;
+            return state;
         }).addCase(login.rejected, (state, action) => {
             state.AuthProcess.IsError = true;
             state.AuthProcess.ErrorMessage = "Giriş yapılamadı.Tekrar deneyin";

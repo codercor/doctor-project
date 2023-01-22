@@ -41,26 +41,14 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
 
     const [dashboardNavs, setDashboardNavs] = useState<DNavButtonProps[]>([])
 
-    const checkUserInformationCompleted = () => {
-        if (!user) return false
-        if (!user.Information?.Fullname || !user.Information?.BirthDate || !user.Information?.Address || !user.Information?.Phone || !user.Information?.Gender) return false
-        return true
-    }
+
 
     useEffect(() => {
-
-        if (!checkUserInformationCompleted()) {
-
-            router.push("/dashboard/account").then(() => {
-              toast.error("Lütfen önce tüm bilgilerinizi tamamlayınız",{
-                  duration:4000,
-                    icon: <ErrorOutlined/>,
-                  className: "w-full text-center"
-              })
-            })
-        }
         refetchUser()
     }, [])
+
+
+
     useEffect(() => {
 
         if (user.IsAdmin) {
