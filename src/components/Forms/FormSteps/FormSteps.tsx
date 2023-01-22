@@ -49,6 +49,10 @@ export default function FormSteps({
             if (ability.IsHaveWaitingForm && ability.LastWaitingDoneStep) {
                 setSteps(steps.map((step) => {
                     let currentStep = {...step};
+                    //@ts-ignore
+                    if (ability.LastWaitingDoneStep >= 2 && ability.LastWaitingDoneStep <= 4 && currentStep.stepNumber >= 2 && currentStep.stepNumber <= 4) {
+                        currentStep.status = "pending"
+                    }
                     if (currentStep.stepNumber == ability.LastWaitingDoneStep) {
                         currentStep.status = "pending"
                     }
@@ -65,7 +69,7 @@ export default function FormSteps({
                         currentStep.isLocked = true
                     }
                     if (ability.LastDoneStep) {
-                        if (ability.LastDoneStep >= currentStep.stepNumber) {
+                        if (ability.LastDoneStep == currentStep.stepNumber) {
                             currentStep.status = "confirmed"
                         }
                     }

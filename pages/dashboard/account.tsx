@@ -30,7 +30,8 @@ const Account = () => {
     });
 
     useEffect(() => {
-        setUserInfo({ ..._userInfo, BirthDate: (user.Information.BirthDate as string).replaceAll(".", "-") })
+        let birthDate = user.Information.BirthDate as string || "";
+        setUserInfo({ ..._userInfo, BirthDate: (birthDate).replaceAll(".", "-") })
     }, [user.Information.BirthDate])
 
     useEffect(() => {
