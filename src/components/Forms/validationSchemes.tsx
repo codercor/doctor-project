@@ -67,7 +67,7 @@ export const flow3FormValidationSchema = Yup.object({
     geneticHistory: textValidationSchema,
     geneticHistoryOther: Yup.string().when("geneticHistory", {
         is: (geneticHistory: string) => geneticHistory === "Diğer",
-        then: Yup.string().required("Bu alan zorunludur"),
+        then: textValidationSchema,
     }),
     lastHealt: textValidationSchema,
     emergencyContact: textValidationSchema,
@@ -76,7 +76,7 @@ export const flow3FormValidationSchema = Yup.object({
     whereDidYouHear: textValidationSchema,
     whereDidYouHearOther: Yup.string().when("whereDidYouHear", {
         is: (whereDidYouHear: string) => whereDidYouHear === "Diğer",
-        then: Yup.string().required("Bu alan zorunludur"),
+        then: textValidationSchema,
     }),
     currentDisease: Yup.array().of(
         Yup.object().shape({
@@ -92,49 +92,58 @@ export const flow3FormValidationSchema = Yup.object({
             reaction: Yup.string().required("Zorunlu"),
         })
     ),
-    sleepHours: Yup.string().required("Bu alan zorunludur"),
-    sleepDifficulty: Yup.string().required("Bu alan zorunludur"),
-    sleepQuality: Yup.string().required("Bu alan zorunludur"),
-    sleepProblem: Yup.string().required("Bu alan zorunludur"),
-    snore: Yup.string().required("Bu alan zorunludur"),
-    wakeUp: Yup.string().required("Bu alan zorunludur"),
-    sleepPills: Yup.string().required("Bu alan zorunludur"),
+    sleepHours: textValidationSchema,
+    sleepDifficulty: textValidationSchema,
+    sleepQuality: textValidationSchema,
+    sleepProblem: textValidationSchema,
+    snore: textValidationSchema,
+    wakeUp: textValidationSchema,
+    sleepPills: textValidationSchema,
     sleepPillsDetail: Yup.string().when("sleepPills", {
         is: (sleepPills: string) => sleepPills === "evet",
-        then: Yup.string().required("Bu alan zorunludur"),
+        then: textValidationSchema,
     }),
     diet: Yup.array().of(
-        Yup.string().required("Bu alan zorunludur")
+        textValidationSchema
     ),
-    foodSensitivity: Yup.string().required("Bu alan zorunludur"),
+    foodSensitivity: textValidationSchema,
     foodSensitivityDetail: Yup.string().when("foodSensitivity", {
         is: "evet",
-        then: Yup.string().required("Bu alan zorunludur")
+        then: textValidationSchema
     }),
-    foodAvoid: Yup.string().required("Bu alan zorunludur"),
+    foodAvoid: textValidationSchema,
     foodAvoidDetail: Yup.string().when("foodAvoid", {
         is: "evet",
-        then: Yup.string().required("Bu alan zorunludur")
+        then: textValidationSchema
     }),
     foodsReaction: Yup.array().required("Bu alan zorunludur"),
     foodsReactionDetail: Yup.string().when("foodsReaction", {
         is: (val: any) => val.includes("diğer"),
-        then: Yup.string().required("Bu alan zorunludur")
+        then: textValidationSchema
     }),
-    foodsLike: Yup.string().required("Bu alan zorunludur"),
+    foodsLike: textValidationSchema,
     foodsLikeDetail: Yup.string().when("foodsLike", {
         is: "evet",
-        then: Yup.string().required("Bu alan zorunludur")
+        then: textValidationSchema
     }),
-    threeMeal: Yup.string().required("Bu alan zorunludur"),
+    threeMeal: textValidationSchema,
     threeMealDetail: Yup.string().when("threeMeal", {
         is: "hayır",
-        then: Yup.string().required("Bu alan zorunludur")
+        then: textValidationSchema
     }),
-    skipMeal: Yup.string().required("Bu alan zorunludur"),
+    skipMeal: textValidationSchema,
     skipMealDetail: Yup.string().when("skipMeal", {
         is: "evet",
-        then: Yup.string().required("Bu alan zorunludur")
+        then: textValidationSchema
     }),
-    outsideMeal: Yup.string().required("Bu alan zorunludur"),
+    outsideMeal: textValidationSchema,
+
+    currentDiet: Yup.array().of(
+        textValidationSchema
+    ),
+
+    currentDietOther: textValidationSchema,
+    otherEgzersiz: textValidationSchema
+
+
 })

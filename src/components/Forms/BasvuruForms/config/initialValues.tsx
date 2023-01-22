@@ -86,8 +86,10 @@ export const flow3FormInitialValues = {
     skipMeal: "hayır",
     skipMealDetail: "",
     outsideMeal: "6",
-    x: ["hızlı yerim"],
+    currentDiet: ["vejetaryan"],
     genetikhastaliklar:{
 
-    }
+    },
+    currentDietOther:"asdasd",
+    egzersiz:"evet"
 }
