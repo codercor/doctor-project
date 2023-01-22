@@ -199,7 +199,7 @@ export default function SubStep2Part4({
             </div>
 
 
-            {user.Information?.Gender == "Erkek" && <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            {user.Information?.Gender == "Kadın" && <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Şu anda uyguladığınız özel bir diyet veya beslenme programı var mı? (Uygun olanı/olanları işaretleyiniz"
                     options={currentDiet}
