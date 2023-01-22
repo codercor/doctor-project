@@ -31,6 +31,7 @@ interface FormInputProps {
   value?: string;
   name?: string;
   error?: string;
+  disabled?: boolean;
 }
 const FormInput = ({
   error,
@@ -41,6 +42,7 @@ const FormInput = ({
   label,
   placeholder = "Lütfen doldurunuz",
   type = "text",
+  disabled = false,
 }: FormInputProps) => {
   return (
     <div className="flex flex-col w-full">
@@ -57,6 +59,7 @@ const FormInput = ({
         className="text-[black] text-[16px] font-nexa-bold rounded-[5px_20px_0px_20px]"
         type={type}
         placeholder={placeholder}
+        disabled={disabled}
       />
       {error && (
         <span className="text-[#FF0000] text-[16px] font-nexa-regular ml-2">
@@ -82,6 +85,7 @@ export const FormInputSelect = ({
   onChange,
   label,
   placeholder = "Lütfen doldurunuz",
+  disabled = false,
 }: FormInputSelectProps) => {
   return (
     <div className="flex flex-col w-full">
@@ -96,6 +100,7 @@ export const FormInputSelect = ({
         onChange={onChange}
         className="text-[black] text-[16px] font-nexa-bold rounded-[5px_20px_0px_20px]"
         placeholder={placeholder}
+        disabled={disabled}
       >
         <option value="" disabled>
           {placeholder}
@@ -130,6 +135,7 @@ export const FormInputTextArea = ({
   onChange = () => {},
   label,
   placeholder = "Lütfen doldurunuz",
+  disabled = false,
 }: FormInputTextAreaProps) => {
   return (
     <div className="flex flex-col w-full">
@@ -142,6 +148,7 @@ export const FormInputTextArea = ({
         value={value}
         name={name}
         onChange={onChange}
+        disabled={disabled}
         className="text-[black] text-[16px] font-nexa-bold rounded-[5px_20px_0px_20px]"
         placeholder={placeholder}
       />
@@ -170,6 +177,7 @@ export const FormInputRadio = ({
   value = undefined,
   onChange,
   label,
+  disabled = false,
   placeholder = "Lütfen doldurunuz",
 }: FormInputRadioProps) => {
   return (
@@ -191,6 +199,7 @@ export const FormInputRadio = ({
                 name={name}
                 onChange={onChange}
                 type="radio"
+                disabled={disabled}
                 className="text-[black] text-[16px] font-nexa-bold rounded-[5px_20px_0px_20px]"
               />
               <label className="text-[black] text-[16px] font-nexa-bold ml-2">

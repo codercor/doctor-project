@@ -22,9 +22,9 @@ export default function SubStep1Part4({
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputTextArea
           label="Sizin hakkınızda, yeme alışkanlıklarınız, beslenme geçmişiniz ve/veya gıda ve vücutla ilişkiniz hakkında başka neler bilmemi istersiniz?"
-          value={values.subStep1?.extraInfo}
-          error={errors.subStep1?.extraInfo}
-          name="subStep1.extraInfo"
+          value={values.extraInfo}
+          error={errors.extraInfo}
+          name="extraInfo"
           type="text"
           onChange={handleChange}
         />
@@ -32,9 +32,9 @@ export default function SubStep1Part4({
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputTextArea
           label="Benimle çalışmanın sonucunda ne elde etmeyi umuyorsunuz?"
-          value={values.subStep1?.purposeOfFinal}
-          error={errors.subStep1?.purposeOfFinal}
-          name="subStep1.purposeOfFinal"
+          value={values.purposeOfFinal}
+          error={errors.purposeOfFinal}
+          name="purposeOfFinal"
           type="text"
           onChange={handleChange}
         />

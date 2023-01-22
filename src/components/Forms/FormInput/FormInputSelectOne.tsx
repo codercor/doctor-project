@@ -11,6 +11,7 @@ const FormInputSelectOne = ({
   error,
   label,
   sm = false,
+  disabled = false,
   onChange = () => { },
 }: {
   options: { value: string; label: string }[];
@@ -19,6 +20,7 @@ const FormInputSelectOne = ({
   error?: string;
   label: string;
   sm?: boolean;
+  disabled?: boolean;
   onChange?: (value: any) => void;
 }) => {
   return (
@@ -50,6 +52,7 @@ const FormInputSelectOne = ({
               name={name}
               value={option.value}
               onChange={onChange}
+              disabled={disabled}
             />
             {value === option.value ? (
               <div className={classNames("bg-[#D4E5E8] text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]", {

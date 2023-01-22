@@ -1,15 +1,24 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../store';
-import { UserCredentials, UserState, UserInformation, UserBillingDetail, BannerData } from './user.types';
-import { fetchUserRequest, loginRequest, registerRequest, updateUserRequest, updateUserBillingDetailRequest, updatePasswordRequest, fetchUsersTrainingsRequest, adminUpdateBannerRequest, getUserOrderHistoryRequest } from './user.utils';
-
-
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {RootState, AppThunk} from '../store';
+import {UserCredentials, UserState, UserInformation, UserBillingDetail, BannerData} from './user.types';
+import {
+    fetchUserRequest,
+    loginRequest,
+    registerRequest,
+    updateUserRequest,
+    updateUserBillingDetailRequest,
+    updatePasswordRequest,
+    fetchUsersTrainingsRequest,
+    adminUpdateBannerRequest,
+    getUserOrderHistoryRequest
+} from './user.utils';
 
 
 const initialState: UserState = {
     Id: '',
     IsAdmin: false,
     Token: null,
+    IsPatient: false,
     IsAuthenticated: false,
     Email: '',
     ParasutId: null,
@@ -53,7 +62,6 @@ const initialState: UserState = {
         IsError: false,
     }
 };
-
 
 
 export const login = createAsyncThunk(
@@ -125,7 +133,6 @@ export const getUserOrderHistory = createAsyncThunk(
     });
 
 
-
 export const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -136,79 +143,84 @@ export const userSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.
-            addCase(login.pending, (state) => {
-                state.AuthProcess.IsLoading = true;
-                state.AuthProcess.IsError = false;
-                state.AuthProcess.ErrorMessage = '';
-            }).
-            addCase(login.fulfilled, (state, action) => {
-                state.Id = action.payload.Id;
-                state.IsAdmin = action.payload.IsAdmin;
-                state.Email = action.payload.Email;
-                state.Token = action.payload.Token;
-                state.Information = action.payload.Information;
-                state.BillingDetail = action.payload.BillingDetail;
-                state.IsAuthenticated = true;
-            }).addCase(login.rejected, (state, action) => {
-                state.AuthProcess.IsError = true;
-                state.AuthProcess.ErrorMessage = "Giriş yapılamadı.Tekrar deneyin";
-                state.AuthProcess.IsLoading = false;
-                state.IsAuthenticated = false;
-                return state;
-            }).addCase(register.pending, (state) => {
-                state.AuthProcess.IsLoading = true;
-                state.AuthProcess.IsError = false;
-                state.AuthProcess.ErrorMessage = '';
-            }).addCase(register.fulfilled, (state, action) => {
-                state.Id = action.payload.Id;
-                state.IsAdmin = action.payload.IsAdmin;
-                state.Token = action.payload.Token;
-                state.Email = action.payload.Email;
-                state.Information = action.payload.Information;
-                state.BillingDetail = action.payload.BillingDetail;
-                state.IsAuthenticated = true;
-            }).addCase(register.rejected, (state, action) => {
-                state.AuthProcess.IsError = true;
-                state.AuthProcess.ErrorMessage = "Kayıt olunamadı.Eposta adresi kullanımda olabilir.";
-                state.AuthProcess.IsLoading = false;
-                state.IsAuthenticated = false;
-                return state;
-            }).addCase(fetchUser.pending, (state) => {
-                state.UserProcess.IsLoading = true;
-                state.UserProcess.IsError = false;
-                state.UserProcess.ErrorMessage = '';
-            }).addCase(fetchUser.fulfilled, (state, action) => {
-                state.Email = action.payload.Email;
-                state.ParasutId = action.payload.ParasutId;
-                state.Information = action.payload.Information;
-                state.BillingDetail = action.payload.BillingDetail;
-            }).addCase(fetchUser.rejected, (state, action) => {
-                state.UserProcess.IsError = true;
-                state.UserProcess.ErrorMessage = "Kullanıcı bilgileri alınamadı.";
-                state.UserProcess.IsLoading = false;
+        builder.addCase(login.pending, (state) => {
+            state.AuthProcess.IsLoading = true;
+            state.AuthProcess.IsError = false;
+            state.AuthProcess.ErrorMessage = '';
+        }).addCase(login.fulfilled, (state, action) => {
+            state.Id = action.payload.Id;
+            state.IsAdmin = action.payload.IsAdmin;
+            state.Email = action.payload.Email;
+            state.Token = action.payload.Token;
+            state.Information = action.payload.Information;
+            state.BillingDetail = action.payload.BillingDetail;
+            state.IsAuthenticated = true;
+        }).addCase(login.rejected, (state, action) => {
+            state.AuthProcess.IsError = true;
+            state.AuthProcess.ErrorMessage = "Giriş yapılamadı.Tekrar deneyin";
+            state.AuthProcess.IsLoading = false;
+            state.IsAuthenticated = false;
+            return state;
+        }).addCase(register.pending, (state) => {
+            state.AuthProcess.IsLoading = true;
+            state.AuthProcess.IsError = false;
+            state.AuthProcess.ErrorMessage = '';
+        }).addCase(register.fulfilled, (state, action) => {
+            state.Id = action.payload.Id;
+            state.IsAdmin = action.payload.IsAdmin;
+            state.Token = action.payload.Token;
+            state.Email = action.payload.Email;
+            state.Information = action.payload.Information;
+            state.BillingDetail = action.payload.BillingDetail;
+            state.IsAuthenticated = true;
+        }).addCase(register.rejected, (state, action) => {
+            state.AuthProcess.IsError = true;
+            state.AuthProcess.ErrorMessage = "Kayıt olunamadı.Eposta adresi kullanımda olabilir.";
+            state.AuthProcess.IsLoading = false;
+            state.IsAuthenticated = false;
+            return state;
+        }).addCase(fetchUser.pending, (state) => {
+            state.UserProcess.IsLoading = true;
+            state.UserProcess.IsError = false;
+            state.UserProcess.ErrorMessage = '';
+        }).addCase(fetchUser.fulfilled, (state, action) => {
+            state.Email = action.payload.Email;
+            console.log("fetchUser payload", action.payload);
+            state.IsPatient = action.payload.IsPatient;
+            state.ParasutId = action.payload.ParasutId;
+            state.Information = action.payload.Information;
+            console.log("fetchUser Information", action.payload.Information);
+            state.BillingDetail = action.payload.BillingDetail;
+        }).addCase(fetchUser.rejected, (state, action) => {
+            state.UserProcess.IsError = true;
+            state.UserProcess.ErrorMessage = "Kullanıcı bilgileri alınamadı.";
+            state.UserProcess.IsLoading = false;
 
-            }).addCase(updateUser.pending, (state) => {
-                state.UserProcess.IsLoading = true;
-                state.UserProcess.IsError = false;
-                state.UserProcess.ErrorMessage = '';
-            }).addCase(updateUser.fulfilled, (state, action) => {
-                state.Information = {
-                    Id: action.payload.Id,
-                    Fullname: action.payload.Fullname,
-                    Phone: action.payload.Phone,
-                    Address: action.payload.Address
-                };
-                state.UserProcess.IsLoading = false;
-                state.UserProcess.IsError = false;
-                return state;
-            }).addCase(updateUser.rejected, (state, action) => {
-                state.UserProcess.IsError = true;
-                state.UserProcess.ErrorMessage = "Kullanıcı bilgileri güncellenemedi.";
-                state.UserProcess.IsLoading = false;
-            }).addCase(updateUserBillingDetail.pending, (state) => { })
+        }).addCase(updateUser.pending, (state) => {
+            state.UserProcess.IsLoading = true;
+            state.UserProcess.IsError = false;
+            state.UserProcess.ErrorMessage = '';
+        }).addCase(updateUser.fulfilled, (state, action) => {
+            state.Information = {
+                Id: action.payload.Id,
+                Fullname: action.payload.Fullname,
+                Phone: action.payload.Phone,
+                Address: action.payload.Address,
+                BirthDate: action.payload.BirthDate,
+                Gender: action.payload.Gender
+            };
+            state.UserProcess.IsLoading = false;
+            state.UserProcess.IsError = false;
+            return state;
+        }).addCase(updateUser.rejected, (state, action) => {
+            state.UserProcess.IsError = true;
+            state.UserProcess.ErrorMessage = "Kullanıcı bilgileri güncellenemedi.";
+            state.UserProcess.IsLoading = false;
+        }).addCase(updateUserBillingDetail.pending, (state) => {
+        })
             .addCase(updateUserBillingDetail.fulfilled, (state, action) => {
-            }).addCase(updateUserBillingDetail.rejected, (state, action) => { })
+            }).addCase(updateUserBillingDetail.rejected, (state, action) => {
+        })
             .addCase(updateUserPassword.pending, (state) => {
                 state.UserProcess.IsLoading = true;
                 state.UserProcess.IsError = false;
@@ -224,31 +236,31 @@ export const userSlice = createSlice({
                 state.UserProcess.ErrorMessage = "Şifre güncellenemedi.";
                 state.UserProcess.IsLoading = false;
             }).addCase(fetchUsersTrainings.pending, (state) => {
-                state.UsersTrainingsProcess.IsLoading = true;
-            }).addCase(fetchUsersTrainings.fulfilled, (state, action) => {
-                state.UsersTrainingsProcess.IsLoading = false;
-                state.UsersTrainings = action.payload;
-            }).addCase(fetchUsersTrainings.rejected, (state, action) => {
-                state.UsersTrainingsProcess.IsLoading = false;
-            }).addCase(adminUpdateBanner.pending, (state) => {
-                state.UpdateHomePageProcess.IsLoading = true
-                state.UpdateHomePageProcess.IsError = false;
-            }).addCase(adminUpdateBanner.fulfilled, (state, action) => {
-                state.UpdateHomePageProcess.IsLoading = false;
-                state.UpdateHomePageProcess.IsError = false;
-            }).addCase(adminUpdateBanner.rejected, (state, action) => {
-                state.UpdateHomePageProcess.IsLoading = false;
-                state.UpdateHomePageProcess.IsError = true;
-            }).addCase(getUserOrderHistory.pending, (state) => {
-                state.getOrderHistoryProcess.IsLoading = true;
-            }).addCase(getUserOrderHistory.fulfilled, (state, action) => {
-                state.getOrderHistoryProcess.IsLoading = false;
-                state.getOrderHistoryProcess.IsError = false;
-                state.orderHistory = action.payload;
-            }).addCase(getUserOrderHistory.rejected, (state, action) => {
-                state.getOrderHistoryProcess.IsLoading = false;
-                state.getOrderHistoryProcess.IsError = true;
-            });
+            state.UsersTrainingsProcess.IsLoading = true;
+        }).addCase(fetchUsersTrainings.fulfilled, (state, action) => {
+            state.UsersTrainingsProcess.IsLoading = false;
+            state.UsersTrainings = action.payload;
+        }).addCase(fetchUsersTrainings.rejected, (state, action) => {
+            state.UsersTrainingsProcess.IsLoading = false;
+        }).addCase(adminUpdateBanner.pending, (state) => {
+            state.UpdateHomePageProcess.IsLoading = true
+            state.UpdateHomePageProcess.IsError = false;
+        }).addCase(adminUpdateBanner.fulfilled, (state, action) => {
+            state.UpdateHomePageProcess.IsLoading = false;
+            state.UpdateHomePageProcess.IsError = false;
+        }).addCase(adminUpdateBanner.rejected, (state, action) => {
+            state.UpdateHomePageProcess.IsLoading = false;
+            state.UpdateHomePageProcess.IsError = true;
+        }).addCase(getUserOrderHistory.pending, (state) => {
+            state.getOrderHistoryProcess.IsLoading = true;
+        }).addCase(getUserOrderHistory.fulfilled, (state, action) => {
+            state.getOrderHistoryProcess.IsLoading = false;
+            state.getOrderHistoryProcess.IsError = false;
+            state.orderHistory = action.payload;
+        }).addCase(getUserOrderHistory.rejected, (state, action) => {
+            state.getOrderHistoryProcess.IsLoading = false;
+            state.getOrderHistoryProcess.IsError = true;
+        });
 
 
     },

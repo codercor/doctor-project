@@ -1,160 +1,145 @@
-import { Add } from "@mui/icons-material";
-import React, { useState } from "react";
-import FormInput, { FormInputTextArea } from "../FormInput/FormInput";
+import {Add} from "@mui/icons-material";
+import React, {useState} from "react";
+import FormInput, {FormInputTextArea} from "../FormInput/FormInput";
 import FormInputSelectOne from "../FormInput/FormInputSelectOne";
-import * as Yup from "yup";
-import Combined4Input from "../FormInput/Combined4Input";
-import Combined2Input from "../FormInput/Combined2Input";
 import FormInputSelectMulti from "../FormInput/FormInputSelectMulti";
 
 const EH = [
-    { value: "evet", label: "Evet" },
-    { value: "hayır", label: "Hayır" },
+    {value: "evet", label: "Evet"},
+    {value: "hayır", label: "Hayır"},
 ]
 
-/*
-Vejetaryan Vegan Alerji Eliminasyon
-Kan grubu Düşük sodyum Mandıra yok Buğday yok Glutensiz
-Düşük yağlı Düşük
-karbonhidratlı Yüksek Proteinli 
-diğer
-
-*/
 let diet = [
-    { value: "vejetaryan", label: "Vejetaryan" },
-    { value: "vegan", label: "Vegan" },
-    { value: "alergi", label: "Alerji" },
-    { value: "eliminasyon", label: "Eliminasyon" },
-    { value: "kan grubu", label: "Kan grubu" },
-    { value: "dusuk sodyum", label: "Düşük sodyum" },
-    { value: "mandira yok", label: "Mandıra yok" },
-    { value: "bugday yok", label: "Buğday yok" },
-    { value: "glutensiz", label: "Glutensiz" },
-    { value: "dusuk yagli", label: "Düşük yağlı" },
-    { value: "dusuk karbonhidratli", label: "Düşük karbonhidratlı" },
-    { value: "yuksek proteinli", label: "Yüksek Proteinli" },
-    { value: "diğer", label: "Diğer" },
+    {value: "vejetaryan", label: "Vejetaryan"},
+    {value: "vegan", label: "Vegan"},
+    {value: "alergi", label: "Alerji"},
+    {value: "eliminasyon", label: "Eliminasyon"},
+    {value: "kan grubu", label: "Kan grubu"},
+    {value: "dusuk sodyum", label: "Düşük sodyum"},
+    {value: "mandira yok", label: "Mandıra yok"},
+    {value: "bugday yok", label: "Buğday yok"},
+    {value: "glutensiz", label: "Glutensiz"},
+    {value: "dusuk yagli", label: "Düşük yağlı"},
+    {value: "dusuk karbonhidratli", label: "Düşük karbonhidratlı"},
+    {value: "yuksek proteinli", label: "Yüksek Proteinli"},
+    {value: "diğer", label: "Diğer"},
 ]
-/*      -Monosodyum glutamat (MSG)
-                -Yapay tatlandırıcı
-                -Soğan/sarımsak
-                -peynir
-                -Narenciye
-                -Çikolata
-                -Alkol
-                -kımızı şarap
-                -sülfit içeren besinler(şarap,kuru meyve,salata)
-                -koruyucular
-                -gıda boyası
-                -diğer
-                (foodsReaction)*/
 let foodsReaction = [
-    { value: "monosodyum glutamat (MSG)", label: "Monosodyum glutamat (MSG)" },
-    { value: "yapay tatlandırıcı", label: "Yapay tatlandırıcı" },
-    { value: "soğan/sarımsak", label: "Soğan/sarımsak" },
-    { value: "peynir", label: "Peynir" },
-    { value: "narenciye", label: "Narenciye" },
-    { value: "çikolata", label: "Çikolata" },
-    { value: "alkol", label: "Alkol" },
-    { value: "kımızı şarap", label: "Kımızı şarap" },
-    { value: "sülfit içeren besinler(şarap,kuru meyve,salata)", label: "Sülfit içeren besinler(şarap,kuru meyve,salata)" },
-    { value: "koruyucular", label: "Koruyucular" },
-    { value: "gıda boyası", label: "Gıda boyası" },
-    { value: "diğer", label: "Diğer" },
+    {value: "monosodyum glutamat (MSG)", label: "Monosodyum glutamat (MSG)"},
+    {value: "yapay tatlandırıcı", label: "Yapay tatlandırıcı"},
+    {value: "soğan/sarımsak", label: "Soğan/sarımsak"},
+    {value: "peynir", label: "Peynir"},
+    {value: "narenciye", label: "Narenciye"},
+    {value: "çikolata", label: "Çikolata"},
+    {value: "alkol", label: "Alkol"},
+    {value: "kımızı şarap", label: "Kımızı şarap"},
+    {
+        value: "sülfit içeren besinler(şarap,kuru meyve,salata)",
+        label: "Sülfit içeren besinler(şarap,kuru meyve,salata)"
+    },
+    {value: "koruyucular", label: "Koruyucular"},
+    {value: "gıda boyası", label: "Gıda boyası"},
+    {value: "diğer", label: "Diğer"},
 ]
 let LifestyleAboutEating = [
-    { value: "hızlı yerim", label: "Hızlı yerim" },
-    { value: "çok yerim", label: "Çok yerim" },
-    { value: "gece geç saatlerde yerim", label: "Gece geç saatlerde yerim" },
-    { value: "sağlıklı besinleri sevmem", label: "Sağlıklı besinleri sevmem" },
-    { value: "zaman sorunum var", label: "Zaman sorunum var" },
-    { value: "sık seyahat ederim", label: "Sık seyahat ederim" },
-    { value: "öğünlerin %50' den fazlasını dışarda yerim", label: "Öğünlerin %50' den fazlasını dışarda yerim" },
-    { value: "sağlıklı gıda her zaman hazır değil", label: "Sağlıklı gıda her zaman hazır değil" },
-    { value: "atıştırma seçenekleri kötü", label: "Atıştırma seçenekleri kötü" },
-    { value: "aile üyeleri sağlıklı yiyeceklerden hoşlanmaz", label: "Aile üyeleri sağlıklı yiyeceklerden hoşlanmaz" },
-    { value: "aile üyesinin veya yakın arkadaşımın özel diyet ihtiyacı var", label: "Aile üyesinin veya yakın arkadaşımın özel diyet ihtiyacı var" },
-    { value: "yemeyi severim", label: "Yemeyi severim" },
-    { value: "yemek zorundayım", label: "Yemek zorundayım" },
-    { value: "gıda ile olumsuz ilişkim var", label: "Gıda ile olumsuz ilişkim var" },
-    { value: "yeme sorunları ile mücadele ediyorum", label: "Yeme sorunları ile mücadele ediyorum" },
-    { value: "duygusal yiyici (üzgünken, yalnızken, sıkıldığında vb)", label: "Duygusal yiyici (üzgünken, yalnızken, sıkıldığında vb)" },
-    { value: "stres altında çok yerim", label: "Stres altında çok yerim" },
-    { value: "stres altında az yerim", label: "Stres altında az yerim" },
-    { value: "yemek pişirmeyi sevmem", label: "Yemek pişirmeyi sevmem" },
-    { value: "beslenme tavsiyeleri konusunda kafam karışık", label: "Beslenme tavsiyeleri konusunda kafam karışık" },
+    {value: "hızlı yerim", label: "Hızlı yerim"},
+    {value: "çok yerim", label: "Çok yerim"},
+    {value: "gece geç saatlerde yerim", label: "Gece geç saatlerde yerim"},
+    {value: "sağlıklı besinleri sevmem", label: "Sağlıklı besinleri sevmem"},
+    {value: "zaman sorunum var", label: "Zaman sorunum var"},
+    {value: "sık seyahat ederim", label: "Sık seyahat ederim"},
+    {value: "öğünlerin %50' den fazlasını dışarda yerim", label: "Öğünlerin %50' den fazlasını dışarda yerim"},
+    {value: "sağlıklı gıda her zaman hazır değil", label: "Sağlıklı gıda her zaman hazır değil"},
+    {value: "atıştırma seçenekleri kötü", label: "Atıştırma seçenekleri kötü"},
+    {value: "aile üyeleri sağlıklı yiyeceklerden hoşlanmaz", label: "Aile üyeleri sağlıklı yiyeceklerden hoşlanmaz"},
+    {
+        value: "aile üyesinin veya yakın arkadaşımın özel diyet ihtiyacı var",
+        label: "Aile üyesinin veya yakın arkadaşımın özel diyet ihtiyacı var"
+    },
+    {value: "yemeyi severim", label: "Yemeyi severim"},
+    {value: "yemek zorundayım", label: "Yemek zorundayım"},
+    {value: "gıda ile olumsuz ilişkim var", label: "Gıda ile olumsuz ilişkim var"},
+    {value: "yeme sorunları ile mücadele ediyorum", label: "Yeme sorunları ile mücadele ediyorum"},
+    {
+        value: "duygusal yiyici (üzgünken, yalnızken, sıkıldığında vb)",
+        label: "Duygusal yiyici (üzgünken, yalnızken, sıkıldığında vb)"
+    },
+    {value: "stres altında çok yerim", label: "Stres altında çok yerim"},
+    {value: "stres altında az yerim", label: "Stres altında az yerim"},
+    {value: "yemek pişirmeyi sevmem", label: "Yemek pişirmeyi sevmem"},
+    {value: "beslenme tavsiyeleri konusunda kafam karışık", label: "Beslenme tavsiyeleri konusunda kafam karışık"},
 ];
 
 export default function SubStep2Part4({
-    errors,
-    values,
-    handleChange,
-    setFieldValue,
-}: {
-    errors: any;
-    values: any;
-    handleChange: any;
-    setFieldValue: any;
-}) {
-
+                                          errors,
+                                          values,
+                                          handleChange,
+                                      }
+                                          :
+                                          {
+                                              errors: any;
+                                              values: any;
+                                              handleChange: any;
+                                              setFieldValue: any;
+                                          }) {
 
 
     return (
         <>
-            <div className="min-h-[60px] w-full  pl-[20px] flex-col flex bg-[#E9EDD9]  text-[#5B623D] items-start justify-center">
+            <div
+                className="min-h-[60px] w-full  pl-[20px] flex-col flex bg-[#E9EDD9]  text-[#5B623D] items-start justify-center">
                 <h2 className="font-nexa-regular text-[18px]">Yaşam şeklinin değerlendirilmesi</h2>
             </div>
             <h3 className="font-nexa-regular text-[16px]">Uyku</h3>
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Genelde geceleri ortalama kaç saat uyuyorsunuz?"
-                    name="subStep2.sleepHours"
+                    name="sleepHours"
                     type="number"
-                    error={errors.subStep2?.sleepHours}
-                    value={values.subStep2?.sleepHours}
+                    error={errors.sleepHours}
+                    value={values.sleepHours}
                     onChange={handleChange}
-
 
 
                 />
                 <FormInputSelectOne
                     label="Uykuya dalmakta zorluk çekiyor musunuz?"
                     options={EH}
-                    name="subStep2.sleepDifficulty"
-                    value={values.subStep2?.sleepDifficulty}
-                    error={errors.subStep2?.sleepDifficulty}
+                    name="sleepDifficulty"
+                    value={values.sleepDifficulty}
+                    error={errors.sleepDifficulty}
                 />
                 <FormInputSelectOne
                     label="Kesintisiz mi?"
                     options={EH}
-                    name="subStep2.sleepQuality"
-                    value={values.subStep2?.sleepQuality}
-                    error={errors.subStep2?.sleepQuality}
+                    name="sleepQuality"
+                    value={values.sleepQuality}
+                    error={errors.sleepQuality}
                 />
             </div>
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Uykusuzluk sorununuz var mı?"
                     options={EH}
-                    name="subStep2.sleepProblem"
-                    value={values.subStep2?.sleepProblem}
-                    error={errors.subStep2?.sleepProblem}
+                    name="sleepProblem"
+                    value={values.sleepProblem}
+                    error={errors.sleepProblem}
 
                 />
                 <FormInputSelectOne
                     label="Horlar mısınız?"
                     options={EH}
-                    name="subStep2.snore"
-                    value={values.subStep2?.snore}
-                    error={errors.subStep2?.snore}
+                    name="snore"
+                    value={values.snore}
+                    error={errors.snore}
 
                 />
                 <FormInputSelectOne
                     label="Dinlenmiş olarak mı uyanırsınız?"
                     options={EH}
-                    name="subStep2.wakeUp"
-                    value={values.subStep2?.wakeUp}
-                    error={errors.subStep2?.wakeUp}
+                    name="wakeUp"
+                    value={values.wakeUp}
+                    error={errors.wakeUp}
 
                 />
             </div>
@@ -162,22 +147,22 @@ export default function SubStep2Part4({
                 <FormInputSelectOne
                     label="Uyku ilacı kullanıyor musunuz?"
                     options={EH}
-                    name="subStep2.sleepPills"
-                    value={values.subStep2?.sleepPills}
-                    error={errors.subStep2?.sleepPills}
+                    name="sleepPills"
+                    value={values.sleepPills}
+                    error={errors.sleepPills}
 
                 />
                 {
                     //son soru evet ise input açılacak
                 }
                 {
-                    values.subStep2?.sleepPills === "evet" && (
+                    values.sleepPills === "evet" && (
                         <FormInput
                             label="Hangi ilaçları kullanıyorsunuz?"
-                            name="subStep2.sleepPillsDetail"
+                            name="sleepPillsDetail"
                             type="text"
-                            error={errors.subStep2?.sleepPillsDetail}
-                            value={values.subStep2?.sleepPillsDetail}
+                            error={errors.sleepPillsDetail}
+                            value={values.sleepPillsDetail}
                             onChange={handleChange}
                         />
                     )
@@ -194,12 +179,12 @@ export default function SubStep2Part4({
                 <div className="flex flex-col">
                     <FormInputSelectOne
                         label="Egzersiz yapmaya istekli misiniz?"
-                        options={[...EH, { value: "biraz", label: "Biraz" }]}
-                        name="subStep2.sleeping"
+                        options={[...EH, {value: "biraz", label: "Biraz"}]}
+                        name="sleeping"
                     />
                     {
                         //son soru evet ise input açılacak
-                        values.subStep2.sleeping === "evet" && (
+                        values.sleeping === "evet" && (
                             <FormInput
                                 label="Evet ise açıklama"
                             />)
@@ -209,12 +194,12 @@ export default function SubStep2Part4({
                     <FormInputSelectOne
                         label="Egzersiz sonrası aşırı yorgunluk ve ağrı hisseder misiniz?"
                         options={[...EH]}
-                        name="subStep2.sleeping"
-                        value={values.subStep2.sleeping}
+                        name="sleeping"
+                        value={values.sleeping}
                     />
                     {
                         //son soru evet ise input açılacak
-                        values.subStep2.sleeping === "evet" && (
+                        values.sleeping === "evet" && (
                             <FormInput
                                 label="Evet ise açıklama"
                             />)
@@ -225,12 +210,12 @@ export default function SubStep2Part4({
                 <FormInputSelectMulti
                     label="Şu anda uyguladığınız özel bir diyet veya beslenme programı var mı? (Uygun olanı/olanları işaretleyiniz"
                     options={diet}
-                    name="subStep2.diet"
-                    value={values.subStep2?.diet}
-                    error={errors?.subStep2?.diet}
+                    name="diet"
+                    value={values.diet}
+                    error={errors?.diet}
                 />
                 {
-                    values.subStep2.diet?.includes("diğer") && (
+                    values.diet?.includes("diğer") && (
                         <FormInput
                             label="Diğer ise açıklayınız"
 
@@ -243,18 +228,18 @@ export default function SubStep2Part4({
                 <FormInputSelectOne
                     label="Belli bir besine hassasiyetiniz var mı?"
                     options={EH}
-                    name="subStep2.foodSensitivity"
-                    value={values.subStep2?.foodSensitivity}
-                    error={errors?.subStep2?.foodSensitivity}
+                    name="foodSensitivity"
+                    value={values.foodSensitivity}
+                    error={errors?.foodSensitivity}
                 />
                 {
-                    values.subStep2.foodSensitivity === "evet" && (
+                    values.foodSensitivity === "evet" && (
                         <FormInput
                             label="Evet ise açıklama"
-                            name="subStep2.foodSensitivityDetail"
+                            name="foodSensitivityDetail"
                             type="text"
-                            error={errors?.subStep2?.foodSensitivityDetail}
-                            value={values.subStep2?.foodSensitivityDetail}
+                            error={errors?.foodSensitivityDetail}
+                            value={values.foodSensitivityDetail}
                             onChange={handleChange}
                         />)
                 }
@@ -263,18 +248,18 @@ export default function SubStep2Part4({
                 <FormInputSelectOne
                     label="Yemediğiniz besinler var mı?"
                     options={EH}
-                    name="subStep2.foodAvoid"
-                    value={values.subStep2?.foodAvoid}
-                    error={errors?.subStep2?.foodAvoid}
+                    name="foodAvoid"
+                    value={values.foodAvoid}
+                    error={errors?.foodAvoid}
                 />
                 {
-                    values.subStep2.foodAvoid === "evet" && (
+                    values.foodAvoid === "evet" && (
                         <FormInput
                             label="Evet ise açıklama"
-                            name="subStep2.foodAvoidDetail"
+                            name="foodAvoidDetail"
                             type="text"
-                            error={errors?.subStep2?.foodAvoidDetail}
-                            value={values.subStep2?.foodAvoidDetail}
+                            error={errors?.foodAvoidDetail}
+                            value={values.foodAvoidDetail}
                             onChange={handleChange}
                         />)
                 }
@@ -283,18 +268,18 @@ export default function SubStep2Part4({
                 <FormInputSelectMulti
                     label="Aşağıdakilere olumsuz tepkiniz oldu mu : (Uygun olan tüm seçenecekleri işaretleyiniz)"
                     options={foodsReaction}
-                    name="subStep2.foodsReaction"
-                    value={values.subStep2?.foodsReaction}
-                    error={errors?.subStep2?.foodsReaction}
+                    name="foodsReaction"
+                    value={values.foodsReaction}
+                    error={errors?.foodsReaction}
                 />
                 {
-                    values.subStep2.foodsReaction?.includes("diğer") && (
+                    values.foodsReaction?.includes("diğer") && (
                         <FormInput
                             label="Diğer ise açıklayınız"
-                            name="subStep2.foodsReactionDetail"
+                            name="foodsReactionDetail"
                             type="text"
-                            error={errors?.subStep2?.foodsReactionDetail}
-                            value={values.subStep2?.foodsReactionDetail}
+                            error={errors?.foodsReactionDetail}
+                            value={values.foodsReactionDetail}
                             onChange={handleChange}
                         />)
                 }
@@ -303,18 +288,18 @@ export default function SubStep2Part4({
                 <FormInputSelectOne
                     label="Canınızın çektiği/sık yediğiniz yiyecekler var mı?"
                     options={EH}
-                    name="subStep2.foodsLike"
-                    value={values.subStep2?.foodsLike}
-                    error={errors?.subStep2?.foodsLike}
+                    name="foodsLike"
+                    value={values.foodsLike}
+                    error={errors?.foodsLike}
                 />
                 {
-                    values.subStep2.foodsLike === "evet" && (
+                    values.foodsLike === "evet" && (
                         <FormInput
                             label="Evet ise açıklama"
-                            name="subStep2.foodsLikeDetail"
+                            name="foodsLikeDetail"
                             type="text"
-                            error={errors?.subStep2?.foodsLikeDetail}
-                            value={values.subStep2?.foodsLikeDetail}
+                            error={errors?.foodsLikeDetail}
+                            value={values.foodsLikeDetail}
                             onChange={handleChange}
                         />)
                 }
@@ -323,18 +308,18 @@ export default function SubStep2Part4({
                 <FormInputSelectOne
                     label="Günde 3 öğün mü yersiniz?"
                     options={EH}
-                    name="subStep2.threeMeal"
-                    value={values.subStep2?.threeMeal}
-                    error={errors?.subStep2?.threeMeal}
+                    name="threeMeal"
+                    value={values.threeMeal}
+                    error={errors?.threeMeal}
                 />
                 {
-                    values.subStep2.threeMeal === "hayır" && (
+                    values.threeMeal === "hayır" && (
                         <FormInput
                             label="Hayır ise açıklama"
-                            name="subStep2.threeMealDetail"
+                            name="threeMealDetail"
                             type="text"
-                            error={errors?.subStep2?.threeMealDetail}
-                            value={values.subStep2?.threeMealDetail}
+                            error={errors?.threeMealDetail}
+                            value={values.threeMealDetail}
                             onChange={handleChange}
                         />)
                 }
@@ -343,18 +328,18 @@ export default function SubStep2Part4({
                 <FormInputSelectOne
                     label="Öğün atlamak sizi etkiliyor mu?"
                     options={EH}
-                    name="subStep2.skipMeal"
-                    value={values.subStep2?.skipMeal}
-                    error={errors?.subStep2?.skipMeal}
+                    name="skipMeal"
+                    value={values.skipMeal}
+                    error={errors?.skipMeal}
                 />
                 {
-                    values.subStep2.skipMeal === "evet" && (
+                    values.skipMeal === "evet" && (
                         <FormInput
                             label="Evet ise açıklama"
-                            name="subStep2.skipMealDetail"
+                            name="skipMealDetail"
                             type="text"
-                            error={errors?.subStep2?.skipMealDetail}
-                            value={values.subStep2?.skipMealDetail}
+                            error={errors?.skipMealDetail}
+                            value={values.skipMealDetail}
                             onChange={handleChange}
                         />)
                 }
@@ -362,10 +347,10 @@ export default function SubStep2Part4({
             <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Haftada kaç gün dışarıda yemek yersiniz?"
-                    name="subStep2.outsideMeal"
+                    name="outsideMeal"
                     type="number"
-                    error={errors?.subStep2?.outsideMeal}
-                    value={values.subStep2?.outsideMeal}
+                    error={errors?.outsideMeal}
+                    value={values.outsideMeal}
                     onChange={handleChange}
                 />
             </div>
@@ -377,9 +362,9 @@ export default function SubStep2Part4({
                 <FormInputSelectMulti
                     label="Mevcut yaşam şekliniz ve yeme alışkanlıklarınız ile ilgili olanları işaretleyiniz:"
                     options={LifestyleAboutEating}
-                    name="subStep2.lifestyleAboutEating"
-                    value={values.subStep2?.lifestyleAboutEating}
-                    error={errors?.subStep2?.lifestyleAboutEating}
+                    name="lifestyleAboutEating"
+                    value={values.lifestyleAboutEating}
+                    error={errors?.lifestyleAboutEating}
                 />
             </div>
 

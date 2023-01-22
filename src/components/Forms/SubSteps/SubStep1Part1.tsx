@@ -26,13 +26,15 @@ export default function SubStep1Part1({
             { value: "hayır", label: "Hayır" },
             { value: "bilmiyorum", label: "Bilmiyorum" },
           ]}
-          value={values.subStep1.parrentTolarance}
-          error={errors?.subStep1?.parrentTolarance}
-          name="subStep1.parrentTolarance"
-        />
+          value={values.parrentTolarance}
+          error={errors.parrentTolarance}
+          name="parrentTolarance"
+          onChange={handleChange}
+          />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
+          onChange={handleChange}
           label="Bebeklik döneminde ne ile beslendiniz, annesütü mü, formül mama mı?"
           options={[
             { value: "anne sutu", label: "Anne Sütü" },
@@ -43,34 +45,36 @@ export default function SubStep1Part1({
             },
             { value: "Bilmiyorum", label: "Bilmiyorum" },
           ]}
-          value={values.subStep1.motherMilk}
-          error={errors.subStep1?.motherMilk}
-          name="subStep1.motherMilk"
-        />
+          value={values.motherMilk}
+          error={errors?.motherMilk}
+          name="motherMilk"
+          />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
+          onChange={handleChange}
           label="Katı gıda yemeye kaç yaşında başladığınızı biliyor musunuz?"
           options={[
             { value: "evet", label: "Evet" },
             { value: "hayır", label: "Hayır" },
           ]}
-          value={values.subStep1?.solidFood}
-          error={errors.subStep1?.solidFood}
-          name="subStep1.solidFood"
-        />
+          value={values?.solidFood}
+          error={errors?.solidFood}
+          name="solidFood"
+          />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
+          onChange={handleChange}
           label="Bebeklik döneminde herhangi bir besin alerjisi, intoleransı, hassasiyeti yaşadınız mı?"
           options={[
             { value: "evet", label: "Evet" },
             { value: "hayır", label: "Hayır" },
             { value: "bilmiyorum", label: "Bilmiyorum" },
           ]}
-          value={values.subStep1?.babyAllergy}
-          error={errors.subStep1?.babyAllergy}
-          name="subStep1.babyAllergy"
+          value={values?.babyAllergy}
+          error={errors?.babyAllergy}
+          name="babyAllergy"
         />
       </div>
     </>

@@ -30,7 +30,7 @@ export default function SubStep2Part3({
                     values={values}
                     fieldNames={["food", "reaction"]}
                     labels={["İlaç/Takviye/Besin", "Reaksiyon"]}
-                    name="subStep2.allergies"
+                    name="allergies"
                     handleChange={handleChange}
                     setFieldValue={setFieldValue}
                 />

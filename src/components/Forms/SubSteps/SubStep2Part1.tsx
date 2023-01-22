@@ -19,25 +19,25 @@ export default function SubStep2Part1({
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="İsim"
-          value={values.subStep2?.name}
-          error={errors.subStep2?.name}
-          name="subStep2.name"
+          value={values.name}
+          error={errors.name}
+          name="name"
           type="text"
           onChange={handleChange}
         />
         <FormInput
           label="Yaş"
-          value={values.subStep2?.age}
-          error={errors.subStep2?.age}
-          name="subStep2.age"
+          value={values.age}
+          error={errors.age}
+          name="age"
           type="text"
           onChange={handleChange}
         />
         <FormInput
           label="Tarih"
-          value={values.subStep2?.date}
-          error={errors.subStep2?.date}
-          name="subStep2.date"
+          value={values.date}
+          error={errors.date}
+          name="date"
           type="text"
           onChange={handleChange}
         />
@@ -45,17 +45,17 @@ export default function SubStep2Part1({
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Doğum Tarihi"
-          value={values.subStep2?.birthDate}
-          error={errors.subStep2?.birthDate}
-          name="subStep2.birthDate"
+          value={values.birthDate}
+          error={errors.birthDate}
+          name="birthDate"
           type="text"
           onChange={handleChange}
         />
         <FormInput
           label="Email"
-          value={values.subStep2?.email}
-          error={errors.subStep2?.email}
-          name="subStep2.email"
+          value={values.email}
+          error={errors.email}
+          name="email"
           type="text"
           onChange={handleChange}
         />
@@ -63,17 +63,17 @@ export default function SubStep2Part1({
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Adres"
-          value={values.subStep2?.address}
-          error={errors.subStep2?.address}
-          name="subStep2.address"
+          value={values.address}
+          error={errors.address}
+          name="address"
           type="text"
           onChange={handleChange}
         />
         <FormInput
           label="Telefon"
-          value={values.subStep2?.phoneCell}
-          error={errors.subStep2?.phoneCell}
-          name="subStep2.phoneCell"
+          value={values.phoneCell}
+          error={errors.phoneCell}
+          name="phoneCell"
           type="text"
           onChange={handleChange}
         />
@@ -82,9 +82,9 @@ export default function SubStep2Part1({
         <div>
           <FormInputSelectOne
             label="Genetik geçmiş"
-            value={values.subStep2?.geneticHistory}
-            error={errors.subStep2?.geneticHistory}
-            name="subStep2.geneticHistory"
+            value={values.geneticHistory}
+            error={errors.geneticHistory}
+            name="geneticHistory"
             options={[
               /*  Afrikan Amerikan  İspanyol  Akdeniz  Asyalı Amerikalı Kafkas Kuzey Avrupalı*/
               { label: "Afrikan Amerikan", value: "Afrikan Amerikan" },
@@ -101,12 +101,12 @@ export default function SubStep2Part1({
             ]}
           />
         </div>
-        {values.subStep2.geneticHistory == "Diğer" && (
+        {values.geneticHistory == "Diğer" && (
           <FormInput
             label="Diğer"
-            name="subStep2.geneticHistoryOther"
-            value={values.subStep2?.geneticHistoryOther}
-            error={errors.subStep2?.geneticHistoryOther}
+            name="geneticHistoryOther"
+            value={values.geneticHistoryOther}
+            error={errors.geneticHistoryOther}
             type="text"
             onChange={handleChange}
           />
@@ -115,9 +115,9 @@ export default function SubStep2Part1({
       <div className="flex min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Sağlık hizmetini en son nerede, ne zaman ve kimden aldınız?"
-          value={values.subStep2?.lastHealt}
-          error={errors.subStep2?.lastHealt}
-          name="subStep2.lastHealt"
+          value={values.lastHealt}
+          error={errors.lastHealt}
+          name="lastHealt"
           type="text"
           onChange={handleChange}
         />
@@ -125,33 +125,33 @@ export default function SubStep2Part1({
       <div className="flex  min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Sağlık hizmetini en son nerede, ne zaman ve kimden aldınız?"
-          value={values.subStep2?.lastHealt}
-          error={errors.subStep2?.lastHealt}
-          name="subStep2.lastHealt"
+          value={values.lastHealt}
+          error={errors.lastHealt}
+          name="lastHealt"
           type="text"
           onChange={handleChange}
         />
         <FormInput
           label="Acil durumlarda ulaşılacak kişi:"
-          value={values.subStep2?.emergencyContact}
-          error={errors.subStep2?.emergencyContact}
-          name="subStep2.emergencyContact"
+          value={values.emergencyContact}
+          error={errors.emergencyContact}
+          name="emergencyContact"
           type="text"
           onChange={handleChange}
         />
         <FormInput
           label="Acil durumlarda ulaşılacak kişi Telefon:"
-          value={values.subStep2?.emergencyContactPhoneCell}
-          error={errors.subStep2?.emergencyContactPhoneCell}
-          name="subStep2.emergencyContactPhoneCell"
+          value={values.emergencyContactPhoneCell}
+          error={errors.emergencyContactPhoneCell}
+          name="emergencyContactPhoneCell"
           type="text"
           onChange={handleChange}
         />
         <FormInput
           label="Acil durumlarda ulaşılacak kişi Yakınlığı:"
-          value={values.subStep2?.emergencyContactRelation}
-          error={errors.subStep2?.emergencyContactRelation}
-          name="subStep2.emergencyContactRelation"
+          value={values.emergencyContactRelation}
+          error={errors.emergencyContactRelation}
+          name="emergencyContactRelation"
           type="text"
           onChange={handleChange}
         />
@@ -160,9 +160,9 @@ export default function SubStep2Part1({
         <div>
           <FormInputSelectOne
             label="Beni nereden duydunuz?"
-            value={values.subStep2?.whereDidYouHear}
-            error={errors.subStep2?.whereDidYouHear}
-            name="subStep2.whereDidYouHear"
+            value={values.whereDidYouHear}
+            error={errors.whereDidYouHear}
+            name="whereDidYouHear"
             options={[
               { label: "üniversiteden", value: "Üniversiteden" },
               { label: "IFM web sitesi", value: "IFM web sitesi" },
@@ -177,12 +177,12 @@ export default function SubStep2Part1({
             ]}
           />
         </div>
-        {values.subStep2.geneticHistory == "Diğer" && (
+        {values.geneticHistory == "Diğer" && (
           <FormInput
             label="Diğer"
-            name="subStep2.whereDidYouHearOther"
-            value={values.subStep2?.whereDidYouHearOther}
-            error={errors.subStep2?.whereDidYouHearOther}
+            name="whereDidYouHearOther"
+            value={values.whereDidYouHearOther}
+            error={errors.whereDidYouHearOther}
             type="text"
             onChange={handleChange}
           />

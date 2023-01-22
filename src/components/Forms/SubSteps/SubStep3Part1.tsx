@@ -25,7 +25,7 @@ let diet = [
     {value: "diğer", label: "Diğer"},
 ]
 
-export default function SubStep2Part4({
+export default function SubStep3Part1({
                                           errors,
                                           values,
                                           handleChange,
@@ -37,19 +37,7 @@ export default function SubStep2Part4({
                                           setFieldValue: any;
                                       }
 ) {
-    /*
-     sleepHours: Yup.string().required("Bu alan zorunludur"),
-    sleepDifficulty: Yup.string().required("Bu alan zorunludur"),
-    sleepQuality: Yup.string().required("Bu alan zorunludur"),
-    sleepProblem: Yup.string().required("Bu alan zorunludur"),
-    snore: Yup.string().required("Bu alan zorunludur"),
-    wakeUp: Yup.string().required("Bu alan zorunludur"),
-    sleepPills: Yup.string().required("Bu alan zorunludur"),
-    sleepPillsDetail: Yup.string().when("sleepPills", {
-      is: (sleepPills: string) => sleepPills === "evet",
-      then: Yup.string().required("Bu alan zorunludur"),
-    }),
-    */
+
     return (
         <>
             <div

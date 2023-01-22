@@ -2,112 +2,134 @@ import ComponentHeading from "@components/BoxHeading/BoxHeading";
 import FirstForm from "@components/Forms/BasvuruForms/FirstForm";
 import FormAlert from "@components/Forms/FormAlert/FormAlert";
 import FormsListTable from "@components/Forms/FormsListTable/FormsListTable";
-import FormSteps from "@components/Forms/FormSteps/FormSteps";
+import FormSteps, {FormSubSteps} from "@components/Forms/FormSteps/FormSteps";
 import DashboardLayout from "@components/Layouts/DashboardLayout";
 import SozlesmeModal from "@components/SozlesmeModal/SozlesmeModal";
-import React, { useEffect } from "react";
-import { loremIpsum } from "lorem-ipsum";
-import Router from "next/router";
-import { v4 } from "uuid";
+import React, {useEffect} from "react";
+import {loremIpsum} from "lorem-ipsum";
+import Router, {useRouter} from "next/router";
+import {v4} from "uuid";
 import SecondForm from "@components/Forms/BasvuruForms/SecondForm/SecondForm";
-import request from "@config";
-import useUser from "src/hooks/user.hook";
-export default function Forms() {
-  const [acikRiza, setAcikRiza] = React.useState({
-    open: false,
-    accepted: true,
-  });
+import Flow2Form from "@components/Forms/BasvuruForms/Flow2Form";
+import Flow3Form from "@components/Forms/BasvuruForms/Flow3Form";
+import useUser from "../../src/hooks/user.hook";
+import {request} from "@config"
+import Flow4Form from "@components/Forms/BasvuruForms/Flow4Form";
+import Flow5Form from "@components/Forms/BasvuruForms/Flow5Form";
+import {toast} from 'react-hot-toast'
 
-  // const [contracts, setContracts] = React.useState({
-  //   IsPatientUserAgreement: true,
-  //   IsPatientIlluminationText: true,
-  // })
-  // const { user: { Id: userId } } = useUser()
-  // useEffect(() => {
-  //   request.post(`/log/check/${userId}`).then((res)=>{
-  //     console.log("sözleşmeler :", res);
-      
-  //   })
-  // }, [])
+export interface UserFlowAbilityData {
+    "IsPatient": boolean,
+    "IsHavePreApplicationForm": boolean,
+    "LastDoneStep": number,
+    "IsHaveWaitingForm": boolean,
+    "LastWaitingDoneStep": null | number,
+    "IsRejected": boolean,
+}
 
-  useEffect(() => {
-    if (!acikRiza.accepted && !acikRiza.open) {
-      Router.router?.back();
+
+export const getUserFlowAbilibility = async (UserId: string) => {
+    const isActivePreApplicationFormRequest: any = await request.get(`/appointmentsettings`)
+    const isActivePreApplicationForm = isActivePreApplicationFormRequest.data[0].Status;
+    const userAbilityRequest: any = await request.get(`/userflows/user/${UserId}`);
+    const userAbility: UserFlowAbilityData = userAbilityRequest.data;
+    return {
+        isActivePreApplicationForm,
+        ...userAbility
     }
-  }, [acikRiza]);
+}
+export default function Forms() {
 
-  const [selectedStep, setSelectedStep] = React.useState(Number(localStorage.getItem("selectedStep")) || 1);
 
-  useEffect(() => {
-    localStorage.setItem("selectedStep", selectedStep.toString());
-  }, [selectedStep]);
+    const {user: {Id: UserId}} = useUser()
+    const key = `selectedStep-${UserId}`
+    const [selectedStep, setSelectedStep] = React.useState(Number(localStorage.getItem(key)) || 1);
+    const [waitingDoneStep, setWaitingDoneStep] = React.useState<number | null>(null);
 
-  const [forms, setForms] = React.useState([
-    {
-      step: 1,
-      component: () => <FirstForm />,
-    },
-    {
-      step: 2,
-      component: () => (
-        <SecondForm selectedStep={2} setSelectedStep={setSelectedStep} />
-      ),
-    },
-    {
-      step: 3,
-      component: () => (
-        <SecondForm selectedStep={3} setSelectedStep={setSelectedStep} />
-      ),
-    },
-    {
-      step: 4,
-      component: () => (
-        <SecondForm selectedStep={4} setSelectedStep={setSelectedStep} />
-      ),
-    },
-  ]);
 
-  return (
-    <DashboardLayout>
-      {acikRiza.open && (
-        <SozlesmeModal
-          content={
-            "<h1 className='text-[40px]'>Hasta Açık Rıza Metni ve Hasta Aydınlatma Metni</h1>" +
-            loremIpsum({
-              count: 50,
-              format: "html",
-              units: "sentences",
-              paragraphUpperBound: 5,
-            })
-          }
-          closeWithValue={(val: boolean) => { if (val) setAcikRiza({ open: false, accepted: val }) }
-          }
-        />
-      )}
-      <div className="bg-[white]">
-        <FormSteps
-          selectedStep={selectedStep}
-          setSelectedStep={setSelectedStep}
-        />
-        <div className="my-[10px]">
-          <FormAlert
-            text="Göndermiş olduğunuz form onaylanmıştır"
-            status="confirmed"
-          />
-          <FormAlert
-            text="Göndermiş olduğunuz form beklemede"
-            status="pending"
-          />
-        </div>
+    useEffect(() => {
+        console.log("key", key)
+        localStorage.setItem(key, selectedStep.toString());
+        console.log(localStorage.getItem(key))
+        // setTheLockedSteps(selectedStep)
+    }, [selectedStep]);
 
-        <div className="mt-[30px]">
-          {forms.map((form) => {
-            if (form.step === selectedStep) {
-              return form.component();
+    const [forms, setForms] = React.useState([
+        {
+            step: 1,
+            component: () => <FirstForm/>
+        },
+        {
+            step: 2,
+            component: () => <Flow2Form setSelectedStep={setSelectedStep}/>,
+        },
+        {
+            step: 3,
+            component: () => <Flow3Form setSelectedStep={setSelectedStep}/>,
+        },
+        {
+            step: 4,
+            component: () => <Flow4Form/>,
+        },
+        {
+            step: 5,
+            component: () => <Flow5Form/>,
+        },
+    ]);
+
+
+    useEffect(() => {
+        const abilityPromise = getUserFlowAbilibility(UserId);
+        abilityPromise.then((ability) => {
+            setWaitingDoneStep(ability.LastWaitingDoneStep)
+            //ön başvuru aktif değilse
+            if (!ability.isActivePreApplicationForm) {
+                //ön başvuru formunu doldurmuşsa
+                if (ability.IsHavePreApplicationForm) {
+                    console.log("ön başvuruyu doldurmuş")
+                } else if (!ability.isActivePreApplicationForm && ability.IsHaveWaitingForm) {
+                    //başvurular kapalıyken ön başvuru beklemedeyse
+                    toast.success("Ön Başvurunuz alınmıştır. Lütfen onaylanmasını bekleyiniz.");
+                } else {
+                    toast.error("Ön Başvurular kapalıdır lütfen daha sonra tekrar deneyiniz.");
+                    Router.push("/dashboard");
+                }
+                //
+            } else {
+                console.log("ön başvular açık")
+                setSelectedStep(ability.LastDoneStep + 1)
             }
-          })}
-        </div>
-      </div>
-    </DashboardLayout>
-  );
+
+        })
+    }, [])
+
+
+    return (
+        <DashboardLayout>
+            <div className="bg-[white]">
+                <FormSteps
+                    selectedStep={selectedStep}
+                    setSelectedStep={setSelectedStep}
+                />
+                <div className="mt-[30px]">
+                    {selectedStep >= 2 && selectedStep <= 4 && <FormSubSteps
+                        selectedStep={selectedStep}
+                        setSelectedStep={setSelectedStep}
+                    />}
+                    {forms.map((form) => {
+                        if (form.step === selectedStep) {
+                            if (selectedStep == waitingDoneStep) {
+                                // eslint-disable-next-line react/jsx-key
+                                return (<FormAlert
+                                    text="Göndermiş olduğunuz form onaylanmayı bekliyor"
+                                    status="pending"
+                                />)
+                            }
+                            return form.component();
+                        }
+                    })}
+                </div>
+            </div>
+        </DashboardLayout>
+    );
 }

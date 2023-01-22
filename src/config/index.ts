@@ -38,7 +38,7 @@ export const ATTACH_VIDEO_FOLDER = `${TRAINING}/video`
 //TODO change this url and util function
 export const TRAININGS_WITH_USER_ID = `${PAYMENT}/:UserId`;
 
-const request = axios.create({
+export const request = axios.create({
     baseURL: API,
 });
 request.interceptors.request.use(

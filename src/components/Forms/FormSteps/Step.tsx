@@ -25,7 +25,7 @@ const FormStep = (props: FormStepType) => {
       <div className="flex justify-start items-center leading-none">
         <h1 className="text-[#9D9D9D] font-nexa-bold text-[36px] ">
           {" "}
-          {props.stepNumber}{" "}
+          {props.stepNumber >= 5 ? 3 : props.stepNumber}{" "}
         </h1>
         {props.status && (
           <span className="ml-[20px]">

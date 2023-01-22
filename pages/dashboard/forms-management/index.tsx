@@ -1,15 +1,16 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text';
-import { ArrowDropDown, ArrowDropUp, RefreshRounded, SortByAlpha } from '@mui/icons-material';
-import React, { useState } from 'react'
+import { ArrowDropDown, ArrowDropUp, ArrowRight, RefreshRounded, Router, SortByAlpha } from '@mui/icons-material';
+import React, { useEffect, useState } from 'react'
 import DocumentsUpload from '@components/Upload/DocumentsUpload';
 import { Pagination } from '@mui/material'
 import { v4 } from 'uuid';
 import classNames from 'classnames';
-import { StatusBox } from './appointment-management';
+import { StatusBox } from '../appointment-management';
 import FormAlert from '@components/Forms/FormAlert/FormAlert';
 import StepStatus from '@components/Forms/Status/Status';
-
+import request from '@config';
+import { useRouter } from 'next/router'
 
 const FormTypeGrid = ({ active = 1, setActive }: { active?: number, setActive: (newActive: number) => void }) => {
     const Item = ({ text, isActive }: { text: string, isActive: boolean }) => {
@@ -23,48 +24,81 @@ const FormTypeGrid = ({ active = 1, setActive }: { active?: number, setActive: (
         {[
             "Ön Başvuru Formu",
             "Beslenme Değerlendirme Formu",
-            "IFM Erkek Değerlendirme",
-            "IFM Kadın Değerlendirme",
+            "IFM Değerlendirme Formu",
             "Tıbbi Semptom Değerlendirme",
-            "MSQ Takip Formu"
-        ].map((text, index) => <div key={v4()} onClick={() => setActive(index)}> <Item isActive={index == active}  text={text} /></div>)}
+            "MSQ Takip Formu",
+            "Son MSQ Takip Formu",
+        ].map((text, index) => <div key={v4()} onClick={() => setActive(index)}> <Item isActive={index == active} text={text} /></div>)}
     </div>
 
 }
 
-export default function Assays() {
+export default function FormManagement() {
     const [activeTab, setActiveTab] = useState(0);
+    const [searchKey, setSearchKey] = useState("");
+    const [page, setPage] = useState(1);
 
-    const Row = () => {
+    const [flows, setFlows] = useState<any[]>([])
+
+    const getFlow = () => {
+        request.post(`/search/flow/${activeTab + 1}?page=${page}`, {
+            key: searchKey
+        })
+            .then((res) => {
+                console.log("floowwwss", res)
+                setFlows(res.data);
+            })
+            .catch((err) => {
+                console.log("err", err);
+            })
+    }
+
+    const refresh = () => {
+        getFlow()
+    }
+
+    useEffect(() => {
+        refresh()
+    }, [activeTab, searchKey, page])
+
+    const Row = ({ flow }: { flow: any }) => {
         const [open, setOpen] = useState(false);
         const [assayFiles, setAssayFiles] = useState<FileList | null>(null);
+        const router = useRouter()
         return <div className='flex flex-col w-full'>
             <div className='w-full flex p-3 border-t-[1px]'>
                 <div className='flex-[6]'>
-                    <p>Gülnur Umur</p>
+                    <p> {flow.user.information?.Fullname || 'Bilinmiyor'} </p>
                 </div>
                 <div className='flex-[6]'>
-                    <p>gulnurumur@gmail.com</p>
+                    <p>
+                        {flow.user?.Email || 'Bilinmiyor'}
+                    </p>
                 </div>
                 <div className='flex-[4]'>
-                    <p>0 531 123 4567</p>
+                    <p>
+                        {flow.user?.Phone || 'Bilinmiyor'}
+                    </p>
                 </div>
                 <div className='flex-[4]'>
-                    <p> 09.01.2022 </p>
+                    <p>
+                        {
+                            new Date(flow.created_at).toLocaleDateString("tr-TR")
+                        }
+                    </p>
                 </div>
                 <div className='flex-[4]'>
                     <StepStatus
-                        status="confirmed"
+                        status={flow.Status == 'Waiting' ? 'Bekliyor' : flow.Status == 'Done' ? 'Gönderildi' : 'rejected'}
                     />
                 </div>
                 <div className='flex-[4]'>
                     <button onClick={() => {
-                        setOpen(!open)
+                        // setOpen(!open)
+                        router.push(`/dashboard/forms-management/inspect-form-${flow.Step}?flow_id=${flow.Id}`)
                     }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
                         <span>DETAY</span>
-                        {!open ? <ArrowDropUp /> : <ArrowDropDown />
-
-                        }
+                        <ArrowRight />
                     </button>
                 </div>
             </div>
@@ -105,12 +139,14 @@ export default function Assays() {
                     <div className='flex-[4]'>  </div>
                 </div>
                 <div className='w-full border-2'>
-                    <Row />
-                    <Row />
-                    <Row />
+                    {
+                        flows.length > 0 ? flows.map((flow, index) => <Row flow={flow} key={index} />) : <h1 className='w-full text-center text-[14px]'> Boş </h1>
+                    }
                 </div>
             </div>
-            <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => { }} count={4} />
+            <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
+                setPage(value)
+            }} count={page + 1} />
         </div>
     </DashboardLayout>
 }

@@ -4,7 +4,61 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28929bdd-ad20-4c50-b481-60f0de0cbdf7" name="Changes" comment="" />
+    <list default="true" id="28929bdd-ad20-4c50-b481-60f0de0cbdf7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/4f78beda-864c-463a-a2b1-e422f6ac68aa.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/4f78beda-864c-463a-a2b1-e422f6ac68aa/storage_v2/_src_/database/doktorprojesi.B6GV5w.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/4f78beda-864c-463a-a2b1-e422f6ac68aa/storage_v2/_src_/database/doktorprojesi.B6GV5w/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/4f78beda-864c-463a-a2b1-e422f6ac68aa/storage_v2/_src_/database/doktorprojesi.B6GV5w/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/doctor-project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-1.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-2.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CreateAppointmentModal/CreateAppointmentModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/Flow2Form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/Flow3Form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/Flow4Form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/Flow5Form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/config/initialValues.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep3Part1.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStepContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard/account.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/account.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard/appointment-management.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/appointment-management.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard/appointment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/appointment.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard/forms-management.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard/forms.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/forms.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard/prescriptions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/prescriptions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard/settings/pre-application-control.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/settings/pre-application-control.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/User/user.slice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/User/user.slice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/User/user.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/User/user.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/FirstForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/FirstForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/SecondForm/SecondForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/SecondForm/SecondForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/Form2Footer/Form2Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/Form2Footer/Form2Footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/FormInput/FormInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/FormInput/FormInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/FormInput/FormInputSelectOne.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/FormInput/FormInputSelectOne.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/FormSteps/FormSteps.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/FormSteps/FormSteps.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/FormSteps/Step.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/FormSteps/Step.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep1Part1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep1Part1.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep1Part2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep1Part2.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep1Part3.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep1Part3.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep1Part4.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep1Part4.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep2Part1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep2Part1.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep2Part2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep2Part2.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep2Part3.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep2Part3.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep2Part4.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep2Part4.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep2Part5.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep2Part5.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/validationSchemes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/validationSchemes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Input/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input/Input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layouts/DashboardLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layouts/DashboardLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/index.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +94,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2022.3.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Users\\musta\\OneDrive\\Documents\\GitHub\\doctor-project\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -101,6 +155,7 @@
       <workItem from="1674332778927" duration="23581000" />
       <workItem from="1674398491522" duration="1068000" />
       <workItem from="1674406423161" duration="344000" />
+      <workItem from="1674406788004" duration="679000" />
     </task>
     <servers />
   </component>
@@ -123,7 +178,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Forms/BasvuruForms/SecondForm/SecondForm.tsx</url>
-          <line>126</line>
+          <line>130</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

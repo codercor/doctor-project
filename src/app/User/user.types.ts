@@ -5,6 +5,7 @@ export interface UserState {
     IsAdmin: boolean;
     IsAuthenticated: boolean;
     Email: string;
+    IsPatient: boolean;
     ParasutId: string | null;
     AuthProcess: {
         IsLoading: boolean;
@@ -22,6 +23,8 @@ export interface UserState {
         Fullname: string;
         Phone: string;
         Address: string;
+        Gender?: string;
+        BirthDate?: string;
     };
     BillingDetail: {
         Id: string;
@@ -70,10 +73,13 @@ export interface UserRegisterCredentials {
 }
 
 export type UserInformation = {
+    Id: string,
     Fullname: string,
     Phone: string,
     Address: string,
-    Email: string
+    Email: string,
+    Gender?: string,
+    BirthDate?: string,
 }
 export type BannerData = {
     Title: string,

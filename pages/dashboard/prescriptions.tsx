@@ -110,7 +110,7 @@ export default function Prescriptions() {
             <div className="w-full flex  text-start items-center justify-between  py-[26px] px-[10px]">
                 <div className="flex flex-col justify-between w-full">
                     <Text type="h3" className="text-[#4D5628] !text-[20px] w-full">Reçeteler</Text>
-                    <Text type="h3" className="text-[#4D5628] font-nexa-light !text-[14px] w-full">Hastalarınıza ait reçeteleri yönetin.</Text>
+                    <Text type="h3" className="text-[#4D5628] font-nexa-light !text-[14px] w-full">Reçetelerinizi görüntüleyin</Text>
                 </div>
            
             </div>

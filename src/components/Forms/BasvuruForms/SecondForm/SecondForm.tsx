@@ -27,6 +27,10 @@ import SubStep1Part4 from "@components/Forms/SubSteps/SubStep1Part4";
 import SubStep2Part2 from "@components/Forms/SubSteps/SubStep2Part2";
 import SubStep2Part3 from "@components/Forms/SubSteps/SubStep2Part3";
 import SubStep2Part4 from "@components/Forms/SubSteps/SubStep2Part4";
+import { toast } from "react-hot-toast";
+import request from "@config";
+import useUser from "src/hooks/user.hook";
+import { useRouter } from "next/router";
 
 const initialValues = {
   subStep1: {
@@ -220,6 +224,8 @@ export default function SecondForm({ selectedStep, setSelectedStep }: any) {
   useEffect(() => {
     localStorage.setItem("part", part.toString());
   }, [part]);
+  const { user: { Id: UserId } } = useUser()
+  const router = useRouter()
   const [isMale, setIsMale] = useState(false);
   return (
     <>
@@ -231,7 +237,18 @@ export default function SecondForm({ selectedStep, setSelectedStep }: any) {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log("values ", values);
+          console.log("values", values);
+
+          request.post("/userflows", {
+            UserId,
+            Step: 1,
+            Document: values
+          }).then(res => {
+            toast.success("Başvurunuz başarıyla alınmıştır. En kısa sürede sizinle iletişime geçilecektir.")
+            setTimeout(() => {
+              router.push("/dashboard")
+            }, 2000)
+          })
         }}
       >
         {({
@@ -241,6 +258,7 @@ export default function SecondForm({ selectedStep, setSelectedStep }: any) {
           errors,
           submitForm,
           setFieldValue,
+          setSubmitting,
           dirty,
         }) => {
           return (
@@ -325,6 +343,33 @@ export default function SecondForm({ selectedStep, setSelectedStep }: any) {
                 selectedStep == 2 ? 4 : selectedStep == 3 ? 23 : 0
 
               } setter={setPart} active={part} />
+
+              <button
+                onClick={() => {
+                  console.log("submit");
+                  console.log(values);
+                  request.post("/userflows", {
+                    UserId,
+                    Step: 2,
+                    Document: values.subStep1
+                  }).then(res => {
+                    toast.success("Başvurunuz başarıyla alınmıştır. En kısa sürede sizinle iletişime geçilecektir.")
+                    setTimeout(() => {
+                      router.push("/dashboard")
+                    }, 2000)
+                  })
+                  // if (Object.keys(errors).length == 0) {
+                  //   submitForm();
+                  // } else {
+                  //   toast.error("Lütfen formu eksiksiz doldurunuz");
+                  // }
+                }}
+                className={classNames(
+                  "rounded-[20px_5px] min-w-[52px] min-h-[56px] hover:bg-[white] transition-all shadow-2xl duration-100 hover:shadow-inner hover:text-[#83895E] bg-[#83895E] text-[#FFFFFF]"
+                )}
+              >
+                OK
+              </button>
             </form>
           );
         }}

@@ -18,6 +18,7 @@ export default function SubStep2Part2({
     handleChange: any;
     setFieldValue: any;
 }) {
+    console.log("values",values)
     return (
         <>
             <div className="min-h-[60px] w-full  pl-[20px] flex-col flex bg-[#E9EDD9]  text-[#5B623D] items-start justify-center">
@@ -41,7 +42,7 @@ export default function SubStep2Part2({
                     ]}
                     fieldNames={["problem", "severity", "treatment", "success"]}
                     labels={["Problem", "Şiddeti", "Tedavi/yaklaşım", "Başarı"]}
-                    name="subStep2.currentDisease"
+                    name="currentDisease"
                     handleChange={handleChange}
                     setFieldValue={setFieldValue}
                 />

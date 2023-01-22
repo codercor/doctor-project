@@ -21,29 +21,32 @@ export default function SubStep1Part2({
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
+          onChange={handleChange}
           label="Çocukken veya ergenlikte, herhangi bir besine vücudunuzun tepki verdiğini hatırlıyor musunuz?"
           options={OPTIONS_EHB}
-          value={values.subStep1?.childFoodReact}
-          error={errors.subStep1?.childFoodReact}
-          name="subStep1.childFoodReact"
-        />
+          value={values.childFoodReact}
+          error={errors.childFoodReact}
+          name="childFoodReact"
+          />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
+          onChange={handleChange}
           label="Çocukken ve ergenlikte sağlıklı gıdalara (yani, taze meyveler, sebzeler ve diğer besin açısından yoğun gıdalar) tutarlı ve güvenilir bir şekilde erişebildiniz mi?"
           options={OPTIONS_EHB}
-          value={values.subStep1?.childFoodAccess}
-          error={errors.subStep1?.childFoodAccess}
-          name="subStep1.childFoodAccess"
-        />
+          value={values.childFoodAccess}
+          error={errors.childFoodAccess}
+          name="childFoodAccess"
+          />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
+          onChange={handleChange}
           label="Çocukken veya ergenlikte, herhangi bir yeme bozukluğu Teşhisi kondu mu veya besin ve vücut tepkisi ile ilgili olumsuz bir deneyiminiz oldu mu? (sık diyet yapmak, fazla egzersiz yapmak vb.)?"
           options={OPTIONS_EHB}
-          value={values.subStep1?.childFoodDisorder}
-          error={errors.subStep1?.childFoodDisorder}
-          name="subStep1.childFoodDisorder"
+          value={values.childFoodDisorder}
+          error={errors.childFoodDisorder}
+          name="childFoodDisorder"
         />
       </div>
     </>
