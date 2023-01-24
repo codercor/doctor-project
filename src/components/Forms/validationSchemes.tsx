@@ -351,8 +351,11 @@ export const flow3FormValidationSchema = Yup.object({
     bone:textValidationSchema,
     boneResponse:textValidationSchema,
     anotherTest:textValidationSchema,
-    anotherTestDesc:textValidationSchema
+    anotherTestDesc:textValidationSchema,
 
+    medicalResumeDigestionQuestion6:textValidationSchema,
+    medicalResumeBreathingQuestion6:textValidationSchema,
+    medicalResumeGenitalQuestion7:textValidationSchema,
 
 
 
