@@ -41,7 +41,7 @@ export default function SozlesmeModal({
       className="w-screen h-screen bg-[#00000099] fixed top-0 left-0 z-50 flex justify-center items-center"
       onClick={() => closeWithValue(false)}
     >
-      <div className="w-[800px] h-[600px] bg-secondary-light rounded-[30px_5px] p-[30px]">
+      <div className="w-[800px] min-h-[200px]  h-[600px] bg-secondary-light rounded-[30px_5px] p-[30px]">
         <div
           ref={boxRef}
           dangerouslySetInnerHTML={{ __html: content }}

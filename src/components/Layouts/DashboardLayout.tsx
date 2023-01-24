@@ -152,7 +152,7 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
             ]
             if (user?.IsPatient) userNavs.push({
                 text: "Formlar",
-                href: "/dashboard/forms",
+                href: "/dashboard/patient-agreements",
                 Icon: TaskOutlined
             })
 

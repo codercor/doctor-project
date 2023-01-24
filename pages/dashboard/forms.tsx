@@ -34,7 +34,7 @@ export const getUserFlowAbilibility = async (UserId: string) => {
     let formContractsRequest;
     let formContracts;
     try {
-        formContractsRequest = await request.get(`/log/check/${UserId}`)
+        formContractsRequest = await request.post(`/log/check/${UserId}`)
         formContracts = formContractsRequest.data
     } catch (err) {
         formContracts = null;

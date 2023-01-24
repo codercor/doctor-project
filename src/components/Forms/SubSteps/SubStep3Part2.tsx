@@ -4,7 +4,7 @@ import FormInput, {FormInputTextArea} from "../FormInput/FormInput";
 import {generateForm, getSectionTitle, getTurkishTitle, Sections} from "@components/Forms/SubSteps/Utils/SubStep3Util";
 
 
-export default function SubStep3Part1({
+export default function SubStep3Part2({
                                           errors,
                                           values,
                                           handleChange,
@@ -34,15 +34,15 @@ export default function SubStep3Part1({
                 <div className="w-full flex">
                     <div
                         className="flex flex-col gap-[20px] mb-[5px] py-[5px]  bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[0], values, errors, handleChange)}
+                        {generateForm(Sections[3], values, errors, handleChange)}
                     </div>
                     <div
                         className="flex flex-col gap-[20px] py-[5px] mb-[5px] bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[1], values, errors, handleChange)}
+                        {generateForm(Sections[4], values, errors, handleChange)}
                     </div>
                     <div
                         className="flex flex-col gap-[20px] py-[5px] mb-[5px] bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[2], values, errors, handleChange)}
+                        {generateForm(Sections[5], values, errors, handleChange)}
                     </div>
                 </div>
             </div>

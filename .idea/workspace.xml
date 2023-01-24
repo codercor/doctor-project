@@ -5,7 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28929bdd-ad20-4c50-b481-60f0de0cbdf7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-3.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-4.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-5.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-6.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/dashboard/patient-agreements.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep3Part2.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep3Part3.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep3Part4.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/Utils/SubStep3Util.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-2.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/dashboard/forms.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/forms.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard/user-management.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/user-management.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CreateAppointmentModal/CreateAppointmentModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateAppointmentModal/CreateAppointmentModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/Flow4Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/Flow4Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/config/initialValues.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/config/initialValues.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep3Part1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep3Part1.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/validationSchemes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/validationSchemes.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layouts/DashboardLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layouts/DashboardLayout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SozlesmeModal/SozlesmeModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SozlesmeModal/SozlesmeModal.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,27 +49,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/musta/OneDrive/Documents/GitHub/doctor-project/src/components/Forms/BasvuruForms&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\musta\\OneDrive\\Documents\\GitHub\\doctor-project\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/musta/OneDrive/Documents/GitHub/doctor-project/src/components/Forms/SubSteps",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Users\\musta\\OneDrive\\Documents\\GitHub\\doctor-project\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -61,8 +80,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\musta\OneDrive\Documents\GitHub\doctor-project\src\components\Forms\BasvuruForms" />
       <recent name="C:\Users\musta\OneDrive\Documents\GitHub\doctor-project\src\components\Forms\SubSteps" />
+      <recent name="C:\Users\musta\OneDrive\Documents\GitHub\doctor-project\pages\dashboard\forms-management" />
+      <recent name="C:\Users\musta\OneDrive\Documents\GitHub\doctor-project\src\components\Forms\BasvuruForms" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\musta\OneDrive\Documents\GitHub\doctor-project\src\components\Forms\BasvuruForms\config" />
@@ -105,7 +125,8 @@
       <workItem from="1674406423161" duration="344000" />
       <workItem from="1674406788004" duration="679000" />
       <workItem from="1674407989867" duration="2835000" />
-      <workItem from="1674414823694" duration="1691000" />
+      <workItem from="1674414823694" duration="3870000" />
+      <workItem from="1674507711134" duration="11479000" />
     </task>
     <servers />
   </component>
