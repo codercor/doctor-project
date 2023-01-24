@@ -5,26 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28929bdd-ad20-4c50-b481-60f0de0cbdf7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-3.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-4.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-5.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-6.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/dashboard/patient-agreements.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep3Part2.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep3Part3.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep3Part4.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/Utils/SubStep3Util.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/forms-management/inspect-form-2.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dashboard/forms.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/forms.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dashboard/user-management.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/user-management.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreateAppointmentModal/CreateAppointmentModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreateAppointmentModal/CreateAppointmentModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/Flow4Form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/Flow4Form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/dashboard/account.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard/account.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/config/initialValues.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/BasvuruForms/config/initialValues.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep3Part1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep3Part1.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep2Part5.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/SubSteps/SubStep2Part5.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Forms/validationSchemes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Forms/validationSchemes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Layouts/DashboardLayout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layouts/DashboardLayout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SozlesmeModal/SozlesmeModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SozlesmeModal/SozlesmeModal.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +111,7 @@
       <workItem from="1674406788004" duration="679000" />
       <workItem from="1674407989867" duration="2835000" />
       <workItem from="1674414823694" duration="3870000" />
-      <workItem from="1674507711134" duration="11479000" />
+      <workItem from="1674507711134" duration="11857000" />
     </task>
     <servers />
   </component>
