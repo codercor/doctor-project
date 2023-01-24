@@ -1,3 +1,4 @@
+import { text } from "node:stream/consumers";
 import * as Yup from "yup";
 
 export const multiSelectValidationSchema = Yup.array()
@@ -103,6 +104,11 @@ export const flow3FormValidationSchema = Yup.object({
         is: (sleepPills: string) => sleepPills === "evet",
         then: textValidationSchema,
     }),
+    exerciseTable:textValidationSchema,
+    exerciseRegimen:textValidationSchema,
+    exerciseRegimenDesc:textValidationSchema,
+    exerciseLater:textValidationSchema,
+    exerciseLaterDesc:textValidationSchema,
     diet: Yup.array().of(
         textValidationSchema
     ),
@@ -137,13 +143,232 @@ export const flow3FormValidationSchema = Yup.object({
         then: textValidationSchema
     }),
     outsideMeal: textValidationSchema,
-
+    lifestyleAboutEating: Yup.array().of(
+        textValidationSchema
+    ),
     currentDiet: Yup.array().of(
         textValidationSchema
     ),
 
     currentDietOther: textValidationSchema,
-    otherEgzersiz: textValidationSchema
+    breakfast:textValidationSchema,
+    lunch:textValidationSchema,
+    dinner:textValidationSchema,
+    snacks:textValidationSchema,
+    beverages:textValidationSchema,
+    fruit:textValidationSchema,
+    vegetable: textValidationSchema,
+    legumes:textValidationSchema,
+    redMeat:textValidationSchema,
+    fish:textValidationSchema,
+    dairyProducts:textValidationSchema,
+    nutsAndSeeds:textValidationSchema,
+    oil:textValidationSchema,
+    cannedDrink:textValidationSchema,
+    dessert:textValidationSchema,
+    caffeinatedBeverage:textValidationSchema,
+    caffeinatedBeverageYes:textValidationSchema,
+    coffeQuantity:textValidationSchema,
+    teaQuantity:textValidationSchema,
+    carbonatedCoffeeQuantity:textValidationSchema,
+    caffeineReaction:textValidationSchema,
+    caffeineReactionDesc:textValidationSchema,
+    caffeineSensation:Yup.array().of(
+        textValidationSchema
+    ),
+    smoke:textValidationSchema,
+    smokeType:Yup.array().of(
+        textValidationSchema
+    ),
+    smokeQuantity:textValidationSchema,
+    smokeYear:textValidationSchema,
+    smokeBlock:textValidationSchema,
+    smokeBlockDesc:textValidationSchema,
+    oldSmoke:textValidationSchema,
+    oldSmokeQuantity:textValidationSchema,
+    oldSmokeYear:textValidationSchema,
+    cigaretteSmoke:textValidationSchema,
+    alcoholWeek:textValidationSchema,
+    oldAlcohol:textValidationSchema,
+    oldAlcoholProblems:textValidationSchema,
+    oldAlcoholProblemsWhatTime:textValidationSchema,
+    oldAlcoholProblemsDesc:textValidationSchema,
+    oldAlcoholProblemsHelp:textValidationSchema,
+    recreationalDrug:textValidationSchema,
+    recreationalDrugDesc:textValidationSchema,
+    inhaledSubstance:textValidationSchema,
+    stress:textValidationSchema,
+    copeWithStress:textValidationSchema,
+    relaxationTechniques:textValidationSchema,
+    relaxationTechniquesDesc:textValidationSchema,
+    techniques:Yup.array().of(
+        textValidationSchema
+    ),
+    techniquesDesc:textValidationSchema,
+    consultancy:textValidationSchema,
+    therapy:textValidationSchema,
+    therapyDesc: textValidationSchema,
+    molestation:textValidationSchema,
+    maritalStatus:textValidationSchema,
+    liveWith:textValidationSchema,
+    job:textValidationSchema,
+    oldJob:textValidationSchema,
+    emotionalSupport:textValidationSchema,
+    emotionalSupportSelect: Yup.array().of(
+        textValidationSchema
+    ),
+    emotionalSupportOther:Yup.string().when("emotionalSupportSelect", {
+        is: (val: any) => val.includes("diger"),
+        then: textValidationSchema
+    }),
+    general:textValidationSchema,
+    school:textValidationSchema,
+    businessLife:textValidationSchema,
+    socialLife:textValidationSchema,
+    bestFriend:textValidationSchema,
+    sexuality:textValidationSchema,
+    position:textValidationSchema,
+    withBoyFriendAndGirlFriend:textValidationSchema,
+    children:textValidationSchema,
+    parents:textValidationSchema,
+    partner:textValidationSchema,
+    birth:Yup.array().of(
+        textValidationSchema
+    ),
+    birthComplication:textValidationSchema,
+    birthComplicationDesc:textValidationSchema,
+
+
+    solidFoods:textValidationSchema,
+    wheat:textValidationSchema,
+    dairy:textValidationSchema,
+    avoidedFood:textValidationSchema,
+    sugarOrSweet:textValidationSchema,
+    silverMercuryFiller:textValidationSchema,
+    silverMercuryFillerDesc: textValidationSchema,
+    GoldFiller:textValidationSchema,
+    GoldFillerDesc:textValidationSchema,
+    rootCanalTreatment:textValidationSchema,
+    rootCanalTreatmentDesc:textValidationSchema,
+    Implant:textValidationSchema,
+    ImplantDesc:textValidationSchema,
+    platingMetal:textValidationSchema,
+    platingMetalDesc:textValidationSchema,
+    toothache:textValidationSchema,
+    toothacheDesc:textValidationSchema,
+    bleedingGums:textValidationSchema,
+    bleedingGumsDesc:textValidationSchema,
+    gumProblem:textValidationSchema,
+    gumProblemDesc:textValidationSchema,
+    chewingProblems:textValidationSchema,
+    chewingProblemsDesc:textValidationSchema,
+    otherDentalProblems:textValidationSchema,
+    otherDentalProblemsDesc:textValidationSchema,
+    removingYourMercuryFiller:textValidationSchema,
+    removingYourMercuryFillerDesc:textValidationSchema,
+    howManyFillersAsAChild:textValidationSchema,
+    brushingTeeth:textValidationSchema,
+    floss:textValidationSchema,
+    affectsYouSignificantly:Yup.array().of(
+        textValidationSchema
+    ),
+    affectsYouSignificantlyDesc:textValidationSchema,
+    exposedToAtWorkOrAtHome:Yup.array().of(
+        textValidationSchema
+    ),
+    exposedToAtWorkOrAtHomeDesc:textValidationSchema,
+    significantExposureToHarmfulChemical:textValidationSchema,
+    significantExposureToHarmfulChemicalDesc:textValidationSchema,
+    petOrFarmAnimal:textValidationSchema,
+    petOrFarmAnimalDesc:textValidationSchema,
+    suitablePartsForYou:Yup.array().of(
+        textValidationSchema
+    ),
+    suitablePartsForYouPeeDesc:textValidationSchema,
+    suitablePartsForYouSexualDesc:textValidationSchema,
+    psa:textValidationSchema,
+    psaValue:textValidationSchema,
+    otherTest:textValidationSchema,
+    pregnancy:textValidationSchema,
+    pregnancyCount:textValidationSchema,
+    low:textValidationSchema,
+    lowCount:textValidationSchema,
+    abortion:textValidationSchema,
+    abortionCount:textValidationSchema,
+    livingChild:textValidationSchema,
+    livingChildCount:textValidationSchema,
+    naturalChildbirth:textValidationSchema,
+    naturalChildbirthCount:textValidationSchema,
+    cesareanDelivery:textValidationSchema,
+    cesareanDeliveryCount:textValidationSchema,
+    birthdayOnTheDay:textValidationSchema,
+    birthdayOnTheDayCount:textValidationSchema,
+    premature:textValidationSchema,
+    prematureCount:textValidationSchema,
+    bigbaby:textValidationSchema,
+    bigbabyCount:textValidationSchema,
+    smallbaby:textValidationSchema,
+    smallbabyCount:textValidationSchema,
+    postPregnancyProblems:textValidationSchema,
+    postPregnancyProblemsDesc:textValidationSchema,
+
+    //date alan
+    firstMenstrualAge:textValidationSchema,
+    lastMenstrualAge:textValidationSchema,
+
+
+    menstruationInterval:textValidationSchema,
+    menstrualPeriod:textValidationSchema,
+    menstrualCramp:textValidationSchema,
+    menstrualPain:textValidationSchema,
+    menstrualProblems:textValidationSchema,
+    menstrualProblemsDesc:textValidationSchema,
+    lastMenstrualProblems:textValidationSchema,
+    lastMenstrualProblemsDesc:textValidationSchema,
+    hormonalBirthControl:textValidationSchema,
+    hormonalBirthControlDesc:textValidationSchema,
+    anotherMethod:textValidationSchema,
+    anotherMethods:Yup.array().of(
+        textValidationSchema
+    ),
+    IsMenopause:textValidationSchema,
+    MenopauseLastedAge:textValidationSchema,
+    surgicalMenopause:textValidationSchema,
+    surgicalMenopauseDesc:textValidationSchema,
+    menopauseComplaints:Yup.array().of(
+        textValidationSchema
+    ),
+    hormoneTherapy:textValidationSchema,
+    hormoneTherapyDesc:textValidationSchema,
+    gynecologicalSymptoms:Yup.array().of(
+        textValidationSchema
+    ),
+    gynecologicalSymptomsDesc:textValidationSchema,
+    smearTest:textValidationSchema,
+    smearTestResponse:textValidationSchema,
+    mammographyTest:textValidationSchema,
+    mammographyTestResponse:textValidationSchema,
+    bone:textValidationSchema,
+    boneResponse:textValidationSchema,
+    anotherTest:textValidationSchema,
+    anotherTestDesc:textValidationSchema
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 })

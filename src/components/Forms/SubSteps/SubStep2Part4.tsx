@@ -1,87 +1,87 @@
-import {Add} from "@mui/icons-material";
-import React, {useState} from "react";
-import FormInput, {FormInputTextArea} from "../FormInput/FormInput";
+import { Add } from "@mui/icons-material";
+import React, { useState } from "react";
+import FormInput, { FormInputTextArea } from "../FormInput/FormInput";
 import FormInputSelectOne from "../FormInput/FormInputSelectOne";
 import FormInputSelectMulti from "../FormInput/FormInputSelectMulti";
 
 const EH = [
-    {value: "evet", label: "Evet"},
-    {value: "hayır", label: "Hayır"},
+    { value: "evet", label: "Evet" },
+    { value: "hayır", label: "Hayır" },
 ]
 
 let diet = [
-    {value: "vejetaryan", label: "Vejetaryan"},
-    {value: "vegan", label: "Vegan"},
-    {value: "alergi", label: "Alerji"},
-    {value: "eliminasyon", label: "Eliminasyon"},
-    {value: "kan grubu", label: "Kan grubu"},
-    {value: "dusuk sodyum", label: "Düşük sodyum"},
-    {value: "mandira yok", label: "Mandıra yok"},
-    {value: "bugday yok", label: "Buğday yok"},
-    {value: "glutensiz", label: "Glutensiz"},
-    {value: "dusuk yagli", label: "Düşük yağlı"},
-    {value: "dusuk karbonhidratli", label: "Düşük karbonhidratlı"},
-    {value: "yuksek proteinli", label: "Yüksek Proteinli"},
-    {value: "diğer", label: "Diğer"},
+    { value: "vejetaryan", label: "Vejetaryan" },
+    { value: "vegan", label: "Vegan" },
+    { value: "alergi", label: "Alerji" },
+    { value: "eliminasyon", label: "Eliminasyon" },
+    { value: "kan grubu", label: "Kan grubu" },
+    { value: "dusuk sodyum", label: "Düşük sodyum" },
+    { value: "mandira yok", label: "Mandıra yok" },
+    { value: "bugday yok", label: "Buğday yok" },
+    { value: "glutensiz", label: "Glutensiz" },
+    { value: "dusuk yagli", label: "Düşük yağlı" },
+    { value: "dusuk karbonhidratli", label: "Düşük karbonhidratlı" },
+    { value: "yuksek proteinli", label: "Yüksek Proteinli" },
+    { value: "diğer", label: "Diğer" },
 ]
 let foodsReaction = [
-    {value: "monosodyum glutamat (MSG)", label: "Monosodyum glutamat (MSG)"},
-    {value: "yapay tatlandırıcı", label: "Yapay tatlandırıcı"},
-    {value: "soğan/sarımsak", label: "Soğan/sarımsak"},
-    {value: "peynir", label: "Peynir"},
-    {value: "narenciye", label: "Narenciye"},
-    {value: "çikolata", label: "Çikolata"},
-    {value: "alkol", label: "Alkol"},
-    {value: "kımızı şarap", label: "Kımızı şarap"},
+    { value: "monosodyum glutamat (MSG)", label: "Monosodyum glutamat (MSG)" },
+    { value: "yapay tatlandırıcı", label: "Yapay tatlandırıcı" },
+    { value: "soğan/sarımsak", label: "Soğan/sarımsak" },
+    { value: "peynir", label: "Peynir" },
+    { value: "narenciye", label: "Narenciye" },
+    { value: "çikolata", label: "Çikolata" },
+    { value: "alkol", label: "Alkol" },
+    { value: "kımızı şarap", label: "Kımızı şarap" },
     {
         value: "sülfit içeren besinler(şarap,kuru meyve,salata)",
         label: "Sülfit içeren besinler(şarap,kuru meyve,salata)"
     },
-    {value: "koruyucular", label: "Koruyucular"},
-    {value: "gıda boyası", label: "Gıda boyası"},
-    {value: "diğer", label: "Diğer"},
+    { value: "koruyucular", label: "Koruyucular" },
+    { value: "gıda boyası", label: "Gıda boyası" },
+    { value: "diğer", label: "Diğer" },
 ]
 let LifestyleAboutEating = [
-    {value: "hızlı yerim", label: "Hızlı yerim"},
-    {value: "çok yerim", label: "Çok yerim"},
-    {value: "gece geç saatlerde yerim", label: "Gece geç saatlerde yerim"},
-    {value: "sağlıklı besinleri sevmem", label: "Sağlıklı besinleri sevmem"},
-    {value: "zaman sorunum var", label: "Zaman sorunum var"},
-    {value: "sık seyahat ederim", label: "Sık seyahat ederim"},
-    {value: "öğünlerin %50' den fazlasını dışarda yerim", label: "Öğünlerin %50' den fazlasını dışarda yerim"},
-    {value: "sağlıklı gıda her zaman hazır değil", label: "Sağlıklı gıda her zaman hazır değil"},
-    {value: "atıştırma seçenekleri kötü", label: "Atıştırma seçenekleri kötü"},
-    {value: "aile üyeleri sağlıklı yiyeceklerden hoşlanmaz", label: "Aile üyeleri sağlıklı yiyeceklerden hoşlanmaz"},
+    { value: "hızlı yerim", label: "Hızlı yerim" },
+    { value: "çok yerim", label: "Çok yerim" },
+    { value: "gece geç saatlerde yerim", label: "Gece geç saatlerde yerim" },
+    { value: "sağlıklı besinleri sevmem", label: "Sağlıklı besinleri sevmem" },
+    { value: "zaman sorunum var", label: "Zaman sorunum var" },
+    { value: "sık seyahat ederim", label: "Sık seyahat ederim" },
+    { value: "öğünlerin %50' den fazlasını dışarda yerim", label: "Öğünlerin %50' den fazlasını dışarda yerim" },
+    { value: "sağlıklı gıda her zaman hazır değil", label: "Sağlıklı gıda her zaman hazır değil" },
+    { value: "atıştırma seçenekleri kötü", label: "Atıştırma seçenekleri kötü" },
+    { value: "aile üyeleri sağlıklı yiyeceklerden hoşlanmaz", label: "Aile üyeleri sağlıklı yiyeceklerden hoşlanmaz" },
     {
         value: "aile üyesinin veya yakın arkadaşımın özel diyet ihtiyacı var",
         label: "Aile üyesinin veya yakın arkadaşımın özel diyet ihtiyacı var"
     },
-    {value: "yemeyi severim", label: "Yemeyi severim"},
-    {value: "yemek zorundayım", label: "Yemek zorundayım"},
-    {value: "gıda ile olumsuz ilişkim var", label: "Gıda ile olumsuz ilişkim var"},
-    {value: "yeme sorunları ile mücadele ediyorum", label: "Yeme sorunları ile mücadele ediyorum"},
+    { value: "yemeyi severim", label: "Yemeyi severim" },
+    { value: "yemek zorundayım", label: "Yemek zorundayım" },
+    { value: "gıda ile olumsuz ilişkim var", label: "Gıda ile olumsuz ilişkim var" },
+    { value: "yeme sorunları ile mücadele ediyorum", label: "Yeme sorunları ile mücadele ediyorum" },
     {
         value: "duygusal yiyici (üzgünken, yalnızken, sıkıldığında vb)",
         label: "Duygusal yiyici (üzgünken, yalnızken, sıkıldığında vb)"
     },
-    {value: "stres altında çok yerim", label: "Stres altında çok yerim"},
-    {value: "stres altında az yerim", label: "Stres altında az yerim"},
-    {value: "yemek pişirmeyi sevmem", label: "Yemek pişirmeyi sevmem"},
-    {value: "beslenme tavsiyeleri konusunda kafam karışık", label: "Beslenme tavsiyeleri konusunda kafam karışık"},
+    { value: "stres altında çok yerim", label: "Stres altında çok yerim" },
+    { value: "stres altında az yerim", label: "Stres altında az yerim" },
+    { value: "yemek pişirmeyi sevmem", label: "Yemek pişirmeyi sevmem" },
+    { value: "beslenme tavsiyeleri konusunda kafam karışık", label: "Beslenme tavsiyeleri konusunda kafam karışık" },
 ];
 
 export default function SubStep2Part4({
-                                          errors,
-                                          values,
-                                          handleChange,
-                                      }
-                                          :
-                                          {
-                                              errors: any;
-                                              values: any;
-                                              handleChange: any;
-                                              setFieldValue: any;
-                                          }) {
+    errors,
+    values,
+    handleChange,
+}
+    :
+    {
+        errors: any;
+        values: any;
+        handleChange: any;
+        setFieldValue: any;
+    }) {
 
 
     return (
@@ -173,35 +173,48 @@ export default function SubStep2Part4({
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputTextArea
                     label="Şuanki egzersiz düzeniniz hakkında bilgi veriniz"
+                    name="exerciseTable"
                 />
             </div>
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <div className="flex flex-col">
                     <FormInputSelectOne
                         label="Egzersiz yapmaya istekli misiniz?"
-                        options={[...EH, {value: "biraz", label: "Biraz"}]}
-                        name="sleeping"
+                        options={[...EH, { value: "biraz", label: "Biraz" }]}
+                        name="exerciseRegimen"
+                        onChange={handleChange}
+                        value={values.exerciseRegimen}
+
                     />
                     {
                         //son soru evet ise input açılacak
-                        values.sleeping === "evet" && (
+                        values.exerciseRegimen === "evet" && (
                             <FormInput
                                 label="Evet ise açıklama"
+                                name="exerciseRegimenDesc"
+                                error={errors.exerciseRegimenDesc}
+                                value={values.exerciseRegimenDesc}
+                                onChange={handleChange}
                             />)
                     }
                 </div>
                 <div className="flex flex-col">
                     <FormInputSelectOne
                         label="Egzersiz sonrası aşırı yorgunluk ve ağrı hisseder misiniz?"
-                        options={[...EH]}
-                        name="sleeping"
-                        value={values.sleeping}
+                        options={EH}
+                        name="exerciseLater"
+                        value={values.exerciseLater}
+                        error={errors.exerciseLater}
+                        onChange={handleChange}
                     />
                     {
                         //son soru evet ise input açılacak
-                        values.sleeping === "evet" && (
+                        values.exerciseLater === "evet" && (
                             <FormInput
                                 label="Evet ise açıklama"
+                                name="exerciseLaterDesc"
+                                error={errors.exerciseLaterDesc}
+                                onChange={handleChange}
                             />)
                     }
                 </div>
