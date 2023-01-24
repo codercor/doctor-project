@@ -1,41 +1,42 @@
-import {Add} from "@mui/icons-material";
+import { Add } from "@mui/icons-material";
 import React from "react";
-import FormInput, {FormInputTextArea} from "../FormInput/FormInput";
+import FormInput, { FormInputTextArea } from "../FormInput/FormInput";
 import FormInputSelectOne from "../FormInput/FormInputSelectOne";
 import FormInputSelectMulti from "../FormInput/FormInputSelectMulti";
+import useUser from "src/hooks/user.hook";
 
 const EH = [
-    {value: "evet", label: "Evet"},
-    {value: "hayır", label: "Hayır"},
+    { value: "evet", label: "Evet" },
+    { value: "hayır", label: "Hayır" },
 ]
 
-let diet = [
-    {value: "vejetaryan", label: "Vejetaryan"},
-    {value: "vegan", label: "Vegan"},
-    {value: "alergi", label: "Alerji"},
-    {value: "eliminasyon", label: "Eliminasyon"},
-    {value: "kan grubu", label: "Kan grubu"},
-    {value: "dusuk sodyum", label: "Düşük sodyum"},
-    {value: "mandira yok", label: "Mandıra yok"},
-    {value: "bugday yok", label: "Buğday yok"},
-    {value: "glutensiz", label: "Glutensiz"},
-    {value: "dusuk yagli", label: "Düşük yağlı"},
-    {value: "dusuk karbonhidratli", label: "Düşük karbonhidratlı"},
-    {value: "yuksek proteinli", label: "Yüksek Proteinli"},
-    {value: "diğer", label: "Diğer"},
+let currentDiet = [
+    { value: "vejetaryan", label: "Vejetaryan" },
+    { value: "vegan", label: "Vegan" },
+    { value: "alergi", label: "Alerji" },
+    { value: "eliminasyon", label: "Eliminasyon" },
+    { value: "kan grubu", label: "Kan grubu" },
+    { value: "dusuk sodyum", label: "Düşük sodyum" },
+    { value: "mandira yok", label: "Mandıra yok" },
+    { value: "bugday yok", label: "Buğday yok" },
+    { value: "glutensiz", label: "Glutensiz" },
+    { value: "dusuk yagli", label: "Düşük yağlı" },
+    { value: "dusuk karbonhidratli", label: "Düşük karbonhidratlı" },
+    { value: "yuksek proteinli", label: "Yüksek Proteinli" },
+    { value: "diğer", label: "Diğer" },
 ]
 
 export default function SubStep2Part4({
-                                          errors,
-                                          values,
-                                          handleChange,
-                                          setFieldValue
-                                      }: {
-                                          errors: any;
-                                          values: any;
-                                          handleChange: any;
-                                          setFieldValue: any;
-                                      }
+    errors,
+    values,
+    handleChange,
+    setFieldValue
+}: {
+    errors: any;
+    values: any;
+    handleChange: any;
+    setFieldValue: any;
+}
 ) {
     /*
      sleepHours: Yup.string().required("Bu alan zorunludur"),
@@ -50,6 +51,7 @@ export default function SubStep2Part4({
       then: Yup.string().required("Bu alan zorunludur"),
     }),
     */
+    const { user } = useUser()
     return (
         <>
             <div
@@ -145,14 +147,19 @@ export default function SubStep2Part4({
                 <div className="flex flex-col">
                     <FormInputSelectOne
                         label="Egzersiz yapmaya istekli misiniz?"
-                        options={[...EH, {value: "biraz", label: "Biraz"}]}
-                        name="sleeping"
+                        options={[...EH, { value: "biraz", label: "Biraz" }]}
+                        name="egzersiz"
+                        value={values.egzersiz}
+                        onChange={handleChange}
                     />
                     {
                         //son soru evet ise input açılacak
-                        values.sleeping === "evet" && (
+                        values.egzersiz === "evet" && (
                             <FormInput
                                 label="Evet ise açıklama"
+                                name="otherEgzersiz"
+                                error={errors.otherEgzersiz}
+                                onChange={handleChange}
                             />)
                     }
                 </div>
@@ -174,18 +181,44 @@ export default function SubStep2Part4({
             <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Şu anda uyguladığınız özel bir diyet veya beslenme programı var mı? (Uygun olanı/olanları işaretleyiniz"
-                    options={diet}
-                    name="x"
-                    value={values.x}
+                    options={currentDiet}
+                    name="currentDiet"
+                    value={values.currentDiet}
+                    error={errors.currentDiet}
                 />
                 {
-                    values.x.includes("diğer") && (
+                    values.currentDiet.includes("diğer") && (
                         <FormInput
                             label="Diğer ise açıklayınız"
-
+                            name="currentDietOther"
+                            value={values.currentDietOther}
+                            error={errors.currentDietOther}
+                            onChange={handleChange}
                         />)
                 }
             </div>
+
+
+            {user.Information?.Gender == "Erkek" && <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+                <FormInputSelectMulti
+                    label="Şu anda uyguladığınız özel bir diyet veya beslenme programı var mı? (Uygun olanı/olanları işaretleyiniz"
+                    options={currentDiet}
+                    name="currentDiet"
+                    value={values.currentDiet}
+                    error={errors.currentDiet}
+                />
+                {
+                    values.currentDiet.includes("diğer") && (
+                        <FormInput
+                            label="Diğer ise açıklayınız"
+                            name="currentDietOther"
+                            value={values.currentDietOther}
+                            error={errors.currentDietOther}
+                            onChange={handleChange}
+                        />)
+                }
+            </div>
+            }
         </>
     );
 }
