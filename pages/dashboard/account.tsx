@@ -59,7 +59,7 @@ const Account = () => {
     return (
         <DashboardLayout>
             <div className=" md:h-[798px] flex  rounded-[30px_5px] bg-[#F4F4F4]">
-                <div className="w-1/2 h-full flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
+                <div className="md:w-1/2 w-full h-full flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
                     <div className="flex justify-between w-full">
                         <Text type="h3" className="text-[#4E929D] !text-[20px] w-full">Hesabım</Text>
                         <div onClick={handleEdit}
@@ -68,7 +68,7 @@ const Account = () => {
                         </div>
                     </div>
                     
-                    <div className="max-w-[450px] w-full flex flex-col">
+                    <div className="md:max-w-[450px] w-full flex flex-col">
                         <Input disabled={!isEdit} name="Fullname" value={_userInfo.Fullname} onChange={handleChange}
                             text="Ad Soyad" type="text" />
                         <Input disabled={true} name="Email" value={user.Email} text="Eposta" type="email" />
@@ -103,7 +103,7 @@ const Account = () => {
                     </div>
                 </div>
                 <div
-                    className="bg-[url(/images/png/register.png)] grid place-content-center rounded-[20px_5px_20px_5px] bg-cover bg-center  bg-no-repeat w-1/2 h-full">
+                    className="bg-[url(/images/png/register.png)] hidden md:grid place-content-center rounded-[20px_5px_20px_5px] bg-cover bg-center  bg-no-repeat w-1/2 h-full">
                     <Text type="paragraph" className="text-[25px] text-center text-[white] h-[186px] w-[448px]">
                         İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir
                         hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza

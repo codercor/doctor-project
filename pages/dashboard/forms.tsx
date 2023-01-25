@@ -17,6 +17,7 @@ import { request } from "@config"
 import Flow4Form from "@components/Forms/BasvuruForms/Flow4Form";
 import Flow5Form from "@components/Forms/BasvuruForms/Flow5Form";
 import { toast } from 'react-hot-toast'
+import { useBreakpoint } from "src/hooks/breakpoint";
 
 export interface UserFlowAbilityData {
     "IsPatient": boolean,
@@ -48,6 +49,8 @@ export const getUserFlowAbilibility = async (UserId: string) => {
     }
 }
 export default function Forms() {
+
+    const isDesktop = useBreakpoint("md")
 
 
     const { user: { Id: UserId } } = useUser()
@@ -119,34 +122,39 @@ export default function Forms() {
     const secondMsq = false;
     return (
         <DashboardLayout>
-            <div className="bg-[white]">
-                <FormSteps
-                    selectedStep={selectedStep}
-                    setSelectedStep={setSelectedStep}
-                />
-                <div className="mt-[30px]">
-                    {!isSecondToForthStepIsLocked && selectedStep >= 2 && selectedStep <= 4 && <FormSubSteps
+            {
+                !isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">
+                    <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
+                </div> : <div className="bg-[white]">
+                    <FormSteps
                         selectedStep={selectedStep}
                         setSelectedStep={setSelectedStep}
-                    />}
-                    {(selectedStep == 6 && !secondMsq) && <>
-                        <FormAlert status="inReview" text="MSQ formunuz onaylanmıştır.MSQ formunu tekrar doldurmanız gerektiğinde mail ile bilgilendirileceksiniz." />
-                    </>}
-                    {
-                        forms.map((form) => {
-                            if (form.step === selectedStep) {
-                                if (selectedStep == waitingDoneStep) {
-                                    // eslint-disable-next-line react/jsx-key
-                                    return (<FormAlert
-                                        text="Göndermiş olduğunuz form onaylanmayı bekliyor"
-                                        status="pending"
-                                    />)
+                    />
+                    <div className="mt-[30px]">
+                        {!isSecondToForthStepIsLocked && selectedStep >= 2 && selectedStep <= 4 && <FormSubSteps
+                            selectedStep={selectedStep}
+                            setSelectedStep={setSelectedStep}
+                        />}
+                        {(selectedStep == 6 && !secondMsq) && <>
+                            <FormAlert status="inReview" text="MSQ formunuz onaylanmıştır.MSQ formunu tekrar doldurmanız gerektiğinde mail ile bilgilendirileceksiniz." />
+                        </>}
+                        {
+                            forms.map((form) => {
+                                if (form.step === selectedStep) {
+                                    if (selectedStep == waitingDoneStep) {
+                                        // eslint-disable-next-line react/jsx-key
+                                        return (<FormAlert
+                                            text="Göndermiş olduğunuz form onaylanmayı bekliyor"
+                                            status="pending"
+                                        />)
+                                    }
+                                    return form.component();
                                 }
-                                return form.component();
-                            }
-                        })}
+                            })}
+                    </div>
                 </div>
-            </div>
+            }
+
         </DashboardLayout>
     );
 }

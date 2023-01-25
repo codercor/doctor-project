@@ -16,6 +16,7 @@ import useUser from 'src/hooks/user.hook';
 import { Assay } from './assays-management';
 import { LocalLoading } from './appointment-management';
 import { Pagination } from '@mui/material'
+import { useBreakpoint } from 'src/hooks/breakpoint';
 export default function Assays() {
 
     const { user: { Id } } = useUser()
@@ -91,36 +92,41 @@ export default function Assays() {
                 </div>}
         </div>
     }
+    const isDesktop = useBreakpoint("md")
+    return <>
+        {
+            <DashboardLayout>
+                {!isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">
+                    <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
+                </div> :
+                    <div className=" md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
+                        <div className="w-1/3 flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
+                            <div className="flex flex-col justify-between w-full">
+                                <Text type="h3" className="text-secondary !text-[20px] w-full">Tahlillerim</Text>
+                                <Text type="h3" className="text-secondary font-nexa-light !text-[14px] w-full">Tüm tahlillerinizi görüntüleyin.</Text>
+                            </div>
+                        </div>
 
-    return <DashboardLayout>
-        <div className=" md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
-            <div className="w-1/3 flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
-                <div className="flex flex-col justify-between w-full">
-                    <Text type="h3" className="text-secondary !text-[20px] w-full">Tahlillerim</Text>
-                    <Text type="h3" className="text-secondary font-nexa-light !text-[14px] w-full">Tüm tahlillerinizi görüntüleyin.</Text>
-                </div>
-            </div>
-
-            <div className="w-full mt-[10px] mb-[30px]">
-                <FormAlert status='pending' text='1 adet göndermeniz gereken tahlil bulunmaktadır' />
-            </div>
-            <div className="w-full flex flex-col">
-                <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                    <Text type="h3" className="text-secondary flex-[5] !text-[14px]">Tahlil Adı</Text>
-                    <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Durum</Text>
-                    <div className='flex-[1]'>  </div>
-                </div>
-                <div className='w-full border-2'>
-                    {
-                        assays.map((assay, index) => {
-                            return <Row assay={assay} key={index} />
-                        })
-                    }
-                </div>
-            </div>
-            <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
-                setPage(value)
-            }} count={page + 1} />
-        </div>
-    </DashboardLayout>
+                        <div className="w-full mt-[10px] mb-[30px]">
+                            <FormAlert status='pending' text='1 adet göndermeniz gereken tahlil bulunmaktadır' />
+                        </div>
+                        <div className="w-full flex flex-col">
+                            <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
+                                <Text type="h3" className="text-secondary flex-[5] !text-[14px]">Tahlil Adı</Text>
+                                <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Durum</Text>
+                                <div className='flex-[1]'>  </div>
+                            </div>
+                            <div className='w-full border-2'>
+                                {
+                                    assays.map((assay, index) => {
+                                        return <Row assay={assay} key={index} />
+                                    })
+                                }
+                            </div>
+                        </div>
+                        <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
+                            setPage(value)
+                        }} count={page + 1} />
+                    </div>}
+            </DashboardLayout>}</>
 }

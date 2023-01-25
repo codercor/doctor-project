@@ -33,6 +33,7 @@ import {Fab, Menu} from "@mui/material";
 import classNames from "classnames";
 import useUser from "../../hooks/user.hook";
 import toast, {useToasterStore} from "react-hot-toast";
+import BurgerIcon from "@components/Icon/BurgerIcon";
 
 
 const DashboardLayout = ({children}: { children: React.ReactNode }) => {
@@ -175,7 +176,7 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
                 <Fab size="small" onClick={() => {
                     setShowMenu(!showMenu)
                 }} className="bg-primary" aria-label="add">
-                    <MenuBook/>
+                    <BurgerIcon color="black" />
                 </Fab>
             </div>
             <div
@@ -206,7 +207,7 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
                     </div>
                 </div>
             </div>
-            <Container className="md:pl-[144px] md:pt-[30px] md:pr-[260px] w-[82%] h-[98%] flex flex-col gap-[37px]">
+            <Container className="md:pl-[144px] md:pt-[30px] md:pr-[260px] md:w-[82%] h-[98%] flex flex-col gap-[37px]">
                 <DashBoardNavbar/>
                 {children}
             </Container>

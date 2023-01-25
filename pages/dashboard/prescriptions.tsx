@@ -11,6 +11,7 @@ import { UserInformation, UserState } from '@app/User/user.types';
 import request from '@config';
 import useUser from 'src/hooks/user.hook';
 import { LocalLoading } from './appointment-management';
+import { useBreakpoint } from 'src/hooks/breakpoint';
 interface IPrescriptionItem {
     Id: string;
     UserId: string;
@@ -83,7 +84,7 @@ export default function Prescriptions() {
 
     const [page, setPage] = useState(1)
 
-    
+
 
     const fetchPrescriptions = () => {
         setLoading(true);
@@ -103,38 +104,42 @@ export default function Prescriptions() {
     }, [UserId, page])
 
 
-
+    const isDesktop = useBreakpoint("md")
     return <DashboardLayout>
-        {loading && <LocalLoading message='Reçeteler getiriliyor...' />}
-        <div className=" md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
-            <div className="w-full flex  text-start items-center justify-between  py-[26px] px-[10px]">
-                <div className="flex flex-col justify-between w-full">
-                    <Text type="h3" className="text-[#4D5628] !text-[20px] w-full">Reçeteler</Text>
-                    <Text type="h3" className="text-[#4D5628] font-nexa-light !text-[14px] w-full">Reçetelerinizi görüntüleyin</Text>
-                </div>
-           
-            </div>
+        {!isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">
+            <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
+        </div> : <>
+            {loading && <LocalLoading message='Reçeteler getiriliyor...' />}
+            <div className=" md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
+                <div className="w-full flex  text-start items-center justify-between  py-[26px] px-[10px]">
+                    <div className="flex flex-col justify-between w-full">
+                        <Text type="h3" className="text-[#4D5628] !text-[20px] w-full">Reçeteler</Text>
+                        <Text type="h3" className="text-[#4D5628] font-nexa-light !text-[14px] w-full">Reçetelerinizi görüntüleyin</Text>
+                    </div>
 
-            
-            <div className="w-full flex flex-col">
-                <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                    <Text type="h3" className="text-secondary flex-[6] !text-[14px]">Ad Soyad</Text>
-                    <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
-                    <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
-                    <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Reçete Tarih</Text>
-                    <div className='flex-[4]'>  </div>
                 </div>
-                <div className='w-full border-2'>
-                    {
-                        prescriptions?.map((item) => {
-                            return <Row key={v4()} data={item} />
-                        }) || <></>
-                    }
+
+
+                <div className="w-full flex flex-col">
+                    <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
+                        <Text type="h3" className="text-secondary flex-[6] !text-[14px]">Ad Soyad</Text>
+                        <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
+                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
+                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Reçete Tarih</Text>
+                        <div className='flex-[4]'>  </div>
+                    </div>
+                    <div className='w-full border-2'>
+                        {
+                            prescriptions?.map((item) => {
+                                return <Row key={v4()} data={item} />
+                            }) || <></>
+                        }
+                    </div>
                 </div>
+                <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
+                    setPage(value)
+                }} count={page + 1} />
             </div>
-            <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
-                setPage(value)
-            }} count={page + 1} />
-        </div>
+        </>}
     </DashboardLayout>
 }
