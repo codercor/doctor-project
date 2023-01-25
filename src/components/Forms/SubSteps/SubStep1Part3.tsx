@@ -7,10 +7,12 @@ export default function SubStep1Part3({
   errors,
   values,
   handleChange,
+  readOnly = false
 }: {
   errors: any;
   values: any;
   handleChange: any;
+  readOnly?: boolean;
 }) {
   return (
     <>
@@ -29,6 +31,7 @@ export default function SubStep1Part3({
           name="foodDisorder"
           type="text"
           onChange={handleChange}
+          disabled={readOnly}
         />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
@@ -39,6 +42,7 @@ export default function SubStep1Part3({
           name="favoriteFood"
           type="text"
           onChange={handleChange}
+          disabled={readOnly}
         />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
@@ -49,6 +53,7 @@ export default function SubStep1Part3({
           name="mostEatenFood"
           type="text"
           onChange={handleChange}
+          disabled={readOnly}
         />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
@@ -59,6 +64,7 @@ export default function SubStep1Part3({
           name="foodPreparedBy"
           type="text"
           onChange={handleChange}
+          disabled={readOnly}
         />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
@@ -69,6 +75,7 @@ export default function SubStep1Part3({
           name="foodPurchasedBy"
           type="text"
           onChange={handleChange}
+          disabled={readOnly}
         />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
@@ -79,6 +86,7 @@ export default function SubStep1Part3({
           name="cookingFrequency"
           type="text"
           onChange={handleChange}
+          disabled={readOnly}
         />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
@@ -89,6 +97,7 @@ export default function SubStep1Part3({
           name="mostNutritiousFood"
           type="text"
           onChange={handleChange}
+          disabled={readOnly}
         />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
@@ -99,6 +108,7 @@ export default function SubStep1Part3({
           name="leastNutritiousFood"
           type="text"
           onChange={handleChange}
+          disabled={readOnly}
         />
       </div>
     </>

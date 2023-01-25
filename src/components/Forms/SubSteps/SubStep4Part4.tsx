@@ -4,7 +4,7 @@ import FormInput, { FormInputTextArea } from "../FormInput/FormInput";
 import { generateForm, getSectionTitle, getTurkishTitle, Sections } from "@components/Forms/SubSteps/Utils/SubStep3Util";
 
 
-export default function SubStep3Part4({
+export default function SubStep4Part4({
     errors,
     values,
     handleChange,
@@ -66,11 +66,12 @@ export default function SubStep3Part4({
                 </div>
                 <div className="w-full flex my-[20px] p-[20px] text-[16px] font-nexa-bold bg-[white]">
                     Genel Toplam {
-                        Object.keys(values).reduce((acc, key) => {
+                        Object.keys(values).filter((key) => !key.startsWith("text")).reduce((acc, key) => {
                             return acc + (values[key] || 0)
                         }, 0)
                     }
                 </div>
+
             </div>
         </>
     )

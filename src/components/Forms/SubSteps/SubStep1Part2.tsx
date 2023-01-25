@@ -7,10 +7,12 @@ export default function SubStep1Part2({
   errors,
   values,
   handleChange,
+  readOnly = false
 }: {
   errors: any;
   values: any;
   handleChange: any;
+  readOnly?: boolean;
 }) {
   return (
     <>
@@ -27,7 +29,8 @@ export default function SubStep1Part2({
           value={values.childFoodReact}
           error={errors.childFoodReact}
           name="childFoodReact"
-          />
+          disabled={readOnly}
+        />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
@@ -37,7 +40,8 @@ export default function SubStep1Part2({
           value={values.childFoodAccess}
           error={errors.childFoodAccess}
           name="childFoodAccess"
-          />
+          disabled={readOnly}
+        />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
@@ -47,6 +51,7 @@ export default function SubStep1Part2({
           value={values.childFoodDisorder}
           error={errors.childFoodDisorder}
           name="childFoodDisorder"
+          disabled={readOnly}
         />
       </div>
     </>

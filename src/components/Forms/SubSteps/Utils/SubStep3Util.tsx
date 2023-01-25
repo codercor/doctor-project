@@ -115,7 +115,7 @@ export const Sections = [
     "other"
 ]
 
-export function generateForm(key: string, values: any, errors: any, handleChange: () => any | void) {
+export function generateForm(key: string, values: any, errors: any, handleChange: () => any | void, readOnly: boolean = false) {
     const symptoms = Object.keys(values).filter((s) => s.startsWith(key))
 
     return (<>
@@ -129,9 +129,14 @@ export function generateForm(key: string, values: any, errors: any, handleChange
                     error={errors[symptom]}
                     value={values[symptom]}
                     onChange={handleChange}
+                    disabled={readOnly}
                 />
             </>))
+
         }
+        <h1> Toplam {symptoms.reduce((p, c) => {
+            return p + values[c];
+        }, 0)} </h1>
 
     </>)
 }

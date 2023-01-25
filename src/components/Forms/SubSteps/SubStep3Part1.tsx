@@ -1,20 +1,22 @@
-import {Add} from "@mui/icons-material";
+import { Add } from "@mui/icons-material";
 import React from "react";
-import FormInput, {FormInputTextArea} from "../FormInput/FormInput";
-import {generateForm, getSectionTitle, getTurkishTitle, Sections} from "@components/Forms/SubSteps/Utils/SubStep3Util";
+import FormInput, { FormInputTextArea } from "../FormInput/FormInput";
+import { generateForm, getSectionTitle, getTurkishTitle, Sections } from "@components/Forms/SubSteps/Utils/SubStep3Util";
 
 
 export default function SubStep3Part1({
-                                          errors,
-                                          values,
-                                          handleChange,
-                                          setFieldValue
-                                      }: {
-                                          errors: any;
-                                          values: any;
-                                          handleChange: any;
-                                          setFieldValue: any;
-                                      }
+    errors,
+    values,
+    handleChange,
+    setFieldValue,
+    readOnly = false
+}: {
+    errors: any;
+    values: any;
+    handleChange: any;
+    setFieldValue: any;
+    readOnly?: boolean;
+}
 ) {
 
 
@@ -34,15 +36,15 @@ export default function SubStep3Part1({
                 <div className="w-full flex">
                     <div
                         className="flex flex-col gap-[20px] mb-[5px] py-[5px]  bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[0], values, errors, handleChange)}
+                        {generateForm(Sections[0], values, errors, handleChange, readOnly)}
                     </div>
                     <div
                         className="flex flex-col gap-[20px] py-[5px] mb-[5px] bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[1], values, errors, handleChange)}
+                        {generateForm(Sections[1], values, errors, handleChange, readOnly)}
                     </div>
                     <div
                         className="flex flex-col gap-[20px] py-[5px] mb-[5px] bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[2], values, errors, handleChange)}
+                        {generateForm(Sections[2], values, errors, handleChange, readOnly)}
                     </div>
                 </div>
             </div>

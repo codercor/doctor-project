@@ -4,7 +4,7 @@ import FormInput, { FormInputTextArea } from "../FormInput/FormInput";
 import { generateForm, getSectionTitle, getTurkishTitle, Sections } from "@components/Forms/SubSteps/Utils/SubStep3Util";
 
 
-export default function SubStep3Part4({
+export default function SubStep4Part1({
     errors,
     values,
     handleChange,
@@ -36,40 +36,16 @@ export default function SubStep3Part4({
                 <div className="w-full flex">
                     <div
                         className="flex flex-col gap-[20px] mb-[5px] py-[5px]  bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[9], values, errors, handleChange, readOnly)}
+                        {generateForm(Sections[0], values, errors, handleChange, readOnly)}
                     </div>
                     <div
                         className="flex flex-col gap-[20px] py-[5px] mb-[5px] bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[10], values, errors, handleChange, readOnly)}
-                    </div>
-                </div>
-                <div className="w-full flex">
-                    <div
-                        className="flex flex-col gap-[20px] py-[5px] mb-[5px] bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[11], values, errors, handleChange, readOnly)}
+                        {generateForm(Sections[1], values, errors, handleChange, readOnly)}
                     </div>
                     <div
                         className="flex flex-col gap-[20px] py-[5px] mb-[5px] bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[12], values, errors, handleChange, readOnly)}
+                        {generateForm(Sections[2], values, errors, handleChange, readOnly)}
                     </div>
-
-                </div>
-                <div className="w-full flex">
-                    <div
-                        className="flex flex-col gap-[20px] py-[5px] mb-[5px] bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[13], values, errors, handleChange, readOnly)}
-                    </div>
-                    <div
-                        className="flex flex-col gap-[20px] py-[5px] mb-[5px] bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[14], values, errors, handleChange, readOnly)}
-                    </div>
-                </div>
-                <div className="w-full flex my-[20px] p-[20px] text-[16px] font-nexa-bold bg-[white]">
-                    Genel Toplam {
-                        Object.keys(values).reduce((acc, key) => {
-                            return acc + (values[key] || 0)
-                        }, 0)
-                    }
                 </div>
             </div>
         </>

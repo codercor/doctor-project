@@ -78,12 +78,7 @@ function Flow3Form({setSelectedStep}: PropsCanSelectStep) {
                         errors={errors}
                         handleChange={handleChange}
                         setFieldValue={setFieldValue}
-                    />,
-                    5: <SubStep2Part5
-                        values={values}
-                        errors={errors}
-                        handleChange={handleChange}
-                        setFieldValue={setFieldValue}/>
+                    />
                 }
                 const countOfSubSteps = Object.keys(subSteps).length;
                 return (

@@ -4,7 +4,7 @@ import FormInput, { FormInputTextArea } from "../FormInput/FormInput";
 import { generateForm, getSectionTitle, getTurkishTitle, Sections } from "@components/Forms/SubSteps/Utils/SubStep3Util";
 
 
-export default function SubStep3Part2({
+export default function SubStep4Part5({
     errors,
     values,
     handleChange,
@@ -33,20 +33,19 @@ export default function SubStep3Part2({
                     <p>3 – Sıklıkla var, etkisi şiddetli değil</p>
                     <p>4 – Sıklıkla var, etkisi şiddetli</p>
                 </div>
-                <div className="w-full flex">
-                    <div
-                        className="flex flex-col gap-[20px] mb-[5px] py-[5px]  bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[3], values, errors, handleChange, readOnly)}
-                    </div>
-                    <div
-                        className="flex flex-col gap-[20px] py-[5px] mb-[5px] bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[4], values, errors, handleChange, readOnly)}
-                    </div>
-                    <div
-                        className="flex flex-col gap-[20px] py-[5px] mb-[5px] bg-[#F9F9F9] items-center px-[20px] w-full">
-                        {generateForm(Sections[5], values, errors, handleChange, readOnly)}
-                    </div>
+                <div className="w-full flex my-[20px]">
+                    <FormInputTextArea disabled={readOnly} value={values.textLast2Week} onChange={handleChange} error={errors.textLast2Week} name="textLast2Week" label="Bu geçen 2 hafta nasıldı?" />
                 </div>
+                <div className="w-full flex my-[20px]">
+                    <FormInputTextArea disabled={readOnly} value={values.textLifeStyleChange} onChange={handleChange} error={errors.textLifeStyleChange} name="textLifeStyleChange" label="Yaşam şeklinizi dönüştürürken nerelerde zorlandınız?" />
+                </div>
+                <div className="w-full flex my-[20px]">
+                    <FormInputTextArea disabled={readOnly} value={values.textHaveAProblem} onChange={handleChange} error={errors.textHaveAProblem} name="textHaveAProblem" label="Eğer sorun yaşadıysanız, çözmek için nasıl bir yol izlemeliyiz?" />
+                </div>
+                <div className="w-full flex my-[20px]">
+                    <FormInputTextArea disabled={readOnly} value={values.textSomethingElse} onChange={handleChange} error={errors.textSomethingElse} name="textSomethingElse" label="Bana iletmek istediğiniz başka bir şey var mı?" />
+                </div>
+
             </div>
         </>
     )

@@ -89,9 +89,9 @@ export const CreateAppointmentModal = ({finish, UserId}: Iprops) => {
                 <button onClick={() => {
                     createAppointment()
                 }}
-                        disabled={loading}
+                        disabled={loading || !tempDate}
                         className='text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px] disabled:opacity-[50%]'>
-                    {loading ?  <CircularProgress className="text-white" />:'Oluştur' }
+                    {loading ?  <CircularProgress sx={{color:'white'}} size="24px" />:'Oluştur' }
 
                 </button>
                 <button onClick={() => {

@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import FormDivider from "@components/Forms/FormDivider/FormDivider";
 import FormInput, {
     FormInputSelect,
     FormInputTextArea,
 } from "@components/Forms/FormInput/FormInput";
-import {Field, Formik} from "formik";
+import { Field, Formik } from "formik";
 import * as Yup from "yup";
 import FormSectionHeader from "@components/Forms/FormSectionHeader/FormSectionHeader";
 // @ts-ignore-next-line
-import FormSteps, {FormSubSteps} from "@components/Forms/FormSteps/FormSteps";
-import {v4} from "uuid";
+import FormSteps, { FormSubSteps } from "@components/Forms/FormSteps/FormSteps";
+import { v4 } from "uuid";
 import FormInputSelectMulti from "@components/Forms/FormInput/FormInputSelectMulti";
 import FormInputSelectOne from "@components/Forms/FormInput/FormInputSelectOne";
 import {
@@ -28,31 +28,33 @@ import SubStep1Part4 from "@components/Forms/SubSteps/SubStep1Part4";
 import SubStep2Part2 from "@components/Forms/SubSteps/SubStep2Part2";
 import SubStep2Part3 from "@components/Forms/SubSteps/SubStep2Part3";
 import SubStep2Part4 from "@components/Forms/SubSteps/SubStep2Part4";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import request from "@config";
 import useUser from "src/hooks/user.hook";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import DashboardLayout from "@components/Layouts/DashboardLayout";
 import axios from "axios";
 import SubstepViever from "@components/Forms/SubSteps/SubStepContainer";
-import {flow2FormInitialValues} from "@components/Forms/BasvuruForms/config/initialValues";
+import { flow2FormInitialValues } from "@components/Forms/BasvuruForms/config/initialValues";
+import { LocalLoading } from "../appointment";
 
 const initialValues = flow2FormInitialValues;
 
 const validationSchema = flow2FormValidationSchema;
 
 export const OPTIONS_EHB = [
-    {value: "evet", label: "Evet"},
-    {value: "hayır", label: "Hayır"},
-    {value: "bilmiyorum", label: "Bilmiyorum"},
+    { value: "evet", label: "Evet" },
+    { value: "hayır", label: "Hayır" },
+    { value: "bilmiyorum", label: "Bilmiyorum" },
 ];
 
-export default function SecondForm({}: any) {
+export default function SecondForm({ }: any) {
     const [part, setPart] = useState(Number(localStorage.getItem("part")) || 1);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
         localStorage.setItem("part", part.toString());
     }, [part]);
-    const {user: {Id: UserId}} = useUser()
+    const { user: { Id: UserId } } = useUser()
     const router = useRouter()
     const [isMale, setIsMale] = useState(false);
     const [data, setData] = useState<typeof initialValues>(initialValues)
@@ -65,11 +67,13 @@ export default function SecondForm({}: any) {
     }
 
     const getData = async () => {
+        setLoading(true);
         const dataUrl = await fetchFlow();
         if (!dataUrl) return;
         axios.get(dataUrl).then((res) => {
             console.log("res.data ", res.data);
             setData((res.data))
+            setLoading(false);
         })
     }
     const finalizeTheForm = async () => {
@@ -86,9 +90,12 @@ export default function SecondForm({}: any) {
     useEffect(() => {
         getData();
     }, [])
-
+                        
+    const readOnly = true;
     return (
-        <>
+        <> {
+            loading && <LocalLoading message="Yükleniyor" />
+        }
             <DashboardLayout>
 
                 <Formik
@@ -100,15 +107,15 @@ export default function SecondForm({}: any) {
                     }}
                 >
                     {({
-                          handleSubmit,
-                          handleChange,
-                          values,
-                          errors,
-                          submitForm,
-                          setFieldValue,
-                          setSubmitting,
-                          dirty,
-                      }) => {
+                        handleSubmit,
+                        handleChange,
+                        values,
+                        errors,
+                        submitForm,
+                        setFieldValue,
+                        setSubmitting,
+                        dirty,
+                    }) => {
                         const subSteps = {
                             1: <SubStep1Part1
                                 values={values}
@@ -136,14 +143,14 @@ export default function SecondForm({}: any) {
                             <form onSubmit={handleSubmit}>
                                 <div className="w-full flex flex-col gap-[10px]">
                                     {(
-                                        <SubstepViever subSteps={subSteps} activeSubStep={part}/>
+                                        <SubstepViever subSteps={subSteps} activeSubStep={part} />
                                     )}
                                 </div>
-                                <Form2Footer parts={countOfSubSteps} setter={setPart} active={part}/>
+                                <Form2Footer parts={countOfSubSteps} setter={setPart} active={part} />
                                 <button onClick={() => {
                                     finalizeTheForm()
                                 }}
-                                        className="bg-[green] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
+                                    className="bg-[green] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
                                     Onayla
                                 </button>
                             </form>

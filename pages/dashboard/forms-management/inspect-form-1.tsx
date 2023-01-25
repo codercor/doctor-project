@@ -1,32 +1,33 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 //import FormDivider from " ../FormDivider/FormDivider";
 import FormDivider from "@components/Forms/FormDivider/FormDivider";
 import FormInput, {
     FormInputSelect,
     FormInputTextArea,
 } from "@components/Forms/FormInput/FormInput";
-import {Formik} from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import FormSectionHeader from "@components/Forms/FormSectionHeader/FormSectionHeader";
 // @ts-ignore-next-line
 import CountryCityService from "countries-cities";
 import FormInputSelectOne from "@components/Forms/FormInput/FormInputSelectOne";
-import {flow1FormValidationSchema, textValidationSchema} from "@components/Forms/validationSchemes";
-import {useRouter} from 'next/router'
+import { flow1FormValidationSchema, textValidationSchema } from "@components/Forms/validationSchemes";
+import { useRouter } from 'next/router'
 import request from "@config";
 import useUser from "src/hooks/user.hook";
 import DashboardLayout from "@components/Layouts/DashboardLayout";
 import axios from "axios";
-import {toast} from "react-hot-toast";
-import {CreateAppointmentModal} from "@components/CreateAppointmentModal/CreateAppointmentModal";
-import {flow1FormInitialValues} from "@components/Forms/BasvuruForms/config/initialValues";
+import { toast } from "react-hot-toast";
+import { CreateAppointmentModal } from "@components/CreateAppointmentModal/CreateAppointmentModal";
+import { flow1FormInitialValues } from "@components/Forms/BasvuruForms/config/initialValues";
+import { LocalLoading } from "../appointment";
 
 const initialValues = flow1FormInitialValues;
 const countries = CountryCityService.getCountries().map((country: string) => {
     if (country === "Turkey") {
-        return {value: country, label: "Türkiye"};
+        return { value: country, label: "Türkiye" };
     }
-    return {value: country, label: country};
+    return { value: country, label: country };
 });
 
 const validationSchema = flow1FormValidationSchema;
@@ -34,6 +35,7 @@ const validationSchema = flow1FormValidationSchema;
 export default function InspectFirstForm() {
     const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false)
     const [ownerUserId, setOwnerUserId] = useState<string>("")
+    const [loading, setLoading] = useState(false);
 
     const [data, setData] = useState<typeof initialValues>(initialValues)
     const router = useRouter()
@@ -48,19 +50,15 @@ export default function InspectFirstForm() {
     }
 
     const getData = async () => {
+        setLoading(true);
         const dataUrl = await fetchFlow();
+        if (!dataUrl) return;
         axios.get(dataUrl).then((res) => {
-            // setData(res.data)
             console.log("res.data ", res.data);
-            setData({
-                ...res.data
-            })
-
+            setData((res.data))
+            setLoading(false);
         })
-
-
     }
-
 
     useEffect(() => {
         getData();
@@ -80,15 +78,18 @@ export default function InspectFirstForm() {
 
     const [cities, setCities] = useState<any[]>(
         CountryCityService.getCities("Turkey").map((city: string) => {
-            return {value: city, label: city};
+            return { value: city, label: city };
         })
     );
-    return (
+    return (<>
+        {
+            loading && <LocalLoading message="Yükleniyor" />
+        }
         <DashboardLayout>
             {isAppointmentModalOpen && <CreateAppointmentModal finish={() => {
                 setIsAppointmentModalOpen(false);
                 router.push("/dashboard/forms-management")
-            }} UserId={ownerUserId}/>}
+            }} UserId={ownerUserId} />}
             <Formik
                 initialValues={data}
                 validationSchema={validationSchema}
@@ -97,7 +98,7 @@ export default function InspectFirstForm() {
                 }}
                 enableReinitialize={true}
             >
-                {({handleSubmit, handleChange, values, errors, submitForm, dirty}) => {
+                {({ handleSubmit, handleChange, values, errors, submitForm, dirty }) => {
                     return (
                         <form
                             onSubmit={handleSubmit}>
@@ -129,9 +130,9 @@ export default function InspectFirstForm() {
                                         onChange={handleChange}
                                         label="Cinsiyetiniz"
                                         options={[
-                                            {value: "kadın", label: "Kadın"},
-                                            {value: "erkek", label: "Erkek"},
-                                            {value: "diger", label: "Diğer"},
+                                            { value: "kadın", label: "Kadın" },
+                                            { value: "erkek", label: "Erkek" },
+                                            { value: "diger", label: "Diğer" },
                                         ]}
                                         disabled={true}
                                     />
@@ -169,7 +170,7 @@ export default function InspectFirstForm() {
                                                 CountryCityService.getCities(selectedCountry) || [];
                                             setCities(
                                                 cities.map((city: string) => {
-                                                    return {value: city, label: city};
+                                                    return { value: city, label: city };
                                                 })
                                             );
                                             handleChange(e);
@@ -224,7 +225,7 @@ export default function InspectFirstForm() {
                                     />
                                 </div>
                                 {" "}
-                                <FormDivider/>
+                                <FormDivider />
                                 <div className="flex h-[120px] gap-[30px]  w-[full]">
                                     <FormInputTextArea
                                         error={errors.shortStory}
@@ -255,8 +256,8 @@ export default function InspectFirstForm() {
                                         onChange={handleChange}
                                         label="Görüşme şekli tercihiniz ?"
                                         options={[
-                                            {value: "yuzyuze", label: "Yüz yüze"},
-                                            {value: "online", label: "Online"},
+                                            { value: "yuzyuze", label: "Yüz yüze" },
+                                            { value: "online", label: "Online" },
                                         ]}
                                         disabled={true}
                                     />
@@ -267,13 +268,13 @@ export default function InspectFirstForm() {
                                     setIsAppointmentModalOpen(true)
                                     finalizeTheForm(true)
                                 }}
-                                        className="bg-[green] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
+                                    className="bg-[green] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
                                     Onayla
                                 </button>
                                 <button onClick={() => {
                                     finalizeTheForm(false)
                                 }}
-                                        className="bg-[red] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
+                                    className="bg-[red] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
                                     Reddet
                                 </button>
                             </div>
@@ -282,5 +283,5 @@ export default function InspectFirstForm() {
                 }}
             </Formik>
         </DashboardLayout>
-    );
+    </>);
 }
