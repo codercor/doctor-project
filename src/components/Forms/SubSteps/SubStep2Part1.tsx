@@ -99,6 +99,7 @@ export default function SubStep2Part1({
                 value: "Diğer",
               },
             ]}
+            onChange={handleChange}
           />
         </div>
         {values.geneticHistory == "Diğer" && (
@@ -175,9 +176,10 @@ export default function SubStep2Part1({
                 value: "Diğer",
               },
             ]}
+            onChange={handleChange}
           />
         </div>
-        {values.geneticHistory == "Diğer" && (
+        {values.whereDidYouHear == "Diğer" && (
           <FormInput
             label="Diğer"
             name="whereDidYouHearOther"

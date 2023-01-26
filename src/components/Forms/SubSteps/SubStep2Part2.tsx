@@ -30,12 +30,12 @@ export default function SubStep2Part2({
                 <Combined4Input
                     errors={errors}
                     values={values}
-                    options2={[
+                    options1={[
                         { value: "Hafif", label: "Hafif" },
                         { value: "Orta", label: "Orta" },
                         { value: "Şiddeti", label: "Şiddeti" },
                     ]}
-                    options1={[
+                    options2={[
                         { value: "Zayıf", label: "Zayıf" },
                         { value: "İyi", label: "İyi" },
                         { value: "Mükemmel", label: "Mükemmel" },
