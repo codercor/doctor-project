@@ -75,7 +75,7 @@ const BuyKit = ({ id, price, totalLength }: { id: string, price: number, totalLe
                 <School />
                 <Text>Fiyat</Text>
             </div>
-            <Text>{price}₺</Text>
+            <Text> {price == 0 ? 'Ücretsiz ' : <>{price}₺</>}</Text>
         </div>
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>
@@ -153,7 +153,7 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
                 </div>
             </div>
             <div className="md:w-[30%] w-full h-full bg-[#F4F4F4] pt-[42px] pl-[32px] pr-[30px]">
-                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price - (training.Price * (training.DiscountRate/100))} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
+                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price - (training.Price * (training.DiscountRate / 100))} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
 
                 <Text type='h6' className='text-secondary-flat'>Eğitim Konuları</Text>
                 <div className="w-full scrollbar-thin scrollbar-thumb-tertiary-light overflow-auto h-[90%]">
