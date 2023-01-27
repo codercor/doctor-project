@@ -16,7 +16,7 @@ import useUser from 'src/hooks/user.hook';
 import { Assay } from './assays-management';
 import { LocalLoading } from './appointment-management';
 import { Pagination } from '@mui/material'
-import { useBreakpoint } from 'src/hooks/breakpoint';
+import { useBreakpoint, useIsDesktop } from 'src/hooks/breakpoint';
 export default function Assays() {
 
     const { user: { Id } } = useUser()
@@ -92,7 +92,7 @@ export default function Assays() {
                 </div>}
         </div>
     }
-    const isDesktop = useBreakpoint("md")
+    const isDesktop = useIsDesktop();
     return <>
         {
             <DashboardLayout>
@@ -107,9 +107,11 @@ export default function Assays() {
                             </div>
                         </div>
 
-                        <div className="w-full mt-[10px] mb-[30px]">
-                            <FormAlert status='pending' text='1 adet göndermeniz gereken tahlil bulunmaktadır' />
-                        </div>
+                        {assays.find((assay) => {
+                            return assay.Status === "Bekliyor"
+                        }) && <div className="w-full mt-[10px] mb-[30px]">
+                                <FormAlert status='pending' text='Göndermeniz gereken tahliller bulunmaktadır' />
+                            </div>}
                         <div className="w-full flex flex-col">
                             <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
                                 <Text type="h3" className="text-secondary flex-[5] !text-[14px]">Tahlil Adı</Text>

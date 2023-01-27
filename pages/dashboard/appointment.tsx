@@ -10,7 +10,7 @@ import FormInputSelectOne from '@components/Forms/FormInput/FormInputSelectOne'
 import { Loading } from './create-training'
 import toast from "react-hot-toast";
 import useUser from "../../src/hooks/user.hook";
-import { useBreakpoint } from 'src/hooks/breakpoint'
+import { useBreakpoint, useIsDesktop } from 'src/hooks/breakpoint'
 
 interface Appointment {
     Id: string;
@@ -180,7 +180,7 @@ export const LocalLoading = ({ message }: { message: string }) => <div className
     message={message} /></div>
 export default function AppointmentManagement() {
     const { user: { Id: UserId } } = useUser()
-    const isDesktop = useBreakpoint("md")
+    const isDesktop = useIsDesktop();
     const [appointments, setAppointments] = useState<Appointment[]>([
 
     ])

@@ -113,16 +113,7 @@ export default function SubStep2Part1({
           />
         )}
       </div>
-      <div className="flex min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-        <FormInput
-          label="Sağlık hizmetini en son nerede, ne zaman ve kimden aldınız?"
-          value={values.lastHealt}
-          error={errors.lastHealt}
-          name="lastHealt"
-          type="text"
-          onChange={handleChange}
-        />
-      </div>
+    
       <div className="flex  min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Sağlık hizmetini en son nerede, ne zaman ve kimden aldınız?"

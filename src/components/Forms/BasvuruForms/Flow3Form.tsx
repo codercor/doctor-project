@@ -32,6 +32,8 @@ const initialValues = flow3FormInitialValues;
 
 function Flow3Form({ setSelectedStep }: PropsCanSelectStep) {
     const { user: { Id: UserId } } = useUser()
+    let key = `flow-3-data-${UserId}`;
+    const [data, setData] = useState(JSON.parse(localStorage.getItem(key) as string) || initialValues);
     const [part, setPart] = useState(Number(localStorage.getItem("flow-3-part" + UserId)) || 1);
     useEffect(() => {
         localStorage.setItem("flow-3-part" + UserId, part.toString());
@@ -42,7 +44,7 @@ function Flow3Form({ setSelectedStep }: PropsCanSelectStep) {
 
     return (
         <Formik
-            initialValues={initialValues}
+            initialValues={data}
             validationSchema={validationSchema}
             onSubmit={(values) => {
                 console.log("values", values);
@@ -131,10 +133,11 @@ function Flow3Form({ setSelectedStep }: PropsCanSelectStep) {
                 const countOfSubSteps = Object.keys(subSteps).length;
                 return (
                     <form onSubmit={handleSubmit}>
-                        <div className="w-full flex flex-col gap-[10px]">
+                        <div className="w-full flex  flex-col gap-[10px]">
                             {(
                                 <SubstepViever subSteps={subSteps} activeSubStep={part} />
                             )}
+
                         </div>
 
                         <Form2Footer parts={countOfSubSteps} setter={setPart} active={part} />
@@ -144,6 +147,8 @@ function Flow3Form({ setSelectedStep }: PropsCanSelectStep) {
                                 <button type="button"
                                     onClick={() => {
                                         if (Object.keys(errors).length > 0) {
+                                            console.log("flow 3 errors", errors);
+
                                             toast.error("Lütfen tüm alanları doldurunuz.")
                                         } else submitForm()
                                     }}

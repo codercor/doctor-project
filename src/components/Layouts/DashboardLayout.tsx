@@ -193,7 +193,7 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
                 <div className="absolute bottom-0  h-[150px] md:h-[200px] flex flex-col justify-end left-0 w-full">
                     <div className="px-[30px] mb-[34px]">
                         <Button onClick={() => logout()}
-                                className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] bg-[red]">
+                                className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] !bg-[red]">
                             <PowerSettingsNew className="text-[white]"/>
                             <Text className="text-[white]">
                                 Çıkış Yap

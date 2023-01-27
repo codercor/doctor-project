@@ -2,15 +2,15 @@ import { adminGetLastSalesRequest } from "@app/User/user.utils";
 import { useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { CircularProgress } from '@mui/material';
-
+import { Pagination } from '@mui/material'
 const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
     const [list, setList] = useState<any[]>([]);
     const [IsLoading, setIsLoading] = useState(false);
-
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         setIsLoading(true);
-        adminGetLastSalesRequest().then(res => {
+        adminGetLastSalesRequest(page).then(res => {
             limited ? setList(res.slice(0, 5)) : setList(res);
             console.log(res);
 
@@ -18,11 +18,11 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
         }).catch(err => {
             setIsLoading(false);
         })
-    }, [])
+    }, [page])
 
 
     return <>
-        {IsLoading ? <CircularProgress /> : <TableContainer>
+        {IsLoading ? <div className="w-full h-full grid place-content-center"> <CircularProgress /></div> : <div className="w-full"> <TableContainer>
 
             <Table aria-label="collapsible table">
                 <TableHead>
@@ -49,7 +49,11 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
 
                 </TableBody>
             </Table>
-        </TableContainer >}
+        </TableContainer >
+            <Pagination siblingCount={3} variant="text" page={page} className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
+                setPage(value)
+            }} count={page + 1} />
+        </div>}
     </>
 }
 

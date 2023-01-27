@@ -11,7 +11,7 @@ import { UserInformation, UserState } from '@app/User/user.types';
 import request from '@config';
 import useUser from 'src/hooks/user.hook';
 import { LocalLoading } from './appointment-management';
-import { useBreakpoint } from 'src/hooks/breakpoint';
+import { useBreakpoint, useIsDesktop } from 'src/hooks/breakpoint';
 interface IPrescriptionItem {
     Id: string;
     UserId: string;
@@ -104,7 +104,7 @@ export default function Prescriptions() {
     }, [UserId, page])
 
 
-    const isDesktop = useBreakpoint("md")
+    const isDesktop = useIsDesktop();
     return <DashboardLayout>
         {!isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">
             <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>

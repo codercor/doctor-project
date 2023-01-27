@@ -47,7 +47,7 @@ export const OPTIONS_EHB = [
 ];
 
 export default function SecondForm({ }: any) {
-    const [part, setPart] = useState(Number(localStorage.getItem("part")) || 1);
+    const [part, setPart] = useState(1);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         localStorage.setItem("part", part.toString());

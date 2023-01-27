@@ -124,8 +124,8 @@ export default function FormManagement() {
             </div>
             <FormTypeGrid active={activeTab} setActive={setActiveTab} />
             <div className="w-[60%] gap-[10px] mt-[30px] mb-[30px] flex">
-                <input type="text" placeholder='Ad Soyad ya da E-posta adresine göre arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
-                <button className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
+                <input type="text" onChange={(e) => setSearchKey(e.currentTarget.value)} placeholder='Ad Soyad ya da E-posta adresine göre arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
+                <button onClick={() => refresh()} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
                     <RefreshRounded />
                 </button>
             </div>

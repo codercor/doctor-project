@@ -17,7 +17,8 @@ import { request } from "@config"
 import Flow4Form from "@components/Forms/BasvuruForms/Flow4Form";
 import Flow5Form from "@components/Forms/BasvuruForms/Flow5Form";
 import { toast } from 'react-hot-toast'
-import { useBreakpoint } from "src/hooks/breakpoint";
+import { useBreakpoint, useIsDesktop } from "src/hooks/breakpoint";
+import Flow6Form from "@components/Forms/BasvuruForms/Flow6Form";
 
 export interface UserFlowAbilityData {
     "IsPatient": boolean,
@@ -26,6 +27,7 @@ export interface UserFlowAbilityData {
     "IsHaveWaitingForm": boolean,
     "LastWaitingDoneStep": null | number,
     "IsRejected": boolean,
+    "IsFormLocked": boolean,
 }
 
 
@@ -50,22 +52,26 @@ export const getUserFlowAbilibility = async (UserId: string) => {
 }
 export default function Forms() {
 
-    const isDesktop = useBreakpoint("md")
+    const isDesktop = useIsDesktop();
 
 
-    const { user: { Id: UserId } } = useUser()
+    const { user: { Id: UserId, IsPatient } } = useUser()
     const key = `selectedStep-${UserId}`
     const [selectedStep, setSelectedStep] = React.useState(Number(localStorage.getItem(key)) || 1);
     const [waitingDoneStep, setWaitingDoneStep] = React.useState<number | null>(null);
 
+  
 
     useEffect(() => {
         console.log("key", key)
         localStorage.setItem(key, selectedStep.toString());
         console.log(localStorage.getItem(key))
         // setTheLockedSteps(selectedStep)
+        if (!IsPatient) {
+            Router.push("/dashboard")
+        }
     }, [selectedStep]);
-
+    const [showLastForm, setShowLastForm] = React.useState(true);
     const [forms, setForms] = React.useState([
         {
             step: 1,
@@ -87,10 +93,14 @@ export default function Forms() {
             step: 5,
             component: () => <Flow5Form />,
         },
+        {
+            step: 6,
+            component: () => <Flow6Form />,
+        },
     ]);
 
     const [isSecondToForthStepIsLocked, setIsSecondToForthStepIsLocked] = React.useState(false);
-
+    const [done, setDone] = React.useState(false);
     useEffect(() => {
         const abilityPromise = getUserFlowAbilibility(UserId);
         abilityPromise.then((ability) => {
@@ -109,17 +119,20 @@ export default function Forms() {
                 }
                 //
             } else {
-                console.log("ön başvular açık")
-                setSelectedStep(ability.LastDoneStep + 1)
+                if (ability.LastDoneStep != 6) {
+                    setSelectedStep(ability.LastDoneStep + 1)
+                } else {
+                    setDone(true)
+                }
             }
             if (ability.LastDoneStep >= 1 && [2, 3, 4].includes(ability.LastWaitingDoneStep as number)) {
                 setIsSecondToForthStepIsLocked(true)
             }
-
+            setShowLastForm(!ability.IsFormLocked)
         })
     }, [])
 
-    const secondMsq = false;
+
     return (
         <DashboardLayout>
             {
@@ -135,11 +148,11 @@ export default function Forms() {
                             selectedStep={selectedStep}
                             setSelectedStep={setSelectedStep}
                         />}
-                        {(selectedStep == 6 && !secondMsq) && <>
+                        {(selectedStep == 6 && !showLastForm && waitingDoneStep != 6) && <>
                             <FormAlert status="inReview" text="MSQ formunuz onaylanmıştır.MSQ formunu tekrar doldurmanız gerektiğinde mail ile bilgilendirileceksiniz." />
                         </>}
                         {
-                            forms.map((form) => {
+                            !done ? forms.map((form) => {
                                 if (form.step === selectedStep) {
                                     if (selectedStep == waitingDoneStep) {
                                         // eslint-disable-next-line react/jsx-key
@@ -148,9 +161,13 @@ export default function Forms() {
                                             status="pending"
                                         />)
                                     }
+                                    if (selectedStep == 6 && !showLastForm) {
+                                        return <></>
+                                    }
                                     return form.component();
                                 }
-                            })}
+                            }) : <FormAlert text="Tebrikler tüm formlarınız iletilmiştir" status="inReview" />
+                        }
                     </div>
                 </div>
             }

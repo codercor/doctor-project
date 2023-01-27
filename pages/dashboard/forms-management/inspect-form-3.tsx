@@ -21,10 +21,6 @@ import {
 import classNames from "classnames";
 import Form2Footer from "@components/Forms/Form2Footer/Form2Footer";
 import SubStep2Part1 from "@components/Forms/SubSteps/SubStep2Part1";
-import SubStep1Part1 from "@components/Forms/SubSteps/SubStep1Part1";
-import SubStep1Part2 from "@components/Forms/SubSteps/SubStep1Part2";
-import SubStep1Part3 from "@components/Forms/SubSteps/SubStep1Part3";
-import SubStep1Part4 from "@components/Forms/SubSteps/SubStep1Part4";
 import SubStep2Part2 from "@components/Forms/SubSteps/SubStep2Part2";
 import SubStep2Part3 from "@components/Forms/SubSteps/SubStep2Part3";
 import SubStep2Part4 from "@components/Forms/SubSteps/SubStep2Part4";
@@ -37,6 +33,13 @@ import axios from "axios";
 import SubstepViever from "@components/Forms/SubSteps/SubStepContainer";
 import { flow2FormInitialValues } from "@components/Forms/BasvuruForms/config/initialValues";
 import { LocalLoading } from "../appointment";
+import SubStep2Part5 from "@components/Forms/SubSteps/SubStep2Part5";
+import SubStep2Part6 from "@components/Forms/SubSteps/SubStep2Part6";
+import SubStep2Part7 from "@components/Forms/SubSteps/SubStep2Part7";
+import SubStep2Part8 from "@components/Forms/SubSteps/SubStep2Part8";
+import SubStep2Part9 from "@components/Forms/SubSteps/SubStep2Part9";
+import SubStep2Part10 from "@components/Forms/SubSteps/SubStep2Part10";
+import SubStep2Part11 from "@components/Forms/SubSteps/SubStep2Part11";
 
 const initialValues = flow2FormInitialValues;
 
@@ -49,7 +52,7 @@ export const OPTIONS_EHB = [
 ];
 
 export default function SecondForm({ }: any) {
-    const [part, setPart] = useState(Number(localStorage.getItem("part")) || 1);
+    const [part, setPart] = useState(1);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         localStorage.setItem("part", part.toString());
@@ -69,7 +72,10 @@ export default function SecondForm({ }: any) {
     const getData = async () => {
         setLoading(true);
         const dataUrl = await fetchFlow();
-        if (!dataUrl) return;
+        if (!dataUrl) {
+            setLoading(false);
+            return;
+        }
         axios.get(dataUrl).then((res) => {
             console.log("res.data ", res.data);
             setData((res.data))
@@ -89,8 +95,8 @@ export default function SecondForm({ }: any) {
 
     useEffect(() => {
         getData();
-    }, [])
-                        
+    }, [flowId])
+
     const readOnly = true;
     return (
         <> {
@@ -117,34 +123,80 @@ export default function SecondForm({ }: any) {
                         dirty,
                     }) => {
                         const subSteps = {
-                            1: <SubStep1Part1
+                            1: <SubStep2Part1
                                 values={values}
                                 errors={errors}
                                 handleChange={handleChange}
                             />,
-                            2: <SubStep1Part2
+                            2: <SubStep2Part2
                                 values={values}
                                 errors={errors}
                                 handleChange={handleChange}
+                                setFieldValue={setFieldValue}
                             />,
-                            3: <SubStep1Part3
+                            3: <SubStep2Part3
                                 values={values}
                                 errors={errors}
                                 handleChange={handleChange}
+                                setFieldValue={setFieldValue}
                             />,
-                            4: <SubStep1Part4
+                            4: <SubStep2Part4
                                 values={values}
                                 errors={errors}
                                 handleChange={handleChange}
+                                setFieldValue={setFieldValue}
                             />,
+                            5: <SubStep2Part5
+                                values={values}
+                                errors={errors}
+                                handleChange={handleChange}
+                                setFieldValue={setFieldValue}
+                            />,
+                            6: <SubStep2Part6
+                                values={values}
+                                errors={errors}
+                                handleChange={handleChange}
+                                setFieldValue={setFieldValue}
+                            />,
+                            7: <SubStep2Part7
+                                values={values}
+                                errors={errors}
+                                handleChange={handleChange}
+                                setFieldValue={setFieldValue}
+                            />,
+                            8: <SubStep2Part8
+                                values={values}
+                                errors={errors}
+                                handleChange={handleChange}
+                                setFieldValue={setFieldValue}
+                            />,
+                            9: <SubStep2Part9
+                                values={values}
+                                errors={errors}
+                                handleChange={handleChange}
+                                setFieldValue={setFieldValue}
+                            />,
+                            10: <SubStep2Part10
+                                values={values}
+                                errors={errors}
+                                handleChange={handleChange}
+                                setFieldValue={setFieldValue}
+                            />,
+                            11: <SubStep2Part11
+                                values={values}
+                                errors={errors}
+                                handleChange={handleChange}
+                                setFieldValue={setFieldValue}
+                            />
                         }
                         const countOfSubSteps = Object.keys(subSteps).length;
                         return (
                             <form onSubmit={handleSubmit}>
-                                <div className="w-full flex flex-col gap-[10px]">
+                                <div className="w-full relative flex flex-col gap-[10px]">
                                     {(
                                         <SubstepViever subSteps={subSteps} activeSubStep={part} />
                                     )}
+                                     <div className='bg-[red] opacity-[0.01] w-full h-full absolute top-0 left-0'></div>
                                 </div>
                                 <Form2Footer parts={countOfSubSteps} setter={setPart} active={part} />
                                 <button onClick={() => {

@@ -4,6 +4,7 @@ import FormInput, { FormInputTextArea } from "../FormInput/FormInput";
 import FormInputSelectOne from "../FormInput/FormInputSelectOne";
 import FormInputSelectMulti from "../FormInput/FormInputSelectMulti";
 import useUser from "src/hooks/user.hook";
+import { Field } from "formik";
 
 const EH = [
     { value: "evet", label: "Evet" },
@@ -87,9 +88,10 @@ export default function SubStep2Part8({
                     name="affectsYouSignificantly"
                     value={values.affectsYouSignificantly}
                     error={errors?.affectsYouSignificantly}
+
                 />
                 {
-                    values.affectsYouSignificantly.includes("diğer") &&
+                    values.affectsYouSignificantly?.includes("diğer") &&
                     <FormInput
                         label={`Açıklayınız ?`}
                         value={values.affectsYouSignificantlyDesc}
@@ -125,7 +127,7 @@ export default function SubStep2Part8({
                     value={values.exposedToAtWorkOrAtHome}
                     error={errors?.exposedToAtWorkOrAtHome}
                 />{
-                    values.exposedToAtWorkOrAtHome.includes("diğer") &&
+                    values.exposedToAtWorkOrAtHome?.includes("diğer") &&
                     <FormInput
                         label={`Açıklayınız ?`}
                         value={values.exposedToAtWorkOrAtHomeDesc}
@@ -181,7 +183,7 @@ export default function SubStep2Part8({
             {user.Information?.Gender === "Erkek" && <>
 
                 <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
-                    <h2 className="font-nexa-regular text-[18px]">Erkek özel özgeçmiş:</h2>
+                    <h2 className=" text-[18px]">Erkek özel özgeçmiş:</h2>
                 </div>
 
                 <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
@@ -209,7 +211,7 @@ export default function SubStep2Part8({
                         error={errors?.suitablePartsForYou}
                     />
                     {
-                        values.suitablePartsForYou.includes("gece idrara çıkma") &&
+                        values.suitablePartsForYou?.includes("gece idrara çıkma") &&
                         <FormInput
                             label={`Gecede kere idrara çıkıyorsunuz ?`}
                             value={values.suitablePartsForYouPeeDesc}
@@ -270,7 +272,7 @@ export default function SubStep2Part8({
             {user.Information?.Gender === "Kadın" && <>
 
                 <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
-                    <h2 className="font-nexa-regular text-[18px]">Kadın özel özgeçmiş:</h2>
+                    <h2 className=" text-[18px]">Kadın özel özgeçmiş:</h2>
                 </div>
 
                 <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
@@ -502,7 +504,7 @@ export default function SubStep2Part8({
                         value={values.firstMenstrualAge}
                         error={errors.firstMenstrualAge}
                         name="firstMenstrualAge"
-                        type="date"
+                        type="text"
                         onChange={handleChange}
                     />
 
@@ -511,7 +513,7 @@ export default function SubStep2Part8({
                         value={values.lastMenstrualAge}
                         error={errors.lastMenstrualAge}
                         name="lastMenstrualAge"
-                        type="date"
+                        type="text"
                         onChange={handleChange}
                     />
 
@@ -565,7 +567,7 @@ export default function SubStep2Part8({
                             value={values.menstrualProblemsDesc}
                             error={errors.menstrualProblemsDesc}
                             name="menstrualProblemsDesc"
-                            type="date"
+                            type="text"
                             onChange={handleChange}
                         />
                     }
@@ -584,7 +586,7 @@ export default function SubStep2Part8({
                             value={values.lastMenstrualProblemsDesc}
                             error={errors.lastMenstrualProblemsDesc}
                             name="lastMenstrualProblemsDesc"
-                            type="date"
+                            type="text"
                             onChange={handleChange}
                         />
                     }
@@ -603,7 +605,7 @@ export default function SubStep2Part8({
                             value={values.hormonalBirthControlDesc}
                             error={errors.hormonalBirthControlDesc}
                             name="hormonalBirthControlDesc"
-                            type="date"
+                            type="text"
                             onChange={handleChange}
                         />
                     }
@@ -726,7 +728,7 @@ export default function SubStep2Part8({
                         value={values.gynecologicalSymptoms}
                         error={errors?.gynecologicalSymptoms}
                     />{
-                        values.gynecologicalSymptoms.includes("cinsel yol ile bulaşan hastalık (açıklayınız)") &&
+                        values.gynecologicalSymptoms?.includes("cinsel yol ile bulaşan hastalık (açıklayınız)") &&
                         <FormInput
                             label={``}
                             value={values.gynecologicalSymptomsDesc}
@@ -823,8 +825,418 @@ export default function SubStep2Part8({
                     }
 
                 </div>
+
             </>
             }
+            <div className="w-full flex flex-col  font-nexa-regular h-[900px]">
+                <div className="grid grid-cols-14 font-nexa-regular text-[14px]">
+                    <p className=" border-2  text-[14px]   h-full text-left">  </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Anne </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Baba </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Kardeş </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Kardeş </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Çocuk </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Çocuk </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Çocuk </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Çocuk </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Anneanne </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Annebaba </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Babaanne </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Dede </p>
+                    <p className=" border-2  text-[14px]   h-full text-left"> Diğer </p>
+
+
+                    <div className=" border-2  text-[14px]  text-left"> (Sağ) Yaşı </div>
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+
+                    <div className=" border-2  text-[14px]  text-left"> (Ölü) Ölüm Yaşı </div>
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+
+
+                    {/* KOLONLAR */}
+                    <div className=" border-2 w-full text text-[10px] flex flex-col  h-[750px] text-left">
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Kanser</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Kalp hastalığı</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Yüksek tansiyon</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Obezite</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Diyabet</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">İnme</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Otoimmün hastalık</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Artrit</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Böbrek hastalığı</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Tiroid problemleri</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Nöbet / epilepsi</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Psikiyatrik bozukluk</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Anksiyete</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Depresyon</p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Astım </p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Alerjiler </p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Egzema </p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Otizm </p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Hassas Bağırsak Sendromu </p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Demans </p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Madde kullanımı </p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Genetik bozukluk </p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Diğer: </p>
+                    </div>
+
+
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="adhd" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="adhd" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="adhd" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="adhd" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="adhd" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+
+                    <div className=" border-2 w-full text text-[10px] flex flex-col items-center  h-[750px] text-left">
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="kanser" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="kalp" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="tansiyon" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="obez" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="inme" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="otoimmun" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="artrit" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="bobrek" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="tiroid" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="nöbet" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="psikiyatrik" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="anksiyete" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="adhd" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="demans" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="madde" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="genetik" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="diğer" type="checkbox" />
+                    </div>
+
+                </div>
+
+            </div>
         </>
     );
 }

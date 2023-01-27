@@ -145,15 +145,15 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
                 <div className='w-full mt-10'>
                     <Text type='h6' className='text-secondary-flat'>Videolar</Text>
                     <div className="flex w-full gap-2">
-                    {training?.Videos && training?.Videos.map((item, index) => {
-                        return <TrainingVideoCard key={v4()} title={`Video ${index + 1}`} url={item.Link} />
-                    })}
+                        {training?.Videos && training?.Videos.map((item, index) => {
+                            return <TrainingVideoCard key={v4()} title={`Video ${index + 1}`} url={item.Link} />
+                        })}
                     </div>
-                  
+
                 </div>
             </div>
             <div className="md:w-[30%] w-full h-full bg-[#F4F4F4] pt-[42px] pl-[32px] pr-[30px]">
-                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
+                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price - (training.Price * (training.DiscountRate/100))} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
 
                 <Text type='h6' className='text-secondary-flat'>Eğitim Konuları</Text>
                 <div className="w-full scrollbar-thin scrollbar-thumb-tertiary-light overflow-auto h-[90%]">

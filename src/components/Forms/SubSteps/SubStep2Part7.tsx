@@ -93,7 +93,7 @@ export default function SubStep2Part7({
                 />
                 <FormInputSelectOne
                     label="İş hayatında"
-                    name="school"
+                    name="businessLife"
                     options={livePoint}
                     value={values.businessLife}
                     error={errors?.businessLife}
@@ -101,7 +101,7 @@ export default function SubStep2Part7({
                 />
                 <FormInputSelectOne
                     label="Sosyal yaşamda"
-                    name="school"
+                    name="socialLife"
                     options={livePoint}
                     value={values.socialLife}
                     error={errors?.socialLife}

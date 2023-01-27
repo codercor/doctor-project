@@ -277,9 +277,10 @@ export const flow3FormValidationSchema = Yup.object({
     howManyFillersAsAChild: textValidationSchema,
     brushingTeeth: textValidationSchema,
     floss: textValidationSchema,
+    //should have at least one
     affectsYouSignificantly: Yup.array().of(
         textValidationSchema
-    ),
+    ).required("Zorunlu").min(1, "En az birini seçmelisiniz"),
     affectsYouSignificantlyDesc: textValidationSchema,
     exposedToAtWorkOrAtHome: Yup.array().of(
         textValidationSchema

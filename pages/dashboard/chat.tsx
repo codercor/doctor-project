@@ -11,7 +11,7 @@ import { useChat } from "src/hooks/chat.hook";
 import toast from 'react-hot-toast';
 import { v4 } from "uuid";
 import useUser from "src/hooks/user.hook";
-import { useBreakpoint } from "src/hooks/breakpoint";
+import { useBreakpoint, useIsDesktop } from "src/hooks/breakpoint";
 
 const ChatUserCard = ({ chatLine, onClick, active }: { chatLine: ChatLine, onClick: () => void, active: boolean }) => {
     const { getChatLineMessages } = useChat();
@@ -104,7 +104,7 @@ const Chat = () => {
     useEffect(() => {
         getChatLines();
     }, []);
-    const isDesktop = useBreakpoint("md")
+    const isDesktop = useIsDesktop();
     return (
         <DashboardLayout>
             {!isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">

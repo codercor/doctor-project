@@ -74,7 +74,7 @@ export default function SubStep2Part9({
     return (
         <>
             <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                <label htmlFor="">EVET' i işaretle = Şu anda varsa, ÖNCE' yi işaretle = geçmişte varsa, Hayır' ı işaretle = yok ise.</label>
+                <label htmlFor="">EVET&apos; i işaretle = Şu anda varsa, ÖNCE&apos; yi işaretle = geçmişte varsa, Hayır&apos; ı işaretle = yok ise.</label>
 
                 <label>sindirim</label>
                 <FormInputSelectOne

@@ -15,6 +15,7 @@ import PaymentForm from '@components/Payment/PaymentForm'
 import { useDispatch, useSelector } from 'react-redux'
 import { freePayment, selectPayment } from '@app/Payment/payment.slice'
 import { Dispatch } from '@reduxjs/toolkit'
+import { LocalLoading } from 'pages/dashboard/appointment'
 
 export default function TrainingDetailPage() {
     const { query, push } = useRouter();
@@ -51,17 +52,20 @@ export default function TrainingDetailPage() {
         paymentProcess.error,
     ])
 
-
+    const [isFPaymentLoading, setIsFPaymentLoading] = useState(false)
     const handleFreePayment = () => {
-        if (trainingData && user) dispatch(freePayment({
-            EducationId: trainingData.Id as string,
-            UserId: user.Id as string,
-        }))
+        setIsFPaymentLoading(true)
+        if (trainingData && user) {
+            dispatch(freePayment({
+                EducationId: trainingData.Id as string,
+                UserId: user.Id as string,
+            }))
+        }
         setClickedToBuy(true)
     }
 
 
-
+    if (isFPaymentLoading) return <Loading message='Eğitim yükleniyor...' />
     if (!trainingData) return <Loading message='Eğitim yükleniyor...' />
     if (trainingData.Price == 0) return (<LandingLayout>
         <Container className={"h-[300px] md:h-[250px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom  overflow-hidden rounded-br-[150px] md:bg-cover " + bgClass}>

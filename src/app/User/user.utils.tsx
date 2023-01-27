@@ -234,10 +234,10 @@ export const resetPasswordRequest = async (UserId: string, Hash: string, Passwor
     }
 }
 
-export const adminGetLastSalesRequest = async () => {
+export const adminGetLastSalesRequest = async (page: number) => {
     try {
         const response = await request.get(
-            PAYMENT
+            PAYMENT + '?page=' + page
         );
         return response.data;
     } catch (err: any) {

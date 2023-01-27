@@ -90,6 +90,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        "14": "repeat(14, minmax(50px, 1fr))",
+      },
       fontFamily: {
         'nexa-regular': ['NexaRegular'],
         'nexa-light': ['NexaLight'],

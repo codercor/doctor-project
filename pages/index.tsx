@@ -137,7 +137,7 @@ const EducationSection = () => {
           isMobile,
           title: publicTrainings[i].Name,
           description: publicTrainings[i].Details,
-          price: publicTrainings[i].Price,
+          price: (publicTrainings[i].Price - (publicTrainings[i].Price * (publicTrainings[i].DiscountRate / 100)  )),
           image: publicTrainings[i].Image,
           Id: publicTrainings[i].Id
         }
