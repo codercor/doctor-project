@@ -366,9 +366,9 @@ export default function PrescriptionsManagement() {
                 </div>
                 <div className='w-full border-2'>
                     {
-                        prescriptions?.map((item) => {
+                        prescriptions?.length > 0 ? (prescriptions?.map((item) => {
                             return <Row key={v4()} data={item} />
-                        }) || <></>
+                        }) || <></>) : <h1 className='text-[#4D5628] text-[20px] text-center'>Reçeteniz bulunmamaktadır</h1>
                     }
                 </div>
             </div>

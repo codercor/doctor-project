@@ -194,9 +194,9 @@ export default function Assays() {
                     </div>
                     <div className='w-full border-2'>
                         {
-                            assays.map((assay, index) => {
+                            assays?.length > 0 ? assays.map((assay, index) => {
                                 return <Row assay={assay} key={index} />
-                            })
+                            }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>
                         }
                     </div>
                 </div>

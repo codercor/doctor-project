@@ -1,13 +1,13 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text'
-import {Check, Close, MenuOpen, RefreshRounded, SortByAlpha} from '@mui/icons-material'
-import React, {useEffect, useState} from 'react'
-import {Pagination} from '@mui/material'
+import { Check, Close, MenuOpen, RefreshRounded, SortByAlpha } from '@mui/icons-material'
+import React, { useEffect, useState } from 'react'
+import { Pagination } from '@mui/material'
 import classNames from 'classnames'
 import request from '@config'
-import {v4} from 'uuid'
+import { v4 } from 'uuid'
 import FormInputSelectOne from '@components/Forms/FormInput/FormInputSelectOne'
-import {Loading} from './create-training'
+import { Loading } from './create-training'
 import toast from "react-hot-toast";
 import FormInput from "@components/Forms/FormInput/FormInput";
 
@@ -61,8 +61,8 @@ const CreateAssayModal = ({ userId, finishEvent }: { userId: string, finishEvent
     </>
 }
 export const StatusBox = ({
-                              type
-                          }: {
+    type
+}: {
     type: "Acil" | "Randevulu" | "user" | string
 }) => {
     return <div className={classNames("w-[110px] h-[30px] flex items-center justify-center", {
@@ -79,7 +79,7 @@ export const StatusBox = ({
     </div>
 }
 
-const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => void }) => {
+const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () => void }) => {
     const [open, setOpen] = useState(false);
     const [noteEdit, setNoteEdit] = useState(false);
     const [updateTheUserModal, setUpdateTheUserModal] = useState(false);
@@ -92,7 +92,7 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
         const URL = `/userappointments/${appointment.Id}`
         try {
             setIsLoading(true)
-            const {data} = await request.put(URL, {
+            const { data } = await request.put(URL, {
                 Status: tempStatus,
                 Date: tempDate
             })
@@ -109,7 +109,7 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
         setUpdateTheUserModal(true)
     }} className='flex border-2 flex-col w-full'>
         {
-            isLoading && <LocalLoading message="Güncelleniyor"/>
+            isLoading && <LocalLoading message="Güncelleniyor" />
         }
         <div className='w-full flex items-center text-start border-2  border-t-[1px]'>
             <div className='flex-[6]'>
@@ -140,15 +140,15 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
             </div>
             <div className='flex-[2]'>
                 {
-                    appointment.Status === "Acil" ? <StatusBox type="Acil"/> : <StatusBox type="Randevulu"/>
+                    appointment.Status === "Acil" ? <StatusBox type="Acil" /> : <StatusBox type="Randevulu" />
                 }
             </div>
             <div className='flex-[2]'>
                 <button onClick={() => {
                     //setOpen(!open)
                 }}
-                        className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
-                    <MenuOpen/>
+                    className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
+                    <MenuOpen />
                 </button>
             </div>
             {open && <CreateAssayModal userId={appointment.user.Id} finishEvent={() => {
@@ -175,7 +175,7 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
                         <div className='flex gap-[50px] '>
                             <SelectStatus value={tempStatus} onChange={(v) => {
                                 setTempStatus(v)
-                            }}/>
+                            }} />
 
                             <div className="flex ml-auto flex-col w-[400px] items-start justify-center gap-[10px]">
                                 <h3 className='text-[#4E929D] !text-[14px] font-nexa-bold'>
@@ -184,21 +184,21 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
                                 <input value={tempDate} onChange={
                                     (e) => setTempDate(e.currentTarget.value)
                                 } type="datetime-local"
-                                       className='w-full border-none rounded-[5px_20px_0_20px] bg-[#f3f3f3]'/>
+                                    className='w-full border-none rounded-[5px_20px_0_20px] bg-[#f3f3f3]' />
                             </div>
                         </div>
                     </div>
                     <button onClick={() => {
                         submit()
                     }}
-                            className='text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px]'>
+                        className='text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px]'>
                         Güncelle
                     </button>
                     <button onClick={() => {
                         setUpdateTheUserModal(false)
                     }}
-                            className='w-[50px] right-[20px] top-[20px] absolute text-[white] h-[50px] hover:bg-[#df7676] hover:shadow-deepgreen-100 duration-200 grid place-content-center hover:animate-spin transition-all hover:shadow-inner bg-[#4E929D] rounded-full'>
-                        <Close/>
+                        className='w-[50px] right-[20px] top-[20px] absolute text-[white] h-[50px] hover:bg-[#df7676] hover:shadow-deepgreen-100 duration-200 grid place-content-center hover:animate-spin transition-all hover:shadow-inner bg-[#4E929D] rounded-full'>
+                        <Close />
                     </button>
                 </div>
 
@@ -207,29 +207,29 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
     </div>
 }
 
-const SelectStatus = ({value, onChange}: {
+const SelectStatus = ({ value, onChange }: {
     value: string;
     onChange: (value: string) => void;
 }) => {
     return <>
         <div className="flex items-center justify-center gap-[10px]">
             <div onClick={() => onChange("Acil")}
-                 className={classNames("bg-[#D4E5E8] text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]")}>
-                {value == "Acil" && <Check/>}
+                className={classNames("bg-[#D4E5E8] text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]")}>
+                {value == "Acil" && <Check />}
             </div>
             <p className="text-[black] text-[16px] font-nexa-bold"> Acil </p>
         </div>
         <div className="flex items-center justify-center gap-[10px]">
             <div onClick={() => onChange("Randevulu")}
-                 className={classNames("bg-[#D4E5E8] text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]")}>
-                {value == "Randevulu" && <Check/>}
+                className={classNames("bg-[#D4E5E8] text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]")}>
+                {value == "Randevulu" && <Check />}
             </div>
             <p className="text-[black] text-[16px] font-nexa-bold"> Randevulu </p>
         </div>
     </>
 }
-export const LocalLoading = ({message}: { message: string }) => <div className="z-[100] fixed top-0 left-0"><Loading
-    message={message}/></div>
+export const LocalLoading = ({ message }: { message: string }) => <div className="z-[100] fixed top-0 left-0"><Loading
+    message={message} /></div>
 export default function AppointmentManagement() {
     const [appointments, setAppointments] = useState<Appointment[]>([
         {
@@ -246,7 +246,7 @@ export default function AppointmentManagement() {
     const [isLoading, setIsLoading] = useState(false)
     const [keyword, setKeyword] = useState("")
     const getAppointments = async () => {
-        const {data} = await request.get("/userappointments?page=" + page);
+        const { data } = await request.get("/userappointments?page=" + page);
         console.log("Appointments", data);
         return data;
     }
@@ -279,7 +279,7 @@ export default function AppointmentManagement() {
 
     useEffect(() => {
         if (searchKey.trim().length > 0) {
-            request.post(`/search/appointment?page=${page}`, {key: searchKey})
+            request.post(`/search/appointment?page=${page}`, { key: searchKey })
                 .then((data) => {
                     setAppointments(data.data)
                 })
@@ -292,7 +292,7 @@ export default function AppointmentManagement() {
     return (
         <DashboardLayout>
             {
-                isLoading && <LocalLoading message="Randevularınız yükleniyor..."/>
+                isLoading && <LocalLoading message="Randevularınız yükleniyor..." />
             }
             <div className="md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
                 <div className="w-1/3 flex flex-col text-start items-center justify-start py-[26px] px-[10px]">
@@ -307,12 +307,12 @@ export default function AppointmentManagement() {
                         setSearchKey(e.target.value)
                     }
                     } placeholder='Ad Soyad ya da E-posta adresine göre arayın'
-                           className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]'/>
+                        className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
 
                     <button onClick={() => {
                         getAndSetAppointments()
                     }} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
-                        <RefreshRounded/>
+                        <RefreshRounded />
                     </button>
                 </div>
                 <div className="w-full flex flex-col">
@@ -327,18 +327,18 @@ export default function AppointmentManagement() {
                     <div
                         className='w-full border-2 max-h-[600px] overflow-auto p-3 scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>
                         {
-                            appointments.map((appointment: Appointment) => {
+                            appointments?.length > 0 ? appointments.map((appointment: Appointment) => {
                                 return <Row afterUpdate={() => {
                                     getAndSetAppointments()
-                                }} key={v4()} appointment={appointment}/>
-                            })
+                                }} key={v4()} appointment={appointment} />
+                            }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
                         }
                     </div>
                 </div>
                 <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]"
-                            onChange={(e: any, value: number) => {
-                                setPage(value)
-                            }} count={page + 1}/>
+                    onChange={(e: any, value: number) => {
+                        setPage(value)
+                    }} count={page + 1} />
             </div>
         </DashboardLayout>
     )

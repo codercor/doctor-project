@@ -130,9 +130,9 @@ export default function Prescriptions() {
                     </div>
                     <div className='w-full border-2'>
                         {
-                            prescriptions?.map((item) => {
+                            prescriptions?.length > 0 ? prescriptions?.map((item) => {
                                 return <Row key={v4()} data={item} />
-                            }) || <></>
+                            }) || <></> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Reçeteniz bulunmamaktadır </h1>
                         }
                     </div>
                 </div>

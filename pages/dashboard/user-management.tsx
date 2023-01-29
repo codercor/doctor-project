@@ -1,15 +1,15 @@
-import {adminGetUsers} from '@app/User/user.utils';
+import { adminGetUsers } from '@app/User/user.utils';
 import Button from '@components/Button';
-import {FormInputSelect} from '@components/Forms/FormInput/FormInput';
+import { FormInputSelect } from '@components/Forms/FormInput/FormInput';
 import Input from '@components/Input/Input';
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import request from '@config';
-import {Pagination} from '@mui/material'
-import {Close, Refresh} from '@mui/icons-material';
-import {TableContainer, Table, TableHead, TableRow, TableCell, TableBody} from '@mui/material'
+import { Pagination } from '@mui/material'
+import { Close, Refresh } from '@mui/icons-material';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 import classNames from 'classnames';
-import React, {useEffect, useState} from 'react'
-import {LocalLoading} from './appointment-management';
+import React, { useEffect, useState } from 'react'
+import { LocalLoading } from './appointment-management';
 import toast from "react-hot-toast";
 
 interface IChangeIsPatientModal {
@@ -21,19 +21,19 @@ interface IChangeIsPatientModal {
 }
 
 const ChangeIsPatientModal = ({
-                                  data,
-                                  setter,
-                                  finishEvent
-                              }: { data: IChangeIsPatientModal, setter: (newData: IChangeIsPatientModal) => void, finishEvent: () => void }) => {
+    data,
+    setter,
+    finishEvent
+}: { data: IChangeIsPatientModal, setter: (newData: IChangeIsPatientModal) => void, finishEvent: () => void }) => {
     const [isLoading, setIsLoading] = useState(false);
     const handleSelectIsPatient = (newIsPatient: boolean) => {
         setter({
-                open: data.open,
-                data: {
-                    UserId: data.data.UserId,
-                    IsPatient: newIsPatient
-                }
+            open: data.open,
+            data: {
+                UserId: data.data.UserId,
+                IsPatient: newIsPatient
             }
+        }
         )
     }
     const handleSubmit = () => {
@@ -94,12 +94,12 @@ const ChangeIsPatientModal = ({
                 />
             </div>
             <button onClick={handleSubmit}
-                    className={classNames('text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px]', {})}>
+                className={classNames('text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px]', {})}>
                 Güncelle
             </button>
             <button onClick={handleCancel}
-                    className='w-[50px] right-[20px] top-[20px] absolute text-[white] h-[50px] hover:bg-[#df7676] hover:shadow-deepgreen-100 duration-200 grid place-content-center hover:animate-spin transition-all hover:shadow-inner bg-[#4E929D] rounded-full'>
-                <Close/>
+                className='w-[50px] right-[20px] top-[20px] absolute text-[white] h-[50px] hover:bg-[#df7676] hover:shadow-deepgreen-100 duration-200 grid place-content-center hover:animate-spin transition-all hover:shadow-inner bg-[#4E929D] rounded-full'>
+                <Close />
             </button>
         </div>
 
@@ -155,94 +155,95 @@ export default function UserManagement() {
     });
 
     return (<>
-            {IsLoading && <LocalLoading message="Kullanıcılar yükleniyor..."/>}
-            <DashboardLayout>
-                {
-                    isPatientModal.open &&
-                    <ChangeIsPatientModal data={isPatientModal} setter={setIsPatientModal} finishEvent={() => {
-                        setIsPatientModal({
-                            open: false,
-                            data: {
-                                UserId: null,
-                                IsPatient: null
-                            }
-                        })
+        {IsLoading && <LocalLoading message="Kullanıcılar yükleniyor..." />}
+        <DashboardLayout>
+            {
+                isPatientModal.open &&
+                <ChangeIsPatientModal data={isPatientModal} setter={setIsPatientModal} finishEvent={() => {
+                    setIsPatientModal({
+                        open: false,
+                        data: {
+                            UserId: null,
+                            IsPatient: null
+                        }
+                    })
+                    refresh()
+                }} />
+            }
+            <div className=" md:h-[798px] flex flex-col rounded-[30px_5px] p-[20px] bg-[#F4F4F4]">
+                <h1 className='text-secondary-flat font-medium text-[18px] mb-[20px]'> Kullanıcı Yönetimi </h1>
+                <div className='w-full h-[54px] gap-1 flex justify-between mb-2'>
+                    <Input onChange={(e) => {
+                        setKeyword(e.currentTarget.value)
+                    }} placeholder='E-Posta, telefon numarası veya kullanıcı adına göre ara' />
+                    <div onChange={() => {
                         refresh()
-                    }}/>
-                }
-                <div className=" md:h-[798px] flex flex-col rounded-[30px_5px] p-[20px] bg-[#F4F4F4]">
-                    <h1 className='text-secondary-flat font-medium text-[18px] mb-[20px]'> Kullanıcı Yönetimi </h1>
-                    <div className='w-full h-[54px] gap-1 flex justify-between mb-2'>
-                        <Input onChange={(e) => {
-                            setKeyword(e.currentTarget.value)
-                        }} placeholder='E-Posta, telefon numarası veya kullanıcı adına göre ara'/>
-                        <div onChange={() => {
-                            refresh()
-                        }}
-                             className='bg-quaternary-flat text-[white] min-w-[70px] rounded-[10px_20px_10px_20px]  h-full grid place-content-center'>
-                            <Refresh/></div>
-                    </div>
-                    <TableContainer className='bg-[white] '>
-                        <Table aria-label="collapsible table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell align="left">Kullanıcı Adı</TableCell>
-                                    <TableCell align="left">E-posta adresi</TableCell>
-                                    <TableCell align="left">Telefon</TableCell>
-                                    <TableCell align="left">Kayıt</TableCell>
-                                    <TableCell align="left">Durum</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-
-                                {list.map((row, index) => (
-                                    <TableRow
-                                        key={row.Id}
-                                        className={"border-2 p-0 leading-none h-[10px] " + (index % 2 != 0 ? 'bg-[#DEEEF0]' : '')}
-                                    >
-                                        <TableCell className="leading-none" component="th" scope="row">
-                                            {row.Information.Fullname || 'isim yok'}
-                                        </TableCell>
-                                        <TableCell className="leading-none" align="left">{row.Email}</TableCell>
-                                        <TableCell className="leading-none"
-                                                   align="left">{row.Information.Phone || 'Telefon yok'}</TableCell>
-                                        <TableCell className="leading-none" align="left">{
-                                            new Date(row.CreatedAt).toLocaleDateString('tr-TR', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric',
-                                            })
-                                        }</TableCell>
-
-                                        <TableCell onClick={() => {
-                                            //open change isPatient modal
-                                            setIsPatientModal({
-                                                open: true,
-                                                data: {
-                                                    UserId: row.Id,
-                                                    IsPatient: row.IsPatient
-                                                }
-                                            });
-                                        }} className="leading-none" align="left">{row.IsPatient ?
-                                            <button
-                                                className="!w-[108px] h-[36px] uppercase text-[#3A356B] font-nexa-regular bg-[#DDDAFF] border-[1px] border-[#A09AD9] !p-[0] grid place-content-center">
-                                                Hasta </button> :
-                                            <button
-                                                className="!w-[108px] h-[36px] uppercase text-[#98A170] font-nexa-regular bg-[#FBFFEC] border-[1px] border-[#D8E0B2] !p-[0] grid place-content-center">
-                                                Kullanıcı </button>}</TableCell>
-
-                                    </TableRow>
-                                ))}
-
-                            </TableBody>
-
-                        </Table>
-                        <Pagination siblingCount={3} variant="text" className="mt-[20px] mb-[30px]"
-                                    onChange={(e: any, value: number) => {
-                                        setPage(value)
-                                    }} count={page + 1}/>
-                    </TableContainer>
+                    }}
+                        className='bg-quaternary-flat text-[white] min-w-[70px] rounded-[10px_20px_10px_20px]  h-full grid place-content-center'>
+                        <Refresh /></div>
                 </div>
-            </DashboardLayout></>
+                <TableContainer className='bg-[white] '>
+                    <Table aria-label="collapsible table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align="left">Kullanıcı Adı</TableCell>
+                                <TableCell align="left">E-posta adresi</TableCell>
+                                <TableCell align="left">Telefon</TableCell>
+                                <TableCell align="left">Kayıt</TableCell>
+                                <TableCell align="left">Durum</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+
+                            {list?.length > 0 ? list.map((row, index) => (
+                                <TableRow
+                                    key={row.Id}
+                                    className={"border-2 p-0 leading-none h-[10px] " + (index % 2 != 0 ? 'bg-[#DEEEF0]' : '')}
+                                >
+                                    <TableCell className="leading-none" component="th" scope="row">
+                                        {row.Information.Fullname || 'isim yok'}
+                                    </TableCell>
+                                    <TableCell className="leading-none" align="left">{row.Email}</TableCell>
+                                    <TableCell className="leading-none"
+                                        align="left">{row.Information.Phone || 'Telefon yok'}</TableCell>
+                                    <TableCell className="leading-none" align="left">{
+                                        new Date(row.CreatedAt).toLocaleDateString('tr-TR', {
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric',
+                                        })
+                                    }</TableCell>
+
+                                    <TableCell onClick={() => {
+                                        //open change isPatient modal
+                                        setIsPatientModal({
+                                            open: true,
+                                            data: {
+                                                UserId: row.Id,
+                                                IsPatient: row.IsPatient
+                                            }
+                                        });
+                                    }} className="leading-none" align="left">{row.IsPatient ?
+                                        <button
+                                            className="!w-[108px] h-[36px] uppercase text-[#3A356B] font-nexa-regular bg-[#DDDAFF] border-[1px] border-[#A09AD9] !p-[0] grid place-content-center">
+                                            Hasta </button> :
+                                        <button
+                                            className="!w-[108px] h-[36px] uppercase text-[#98A170] font-nexa-regular bg-[#FBFFEC] border-[1px] border-[#D8E0B2] !p-[0] grid place-content-center">
+                                            Kullanıcı </button>}</TableCell>
+
+                                </TableRow>
+                            )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
+                            }
+
+                        </TableBody>
+
+                    </Table>
+                    <Pagination siblingCount={3} variant="text" className="mt-[20px] mb-[30px]"
+                        onChange={(e: any, value: number) => {
+                            setPage(value)
+                        }} count={page + 1} />
+                </TableContainer>
+            </div>
+        </DashboardLayout></>
     )
 }

@@ -242,17 +242,18 @@ export default function AppointmentManagement() {
                             <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">Ad Soyad</Text>
                             <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">E-posta</Text>
                             <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Telefon</Text>
-                            <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Tarihi</Text>
+                            <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Tarih/Saat</Text>
                             <Text type="h3" className="text-secondary flex-[2] !text-[14px] ">Durum</Text>
                         </div>
                         <div
                             className='w-full  max-h-[600px] overflow-auto p-3 scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>
                             {
-                                appointments.map((appointment: Appointment) => {
+                                appointments?.length > 0 ? appointments.map((appointment: Appointment) => {
                                     return <Row afterUpdate={() => {
                                         getAndSetAppointments()
                                     }} key={v4()} appointment={appointment} />
                                 })
+                                    : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
                             }
                         </div>
                     </div>
