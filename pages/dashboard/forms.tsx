@@ -28,6 +28,7 @@ export interface UserFlowAbilityData {
     "LastWaitingDoneStep": null | number,
     "IsRejected": boolean,
     "IsFormLocked": boolean,
+    "IsFormLockedStep": number,
 }
 
 
@@ -60,7 +61,7 @@ export default function Forms() {
     const [selectedStep, setSelectedStep] = React.useState(Number(localStorage.getItem(key)) || 1);
     const [waitingDoneStep, setWaitingDoneStep] = React.useState<number | null>(null);
 
-  
+
 
     useEffect(() => {
         console.log("key", key)
@@ -72,6 +73,7 @@ export default function Forms() {
         }
     }, [selectedStep]);
     const [showLastForm, setShowLastForm] = React.useState(true);
+    const [showLastFormStep, setShowLastFormStep] = React.useState<null | number>(null);
     const [forms, setForms] = React.useState([
         {
             step: 1,
@@ -101,7 +103,14 @@ export default function Forms() {
 
     const [isSecondToForthStepIsLocked, setIsSecondToForthStepIsLocked] = React.useState(false);
     const [done, setDone] = React.useState(false);
+    const { user } = useUser()
     useEffect(() => {
+        const userGender = user.Information.Gender
+        const userFullName = user.Information.Fullname
+        if (!userGender || !userFullName) {
+            toast.error("Lütfen önce profil bilgilerinizi doldurunuz.")
+            Router.push("/dashboard/account");
+        }
         const abilityPromise = getUserFlowAbilibility(UserId);
         abilityPromise.then((ability) => {
             setWaitingDoneStep(ability.LastWaitingDoneStep)
@@ -128,7 +137,9 @@ export default function Forms() {
             if (ability.LastDoneStep >= 1 && [2, 3, 4].includes(ability.LastWaitingDoneStep as number)) {
                 setIsSecondToForthStepIsLocked(true)
             }
-            setShowLastForm(!ability.IsFormLocked)
+            setShowLastForm(ability.IsFormLocked)
+            setShowLastFormStep(ability.IsFormLockedStep)
+
         })
     }, [])
 
@@ -139,6 +150,7 @@ export default function Forms() {
                 !isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">
                     <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
                 </div> : <div className="bg-[white]">
+                    <h1> step {selectedStep} locked {showLastForm + ""} last step {showLastFormStep + ""} </h1>
                     <FormSteps
                         selectedStep={selectedStep}
                         setSelectedStep={setSelectedStep}
@@ -148,8 +160,8 @@ export default function Forms() {
                             selectedStep={selectedStep}
                             setSelectedStep={setSelectedStep}
                         />}
-                        {(selectedStep == 6 && !showLastForm && waitingDoneStep != 6) && <>
-                            <FormAlert status="inReview" text="MSQ formunuz onaylanmıştır.MSQ formunu tekrar doldurmanız gerektiğinde mail ile bilgilendirileceksiniz." />
+                        {((selectedStep == 5 || selectedStep == 6) && !showLastForm && waitingDoneStep != 6) && <>
+                            <FormAlert status="inReview" text="MSQ formunu her doldurmanız gerektiğinde mail ile bilgilendirileceksiniz." />
                         </>}
                         {
                             !done ? forms.map((form) => {
@@ -161,8 +173,14 @@ export default function Forms() {
                                             status="pending"
                                         />)
                                     }
-                                    if (selectedStep == 6 && !showLastForm) {
-                                        return <></>
+                                    if (showLastForm) {
+                                        if (showLastFormStep != selectedStep) {
+                                            return <></>
+                                        }
+                                    } else {
+                                        if (selectedStep == 5 || selectedStep == 6) {
+                                            return <></>
+                                        }
                                     }
                                     return form.component();
                                 }

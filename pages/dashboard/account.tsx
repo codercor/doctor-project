@@ -14,6 +14,10 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import "yup-phone";
+import { Field, Formik } from "formik";
+import * as Yup from "yup";
+import { toast } from "react-hot-toast";
 const Account = () => {
     const { user } = useAuth(); //TODO ADD -> update user
     const { updateUser, refetchUser } = useUser();
@@ -48,13 +52,21 @@ const Account = () => {
         setIsEdit(!isEdit);
     }
 
-    const handleSave = () => {
-        _userInfo.BirthDate = (_userInfo.BirthDate as string).replaceAll("-", ".")
-        updateUser(_userInfo).then(() => {
+    const handleSave = (values: any) => {
+        values.BirthDate = (values.BirthDate as string).replaceAll("-", ".")
+        updateUser(values).then(() => {
 
         })
         setIsEdit(!isEdit);
     }
+
+    const validationSchema = Yup.object().shape({
+        Fullname: Yup.string().nullable().required("Ad Soyad zorunludur"),
+        Phone: Yup.string().matches(/^\+?[0-9\s]+$/, "+ işareti ve sayılar ve boşluklar kullanılabilir").min(10, "Telefon numarası en az 10 haneli olmalı").required("Telefon zorunludur").nullable().max(20, "Telefon numarası en fazla 20 haneli olabilir"),
+        Address: Yup.string().required("Adres zorunludur").nullable(),
+        BirthDate: Yup.string().required("Doğum tarihi zorunludur").nullable(),
+        Gender: Yup.string().required("Cinsiyet zorunludur").nullable()
+    });
 
     return (
         <DashboardLayout>
@@ -67,39 +79,60 @@ const Account = () => {
                             <Edit className="text-[white] text-[16px]" />
                         </div>
                     </div>
-                    
+
                     <div className="md:max-w-[450px] w-full flex flex-col">
-                        <Input disabled={!isEdit} name="Fullname" value={_userInfo.Fullname} onChange={handleChange}
-                            text="Ad Soyad" type="text" />
-                        <Input disabled={true} name="Email" value={user.Email} text="Eposta" type="email" />
-                        <Input disabled={!isEdit} name="Phone" value={_userInfo.Phone} onChange={handleChange}
-                            text="Telefon" type="text" />
-                        <Input disabled={!isEdit} name="Address" value={_userInfo.Address} onChange={handleChange}
-                            text="Adres" type="text" />
-                        <Input disabled={!isEdit} name="BirthDate" value={((_userInfo.BirthDate as string))}
-                            onChange={handleChange} text="Doğum Tarihi" type="date" />
-                        <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Cinsiyet</Text>
-                        <RadioGroup
-                            title="Cinsiyet"
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="Erkek"
-                            onChange={handleChange}
-                            value={_userInfo?.Gender}
-                            name="Gender"
-                        >
-                            <div className="flex items-center  w-full justify-center">
-                                <div>
-                                    <FormControlLabel disabled={!isEdit} className="block" value="Erkek" control={<Radio className="block" />} label="Erkek" />
-                                </div>
-                                <div>
-                                    <FormControlLabel disabled={!isEdit} className="block" value="Kadın" control={<Radio className="block" />} label="Kadın" />
-                                </div>
-                            </div>
-                        </RadioGroup>
-                        <Button onClick={handleSave} type="secondary"
-                            className="w-[200px] self-end mt-[20px] h-[48px] leading-none flex items-center justify-center">
-                            <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Kaydet</Text>
-                        </Button>
+                        <Formik validationSchema={validationSchema} initialValues={{ ..._userInfo }} onSubmit={(values) => {
+                            handleSave(values)
+                        }}>
+                            {({ errors, values, submitForm, handleChange: _handleChange, validateForm, handleSubmit }) => <form onSubmit={handleSubmit}>
+                                <Input disabled={!isEdit} name="Fullname" value={values.Fullname} onChange={_handleChange}
+                                    text="Ad Soyad" type="text" />
+                                {errors?.Fullname && <p className="text-red-500 !text-[14px]  !py-[10px]">{errors.Fullname}</p>}
+                                <Input disabled={true} name="Email" value={values.Email} text="Eposta" type="email" />
+                                <Input disabled={!isEdit} name="Phone" value={values.Phone} onChange={_handleChange}
+                                    text="Telefon" type="tel" />
+                                {errors?.Phone && <p className="text-red-500 !text-[14px]  !py-[10px]">{errors.Phone}</p>}
+                                <Input disabled={!isEdit} name="Address" value={values.Address} onChange={_handleChange}
+                                    text="Adres" type="text" />
+                                {errors?.Address && <p className="text-red-500 !text-[14px]  !py-[10px]">{errors.Address}</p>}
+                                <Input disabled={!isEdit} name="BirthDate" value={((values.BirthDate as string))}
+                                    onChange={_handleChange} text="Doğum Tarihi" type="date" />
+                                {errors?.BirthDate && <p className="text-red-500 !text-[14px]  !py-[10px]">{errors.BirthDate}</p>}
+                                <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Cinsiyet</Text>
+                                <RadioGroup
+                                    title="Cinsiyet"
+                                    aria-labelledby="demo-radio-buttons-group-label"
+                                    defaultValue="Erkek"
+                                    onChange={_handleChange}
+                                    value={values?.Gender}
+                                    name="Gender"
+                                >
+                                    <div className="flex items-center  w-full justify-center">
+                                        <div>
+                                            <FormControlLabel name="Gender" disabled={!isEdit} className="block" value="Erkek" control={<Radio className="block" />} label="Erkek" />
+                                        </div>
+                                        <div>
+                                            <FormControlLabel name="Gender" disabled={!isEdit} className="block" value="Kadın" control={<Radio className="block" />} label="Kadın" />
+                                        </div>
+                                    </div>
+                                </RadioGroup>
+                                {errors?.Gender && <p className="text-red-500 !text-[14px]  !py-[10px]">{errors.BirthDate}</p>}
+                                <button onClick={(e) => {
+                                    console.log("values", values);
+
+                                    console.log("errors", errors);
+                                    if (Object.keys(errors).length > 0) {
+                                        toast.error("Lütfen tüm alanları doğru şekilde doldurunuz")
+                                    } else submitForm()
+
+                                }}
+                                    type="button"
+                                    disabled={!isEdit}
+                                    className="disabled:opacity-40 rounded-br-[20px] rounded-tl-[20px] text-[white] !bg-secondary text-white  border-secondary w-[200px] self-end mt-[20px] h-[48px] leading-none flex items-center justify-center">
+                                    <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Kaydet</Text>
+                                </button>
+                            </form>}
+                        </Formik>
                     </div>
                 </div>
                 <div

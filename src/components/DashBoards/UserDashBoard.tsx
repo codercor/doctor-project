@@ -10,6 +10,8 @@ import DashBoardNavbar from "@components/Navbar/DashBoardNavbar";
 import useUser from "src/hooks/user.hook";
 import { Loading } from "pages/dashboard/create-training";
 import useTraining from "src/hooks/training.hook";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/dist/client/router";
 
 
 
@@ -80,7 +82,16 @@ const MyTrainings = () => {
 const AllTrainingsFloating = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
     const { publicTrainings, getPublicTrainings } = useTraining();
+    const { user: { Information } } = useUser();
+    const router = useRouter();
     useEffect(() => {
+        const userGender = Information.Gender
+        const userFullName = Information.Fullname
+        if (!userGender || !userFullName) {
+            toast.error("Lütfen önce profil bilgilerinizi doldurunuz.")
+            router.push("/dashboard/account");
+            return;
+        }
         if (publicTrainings.length < 1) getPublicTrainings(1);
     }, [])
     const [trainings, setTrainings] = useState<TrainingCardProps[]>([]);

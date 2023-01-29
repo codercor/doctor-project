@@ -12,6 +12,7 @@ import toast from 'react-hot-toast';
 import { v4 } from "uuid";
 import useUser from "src/hooks/user.hook";
 import { useBreakpoint, useIsDesktop } from "src/hooks/breakpoint";
+import { useRouter } from "next/dist/client/router";
 
 const ChatUserCard = ({ chatLine, onClick, active }: { chatLine: ChatLine, onClick: () => void, active: boolean }) => {
     const { getChatLineMessages } = useChat();
@@ -101,8 +102,18 @@ const Chat = () => {
             }, 500);
         }
     }, [ChatLinesLoading]);
+    const { user: { Information } } = useUser()
+    const router = useRouter();
     useEffect(() => {
+        const userGender = Information.Gender
+        const userFullName = Information.Fullname
+        if (!userGender || !userFullName) {
+            toast.error("Lütfen önce profil bilgilerinizi doldurunuz.")
+            router.push("/dashboard/account");
+            return;
+        }
         getChatLines();
+
     }, []);
     const isDesktop = useIsDesktop();
     return (

@@ -21,6 +21,8 @@ import { toast } from "react-hot-toast";
 import { CreateAppointmentModal } from "@components/CreateAppointmentModal/CreateAppointmentModal";
 import { flow1FormInitialValues } from "@components/Forms/BasvuruForms/config/initialValues";
 import { LocalLoading } from "../appointment";
+import { CircularProgress } from "@mui/material";
+import { Close } from "@mui/icons-material";
 
 const initialValues = flow1FormInitialValues;
 const countries = CountryCityService.getCountries().map((country: string) => {
@@ -39,12 +41,14 @@ export default function InspectFirstForm() {
 
     const [data, setData] = useState<typeof initialValues>(initialValues)
     const router = useRouter()
+    const [formStatus, setFormStatus] = useState<null | string>("")
     const flowId = router.query.flow_id
     const fetchFlow = async () => {
         if (!flowId) return;
         let response = await request.get(`/userflows/form/${flowId}`)
         console.log("response.data ", response.data);
         setOwnerUserId(response.data.user.Id)
+        setFormStatus(response.data.Status)
         return response.data.Link
 
     }
@@ -66,7 +70,7 @@ export default function InspectFirstForm() {
 
     const finalizeTheForm = async (isDone: boolean) => {
         request.put(`/userflows/${flowId}`, {
-            Status: isDone ? "Done" : "Reject"
+            Status: (isDone ? "Done" : "Reject")
         }).then(() => {
             toast.success("Form değerlendirmesi kaydedildi !");
             setTimeout(() => {
@@ -75,6 +79,48 @@ export default function InspectFirstForm() {
         })
     }
 
+    const [areYouSure, setAreYouSure] = useState({
+        open: false,
+        isPositive: false,
+    })
+
+    const AreYouSureModal = ({ finish, isPositive }: { finish: (v: boolean) => void, isPositive: boolean }) => {
+        return <>
+            <div onClick={(e) => {
+                e.stopPropagation();
+                finish(false)
+            }} className='fixed top-0 z-[2] grid place-content-center left-0 w-screen h-screen bg-opacity-50 bg-black-100'>
+                <div onClick={(e) => {
+                    e.stopPropagation()
+                }} className="w-[404px] relative h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
+                    <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold"> Emin misiniz ? </h1>
+                    <p className='text-[#5C5C5C] text-[16px]'>
+                        {isPositive ? 'Onaylamak' : 'Reddetmek'} istediğinize emin misiniz ?
+                    </p>
+
+                    <button onClick={() => {
+                        finish(true)
+                    }}
+                        className='text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4e9d89] w-[252px] h-[50px] disabled:opacity-[50%]'>
+                        Evet
+                    </button>
+                    <button onClick={() => {
+                        finish(false)
+                    }}
+                        className='text-[white] mt-[10px] rounded-[20px_5px] font-nexa-bold bg-[#9d4e61] w-[252px] h-[50px] disabled:opacity-[50%]'>
+                        Hayır
+                    </button>
+                    <button onClick={() => {
+                        finish(false)
+                    }}
+                        className='w-[50px] right-[20px] top-[20px] absolute text-[white] h-[50px] hover:bg-[#df7676] hover:shadow-deepgreen-100 duration-200 grid place-content-center hover:animate-spin transition-all hover:shadow-inner bg-[#4E929D] rounded-full'>
+                        <Close />
+                    </button>
+
+                </div>
+            </div>
+        </>
+    }
 
     const [cities, setCities] = useState<any[]>(
         CountryCityService.getCities("Turkey").map((city: string) => {
@@ -85,10 +131,30 @@ export default function InspectFirstForm() {
         {
             loading && <LocalLoading message="Yükleniyor" />
         }
+        {areYouSure.open && <AreYouSureModal finish={(v) => {
+            if (!v) {
+                setAreYouSure({
+                    open: false,
+                    isPositive: false,
+                })
+            } else {
+                finalizeTheForm(areYouSure.isPositive).then(() => {
+                    if (areYouSure.isPositive) setIsAppointmentModalOpen(true)
+                    else {
+                        toast.success("Form değerlendirmesi kaydedildi !");
+                        router.push("/dashboard/forms-management")
+                    }
+                })
+            }
+        }} isPositive={areYouSure.isPositive} />}
         <DashboardLayout>
             {isAppointmentModalOpen && <CreateAppointmentModal finish={() => {
                 setIsAppointmentModalOpen(false);
-                router.push("/dashboard/forms-management")
+                setAreYouSure({
+                    ...areYouSure,
+                    open: false,
+                })
+                router.push("/dashboard/forms-management");
             }} UserId={ownerUserId} />}
             <Formik
                 initialValues={data}
@@ -263,21 +329,26 @@ export default function InspectFirstForm() {
                                     />
                                 </div>
                             </div>
-                            <div className="flex flex mb-[60px] gap-[30px] w-[full]">
+                            {formStatus == "Waiting" && <div className="flex flex mb-[60px] gap-[30px] w-[full]">
                                 <button onClick={() => {
-                                    setIsAppointmentModalOpen(true)
-                                    finalizeTheForm(true)
+                                    setAreYouSure({
+                                        isPositive: true,
+                                        open: true,
+                                    })
                                 }}
-                                    className="bg-[green] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
+                                    className="bg-[#4e9d89] !rounded-[20px_5px] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
                                     Onayla
                                 </button>
                                 <button onClick={() => {
-                                    finalizeTheForm(false)
+                                    setAreYouSure({
+                                        isPositive: false,
+                                        open: true,
+                                    })
                                 }}
-                                    className="bg-[red] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
+                                    className="bg-[#9d4e61] !rounded-[20px_5px] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
                                     Reddet
                                 </button>
-                            </div>
+                            </div>}
                         </form>
                     );
                 }}

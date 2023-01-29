@@ -17,9 +17,11 @@ import { Assay } from './assays-management';
 import { LocalLoading } from './appointment-management';
 import { Pagination } from '@mui/material'
 import { useBreakpoint, useIsDesktop } from 'src/hooks/breakpoint';
+import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/dist/client/router';
 export default function Assays() {
 
-    const { user: { Id } } = useUser()
+    const { user: { Id, Information } } = useUser()
     const [assays, setAssays] = useState<any[]>([]);
     const [page, setPage] = useState(1);
     const getAssays = async () => {
@@ -33,9 +35,15 @@ export default function Assays() {
 
         }
     }
-
+    const router = useRouter();
     useEffect(() => {
         getAssays();
+        const userGender = Information.Gender
+        const userFullName = Information.Fullname
+        if (!userGender || !userFullName) {
+            toast.error("Lütfen önce profil bilgilerinizi doldurunuz.")
+            router.push("/dashboard/account");
+        }
     }, [page])
 
     const Row = ({ assay }: { assay: Assay }) => {
@@ -93,6 +101,11 @@ export default function Assays() {
         </div>
     }
     const isDesktop = useIsDesktop();
+    if (assays.length < 1) {
+       return <DashboardLayout>
+            <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>
+        </DashboardLayout>
+    }
     return <>
         {
             <DashboardLayout>
@@ -120,7 +133,7 @@ export default function Assays() {
                             </div>
                             <div className='w-full border-2'>
                                 {
-                                  assays?.length  > 0 ?  assays.map((assay, index) => {
+                                    assays?.length > 0 ? assays.map((assay, index) => {
                                         return <Row assay={assay} key={index} />
                                     }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>
                                 }

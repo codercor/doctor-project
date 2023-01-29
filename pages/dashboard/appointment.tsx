@@ -11,6 +11,7 @@ import { Loading } from './create-training'
 import toast from "react-hot-toast";
 import useUser from "../../src/hooks/user.hook";
 import { useBreakpoint, useIsDesktop } from 'src/hooks/breakpoint'
+import { useRouter } from 'next/dist/client/router'
 
 interface Appointment {
     Id: string;
@@ -179,7 +180,7 @@ const SelectStatus = ({ value, onChange }: {
 export const LocalLoading = ({ message }: { message: string }) => <div className="z-[100] fixed top-0 left-0"><Loading
     message={message} /></div>
 export default function AppointmentManagement() {
-    const { user: { Id: UserId } } = useUser()
+    const { user: { Id: UserId, Information } } = useUser()
     const isDesktop = useIsDesktop();
     const [appointments, setAppointments] = useState<Appointment[]>([
 
@@ -203,11 +204,22 @@ export default function AppointmentManagement() {
             setIsLoading(false)
         })
     }
-
+    const router = useRouter()
     useEffect(() => {
+        const userGender = Information.Gender
+        const userFullName = Information.Fullname
+        if (!userGender || !userFullName) {
+            toast.error("Lütfen önce profil bilgilerinizi doldurunuz.")
+            router.push("/dashboard/account");
+            return;
+        }
         getAndSetAppointments()
     }, [page, searchKey])
-
+    if (appointments?.length < 1) {
+        return <DashboardLayout>
+            <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
+        </DashboardLayout>
+    }
     return (
         <DashboardLayout>
             {!isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">

@@ -89,7 +89,7 @@ export default function FormManagement() {
                 </div>
                 <div className='flex-[4]'>
                     <StepStatus
-                        status={flow.Status == 'Waiting' ? 'Bekliyor' : flow.Status == 'Done' ? 'Gönderildi' : 'rejected'}
+                        status={flow.Status == 'Waiting' ? 'Bekliyor' : flow.Status == 'Done' ? 'Gönderildi' : flow.Status == 'Reject' ?  'Reddedildi': 'Bekliyor'}
                     />
                 </div>
                 <div className='flex-[4]'>

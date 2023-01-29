@@ -12,6 +12,8 @@ import request from '@config';
 import useUser from 'src/hooks/user.hook';
 import { LocalLoading } from './appointment-management';
 import { useBreakpoint, useIsDesktop } from 'src/hooks/breakpoint';
+import { useRouter } from 'next/dist/client/router';
+import { toast } from 'react-hot-toast';
 interface IPrescriptionItem {
     Id: string;
     UserId: string;
@@ -80,11 +82,11 @@ export default function Prescriptions() {
 
     const [prescriptions, setPrescriptions] = useState<IPrescriptionItem[]>([]);
     const [loading, setLoading] = useState(false);
-    const { user: { Id: UserId } } = useUser()
+    const { user: { Id: UserId, Information } } = useUser()
 
     const [page, setPage] = useState(1)
 
-
+    const router = useRouter();
 
     const fetchPrescriptions = () => {
         setLoading(true);
@@ -100,11 +102,22 @@ export default function Prescriptions() {
     }
 
     useEffect(() => {
+        const userGender = Information.Gender
+        const userFullName = Information.Fullname
+        if (!userGender || !userFullName) {
+            toast.error("Lütfen önce profil bilgilerinizi doldurunuz.")
+            router.push("/dashboard/account");
+        }
         if (UserId) fetchPrescriptions();
     }, [UserId, page])
 
 
     const isDesktop = useIsDesktop();
+    if (prescriptions?.length < 1) {
+        return <DashboardLayout>
+            <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Reçeteniz bulunmamaktadır </h1>
+        </DashboardLayout>
+    }
     return <DashboardLayout>
         {!isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">
             <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>

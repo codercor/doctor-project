@@ -155,7 +155,7 @@ export default function SixthForm({ }: any) {
                                 <button onClick={() => {
                                     finalizeTheForm()
                                 }}
-                                    className="bg-[green] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
+                                className="bg-[#4e9d89] !rounded-[20px_5px] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
                                     Onayla
                                 </button>
                             </form>

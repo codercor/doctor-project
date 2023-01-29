@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 type InputProps = {
     text?: string | undefined,
-    type?: 'email' | 'password' | 'text' | 'number' | 'datetime-local' | 'datetime' |'date',
+    type?: 'email' | 'password' | 'text' | 'number' | 'datetime-local' | 'datetime' |'date' | 'tel'
     placeholder?: string,
     inputClassName?: string,
     value?: string | undefined,
