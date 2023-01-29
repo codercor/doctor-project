@@ -232,7 +232,7 @@ export default function UserManagement() {
                                             Kullanıcı </button>}</TableCell>
 
                                 </TableRow>
-                            )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
+                            )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kullanıcı bulunmamaktadır </h1>
                             }
 
                         </TableBody>

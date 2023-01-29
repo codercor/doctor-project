@@ -34,7 +34,7 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
                 </TableHead>
                 <TableBody>
 
-                    {list.map((row, index) => (
+                    { list?.length > 0 ?  list.map((row, index) => (
                         <TableRow
                             key={row.Id}
                             className={"border-2 p-0 leading-none h-[10px] " + (index % 2 != 0 ? 'bg-[#DEEEF0]' : '')}
@@ -45,7 +45,8 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
                             <TableCell className="leading-none" align="left">{row.User.Information.Fullname || 'İsim yok'}</TableCell>
                             <TableCell className="leading-none" align="left">{row.Education?.Name || 'Eğitim ismi yok'}</TableCell>
                         </TableRow>
-                    ))}
+                    )): <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kayıt bulunmamaktadır </h1>
+                }
 
                 </TableBody>
             </Table>
