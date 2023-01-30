@@ -64,11 +64,6 @@ export const flow3FormValidationSchema = Yup.object({
     address: textValidationSchema,
     city: textValidationSchema,
     phoneCell: textValidationSchema,
-    geneticHistory: textValidationSchema,
-    geneticHistoryOther: Yup.string().when("geneticHistory", {
-        is: (geneticHistory: string) => geneticHistory === "Diğer",
-        then: textValidationSchema,
-    }),
     lastHealt: textValidationSchema,
     emergencyContact: textValidationSchema,
     emergencyContactRelation: textValidationSchema,

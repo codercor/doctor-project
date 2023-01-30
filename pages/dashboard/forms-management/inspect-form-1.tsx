@@ -66,11 +66,12 @@ export default function InspectFirstForm() {
 
     useEffect(() => {
         getData();
-    }, [])
+    }, [flowId])
 
-    const finalizeTheForm = async (isDone: boolean) => {
+    const finalizeTheForm = async (isDone: boolean, message?: string) => {
         request.put(`/userflows/${flowId}`, {
-            Status: (isDone ? "Done" : "Reject")
+            Status: (isDone ? "Done" : "Reject"),
+            Message: message
         }).then(() => {
             toast.success("Form değerlendirmesi kaydedildi !");
             setTimeout(() => {
@@ -84,34 +85,53 @@ export default function InspectFirstForm() {
         isPositive: false,
     })
 
-    const AreYouSureModal = ({ finish, isPositive }: { finish: (v: boolean) => void, isPositive: boolean }) => {
+    const AreYouSureModal = ({ finish, isPositive }: {
+        finish: (finishValue: {
+            confirmed: boolean,
+            message?: string
+        }) => void, isPositive: boolean
+    }) => {
+        const [rejectMessage, setRejectMessage] = useState<string | undefined>(undefined)
         return <>
             <div onClick={(e) => {
                 e.stopPropagation();
-                finish(false)
+                finish({
+                    confirmed: false,
+                })
             }} className='fixed top-0 z-[2] grid place-content-center left-0 w-screen h-screen bg-opacity-50 bg-black-100'>
                 <div onClick={(e) => {
                     e.stopPropagation()
-                }} className="w-[404px] relative h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
+                }} className="w-[504px] relative  px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
                     <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold"> Emin misiniz ? </h1>
-                    <p className='text-[#5C5C5C] text-[16px]'>
+                    <p className='text-[#5C5C5C] text-[16px] mb-[20px]'>
                         {isPositive ? 'Onaylamak' : 'Reddetmek'} istediğinize emin misiniz ?
                     </p>
-
+                    {!isPositive && <FormInputTextArea maxLength={200} label="Reddetme sebebi" value={rejectMessage} onChange={(e) => {
+                        setRejectMessage(e.target.value)
+                    }} />}
+                    <div className="flex justify-between mt-[20px]">
+                        <button onClick={() => {
+                            finish({
+                                confirmed: true,
+                                message: rejectMessage
+                            })
+                        }}
+                            className='text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4e9d89] w-[172px] h-[50px] disabled:opacity-[50%]'>
+                            Evet
+                        </button>
+                        <button onClick={() => {
+                            finish({
+                                confirmed: false,
+                            })
+                        }}
+                            className='text-[white] mt-[10px] rounded-[20px_5px] font-nexa-bold bg-[#9d4e61] w-[172px] h-[50px] disabled:opacity-[50%]'>
+                            Hayır
+                        </button>
+                    </div>
                     <button onClick={() => {
-                        finish(true)
-                    }}
-                        className='text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4e9d89] w-[252px] h-[50px] disabled:opacity-[50%]'>
-                        Evet
-                    </button>
-                    <button onClick={() => {
-                        finish(false)
-                    }}
-                        className='text-[white] mt-[10px] rounded-[20px_5px] font-nexa-bold bg-[#9d4e61] w-[252px] h-[50px] disabled:opacity-[50%]'>
-                        Hayır
-                    </button>
-                    <button onClick={() => {
-                        finish(false)
+                        finish({
+                            confirmed: false,
+                        })
                     }}
                         className='w-[50px] right-[20px] top-[20px] absolute text-[white] h-[50px] hover:bg-[#df7676] hover:shadow-deepgreen-100 duration-200 grid place-content-center hover:animate-spin transition-all hover:shadow-inner bg-[#4E929D] rounded-full'>
                         <Close />
@@ -131,14 +151,14 @@ export default function InspectFirstForm() {
         {
             loading && <LocalLoading message="Yükleniyor" />
         }
-        {areYouSure.open && <AreYouSureModal finish={(v) => {
-            if (!v) {
+        {areYouSure.open && <AreYouSureModal finish={(finishValue) => {
+            if (!finishValue.confirmed) {
                 setAreYouSure({
                     open: false,
                     isPositive: false,
                 })
             } else {
-                finalizeTheForm(areYouSure.isPositive).then(() => {
+                finalizeTheForm(areYouSure.isPositive, finishValue.message).then(() => {
                     if (areYouSure.isPositive) setIsAppointmentModalOpen(true)
                     else {
                         toast.success("Form değerlendirmesi kaydedildi !");

@@ -42,8 +42,6 @@ export const flow3FormInitialValues = {
     address: "dadadadas kşjalkj lksajdlkja",
     city: "samsun",
     phoneCell: 5434354354354,
-    geneticHistory: "Diğer",
-    geneticHistoryOther: "balkan göçmeni",
     lastHealt: "sdfdfdfdff",
     emergencyContact: "24354534",
     emergencyContactRelation: "sevgili",

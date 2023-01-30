@@ -126,6 +126,7 @@ interface FormInputTextAreaProps
   extends Omit<FormInputProps, "onChange" | "onKeyUp"> {
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onKeyUp?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
+  maxLength?: number;
 }
 
 export const FormInputTextArea = ({
@@ -136,6 +137,7 @@ export const FormInputTextArea = ({
   label,
   placeholder = "Lütfen doldurunuz",
   disabled = false,
+  maxLength = 10000,
 }: FormInputTextAreaProps) => {
   return (
     <div className="flex flex-col w-full">
@@ -145,6 +147,7 @@ export const FormInputTextArea = ({
         </label>
       )}
       <textarea
+        maxLength={maxLength}
         value={value}
         name={name}
         onChange={onChange}

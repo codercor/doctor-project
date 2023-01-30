@@ -78,42 +78,6 @@ export default function SubStep2Part1({
           onChange={handleChange}
         />
       </div>
-      <div className="flex flex-col min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-        <div>
-          <FormInputSelectOne
-            label="Genetik geçmiş"
-            value={values.geneticHistory}
-            error={errors.geneticHistory}
-            name="geneticHistory"
-            options={[
-              /*  Afrikan Amerikan  İspanyol  Akdeniz  Asyalı Amerikalı Kafkas Kuzey Avrupalı*/
-              { label: "Afrikan Amerikan", value: "Afrikan Amerikan" },
-              { label: "İspanyol", value: "İspanyol" },
-              { label: "Akdeniz", value: "Akdeniz" },
-              { label: "Asyalı", value: "Asyalı" },
-              { label: "Amerikalı", value: "Amerikalı" },
-              { label: "Kafkas", value: "Kafkas" },
-              { label: "Kuzey Avrupalı", value: "Kuzey Avrupalı" },
-              {
-                label: "Diğer",
-                value: "Diğer",
-              },
-            ]}
-            onChange={handleChange}
-          />
-        </div>
-        {values.geneticHistory == "Diğer" && (
-          <FormInput
-            label="Diğer"
-            name="geneticHistoryOther"
-            value={values.geneticHistoryOther}
-            error={errors.geneticHistoryOther}
-            type="text"
-            onChange={handleChange}
-          />
-        )}
-      </div>
-    
       <div className="flex  min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Sağlık hizmetini en son nerede, ne zaman ve kimden aldınız?"
@@ -161,7 +125,6 @@ export default function SubStep2Part1({
               { label: "Bir doktor önerdi", value: "Bir doktor önerdi" },
               { label: "Bir arkadaş/aile üyelerinden biri önerdi", value: "Bir arkadaş/aile üyelerinden biri önerdi" },
               { label: "Sosyal medya", value: "Sosyal medya" },
-              { label: "Kafkas", value: "Kafkas" },
               {
                 label: "Diğer",
                 value: "Diğer",
