@@ -58,10 +58,10 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
                     <VideoCallRounded />
                     <Link target="_blank" href={ZoomURL} > Zoom`&apos;a gir </Link>
                 </div>
-                <div className='flex items-center'>
+                {IsAdmin && <div className='flex items-center'>
                     <Key />
                     <Text type='paragraph' className='text-inherit text-[16px]'>{Password}</Text>
-                </div>
+                </div>}
             </div>}
         </div>}
     </div>

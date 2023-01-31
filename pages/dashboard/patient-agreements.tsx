@@ -1,12 +1,14 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import DashboardLayout from "@components/Layouts/DashboardLayout";
 import Switch from "@mui/material/Switch";
 import SozlesmeModal from "@components/SozlesmeModal/SozlesmeModal";
-import {loremIpsum} from "lorem-ipsum";
-import {Divider} from "@mui/material";
+import { loremIpsum } from "lorem-ipsum";
+import { Divider } from "@mui/material";
 import useUser from "../../src/hooks/user.hook";
 import request from "@config";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
+import PatientContract from "@components/ContractContents/PatientContract";
+import PatientIlluminationContract from "@components/ContractContents/PatientIlluminationContract";
 
 const PatientAgreements = () => {
     const [patientUserAggrement, setPatientUserAggrement] = useState(false);
@@ -25,7 +27,7 @@ const PatientAgreements = () => {
     const getAndSetAgreements = async () => {
         return request.post(`/log/check/${UserId}`)
             .then((res) => {
-                const {IsPatientIlluminationText, IsPatientUserAgreement} = res.data;
+                const { IsPatientIlluminationText, IsPatientUserAgreement } = res.data;
                 console.log(IsPatientIlluminationText, IsPatientUserAgreement)
                 setLoading(false);
                 setPatientIlluminationText(IsPatientIlluminationText);
@@ -36,7 +38,7 @@ const PatientAgreements = () => {
                 }
             })
     }
-    const {user: {Id: UserId}} = useUser();
+    const { user: { Id: UserId } } = useUser();
     const router = useRouter();
     const [updated, setUpdated] = useState(false);
 
@@ -69,19 +71,23 @@ const PatientAgreements = () => {
                 <div className="flex items-center justify-center w-full h-full">
                     {
                         modals.userAgreement &&
-                        <SozlesmeModal content={loremIpsum({count: 500})} closeWithValue={(x) => {
-                            setModals({...modals, userAgreement: false})
+                        <SozlesmeModal closeWithValue={(x) => {
+                            setModals({ ...modals, userAgreement: false })
                             setPatientUserAggrement(x)
-                            setRealAgreements({...realAgreements, userAgreement: x})
-                        }}/>
+                            setRealAgreements({ ...realAgreements, userAgreement: x })
+                        }}>
+                            <PatientContract />
+                        </SozlesmeModal>
                     }
                     {
                         modals.illuminationText &&
-                        <SozlesmeModal content={loremIpsum({count: 400})} closeWithValue={(x) => {
-                            setModals({...modals, illuminationText: false})
+                        <SozlesmeModal closeWithValue={(x) => {
+                            setModals({ ...modals, illuminationText: false })
                             setPatientIlluminationText(x)
-                            setRealAgreements({...realAgreements, illuminationText: x})
-                        }}/>
+                            setRealAgreements({ ...realAgreements, illuminationText: x })
+                        }}>
+                            <PatientIlluminationContract />
+                        </SozlesmeModal>
                     }
                     <div className="flex flex-col w-[50%]">
                         <p className="font-nexa-regular">
@@ -89,20 +95,20 @@ const PatientAgreements = () => {
                         </p>
                         <input onClick={(e) => {
                             e.preventDefault();
-                            setModals({...modals, userAgreement: true})
+                            setModals({ ...modals, userAgreement: true })
                         }} checked={patientUserAggrement}
-                               className="h-[24px]  appearance-none w-[24px] bg-primary-flat checked:accent-black-100  checked:after:rounded-[5px_0px_5px_0] relative checked:after:w-[24px] checked:after:h-[24px] checked:after:absolute checked:after:grid checked:after:place-content-center checked:after:top-0 checked:left-0 checked:after:bg-[black] checked:after:content-['✓']"
-                               type="checkbox"/>
-                        <Divider/>
+                            className="h-[24px]  appearance-none w-[24px] bg-primary-flat checked:accent-black-100  checked:after:rounded-[5px_0px_5px_0] relative checked:after:w-[24px] checked:after:h-[24px] checked:after:absolute checked:after:grid checked:after:place-content-center checked:after:top-0 checked:left-0 checked:after:bg-[black] checked:after:content-['✓']"
+                            type="checkbox" />
+                        <Divider />
                         <p className="font-nexa-regular">
                             Aydınlatma Metni
                         </p>
                         <input onClick={(e) => {
                             e.preventDefault();
-                            setModals({...modals, illuminationText: true})
+                            setModals({ ...modals, illuminationText: true })
                         }} checked={patientIlluminationText}
-                               className="h-[24px] appearance-none w-[24px] bg-primary-flat checked:accent-black-100  checked:after:rounded-[5px_0px_5px_0] relative checked:after:w-[24px] checked:after:h-[24px] checked:after:absolute checked:after:grid checked:after:place-content-center checked:after:top-0 checked:left-0 checked:after:bg-[black] checked:after:content-['✓']"
-                               type="checkbox"/>
+                            className="h-[24px] appearance-none w-[24px] bg-primary-flat checked:accent-black-100  checked:after:rounded-[5px_0px_5px_0] relative checked:after:w-[24px] checked:after:h-[24px] checked:after:absolute checked:after:grid checked:after:place-content-center checked:after:top-0 checked:left-0 checked:after:bg-[black] checked:after:content-['✓']"
+                            type="checkbox" />
                     </div>
 
                 </div>

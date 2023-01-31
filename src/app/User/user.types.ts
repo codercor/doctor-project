@@ -20,9 +20,11 @@ export interface UserState {
     Token: string | null;
     Information: {
         Id: string;
-        Fullname: string;
+        Fullname?: string;
         Phone: string;
-        Address: string;
+        Country: string;
+        City: string;
+        District: string;
         Gender?: string;
         BirthDate?: string;
     };
@@ -74,12 +76,14 @@ export interface UserRegisterCredentials {
 
 export type UserInformation = {
     Id: string,
-    Fullname: string,
+    Fullname?: string,
     Phone: string,
-    Address: string,
     Email: string,
     Gender?: string,
     BirthDate?: string,
+    Country: string,
+    City: string,
+    District: string,
 }
 export type BannerData = {
     Title: string,

@@ -1,4 +1,5 @@
 import Container from "@components/Container";
+import UserIlluminationContract from "@components/ContractContents/UserIlluminationContract";
 import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
 import BeforeFooter from "@components/Section/BeforeFooter";
@@ -32,8 +33,7 @@ const Sozlesmeler = () => {
             </Container>
             <Container className="mx-auto !min-w-full  md:bg-[white] ">
                 <Container className="md:!max-w-[1455px] flex flex-col text-left gap-[20px] md:!min-h-[1115px] py-[40px] md:pr-[70px] px-[20px] md:pl-[70px] bg-primary-light">
-                    <div dangerouslySetInnerHTML={{ __html: sozlesme }}>
-                    </div>
+                   <UserIlluminationContract/>
                 </Container>
             </Container>
             <BeforeFooter />

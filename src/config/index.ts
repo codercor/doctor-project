@@ -38,6 +38,8 @@ export const ATTACH_VIDEO_FOLDER = `${TRAINING}/video`
 //TODO change this url and util function
 export const TRAININGS_WITH_USER_ID = `${PAYMENT}/:UserId`;
 
+import { logout } from '@app/User/user.slice'
+
 export const request = axios.create({
     baseURL: API,
 });
@@ -49,5 +51,17 @@ request.interceptors.request.use(
         console.log("Error", error);
         return Promise.reject(error);
     });
+
+request.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        if (error.response.status === 401) {
+            store.dispatch(logout());
+        }
+        return Promise.reject(error);
+    },
+);
 
 export default request;

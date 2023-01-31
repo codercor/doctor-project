@@ -199,6 +199,7 @@ export default function FirstForm() {
                                     options={[
                                         {value: "yuzyuze", label: "Yüz yüze"},
                                         {value: "online", label: "Online"},
+                                        {value: "farkmaz", label: "Fark etmez"},
                                     ]}
                                 />
                             </div>

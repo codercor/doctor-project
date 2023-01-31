@@ -1,11 +1,11 @@
 import React from "react";
 
 export default function SozlesmeModal({
-  content,
   closeWithValue,
+  children
 }: {
-  content: string;
   closeWithValue: (response: boolean) => void;
+  children: React.ReactNode;
 }) {
   const boxRef = React.useRef<HTMLDivElement>(null);
   const [buttonActive, setButtonActive] = React.useState(false);
@@ -41,12 +41,13 @@ export default function SozlesmeModal({
       className="w-screen h-screen bg-[#00000099] fixed top-0 left-0 z-50 flex justify-center items-center"
       onClick={() => closeWithValue(false)}
     >
-      <div className="w-[800px] min-h-[200px]  h-[600px] bg-secondary-light rounded-[30px_5px] p-[30px]">
+      <div className="w-[800px] min-h-[200px]  h-[400px] bg-secondary-light rounded-[30px_5px] p-[30px]">
         <div
           ref={boxRef}
-          dangerouslySetInnerHTML={{ __html: content }}
           className="w-full h-[calc(100%-50px)] overflow-y-scroll"
-        ></div>
+        >
+          {children}
+        </div>
         <div className="w-full h-[50px]  flex justify-center items-center">
           <button
             disabled={!buttonActive}

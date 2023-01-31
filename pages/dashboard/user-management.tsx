@@ -117,8 +117,8 @@ export default function UserManagement() {
         setIsLoading(true);
         request.get(`/user?page=${page}`).then(res => {
             let results = res.data.map((item: any) => {
-                if (!item.Information.Fullname) item.Information.Fullname = "isimsiz";
-                if (!item.Information.Phone) item.Information.Phone = "telefon yok";
+                if (!item.Information.Fullname) item.Information.Fullname = "-";
+                if (!item.Information.Phone) item.Information.Phone = "-";
                 return item;
             })
             setList(results);
@@ -182,67 +182,69 @@ export default function UserManagement() {
                         className='bg-quaternary-flat text-[white] min-w-[70px] rounded-[10px_20px_10px_20px]  h-full grid place-content-center'>
                         <Refresh /></div>
                 </div>
-                <TableContainer className='bg-[white] '>
-                    <Table aria-label="collapsible table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="left">Kullanıcı Adı</TableCell>
-                                <TableCell align="left">E-posta adresi</TableCell>
-                                <TableCell align="left">Telefon</TableCell>
-                                <TableCell align="left">Kayıt</TableCell>
-                                <TableCell align="left">Durum</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-
-                            {list?.length > 0 ? list.map((row, index) => (
-                                <TableRow
-                                    key={row.Id}
-                                    className={"border-2 p-0 leading-none h-[10px] " + (index % 2 != 0 ? 'bg-[#DEEEF0]' : '')}
-                                >
-                                    <TableCell className="leading-none" component="th" scope="row">
-                                        {row.Information.Fullname || 'isim yok'}
-                                    </TableCell>
-                                    <TableCell className="leading-none" align="left">{row.Email}</TableCell>
-                                    <TableCell className="leading-none"
-                                        align="left">{row.Information.Phone || 'Telefon yok'}</TableCell>
-                                    <TableCell className="leading-none" align="left">{
-                                        new Date(row.CreatedAt).toLocaleDateString('tr-TR', {
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric',
-                                        })
-                                    }</TableCell>
-
-                                    <TableCell onClick={() => {
-                                        //open change isPatient modal
-                                        setIsPatientModal({
-                                            open: true,
-                                            data: {
-                                                UserId: row.Id,
-                                                IsPatient: row.IsPatient
-                                            }
-                                        });
-                                    }} className="leading-none" align="left">{row.IsPatient ?
-                                        <button
-                                            className="!w-[108px] h-[36px] uppercase text-[#3A356B] font-nexa-regular bg-[#DDDAFF] border-[1px] border-[#A09AD9] !p-[0] grid place-content-center">
-                                            Hasta </button> :
-                                        <button
-                                            className="!w-[108px] h-[36px] uppercase text-[#98A170] font-nexa-regular bg-[#FBFFEC] border-[1px] border-[#D8E0B2] !p-[0] grid place-content-center">
-                                            Kullanıcı </button>}</TableCell>
-
+                {list?.length > 0 ? <>
+                    <TableContainer className='bg-[white] '>
+                        <Table aria-label="collapsible table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="left">Kullanıcı Adı</TableCell>
+                                    <TableCell align="left">E-posta adresi</TableCell>
+                                    <TableCell align="left">Telefon</TableCell>
+                                    <TableCell align="left">Kayıt</TableCell>
+                                    <TableCell align="left">Durum</TableCell>
                                 </TableRow>
-                            )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kullanıcı bulunmamaktadır </h1>
-                            }
+                            </TableHead>
+                            <TableBody>
 
-                        </TableBody>
+                                {list?.length > 0 ? list.map((row, index) => (
+                                    <TableRow
+                                        key={row.Id}
+                                        className={"border-2 p-0 leading-none h-[10px] " + (index % 2 != 0 ? 'bg-[#DEEEF0]' : '')}
+                                    >
+                                        <TableCell className="leading-none" component="th" scope="row">
+                                            {row.Information.Fullname || '-'}
+                                        </TableCell>
+                                        <TableCell className="leading-none" align="left">{row.Email}</TableCell>
+                                        <TableCell className="leading-none"
+                                            align="left">{row.Information.Phone || '-'}</TableCell>
+                                        <TableCell className="leading-none" align="left">{
+                                            new Date(row.CreatedAt).toLocaleDateString('tr-TR', {
+                                                year: 'numeric',
+                                                month: 'long',
+                                                day: 'numeric',
+                                            })
+                                        }</TableCell>
 
-                    </Table>
-                    <Pagination siblingCount={3} variant="text" className="mt-[20px] mb-[30px]"
-                        onChange={(e: any, value: number) => {
-                            setPage(value)
-                        }} count={page + 1} />
-                </TableContainer>
+                                        <TableCell onClick={() => {
+                                            //open change isPatient modal
+                                            setIsPatientModal({
+                                                open: true,
+                                                data: {
+                                                    UserId: row.Id,
+                                                    IsPatient: row.IsPatient
+                                                }
+                                            });
+                                        }} className="leading-none" align="left">{row.IsPatient ?
+                                            <button
+                                                className="!w-[108px] h-[36px] uppercase text-[#3A356B] font-nexa-regular bg-[#DDDAFF] border-[1px] border-[#A09AD9] !p-[0] grid place-content-center">
+                                                Hasta </button> :
+                                            <button
+                                                className="!w-[108px] h-[36px] uppercase text-[#98A170] font-nexa-regular bg-[#FBFFEC] border-[1px] border-[#D8E0B2] !p-[0] grid place-content-center">
+                                                Kullanıcı </button>}</TableCell>
+
+                                    </TableRow>
+                                )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kullanıcı bulunmamaktadır </h1>
+                                }
+
+                            </TableBody>
+
+                        </Table>
+                        <Pagination siblingCount={3} variant="text" className="mt-[20px] mb-[30px]"
+                            onChange={(e: any, value: number) => {
+                                setPage(value)
+                            }} count={page + 1} />
+                    </TableContainer>
+                </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kullanıcı bulunmamaktadır </h1>}
             </div>
         </DashboardLayout></>
     )

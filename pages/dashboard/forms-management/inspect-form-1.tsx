@@ -344,6 +344,7 @@ export default function InspectFirstForm() {
                                         options={[
                                             { value: "yuzyuze", label: "Yüz yüze" },
                                             { value: "online", label: "Online" },
+                                            { value: "farkmaz", label: "Fark etmez" },
                                         ]}
                                         disabled={true}
                                     />

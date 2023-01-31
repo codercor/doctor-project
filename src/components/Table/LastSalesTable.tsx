@@ -20,7 +20,7 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
         })
     }, [page])
 
-
+    if (list.length < 1) return <h1 className="w-full flex items-center justify-center h-[80%]"> Kayıt bulunmamaktadır </h1>
     return <>
         {IsLoading ? <div className="w-full h-full grid place-content-center"> <CircularProgress /></div> : <div className="w-full"> <TableContainer>
 
@@ -34,19 +34,19 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
                 </TableHead>
                 <TableBody>
 
-                    { list?.length > 0 ?  list.map((row, index) => (
+                    {list?.length > 0 ? list.map((row, index) => (
                         <TableRow
                             key={row.Id}
                             className={"border-2 p-0 leading-none h-[10px] " + (index % 2 != 0 ? 'bg-[#DEEEF0]' : '')}
                         >
                             <TableCell className="leading-none" component="th" scope="row">
-                                {new Date(row?.Date).toLocaleString() || 'Tarih yok'}
+                                {new Date(row?.Date).toLocaleString() || '-'}
                             </TableCell>
-                            <TableCell className="leading-none" align="left">{row.User.Information.Fullname || 'İsim yok'}</TableCell>
-                            <TableCell className="leading-none" align="left">{row.Education?.Name || 'Eğitim ismi yok'}</TableCell>
+                            <TableCell className="leading-none" align="left">{row.User.Information.Fullname || '-'}</TableCell>
+                            <TableCell className="leading-none" align="left">{row.Education?.Name || '-'}</TableCell>
                         </TableRow>
-                    )): <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kayıt bulunmamaktadır </h1>
-                }
+                    )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kayıt bulunmamaktadır </h1>
+                    }
 
                 </TableBody>
             </Table>

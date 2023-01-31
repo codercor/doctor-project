@@ -26,14 +26,14 @@ const Row = ({ data }: { data: IPrescriptionItem }) => {
             <div className='flex-[6]'>
                 <p>
                     {
-                        data.user?.information?.Fullname || 'YOK'
+                        data.user?.information?.Fullname || '-'
                     }
                 </p>
             </div>
             <div className='flex-[6]'>
                 <p>
                     {
-                        data.user?.Email || 'YOK'
+                        data.user?.Email || '-'
                     }
 
                 </p>
@@ -41,14 +41,14 @@ const Row = ({ data }: { data: IPrescriptionItem }) => {
             <div className='flex-[4]'>
                 <p>
                     {
-                        data.user?.information?.Phone || 'YOK'
+                        data.user?.information?.Phone || '-'
                     }
                 </p>
             </div>
             <div className='flex-[4]'>
                 <p>
                     {
-                        new Date(data.updated_at || data.created_at).toLocaleDateString() || 'YOK'
+                        new Date(data.updated_at || data.created_at).toLocaleDateString() || '-'
                     }
                 </p>
             </div>
@@ -94,7 +94,7 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
     }
 
     const searchPatient = (key: string) => {
-        request.post(`/search/user`, {
+        request.post(`/search/user/patient?page=1`, {
             key
         }).then(res => {
             console.log(res.data);
@@ -349,32 +349,34 @@ export default function PrescriptionsManagement() {
             <div className="w-[80%] gap-[10px] mt-[10px] mb-[30px] flex">
                 <input type="text" value={keyword} onChange={
                     (e) => { setKeyword(e.currentTarget.value) }
-                } placeholder='Ad Soyad ya da E-posta adresine göre arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
+                } placeholder='Ad Soyad ile arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
                 <button onClick={() => {
                     refresh()
                 }} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
                     <RefreshRounded />
                 </button>
             </div>
-            <div className="w-full flex flex-col">
-                <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                    <Text type="h3" className="text-secondary flex-[6] !text-[14px]">Ad Soyad</Text>
-                    <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
-                    <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
-                    <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Reçete Tarih</Text>
-                    <div className='flex-[4]'>  </div>
+            {prescriptions?.length > 0 ? <>
+                <div className="w-full flex flex-col">
+                    <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
+                        <Text type="h3" className="text-secondary flex-[6] !text-[14px]">Ad Soyad</Text>
+                        <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
+                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
+                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Reçete Tarih</Text>
+                        <div className='flex-[4]'>  </div>
+                    </div>
+                    <div className='w-full border-2'>
+                        {
+                            prescriptions?.length > 0 ? (prescriptions?.map((item) => {
+                                return <Row key={v4()} data={item} />
+                            }) || <></>) : <h1 className='text-[#4D5628] text-[20px] text-center'>Reçeteniz bulunmamaktadır</h1>
+                        }
+                    </div>
                 </div>
-                <div className='w-full border-2'>
-                    {
-                        prescriptions?.length > 0 ? (prescriptions?.map((item) => {
-                            return <Row key={v4()} data={item} />
-                        }) || <></>) : <h1 className='text-[#4D5628] text-[20px] text-center'>Reçeteniz bulunmamaktadır</h1>
-                    }
-                </div>
-            </div>
-            <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
-                setPage(value)
-            }} count={page + 1} />
+                <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
+                    setPage(value)
+                }} count={page + 1} />
+            </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Reçete bulunmamaktadır </h1>}
         </div>
     </DashboardLayout>
 }

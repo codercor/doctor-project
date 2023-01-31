@@ -24,7 +24,7 @@ export default function SubStep3Part1({
         <>
             <div
                 className="min-h-[60px] w-full  px-[20px] flex-col flex bg-[#E9EDD9]  text-[#5B623D] items-start justify-center">
-                <h2 className="font-nexa-regular text-[18px]">Son 14 gündeki sağlık durumunuza göre aşağıdaki
+                <h2 className="font-nexa-regular text-[18px]">Son 30 gündeki sağlık durumunuza göre aşağıdaki
                     semptomların her birini değerlendirin</h2>
                 <div className="font-nexa-regular text-[12px]">
                     <p>0 – Semptom yok veya neredeyse yok</p>

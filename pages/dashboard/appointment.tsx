@@ -77,15 +77,15 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
             <div className='flex-[6] '>
                 <p>
                     {
-                        appointment.user?.information?.Fullname || "Bilinmiyor"
+                        appointment.user?.information?.Fullname || "-"
                     }
                 </p>
             </div>
             <div className='flex-[6] '>
-                <p>{appointment.user?.Email || 'bilinmiyor'}</p>
+                <p>{appointment.user?.Email || '-'}</p>
             </div>
             <div className='flex-[4] '>
-                <p> {appointment.user?.information?.Phone || 'bilimiyor'} </p>
+                <p> {appointment.user?.information?.Phone || '-'} </p>
             </div>
             <div className='flex-[4] '>
                 <p>

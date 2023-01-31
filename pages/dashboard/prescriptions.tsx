@@ -32,14 +32,14 @@ const Row = ({ data }: { data: IPrescriptionItem }) => {
             <div className='flex-[6]'>
                 <p>
                     {
-                        data.user?.Information?.Fullname || 'YOK'
+                        data.user?.Information?.Fullname || '-'
                     }
                 </p>
             </div>
             <div className='flex-[6]'>
                 <p>
                     {
-                        data.user?.Email || 'YOK'
+                        data.user?.Email || '-'
                     }
 
                 </p>
@@ -47,14 +47,14 @@ const Row = ({ data }: { data: IPrescriptionItem }) => {
             <div className='flex-[4]'>
                 <p>
                     {
-                        data.user?.Information?.Phone || 'YOK'
+                        data.user?.Information?.Phone || '-'
                     }
                 </p>
             </div>
             <div className='flex-[4]'>
                 <p>
                     {
-                        new Date(data.updated_at || data.created_at).toLocaleDateString() || 'YOK'
+                        new Date(data.updated_at || data.created_at).toLocaleDateString() || '-'
                     }
                 </p>
             </div>

@@ -115,15 +115,15 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
             <div className='flex-[6]'>
                 <p>
                     {
-                        appointment.user?.information?.Fullname || "Bilinmiyor"
+                        appointment.user?.information?.Fullname || "-"
                     }
                 </p>
             </div>
             <div className='flex-[6]'>
-                <p>{appointment.user?.Email || 'bilinmiyor'}</p>
+                <p>{appointment.user?.Email || '-'}</p>
             </div>
             <div className='flex-[4]'>
-                <p> {appointment.user?.information?.Phone || 'bilimiyor'} </p>
+                <p> {appointment.user?.information?.Phone || '-'} </p>
             </div>
             <div className='flex-[4]'>
                 <p>
@@ -306,7 +306,7 @@ export default function AppointmentManagement() {
                     <input type="text" onChange={(e) => {
                         setSearchKey(e.target.value)
                     }
-                    } placeholder='Ad Soyad ya da E-posta adresine göre arayın'
+                    } placeholder='Ad Soyad ile arayın'
                         className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
 
                     <button onClick={() => {
@@ -315,30 +315,34 @@ export default function AppointmentManagement() {
                         <RefreshRounded />
                     </button>
                 </div>
-                <div className="w-full flex flex-col">
-                    <div className='w-full flex  h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                        <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">Ad Soyad</Text>
-                        <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">E-posta</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Telefon</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Randevu Tarihi</Text>
-                        <Text type="h3" className="text-secondary flex-[2] !text-[14px] ">Durum</Text>
-                        <Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] "></Text>
-                    </div>
-                    <div
-                        className='w-full border-2 max-h-[600px] overflow-auto p-3 scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>
-                        {
-                            appointments?.length > 0 ? appointments.map((appointment: Appointment) => {
-                                return <Row afterUpdate={() => {
-                                    getAndSetAppointments()
-                                }} key={v4()} appointment={appointment} />
-                            }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
-                        }
-                    </div>
-                </div>
-                <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]"
-                    onChange={(e: any, value: number) => {
-                        setPage(value)
-                    }} count={page + 1} />
+                {
+                    appointments?.length > 0 ? <>
+                        <div className="w-full flex flex-col">
+                            <div className='w-full flex  h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
+                                <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">Ad Soyad</Text>
+                                <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">E-posta</Text>
+                                <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Telefon</Text>
+                                <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Randevu Tarihi</Text>
+                                <Text type="h3" className="text-secondary flex-[2] !text-[14px] ">Durum</Text>
+                                <Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] "></Text>
+                            </div>
+                            <div
+                                className='w-full border-2 max-h-[600px] overflow-auto p-3 scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>
+                                {
+                                    appointments?.length > 0 ? appointments.map((appointment: Appointment) => {
+                                        return <Row afterUpdate={() => {
+                                            getAndSetAppointments()
+                                        }} key={v4()} appointment={appointment} />
+                                    }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
+                                }
+                            </div>
+                        </div>
+                        <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]"
+                            onChange={(e: any, value: number) => {
+                                setPage(value)
+                            }} count={page + 1} />
+                    </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
+                }
             </div>
         </DashboardLayout>
     )

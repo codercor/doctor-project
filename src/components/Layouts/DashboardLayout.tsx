@@ -80,7 +80,7 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
                     Icon: Assignment
                 },
                 {
-                    text: "Formlar",
+                    text: "Hasta Kabul Formları",
                     href: "/dashboard/forms-management",
                     Icon: TaskTwoTone
                 },
@@ -152,7 +152,7 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
                 }
             ]
             if (user?.IsPatient) userNavs.push({
-                text: "Formlar",
+                text: "Hasta Kabul Formları",
                 href: "/dashboard/patient-agreements",
                 Icon: TaskOutlined
             })

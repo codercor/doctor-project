@@ -10,6 +10,8 @@ import SozlesmeModal from "@components/SozlesmeModal/SozlesmeModal";
 import toast from "react-hot-toast";
 import { ErrorOutlined } from "@mui/icons-material";
 import axios from "axios";
+import UserContract from "@components/ContractContents/UserContract";
+import UserIlluminationContract from "@components/ContractContents/UserIlluminationContract";
 
 const Register = () => <><RegisterForm /></>
 
@@ -87,7 +89,7 @@ const RegisterForm = () => {
     }
     const checkUserInformationCompleted = () => {
         if (!user) return false
-        if (!user.Information?.Fullname || !user.Information?.BirthDate || !user.Information?.Address || !user.Information?.Phone || !user.Information?.Gender) return false
+        if (!user.Information?.Fullname || !user.Information?.BirthDate || !user.Information?.Phone || !user.Information?.Gender) return false
         return true
     }
     useEffect(() => {
@@ -103,31 +105,31 @@ const RegisterForm = () => {
             } else router.push('/dashboard');
         }
     }, [user])
-    const [kullaniciSozlesmesi, setKullaniciSozlesmesi] = useState<string>("");
-    const [kullaniciAydinlatma, setKullaniciAydinlatma] = useState<string>("");
 
-    useEffect(() => {
-        axios.get("/contracts/kullanici-sozlesmesi.html").then(res => {
-            setKullaniciSozlesmesi(res.data)
-        })
-        axios.get("/contracts/kullanici-aydinlatma.html").then(res => {
-            setKullaniciAydinlatma(res.data)
-        })
-    })
     return (
         <AuthLayout>
             {
                 sozlesmeler.kullanici.modal &&
-                <SozlesmeModal content={kullaniciSozlesmesi} closeWithValue={(x) => {
+                <SozlesmeModal closeWithValue={(x) => {
                     setSozlesmeler({ ...sozlesmeler, kullanici: { value: x, modal: false } })
-                }} />
+                }} >
+                    <UserContract />
+                </SozlesmeModal>
             }
             {
+                sozlesmeler.aydinlatma.modal &&
+                <SozlesmeModal closeWithValue={(x) => {
+                    setSozlesmeler({ ...sozlesmeler, aydinlatma: { value: x, modal: false } })
+                }} >
+                    <UserIlluminationContract />
+                </SozlesmeModal>
+            }
+            {/* {
                 sozlesmeler.aydinlatma.modal &&
                 <SozlesmeModal content={kullaniciAydinlatma} closeWithValue={(x) => {
                     setSozlesmeler({ ...sozlesmeler, aydinlatma: { value: x, modal: false } })
                 }} />
-            }
+            } */}
             <div
                 className="md:w-[1440px] md:h-full h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px]">
                 <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">
