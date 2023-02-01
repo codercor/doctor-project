@@ -87,11 +87,12 @@ const BuyKit = ({ id, price, totalLength }: { id: string, price: number, totalLe
         </div>
         <Button onClick={() => {
             if (IsAuthenticated) {
-                if (!BillingDetail.IdentityNumber) {
-                    localStorage.setItem("after-complete-billing-details", '/training?id=' + id)
-                    Router.push("/dashboard/settings/invoice-settings")
-                    toast.error("Lütfen önce fatura bilgilerinizi tamamlayın")
-                } else Router.push('/training/buy?id=' + id)
+                // if (!BillingDetail.IdentityNumber) {
+                //     localStorage.setItem("after-complete-billing-details", '/training?id=' + id)
+                //     Router.push("/dashboard/settings/invoice-settings")
+                //     toast.error("Lütfen önce fatura bilgilerinizi tamamlayın")
+                // } else Router.push('/training/buy?id=' + id)
+                Router.push("/dashboard/settings/invoice-settings?nextPage=/training/buy?id=" + id);
             } else Router.push('/auth/login')
         }} type="quaternary-flat" className='flex justify-center text-center mb-2' >
             Satın Al

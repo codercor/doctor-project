@@ -48,6 +48,10 @@ const initialState: UserState = {
         IdentityNumber: '',
         RegistrationAddress: '',
         City: '',
+        District: '',
+        ContactType: '',
+        Phone: '',
+        TaxOffice: '',
         Country: ''
     },
     UsersTrainings: [],

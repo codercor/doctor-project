@@ -37,6 +37,10 @@ export interface UserState {
         RegistrationAddress: string;
         City: string;
         Country: string;
+        District: string;
+        ContactType: string;
+        TaxOffice: string;
+        Phone: string;
     },
     UsersTrainings: Array<BoughtTraining>;
     UsersTrainingsProcess: {
@@ -94,13 +98,17 @@ export type BannerData = {
 
 export type UserBillingDetail = {
     Id: string,
-    Name: string,
-    Surname: string,
-    Email: string,
-    IdentityNumber: string,
-    RegistrationAddress: string,
-    City: string,
-    Country: string
+    Name: string;
+    Surname: string;
+    Email: string;
+    IdentityNumber: string;
+    RegistrationAddress: string;
+    City: string;
+    Country: string;
+    District: string;
+    ContactType: string;
+    TaxOffice: string;
+    Phone: string;
 }
 export interface BoughtTrainingEducationSection {
     Id: string,
