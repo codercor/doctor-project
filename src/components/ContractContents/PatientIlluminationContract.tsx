@@ -75,7 +75,7 @@ export default function PatientIlluminationContract() {
             <p className='pl-[10px] font-nexa-regular'>            •İşlenmişse buna ilişkin bilgi talep etme,</p>
             <p className='pl-[10px] font-nexa-regular'>            • İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme,</p>
             <p className='pl-[10px] font-nexa-regular'>            • Aktarıldığı üçüncü kişileri bilme, eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme,</p>
-            <p className='pl-[10px] font-nexa-regular'>            • Sağlık Mevzuatının gerektirdiği hasta kayıtlarının saklanması ve muhafazası ile ilgili yasal yükümlülük saklı kalmak kaydıyla, 6698 sayılı Kanun'un 7. maddesinde öngörülen şartlar çerçevesinde kişisel verilerin silinmesini veya yok edilmesini isteme,</p>
+            <p className='pl-[10px] font-nexa-regular'>            • Sağlık Mevzuatının gerektirdiği hasta kayıtlarının saklanması ve muhafazası ile ilgili yasal yükümlülük saklı kalmak kaydıyla, 6698 sayılı Kanun&apos;un 7. maddesinde öngörülen şartlar çerçevesinde kişisel verilerin silinmesini veya yok edilmesini isteme,</p>
             <p className='pl-[10px] font-nexa-regular'>            • Aktarıldığı üçüncü kişilere yukarıda belirtilen düzeltme, silinme veya yok edilme kapsamında yapılan işlemlerin bildirilmesini isteme,</p>
             <p className='pl-[10px] font-nexa-regular'>            • Münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme,</p>
 

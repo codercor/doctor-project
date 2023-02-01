@@ -13,6 +13,7 @@ import { v4 } from 'uuid'
 import useUser from 'src/hooks/user.hook'
 import Link from 'next/link'
 import { Zoom } from '@mui/material'
+import { toast } from 'react-hot-toast'
 const TrainingDocumentCard = ({ title, url }: { title: string, url: string }) => {
     const handleDownload = () => {
         window.open(url, '_blank')
@@ -75,7 +76,7 @@ const BuyKit = ({ id, price, totalLength }: { id: string, price: number, totalLe
                 <School />
                 <Text>Fiyat</Text>
             </div>
-            <Text> {price == 0 ? 'Ücretsiz ' : <>{price}₺</>}</Text>
+            <Text> {price == 0 ? 'Ücretsiz ' : <>{price.toFixed(2)}₺</>}</Text>
         </div>
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>
@@ -87,8 +88,9 @@ const BuyKit = ({ id, price, totalLength }: { id: string, price: number, totalLe
         <Button onClick={() => {
             if (IsAuthenticated) {
                 if (!BillingDetail.IdentityNumber) {
-                    localStorage.setItem("after-complete-billing-details", '/training/buy?id=' + id)
+                    localStorage.setItem("after-complete-billing-details", '/training?id=' + id)
                     Router.push("/dashboard/settings/invoice-settings")
+                    toast.error("Lütfen önce fatura bilgilerinizi tamamlayın")
                 } else Router.push('/training/buy?id=' + id)
             } else Router.push('/auth/login')
         }} type="quaternary-flat" className='flex justify-center text-center mb-2' >

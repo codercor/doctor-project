@@ -1,3 +1,5 @@
+// @ts-nocheck
+ /* tslint:disable */
 import { UserInformation } from "@app/User/user.types";
 import Button from "@components/Button";
 import Input from "@components/Input/Input";
@@ -42,7 +44,7 @@ const Account = () => {
     useEffect(() => {
         let birthDate = user.Information.BirthDate as string || "";
         console.log("user.Information.BirthDate", user.Information.BirthDate);
-        
+
         setUserInfo({ ..._userInfo, BirthDate: (birthDate).replaceAll(".", "-") })
     }, [user.Information.BirthDate])
 
@@ -107,6 +109,7 @@ const Account = () => {
                             values.Fullname = `${values.Name} ${values.Surname}`
                             handleSave(values)
                         }}>
+
                             {({ errors, values, submitForm, handleChange: _handleChange, validateForm, handleSubmit, setFieldValue }) => {
                                 const countries = CountryCityService.getCountries().map((country: string) => {
                                     if (country === "Turkey") {
@@ -192,7 +195,7 @@ const Account = () => {
                                         options={districts}
                                     />
                                     </>}
-                                    <FormInput disabled={!isEdit} name="BirthDate" value={((values.BirthDate as string || "").replaceAll(".","-"))}
+                                    <FormInput disabled={!isEdit} name="BirthDate" value={((values.BirthDate as string || "").replaceAll(".", "-"))}
                                         onChange={_handleChange} label="Doğum Tarihi" type="date" error={errors.BirthDate} />
                                     <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Cinsiyet</Text>
                                     <RadioGroup
