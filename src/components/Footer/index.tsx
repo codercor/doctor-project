@@ -3,14 +3,20 @@ import ArrowIcon from "@components/Icon/ArrowIcon";
 import Logo from "@components/Logo";
 import Text from "@components/Text";
 import Image from "next/image";
+import { useRouter } from "next/router"
 
 
-const Nav = ({ text }: { text: string }) => <button className="flex  justify-between ">
-    <Text type="body" className="text-[white] md:text-[16px] text-[12px]">
-        {text}
-    </Text>
-    <ArrowIcon color="white"></ArrowIcon>
-</button>
+const Nav = ({ text, to }: { text: string, to?: string }) => {
+    const router = useRouter()
+    return (<button onClick={() => {
+        if (to) router.push(to)
+    }} className="flex  justify-between ">
+        <Text type="body" className="text-[white] md:text-[16px] text-[12px]">
+            {text}
+        </Text>
+        <ArrowIcon color="white"></ArrowIcon>
+    </button>)
+}
 
 const Footer = () => {
     return (
@@ -23,7 +29,7 @@ const Footer = () => {
                             <div className="mt-4">
                                 <Image src="/images/svg/cert.svg" width={140} height={36} />
                             </div>
-                            
+
                         </div>
                         <div className="md:ml-[60px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
                             <Nav text="ANASAYFA" />
@@ -31,10 +37,10 @@ const Footer = () => {
                             <Nav text="EĞİTİMLER" />
                         </div>
                         <div className="md:ml-[160px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
-                            <Nav text="Gizlilik Politikası" />
-                            <Nav text="Kullanıcı Şartları" />
-                            <Nav text="Aydınlanma Metni" />
-                            <Nav text="Çerez Politikası" />
+                            <Nav text="Gizlilik Politikası" to="/sozlesmeler/gizlilik" />
+                            <Nav text="Kullanıcı Şartları" to="/sozlesmeler/kullanici-sozlesmesi/" />
+                            <Nav text="KVKK Metni" to="/sozlesmeler/kvkk" />
+                            <Nav text="Aydınlatma Metni" to="/sozlesmeler/aydinlatma-metni/" />
                         </div>
                         <div className="md:ml-[160px] mt-[77px] leading-none flex flex-col gap-4 h-fit w-[250px]">
                             <Text type="paragraph" className="text-[white]">

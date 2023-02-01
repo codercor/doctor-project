@@ -31,6 +31,12 @@ export interface UserFlowAbilityData {
     "IsFormLockedStep": number,
 }
 
+// let ornek  = {
+//     lockeds: [2,4,5],
+//     pendings: [5],
+//     confirmeds:[1,2],
+//     active:[6],
+// }
 
 export const getUserFlowAbilibility = async (UserId: string) => {
     const isActivePreApplicationFormRequest: any = await request.get(`/appointmentsettings`)
@@ -52,16 +58,12 @@ export const getUserFlowAbilibility = async (UserId: string) => {
     }
 }
 export default function Forms() {
-
     const isDesktop = useIsDesktop();
-
 
     const { user: { Id: UserId, IsPatient } } = useUser()
     const key = `selectedStep-${UserId}`
     const [selectedStep, setSelectedStep] = React.useState(Number(localStorage.getItem(key)) || 1);
     const [waitingDoneStep, setWaitingDoneStep] = React.useState<number | null>(null);
-
-
 
     useEffect(() => {
         console.log("key", key)

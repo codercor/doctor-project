@@ -10,11 +10,6 @@ import { useEffect, useState } from "react";
 const Sozlesmeler = () => {
     const [sozlesme, setSozlesme] = useState("");
 
-    useEffect(() => {
-        axios.get("/contracts/kullanici-aydinlatma.html").then(res => {
-            setSozlesme(res.data);
-        })
-    }, [])
 
     return (
         <div className="overflow-hidden md:bg-none bg-primary-light">

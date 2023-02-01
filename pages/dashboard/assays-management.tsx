@@ -187,7 +187,7 @@ export default function Assays() {
                             <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
                             <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Belge Adı</Text>
                             <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Tarih</Text>
-                            <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Belge Adı</Text>
+                            <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Durum</Text>
                             <div className='flex-[2] w-full'>  </div>
                         </div>
                         <div className='w-full border-2'>
