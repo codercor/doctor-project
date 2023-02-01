@@ -7,7 +7,7 @@ import SettingsSubLayout from "@components/Layouts/SettingsSubLayout";
 import Text from "@components/Text";
 import { Formik } from "formik";
 import { Router, useRouter } from "next/dist/client/router";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import useUser from "src/hooks/user.hook";
 import * as Yup from "yup";
 //@ts-ignore
@@ -87,7 +87,125 @@ const SettingsInvoiceSettings = () => {
             setIsEdit(true);
         }
     }, [router.query.nextPage])
+    const FormContent = ({ values, handleChange: _handleChange, handleSubmit, submitForm, errors, setFieldValue }: any) => {
+        const countries = CountryCityService.getCountries().map((country: string) => {
+            if (country === "Turkey") {
+                return { value: country, label: "Türkiye" };
+            }
+            return { value: country, label: country };
+        });
 
+        const [cities, setCities] = useState<any[]>([]);
+
+        const [districts, setDistricts] = useState<any[]>(
+            []
+        );
+        useEffect(() => {
+            if (values.Country == "Turkey") {
+                setCities(ililce.map((city) => {
+                    return { value: city.il_adi, label: city.il_adi };
+                }));
+            } else {
+                setCities([]);
+            }
+            if (values.Country == "Turkey" && values.City) {
+                setDistricts((ililce.find((city) => city.il_adi === values.City)?.ilceler as any[])?.map((district) => {
+                    return { value: district.ilce_adi, label: district.ilce_adi };
+                }));
+            } else {
+                setDistricts([]);
+            }
+
+        }, [values.Country, values.City]);
+        return <form onSubmit={(e) => {
+            e.preventDefault();
+            console.log("submit edildi", values);
+            const updateUrl = `/user/billing/${user.Id}`;
+            request.put(updateUrl, values).then((res) => {
+                toast.success("Fatura bilgileriniz başarıyla güncellendi");
+                console.log("billing detail update success", res);
+                if (nextPage) {
+                    setTimeout(() => {
+                        router.push(nextPage);
+                    }, 1000)
+                }
+            }).catch((err) => {
+                console.log("billing detail update error", err);
+                toast.error("Fatura bilgileriniz güncellenirken bir hata oluştu lütfen geçerli bilgiler girdiğinizden emin olun.");
+            })
+
+        }} >
+            <FormInputSelectOne onChange={_handleChange} error={errors.ContactType} value={values.ContactType} disabled={!isEdit} name="ContactType" label="Fatura Tipi" options={[{ label: "Bireysel", value: "person" }, { label: "Kurumsal", value: "company" }]} />
+            <FormInput error={errors.RegistrationAddress} onChange={_handleChange} value={values.RegistrationAddress} disabled={!isEdit} name="RegistrationAddress" label="Fatura Adresi" type="text" />
+            <div className="flex gap-[41px]">
+                <FormInput onChange={_handleChange} value={values.Name} error={errors.Name} disabled={!isEdit} name="Name" label="Ad" type="text" />
+                <FormInput onChange={_handleChange} value={values.Surname} error={errors.Surname} disabled={!isEdit} name="Surname" label="Soyad" type="text" />
+            </div>
+            <FormInput onChange={_handleChange} value={values.Email} disabled={!isEdit} error={errors.Email} name="Email" label="E-posta" type="email" />
+            <FormInput onChange={_handleChange} value={values.IdentityNumber} disabled={!isEdit} error={errors.IdentityNumber} name="IdentityNumber" label={(values.ContactType == 'person' ? 'Tc Kimlik Numarası' : 'Vergi numarası')} type="text" />
+            <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" />
+            <FormInputSelect
+                disabled={!isEdit}
+                error={errors.Country}
+                name="Country"
+                value={values.Country}
+                onChange={(e) => {
+                    const selectedCountry = e.currentTarget.value;
+                    if (selectedCountry != "Turkey") {
+                        setCities([]);
+                        setDistricts([]);
+                        setFieldValue("City", "");
+                        setFieldValue("District", "");
+                        _handleChange(e);
+                        return;
+                    }
+                    setFieldValue("City", "Istanbul");
+                    _handleChange(e);
+                }}
+                label="Ülkeniz"
+                type="text"
+                options={countries}
+            />
+            {values.Country == "Turkey" && <FormInputSelect
+                disabled={!isEdit}
+                error={errors.City}
+                name="City"
+                value={values.City}
+                onChange={((e) => {
+                    _handleChange(e);
+                })}
+                label="Şehir"
+                type="text"
+                options={cities}
+            />}
+            {values.City && <> <FormInputSelect
+                disabled={!isEdit}
+                error={errors.District}
+                name="District"
+                value={values.District}
+                onChange={_handleChange}
+                label="İlçe"
+                type="text"
+                options={districts}
+            />
+            </>}
+            {
+                values.ContactType == 'company' && <FormInput onChange={_handleChange} value={values.TaxOffice} disabled={!isEdit} error={errors.TaxOffice} name="TaxOffice" label="Vergi Dairesi" type="text" />}
+            <button type="submit" disabled={!isEdit} onClick={() => {
+                console.log("values", values);
+
+                submitForm().then((res: any) => {
+                    console.log("res", res);
+                }).catch((err: any) => {
+                    console.log("err", err);
+                });
+            }} className="disabled:opacity-60 text-center mt-5 w-full h-[50px] rounded-[20px_5px] text-[white] font-nexa-regular bg-tertiary-flat" >
+                {
+                    nextPage ? 'Kaydet Ve Ödeme Adımına Geç' : 'Kaydet'
+                }
+            </button>
+        </form>
+    }
     return (
         <DashboardLayout>
             <SettingsSubLayout>
@@ -112,125 +230,7 @@ const SettingsInvoiceSettings = () => {
                                 ContactType: BillingDetail.ContactType || "person",
                             }}>
                             {
-                                ({ values, handleChange: _handleChange, handleSubmit, submitForm, errors, setFieldValue }) => {
-                                    const countries = CountryCityService.getCountries().map((country: string) => {
-                                        if (country === "Turkey") {
-                                            return { value: country, label: "Türkiye" };
-                                        }
-                                        return { value: country, label: country };
-                                    });
-
-                                    const [cities, setCities] = useState<any[]>([]);
-
-                                    const [districts, setDistricts] = useState<any[]>(
-                                        []
-                                    );
-                                    useEffect(() => {
-                                        if (values.Country == "Turkey") {
-                                            setCities(ililce.map((city) => {
-                                                return { value: city.il_adi, label: city.il_adi };
-                                            }));
-                                        } else {
-                                            setCities([]);
-                                        }
-                                        if (values.Country == "Turkey" && values.City) {
-                                            setDistricts((ililce.find((city) => city.il_adi === values.City)?.ilceler as any[])?.map((district) => {
-                                                return { value: district.ilce_adi, label: district.ilce_adi };
-                                            }));
-                                        } else {
-                                            setDistricts([]);
-                                        }
-
-                                    }, [values.Country, values.City]);
-                                    return <form onSubmit={(e) => {
-                                        e.preventDefault();
-                                        console.log("submit edildi", values);
-                                        const updateUrl = `/user/billing/${user.Id}`;
-                                        request.put(updateUrl, values).then((res) => {
-                                            toast.success("Fatura bilgileriniz başarıyla güncellendi");
-                                            console.log("billing detail update success", res);
-                                            if (nextPage) {
-                                                setTimeout(() => {
-                                                    router.push(nextPage);
-                                                }, 1000)
-                                            }
-                                        }).catch((err) => {
-                                            console.log("billing detail update error", err);
-                                            toast.error("Fatura bilgileriniz güncellenirken bir hata oluştu lütfen geçerli bilgiler girdiğinizden emin olun.");
-                                        })
-
-                                    }} >
-                                        <FormInputSelectOne onChange={_handleChange} error={errors.ContactType} value={values.ContactType} disabled={!isEdit} name="ContactType" label="Fatura Tipi" options={[{ label: "Bireysel", value: "person" }, { label: "Kurumsal", value: "company" }]} />
-                                        <FormInput error={errors.RegistrationAddress} onChange={_handleChange} value={values.RegistrationAddress} disabled={!isEdit} name="RegistrationAddress" label="Fatura Adresi" type="text" />
-                                        <div className="flex gap-[41px]">
-                                            <FormInput onChange={_handleChange} value={values.Name} error={errors.Name} disabled={!isEdit} name="Name" label="Ad" type="text" />
-                                            <FormInput onChange={_handleChange} value={values.Surname} error={errors.Surname} disabled={!isEdit} name="Surname" label="Soyad" type="text" />
-                                        </div>
-                                        <FormInput onChange={_handleChange} value={values.Email} disabled={!isEdit} error={errors.Email} name="Email" label="E-posta" type="email" />
-                                        <FormInput onChange={_handleChange} value={values.IdentityNumber} disabled={!isEdit} error={errors.IdentityNumber} name="IdentityNumber" label={(values.ContactType == 'person' ? 'Tc Kimlik Numarası' : 'Vergi numarası')} type="text" />
-                                        <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" />
-                                        <FormInputSelect
-                                            disabled={!isEdit}
-                                            error={errors.Country}
-                                            name="Country"
-                                            value={values.Country}
-                                            onChange={(e) => {
-                                                const selectedCountry = e.currentTarget.value;
-                                                if (selectedCountry != "Turkey") {
-                                                    setCities([]);
-                                                    setDistricts([]);
-                                                    setFieldValue("City", "");
-                                                    setFieldValue("District", "");
-                                                    _handleChange(e);
-                                                    return;
-                                                }
-                                                setFieldValue("City", "Istanbul");
-                                                _handleChange(e);
-                                            }}
-                                            label="Ülkeniz"
-                                            type="text"
-                                            options={countries}
-                                        />
-                                        {values.Country == "Turkey" && <FormInputSelect
-                                            disabled={!isEdit}
-                                            error={errors.City}
-                                            name="City"
-                                            value={values.City}
-                                            onChange={((e) => {
-                                                _handleChange(e);
-                                            })}
-                                            label="Şehir"
-                                            type="text"
-                                            options={cities}
-                                        />}
-                                        {values.City && <> <FormInputSelect
-                                            disabled={!isEdit}
-                                            error={errors.District}
-                                            name="District"
-                                            value={values.District}
-                                            onChange={_handleChange}
-                                            label="İlçe"
-                                            type="text"
-                                            options={districts}
-                                        />
-                                        </>}
-                                        {
-                                            values.ContactType == 'company' && <FormInput onChange={_handleChange} value={values.TaxOffice} disabled={!isEdit} error={errors.TaxOffice} name="TaxOffice" label="Vergi Dairesi" type="text" />}
-                                        <button type="submit" disabled={!isEdit} onClick={() => {
-                                            console.log("values", values);
-
-                                            submitForm().then((res) => {
-                                                console.log("res", res);
-                                            }).catch((err) => {
-                                                console.log("err", err);
-                                            });
-                                        }} className="disabled:opacity-60 text-center mt-5 w-full h-[50px] rounded-[20px_5px] text-[white] font-nexa-regular bg-tertiary-flat" >
-                                            {
-                                                nextPage ? 'Kaydet Ve Ödeme Adımına Geç' : 'Kaydet'
-                                            }
-                                        </button>
-                                    </form>
-                                }
+                                FormContent
                             }
 
                         </Formik>
