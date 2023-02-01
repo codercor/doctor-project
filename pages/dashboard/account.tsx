@@ -23,7 +23,7 @@ import { toast } from "react-hot-toast";
 import FormInput, { FormInputSelect } from "@components/Forms/FormInput/FormInput";
 //@ts-ignore
 import CountryCityService from "countries-cities";
-import ililce from './il-ilce'
+import ililce from '../../src/il-ilce'
 const Account = () => {
     const { user } = useAuth(); //TODO ADD -> update user
     const { updateUser, refetchUser } = useUser();
@@ -91,6 +91,130 @@ const Account = () => {
     });
     const Surname = _userInfo.Fullname?.split(" ").slice(-1).join(" ") || "";
     const Name = _userInfo.Fullname?.split(" ").slice(0, -1).join(" ") || "";
+
+    const FormContent = ({ errors, values, submitForm, handleChange: _handleChange, validateForm, handleSubmit, setFieldValue }) => {
+        const countries = CountryCityService.getCountries().map((country: string) => {
+            if (country === "Turkey") {
+                return { value: country, label: "Türkiye" };
+            }
+            return { value: country, label: country };
+        });
+
+        const [cities, setCities] = useState<any[]>([]);
+
+        const [districts, setDistricts] = useState<any[]>(
+            []
+        );
+
+        useEffect(() => {
+            if (values.Country == "Turkey") {
+                setCities(ililce.map((city) => {
+                    return { value: city.il_adi, label: city.il_adi };
+                }));
+            } else {
+                setCities([]);
+            }
+            if (values.Country == "Turkey" && values.City) {
+                setDistricts((ililce.find((city) => city.il_adi === values.City)?.ilceler as any[])?.map((district) => {
+                    return { value: district.ilce_adi, label: district.ilce_adi };
+                }));
+            } else {
+                setDistricts([]);
+            }
+
+        }, [values.Country, values.City]);
+
+
+        return <form onSubmit={handleSubmit}>
+            <div className="flex">
+                <FormInput disabled={!isEdit} name="Name" error={errors.Name} value={values.Name} onChange={_handleChange} label="Ad" type="text" />
+                <FormInput disabled={!isEdit} name="Surname" error={errors.Surname} value={values.Surname} onChange={_handleChange} label="Soyad" type="text" />
+            </div>
+            <FormInput disabled={true} name="Email" error={errors.Email} value={values.Email} onChange={_handleChange} label="E-Posta" type="email" />
+            <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" />
+            <FormInputSelect
+                disabled={!isEdit}
+                error={errors.Country}
+                name="Country"
+                value={values.Country}
+                onChange={(e) => {
+                    const selectedCountry = e.currentTarget.value;
+                    if (selectedCountry != "Turkey") {
+                        setCities([]);
+                        setDistricts([]);
+                        setFieldValue("City", "");
+                        setFieldValue("District", "");
+                        _handleChange(e);
+                        return;
+                    }
+                    setFieldValue("City", "Istanbul");
+                    _handleChange(e);
+                }}
+                label="Ülkeniz"
+                type="text"
+                options={countries}
+            />
+            {values.Country == "Turkey" && <FormInputSelect
+                disabled={!isEdit}
+                error={errors.City}
+                name="City"
+                value={values.City}
+                onChange={((e) => {
+                    _handleChange(e);
+                })}
+                label="Şehir"
+                type="text"
+                options={cities}
+            />}
+            {values.City && <> <FormInputSelect
+                disabled={!isEdit}
+                error={errors.District}
+                name="District"
+                value={values.District}
+                onChange={_handleChange}
+                label="İlçe"
+                type="text"
+                options={districts}
+            />
+            </>}
+            <FormInput disabled={!isEdit} name="BirthDate" value={((values.BirthDate as string || "").replaceAll(".", "-"))}
+                onChange={_handleChange} label="Doğum Tarihi" type="date" error={errors.BirthDate} />
+            <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Cinsiyet</Text>
+            <RadioGroup
+                title="Cinsiyet"
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="Erkek"
+                onChange={_handleChange}
+                value={values?.Gender}
+                name="Gender"
+            >
+                <div className="flex items-center  w-full justify-center">
+                    <div>
+                        <FormControlLabel name="Gender" disabled={!isEdit} className="block" value="Erkek" control={<Radio className="block" />} label="Erkek" />
+                    </div>
+                    <div>
+                        <FormControlLabel name="Gender" disabled={!isEdit} className="block" value="Kadın" control={<Radio className="block" />} label="Kadın" />
+                    </div>
+                </div>
+            </RadioGroup>
+            {errors?.Gender && <p className="text-red-500 !text-[14px]  !py-[10px]">{errors.BirthDate}</p>}
+            <button onClick={(e) => {
+                console.log("values", values);
+
+                console.log("errors", errors);
+                if (Object.keys(errors).length > 0) {
+                    toast.error("Lütfen tüm alanları doğru şekilde doldurunuz")
+                } else submitForm()
+
+            }}
+                type="button"
+                disabled={!isEdit}
+                className="disabled:opacity-40 rounded-br-[20px] rounded-tl-[20px] text-[white] !bg-secondary text-white  border-secondary w-[200px] self-end mt-[20px] h-[48px] leading-none flex items-center justify-center">
+                <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Kaydet</Text>
+            </button>
+        </form>
+    }
+
     return (
         <DashboardLayout>
             <div className=" md:h-[798px] flex  rounded-[30px_5px] bg-[#F4F4F4]">
@@ -105,133 +229,11 @@ const Account = () => {
 
                     <div className="md:max-w-[450px] w-full flex flex-col">
                         <Formik validationSchema={validationSchema} initialValues={{ ..._userInfo, Fullname: undefined, Name, Surname }} onSubmit={(values) => {
-                            //@ts-ignore
                             values.Fullname = `${values.Name} ${values.Surname}`
                             handleSave(values)
                         }}>
 
-                            {({ errors, values, submitForm, handleChange: _handleChange, validateForm, handleSubmit, setFieldValue }) => {
-                                const countries = CountryCityService.getCountries().map((country: string) => {
-                                    if (country === "Turkey") {
-                                        return { value: country, label: "Türkiye" };
-                                    }
-                                    return { value: country, label: country };
-                                });
-
-                                const [cities, setCities] = useState<any[]>([]);
-
-                                const [districts, setDistricts] = useState<any[]>(
-                                    []
-                                );
-
-                                useEffect(() => {
-                                    if (values.Country == "Turkey") {
-                                        setCities(ililce.map((city) => {
-                                            return { value: city.il_adi, label: city.il_adi };
-                                        }));
-                                    } else {
-                                        setCities([]);
-                                    }
-                                    if (values.Country == "Turkey" && values.City) {
-                                        setDistricts((ililce.find((city) => city.il_adi === values.City)?.ilceler as any[])?.map((district) => {
-                                            return { value: district.ilce_adi, label: district.ilce_adi };
-                                        }));
-                                    } else {
-                                        setDistricts([]);
-                                    }
-
-                                }, [values.Country, values.City]);
-
-
-                                return <form onSubmit={handleSubmit}>
-                                    <div className="flex">
-                                        <FormInput disabled={!isEdit} name="Name" error={errors.Name} value={values.Name} onChange={_handleChange} label="Ad" type="text" />
-                                        <FormInput disabled={!isEdit} name="Surname" error={errors.Surname} value={values.Surname} onChange={_handleChange} label="Soyad" type="text" />
-                                    </div>
-                                    <FormInput disabled={true} name="Email" error={errors.Email} value={values.Email} onChange={_handleChange} label="E-Posta" type="email" />
-                                    <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" />
-                                    <FormInputSelect
-                                        disabled={!isEdit}
-                                        error={errors.Country}
-                                        name="Country"
-                                        value={values.Country}
-                                        onChange={(e) => {
-                                            const selectedCountry = e.currentTarget.value;
-                                            if (selectedCountry != "Turkey") {
-                                                setCities([]);
-                                                setDistricts([]);
-                                                setFieldValue("City", "");
-                                                setFieldValue("District", "");
-                                                _handleChange(e);
-                                                return;
-                                            }
-                                            setFieldValue("City", "Istanbul");
-                                            _handleChange(e);
-                                        }}
-                                        label="Ülkeniz"
-                                        type="text"
-                                        options={countries}
-                                    />
-                                    {values.Country == "Turkey" && <FormInputSelect
-                                        disabled={!isEdit}
-                                        error={errors.City}
-                                        name="City"
-                                        value={values.City}
-                                        onChange={((e) => {
-                                            _handleChange(e);
-                                        })}
-                                        label="Şehir"
-                                        type="text"
-                                        options={cities}
-                                    />}
-                                    {values.City && <> <FormInputSelect
-                                        disabled={!isEdit}
-                                        error={errors.District}
-                                        name="District"
-                                        value={values.District}
-                                        onChange={_handleChange}
-                                        label="İlçe"
-                                        type="text"
-                                        options={districts}
-                                    />
-                                    </>}
-                                    <FormInput disabled={!isEdit} name="BirthDate" value={((values.BirthDate as string || "").replaceAll(".", "-"))}
-                                        onChange={_handleChange} label="Doğum Tarihi" type="date" error={errors.BirthDate} />
-                                    <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Cinsiyet</Text>
-                                    <RadioGroup
-                                        title="Cinsiyet"
-                                        aria-labelledby="demo-radio-buttons-group-label"
-                                        defaultValue="Erkek"
-                                        onChange={_handleChange}
-                                        value={values?.Gender}
-                                        name="Gender"
-                                    >
-                                        <div className="flex items-center  w-full justify-center">
-                                            <div>
-                                                <FormControlLabel name="Gender" disabled={!isEdit} className="block" value="Erkek" control={<Radio className="block" />} label="Erkek" />
-                                            </div>
-                                            <div>
-                                                <FormControlLabel name="Gender" disabled={!isEdit} className="block" value="Kadın" control={<Radio className="block" />} label="Kadın" />
-                                            </div>
-                                        </div>
-                                    </RadioGroup>
-                                    {errors?.Gender && <p className="text-red-500 !text-[14px]  !py-[10px]">{errors.BirthDate}</p>}
-                                    <button onClick={(e) => {
-                                        console.log("values", values);
-
-                                        console.log("errors", errors);
-                                        if (Object.keys(errors).length > 0) {
-                                            toast.error("Lütfen tüm alanları doğru şekilde doldurunuz")
-                                        } else submitForm()
-
-                                    }}
-                                        type="button"
-                                        disabled={!isEdit}
-                                        className="disabled:opacity-40 rounded-br-[20px] rounded-tl-[20px] text-[white] !bg-secondary text-white  border-secondary w-[200px] self-end mt-[20px] h-[48px] leading-none flex items-center justify-center">
-                                        <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Kaydet</Text>
-                                    </button>
-                                </form>
-                            }}
+                            {FormContent}
                         </Formik>
                     </div>
                 </div>
