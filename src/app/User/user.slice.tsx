@@ -1,6 +1,6 @@
-import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {RootState, AppThunk} from '../store';
-import {UserCredentials, UserState, UserInformation, UserBillingDetail, BannerData} from './user.types';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState, AppThunk } from '../store';
+import { UserCredentials, UserState, UserInformation, UserBillingDetail, BannerData } from './user.types';
 import {
     fetchUserRequest,
     loginRequest,
@@ -36,7 +36,9 @@ const initialState: UserState = {
         Id: '',
         Fullname: '',
         Phone: '',
-        Address: ''
+        Country: '',
+        City: '',
+        District: '',
     },
     BillingDetail: {
         Id: '',
@@ -206,7 +208,9 @@ export const userSlice = createSlice({
                 Id: action.payload.Id,
                 Fullname: action.payload.Fullname,
                 Phone: action.payload.Phone,
-                Address: action.payload.Address,
+                Country: action.payload.Country,
+                City: action.payload.City,
+                District: action.payload.District,
                 BirthDate: action.payload.BirthDate,
                 Gender: action.payload.Gender
             };
@@ -221,7 +225,7 @@ export const userSlice = createSlice({
         })
             .addCase(updateUserBillingDetail.fulfilled, (state, action) => {
             }).addCase(updateUserBillingDetail.rejected, (state, action) => {
-        })
+            })
             .addCase(updateUserPassword.pending, (state) => {
                 state.UserProcess.IsLoading = true;
                 state.UserProcess.IsError = false;
@@ -237,31 +241,31 @@ export const userSlice = createSlice({
                 state.UserProcess.ErrorMessage = "Şifre güncellenemedi.";
                 state.UserProcess.IsLoading = false;
             }).addCase(fetchUsersTrainings.pending, (state) => {
-            state.UsersTrainingsProcess.IsLoading = true;
-        }).addCase(fetchUsersTrainings.fulfilled, (state, action) => {
-            state.UsersTrainingsProcess.IsLoading = false;
-            state.UsersTrainings = action.payload;
-        }).addCase(fetchUsersTrainings.rejected, (state, action) => {
-            state.UsersTrainingsProcess.IsLoading = false;
-        }).addCase(adminUpdateBanner.pending, (state) => {
-            state.UpdateHomePageProcess.IsLoading = true
-            state.UpdateHomePageProcess.IsError = false;
-        }).addCase(adminUpdateBanner.fulfilled, (state, action) => {
-            state.UpdateHomePageProcess.IsLoading = false;
-            state.UpdateHomePageProcess.IsError = false;
-        }).addCase(adminUpdateBanner.rejected, (state, action) => {
-            state.UpdateHomePageProcess.IsLoading = false;
-            state.UpdateHomePageProcess.IsError = true;
-        }).addCase(getUserOrderHistory.pending, (state) => {
-            state.getOrderHistoryProcess.IsLoading = true;
-        }).addCase(getUserOrderHistory.fulfilled, (state, action) => {
-            state.getOrderHistoryProcess.IsLoading = false;
-            state.getOrderHistoryProcess.IsError = false;
-            state.orderHistory = action.payload;
-        }).addCase(getUserOrderHistory.rejected, (state, action) => {
-            state.getOrderHistoryProcess.IsLoading = false;
-            state.getOrderHistoryProcess.IsError = true;
-        });
+                state.UsersTrainingsProcess.IsLoading = true;
+            }).addCase(fetchUsersTrainings.fulfilled, (state, action) => {
+                state.UsersTrainingsProcess.IsLoading = false;
+                state.UsersTrainings = action.payload;
+            }).addCase(fetchUsersTrainings.rejected, (state, action) => {
+                state.UsersTrainingsProcess.IsLoading = false;
+            }).addCase(adminUpdateBanner.pending, (state) => {
+                state.UpdateHomePageProcess.IsLoading = true
+                state.UpdateHomePageProcess.IsError = false;
+            }).addCase(adminUpdateBanner.fulfilled, (state, action) => {
+                state.UpdateHomePageProcess.IsLoading = false;
+                state.UpdateHomePageProcess.IsError = false;
+            }).addCase(adminUpdateBanner.rejected, (state, action) => {
+                state.UpdateHomePageProcess.IsLoading = false;
+                state.UpdateHomePageProcess.IsError = true;
+            }).addCase(getUserOrderHistory.pending, (state) => {
+                state.getOrderHistoryProcess.IsLoading = true;
+            }).addCase(getUserOrderHistory.fulfilled, (state, action) => {
+                state.getOrderHistoryProcess.IsLoading = false;
+                state.getOrderHistoryProcess.IsError = false;
+                state.orderHistory = action.payload;
+            }).addCase(getUserOrderHistory.rejected, (state, action) => {
+                state.getOrderHistoryProcess.IsLoading = false;
+                state.getOrderHistoryProcess.IsError = true;
+            });
 
 
     },

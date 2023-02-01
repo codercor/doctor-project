@@ -86,6 +86,7 @@ export type UserInformation = {
     District: string,
 }
 export type BannerData = {
+    Id: string,
     Title: string,
     Description: string,
     Image: string | File,

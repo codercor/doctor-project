@@ -68,7 +68,7 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
 }
 
 const BuyKit = ({ id, price, totalLength }: { id: string, price: number, totalLength: number }) => {
-    const { user: { IsAuthenticated } } = useUser()
+    const { user: { IsAuthenticated, BillingDetail } } = useUser()
     return <>
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>
@@ -85,8 +85,12 @@ const BuyKit = ({ id, price, totalLength }: { id: string, price: number, totalLe
             <Text>{totalLength}dk</Text>
         </div>
         <Button onClick={() => {
-            if (IsAuthenticated) Router.push('/training/buy?id=' + id)
-            else Router.push('/auth/login')
+            if (IsAuthenticated) {
+                if (!BillingDetail.IdentityNumber) {
+                    localStorage.setItem("after-complete-billing-details", '/training/buy?id=' + id)
+                    Router.push("/dashboard/settings/invoice-settings")
+                } else Router.push('/training/buy?id=' + id)
+            } else Router.push('/auth/login')
         }} type="quaternary-flat" className='flex justify-center text-center mb-2' >
             Satın Al
         </Button>

@@ -19,12 +19,12 @@ const EditBannerImage = ({ image, setImageFile }: {
     setImageFile: (file: File) => void
 }) => {
     const ref = React.useRef<HTMLInputElement>(null);
-    const [previewImage, setPreviewImage] = React.useState(image);
+    const [previewImage, setPreviewImage] = React.useState(image || '/default.png');
 
     useEffect(() => {
         //@ts-ignore
         if (ref.current?.files?.length < 1) {
-            setPreviewImage(image);
+            setPreviewImage(image  || '/default.png');
         }
 
     }, [image])
@@ -66,6 +66,7 @@ const EditBanner = () => {
 
 
     const [bannerData, setBannerData] = React.useState<any>({
+        Id:"",
         Title: '',
         Description: '',
         Image: ''
@@ -126,6 +127,7 @@ const EditBanner = () => {
         <div className="w-full flex justify-end mt-4 h-fit">
             <Button disabled={(!formValidation.title || !formValidation.description || !formValidation.imageSelected)} type="secondary" className='!p-0 !px-[20px] w-fit justify-end !py-[10px] grid place-content-center ' onClick={() => {
                 (editedBannerData.Image && bannerData.Title && bannerData.Description) && adminUpdateBanner({
+                    Id: bannerData.Id,
                     Title: bannerData.Title,
                     Description: bannerData.Description,
                     Image: editedBannerData.Image
