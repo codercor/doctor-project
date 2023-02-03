@@ -198,7 +198,7 @@ export default function Assays() {
                             }
                         </div>
                     </div>
-                    <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
+                    <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                         setPage(value)
                     }} count={page + 1} />
                 </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>}

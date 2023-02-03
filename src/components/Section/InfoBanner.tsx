@@ -9,18 +9,18 @@ const RSCardData = [
     },
     {
         image: "/images/svg/spa.svg",
-        text: "Organ Değil",
-        subText: 'Organizma'
+        text: "Resmin",
+        subText: 'Tamamına Bakar'
     },
     {
         image: "/images/svg/favorite.svg",
-        text: "Sağlığımızı",
-        subText: 'Geri Kazanıyoruz !'
+        text: "Bilimsel Yaklaşım ile",
+        subText: 'Kalıcı ve Kişiye Özel !'
     },
     {
         image: "/images/svg/person.svg",
-        text: "Kalıcı ve",
-        subText: 'Bireye Özgü'
+        text: "Sağlığımızı Geri",
+        subText: 'Kazanıyoruz.'
     },
 ]
 
@@ -39,8 +39,10 @@ const InfoBanner = () => {
         <Container className="md:h-[415px] px-[20px] md:px-0 overflow-hidden  md:max-w-full flex items-center bg-cover bg-[white] md:py-0 py-4">
             <Container className="md:max-w-[1368px]  flex flex-col md:flex-row items-center justify-around w-fit pt-[14px]">
                 <div className="flex flex-col md:max-w-[535px] md:mb-0 mb-5">
-                    <Text type="h4" className="text-secondary" >Fonksiyonel Beslenme Nedir ?</Text>
-                    <Text type="paragraph" className="text-secondary-flat">Fonksiyonel Tıp, kronik hastalıkların kök nedenlerini saptayıp bu sorunların düzeltilmesine odaklanan bütünsel bir tıp bakışıdır. Organ odaklı değil sistem odaklı olarak yaklaşarak hastalık tanılarının tedavilerinden çok, temeldeki sorunun iyileştirmesi amaçlanır.</Text>
+                    <Text type="h4" className="text-secondary pr-1" >Neden besleniyoruz?
+                        <br />
+                        Sadece enerji almak için mi?</Text>
+                    <Text type="paragraph" className="text-secondary-flat">Evet vücudumuzun ayakta kalabilmesi için enerjiye ihtiyacımız var, ancak hepsi bu değil! </Text>
                 </div>
                 <div className="md:grid md:grid-rows-2 md:grid-cols-2 gap-[20px] flex flex-col" >
                     {RSCardData.map((data, index) => <RSCard key={index} {...data} />)}

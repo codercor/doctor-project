@@ -23,7 +23,7 @@ const Input = ({ min, max, text, type = "text", placeholder = "", inputClassName
         <div className="relative w-full">
             <input disabled={disabled} name={name}
                 {...minMaxForNumber}
-                value={value} onChange={onChange} onBlur={onBlur} placeholder={placeholder} className={classNames("disabled:bg-primary disabled:rounded-none duration-500 transition-all  h-[48px] pl-[20px] focus:outline-none w-full placeholder:text-[#3B6369] bg-primary-flat rounded-[5px_20px_0_20px]", inputClassName)} type={type != 'password' ? type : (isVisible ? 'text' : 'password')} />
+                value={value} onChange={onChange} onBlur={onBlur} placeholder={placeholder} className={classNames("disabled:bg-primary disabled:rounded-none duration-500 transition-all  h-[48px] pl-[20px] focus:outline-none w-full placeholder:text-[#3B6369] bg-primary-flat rounded-[5px_20px_0_20px] text-[14px]", inputClassName)} type={type != 'password' ? type : (isVisible ? 'text' : 'password')} />
             {type == 'password' && <div onClick={() => setIsVisible(!isVisible)} className="absolute top-3 w-fit right-4 ">
                 <Image src={`/images/svg/visibility_${isVisible ? 'on' : 'off'}.svg`} width={24} height={24} />
             </div>}

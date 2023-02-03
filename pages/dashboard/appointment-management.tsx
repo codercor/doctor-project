@@ -337,7 +337,7 @@ export default function AppointmentManagement() {
                                 }
                             </div>
                         </div>
-                        <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]"
+                        <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]"
                             onChange={(e: any, value: number) => {
                                 setPage(value)
                             }} count={page + 1} />

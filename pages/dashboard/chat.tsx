@@ -31,7 +31,6 @@ const ChatUserCard = ({ chatLine, onClick, active }: { chatLine: ChatLine, onCli
     </div>
 }
 type ChatMessageProps = { isMe?: boolean, message: Message }
-
 const ChatMessage = ({ isMe = true, message }: ChatMessageProps) => {
 
     return <div className={classNames("flex p-[20px] h-fit mt-[20px] w-[80%] ", {
@@ -49,7 +48,6 @@ const ChatMessage = ({ isMe = true, message }: ChatMessageProps) => {
         </div>}
     </div>
 }
-
 const ChatBox = () => {
     const { chat: { Messages, SelectedChatLineId, ChatLines }, sendMessage } = useChat();
     const { user: { Id } } = useUser()
@@ -86,7 +84,6 @@ const ChatBox = () => {
         </div>}
     </div>
 }
-
 const Chat = () => {
     const { chat: { ChatLinesLoading }, getChatLines, ChatLines } = useChat();
     const [toastId, setToastId] = useState<string>('');
@@ -113,7 +110,6 @@ const Chat = () => {
             return;
         }
         getChatLines();
-
     }, []);
     const isDesktop = useIsDesktop();
     return (
@@ -139,5 +135,4 @@ const Chat = () => {
         </DashboardLayout>
     );
 }
-
 export default Chat;

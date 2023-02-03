@@ -139,7 +139,7 @@ export default function Assays() {
                                 }
                             </div>
                         </div>
-                        <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
+                        <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                             setPage(value)
                         }} count={page + 1} />
                     </div>}

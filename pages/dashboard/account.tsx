@@ -126,7 +126,7 @@ const Account = () => {
 
 
         return <form onSubmit={handleSubmit}>
-            <div className="flex">
+            <div className="flex gap-[16px]">
                 <FormInput disabled={!isEdit} name="Name" error={errors.Name} value={values.Name} onChange={_handleChange} label="Ad" type="text" />
                 <FormInput disabled={!isEdit} name="Surname" error={errors.Surname} value={values.Surname} onChange={_handleChange} label="Soyad" type="text" />
             </div>

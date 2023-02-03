@@ -53,7 +53,13 @@ const Home: NextPage = () => {
                 Sıkça Sorulan Sorular
               </Text>
               <Text type="body" className="text-deepgreen-200 mt-[24px] ">
-                Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli ve empatik hizmetler sunmaktır. Kendi sağlığımı ve hastalarımın sağlığını iyileştirmenin mümkün olduğunu gördükten sonra, bu faydaları size de sunmak konusunda tutkuluyum.
+                ¨Sabahları Ruhunun Yorgun Olmasına ve kemiklerinin ağrımasına rağmen kalkman cesurca
+                Nasıl yapılacağından tereddüt etsen de, yaşamaya devam etmen cesurca
+                Hergün yuvarlanan dalgaları itip, savaşmaya karar vermen cesurca
+                Vazgeçmek istediğin günler olduğunu biliyorum, ama asla vazgeçmemen cesurca
+                Yeni bir sen için burada olman cesurca¨
+                <br />
+                -Lana Rafaela
               </Text>
             </div>
             <div className="z-20 pb-10 md:pb-0 mt-[46px] scrollbar-none snap-x  overflow-auto w-screen ">
@@ -137,7 +143,7 @@ const EducationSection = () => {
           isMobile,
           title: publicTrainings[i].Name,
           description: publicTrainings[i].Details,
-          price: (publicTrainings[i].Price - (publicTrainings[i].Price * (publicTrainings[i].DiscountRate / 100)  )),
+          price: (publicTrainings[i].Price - (publicTrainings[i].Price * (publicTrainings[i].DiscountRate / 100))),
           image: publicTrainings[i].Image,
           Id: publicTrainings[i].Id
         }
@@ -152,7 +158,11 @@ const EducationSection = () => {
   return <Container className="md:max-w-[1455px] h-full px-[20px] md:px-0 flex justify-around md:flex-row flex-col">
     <div className="flex  md:ml-28 gap-4 md:text-left text-center items-center md:items-start mt-[80px] flex-col md:max-w-[535px] md:h-full md:mb-0 mb-5">
       <Text type="h4" className="text-purple-800" >Eğitimler</Text>
-      <Text type="paragraph" className="text-secondary-flat">Fonksiyonel Tıp, kronik hastalıkların kök nedenlerini saptayıp bu sorunların düzeltilmesine odaklanan bütünsel bir tıp bakışıdır. Organ odaklı değil sistem odaklı olarak yaklaşarak hastalık tanılarının tedavilerinden çok, temeldeki sorunun iyileştirmesi amaçlanır.</Text>
+      <Text type="paragraph" className="text-secondary-flat">
+        Besinler sürekli yenilenen, onarılan vücudumuza hammadde olurlar, kaliteli besinler yerseniz kaliteli hücreleriniz olur.
+        Diğer taraftan besinler bizi birbirimize yakınlaştırır, bu nedenle beslenmede matematik çoğu zaman işlemez.
+
+      </Text>
       <Button
         onClick={() => {
           Router.push("/egitimler")
@@ -168,7 +178,7 @@ const EducationSection = () => {
       }
       <div className="h-[196px] md:w-[440px] self-center w-[328px] bg-no-repeat bg-cover bg-[url('/images/png/sebzeler.png')] grid place-content-center px-[22px] py-[30px]">
         <div className="leading-none bg-purple-100 bg-opacity-80  rounded-md rounded-tr-[20px] rounded-bl-[20px] py-[20px] px-[43.335px] text-center">
-          <Text type="h6" className="text-[#6D669D]">“Fonksiyonel beslenme ve yaşam tarzı değişikliği ile daha sağlıklı bir yaşam mümkün”</Text>
+          <Text type="h6" className="text-[#6D669D]">“Beslenme doğru ise, ilaca gerek yok! Beslenme yanlış ise, ilacın faydası yok!”-Hipokrat</Text>
         </div>
       </div>
     </div>
