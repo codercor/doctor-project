@@ -44,7 +44,7 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
                                         <TableCell className="leading-none" component="th" scope="row">
                                             {new Date(row?.Date).toLocaleString() || '-'}
                                         </TableCell>
-                                        <TableCell className="leading-none" align="left">{row.User.Information.Fullname || '-'}</TableCell>
+                                        <TableCell className="leading-none" align="left">{row.User?.Information.Fullname || '-'}</TableCell>
                                         <TableCell className="leading-none" align="left">{row.Education?.Name || '-'}</TableCell>
                                     </TableRow>
                                 )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kayıt bulunmamaktadır </h1>
