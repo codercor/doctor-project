@@ -122,7 +122,8 @@ module.exports = {
   },
   plugins: [
     require('tailwind-scrollbar'),
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp')
   ],
   variants: {
     scrollbar: ['rounded']

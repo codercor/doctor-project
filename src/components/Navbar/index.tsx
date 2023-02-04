@@ -32,6 +32,10 @@ const navs = [
         text: "Eğitimler",
         href: "/egitimler"
     },
+    {
+        text: "Blog",
+        href: "/blog-yazilari"
+    },
 ]
 
 const authendicatedNavs = [
