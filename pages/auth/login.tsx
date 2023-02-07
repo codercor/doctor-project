@@ -13,7 +13,7 @@ import { ErrorOutlined } from "@mui/icons-material";
 const Login = () => {
     const router = useRouter();
     const [credentials, setCredentials] = useState<UserCredentials>({
-        Email: 'nurettin@gmail.com',
+        Email: 'nazanuysal@gmail.com',
         Password: '159753@Bbng'
     });
     const { user, login, error } = useAuth();
