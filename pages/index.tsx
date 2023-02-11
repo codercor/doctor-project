@@ -177,12 +177,12 @@ import 'react-indiana-drag-scroll/dist/style.css'
 
 const FAQ = () => {
 
-
+  const id = useId()
   return (
     <div className="z-20 pb-10 md:pb-0 mt-[46px] scrollbar-none snap-x overflow-auto w-screen">
       <ScrollContainer className="!min-w-full w-[900px] select-none cursor-move flex gap-[20px]">
         {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i, index) => {
-          const id = useId()
+
           return (
             <div
               key={id}
