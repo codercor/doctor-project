@@ -149,7 +149,7 @@ export default function FormManagement() {
             </div>
             <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                 setPage(value)
-            }} count={page + 1} />
+            }} count={flows.length > 0 ? page + 1 : page} />
         </div>
     </DashboardLayout>
 }

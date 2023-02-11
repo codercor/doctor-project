@@ -242,7 +242,7 @@ export default function UserManagement() {
                         <Pagination siblingCount={3} variant="text" className="mt-[20px] mb-[30px]"
                             onChange={(e: any, value: number) => {
                                 setPage(value)
-                            }} count={page + 1} />
+                            }} count={list?.length > 0 ? page + 1 : page} />
                     </TableContainer>
                 </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kullanıcı bulunmamaktadır </h1>}
             </div>

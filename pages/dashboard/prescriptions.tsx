@@ -151,7 +151,7 @@ export default function Prescriptions() {
                 </div>
                 <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                     setPage(value)
-                }} count={page + 1} />
+                }} count={prescriptions.length > 0 ? page + 1 : page} />
             </div>
         </>}
     </DashboardLayout>

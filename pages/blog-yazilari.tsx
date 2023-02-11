@@ -70,11 +70,11 @@ export default function BlogYazilari({ }: Props) {
                     </>}
 
             </div>
-            <div className="max-w-[1280px] mx-auto pl-[46px] mb-[30px]">
+            <div className="max-w-[1280px] w-full justify-center flex mx-auto pl-[46px] mb-[30px]">
                 <Pagination
                     page={page}
                     onChange={(event, value) => setPage(value)}
-                    className='w-fit' count={page + 1} siblingCount={3} variant='outlined' shape='rounded' color='primary' />
+                    className='w-fit' count={blogs.length > 0 ? page + 1 : page} siblingCount={3} variant='outlined' shape='rounded' color='primary' />
             </div>
         </LandingLayout>
     )

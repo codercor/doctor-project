@@ -24,8 +24,8 @@ const Hakkimda: NextPage = () => {
         <Container className="flex  flex-col  mt-[20px] md:mt-[46px]">
          
             <div className="flex md:flex-row flex-col md:mb-0 mb-[20px]">
-                <div className="md:min-h-[133px] md:min-w-[1000px] min-h-[250px] px-[20px] relative">
-                    <Image src="/images/png/hakkimda-nazan.png" layout="fill" />
+                <div className="md:min-h-[533px] md:min-w-[846px] min-h-[400px] overflow-clip rounded-r-[30px] border-2 px-[20px] relative">
+                    <Image src="/images/png/hakkimda-nazan.png" layout="fill" objectFit="cover" />
                 </div>
                 <div className="flex flex-col md:max-w-[584px] gap-4 md:ml-[50px] md:mt-0 mt-[20px] md:mx-0 mx-[20px]  justify-center">
                     <Text type="body" className="!font-nexa-regular">1994 yılında Dokuz Eylül Üniversitesi Tıp Fakültesinden mezun oldum. Kütahya Simav’ da mecburi hizmetimi tamamladıktan sonra,
@@ -78,7 +78,7 @@ const Hakkimda: NextPage = () => {
                             </ul>
                         </div>
                     </Text>
-                    <button className="mt-[50px]" onClick={() => { setShowAcademicList(true) }}> Akademik Makalelerimi Görmek İçin Tıklayın </button>
+                    <button className="mt-[50px] hover:border-2 transition-all hover:bg-primary hover:text-secondary hover:rounded-[20px] py-2" onClick={() => { setShowAcademicList(true) }}> Akademik Makalelerimi Görmek İçin Tıklayın </button>
                     {showAcademicList && <AcademicsListModal closeWithValue={(v) => {
                         setShowAcademicList(false)
                     }} >

@@ -60,7 +60,7 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
             <div className="flex w-full mt-auto absolute bottom-0">
                 <Pagination siblingCount={3} variant="text" page={page} className="mx-auto w-fit" onChange={(e: any, value: number) => {
                     setPage(value)
-                }} count={page + 1} />
+                }} count={list.length > 0 ? page + 1 : page} />
             </div>
         </div>
     </>

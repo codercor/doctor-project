@@ -66,7 +66,7 @@ const BlogManagement = () => {
                             {
                                 blogs.length < 1 ? <>
 
-                                    <h1 className='text-[56px] font-nexa-light'> 🤷  </h1>
+                                    <h1 className='text-[56px] self-center justify-self-center w-full text-center font-nexa-light'> 🤷  </h1>
                                 </> : blogs.map((blog, index) => {
                                     return (
                                         <BlogCardAdmin refresh={refresh} key={index} blog={blog} />
@@ -80,7 +80,7 @@ const BlogManagement = () => {
                     <Pagination
                         page={page}
                         onChange={(event, value) => setPage(value)}
-                        className='mx-auto w-fit' count={page + 1} siblingCount={3} variant='outlined' shape='rounded' color='primary' />
+                        className='mx-auto w-fit' count={blogs.length > 0 ? page + 1 : page} siblingCount={3} variant='outlined' shape='rounded' color='primary' />
                 </div>
             </div>
         </DashboardLayout>

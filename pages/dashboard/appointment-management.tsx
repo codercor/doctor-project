@@ -340,7 +340,7 @@ export default function AppointmentManagement() {
                         <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]"
                             onChange={(e: any, value: number) => {
                                 setPage(value)
-                            }} count={page + 1} />
+                            }} count={appointments.length > 0 ? page + 1 : page} />
                     </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
                 }
             </div>
