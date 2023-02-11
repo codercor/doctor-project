@@ -3,30 +3,30 @@ import Text from "@components/Text";
 import Image from "next/image";
 const RSCardData = [
     {
-        image: "/images/svg/coronavirus.svg",
+        image: "/images/svg/favorite2.svg",
         text: "Hastalık Değil",
         subText: 'Hasta'
     },
     {
-        image: "/images/svg/spa.svg",
+        image: "/images/svg/puzzle.svg",
         text: "Resmin",
         subText: 'Tamamına Bakar'
     },
     {
-        image: "/images/svg/favorite.svg",
+        image: "/images/svg/science.svg",
         text: "Bilimsel Yaklaşım ile",
         subText: 'Kalıcı ve Kişiye Özel !'
     },
     {
-        image: "/images/svg/person.svg",
+        image: "/images/svg/person2.svg",
         text: "Sağlığımızı Geri",
         subText: 'Kazanıyoruz.'
     },
 ]
 
 const RSCard = (rscardData: any) => <div className="overflow-hidden bg-secondary-light flex items-center rounded-lg w-[278px]">
-    <span className="ml-[-40px]" >
-        <Image src={rscardData.image} height={120} width={120} />
+    <span className="ml-[10px]" >
+        <Image src={rscardData.image} height={90} width={90} />
     </span>
     <div className="flex flex-col">
         <Text type="paragraph" className="text-secondary" >{rscardData.text}</Text>

@@ -59,7 +59,7 @@ const BlogManagement = () => {
                         </span>
                     </button>
                 </div>
-                <div className='flex  flex-wrap w-full  md:min-h-[400px] mx-auto md:flex-row my-[40px] flex-col items-center justify-center gap-[36px]'>
+                <div className='flex  flex-wrap w-full md:min-h-[400px] mx-auto md:flex-row my-[40px] flex-col items-center justify-start gap-[10px]'>
                     {loading ? <CircularProgress className='mx-auto' />
                         :
                         <>

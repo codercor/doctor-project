@@ -16,18 +16,16 @@ import { useState } from "react";
 const Hakkimda: NextPage = () => {
     const [showAcademicList, setShowAcademicList] = useState(false)
     return <LandingLayout>
-        <Container className=" h-[300px] md:h-[300px]  w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom  md:bg-cover bg-[url(/images/png/hakkimda-bg.png)]">
-            <Container className="md:!max-w-[1455px] grid  place-items-end  justify-center pb-20 md:pb-22 h-full">
+        <Container className=" h-[300px] md:h-[300px]  w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px] overflow-clip   md:bg-cover bg-[url(/images/png/karisik.png)]">
+            <Container className="md:!max-w-[1455px] grid  place-items-end min-w-full backdrop-brightness-50  justify-center pb-20 md:pb-22 h-full">
                 <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold">Prof.Dr. Nazan Uysal Harzadin</Text>
             </Container>
         </Container>
         <Container className="flex  flex-col  mt-[20px] md:mt-[46px]">
-            <div className="md:block hidden opacity-60 absolute right-[-30px] top-[330px] rotate-[-50deg] z-10 h-[527px] md:w-[473px]">
-                <Image src="/images/png/tabak2.png" layout="fill" />
-            </div>
+         
             <div className="flex md:flex-row flex-col md:mb-0 mb-[20px]">
-                <div className="md:min-h-[533px] md:min-w-[946px] min-h-[250px] px-[20px] relative">
-                    <Image src="/images/png/hakkimda-ayakta.png" layout="fill" />
+                <div className="md:min-h-[133px] md:min-w-[1000px] min-h-[250px] px-[20px] relative">
+                    <Image src="/images/png/hakkimda-nazan.png" layout="fill" />
                 </div>
                 <div className="flex flex-col md:max-w-[584px] gap-4 md:ml-[50px] md:mt-0 mt-[20px] md:mx-0 mx-[20px]  justify-center">
                     <Text type="body" className="!font-nexa-regular">1994 yılında Dokuz Eylül Üniversitesi Tıp Fakültesinden mezun oldum. Kütahya Simav’ da mecburi hizmetimi tamamladıktan sonra,
@@ -42,8 +40,8 @@ const Hakkimda: NextPage = () => {
                         Amatör olarak piyano çalmayı seviyorum.
                         Rüzgâr sörfü, bisiklet ve kayak sporları ile ilgileniyorum.
                     </Text>
-                    <div className="relative md:w-[123px] h-[41px] mt-[30px] rotate-[-12deg]">
-                        <Image src="/images/svg/brandmark3.svg" layout="fill" />
+                    <div className="relative md:w-[400px] h-[120px] mt-[30px] rotate-[-12deg]">
+                        <Image src="/images/svg/brandmark3.svg" objectFit="contain" layout="fill" />
                     </div>
                 </div>
             </div>
@@ -190,7 +188,7 @@ const Hakkimda: NextPage = () => {
 
                     </AcademicsListModal>}
                 </div>
-                <div className="leading-none rounded-md rounded-bl-3xl bg-opacity-80 overflow-hidden md:min-h-[264px] md:max-h-[264px] md:min-w-[710px] md:max-w-[710px] relative bg-secondary-flat">
+                <div className="leading-none rounded-md ml-[160px] rounded-bl-3xl bg-opacity-80 overflow-hidden md:min-h-[264px] md:max-h-[264px] md:min-w-[710px] md:max-w-[710px] relative bg-secondary-flat">
                     <div className="absolute  right-0 bottom-0 rotate-[-13deg] h-[120px] w-[280px]">
                         <Image src="/images/svg/brandmark5.svg" layout="fill" />
                     </div>

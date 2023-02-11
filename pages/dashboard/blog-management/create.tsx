@@ -9,6 +9,7 @@ import Image from 'next/image'
 import request from '@config'
 import { toast } from 'react-hot-toast'
 import classNames from 'classnames'
+import { CircularProgress } from '@mui/material'
 
 const validationSchema = Yup.object().shape({
     title: Yup.string().required('Lütfen başlık giriniz'),
@@ -87,7 +88,8 @@ const BlogCreate = () => {
     const [loading, setLoading] = useState(false)
     return (
         <DashboardLayout>
-            <div className="w-full h-[105px] px-[30px] flex gap-[22px] py-[28px] bg-[#E7F0F1]">
+            <div className="w-full h-[105px] relative px-[30px] flex gap-[22px] py-[28px] bg-[#E7F0F1]">
+
                 <button onClick={() => {
                     router.back()
                 }} className="w-[48px] flex justify-center text-center items-center h-[48px] rounded-[20px_5px] bg-[#4E929D]">
@@ -112,6 +114,9 @@ const BlogCreate = () => {
                     {({ handleChange, handleSubmit, values, setFieldValue, errors, submitForm, resetForm }) => {
                         return (<>
                             <form onSubmit={handleSubmit} className="w-full flex gap-[50px]">
+                                {loading && <div className="absolute flex items-center justify-center w-full h-full top-0 left-0 border-2">
+                                    <CircularProgress className='text-[60px]'  size={70}/>
+                                </div>}
                                 <div className="flex-[3] flex flex-col gap-[24px]">
                                     <FormInput disabled={loading} onChange={handleChange} error={errors.title} name="title" value={values.title} label='Başlık' placeholder='' />
                                     <FormInputTextArea disabled={loading} onChange={handleChange} error={errors.content} name="content" value={values.content} inputClassName='h-[300px]' label='İçerik' placeholder='' />

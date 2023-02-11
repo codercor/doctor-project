@@ -19,13 +19,13 @@ const FirstBanner = () => {
         })
     }, [])
     return (
-        data.Image ? <Container className=" md:h-[1040px] h-[324px] brightness-[80%]  w-full bg-cover bg-no-repeat md:!max-w-full  ">
-            <Image src={data.Image} layout="fill" objectFit="cover" />
+        data.Image ? <Container className=" md:h-[1040px] h-[324px] brightness-[80%] md:rotate-y-0 rotate-y-180  w-full bg-cover bg-no-repeat md:!max-w-full  ">
+            <Image src={data.Image} layout="fill" objectFit="cover" objectPosition="top" />
             <Container className="md:!max-w-[1455px] md:flex flex-col hidden items-end pt-[314px] ">
                 <div className="bg-primary-flat flex flex-col items-start gap-[10px]  bg-opacity-60 w-[630px] break-words h-auto px-[34px] rounded-t-[5px] rounded-b-[20px] py-[42px]">
                     <Text className="text-[white] break-words w-full" type="h4">{data.Title}</Text>
                     <Text className="text-[white] break-words w-full" type="paragraph">{data.Description}</Text>
-                    <Button type="secondary" onClick={() => Router.push('/egitimler')}  >Eğitimlere Göz At</Button>
+                    {/* <Button type="secondary" onClick={() => Router.push('/egitimler')}  >Eğitimlere Göz At</Button> */}
                 </div>
                 <div className="w-[630px] h-fit">
                     <Image src="/images/svg/cert.svg" height={120} width={400} />
