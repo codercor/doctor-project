@@ -16,13 +16,13 @@ import { useState } from "react";
 const Hakkimda: NextPage = () => {
     const [showAcademicList, setShowAcademicList] = useState(false)
     return <LandingLayout>
-        <Container className=" h-[300px] md:h-[300px]  w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px] overflow-clip   md:bg-cover bg-[url(/images/png/karisik.png)]">
+        <Container className=" h-[300px] md:h-[300px]  w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px] overflow-clip   md:bg-cover bg-[url(/images/png/hakkimda2.png)]">
             <Container className="md:!max-w-[1455px] grid  place-items-end min-w-full backdrop-brightness-50  justify-center pb-20 md:pb-22 h-full">
                 <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold">Prof.Dr. Nazan Uysal Harzadin</Text>
             </Container>
         </Container>
         <Container className="flex  flex-col  mt-[20px] md:mt-[46px]">
-         
+
             <div className="flex md:flex-row flex-col md:mb-0 mb-[20px]">
                 <div className="md:min-h-[533px] md:min-w-[846px] min-h-[400px] overflow-clip rounded-r-[30px] border-2 px-[20px] relative">
                     <Image src="/images/png/hakkimda-nazan.png" layout="fill" objectFit="cover" />
@@ -192,10 +192,8 @@ const Hakkimda: NextPage = () => {
                     <div className="absolute  right-0 bottom-0 rotate-[-13deg] h-[120px] w-[280px]">
                         <Image src="/images/svg/brandmark5.svg" layout="fill" />
                     </div>
-                    <Text type="h5" className="text-[white] !font-nexa-regular !text-[34px] mt-[20px] md:mt-[52px] ml-[34px] mr-[61px] md:mb-[44px] mb-[100px]">
-                        “Doğru beslenme ile herkes daha
-                        iyi sağlığın keyfini çıkarabilir.
-                        Yolculuğunuza rehberlik etmek için buradayım.”
+                    <Text type="h5" className="text-[white] !font-nexa-regular !text-[30px] leading-[34px] mt-[20px] md:mt-[52px] ml-[34px] mr-[61px] md:mb-[44px] mb-[100px]">
+                        “Fonksiyonel beslenme ile daha sağlıklı yaşamın keyfini sürebilirsiniz. Sağlıklı yaşam yolculuğunuza rehberlik etmek için buradayım” -NUH
                     </Text>
                 </div>
             </div>

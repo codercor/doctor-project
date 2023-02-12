@@ -54,26 +54,19 @@ const Home: NextPage = () => {
                 Sıkça Sorulan Sorular
               </Text>
               <Text type="body" className="text-deepgreen-200 mt-[24px] ">
-                ¨Sabahları Ruhunun Yorgun Olmasına ve kemiklerinin ağrımasına rağmen kalkman cesurca
-                Nasıl yapılacağından tereddüt etsen de, yaşamaya devam etmen cesurca
-                Hergün yuvarlanan dalgaları itip, savaşmaya karar vermen cesurca
-                Vazgeçmek istediğin günler olduğunu biliyorum, ama asla vazgeçmemen cesurca
-                Yeni bir sen için burada olman cesurca¨
-                <br />
-                -Lana Rafaela
               </Text>
             </div>
             <FAQ />
           </div>
           <div className="w-full  relative h-full">
-            <Image src="/images/png/sebzeler.png" layout="fill" objectFit="cover" />
+            <Image src="/images/png/faq.png" layout="fill" objectFit="cover" />
           </div>
         </Container>
       </Container>
       <Container className="bg-[white] md:h-[817px] h-[840px]">
         <Container className="md:!max-w-[1200px] md:h-[706px] items-center flex flex-col px-[20px] md:px-0">
           <Text type="h4" className="text-[34px] mt-[80px] mb-[60px] text-quaternary-flat">Basında Nazan Uysal Harzadın</Text>
-          <div className="bg-[url(/images/png/gabak.png)]  overflow-visible rounded-xl relative bg-cover  bg-center h-[460px] w-full">
+          <div className="bg-[url(/images/png/avakado.png)]  overflow-visible rounded-xl relative bg-cover  bg-center h-[460px] w-full">
             <div className="md:w-[630px] w-full h-[315px] absolute md:top-[30px] top-[20%]  md:left-[40%] rounded-2xl overflow-hidden ">
               <Carousel autoPlay >
                 {presses.map((item) => <div key={v4()} className=" flex items-center gap-[20px] px-[10px] w-full h-[300px] md:w-[630px] md:h-[315px] relative text-left bg-white-300 bg-opacity-70">
@@ -164,11 +157,7 @@ const EducationSection = () => {
         trainings.length > 0 && trainings.map((training, index) =>
           <TrainingCard {...training} key={v4()} />)
       }
-      <div className="h-[196px] md:w-[440px] self-center w-[328px] bg-no-repeat bg-cover bg-[url('/images/png/karisik.png')] grid place-content-center px-[22px] py-[30px]">
-        <div className="leading-none bg-purple-100 bg-opacity-80  rounded-md rounded-tr-[20px] rounded-bl-[20px] py-[20px] px-[43.335px] text-center">
-          <Text type="h6" className="text-[#6D669D]">“Beslenme doğru ise, ilaca gerek yok! Beslenme yanlış ise, ilacın faydası yok!”-Hipokrat</Text>
-        </div>
-      </div>
+     
     </div>
   </Container>
 }

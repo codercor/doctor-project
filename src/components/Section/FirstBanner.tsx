@@ -25,6 +25,13 @@ const FirstBanner = () => {
                 <div className="bg-primary-flat flex flex-col items-start gap-[10px]  bg-opacity-60 w-[630px] break-words h-auto px-[34px] rounded-t-[5px] rounded-b-[20px] py-[42px]">
                     <Text className="text-[white] break-words w-full" type="h4">{data.Title}</Text>
                     <Text className="text-[white] break-words w-full" type="paragraph">{data.Description}</Text>
+                    <Text className="text-[white] break-words w-full text-[13px] mt-[10px]" type="paragraph">
+                       "Sabahları Ruhunun Yorgun Olmasına ve kemiklerinin ağrımasına rağmen kalkman cesurca, <br/>
+                        Nasıl yapılacağından tereddüt etsen de, yaşamaya devam etmen cesurca <br/>
+                        Hergün yuvarlanan dalgaları itip, savaşmaya karar vermen cesurca <br/>
+                        Vazgeçmek istediğin günler olduğunu biliyorum, ama asla vazgeçmemen cesurca <br/>
+                        YENİ BİR SEN İÇİN BURADA OLMAN CESURCA" <br/>
+                        - Lana Rafaela</Text>
                     {/* <Button type="secondary" onClick={() => Router.push('/egitimler')}  >Eğitimlere Göz At</Button> */}
                 </div>
                 <div className="w-[630px] h-fit">
