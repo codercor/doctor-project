@@ -42,7 +42,15 @@ const InfoBanner = () => {
                     <Text type="h4" className="text-secondary pr-1" >Neden besleniyoruz?
                         <br />
                         Sadece enerji almak için mi?</Text>
-                    <Text type="paragraph" className="text-secondary-flat">Evet vücudumuzun ayakta kalabilmesi için enerjiye ihtiyacımız var, ancak hepsi bu değil! </Text>
+                    <Text type="paragraph" className="text-secondary-flat !text-[12px] mt-[10px]">
+                        Evet vücudumuzun ayakta kalabilmesi için enerjiye ihtiyacımız var, ancak hepsi bu değil!
+                        Yiyeceklerimiz;<br />
+                        &emsp;*	Enerjimiz, <br />
+                        &emsp;*	Çevreye uyum için bilgi kaynağımız,<br />
+                        &emsp;*	Yenilenmek için hammaddemiz,<br />
+                        &emsp;*	Sonunda yediklerimiz ilacımız ya da sağlığımızı derinden etkileyen hastalık nedenimiz olur.<br />
+                        <span className="mt-[6px] w-full block"> Besinler sürekli yenilenen, onarılan vücudumuza hammadde olurlar, kaliteli besinler yerseniz kaliteli hücreleriniz olur.
+                            Diğer taraftan besinler bizi birbirimize yakınlaştırır, bu nedenle beslenmede matematik çoğu zaman işlemez.</span></Text>
                 </div>
                 <div className="md:grid md:grid-rows-2 md:grid-cols-2 gap-[20px] flex flex-col" >
                     {RSCardData.map((data, index) => <RSCard key={index} {...data} />)}
