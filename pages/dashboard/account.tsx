@@ -150,7 +150,7 @@ const Account = () => {
                     setFieldValue("City", "Istanbul");
                     _handleChange(e);
                 }}
-                label="Ülkeniz"
+                label="Ülke"
                 type="text"
                 options={countries}
             />
