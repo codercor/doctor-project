@@ -164,8 +164,9 @@ export default function SubStep2Part8({
                     error={errors?.petOrFarmAnimal}
                     onChange={handleChange}
                 />{
-                    values.petOrFarmAnimal === "evet" && <FormInputSelectOne
-                        label=""
+                    values.petOrFarmAnimal === "evet" && <>
+                     <FormInputSelectOne
+                        label="Nerede yaşıyor ? "
                         name="petOrFarmAnimalDesc"
                         options={[
                             { value: "içerde", label: "İçerde" },
@@ -176,6 +177,7 @@ export default function SubStep2Part8({
                         error={errors?.petOrFarmAnimalDesc}
                         onChange={handleChange}
                     />
+                    </>
                 }
             </div>
 
@@ -220,7 +222,7 @@ export default function SubStep2Part8({
                             type="text"
                             onChange={handleChange}
                         />
-
+                         
                         //     values.suitablePartsForYou.includes("cinsel yol ile bulaşan hastalık") && 
                         //     <FormInput
                         //     label={`Cinsel yolla bulaşan hastalığınız nedir ?`}
