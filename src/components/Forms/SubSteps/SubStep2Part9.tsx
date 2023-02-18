@@ -73,10 +73,13 @@ export default function SubStep2Part9({
     const { user } = useUser()
     return (
         <>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                <label htmlFor="">EVET&apos; i işaretle = Şu anda varsa, ÖNCE&apos; yi işaretle = geçmişte varsa, Hayır&apos; ı işaretle = yok ise.</label>
+        <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
+                    <h2 className=" text-[18px]">Tıbbi Özgeçmiş: Hastalıklar/Durumlar</h2>
+                </div>
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">EVET&apos; i işaretle = Şu anda varsa, ÖNCE&apos; yi işaretle = geçmişte varsa, Hayır&apos; ı işaretle = yok ise.</label>
 
-                <label>sindirim</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">sindirim</label>
                 <FormInputSelectOne
                     label="Hassas bağırsak sendromu"
                     name="medicalResumeDigestionQuestion1"
@@ -141,7 +144,7 @@ export default function SubStep2Part9({
                     error={errors?.medicalResumeDigestionQuestion7}
                     onChange={handleChange}
                 /> */}
-                <label>Solunum</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Solunum</label>
                 <FormInputSelectOne
                     label="Bronşit"
                     name="medicalResumeBreathingQuestion1"
@@ -207,7 +210,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 /> */}
 
-                <label>Boşaltım/Genital</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Boşaltım/Genital</label>
                 <FormInputSelectOne
                     label="Böbrek taşı"
                     name="medicalResumeGenitalQuestion1"
@@ -282,7 +285,7 @@ export default function SubStep2Part9({
                 /> */}
 
 
-                <label>Endokrin/Metabolik</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Endokrin/Metabolik</label>
                 <FormInputSelectOne
                     label="Diyabet"
                     name="medicalResumeMetabolicQuestion1"
@@ -355,7 +358,7 @@ export default function SubStep2Part9({
                     error={errors?.anotherTest}
                     onChange={handleChange}
                 /> */}
-                <label>Inflamatuvar/İmmün</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Inflamatuvar/İmmün</label>
                 <FormInputSelectOne
                     label="Romatoid artrit"
                     name="medicalResumeInflammatoryQuestion1"
@@ -445,7 +448,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 /> */}
 
-                <label>Kasiskelet</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kasiskelet</label>
                 <FormInputSelectOne
                     label="Fibromiyalji"
                     name="medicalResumeMusculoskeletalQuestion1"
@@ -487,7 +490,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 /> */}
 
-                <label>Deri</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Deri</label>
                 <FormInputSelectOne
                     label="Egzema"
                     name="medicalResumeLeatherQuestion1"
@@ -536,7 +539,7 @@ export default function SubStep2Part9({
                     error={errors?.anotherTest}
                     onChange={handleChange}
                 /> */}
-                <label>Kalp-damar</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kalp-damar</label>
                 <FormInputSelectOne
                     label="Göğüs ağrısı"
                     name="medicalResumeHeartQuestion1"
@@ -634,7 +637,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 /> */}
 
-                <label>Nörolojik/Duygusal</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Nörolojik/Duygusal</label>
                 <FormInputSelectOne
                     label="Epilepsi/Nöbet"
                     name="medicalResumeNeurologicalQuestion1"
@@ -731,7 +734,7 @@ export default function SubStep2Part9({
                     error={errors?.anotherTest}
                     onChange={handleChange}
                 /> */}
-                <label>Kanser</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kanser</label>
                 <FormInputSelectOne
                     label="Akciğer"
                     name="medicalResumeCancerQuestion1"

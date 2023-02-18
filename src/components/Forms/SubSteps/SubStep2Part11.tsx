@@ -77,10 +77,10 @@ export default function SubStep2Part11({
                 <h2 className="font-nexa-regular text-[18px]">Hazırlık Değerlendirmesi ve Sağlık Hedefleri</h2>
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                <label htmlFor="">5 (çokistekli) ile 1 (istekli değil) arasında derecelendirin:</label>
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">5 (çokistekli) ile 1 (istekli değil) arasında derecelendirin:</label>
 
-                <label>Sağlığınızı iyileştirmek için bunları yapmaya ne kadar isteklisiniz:</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Sağlığınızı iyileştirmek için bunları yapmaya ne kadar isteklisiniz:</label>
 
                 <FormInputSelectOne
                     label="Beslenmenizi önemli ölçüde değiştirmek"
@@ -167,7 +167,7 @@ export default function SubStep2Part11({
                     onChange={handleChange}
                 />
 
-                <label htmlFor="">5 (çok emin) ile 1 (hiç emin değilim) arasında bir puan veriniz:</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">5 (çok emin) ile 1 (hiç emin değilim) arasında bir puan veriniz:</label>
                 <FormInputSelectOne
                     label="Yukarıdaki sağlıkla ilgili faaliyetleri organize etmede ve
                     takip etmede kendinize ne kadar güveniyorsunuz?"
@@ -193,7 +193,7 @@ export default function SubStep2Part11({
                     onChange={handleChange}
                 />
 
-                <label htmlFor="">5 (çok destekleyici) ile 1 (çok destekleyici değil) arasında derecelendirin:</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">5 (çok destekleyici) ile 1 (çok destekleyici değil) arasında derecelendirin:</label>
                 <FormInputSelectOne
                     label="Şu anda, evdekilerin yukarıdaki değişiklikleri uygulamanıza ne
                     kadar destek olacağını düşünüyor sunuz?"
@@ -210,7 +210,7 @@ export default function SubStep2Part11({
                     onChange={handleChange}
                 />
 
-                <label htmlFor="">5 (çok sık temas) ile 1 (çok seyrek temas) arasında derecelendirin</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">5 (çok sık temas) ile 1 (çok seyrek temas) arasında derecelendirin</label>
                 <FormInputSelectOne
                     label="Kişisel sağlık programınızı uygularken profesyonel kadromuzdan
                     alacağınız sürekli destek (örneğin telefon görüşmeler, e-mail
@@ -242,7 +242,7 @@ export default function SubStep2Part11({
                 <h2 className="font-nexa-regular text-[18px]">Sağlık Hedefleri</h2>
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Bizimle yaptığınız görüşmede ne elde etmeyi umuyorsunuz ? "
                     name="anotherTest142"

@@ -90,7 +90,7 @@ export default function SubStep2Part4({
                 className="min-h-[60px] w-full  pl-[20px] flex-col flex bg-[#E9EDD9]  text-[#5B623D] items-start justify-center">
                 <h2 className="font-nexa-regular text-[18px]">Yaşam şeklinin değerlendirilmesi</h2>
             </div>
-            <h3 className="font-nexa-regular text-[16px]">Uyku</h3>
+            <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">Uyku</h3>
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Genelde geceleri ortalama kaç saat uyuyorsunuz?"
@@ -156,12 +156,9 @@ export default function SubStep2Part4({
                     onChange={handleChange}
                 />
                 {
-                    //son soru evet ise input açılacak
-                }
-                {
                     values.sleepPills === "evet" && (
                         <FormInput
-                            label="Hangi ilaçları kullanıyorsunuz?"
+                            label="Açıklayınız"
                             name="sleepPillsDetail"
                             type="text"
                             error={errors?.sleepPillsDetail}
@@ -172,7 +169,7 @@ export default function SubStep2Part4({
                 }
 
             </div>
-            <h3 className="font-nexa-regular text-[16px]">Egzersiz</h3>
+            <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">Egzersiz</h3>
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputTextArea
                     label="Şuanki egzersiz düzeniniz hakkında bilgi veriniz"
@@ -192,18 +189,33 @@ export default function SubStep2Part4({
                         value={values.exerciseWant}
                         error={errors?.exerciseWant}
                     />
+
+                </div>
+            </div>
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+                <div className="flex flex-col">
+                    <FormInputSelectOne
+                        label="Egzersiz yapmanızı engelleyen sorun var mı?"
+                        options={[...EH, { value: "biraz", label: "Biraz" }]}
+                        name="exerciseDisability"
+                        onChange={handleChange}
+                        value={values.exerciseDisability}
+                        error={errors?.exerciseDisability}
+                    />
                     {
                         //son soru evet ise input açılacak
-                        values.exerciseWant === "evet" && (
+                        values.exerciseDisability === "evet" && (
                             <FormInput
-                                label="Evet ise açıklama"
-                                name="exerciseWantDesc"
-                                value={values.exerciseWantDesc}
+                                label="Açıklayınız"
+                                name="exerciseDisabilityDesc"
+                                value={values.exerciseDisabilityDesc}
                                 onChange={handleChange}
-                                error={errors?.exerciseWantDesc}
+                                error={errors?.exerciseDisabilityDesc}
                             />)
                     }
                 </div>
+            </div>
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <div className="flex flex-col">
                     <FormInputSelectOne
                         label="Egzersiz sonrası aşırı yorgunluk ve ağrı hisseder misiniz?"
@@ -226,9 +238,11 @@ export default function SubStep2Part4({
                     }
                 </div>
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+
+            <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">Beslenme</h3>
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
-                    label="Şu anda uyguladığınız özel bir diyet veya beslenme programı var mı? (Uygun olanı/olanları işaretleyiniz"
+                    label="Şu anda uyguladığınız özel bir diyet veya beslenme programı var mı? (Uygun olanı/olanları işaretleyiniz)"
                     options={diet}
                     name="diet"
                     value={values.diet}
@@ -246,9 +260,7 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-
-
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Belli bir besine hassasiyetiniz var mı?"
                     options={EH}
@@ -269,7 +281,7 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Yemediğiniz besinler var mı?"
                     options={EH}
@@ -290,7 +302,7 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Aşağıdakilere olumsuz tepkiniz oldu mu : (Uygun olan tüm seçenecekleri işaretleyiniz)"
                     options={foodsReaction}
@@ -310,13 +322,14 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Canınızın çektiği/sık yediğiniz yiyecekler var mı?"
                     options={EH}
                     name="foodsLike"
                     value={values.foodsLike}
                     error={errors?.foodsLike}
+                    onChange={handleChange}
                 />
                 {
                     values.foodsLike === "evet" && (
@@ -330,18 +343,19 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Günde 3 öğün mü yersiniz?"
                     options={EH}
                     name="threeMeal"
                     value={values.threeMeal}
                     error={errors?.threeMeal}
+                    onChange={handleChange}
                 />
                 {
                     values.threeMeal === "hayır" && (
                         <FormInput
-                            label="Hayır ise açıklama"
+                            label="Kaç ?"
                             name="threeMealDetail"
                             type="text"
                             error={errors?.threeMealDetail}
@@ -350,13 +364,14 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Öğün atlamak sizi etkiliyor mu?"
                     options={EH}
                     name="skipMeal"
                     value={values.skipMeal}
                     error={errors?.skipMeal}
+                    onChange={handleChange}
                 />
                 {
                     values.skipMeal === "evet" && (
@@ -370,21 +385,22 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                <FormInput
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+                <FormInputSelectOne
                     label="Haftada kaç gün dışarıda yemek yersiniz?"
+                    options={[
+                        { value: "0-1", label: "0-1" },
+                        { value: "1-3", label: "1-3" },
+                        { value: "3-5", label: "3-5" },
+                        { value: ">5ogunhaftada", label: ">5 öğün, haftada" },
+                    ]}
                     name="outsideMeal"
-                    type="number"
-                    error={errors?.outsideMeal}
                     value={values.outsideMeal}
+                    error={errors?.outsideMeal}
                     onChange={handleChange}
                 />
             </div>
-
-            {
-
-            }
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Mevcut yaşam şekliniz ve yeme alışkanlıklarınız ile ilgili olanları işaretleyiniz:"
                     options={LifestyleAboutEating}

@@ -11,13 +11,26 @@ export const textValidationSchema = Yup.string().required("Zorunlu alan");
 
 export const flow2FormValidationSchema = Yup.object({
     parrentTolarance: singleSelectValidationSchema,
+    parrentTolaranceDesc: textValidationSchema,
     motherMilk: singleSelectValidationSchema,
+    motherMilkDesc: Yup.string().when("motherMilk", {
+        is: (motherMilk: string) => motherMilk === "anne sutu" || motherMilk === "Anne Sütü ve Formül Mama",
+        then: Yup.string().required("Zorunlu alan"),
+    }),
+    motherMilkDesc1: Yup.string().when("motherMilk", {
+        is: (motherMilk: string) => motherMilk === "formül mama" || motherMilk === "Anne Sütü ve Formül Mama",
+        then: Yup.string().required("Zorunlu alan"),
+    }),
     solidFood: singleSelectValidationSchema,
+    solidFoodDesc: textValidationSchema,
     babyAllergy: singleSelectValidationSchema,
     childFoodReact: singleSelectValidationSchema,
+    childFoodReactDesc: textValidationSchema,
     childFoodAccess: singleSelectValidationSchema,
     childFoodDisorder: singleSelectValidationSchema,
+    childFoodDisorderDesc: textValidationSchema,
     foodDisorder: textValidationSchema,
+    foodDisorderDesc: textValidationSchema,
     favoriteFood: textValidationSchema,
     mostEatenFood: textValidationSchema,
     foodPreparedBy: textValidationSchema,
@@ -30,6 +43,7 @@ export const flow2FormValidationSchema = Yup.object({
 });
 
 export const flow1FormValidationSchema = Yup.object({
+
     //min >= 2 words required
     fullName: Yup.string()
         .required("Zorunlu alan") //min 2 max 3 words
@@ -56,9 +70,17 @@ export const flow1FormValidationSchema = Yup.object({
 });
 
 export const flow3FormValidationSchema = Yup.object({
+    motherMilk: singleSelectValidationSchema,
+    motherMilkDesc: Yup.string().when("motherMilk", {
+        is: (motherMilk: string) => motherMilk === "anne sutu" || motherMilk === "Anne Sütü ve Formül Mama",
+        then: Yup.string().required("Zorunlu alan"),
+    }),
+    motherMilkDesc1: Yup.string().when("motherMilk", {
+        is: (motherMilk: string) => motherMilk === "formül mama" || motherMilk === "Anne Sütü ve Formül Mama",
+        then: Yup.string().required("Zorunlu alan"),
+    }),
     name: textValidationSchema,
     age: textValidationSchema,
-    date: textValidationSchema,
     birthDate: textValidationSchema,
     email: textValidationSchema,
     address: textValidationSchema,
@@ -100,7 +122,8 @@ export const flow3FormValidationSchema = Yup.object({
     }),
     exercise: textValidationSchema,
     exerciseWant: textValidationSchema,
-    exerciseWantDesc: textValidationSchema,
+    exerciseDisability: textValidationSchema,
+    exerciseDisabilityDesc: textValidationSchema,
     exerciseLater: textValidationSchema,
     exerciseLaterDesc: textValidationSchema,
     diet: Yup.array().of(

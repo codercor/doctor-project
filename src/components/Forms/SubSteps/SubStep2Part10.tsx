@@ -78,8 +78,8 @@ export default function SubStep2Part10({
                 <h2 className="font-nexa-regular text-[18px]">Belirtilerin İncelenmesi</h2>
             </div>
 
-            <div className="flex flex-col items-center justify-center border-2 min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                <label htmlFor="">Şu anda veya son 6 ay içinde bulunan şikayetleri ve şiddetini işaretleyin..</label>
+            <div className="flex flex-col  justify-center border-2 min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Şu anda veya son 6 ay içinde bulunan şikayetleri ve şiddetini işaretleyin..</label>
                 <label className="text-center text-[16px] font-nexa-bold">Genel</label>
                 <FormInputSelectOne
                     label="Soğuk eller ve ayaklar"

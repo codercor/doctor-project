@@ -73,8 +73,8 @@ export default function SubStep2Part7({
     const { user } = useUser()
     return (
         <>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                <label >Sence hayatında işler nasıl gidiyor? (1–10 arası ölçekte işaretleyin, uygun değilse N/A işaretle) (1)Kötü (5) Orta  (10) Çok iyi</label>
+            <label className="font-nexa-bold text-[20px] text-[#4E929D]">Sence hayatında işler nasıl gidiyor? (1–10 arası ölçekte işaretleyin, uygun değilse N/A işaretle) (1)Kötü (5) Orta  (10) Çok iyi</label>
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Genel olarak"
                     name="general"
@@ -169,8 +169,8 @@ export default function SubStep2Part7({
             <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
                 <h2 className="font-nexa-regular text-[18px]">Özgeçmiş</h2>
             </div>
-            <label htmlFor="">Hastanın doğum/çocukluk öyküsü:</label>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <label className="font-nexa-bold text-[20px] text-[#4E929D]">Hastanın doğum/çocukluk öyküsü:</label>
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Doğumunuz :"
                     name="birth"
@@ -185,7 +185,7 @@ export default function SubStep2Part7({
                 />
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Gebelik/doğum komplikasyonu oldu mu? "
                     name="birthComplication"
@@ -204,8 +204,52 @@ export default function SubStep2Part7({
                     />
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                <label htmlFor="">Başlama yaşı:</label>
+            <div className="flex py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+                <FormInputSelectOne
+                    onChange={handleChange}
+                    label="Bebeklik döneminde ne ile beslendiniz, annesütü mü, formül mama mı?"
+                    options={[
+                        { value: "anne sutu", label: "Anne Sütü" },
+                        { value: "formül mama", label: "Formül Mama" },
+                        {
+                            value: "Anne Sütü ve Formül Mama",
+                            label: "Anne Sütü ve Formül Mama",
+                        },
+                        { value: "Bilmiyorum", label: "Bilmiyorum" },
+                    ]}
+                    value={values.motherMilk}
+                    error={errors?.motherMilk}
+                    name="motherMilk"
+                />
+                <div className="flex flex-col w-full">
+                    {
+                        (values.motherMilk == "anne sutu" || values.motherMilk == "Anne Sütü ve Formül Mama") && (
+                            <FormInput
+                                label="Ne kadar süre (Anne sütü) ?"
+                                name="motherMilkDesc"
+                                type="text"
+                                error={errors?.motherMilkDesc}
+                                value={values.motherMilkDesc}
+                                onChange={handleChange}
+                            />
+                        )
+                    }
+                    {
+                        (values.motherMilk == "formül mama" || values.motherMilk == "Anne Sütü ve Formül Mama") && (
+                            <FormInput
+                                label="Hangi Çeşit (Formül Mama) ?"
+                                name="motherMilkDesc1"
+                                type="text"
+                                error={errors?.motherMilkDesc1}
+                                value={values.motherMilkDesc1}
+                                onChange={handleChange}
+                            />
+                        )
+                    }
+                </div>
+            </div>
+            <label className="font-nexa-bold text-[20px] text-[#4E929D]">Başlama yaşı:</label>
+            <div className="flex  py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label={`Katı gıdalar:`}
                     value={values.solidFoods}
@@ -232,7 +276,7 @@ export default function SubStep2Part7({
                 />
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Çocukken sizde semptoma neden olduğundan kaçınılan yiyecekler var mıydı?"
                     name="avoidedFood"
@@ -253,7 +297,7 @@ export default function SubStep2Part7({
                 }
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Çocukken çok fazla şeker veya tatlı yediniz mi?"
                     name="sugarOrSweet"
@@ -263,9 +307,9 @@ export default function SubStep2Part7({
                     onChange={handleChange}
                 />
             </div>
-            <label>Diş Sağlığı</label>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                <label>Ağzınızda aşağıdakilerden hangisi/hangileri var, kaç adet ise boşluğa yazınız:</label>
+            <label className="font-nexa-bold text-[20px] text-[#4E929D]">Diş Sağlığı</label>
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Ağzınızda aşağıdakilerden hangisi/hangileri var, kaç adet ise boşluğa yazınız:</label>
                 <FormInputSelectOne
                     label="Gümüş rengi civalı dolgu"
                     name="silverMercuryFiller"
@@ -438,7 +482,7 @@ export default function SubStep2Part7({
                     onChange={handleChange}
                 />{
                     values.otherDentalProblems === "evet" && <FormInput
-                        label={`Kaç Adet ?`}
+                        label={`Açıklayınız`}
                         value={values.otherDentalProblemsDesc}
                         error={errors.otherDentalProblemsDesc}
                         name="otherDentalProblemsDesc"
@@ -456,7 +500,7 @@ export default function SubStep2Part7({
                     onChange={handleChange}
                 />{
                     values.removingYourMercuryFiller === "evet" && <FormInput
-                        label={`Kaç Adet ?`}
+                        label={`Ne zaman ?`}
                         value={values.removingYourMercuryFillerDesc}
                         error={errors.removingYourMercuryFillerDesc}
                         name="removingYourMercuryFillerDesc"

@@ -31,6 +31,18 @@ export default function SubStep1Part2({
           name="childFoodReact"
           disabled={readOnly}
         />
+        {
+                    values.childFoodReact === "evet" && (
+                        <FormInput
+                            label="Açıklayınız"
+                            name="childFoodReactDesc"
+                            type="text"
+                            error={errors?.childFoodReactDesc}
+                            value={values.childFoodReactDesc}
+                            onChange={handleChange}
+                        />
+                    )
+                }
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
@@ -53,6 +65,18 @@ export default function SubStep1Part2({
           name="childFoodDisorder"
           disabled={readOnly}
         />
+        {
+                    values.childFoodDisorder === "evet" && (
+                        <FormInput
+                            label="Lütfen bakım düzenini tarihleriyle yazınız"
+                            name="childFoodDisorderDesc"
+                            type="text"
+                            error={errors?.childFoodDisorderDesc}
+                            value={values.childFoodDisorderDesc}
+                            onChange={handleChange}
+                        />
+                    )
+                }
       </div>
     </>
   );
