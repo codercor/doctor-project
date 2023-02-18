@@ -350,7 +350,7 @@ export default function SubStep2Part5({
                         onChange={handleChange}
                     />
                     {values.smokeBlock === "evet" && <FormInput
-                        label={`Kaç Yıldır:`}
+                        label={`Hangi yöntemleri denediniz ?`}
                         value={values.smokeBlockDesc}
                         error={errors.smokeBlockDesc}
                         name="smokeBlockDesc"

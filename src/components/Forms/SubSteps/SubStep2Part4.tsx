@@ -329,6 +329,7 @@ export default function SubStep2Part4({
                     name="foodsLike"
                     value={values.foodsLike}
                     error={errors?.foodsLike}
+                    onChange={handleChange}
                 />
                 {
                     values.foodsLike === "evet" && (
@@ -349,11 +350,12 @@ export default function SubStep2Part4({
                     name="threeMeal"
                     value={values.threeMeal}
                     error={errors?.threeMeal}
+                    onChange={handleChange}
                 />
                 {
                     values.threeMeal === "hayır" && (
                         <FormInput
-                            label="Hayır ise açıklama"
+                            label="Kaç ?"
                             name="threeMealDetail"
                             type="text"
                             error={errors?.threeMealDetail}
@@ -369,6 +371,7 @@ export default function SubStep2Part4({
                     name="skipMeal"
                     value={values.skipMeal}
                     error={errors?.skipMeal}
+                    onChange={handleChange}
                 />
                 {
                     values.skipMeal === "evet" && (
