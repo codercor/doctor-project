@@ -4,6 +4,7 @@ import FormInput, { FormInputTextArea } from "../FormInput/FormInput";
 import FormInputSelectOne from "../FormInput/FormInputSelectOne";
 import FormInputSelectMulti from "../FormInput/FormInputSelectMulti";
 import useUser from "src/hooks/user.hook";
+import { Field } from "formik";
 
 const EH = [
     { value: "evet", label: "Evet" },
@@ -2234,6 +2235,246 @@ export default function SubStep2Part10({
                     </>
                 }
             </div>
+            <HKITP1 values={values} handleChange={handleChange} />
+            <GTP1 values={values} handleChange={handleChange} />
+            <FormInputSelectOne
+                options={EH}
+                name="pillEffect1"
+                onChange={handleChange}
+                value={values.pillEffect1}
+                label="İlaç veya takviyeler olağan dışı yan etki veya sorunlara neden oldu mu?" />
+            {
+                values.pillEffect1 === "evet" && <>
+                    <FormInput type="text"
+                        name="pillEffect1Desc"
+                        onChange={handleChange}
+                        value={values.pillEffect1Desc}
+                        label="Evet ise açıklayınız:" />
+                </>
+            }
+            <p className="font-nexa-bold">
+                Bunlardan herhangi birini düzenli olarak veya uzun süre kullandınız mı:
+            </p>
+            <FormInputSelectOne
+                options={EH}
+                name="pillUse1"
+                onChange={handleChange}
+                value={values.pillUse1}
+                label="NSAID (Brufen, apranax vb), Aspirin?" />
+            <FormInputSelectOne
+                options={EH}
+                name="pillUse2"
+                onChange={handleChange}
+                value={values.pillUse2}
+                label="Parol (parasetamol)?" />
+            <FormInputSelectOne
+                options={EH}
+                name="pillUse3"
+                onChange={handleChange}
+                value={values.pillUse3}
+                label="Basit bloke edici ilaç (Lansor, Aprozol, Helicol, Nexium vb.)?" />
+            <p className="font-nexa-bold">
+                Kaç kez antibiyotik kullandınız?
+            </p>
+            <AKN values={values} handleChange={handleChange} />
+            <FormInputSelectOne
+                options={EH}
+                name="ABUse1"
+                onChange={handleChange}
+                value={values.ABUse1}
+                label="Daha önce hiç uzun süreli antibiyotik kullandınız mı?" />
+            {
+                values.ABUse1 === "evet" && <>
+                    <FormInput type="text"
+                        name="ABUse1Desc"
+                        onChange={handleChange}
+                        value={values.ABUse1Desc}
+                        label="Evet ise açıklayınız:" />
+                </>
+            }
+            <p className="font-nexa-bold">
+                Oral steroid, kullandıysanız hangi sıklıkla (kortizon, prednizon vb.)?
+            </p>
+            <STK values={values} handleChange={handleChange} />
         </>
     );
+}
+const AKN = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[300px] my-1">
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2">
+                    <th> </th>
+                    <th> Kullanım </th>
+                    <th> Kullanma Nedeni </th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        {
+                            title: "Bebeklik/Çocukluk",
+                            name: "akn1",
+                        },
+                        {
+                            title: "Gençlik",
+                            name: "akn2",
+                        },
+                        {
+                            title: "Eriskinlik",
+                            name: "akn3",
+                        }
+                    ].map((item) => {
+                        return (<tr key={item.title} className="table-row border-2">
+                            <td className="table-cell"> {item.title} </td>
+                            <td className="table-cell">
+                                <FormInputSelectOne
+                                    options={[
+                                        {
+                                            label: "<5",
+                                            value: "lt5"
+                                        },
+                                        {
+                                            label: ">5",
+                                            value: "gt5"
+                                        }
+                                    ]}
+                                    label=" "
+                                    name={item.name + "5"}
+                                    onChange={handleChange}
+                                    value={values[item.name + "5"]}
+                                />
+                            </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Why']} name={item.name + 'Why'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
+}
+
+const STK = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[300px] my-1">
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2">
+                    <th> </th>
+                    <th> Kullanım </th>
+                    <th> Kullanma Nedeni </th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        {
+                            title: "Bebeklik/Çocukluk",
+                            name: "stk1",
+                        },
+                        {
+                            title: "Gençlik",
+                            name: "stk2",
+                        },
+                        {
+                            title: "Eriskinlik",
+                            name: "stk3",
+                        }
+                    ].map((item) => {
+                        return (<tr key={item.title} className="table-row border-2">
+                            <td className="table-cell"> {item.title} </td>
+                            <td className="table-cell">
+                                <FormInputSelectOne
+                                    options={[
+                                        {
+                                            label: "<5",
+                                            value: "lt5"
+                                        },
+                                        {
+                                            label: ">5",
+                                            value: "gt5"
+                                        }
+                                    ]}
+                                    label=" "
+                                    name={item.name + "5"}
+                                    onChange={handleChange}
+                                    value={values[item.name + "5"]}
+                                />
+                            </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Why']} name={item.name + 'Why'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
+}
+
+const HKITP1 = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[400px] my-1">
+        <p className="font-nexa-bold text-[20px] my-4 text-[#4E929D]">Halen kullandığın ilaçlar (reçeteli ve reçetesiz ilaçlar dahil)</p>
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2 bg-[#82b5bd] h-[40px]">
+                    <th>İlaç</th>
+                    <th>Doz</th>
+                    <th>Başlama zamanı(ay/yıl) </th>
+                    <th>Kullanma nedeni </th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        { name: "hkitp1", },
+                        { name: "hkitp2", },
+                        { name: "hkitp3" },
+                        { name: "hkitp4" },
+                        { name: "hkitp5" },
+                        { name: "hkitp6" },
+                    ].map((item) => {
+                        return (<tr key={item.name} className="table-row border-2">
+                            <td className="table-cell">  <FormInput onChange={handleChange} value={values?.[item.name + 'Pill']} name={item.name + 'Pill'} type="text" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values?.[item.name + 'Dose']} name={item.name + 'Dose'} type="text" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values?.[item.name + 'Time']} name={item.name + 'Time'} type="text" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values?.[item.name + 'Why']} name={item.name + 'Why'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
+}
+
+const GTP1 = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[400px] my-1">
+        <p className="font-nexa-bold text-[20px] my-4 text-[#4E929D]">Halen kullandığın ilaçlar (reçeteli ve reçetesiz ilaçlar dahil)</p>
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2 bg-[#82b5bd] h-[40px]">
+                    <th>İlaç</th>
+                    <th>Doz</th>
+                    <th>Başlama zamanı(ay/yıl) </th>
+                    <th>Kullanma nedeni </th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        { name: "gtp1" },
+                        { name: "gtp2" },
+                        { name: "gtp3" },
+                        { name: "gtp4" },
+                        { name: "gtp5" },
+                        { name: "gtp6" },
+                    ].map((item) => {
+                        return (<tr key={item.name} className="table-row border-2">
+                            <td className="table-cell">  <FormInput onChange={handleChange} value={values?.[item.name + 'Pill']} name={item.name + 'Pill'} type="text" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values?.[item.name + 'Dose']} name={item.name + 'Dose'} type="text" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values?.[item.name + 'Time']} name={item.name + 'Time'} type="text" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values?.[item.name + 'Why']} name={item.name + 'Why'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
 }
