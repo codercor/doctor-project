@@ -15,7 +15,7 @@ import useTraining from "src/hooks/training.hook";
 
 
 const TrainingSearchInput = ({ value, onChange }: { value: string, onChange: (e: any) => void }) => {
-    return (<div className="md:w-[546px] h-[52px] mx-auto relative top-[-25px] z-20">
+    return (<div className="md:w-[546px] h-[52px] mx-auto relative top-[-25px] z-[3]">
         <input value={value} onChange={onChange} type="text" placeholder="Eğitim Ara" className="w-full h-full pl-[48px] rounded-[20px_5px_20px_5px] bg-white-200 font-nexa-bold text-[16px] text-[#949B64] focus:outline-none" />
         <div className="absolute top-[17px] left-[17px]">
             <SearchIcon />
@@ -210,8 +210,8 @@ const Egitimler = () => {
 
     return (
         <LandingLayout>
-            <Container className=" h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom  md:bg-cover bg-[url(/images/png/hakkimda-bg.png)]">
-                <Container className="md:!max-w-[1455px] grid  place-items-end  justify-center pb-20 md:pb-22 h-full">
+            <Container className=" h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px]  md:bg-cover overflow-clip bg-[url(/images/png/best.png)]">
+                <Container className="grid  place-items-end !min-w-full backdrop-brightness-50   justify-center  pb-20 md:pb-22 h-full">
                     <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold">Eğitimler</Text>
                 </Container>
             </Container>

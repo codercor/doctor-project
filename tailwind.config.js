@@ -83,6 +83,49 @@ const colors = {
     text: "#8E8E8E",
   }
 }
+const plugin = require('tailwindcss/plugin')
+
+const rotateX = plugin(function ({ addUtilities }) {
+  addUtilities({
+    '.rotate-x-20': {
+      transform: 'rotateX(20deg)',
+    },
+    '.rotate-x-40': {
+      transform: 'rotateX(40deg)',
+    },
+    '.rotate-x-60': {
+      transform: 'rotateX(60deg)',
+    },
+    '.rotate-x-80': {
+      transform: 'rotateX(80deg)',
+    },
+    
+  })
+})
+
+const rotateY = plugin(function ({ addUtilities }) {
+  addUtilities({
+    '.rotate-y-0': {
+      transform: 'rotateY(0deg)',
+    },
+    '.rotate-y-20': {
+      transform: 'rotateY(20deg)',
+    },
+    '.rotate-y-40': {
+      transform: 'rotateY(40deg)',
+    },
+    '.rotate-y-60': {
+      transform: 'rotateY(60deg)',
+    },
+    '.rotate-y-80': {
+      transform: 'rotateY(80deg)',
+    },
+    '.rotate-y-180': {
+      transform: 'rotateY(180deg)',
+    },
+  })
+})
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -90,6 +133,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      listStyleType: {
+        none: 'none',
+       disc: 'disc',
+       decimal: 'decimal',
+       square: 'square',
+       roman: 'upper-roman',
+      },
+      gridTemplateColumns: {
+        "14": "repeat(14, minmax(50px, 1fr))",
+      },
       fontFamily: {
         'nexa-regular': ['NexaRegular'],
         'nexa-light': ['NexaLight'],
@@ -119,7 +172,10 @@ module.exports = {
   },
   plugins: [
     require('tailwind-scrollbar'),
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/line-clamp'),
+    rotateX,
+    rotateY,
   ],
   variants: {
     scrollbar: ['rounded']

@@ -113,8 +113,8 @@ const CreateTraining = () => {
                         </div>
                         <Input value={trainingData.GeneralDetail.VideoLink} name="VideoLink" onChange={handleGeneralDetailChange} text="Eğitim Videosu (Youtube URL)" />
                         <div className="flex flex-row gap-4"> 
-                            <Input type="datetime-local" value={trainingData.GeneralDetail.StartDate} name="StartDate" onChange={handleGeneralDetailChange} text="Başlangıç Tarihi" />
-                            <Input type="datetime-local" value={trainingData.GeneralDetail.EndDate} name="EndDate" onChange={handleGeneralDetailChange} text="Bitiş Tarihi" />
+                            <Input type="datetime-local" inputClassName="text-[14px]" value={trainingData.GeneralDetail.StartDate} name="StartDate" onChange={handleGeneralDetailChange} text="Başlangıç Tarihi" />
+                            <Input type="datetime-local" inputClassName="text-[14px]" value={trainingData.GeneralDetail.EndDate} name="EndDate" onChange={handleGeneralDetailChange} text="Bitiş Tarihi" />
                         </div>
                         <ImageUpload onChange={(e) => {
                             console.log("value ", e.target.files);

@@ -1,27 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import * as Yup from "yup";
-import {
-    flow3FormValidationSchema
-} from "@components/Forms/validationSchemes";
-import {flow3FormInitialValues} from "@components/Forms/BasvuruForms/config/initialValues";
+import {flow4FormValidationSchema} from "@components/Forms/validationSchemes";
+import {flow4FormInitialValues} from "@components/Forms/BasvuruForms/config/initialValues";
 import useUser from "../../../hooks/user.hook";
 import {useRouter} from "next/router";
-import {FormSubSteps} from "@components/Forms/FormSteps/FormSteps";
 import {Formik} from "formik";
 import request from "@config";
 import {toast} from "react-hot-toast";
-import SubStep2Part1 from "@components/Forms/SubSteps/SubStep2Part1";
-import SubStep2Part2 from "@components/Forms/SubSteps/SubStep2Part2";
-import SubStep2Part3 from "@components/Forms/SubSteps/SubStep2Part3";
-import SubStep2Part4 from "@components/Forms/SubSteps/SubStep2Part4";
-import SubStep2Part5 from "@components/Forms/SubSteps/SubStep2Part5";
 import Form2Footer from "@components/Forms/Form2Footer/Form2Footer";
-import classNames from "classnames";
 import SubstepViever from "@components/Forms/SubSteps/SubStepContainer";
 import SubStep3Part1 from "@components/Forms/SubSteps/SubStep3Part1";
+import SubStep3Part3 from "@components/Forms/SubSteps/SubStep3Part3";
+import SubStep3Part2 from "@components/Forms/SubSteps/SubStep3Part2";
+import SubStep3Part4 from "@components/Forms/SubSteps/SubStep3Part4";
 
-const validationSchema = flow3FormValidationSchema;
-const initialValues = flow3FormInitialValues;
+const validationSchema = flow4FormValidationSchema;
+const initialValues = flow4FormInitialValues;
 
 
 function Flow4Form() {
@@ -47,19 +40,6 @@ function Flow4Form() {
             validationSchema={validationSchema}
             onSubmit={(values) => {
                 console.log("values", values);
-                /* request.post("/userflows", {
-                     UserId,
-                     Step: 3,
-                     Document: values
-                 }).then(res => {
-                     toast.success("Başvurunuz başarıyla alınmıştır. En kısa sürede sizinle iletişime geçilecektir.")
-                     setTimeout(() => {
-                         router.push("/dashboard")
-                     }, 2000)
-                 }).catch((err) => {
-                     console.log("err", err);
-                     toast.error(err.response.data.Message)
-                 })*/
                 let flow2DataKey = `flow-2-data-${UserId}`;
                 let flow3DataKey = `flow-3-data-${UserId}`;
                 let flow2Data = JSON.parse(localStorage.getItem(flow2DataKey) as string);
@@ -101,6 +81,24 @@ function Flow4Form() {
               }) => {
                 const subSteps = {
                     1: <SubStep3Part1
+                        values={values}
+                        errors={errors}
+                        handleChange={handleChange}
+                        setFieldValue={setFieldValue}
+                    />,
+                    2: <SubStep3Part2
+                        values={values}
+                        errors={errors}
+                        handleChange={handleChange}
+                        setFieldValue={setFieldValue}
+                    />,
+                    3: <SubStep3Part3
+                        values={values}
+                        errors={errors}
+                        handleChange={handleChange}
+                        setFieldValue={setFieldValue}
+                    />,
+                    4: <SubStep3Part4
                         values={values}
                         errors={errors}
                         handleChange={handleChange}

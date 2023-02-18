@@ -145,7 +145,7 @@ const TrainingCard = ({
         </span>
     </Button>;
     const PriceWithBuyButton = () => <Button direction="right" type="transparent-white" className={priceClassName}>
-        <Text type="body" className="!text-[20px] text-[#3A356B]">{price}<TL /></Text>
+        <Text type="body" className="!text-[18px] text-[#3A356B]">{Number(price) == 0 ? 'Ücretsiz' : <> {price}<TL /> </>}</Text>
         {showBuyButton &&
             <Button type="tertiary-flat" onClick={() => Router.push(detailHref)} className={classNames("absolute flex items-center bottom-0 left-[120px] !bg-[#C3BFE8] !border-none", {
                 ...buttonSizeMixin
@@ -156,7 +156,7 @@ const TrainingCard = ({
         <Text type="body" className={classNames(" text-[#3A356B]", {
             "!text-[20px]": sizeType == "md",
             "!text-[16px]": sizeType == "sm",
-        })}>{price}<TL /></Text>
+        })}>{Number(price) == 0 ? 'Ücretsiz' : <> {price}<TL /> </>}</Text>
     </Button>
     return <div className={boxClassName} style={{
         minWidth: _width + "px",
@@ -171,9 +171,9 @@ const TrainingCard = ({
             {(detailOnImage) && <DetailButton />}
         </div>
         <div className={contentClassName}>
-            <div>
+            <div className="h-full">
                 <Text type="h4" className={classNames("text-[#3A356B]", { ...titleMixin })}>{title}</Text>
-                <Text type="h5" className={classNames("text-[#7A7C6D]  font-nexa-regular", {
+                <Text type="h5" className={classNames("text-[#7A7C6D] !max-h-[45%] !overflow-hidden font-nexa-regular", {
                     ...descriptionMixin
                 })}>{description}</Text>
             </div>

@@ -11,6 +11,8 @@ import { useChat } from "src/hooks/chat.hook";
 import toast from 'react-hot-toast';
 import { v4 } from "uuid";
 import useUser from "src/hooks/user.hook";
+import { useBreakpoint, useIsDesktop } from "src/hooks/breakpoint";
+import { useRouter } from "next/dist/client/router";
 
 const ChatUserCard = ({ chatLine, onClick, active }: { chatLine: ChatLine, onClick: () => void, active: boolean }) => {
     const { getChatLineMessages } = useChat();
@@ -29,7 +31,6 @@ const ChatUserCard = ({ chatLine, onClick, active }: { chatLine: ChatLine, onCli
     </div>
 }
 type ChatMessageProps = { isMe?: boolean, message: Message }
-
 const ChatMessage = ({ isMe = true, message }: ChatMessageProps) => {
 
     return <div className={classNames("flex p-[20px] h-fit mt-[20px] w-[80%] ", {
@@ -47,7 +48,6 @@ const ChatMessage = ({ isMe = true, message }: ChatMessageProps) => {
         </div>}
     </div>
 }
-
 const ChatBox = () => {
     const { chat: { Messages, SelectedChatLineId, ChatLines }, sendMessage } = useChat();
     const { user: { Id } } = useUser()
@@ -84,7 +84,6 @@ const ChatBox = () => {
         </div>}
     </div>
 }
-
 const Chat = () => {
     const { chat: { ChatLinesLoading }, getChatLines, ChatLines } = useChat();
     const [toastId, setToastId] = useState<string>('');
@@ -100,28 +99,40 @@ const Chat = () => {
             }, 500);
         }
     }, [ChatLinesLoading]);
+    const { user: { Information } } = useUser()
+    const router = useRouter();
     useEffect(() => {
+        const userGender = Information.Gender
+        const userFullName = Information.Fullname
+        if (!userGender || !userFullName) {
+            toast.error("Lütfen önce profil bilgilerinizi doldurunuz.")
+            router.push("/dashboard/account");
+            return;
+        }
         getChatLines();
     }, []);
+    const isDesktop = useIsDesktop();
     return (
         <DashboardLayout>
-            <div className=" md:h-[798px] flex  rounded-[30px_5px] bg-[#F4F4F4]">
-                <div className="w-1/3 h-full flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
-                    <div className="flex justify-between w-full">
-                        <Text type="h3" className="text-secondary !text-[20px] w-full">Mesajlar</Text>
+            {!isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">
+                <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
+            </div> :
+                <div className=" md:h-[798px] flex h-full  rounded-[30px_5px] bg-[#F4F4F4]">
+                    <div className="w-1/3 h-full flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
+                        <div className="flex justify-between w-full">
+                            <Text type="h3" className="text-secondary !text-[20px] w-full">Mesajlar</Text>
+                        </div>
+                        <div className="w-full h-full overflow-auto scrollbar-thin scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100">
+                            {ChatLines.map((item) => <ChatUserCard active={
+                                activeLineId == item.ChatLineId
+                            } onClick={() => {
+                                setActiveLineId(item.ChatLineId);
+                            }} chatLine={item} key={v4()} />)}
+                        </div>
                     </div>
-                    <div className="w-full">
-                        {ChatLines.map((item) => <ChatUserCard active={
-                            activeLineId == item.ChatLineId
-                        } onClick={() => {
-                            setActiveLineId(item.ChatLineId);
-                        }} chatLine={item} key={v4()} />)}
-                    </div>
-                </div>
-                <ChatBox />
-            </div>
+                    <ChatBox />
+                </div>}
         </DashboardLayout>
     );
 }
-
 export default Chat;

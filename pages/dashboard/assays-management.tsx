@@ -36,23 +36,36 @@ export default function Assays() {
         return <div className='flex flex-col w-full'>
             <div className='w-full flex p-3 border-t-[1px]'>
                 {assay?.user ? (<><div className='flex-[4]'>
-                    <p> {assay.user?.information?.Fullname || 'isim yok'} </p>
+                    <p> {assay.user?.information?.Fullname || '-'} </p>
                 </div><div className='flex-[6]'>
                         <p> {assay.user?.Email} </p>
                     </div><div className='flex-[4]'>
-                        <p> {assay.user?.information?.Phone || 'telefon yok'} </p>
+                        <p> {assay.user?.information?.Phone || '-'} </p>
                     </div></>) : <><div className='flex-[4]'>
-                        <p> {'isim yok'} </p>
+                        <p> {'-'} </p>
                     </div><div className='flex-[6]'>
-                        <p> {'e posta yok'} </p>
+                        <p> {'-'} </p>
                     </div><div className='flex-[4]'>
-                        <p> {'telefon yok'} </p>
+                        <p> {'-'} </p>
                     </div></>}
-                <div className='flex-[4]'>
-                    <p> {assay?.Name || 'tahlil adı yok '} </p>
+                <div className='flex-[4]    '>
+                    <p className='break-words w-full'> {assay?.Name || '-'} </p>
                 </div>
-                <div className='flex-[2]'>
-                    <p> {new Date(assay?.created_at).toLocaleDateString("tr-TR") || 'tarih yok'} </p>
+                <div className='flex-[4]'>
+                    <p>
+
+                        {
+
+                            new Date(assay.created_at).toLocaleDateString("tr-TR", {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                                hour: "numeric",
+                                minute: "numeric"
+                            })
+                            || '-'
+                        }
+                    </p>
                 </div>
                 {assay.Status ? <div className='flex-[2]'>
                     <p>{assay.Status} </p>
@@ -172,37 +185,36 @@ export default function Assays() {
                 <div className="w-[60%] gap-[10px] mt-[10px] mb-[30px] flex">
                     <input type="text" value={searchKey} onChange={(e) => {
                         setSearchKey(e.currentTarget.value)
-                    }} placeholder='Ad Soyad ya da E-posta adresine göre arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
-                    <button className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
-                        <SortByAlpha />
-                    </button>
+                    }} placeholder='Ad Soyad ile arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
                     <button onClick={() => {
                         refresh();
                     }} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
                         <RefreshRounded />
                     </button>
                 </div>
-                <div className="w-full flex flex-col">
-                    <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Ad Soyad</Text>
-                        <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Belge Adı</Text>
-                        <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Tarih</Text>
-                        <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Belge Adı</Text>
-                        <div className='flex-[2] w-full'>  </div>
+                {assays?.length > 0 ? <>
+                    <div className="w-full flex flex-col">
+                        <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
+                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Ad Soyad</Text>
+                            <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
+                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
+                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Belge Adı</Text>
+                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Tarih</Text>
+                            <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Durum</Text>
+                            <div className='flex-[2] w-full'>  </div>
+                        </div>
+                        <div className='w-full border-2'>
+                            {
+                                assays?.length > 0 ? assays.map((assay, index) => {
+                                    return <Row assay={assay} key={index} />
+                                }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>
+                            }
+                        </div>
                     </div>
-                    <div className='w-full border-2'>
-                        {
-                            assays.map((assay, index) => {
-                                return <Row assay={assay} key={index} />
-                            })
-                        }
-                    </div>
-                </div>
-                <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
-                    setPage(value)
-                }} count={page + 1} />
+                    <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
+                        setPage(value)
+                    }} count={assays.length > 0 ? page + 1 : page} />
+                </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>}
             </div>
         </DashboardLayout></>
 }

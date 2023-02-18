@@ -20,9 +20,11 @@ export interface UserState {
     Token: string | null;
     Information: {
         Id: string;
-        Fullname: string;
+        Fullname?: string;
         Phone: string;
-        Address: string;
+        Country: string;
+        City: string;
+        District: string;
         Gender?: string;
         BirthDate?: string;
     };
@@ -35,6 +37,10 @@ export interface UserState {
         RegistrationAddress: string;
         City: string;
         Country: string;
+        District: string;
+        ContactType: string;
+        TaxOffice: string;
+        Phone: string;
     },
     UsersTrainings: Array<BoughtTraining>;
     UsersTrainingsProcess: {
@@ -74,14 +80,17 @@ export interface UserRegisterCredentials {
 
 export type UserInformation = {
     Id: string,
-    Fullname: string,
+    Fullname?: string,
     Phone: string,
-    Address: string,
     Email: string,
     Gender?: string,
     BirthDate?: string,
+    Country: string,
+    City: string,
+    District: string,
 }
 export type BannerData = {
+    Id: string,
     Title: string,
     Description: string,
     Image: string | File,
@@ -89,13 +98,17 @@ export type BannerData = {
 
 export type UserBillingDetail = {
     Id: string,
-    Name: string,
-    Surname: string,
-    Email: string,
-    IdentityNumber: string,
-    RegistrationAddress: string,
-    City: string,
-    Country: string
+    Name: string;
+    Surname: string;
+    Email: string;
+    IdentityNumber: string;
+    RegistrationAddress: string;
+    City: string;
+    Country: string;
+    District: string;
+    ContactType: string;
+    TaxOffice: string;
+    Phone: string;
 }
 export interface BoughtTrainingEducationSection {
     Id: string,

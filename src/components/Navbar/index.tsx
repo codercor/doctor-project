@@ -32,6 +32,10 @@ const navs = [
         text: "Eğitimler",
         href: "/egitimler"
     },
+    {
+        text: "Blog",
+        href: "/blog-yazilari"
+    },
 ]
 
 const authendicatedNavs = [
@@ -59,7 +63,7 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
 
     return (
         <div className="md:h-auto flex  justify-between absolute z-20 w-full top-0 left-0 md:px-0 px-[20px]">
-            <Logo />
+            <Logo  />
             <div className="md:flex hidden  flex-col gap-[20px] md:flex-row md:justify-between md:items-center">
                 {(navs).map((nav: Route) => <NavbarItem key={nav.text} route={nav} />)}
                 <div className="flex">
@@ -95,8 +99,8 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
             <div className={classNames(['bg-purple-200 md:hidden fixed top-0 left-0 w-full h-full px-[20px] flex flex-col z-10'], {
                 'hidden': !isOpen,
             })}>
-                <div className="h-[66px]  flex justify-between items-center md:max-w-[1064px] md:mx-auto">
-                    <Image src="/images/svg/logo-v2.svg" width={85} height={29} layout="fixed" />
+                <div className="h-[66px] pt-[10px] flex justify-between items-center md:max-w-[1064px] md:mx-auto">
+                    <Image src="/images/svg/brandmark4.svg" width={85} height={29} layout="fixed" />
                     <div className='flex items-center  justify-center gap-[10px]' onClick={toggleMenu}>
                         <Text className='text-purple-800' type='body'> KAPAT </Text>
                         <CloseIcon />

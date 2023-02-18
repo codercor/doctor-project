@@ -11,6 +11,7 @@ import FormAlert from '@components/Forms/FormAlert/FormAlert';
 import StepStatus from '@components/Forms/Status/Status';
 import request from '@config';
 import { useRouter } from 'next/router'
+import { Tooltip } from '@mui/material';
 
 const FormTypeGrid = ({ active = 1, setActive }: { active?: number, setActive: (newActive: number) => void }) => {
     const Item = ({ text, isActive }: { text: string, isActive: boolean }) => {
@@ -68,16 +69,16 @@ export default function FormManagement() {
         return <div className='flex flex-col w-full'>
             <div className='w-full flex p-3 border-t-[1px]'>
                 <div className='flex-[6]'>
-                    <p> {flow.user.information?.Fullname || 'Bilinmiyor'} </p>
+                    <p> {flow.user.information?.Fullname || '-'} </p>
                 </div>
                 <div className='flex-[6]'>
                     <p>
-                        {flow.user?.Email || 'Bilinmiyor'}
+                        {flow.user?.Email || '-'}
                     </p>
                 </div>
                 <div className='flex-[4]'>
                     <p>
-                        {flow.user?.Phone || 'Bilinmiyor'}
+                        {flow.user?.information?.Phone || '-'}
                     </p>
                 </div>
                 <div className='flex-[4]'>
@@ -87,11 +88,13 @@ export default function FormManagement() {
                         }
                     </p>
                 </div>
-                <div className='flex-[4]'>
-                    <StepStatus
-                        status={flow.Status == 'Waiting' ? 'Bekliyor' : flow.Status == 'Done' ? 'Gönderildi' : 'rejected'}
-                    />
-                </div>
+                <Tooltip title={flow?.Message} placement="top">
+                    <div className='flex-[4]'>
+                        <StepStatus
+                            status={flow.Status == 'Waiting' ? 'Bekliyor' : flow.Status == 'Done' ? 'Onaylandı' : flow.Status == 'Reject' ? 'Reddedildi' : 'Bekliyor'}
+                        />
+                    </div>
+                </Tooltip>
                 <div className='flex-[4]'>
                     <button onClick={() => {
                         // setOpen(!open)
@@ -124,8 +127,8 @@ export default function FormManagement() {
             </div>
             <FormTypeGrid active={activeTab} setActive={setActiveTab} />
             <div className="w-[60%] gap-[10px] mt-[30px] mb-[30px] flex">
-                <input type="text" placeholder='Ad Soyad ya da E-posta adresine göre arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
-                <button className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
+                <input type="text" onChange={(e) => setSearchKey(e.currentTarget.value)} placeholder='Ad Soyad ile arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
+                <button onClick={() => refresh()} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
                     <RefreshRounded />
                 </button>
             </div>
@@ -140,13 +143,13 @@ export default function FormManagement() {
                 </div>
                 <div className='w-full border-2'>
                     {
-                        flows.length > 0 ? flows.map((flow, index) => <Row flow={flow} key={index} />) : <h1 className='w-full text-center text-[14px]'> Boş </h1>
+                        flows.length > 0 ? flows.map((flow, index) => <Row flow={flow} key={index} />) : <h1 className='w-full text-center text-[14px]'> Kayıt yok </h1>
                     }
                 </div>
             </div>
-            <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]" onChange={(e: any, value: number) => {
+            <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                 setPage(value)
-            }} count={page + 1} />
+            }} count={flows.length > 0 ? page + 1 : page} />
         </div>
     </DashboardLayout>
 }

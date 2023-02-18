@@ -1,15 +1,17 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text'
-import {Check, Close, MenuOpen, RefreshRounded, SortByAlpha} from '@mui/icons-material'
-import React, {useEffect, useState} from 'react'
-import {Pagination} from '@mui/material'
+import { Check, Close, MenuOpen, RefreshRounded, SortByAlpha } from '@mui/icons-material'
+import React, { useEffect, useState } from 'react'
+import { Pagination } from '@mui/material'
 import classNames from 'classnames'
 import request from '@config'
-import {v4} from 'uuid'
+import { v4 } from 'uuid'
 import FormInputSelectOne from '@components/Forms/FormInput/FormInputSelectOne'
-import {Loading} from './create-training'
+import { Loading } from './create-training'
 import toast from "react-hot-toast";
 import useUser from "../../src/hooks/user.hook";
+import { useBreakpoint, useIsDesktop } from 'src/hooks/breakpoint'
+import { useRouter } from 'next/dist/client/router'
 
 interface Appointment {
     Id: string;
@@ -21,8 +23,8 @@ interface Appointment {
 }
 
 export const StatusBox = ({
-                              type
-                          }: {
+    type
+}: {
     type: "Acil" | "Randevulu" | "user" | string
 }) => {
     return <div className={classNames("w-[110px] h-[30px] flex items-center justify-center", {
@@ -39,7 +41,7 @@ export const StatusBox = ({
     </div>
 }
 
-const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => void }) => {
+const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () => void }) => {
     const [open, setOpen] = useState(false);
     const [noteEdit, setNoteEdit] = useState(false);
     const [updateTheUserModal, setUpdateTheUserModal] = useState(false);
@@ -52,7 +54,7 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
         const URL = `/userappointments/${appointment.Id}`
         try {
             setIsLoading(true)
-            const {data} = await request.put(URL, {
+            const { data } = await request.put(URL, {
                 Status: tempStatus,
                 Date: tempDate
             })
@@ -66,24 +68,24 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
     }
 
     return <div onClick={() => {
-       // setUpdateTheUserModal(true)
+        // setUpdateTheUserModal(true)
     }} className='flex flex-col w-full'>
         {
-            isLoading && <LocalLoading message="Güncelleniyor"/>
+            isLoading && <LocalLoading message="Güncelleniyor" />
         }
         <div className='w-full flex items-center text-start   border-t-[1px]'>
             <div className='flex-[6] '>
                 <p>
                     {
-                        appointment.user?.information?.Fullname || "Bilinmiyor"
+                        appointment.user?.information?.Fullname || "-"
                     }
                 </p>
             </div>
             <div className='flex-[6] '>
-                <p>{appointment.user?.Email || 'bilinmiyor'}</p>
+                <p>{appointment.user?.Email || '-'}</p>
             </div>
             <div className='flex-[4] '>
-                <p> {appointment.user?.information?.Phone || 'bilimiyor'} </p>
+                <p> {appointment.user?.information?.Phone || '-'} </p>
             </div>
             <div className='flex-[4] '>
                 <p>
@@ -100,7 +102,7 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
             </div>
             <div className='flex-[2] '>
                 {
-                    appointment.Status === "Acil" ? <StatusBox type="Acil"/> : <StatusBox type="Randevulu"/>
+                    appointment.Status === "Acil" ? <StatusBox type="Acil" /> : <StatusBox type="Randevulu" />
                 }
             </div>
 
@@ -123,7 +125,7 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
                         <div className='flex gap-[50px] '>
                             <SelectStatus value={tempStatus} onChange={(v) => {
                                 setTempStatus(v)
-                            }}/>
+                            }} />
 
                             <div className="flex ml-auto flex-col w-[400px] items-start justify-center gap-[10px]">
                                 <h3 className='text-[#4E929D] !text-[14px] font-nexa-bold'>
@@ -132,7 +134,7 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
                                 <input value={tempDate} onChange={
                                     (e) => setTempDate(e.currentTarget.value)
                                 } type="datetime-local"
-                                       className='w-full border-none rounded-[5px_20px_0_20px] bg-[#f3f3f3]'/>
+                                    className='w-full border-none rounded-[5px_20px_0_20px] bg-[#f3f3f3]' />
                             </div>
                         </div>
                     </div>
@@ -144,8 +146,8 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
                     <button onClick={() => {
                         setUpdateTheUserModal(false)
                     }}
-                            className='w-[50px] right-[20px] top-[20px] absolute text-[white] h-[50px] hover:bg-[#df7676] hover:shadow-deepgreen-100 duration-200 grid place-content-center hover:animate-spin transition-all hover:shadow-inner bg-[#4E929D] rounded-full'>
-                        <Close/>
+                        className='w-[50px] right-[20px] top-[20px] absolute text-[white] h-[50px] hover:bg-[#df7676] hover:shadow-deepgreen-100 duration-200 grid place-content-center hover:animate-spin transition-all hover:shadow-inner bg-[#4E929D] rounded-full'>
+                        <Close />
                     </button>
                 </div>
 
@@ -154,31 +156,32 @@ const Row = ({appointment, afterUpdate}: { appointment: any, afterUpdate: () => 
     </div>
 }
 
-const SelectStatus = ({value, onChange}: {
+const SelectStatus = ({ value, onChange }: {
     value: string;
     onChange: (value: string) => void;
 }) => {
     return <>
         <div className="flex items-center justify-center gap-[10px]">
             <div onClick={() => onChange("Acil")}
-                 className={classNames("bg-[#D4E5E8] text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]")}>
-                {value == "Acil" && <Check/>}
+                className={classNames("bg-[#D4E5E8] text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]")}>
+                {value == "Acil" && <Check />}
             </div>
             <p className="text-[black] text-[16px] font-nexa-bold"> Acil </p>
         </div>
         <div className="flex items-center justify-center gap-[10px]">
             <div onClick={() => onChange("Randevulu")}
-                 className={classNames("bg-[#D4E5E8] text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]")}>
-                {value == "Randevulu" && <Check/>}
+                className={classNames("bg-[#D4E5E8] text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]")}>
+                {value == "Randevulu" && <Check />}
             </div>
             <p className="text-[black] text-[16px] font-nexa-bold"> Randevulu </p>
         </div>
     </>
 }
-export const LocalLoading = ({message}: { message: string }) => <div className="z-[100] fixed top-0 left-0"><Loading
-    message={message}/></div>
+export const LocalLoading = ({ message }: { message: string }) => <div className="z-[100] fixed top-0 left-0"><Loading
+    message={message} /></div>
 export default function AppointmentManagement() {
-    const {user: {Id: UserId}} = useUser()
+    const { user: { Id: UserId, Information } } = useUser()
+    const isDesktop = useIsDesktop();
     const [appointments, setAppointments] = useState<Appointment[]>([
 
     ])
@@ -186,7 +189,7 @@ export default function AppointmentManagement() {
     const [searchKey, setSearchKey] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const getAppointments = async () => {
-        const {data} = await request.get(`/userappointments/${UserId}?page=` + page);
+        const { data } = await request.get(`/userappointments/${UserId}?page=` + page);
         console.log("Appointments", data);
         return data;
     }
@@ -201,61 +204,77 @@ export default function AppointmentManagement() {
             setIsLoading(false)
         })
     }
-
+    const router = useRouter()
     useEffect(() => {
+        const userGender = Information.Gender
+        const userFullName = Information.Fullname
+        if (!userGender || !userFullName) {
+            toast.error("Lütfen önce profil bilgilerinizi doldurunuz.")
+            router.push("/dashboard/account");
+            return;
+        }
         getAndSetAppointments()
     }, [page, searchKey])
-
+    if (appointments?.length < 1) {
+        return <DashboardLayout>
+            <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
+        </DashboardLayout>
+    }
     return (
         <DashboardLayout>
-            {
-                isLoading && <LocalLoading message="Randevularınız yükleniyor..."/>
-            }
-            <div className="md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
-                <div className="w-1/3 flex flex-col text-start items-center justify-start py-[26px] px-[10px]">
-                    <div className="flex flex-col justify-between w-full">
-                        <Text type="h3" className="text-[#4D5628] !text-[20px] w-full">Randevularım</Text>
-                        <Text type="h3" className="text-[#4D5628] font-nexa-light !text-[14px] w-full">Tüm
-                            randevularınızı yönetin.</Text>
+            {!isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">
+                <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
+            </div> : <>
+                {
+                    isLoading && <LocalLoading message="Randevularınız yükleniyor..." />
+                }
+                <div className="md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
+                    <div className="w-1/3 flex flex-col text-start items-center justify-start py-[26px] px-[10px]">
+                        <div className="flex flex-col justify-between w-full">
+                            <Text type="h3" className="text-[#4D5628] !text-[20px] w-full">Randevularım</Text>
+                            <Text type="h3" className="text-[#4D5628] font-nexa-light !text-[14px] w-full">Tüm
+                                randevularınızı yönetin.</Text>
+                        </div>
                     </div>
-                </div>
-                <div className="w-[60%] gap-[10px] mt-[10px] mb-[30px] flex">
-                    <input type="text" onChange={(e) => {
-                        setSearchKey(e.target.value)
-                    }
-                    } placeholder='Ad Soyad ya da E-posta adresine göre arayın'
-                           className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]'/>
-
-                    <button onClick={() => {
-                        getAndSetAppointments()
-                    }} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
-                        <RefreshRounded/>
-                    </button>
-                </div>
-                <div className="w-full flex flex-col">
-                    <div className='w-full flex  h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                        <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">Ad Soyad</Text>
-                        <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">E-posta</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Telefon</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Tarihi</Text>
-                        <Text type="h3" className="text-secondary flex-[2] !text-[14px] ">Durum</Text>
-                    </div>
-                    <div
-                        className='w-full  max-h-[600px] overflow-auto p-3 scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>
-                        {
-                            appointments.map((appointment: Appointment) => {
-                                return <Row afterUpdate={() => {
-                                    getAndSetAppointments()
-                                }} key={v4()} appointment={appointment}/>
-                            })
+                    <div className="w-[60%] gap-[10px] mt-[10px] mb-[30px] flex">
+                        <input type="text" onChange={(e) => {
+                            setSearchKey(e.target.value)
                         }
+                        } placeholder='Ad Soyad ya da E-posta adresine göre arayın'
+                            className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
+
+                        <button onClick={() => {
+                            getAndSetAppointments()
+                        }} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
+                            <RefreshRounded />
+                        </button>
                     </div>
+                    <div className="w-full flex flex-col">
+                        <div className='w-full flex  h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
+                            <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">Ad Soyad</Text>
+                            <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">E-posta</Text>
+                            <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Telefon</Text>
+                            <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Tarih/Saat</Text>
+                            <Text type="h3" className="text-secondary flex-[2] !text-[14px] ">Durum</Text>
+                        </div>
+                        <div
+                            className='w-full  max-h-[600px] overflow-auto p-3 scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>
+                            {
+                                appointments?.length > 0 ? appointments.map((appointment: Appointment) => {
+                                    return <Row afterUpdate={() => {
+                                        getAndSetAppointments()
+                                    }} key={v4()} appointment={appointment} />
+                                })
+                                    : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
+                            }
+                        </div>
+                    </div>
+                    <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]"
+                        onChange={(e: any, value: number) => {
+                            setPage(value)
+                        }} count={appointments.length > 0 ? page + 1 : page} />
                 </div>
-                <Pagination siblingCount={3} variant="text" className="mt-auto mb-[30px]"
-                            onChange={(e: any, value: number) => {
-                                setPage(value)
-                            }} count={page + 1}/>
-            </div>
+            </>}
         </DashboardLayout>
     )
 }

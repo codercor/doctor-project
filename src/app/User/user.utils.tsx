@@ -108,7 +108,7 @@ export const adminUpdateBannerRequest = async (data: BannerData) => {
         formData.append("Image", data.Image);
         formData.append("Title", data.Title);
         formData.append("Description", data.Description);
-        const response = await request.post(BANNER + "/a1a8ded3-74a9-4460-88f6-fed445d4b900?_method=PUT", formData, {
+        const response = await request.post(BANNER + `/${data.Id}?_method=PUT`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             },
@@ -234,10 +234,10 @@ export const resetPasswordRequest = async (UserId: string, Hash: string, Passwor
     }
 }
 
-export const adminGetLastSalesRequest = async () => {
+export const adminGetLastSalesRequest = async (page: number) => {
     try {
         const response = await request.get(
-            PAYMENT
+            PAYMENT + '?page=' + page
         );
         return response.data;
     } catch (err: any) {

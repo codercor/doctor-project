@@ -12,7 +12,7 @@ const Settings = () => {
     return (
         <DashboardLayout>
             <SettingsSubLayout>
-                <div className="bg-[#F9FBFC] p-[32px] flex flex-col rounded-[20px_5px_20px_5px] w-2/3 h-full">
+                <div className="bg-[#F9FBFC] p-[32px] flex flex-col rounded-[20px_5px_20px_5px] w-full md:w-2/3 h-full">
                     <div> <Text>Şifre Güncelleme</Text> </div>
                     <div className="flex flex-col w-full gap-[12px]">
                         {/* <Input text="Mevcut Şifreniz" type="password" /> */}

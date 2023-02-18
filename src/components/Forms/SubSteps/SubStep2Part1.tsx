@@ -33,14 +33,6 @@ export default function SubStep2Part1({
           type="text"
           onChange={handleChange}
         />
-        <FormInput
-          label="Tarih"
-          value={values.date}
-          error={errors.date}
-          name="date"
-          type="text"
-          onChange={handleChange}
-        />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
@@ -70,54 +62,18 @@ export default function SubStep2Part1({
           onChange={handleChange}
         />
         <FormInput
+          label="Şehir"
+          value={values.city}
+          error={errors.city}
+          name="city"
+          type="text"
+          onChange={handleChange}
+        />
+        <FormInput
           label="Telefon"
           value={values.phoneCell}
           error={errors.phoneCell}
           name="phoneCell"
-          type="text"
-          onChange={handleChange}
-        />
-      </div>
-      <div className="flex flex-col min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-        <div>
-          <FormInputSelectOne
-            label="Genetik geçmiş"
-            value={values.geneticHistory}
-            error={errors.geneticHistory}
-            name="geneticHistory"
-            options={[
-              /*  Afrikan Amerikan  İspanyol  Akdeniz  Asyalı Amerikalı Kafkas Kuzey Avrupalı*/
-              { label: "Afrikan Amerikan", value: "Afrikan Amerikan" },
-              { label: "İspanyol", value: "İspanyol" },
-              { label: "Akdeniz", value: "Akdeniz" },
-              { label: "Asyalı", value: "Asyalı" },
-              { label: "Amerikalı", value: "Amerikalı" },
-              { label: "Kafkas", value: "Kafkas" },
-              { label: "Kuzey Avrupalı", value: "Kuzey Avrupalı" },
-              {
-                label: "Diğer",
-                value: "Diğer",
-              },
-            ]}
-          />
-        </div>
-        {values.geneticHistory == "Diğer" && (
-          <FormInput
-            label="Diğer"
-            name="geneticHistoryOther"
-            value={values.geneticHistoryOther}
-            error={errors.geneticHistoryOther}
-            type="text"
-            onChange={handleChange}
-          />
-        )}
-      </div>
-      <div className="flex min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-        <FormInput
-          label="Sağlık hizmetini en son nerede, ne zaman ve kimden aldınız?"
-          value={values.lastHealt}
-          error={errors.lastHealt}
-          name="lastHealt"
           type="text"
           onChange={handleChange}
         />
@@ -169,15 +125,15 @@ export default function SubStep2Part1({
               { label: "Bir doktor önerdi", value: "Bir doktor önerdi" },
               { label: "Bir arkadaş/aile üyelerinden biri önerdi", value: "Bir arkadaş/aile üyelerinden biri önerdi" },
               { label: "Sosyal medya", value: "Sosyal medya" },
-              { label: "Kafkas", value: "Kafkas" },
               {
                 label: "Diğer",
                 value: "Diğer",
               },
             ]}
+            onChange={handleChange}
           />
         </div>
-        {values.geneticHistory == "Diğer" && (
+        {values.whereDidYouHear == "Diğer" && (
           <FormInput
             label="Diğer"
             name="whereDidYouHearOther"

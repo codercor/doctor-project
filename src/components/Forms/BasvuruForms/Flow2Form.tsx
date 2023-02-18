@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import * as Yup from "yup";
 import {
     flow2FormValidationSchema,
     singleSelectValidationSchema,
     textValidationSchema
 } from "@components/Forms/validationSchemes";
-import {flow2FormInitialValues} from "@components/Forms/BasvuruForms/config/initialValues";
+import { flow2FormInitialValues } from "@components/Forms/BasvuruForms/config/initialValues";
 import useUser from "../../../hooks/user.hook";
-import {useRouter} from "next/router";
-import {FormSubSteps} from "@components/Forms/FormSteps/FormSteps";
-import {Formik} from "formik";
+import { useRouter } from "next/router";
+import { FormSubSteps } from "@components/Forms/FormSteps/FormSteps";
+import { Formik } from "formik";
 import request from "@config";
-import {toast} from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import SubStep1Part1 from "@components/Forms/SubSteps/SubStep1Part1";
 import SubStep1Part2 from "@components/Forms/SubSteps/SubStep1Part2";
 import SubStep1Part3 from "@components/Forms/SubSteps/SubStep1Part3";
@@ -27,7 +27,7 @@ const validationSchema = flow2FormValidationSchema;
 const initialValues = flow2FormInitialValues;
 
 
-const SubstepViever = ({subSteps, activeSubStep}: { subSteps: any, activeSubStep: number }) => {
+const SubstepViever = ({ subSteps, activeSubStep }: { subSteps: any, activeSubStep: number }) => {
     return <>
         {subSteps[activeSubStep]}
     </>
@@ -36,8 +36,11 @@ const SubstepViever = ({subSteps, activeSubStep}: { subSteps: any, activeSubStep
 export interface PropsCanSelectStep {
     setSelectedStep: (step: number) => void
 }
-function Flow2Form({setSelectedStep}: PropsCanSelectStep) {
-    const {user: {Id: UserId}} = useUser()
+function Flow2Form({ setSelectedStep }: PropsCanSelectStep) {
+
+    const { user: { Id: UserId } } = useUser()
+    let key = `flow-2-data-${UserId}`;
+    const [data, setData] = useState(JSON.parse(localStorage.getItem(key) as string) || initialValues);
     const [part, setPart] = useState(Number(localStorage.getItem("flow-2-part-" + UserId)) || 1);
     useEffect(() => {
         localStorage.setItem("flow-2-part" + UserId, part.toString());
@@ -47,37 +50,23 @@ function Flow2Form({setSelectedStep}: PropsCanSelectStep) {
 
     return (
         <Formik
-            initialValues={initialValues}
+            initialValues={data}
             validationSchema={validationSchema}
+            enableReinitialize={true}
             onSubmit={(values) => {
-                console.log("values", values);
-                /*request.post("/userflows", {
-                    UserId,
-                    Step: 2,
-                    Document: values
-                }).then(res => {
-                    toast.success("Başvurunuz başarıyla alınmıştır. En kısa sürede sizinle iletişime geçilecektir.")
-                    setTimeout(() => {
-                        //refresh page
-                        router.reload()
-                    }, 2000)
-                }).catch((err) => {
-                    console.log("err", err);
-                    toast.error(err.response.data.Message)
-                })*/
-                let key = `flow-2-data-${UserId}`;
+
                 localStorage.setItem(key, JSON.stringify(values));
                 toast.success("Form kaydedildi IFM Değerlendirme Formuna geçiniz.")
                 setSelectedStep(3)
             }}
         >
             {({
-                  handleSubmit,
-                  handleChange,
-                  values,
-                  errors,
-                  submitForm,
-              }) => {
+                handleSubmit,
+                handleChange,
+                values,
+                errors,
+                submitForm,
+            }) => {
                 const subSteps = {
                     1: <SubStep1Part1
                         values={values}
@@ -105,11 +94,11 @@ function Flow2Form({setSelectedStep}: PropsCanSelectStep) {
                     <form onSubmit={handleSubmit}>
                         <div className="w-full flex flex-col gap-[10px]">
                             {(
-                                <SubstepViever subSteps={subSteps} activeSubStep={part}/>
+                                <SubstepViever subSteps={subSteps} activeSubStep={part} />
                             )}
                         </div>
 
-                        <Form2Footer parts={countOfSubSteps} setter={setPart} active={part}/>
+                        <Form2Footer parts={countOfSubSteps} setter={setPart} active={part} />
                         {
                             part == countOfSubSteps && (<div
                                 className="min-h-[112px] my-[10px] w-full px-[40px] rounded-[20px_5px] p-2 flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-center">

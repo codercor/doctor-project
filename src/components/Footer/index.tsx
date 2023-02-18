@@ -3,14 +3,20 @@ import ArrowIcon from "@components/Icon/ArrowIcon";
 import Logo from "@components/Logo";
 import Text from "@components/Text";
 import Image from "next/image";
+import { useRouter } from "next/router"
 
 
-const Nav = ({ text }: { text: string }) => <button className="flex  justify-between ">
-    <Text type="body" className="text-[white] md:text-[16px] text-[12px]">
-        {text}
-    </Text>
-    <ArrowIcon color="white"></ArrowIcon>
-</button>
+const Nav = ({ text, to }: { text: string, to?: string }) => {
+    const router = useRouter()
+    return (<button onClick={() => {
+        if (to) router.push(to)
+    }} className="flex  justify-between ">
+        <Text type="body" className="text-[white] md:text-[16px] text-[12px]">
+            {text}
+        </Text>
+        <ArrowIcon color="white"></ArrowIcon>
+    </button>)
+}
 
 const Footer = () => {
     return (
@@ -23,7 +29,7 @@ const Footer = () => {
                             <div className="mt-4">
                                 <Image src="/images/svg/cert.svg" width={140} height={36} />
                             </div>
-                            
+
                         </div>
                         <div className="md:ml-[60px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
                             <Nav text="ANASAYFA" />
@@ -31,29 +37,32 @@ const Footer = () => {
                             <Nav text="EĞİTİMLER" />
                         </div>
                         <div className="md:ml-[160px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
-                            <Nav text="Gizlilik Politikası" />
-                            <Nav text="Kullanıcı Şartları" />
-                            <Nav text="Aydınlanma Metni" />
-                            <Nav text="Çerez Politikası" />
+                            <Nav text="Gizlilik Politikası" to="/sozlesmeler/gizlilik" />
+                            <Nav text="Kullanıcı Şartları" to="/sozlesmeler/kullanici-sozlesmesi/" />
+                            <Nav text="KVKK Metni" to="/sozlesmeler/kvkk" />
+                            <Nav text="Aydınlatma Metni" to="/sozlesmeler/aydinlatma-metni/" />
                         </div>
                         <div className="md:ml-[160px] mt-[77px] leading-none flex flex-col gap-4 h-fit w-[250px]">
                             <Text type="paragraph" className="text-[white]">
                                 İLETİŞİM
                             </Text>
                             <Text type="paragraph" className="text-[white] font-nexa-light text-[14px]">
-                                0 (232) 123 45 67
+                                <a href="tel:+90 554 797 14 97">+90 554 797 14 97</a>
                             </Text>
                             <Text type="paragraph" className="text-[white] font-nexa-light !text-[14px]">
-                                merhaba@nazanuysalharzadin.com
+                                info@nazanuysalharzadin.com
                             </Text>
                             <div className="pt-0">
                                 <Image src="/images/svg/iyzico_white.svg" width={90} height={36} />
                             </div>
                             <Text type="paragraph" className="text-[white] mt-[2px] md:mt-[7px]">TAKİP ET</Text>
                             <div className="flex gap-2">
-                                <Image src="/images/svg/instagram.svg" width={24} height={24} />
-                                <Image src="/images/svg/youtube.svg" width={24} height={24} />
-                                <Image src="/images/svg/medium.svg" width={24} height={24} />
+                                <Image onClick={() => {
+                                    window.open("https://www.instagram.com/nazanuysalharzadin", "_blank")
+                                }} src="/images/svg/instagram.svg" width={24} height={24} />
+                                <Image onClick={() => {
+                                    window.open("https://www.youtube.com/channel/UCUXLeXnl9FLy3HziVsoLTKQ?app=desktop", "_blank")
+                                }} src="/images/svg/youtube.svg" width={24} height={24} />
                             </div>
                         </div>
                     </div>
@@ -66,7 +75,7 @@ const Footer = () => {
             </Container>
             <Container className="h-[48px] !max-w-[100vw] bg-secondary">
                 <Container className="h-full flex  !max-w-[1240px]  items-center">
-                    <Text type="overline" className="text-[white] md:ml-0 ml-[40px]">Prof.Dr. Nazan Uysal Harzadin © 2022</Text>
+                    <Text type="overline" className="text-[white] md:ml-0 ml-[40px]">Prof.Dr. Nazan Uysal Harzadın © 2022</Text>
                 </Container>
             </Container>
         </Container>

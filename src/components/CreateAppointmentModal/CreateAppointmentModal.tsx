@@ -4,6 +4,7 @@ import classNames from "classnames";
 import {request} from "@config";
 import toast from "react-hot-toast";
 import FormAlert from "@components/Forms/FormAlert/FormAlert";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const SelectStatus = ({value, onChange}: {
     value: string;
@@ -36,16 +37,20 @@ export const CreateAppointmentModal = ({finish, UserId}: Iprops) => {
 
     const [tempStatus, setTempStatus] = React.useState<string>("Acil")
     const [tempDate, setTempDate] = React.useState<string>("")
+    const [loading, setLoading] = React.useState<boolean>(false)
     const createAppointment = async () => {
+        setLoading(true);
         request.post(`/userappointments`, {
             UserId,
             Date: tempDate,
             Status: tempStatus
         }).then(() => {
             toast.success("Randevu oluşturuldu");
+            setLoading(false);
             finish();
         }).catch((e) => {
             toast.error("Randevu oluşturulamadı");
+            setLoading(false);
             finish();
         });
     }
@@ -84,8 +89,10 @@ export const CreateAppointmentModal = ({finish, UserId}: Iprops) => {
                 <button onClick={() => {
                     createAppointment()
                 }}
-                        className='text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px]'>
-                    Oluştur
+                        disabled={loading || !tempDate}
+                        className='text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px] disabled:opacity-[50%]'>
+                    {loading ?  <CircularProgress sx={{color:'white'}} size="24px" />:'Oluştur' }
+
                 </button>
                 <button onClick={() => {
                     finish()

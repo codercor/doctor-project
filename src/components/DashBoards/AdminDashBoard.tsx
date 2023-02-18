@@ -23,8 +23,8 @@ const AdminDashBoard = () => {
             setStats(res);
         })
     }, [])
-    return <div className="flex flex-col gap-[10px]">
-        <div className="h-[462px] bg-[#F4F4F4] p-[32px]">
+    return <div className="flex flex-col gap-[10px] ">
+        <div className="h-[462px] bg-[#F4F4F4] overflow-auto p-[32px] scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100">
             <Text type="h6" className="text-[#4D5628] text-[14px] font-nexa-regular">Son Satın Alımlar</Text>
             <div className="w-full h-[390px] justify-around flex mt-2">
                 <div className="w-full h-full">
@@ -41,15 +41,15 @@ const AdminDashBoard = () => {
                 </div> */}
             </div>
         </div>
-        {stats && <div className="h-[462px]  bg-[#F4F4F4] p-[32px]">
+        {stats && <div className="h-[462px] overflow-auto bg-[#F4F4F4] p-[32px] scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100">
             <Text type="h6" className="text-[#4D5628] text-[14px] font-nexa-regular">Eğitim İstatislikleri</Text>
-            <div className="flex justify-between mt-2" >
+            <div className="flex justify-between md:mt-2 overflow-auto" >
                 <StatsCard title="Kazanç" value={stats.Earned + "₺"} />
                 <StatsCard title="Toplam Satın Alınan" value={stats.Purchased} />
                 <StatsCard title="Toplam Üye" value={stats.UsersCount} />
                 <StatsCard title="Toplam Eğitim" value={stats.Education} />
             </div>
-            <div className="w-full h-[270px] justify-around flex opacity-10">
+            <div className="w-full h-[270px] justify-around flex opacity-10 overflow-auto">
                 <EarningChart />
             </div>
         </div>}

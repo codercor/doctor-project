@@ -11,7 +11,7 @@ import Text from "@components/Text";
 import { NextPage } from "next";
 import Image from "next/image";
 import Router from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import useTraining from "src/hooks/training.hook";
 import { v4 } from 'uuid'
@@ -19,7 +19,8 @@ import { v4 } from 'uuid'
 
 import { Carousel } from 'react-responsive-carousel';
 import { getPresses } from "@app/User/user.utils";
-
+import useDrag from "src/hooks/useDrag.hook";
+import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 const Home: NextPage = () => {
 
   const [presses, setPresses] = useState<any[]>([]);
@@ -53,42 +54,28 @@ const Home: NextPage = () => {
                 Sıkça Sorulan Sorular
               </Text>
               <Text type="body" className="text-deepgreen-200 mt-[24px] ">
-                Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli ve empatik hizmetler sunmaktır. Kendi sağlığımı ve hastalarımın sağlığını iyileştirmenin mümkün olduğunu gördükten sonra, bu faydaları size de sunmak konusunda tutkuluyum.
               </Text>
             </div>
-            <div className="z-20 pb-10 md:pb-0 mt-[46px] scrollbar-none snap-x  overflow-auto w-screen ">
-              <div className="max-w-[540px] select-none cursor-move flex gap-[20px]">
-                {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i) => {
-                  return <div key={Math.floor(Math.random() * 1000)} className="md:min-w-[482px] min-w-[370px] snap-start scroll-smooth pt-[26px] pl-[30px] h-[255px] bg-quaternary-light rounded-md ">
-                    <div className="bg-[#DEE4C3] mb-[22px]   relative w-[60px] h-[60px] rounded-full grid place-content-center">
-                      <Image src="/images/svg/help-green.svg" width={36} height={36} />
-                    </div>
-                    <Text type="h6" className="text-secondary-flat mb-[16px]">B12 ve Demir takviyeye rağmen yükselmiyorsa sebebi ne olabilir ?</Text>
-                    <Text type="body" className="text-[#676344]">Mide asit yetersizliği bu ikisinin de eksikliğine neden olur. Önce yeterli mide asidi için tedavi olmalı.</Text>
-                  </div>
-                })}
-
-              </div>
-            </div>
+            <FAQ />
           </div>
           <div className="w-full  relative h-full">
-            <Image src="/images/png/sebzeler.png" layout="fill" objectFit="cover" />
+            <Image src="/images/png/faq.png" layout="fill" objectFit="cover" />
           </div>
         </Container>
       </Container>
       <Container className="bg-[white] md:h-[817px] h-[840px]">
         <Container className="md:!max-w-[1200px] md:h-[706px] items-center flex flex-col px-[20px] md:px-0">
           <Text type="h4" className="text-[34px] mt-[80px] mb-[60px] text-quaternary-flat">Basında Nazan Uysal Harzadın</Text>
-          <div className="bg-[url(/images/png/avakado.png)] overflow-visible rounded-xl relative  bg-center h-[460px] w-full">
+          <div className="bg-[url(/images/png/avakado.png)]  overflow-visible rounded-xl relative bg-cover  bg-center h-[460px] w-full">
             <div className="md:w-[630px] w-full h-[315px] absolute md:top-[30px] top-[20%]  md:left-[40%] rounded-2xl overflow-hidden ">
               <Carousel autoPlay >
-                {presses.map((item) => <div key={v4()} className=" flex items-center gap-[20px] px-[10px] w-full h-[300px] md:w-[630px] md:h-[315px] relative text-left bg-white-300 bg-opacity-70">
-                  <div className="min-w-[170px] h-[170px] relative hover:min-w-[190px] hover:h-[190px]">
+                {presses.map((item) => <div key={v4()} className="flex items-center gap-[20px] px-[10px] w-full h-[300px] md:w-[630px] md:h-[315px] relative text-left bg-white-300 bg-opacity-70">
+                  <div className="min-w-[170px] h-[170px] relative transition-all hover:min-w-[190px] hover:h-[190px]">
                     <Image src={item.Image} layout="fill" objectFit="cover" />
                   </div>
-                  <div>
-                    <Text type="h5" className="text-[#404720]">{item.Title}</Text>
-                    <Text type="paragraph" className=" text-[#404720]"> {item.Description} </Text>
+                  <div className="max-h-[200px] ">
+                    <Text type="h5" className="text-[#404720] md:text-[25px] !text-[14px]">{item.Title}</Text>
+                    <Text type="paragraph" className=" text-[#404720] text-[10px] md:text-[16px]  line-clamp-6"> {item.Description} </Text>
                   </div>
                 </div>)}
               </Carousel>
@@ -137,7 +124,7 @@ const EducationSection = () => {
           isMobile,
           title: publicTrainings[i].Name,
           description: publicTrainings[i].Details,
-          price: publicTrainings[i].Price,
+          price: (publicTrainings[i].Price - (publicTrainings[i].Price * (publicTrainings[i].DiscountRate / 100))),
           image: publicTrainings[i].Image,
           Id: publicTrainings[i].Id
         }
@@ -152,7 +139,11 @@ const EducationSection = () => {
   return <Container className="md:max-w-[1455px] h-full px-[20px] md:px-0 flex justify-around md:flex-row flex-col">
     <div className="flex  md:ml-28 gap-4 md:text-left text-center items-center md:items-start mt-[80px] flex-col md:max-w-[535px] md:h-full md:mb-0 mb-5">
       <Text type="h4" className="text-purple-800" >Eğitimler</Text>
-      <Text type="paragraph" className="text-secondary-flat">Fonksiyonel Tıp, kronik hastalıkların kök nedenlerini saptayıp bu sorunların düzeltilmesine odaklanan bütünsel bir tıp bakışıdır. Organ odaklı değil sistem odaklı olarak yaklaşarak hastalık tanılarının tedavilerinden çok, temeldeki sorunun iyileştirmesi amaçlanır.</Text>
+      <Text type="paragraph" className="text-secondary-flat">
+        Besinler sürekli yenilenen, onarılan vücudumuza hammadde olurlar, kaliteli besinler yerseniz kaliteli hücreleriniz olur.
+        Diğer taraftan besinler bizi birbirimize yakınlaştırır, bu nedenle beslenmede matematik çoğu zaman işlemez.
+
+      </Text>
       <Button
         onClick={() => {
           Router.push("/egitimler")
@@ -166,13 +157,38 @@ const EducationSection = () => {
         trainings.length > 0 && trainings.map((training, index) =>
           <TrainingCard {...training} key={v4()} />)
       }
-      <div className="h-[196px] md:w-[440px] self-center w-[328px] bg-no-repeat bg-cover bg-[url('/images/png/sebzeler.png')] grid place-content-center px-[22px] py-[30px]">
-        <div className="leading-none bg-purple-100 bg-opacity-80  rounded-md rounded-tr-[20px] rounded-bl-[20px] py-[20px] px-[43.335px] text-center">
-          <Text type="h6" className="text-[#6D669D]">“Fonksiyonel beslenme ve yaşam tarzı değişikliği ile daha sağlıklı bir yaşam mümkün”</Text>
-        </div>
-      </div>
+     
     </div>
   </Container>
 }
+import { ScrollContainer } from 'react-indiana-drag-scroll';
+import 'react-indiana-drag-scroll/dist/style.css'
+
+const FAQ = () => {
+
+  const id = useId()
+  return (
+    <div className="z-20 pb-10 md:pb-0 mt-[46px] scrollbar-none snap-x overflow-auto w-screen">
+      <ScrollContainer className="!min-w-full w-[900px] select-none cursor-move flex gap-[20px]">
+        {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i, index) => {
+
+          return (
+            <div
+              key={id}
+              className="md:min-w-[482px] mr-[10px] min-w-[320px] snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] h-[255px] bg-quaternary-light rounded-md"
+            >
+              <div className="bg-[#DEE4C3] mb-[22px] relative w-[60px] h-[60px] rounded-full grid place-content-center">
+                <Image src="/images/svg/help-green.svg" width={36} height={36} />
+              </div>
+              <Text type="h6" className="text-secondary-flat mb-[16px]">B12 ve Demir takviyeye rağmen yükselmiyorsa sebebi ne olabilir ?</Text>
+              <Text type="body" className="text-[#676344]">Mide asit yetersizliği bu ikisinin de eksikliğine neden olur. Önce yeterli mide asidi için tedavi olmalı.</Text>
+            </div>
+          );
+        })}
+      </ScrollContainer>
+    </div>
+  );
+};
+
 
 export default Home;

@@ -21,7 +21,7 @@ const Login = () => {
         <AuthLayout>
             <div className="md:w-[1440px] md:h-full h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px]">
                 <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">
-                    <Text type="h3" className="text-white !text-[34px]">Şifremi unuttum</Text>
+                    <Text type="h3" className="text-white cursor-pointer !text-[34px]">Şifremi unuttum</Text>
                     <Input value={credentials.Email}
                         onChange={(e) => setCredentials({ ...credentials, Email: e.target.value })}
                         text="E-posta" type="email" />

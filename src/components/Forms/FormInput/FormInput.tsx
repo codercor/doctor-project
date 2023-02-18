@@ -4,28 +4,28 @@ interface FormInputProps {
   label?: string;
   placeholder?: string;
   type?:
-    | "text"
-    | "email"
-    | "number"
-    | "password"
-    | "date"
-    | "tel"
-    | "datetime-local"
-    | "month"
-    | "week"
-    | "time"
-    | "url"
-    | "search"
-    | "color"
-    | "range"
-    | "file"
-    | "image"
-    | "submit"
-    | "reset"
-    | "button"
-    | "checkbox"
-    | "radio"
-    | "hidden";
+  | "text"
+  | "email"
+  | "number"
+  | "password"
+  | "date"
+  | "tel"
+  | "datetime-local"
+  | "month"
+  | "week"
+  | "time"
+  | "url"
+  | "search"
+  | "color"
+  | "range"
+  | "file"
+  | "image"
+  | "submit"
+  | "reset"
+  | "button"
+  | "checkbox"
+  | "radio"
+  | "hidden";
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   value?: string;
@@ -55,9 +55,24 @@ const FormInput = ({
         value={value}
         name={name}
         onChange={onChange}
-        onKeyUp={onKeyUp}
-        className="text-[black] text-[16px] font-nexa-bold rounded-[5px_20px_0px_20px]"
+        onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
+          if (onKeyUp) onKeyUp(e);
+        }}
+        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
+        }}
+        className="text-[black] text-[16px] font-nexa-bold rounded-[5px_20px_0px_20px] disabled:opacity-60"
         type={type}
+
         placeholder={placeholder}
         disabled={disabled}
       />
@@ -126,16 +141,20 @@ interface FormInputTextAreaProps
   extends Omit<FormInputProps, "onChange" | "onKeyUp"> {
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onKeyUp?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
+  maxLength?: number;
+  inputClassName?: string;
 }
 
 export const FormInputTextArea = ({
   error,
   name,
   value = undefined,
-  onChange = () => {},
+  onChange = () => { },
   label,
   placeholder = "Lütfen doldurunuz",
   disabled = false,
+  maxLength = 10000,
+  inputClassName = "",
 }: FormInputTextAreaProps) => {
   return (
     <div className="flex flex-col w-full">
@@ -145,11 +164,12 @@ export const FormInputTextArea = ({
         </label>
       )}
       <textarea
+        maxLength={maxLength}
         value={value}
         name={name}
         onChange={onChange}
         disabled={disabled}
-        className="text-[black] text-[16px] font-nexa-bold rounded-[5px_20px_0px_20px]"
+        className={classNames("text-[black] text-[16px] font-nexa-bold rounded-[5px_20px_0px_20px]", inputClassName)}
         placeholder={placeholder}
       />
       {error && (

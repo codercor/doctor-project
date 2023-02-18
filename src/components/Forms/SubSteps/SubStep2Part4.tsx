@@ -108,6 +108,7 @@ export default function SubStep2Part4({
                     name="sleepDifficulty"
                     value={values.sleepDifficulty}
                     error={errors.sleepDifficulty}
+                    onChange={handleChange}
                 />
                 <FormInputSelectOne
                     label="Kesintisiz mi?"
@@ -115,6 +116,7 @@ export default function SubStep2Part4({
                     name="sleepQuality"
                     value={values.sleepQuality}
                     error={errors.sleepQuality}
+                    onChange={handleChange}
                 />
             </div>
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
@@ -124,7 +126,7 @@ export default function SubStep2Part4({
                     name="sleepProblem"
                     value={values.sleepProblem}
                     error={errors.sleepProblem}
-
+                    onChange={handleChange}
                 />
                 <FormInputSelectOne
                     label="Horlar mısınız?"
@@ -132,14 +134,15 @@ export default function SubStep2Part4({
                     name="snore"
                     value={values.snore}
                     error={errors.snore}
-
+                    onChange={handleChange}
                 />
                 <FormInputSelectOne
                     label="Dinlenmiş olarak mı uyanırsınız?"
                     options={EH}
                     name="wakeUp"
                     value={values.wakeUp}
-                    error={errors.wakeUp}
+                    error={errors?.wakeUp}
+                    onChange={handleChange}
 
                 />
             </div>
@@ -149,19 +152,16 @@ export default function SubStep2Part4({
                     options={EH}
                     name="sleepPills"
                     value={values.sleepPills}
-                    error={errors.sleepPills}
-
+                    error={errors?.sleepPills}
+                    onChange={handleChange}
                 />
-                {
-                    //son soru evet ise input açılacak
-                }
                 {
                     values.sleepPills === "evet" && (
                         <FormInput
-                            label="Hangi ilaçları kullanıyorsunuz?"
+                            label="Açıklayınız"
                             name="sleepPillsDetail"
                             type="text"
-                            error={errors.sleepPillsDetail}
+                            error={errors?.sleepPillsDetail}
                             value={values.sleepPillsDetail}
                             onChange={handleChange}
                         />
@@ -173,7 +173,10 @@ export default function SubStep2Part4({
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputTextArea
                     label="Şuanki egzersiz düzeniniz hakkında bilgi veriniz"
-                    name="exerciseTable"
+                    name="exercise"
+                    error={errors?.exercise}
+                    value={values.exercise}
+                    onChange={handleChange}
                 />
             </div>
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
@@ -181,47 +184,65 @@ export default function SubStep2Part4({
                     <FormInputSelectOne
                         label="Egzersiz yapmaya istekli misiniz?"
                         options={[...EH, { value: "biraz", label: "Biraz" }]}
-                        name="exerciseRegimen"
+                        name="exerciseWant"
                         onChange={handleChange}
-                        value={values.exerciseRegimen}
-
+                        value={values.exerciseWant}
+                        error={errors?.exerciseWant}
                     />
-                    {
-                        //son soru evet ise input açılacak
-                        values.exerciseRegimen === "evet" && (
-                            <FormInput
-                                label="Evet ise açıklama"
-                                name="exerciseRegimenDesc"
-                                error={errors.exerciseRegimenDesc}
-                                value={values.exerciseRegimenDesc}
-                                onChange={handleChange}
-                            />)
-                    }
+
                 </div>
+            </div>
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <div className="flex flex-col">
                     <FormInputSelectOne
-                        label="Egzersiz sonrası aşırı yorgunluk ve ağrı hisseder misiniz?"
-                        options={EH}
-                        name="exerciseLater"
-                        value={values.exerciseLater}
-                        error={errors.exerciseLater}
+                        label="Egzersiz yapmanızı engelleyen sorun var mı?"
+                        options={[...EH, { value: "biraz", label: "Biraz" }]}
+                        name="exerciseDisability"
                         onChange={handleChange}
+                        value={values.exerciseDisability}
+                        error={errors?.exerciseDisability}
                     />
                     {
                         //son soru evet ise input açılacak
-                        values.exerciseLater === "evet" && (
+                        values.exerciseDisability === "evet" && (
                             <FormInput
-                                label="Evet ise açıklama"
-                                name="exerciseLaterDesc"
-                                error={errors.exerciseLaterDesc}
+                                label="Açıklayınız"
+                                name="exerciseDisabilityDesc"
+                                value={values.exerciseDisabilityDesc}
                                 onChange={handleChange}
+                                error={errors?.exerciseDisabilityDesc}
                             />)
                     }
                 </div>
             </div>
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+                <div className="flex flex-col">
+                    <FormInputSelectOne
+                        label="Egzersiz sonrası aşırı yorgunluk ve ağrı hisseder misiniz?"
+                        options={[...EH]}
+                        name="exerciseLater"
+                        value={values.exerciseLater}
+                        error={errors?.exerciseLater}
+                        onChange={handleChange}
+                    />
+                    {
+                        //son soru evet ise input açılacak
+                        values.sleeping === "evet" && (
+                            <FormInput
+                                label="Evet ise açıklama"
+                                name="exerciseLaterDesc"
+                                value={values.exerciseLaterDesc}
+                                onChange={handleChange}
+                                error={errors?.exerciseLaterDesc}
+                            />)
+                    }
+                </div>
+            </div>
+
+            <h3 className="font-nexa-regular text-[16px]">Beslenme</h3>
             <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
-                    label="Şu anda uyguladığınız özel bir diyet veya beslenme programı var mı? (Uygun olanı/olanları işaretleyiniz"
+                    label="Şu anda uyguladığınız özel bir diyet veya beslenme programı var mı? (Uygun olanı/olanları işaretleyiniz)"
                     options={diet}
                     name="diet"
                     value={values.diet}
@@ -231,12 +252,14 @@ export default function SubStep2Part4({
                     values.diet?.includes("diğer") && (
                         <FormInput
                             label="Diğer ise açıklayınız"
-
+                            name="dietDesc"
+                            type="text"
+                            error={errors?.dietDesc}
+                            value={values.dietDesc}
+                            onChange={handleChange}
                         />)
                 }
             </div>
-
-
             <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Belli bir besine hassasiyetiniz var mı?"
@@ -244,6 +267,7 @@ export default function SubStep2Part4({
                     name="foodSensitivity"
                     value={values.foodSensitivity}
                     error={errors?.foodSensitivity}
+                    onChange={handleChange}
                 />
                 {
                     values.foodSensitivity === "evet" && (
@@ -264,6 +288,7 @@ export default function SubStep2Part4({
                     name="foodAvoid"
                     value={values.foodAvoid}
                     error={errors?.foodAvoid}
+                    onChange={handleChange}
                 />
                 {
                     values.foodAvoid === "evet" && (
@@ -304,6 +329,7 @@ export default function SubStep2Part4({
                     name="foodsLike"
                     value={values.foodsLike}
                     error={errors?.foodsLike}
+                    onChange={handleChange}
                 />
                 {
                     values.foodsLike === "evet" && (
@@ -324,11 +350,12 @@ export default function SubStep2Part4({
                     name="threeMeal"
                     value={values.threeMeal}
                     error={errors?.threeMeal}
+                    onChange={handleChange}
                 />
                 {
                     values.threeMeal === "hayır" && (
                         <FormInput
-                            label="Hayır ise açıklama"
+                            label="Kaç ?"
                             name="threeMealDetail"
                             type="text"
                             error={errors?.threeMealDetail}
@@ -344,6 +371,7 @@ export default function SubStep2Part4({
                     name="skipMeal"
                     value={values.skipMeal}
                     error={errors?.skipMeal}
+                    onChange={handleChange}
                 />
                 {
                     values.skipMeal === "evet" && (
@@ -358,19 +386,20 @@ export default function SubStep2Part4({
                 }
             </div>
             <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                <FormInput
+                <FormInputSelectOne
                     label="Haftada kaç gün dışarıda yemek yersiniz?"
+                    options={[
+                        { value: "0-1", label: "0-1" },
+                        { value: "1-3", label: "1-3" },
+                        { value: "3-5", label: "3-5" },
+                        { value: ">5ogunhaftada", label: ">5 öğün, haftada" },
+                    ]}
                     name="outsideMeal"
-                    type="number"
-                    error={errors?.outsideMeal}
                     value={values.outsideMeal}
+                    error={errors?.outsideMeal}
                     onChange={handleChange}
                 />
             </div>
-
-            {
-
-            }
             <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Mevcut yaşam şekliniz ve yeme alışkanlıklarınız ile ilgili olanları işaretleyiniz:"

@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from "react";
-import {v4} from "uuid";
-import Step, {FormStepType, FormSubStep} from "./Step";
-import {getUserFlowAbilibility} from "../../../../pages/dashboard/forms";
+import React, { useEffect, useState } from "react";
+import { v4 } from "uuid";
+import Step, { FormStepType, FormSubStep } from "./Step";
+import { getUserFlowAbilibility } from "../../../../pages/dashboard/forms";
 import useUser from "../../../hooks/user.hook";
 
 export default function FormSteps({
-                                      selectedStep,
-                                      setSelectedStep
-                                  }: {
+    selectedStep,
+    setSelectedStep
+}: {
     selectedStep: number;
     setSelectedStep: (stepNumber: number) => void;
 }) {
@@ -45,10 +45,12 @@ export default function FormSteps({
         console.log("lockedSteps", lockedSteps)
         getUserFlowAbilibility(UserId).then((ability) => {
             //bekleyen form varsa
-
             if (ability.IsHaveWaitingForm && ability.LastWaitingDoneStep) {
                 setSteps(steps.map((step) => {
-                    let currentStep = {...step};
+                    let currentStep = { ...step };
+                    if (ability.LastDoneStep >= currentStep.stepNumber && ability.LastWaitingDoneStep != currentStep.stepNumber) {
+                        currentStep.status = "confirmed"
+                    }
                     //@ts-ignore
                     if (ability.LastWaitingDoneStep >= 2 && ability.LastWaitingDoneStep <= 4 && currentStep.stepNumber >= 2 && currentStep.stepNumber <= 4) {
                         currentStep.status = "pending"
@@ -56,7 +58,6 @@ export default function FormSteps({
                     if (currentStep.stepNumber == ability.LastWaitingDoneStep) {
                         currentStep.status = "pending"
                     }
-
                     if (lockedSteps.includes(currentStep.stepNumber)) {
                         currentStep.isLocked = true
                     }
@@ -64,21 +65,20 @@ export default function FormSteps({
                 }))
             } else {
                 setSteps(steps.map((step) => {
-                    let currentStep = {...step};
+                    let currentStep = { ...step };
+                    if (ability.LastDoneStep >= currentStep.stepNumber) {
+                        currentStep.status = "confirmed"
+                    }
                     if (lockedSteps.includes(currentStep.stepNumber)) {
                         currentStep.isLocked = true
-                    }
-                    if (ability.LastDoneStep) {
-                        if (ability.LastDoneStep == currentStep.stepNumber) {
-                            currentStep.status = "confirmed"
-                        }
                     }
                     return currentStep;
                 }))
             }
         })
+
     }, [selectedStep]);
-    const {user: {Id: UserId}} = useUser()
+    const { user: { Id: UserId } } = useUser()
 
     const selectStep = (stepNumber: number) => {
         setSelectedStep(stepNumber);
@@ -113,9 +113,9 @@ export default function FormSteps({
 }
 
 export const FormSubSteps = ({
-                                 selectedStep,
-                                 setSelectedStep,
-                             }: {
+    selectedStep,
+    setSelectedStep,
+}: {
     selectedStep: number;
     setSelectedStep: (stepNumber: number) => void;
 }) => {

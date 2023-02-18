@@ -92,7 +92,8 @@ export default function Trainings() {
                     }
 
                 </div>
-                <Pagination siblingCount={page} onChange={(e: any, value: number) => { setPage(value) }} count={page + 1} />
+                <Pagination siblingCount={page} className="mt-auto mb-[10px] mx-auto"
+                 onChange={(e: any, value: number) => { setPage(value) }} count={adminTrainings?.length > 0 ? page + 1 : page} />
             </div>
         </DashboardLayout>
     )

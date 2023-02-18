@@ -1,3 +1,5 @@
+// @ts-nocheck
+ /* tslint:disable */
 import { UserInformation } from "@app/User/user.types";
 import Button from "@components/Button";
 import Input from "@components/Input/Input";
@@ -5,7 +7,7 @@ import DashboardLayout from "@components/Layouts/DashboardLayout";
 import Text from "@components/Text";
 import { Edit } from "@mui/icons-material";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "src/hooks/auth.hook";
 import useUser from "src/hooks/user.hook";
 import { useRouter } from "next/router";
@@ -14,6 +16,14 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import "yup-phone";
+import { Field, Formik } from "formik";
+import * as Yup from "yup";
+import { toast } from "react-hot-toast";
+import FormInput, { FormInputSelect } from "@components/Forms/FormInput/FormInput";
+//@ts-ignore
+import CountryCityService from "countries-cities";
+import ililce from '../../src/il-ilce'
 const Account = () => {
     const { user } = useAuth(); //TODO ADD -> update user
     const { updateUser, refetchUser } = useUser();
@@ -23,14 +33,18 @@ const Account = () => {
         Id: user.Information?.Id,
         Fullname: user.Information.Fullname,
         Phone: user.Information.Phone,
-        Address: user.Information.Address,
         Email: user.Email,
         BirthDate: user.Information.BirthDate,
-        Gender: user.Information.Gender
+        Gender: user.Information.Gender,
+        Country: user.Information.Country,
+        City: user.Information.City,
+        District: user.Information.District,
     });
 
     useEffect(() => {
         let birthDate = user.Information.BirthDate as string || "";
+        console.log("user.Information.BirthDate", user.Information.BirthDate);
+
         setUserInfo({ ..._userInfo, BirthDate: (birthDate).replaceAll(".", "-") })
     }, [user.Information.BirthDate])
 
@@ -48,18 +62,163 @@ const Account = () => {
         setIsEdit(!isEdit);
     }
 
-    const handleSave = () => {
-        _userInfo.BirthDate = (_userInfo.BirthDate as string).replaceAll("-", ".")
-        updateUser(_userInfo).then(() => {
-
+    const handleSave = (values: any) => {
+        values.BirthDate = (values.BirthDate as string).replaceAll("-", ".");
+        updateUser(values).then(() => {
+            refetchUser();
         })
         setIsEdit(!isEdit);
+    }
+
+    const validationSchema = Yup.object().shape({
+        Name: Yup.string().nullable().required("Ad zorunludur"),
+        Surname: Yup.string().nullable().required("Soyad zorunludur"),
+        Phone: Yup.string().matches(/^\+?[0-9\s]+$/, "+ işareti ve sayılar ve boşluklar kullanılabilir").min(10, "Telefon numarası en az 10 haneli olmalı").required("Telefon zorunludur").nullable().max(20, "Telefon numarası en fazla 20 haneli olabilir"),
+        BirthDate: Yup.string().required("Doğum tarihi zorunludur").nullable(),
+        Gender: Yup.string().required("Cinsiyet zorunludur").nullable(),
+        Country: Yup.string().required("Ülke zorunludur").nullable(),
+        District: Yup.string().when("Country", {
+            is: "Turkey",
+            then: Yup.string().required("Şehir zorunludur").nullable(),
+            otherwise: Yup.string().nullable()
+        }),
+        City: Yup.string().when("Country", {
+            is: "Turkey",
+            then: Yup.string().required("Şehir zorunludur").nullable(),
+            otherwise: Yup.string().nullable()
+        }),
+
+    });
+    const Surname = _userInfo.Fullname?.split(" ").slice(-1).join(" ") || "";
+    const Name = _userInfo.Fullname?.split(" ").slice(0, -1).join(" ") || "";
+
+    const FormContent = ({ errors, values, submitForm, handleChange: _handleChange, validateForm, handleSubmit, setFieldValue }) => {
+        const countries = CountryCityService.getCountries().map((country: string) => {
+            if (country === "Turkey") {
+                return { value: country, label: "Türkiye" };
+            }
+            return { value: country, label: country };
+        });
+
+        const [cities, setCities] = useState<any[]>([]);
+
+        const [districts, setDistricts] = useState<any[]>(
+            []
+        );
+
+        useEffect(() => {
+            if (values.Country == "Turkey") {
+                setCities(ililce.map((city) => {
+                    return { value: city.il_adi, label: city.il_adi };
+                }));
+            } else {
+                setCities([]);
+            }
+            if (values.Country == "Turkey" && values.City) {
+                setDistricts((ililce.find((city) => city.il_adi === values.City)?.ilceler as any[])?.map((district) => {
+                    return { value: district.ilce_adi, label: district.ilce_adi };
+                }));
+            } else {
+                setDistricts([]);
+            }
+
+        }, [values.Country, values.City]);
+
+
+        return <form onSubmit={handleSubmit}>
+            <div className="flex gap-[16px]">
+                <FormInput disabled={!isEdit} name="Name" error={errors.Name} value={values.Name} onChange={_handleChange} label="Ad" type="text" />
+                <FormInput disabled={!isEdit} name="Surname" error={errors.Surname} value={values.Surname} onChange={_handleChange} label="Soyad" type="text" />
+            </div>
+            <FormInput disabled={true} name="Email" error={errors.Email} value={values.Email} onChange={_handleChange} label="E-Posta" type="email" />
+            <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" />
+            <FormInputSelect
+                disabled={!isEdit}
+                error={errors.Country}
+                name="Country"
+                value={values.Country}
+                onChange={(e) => {
+                    const selectedCountry = e.currentTarget.value;
+                    if (selectedCountry != "Turkey") {
+                        setCities([]);
+                        setDistricts([]);
+                        setFieldValue("City", "");
+                        setFieldValue("District", "");
+                        _handleChange(e);
+                        return;
+                    }
+                    setFieldValue("City", "Istanbul");
+                    _handleChange(e);
+                }}
+                label="Ülke"
+                type="text"
+                options={countries}
+            />
+            {values.Country == "Turkey" && <FormInputSelect
+                disabled={!isEdit}
+                error={errors.City}
+                name="City"
+                value={values.City}
+                onChange={((e) => {
+                    _handleChange(e);
+                })}
+                label="Şehir"
+                type="text"
+                options={cities}
+            />}
+            {values.City && <> <FormInputSelect
+                disabled={!isEdit}
+                error={errors.District}
+                name="District"
+                value={values.District}
+                onChange={_handleChange}
+                label="İlçe"
+                type="text"
+                options={districts}
+            />
+            </>}
+            <FormInput disabled={!isEdit} name="BirthDate" value={((values.BirthDate as string || "").replaceAll(".", "-"))}
+                onChange={_handleChange} label="Doğum Tarihi" type="date" error={errors.BirthDate} />
+            <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Cinsiyet</Text>
+            <RadioGroup
+                title="Cinsiyet"
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="Erkek"
+                onChange={_handleChange}
+                value={values?.Gender}
+                name="Gender"
+            >
+                <div className="flex items-center  w-full justify-center">
+                    <div>
+                        <FormControlLabel name="Gender" disabled={!isEdit} className="block" value="Erkek" control={<Radio className="block" />} label="Erkek" />
+                    </div>
+                    <div>
+                        <FormControlLabel name="Gender" disabled={!isEdit} className="block" value="Kadın" control={<Radio className="block" />} label="Kadın" />
+                    </div>
+                </div>
+            </RadioGroup>
+            {errors?.Gender && <p className="text-red-500 !text-[14px]  !py-[10px]">{errors.BirthDate}</p>}
+            <button onClick={(e) => {
+                console.log("values", values);
+
+                console.log("errors", errors);
+                if (Object.keys(errors).length > 0) {
+                    toast.error("Lütfen tüm alanları doğru şekilde doldurunuz")
+                } else submitForm()
+
+            }}
+                type="button"
+                disabled={!isEdit}
+                className="disabled:opacity-40 rounded-br-[20px] rounded-tl-[20px] text-[white] !bg-secondary text-white  border-secondary w-[200px] self-end mt-[20px] h-[48px] leading-none flex items-center justify-center">
+                <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Kaydet</Text>
+            </button>
+        </form>
     }
 
     return (
         <DashboardLayout>
             <div className=" md:h-[798px] flex  rounded-[30px_5px] bg-[#F4F4F4]">
-                <div className="w-1/2 h-full flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
+                <div className="md:w-1/2 w-full h-full flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
                     <div className="flex justify-between w-full">
                         <Text type="h3" className="text-[#4E929D] !text-[20px] w-full">Hesabım</Text>
                         <div onClick={handleEdit}
@@ -67,43 +226,19 @@ const Account = () => {
                             <Edit className="text-[white] text-[16px]" />
                         </div>
                     </div>
-                    
-                    <div className="max-w-[450px] w-full flex flex-col">
-                        <Input disabled={!isEdit} name="Fullname" value={_userInfo.Fullname} onChange={handleChange}
-                            text="Ad Soyad" type="text" />
-                        <Input disabled={true} name="Email" value={user.Email} text="Eposta" type="email" />
-                        <Input disabled={!isEdit} name="Phone" value={_userInfo.Phone} onChange={handleChange}
-                            text="Telefon" type="text" />
-                        <Input disabled={!isEdit} name="Address" value={_userInfo.Address} onChange={handleChange}
-                            text="Adres" type="text" />
-                        <Input disabled={!isEdit} name="BirthDate" value={((_userInfo.BirthDate as string))}
-                            onChange={handleChange} text="Doğum Tarihi" type="date" />
-                        <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Cinsiyet</Text>
-                        <RadioGroup
-                            title="Cinsiyet"
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue="Erkek"
-                            onChange={handleChange}
-                            value={_userInfo?.Gender}
-                            name="Gender"
-                        >
-                            <div className="flex items-center  w-full justify-center">
-                                <div>
-                                    <FormControlLabel disabled={!isEdit} className="block" value="Erkek" control={<Radio className="block" />} label="Erkek" />
-                                </div>
-                                <div>
-                                    <FormControlLabel disabled={!isEdit} className="block" value="Kadın" control={<Radio className="block" />} label="Kadın" />
-                                </div>
-                            </div>
-                        </RadioGroup>
-                        <Button onClick={handleSave} type="secondary"
-                            className="w-[200px] self-end mt-[20px] h-[48px] leading-none flex items-center justify-center">
-                            <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Kaydet</Text>
-                        </Button>
+
+                    <div className="md:max-w-[450px] w-full flex flex-col">
+                        <Formik validationSchema={validationSchema} initialValues={{ ..._userInfo, Fullname: undefined, Name, Surname }} onSubmit={(values) => {
+                            values.Fullname = `${values.Name} ${values.Surname}`
+                            handleSave(values)
+                        }}>
+
+                            {FormContent}
+                        </Formik>
                     </div>
                 </div>
                 <div
-                    className="bg-[url(/images/png/register.png)] grid place-content-center rounded-[20px_5px_20px_5px] bg-cover bg-center  bg-no-repeat w-1/2 h-full">
+                    className="bg-[url(/images/png/register.png)] hidden md:grid place-content-center rounded-[20px_5px_20px_5px] bg-cover bg-center  bg-no-repeat w-1/2 h-full">
                     <Text type="paragraph" className="text-[25px] text-center text-[white] h-[186px] w-[448px]">
                         İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir
                         hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza

@@ -5,7 +5,7 @@ import Navbar from "@components/Navbar";
 import BeforeFooter from "@components/Section/BeforeFooter";
 import Text from "@components/Text";
 import Image from "next/image";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
     Home,
     Person,
@@ -25,19 +25,21 @@ import {
     BookmarkAdded,
     MenuBook, ErrorOutlined
 } from '@mui/icons-material';
-import {useRouter} from "next/router";
-import NavButton, {DNavButtonProps} from "@components/Button/DNavButton";
+import ChromeReaderModeIcon from '@mui/icons-material/ChromeReaderMode';
+import { useRouter } from "next/router";
+import NavButton, { DNavButtonProps } from "@components/Button/DNavButton";
 import DashBoardNavbar from "@components/Navbar/DashBoardNavbar";
 import useAuth from "src/hooks/auth.hook";
-import {Fab, Menu} from "@mui/material";
+import { Fab, Menu } from "@mui/material";
 import classNames from "classnames";
 import useUser from "../../hooks/user.hook";
-import toast, {useToasterStore} from "react-hot-toast";
+import toast, { useToasterStore } from "react-hot-toast";
+import BurgerIcon from "@components/Icon/BurgerIcon";
 
 
-const DashboardLayout = ({children}: { children: React.ReactNode }) => {
-    const {user, logout} = useAuth()
-    const {refetchUser} = useUser()
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+    const { user, logout } = useAuth()
+    const { refetchUser } = useUser()
 
     const [dashboardNavs, setDashboardNavs] = useState<DNavButtonProps[]>([])
 
@@ -79,7 +81,7 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
                     Icon: Assignment
                 },
                 {
-                    text: "Formlar",
+                    text: "Hasta Kabul Formları",
                     href: "/dashboard/forms-management",
                     Icon: TaskTwoTone
                 },
@@ -103,6 +105,11 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
                     text: "Chat",
                     href: "/dashboard/chat",
                     Icon: MarkChatUnread
+                },
+                {
+                    text: "Blog",
+                    href: "/dashboard/blog-management",
+                    Icon: ChromeReaderModeIcon
                 },
                 {
                     text: "Ayarlar",
@@ -151,8 +158,8 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
                 }
             ]
             if (user?.IsPatient) userNavs.push({
-                text: "Formlar",
-                href: "/dashboard/forms",
+                text: "Hasta Kabul Formları",
+                href: "/dashboard/patient-agreements",
                 Icon: TaskOutlined
             })
 
@@ -175,15 +182,17 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
                 <Fab size="small" onClick={() => {
                     setShowMenu(!showMenu)
                 }} className="bg-primary" aria-label="add">
-                    <MenuBook/>
+                    <BurgerIcon color="black" />
                 </Fab>
             </div>
             <div
                 className={classNames("md:sticky fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[18%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
                     hidden: !showMenu
                 })}>
-                <div className="md:w-[125px] md:h-[43px] relative md:mt-[40px]">
-                    <Image src="/images/svg/brandmark6.svg" layout="fill" objectFit="contain"/>
+                <div onClick={() => {
+                    router.push("/")
+                }} className="md:w-[125px] md:h-[43px] relative md:mt-[40px]">
+                    <Image src="/images/svg/brandmark6.svg" layout="fill" objectFit="contain" />
                 </div>
                 <div
                     className="flex flex-col pr-4 mt-[60px] md:h-[calc(100vh-350px)] h-[calc(100vh-250px)] overflow-scroll scrollbar-thin scrollbar-track-[#d4ee5e8] scrollbar-thumb-[white]">
@@ -192,8 +201,8 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
                 <div className="absolute bottom-0  h-[150px] md:h-[200px] flex flex-col justify-end left-0 w-full">
                     <div className="px-[30px] mb-[34px]">
                         <Button onClick={() => logout()}
-                                className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] bg-[red]">
-                            <PowerSettingsNew className="text-[white]"/>
+                            className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] !bg-[red]">
+                            <PowerSettingsNew className="text-[white]" />
                             <Text className="text-[white]">
                                 Çıkış Yap
                             </Text>
@@ -201,13 +210,13 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
                     </div>
                     <div className="h-[64px] bg-secondary grid place-content-center text-center">
                         <Text className="text-[10px] text-[white]"> Kullanım Koşulları - Gizlilik Politikası</Text>
-                        <Text type="overline" className="!font-nexa-light text-[#ACE2EB]">Prof.Dr. Nazan Uysal Harzadin
+                        <Text type="overline" className="!font-nexa-light text-[#ACE2EB]">Prof.Dr. Nazan Uysal Harzadın
                             © 2022 </Text>
                     </div>
                 </div>
             </div>
-            <Container className="md:pl-[144px] md:pt-[30px] md:pr-[260px] w-[82%] h-[98%] flex flex-col gap-[37px]">
-                <DashBoardNavbar/>
+            <Container className="md:pl-[144px] md:pt-[30px] md:pr-[260px] md:w-[82%] h-[98%] flex flex-col gap-[37px]">
+                <DashBoardNavbar />
                 {children}
             </Container>
         </div>

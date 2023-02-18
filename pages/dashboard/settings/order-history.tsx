@@ -22,9 +22,14 @@ const SettingsOrderHistory = () => {
     return (
         <DashboardLayout>
             <SettingsSubLayout>
-                <div className="bg-[#F9FBFC] p-[32px] flex flex-col rounded-[20px_5px_20px_5px] w-2/3 h-full">
+                <div className="bg-[#F9FBFC] p-[32px] flex flex-col rounded-[20px_5px_20px_5px] w-full md:w-2/3 h-full">
                     <div> <Text>Satın Alma Geçmişi</Text> </div>
                     <div className="flex flex-col w-full gap-[12px]">
+                        {
+                            orderHistory?.length === 0 && <div className="flex flex-col items-center justify-center w-full h-full">
+                                <Text type="h3" className="text-[#4D5628] !text-[12px] w-full">Satın alım geçmişiniz bulunmamaktadır.</Text>
+                            </div>
+                        }
                         {orderHistory?.map((item, index) => (
                             <OrderHistoryCard
                                 key={item.Id}
