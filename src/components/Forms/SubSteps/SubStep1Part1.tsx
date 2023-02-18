@@ -35,19 +35,19 @@ export default function SubStep1Part1({
           disabled={readOnly}
         />
         {
-                    values.parrentTolarance === "evet" && (
-                        <FormInput
-                            label="Açıklayınız"
-                            name="parrentTolaranceDesc"
-                            type="text"
-                            error={errors?.parrentTolaranceDesc}
-                            value={values.parrentTolaranceDesc}
-                            onChange={handleChange}
-                        />
-                    )
-                }
+          values.parrentTolarance === "evet" && (
+            <FormInput
+              label="Açıklayınız"
+              name="parrentTolaranceDesc"
+              type="text"
+              error={errors?.parrentTolaranceDesc}
+              value={values.parrentTolaranceDesc}
+              onChange={handleChange}
+            />
+          )
+        }
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
           onChange={handleChange}
           label="Bebeklik döneminde ne ile beslendiniz, annesütü mü, formül mama mı?"
@@ -65,7 +65,34 @@ export default function SubStep1Part1({
           name="motherMilk"
           disabled={readOnly}
         />
+        <div className="flex flex-col w-full">
+          {
+            (values.motherMilk == "anne sutu" || values.motherMilk == "Anne Sütü ve Formül Mama") && (
+              <FormInput
+                label="Ne kadar süre (Anne sütü) ?"
+                name="motherMilkDesc"
+                type="text"
+                error={errors?.motherMilkDesc}
+                value={values.motherMilkDesc}
+                onChange={handleChange}
+              />
+            )
+          }
+          {
+            (values.motherMilk == "formül mama" || values.motherMilk == "Anne Sütü ve Formül Mama") && (
+              <FormInput
+                label="Hangi Çeşit (Formül Mama) ?"
+                name="motherMilkDesc1"
+                type="text"
+                error={errors?.motherMilkDesc1}
+                value={values.motherMilkDesc1}
+                onChange={handleChange}
+              />
+            )
+          }
+        </div>
       </div>
+
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
           onChange={handleChange}
@@ -79,18 +106,18 @@ export default function SubStep1Part1({
           name="solidFood"
           disabled={readOnly}
         />
-         {
-                    values.solidFood === "evet" && (
-                        <FormInput
-                            label="Lütfen kaç yaşında yazınız"
-                            name="solidFoodDesc"
-                            type="text"
-                            error={errors?.solidFoodDesc}
-                            value={values.solidFoodDesc}
-                            onChange={handleChange}
-                        />
-                    )
-                }
+        {
+          values.solidFood === "evet" && (
+            <FormInput
+              label="Lütfen kaç yaşında yazınız"
+              name="solidFoodDesc"
+              type="text"
+              error={errors?.solidFoodDesc}
+              value={values.solidFoodDesc}
+              onChange={handleChange}
+            />
+          )
+        }
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
@@ -107,17 +134,17 @@ export default function SubStep1Part1({
           disabled={readOnly}
         />
         {
-                    values.babyAllergy === "evet" && (
-                        <FormInput
-                            label="Açıklayınız"
-                            name="babyAllergyDesc"
-                            type="text"
-                            error={errors?.babyAllergyDesc}
-                            value={values.babyAllergyDesc}
-                            onChange={handleChange}
-                        />
-                    )
-                }
+          values.babyAllergy === "evet" && (
+            <FormInput
+              label="Açıklayınız"
+              name="babyAllergyDesc"
+              type="text"
+              error={errors?.babyAllergyDesc}
+              value={values.babyAllergyDesc}
+              onChange={handleChange}
+            />
+          )
+        }
       </div>
     </>
   );

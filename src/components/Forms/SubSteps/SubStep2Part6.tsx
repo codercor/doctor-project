@@ -73,8 +73,8 @@ export default function SubStep2Part6({
     const { user } = useUser()
     return (
         <>
-            <h3 className="font-nexa-regular text-[16px]">Stres</h3>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">Stres</h3>
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Çok fazla stres altında olduğunuzu hissediyor musunuz?"
                     options={EH}
@@ -84,7 +84,7 @@ export default function SubStep2Part6({
                     onChange={handleChange}
                 />
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Stres ile kolayca başa çıkabileceğinizi düşünüyor musunuz?"
                     options={EH}
@@ -95,8 +95,8 @@ export default function SubStep2Part6({
                 />
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center gap-[30px] pt-5 w-[full]">
-            <label> Aşağıdakilerden her biri günlük ne kadar strese neden olur? (1-10 arası puan verin, 10 en çok)</label>
+            <div className="flex py-4 flex-col bg-[#F9F9F9] items-center gap-[30px] pt-5 w-[full]">
+           <label className="font-nexa-bold text-[20px] text-[#4E929D]"> Aşağıdakilerden her biri günlük ne kadar strese neden olur? (1-10 arası puan verin, 10 en çok)</label>
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center gap-[30px] w-[full]">
                 <div className="min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[150px]">
                     <FormInput
@@ -160,7 +160,7 @@ export default function SubStep2Part6({
                 </div>
             </div>
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Gevşeme teknikleri kullanıyor musunuz?"
                     options={EH}
@@ -208,7 +208,7 @@ export default function SubStep2Part6({
                 }
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
 
                 <FormInputSelectOne
                     label="Hiç danışmanlık aldınız mı?"
@@ -220,7 +220,7 @@ export default function SubStep2Part6({
                 />
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
 
                 <FormInputSelectOne
                     label="Şu an terapi alıyor musunuz? "
@@ -241,7 +241,7 @@ export default function SubStep2Part6({
                 }
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
 
                 <FormInputSelectOne
                     label="Hiç tacize uğradınız mı, mağduriyet yaşadınız mı veya önemli bir travma yaşadınız mı? "
@@ -253,7 +253,7 @@ export default function SubStep2Part6({
                 />
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
 
                 <FormInput
                     label="Hobileriniz/boş zamanlarınızda ne yaparsınız? "
@@ -264,8 +264,8 @@ export default function SubStep2Part6({
                 />
             </div>
 
-            <h3 className="font-nexa-regular text-[16px]">İlişkiler</h3>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">İlişkiler</h3>
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Medeni durum:"
                     options={[
@@ -282,7 +282,7 @@ export default function SubStep2Part6({
                 />
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Kiminle yaşıyorsunuz? (Eş, çocuklar, ebeveynler, akrabalar, arkadaşlar, evcil hayvanlar dahil)"
                     name="liveWith"
@@ -292,7 +292,7 @@ export default function SubStep2Part6({
                 />
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Şu anki işiniz:"
                     name="job"
@@ -303,7 +303,7 @@ export default function SubStep2Part6({
             </div>
 
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Şu anki işiniz:"
                     name="oldJob"
@@ -313,7 +313,7 @@ export default function SubStep2Part6({
                 />
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
 
                 <FormInputSelectOne
                     label="Duygusal destek alabileceğiniz kaynaklarınız var mı ?"
@@ -354,7 +354,7 @@ export default function SubStep2Part6({
                 }
             </div>
 
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="İbadet eder misiniz veya manevi rutininiz var mı? "
                     options={EH}

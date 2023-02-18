@@ -90,7 +90,7 @@ export default function SubStep2Part4({
                 className="min-h-[60px] w-full  pl-[20px] flex-col flex bg-[#E9EDD9]  text-[#5B623D] items-start justify-center">
                 <h2 className="font-nexa-regular text-[18px]">Yaşam şeklinin değerlendirilmesi</h2>
             </div>
-            <h3 className="font-nexa-regular text-[16px]">Uyku</h3>
+            <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">Uyku</h3>
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Genelde geceleri ortalama kaç saat uyuyorsunuz?"
@@ -169,7 +169,7 @@ export default function SubStep2Part4({
                 }
 
             </div>
-            <h3 className="font-nexa-regular text-[16px]">Egzersiz</h3>
+            <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">Egzersiz</h3>
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputTextArea
                     label="Şuanki egzersiz düzeniniz hakkında bilgi veriniz"
@@ -239,8 +239,8 @@ export default function SubStep2Part4({
                 </div>
             </div>
 
-            <h3 className="font-nexa-regular text-[16px]">Beslenme</h3>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">Beslenme</h3>
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Şu anda uyguladığınız özel bir diyet veya beslenme programı var mı? (Uygun olanı/olanları işaretleyiniz)"
                     options={diet}
@@ -260,7 +260,7 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Belli bir besine hassasiyetiniz var mı?"
                     options={EH}
@@ -281,7 +281,7 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Yemediğiniz besinler var mı?"
                     options={EH}
@@ -302,7 +302,7 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Aşağıdakilere olumsuz tepkiniz oldu mu : (Uygun olan tüm seçenecekleri işaretleyiniz)"
                     options={foodsReaction}
@@ -322,7 +322,7 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Canınızın çektiği/sık yediğiniz yiyecekler var mı?"
                     options={EH}
@@ -343,7 +343,7 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Günde 3 öğün mü yersiniz?"
                     options={EH}
@@ -364,7 +364,7 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Öğün atlamak sizi etkiliyor mu?"
                     options={EH}
@@ -385,7 +385,7 @@ export default function SubStep2Part4({
                         />)
                 }
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Haftada kaç gün dışarıda yemek yersiniz?"
                     options={[
@@ -400,7 +400,7 @@ export default function SubStep2Part4({
                     onChange={handleChange}
                 />
             </div>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Mevcut yaşam şekliniz ve yeme alışkanlıklarınız ile ilgili olanları işaretleyiniz:"
                     options={LifestyleAboutEating}

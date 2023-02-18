@@ -74,8 +74,8 @@ export default function SubStep2Part8({
     const { user } = useUser()
     return (
         <>
-            <label>Çevresel/Detoksifikasyon Öyküsü</label>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+           <label className="font-nexa-bold text-[20px] text-[#4E929D]">Çevresel/Detoksifikasyon Öyküsü</label>
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Bunlardan hangileri sizi önemli derecede etkiler?"
                     options={[
@@ -165,18 +165,18 @@ export default function SubStep2Part8({
                     onChange={handleChange}
                 />{
                     values.petOrFarmAnimal === "evet" && <>
-                     <FormInputSelectOne
-                        label="Nerede yaşıyor ? "
-                        name="petOrFarmAnimalDesc"
-                        options={[
-                            { value: "içerde", label: "İçerde" },
-                            { value: "dışarda", label: "Dışarda" },
-                            { value: "hem içerde hem dışarda", label: "Hem içerde hem dışarda" },
-                        ]}
-                        value={values.petOrFarmAnimalDesc}
-                        error={errors?.petOrFarmAnimalDesc}
-                        onChange={handleChange}
-                    />
+                        <FormInputSelectOne
+                            label="Nerede yaşıyor ? "
+                            name="petOrFarmAnimalDesc"
+                            options={[
+                                { value: "içerde", label: "İçerde" },
+                                { value: "dışarda", label: "Dışarda" },
+                                { value: "hem içerde hem dışarda", label: "Hem içerde hem dışarda" },
+                            ]}
+                            value={values.petOrFarmAnimalDesc}
+                            error={errors?.petOrFarmAnimalDesc}
+                            onChange={handleChange}
+                        />
                     </>
                 }
             </div>
@@ -188,7 +188,7 @@ export default function SubStep2Part8({
                     <h2 className=" text-[18px]">Erkek özel özgeçmiş:</h2>
                 </div>
 
-                <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+                <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
 
                     <FormInputSelectMulti
                         label="Sizin için uygun olanları işaretleyiniz"
@@ -206,7 +206,7 @@ export default function SubStep2Part8({
                             { value: "idrara sıkışma/başlatamama/akışta değişiklik", label: "İdrara sıkışma/başlatamama/akışta değişiklik" },
                             { value: "vazektomi", label: "Vazektomi" },
                             { value: "gece idrara çıkma", label: "Gece idrara çıkma" },
-                            { value: "cinsel yol ile bulaşan hastalık", label: "Cinsel yol ile bulaşan hastalık" },
+                            { value: "cinsel yol ile bulaşan hastalık", label: "Cinsel yolla bulaşan hastalık" },
                         ]}
                         name="suitablePartsForYou"
                         value={values.suitablePartsForYou}
@@ -222,16 +222,17 @@ export default function SubStep2Part8({
                             type="text"
                             onChange={handleChange}
                         />
-                         
-                        //     values.suitablePartsForYou.includes("cinsel yol ile bulaşan hastalık") && 
-                        //     <FormInput
-                        //     label={`Cinsel yolla bulaşan hastalığınız nedir ?`}
-                        //     value={values.suitablePartsForYouSexualDesc}
-                        //     error={errors.suitablePartsForYouSexualDesc}
-                        //     name="suitablePartsForYouSexualDesc"
-                        //     type="text"
-                        //     onChange={handleChange}
-                        // />
+                    }
+                    {
+                        values.suitablePartsForYou?.includes("cinsel yol ile bulaşan hastalık") &&
+                        <FormInput
+                            label={`Cinsel yol ile bulaşan hastalığı tanımlayın`}
+                            value={values.suitablePartsForYouSexualDesc}
+                            error={errors.suitablePartsForYouSexualDesc}
+                            name="suitablePartsForYouSexualDesc"
+                            type="text"
+                            onChange={handleChange}
+                        />
                     }
 
                     <FormInputSelectOne
@@ -277,8 +278,8 @@ export default function SubStep2Part8({
                     <h2 className=" text-[18px]">Kadın özel özgeçmiş:</h2>
                 </div>
 
-                <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                    <label htmlFor="">Kadın-doğum Öyküsü (Uygun olanları işaretleyip sayısını yazınız)</label>
+                <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+                   <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kadın-doğum Öyküsü (Uygun olanları işaretleyip sayısını yazınız)</label>
 
                     <FormInputSelectOne
                         label="Gebelik yaşadınız mı ?"
@@ -500,7 +501,7 @@ export default function SubStep2Part8({
                         </>
                     }
 
-                    <label htmlFor="">Adet görme öyküsü:</label>
+                   <label className="font-nexa-bold text-[20px] text-[#4E929D]">Adet görme öyküsü:</label>
                     <FormInput
                         label={`İlk adet yaşınız ?`}
                         value={values.firstMenstrualAge}
