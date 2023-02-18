@@ -18,7 +18,7 @@ const Hakkimda: NextPage = () => {
     return <LandingLayout>
         <Container className=" h-[300px] md:h-[300px]  w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px] overflow-clip   md:bg-cover bg-[url(/images/png/hakkimda2.png)]">
             <Container className="md:!max-w-[1455px] grid  place-items-end min-w-full backdrop-brightness-50  justify-center pb-20 md:pb-22 h-full">
-                <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold">Prof.Dr. Nazan Uysal Harzadin</Text>
+                <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold">Prof.Dr. Nazan Uysal Harzadın</Text>
             </Container>
         </Container>
         <Container className="flex  flex-col  mt-[20px] md:mt-[46px]">

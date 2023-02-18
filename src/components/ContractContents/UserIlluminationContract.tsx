@@ -5,12 +5,12 @@ export default function UserIlluminationContract() {
     return (
         <div>
             <h1 className='text-2xl font-nexa-bold'>  Kişisel Verilerin Korunması Aydınlatma Metni</h1>
-            <p>    “DR. NAZAN UYSAL HAZARDIN İNTERNET SİTESİ VE MUAYENEHANE” kişisel verilerinizin hukuka uygun olarak toplanması, saklanması ve paylaşılmasını sağlamak ve gizliliğinizi korumak amacıyla mümkün olan en üst seviyede güvenlik tedbirlerini almaktadır.
+            <p>    “DR. NAZAN UYSAL HARZADIN İNTERNET SİTESİ VE MUAYENEHANE” kişisel verilerinizin hukuka uygun olarak toplanması, saklanması ve paylaşılmasını sağlamak ve gizliliğinizi korumak amacıyla mümkün olan en üst seviyede güvenlik tedbirlerini almaktadır.
                 Amacımız; 6698 sayılı Kişisel Verilerin Korunması Kanununun 10. maddesi gereğince ve sizlerin memnuniyeti doğrultusunda, kişisel verilerinizin alınma şekilleri, işlenme amaçları, paylaşılan kişiler, hukuki nedenleri ve haklarınız konularında sizi en şeffaf şekilde bilgilendirmektir.
             </p>
             <ul className='list-disc'>
                 <li>  a) Veri Sorumlusu
-                    6698 sayılı Kişisel Verilerin Korunması Kanunu (“6698 sayılı Kanun”) uyarınca, kişisel verileriniz; veri sorumlusu olarak “DR. NAZAN UYSAL HAZARDIN İNTERNET SİTESİ VE MUAYENEHANE” (“MUAYENEHANE”) tarafından aşağıda açıklanan kapsamda toplanacak ve işlenebilecektir.
+                    6698 sayılı Kişisel Verilerin Korunması Kanunu (“6698 sayılı Kanun”) uyarınca, kişisel verileriniz; veri sorumlusu olarak “DR. NAZAN UYSAL HARZADIN İNTERNET SİTESİ VE MUAYENEHANE” (“MUAYENEHANE”) tarafından aşağıda açıklanan kapsamda toplanacak ve işlenebilecektir.
                 </li>
                 <li className='pl-[10px]'>  b) İşlenen Kişisel Verileriniz;
                     <ul className='list-inside'>

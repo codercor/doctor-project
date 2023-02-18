@@ -47,19 +47,22 @@ const Footer = () => {
                                 İLETİŞİM
                             </Text>
                             <Text type="paragraph" className="text-[white] font-nexa-light text-[14px]">
-                                0 (232) 123 45 67
+                                <a href="tel:+90 554 797 14 97">+90 554 797 14 97</a>
                             </Text>
                             <Text type="paragraph" className="text-[white] font-nexa-light !text-[14px]">
-                                merhaba@nazanuysalharzadin.com
+                                info@nazanuysalharzadin.com
                             </Text>
                             <div className="pt-0">
                                 <Image src="/images/svg/iyzico_white.svg" width={90} height={36} />
                             </div>
                             <Text type="paragraph" className="text-[white] mt-[2px] md:mt-[7px]">TAKİP ET</Text>
                             <div className="flex gap-2">
-                                <Image src="/images/svg/instagram.svg" width={24} height={24} />
-                                <Image src="/images/svg/youtube.svg" width={24} height={24} />
-                                <Image src="/images/svg/medium.svg" width={24} height={24} />
+                                <Image onClick={() => {
+                                    window.open("https://www.instagram.com/nazanuysalharzadin", "_blank")
+                                }} src="/images/svg/instagram.svg" width={24} height={24} />
+                                <Image onClick={() => {
+                                    window.open("https://www.youtube.com/channel/UCUXLeXnl9FLy3HziVsoLTKQ?app=desktop", "_blank")
+                                }} src="/images/svg/youtube.svg" width={24} height={24} />
                             </div>
                         </div>
                     </div>
@@ -72,7 +75,7 @@ const Footer = () => {
             </Container>
             <Container className="h-[48px] !max-w-[100vw] bg-secondary">
                 <Container className="h-full flex  !max-w-[1240px]  items-center">
-                    <Text type="overline" className="text-[white] md:ml-0 ml-[40px]">Prof.Dr. Nazan Uysal Harzadin © 2022</Text>
+                    <Text type="overline" className="text-[white] md:ml-0 ml-[40px]">Prof.Dr. Nazan Uysal Harzadın © 2022</Text>
                 </Container>
             </Container>
         </Container>

@@ -210,7 +210,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     </div>
                     <div className="h-[64px] bg-secondary grid place-content-center text-center">
                         <Text className="text-[10px] text-[white]"> Kullanım Koşulları - Gizlilik Politikası</Text>
-                        <Text type="overline" className="!font-nexa-light text-[#ACE2EB]">Prof.Dr. Nazan Uysal Harzadin
+                        <Text type="overline" className="!font-nexa-light text-[#ACE2EB]">Prof.Dr. Nazan Uysal Harzadın
                             © 2022 </Text>
                     </div>
                 </div>

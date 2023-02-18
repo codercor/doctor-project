@@ -60,11 +60,11 @@ const Login = () => {
                             <input
                                 className="h-[24px] appearance-none w-[24px] bg-primary-flat checked:accent-black-100  checked:after:rounded-[5px_0px_5px_0] relative checked:after:w-[24px] checked:after:h-[24px] checked:after:absolute checked:after:grid checked:after:place-content-center checked:after:top-0 checked:left-0 checked:after:bg-[black] checked:after:content-['✓']"
                                 type="checkbox" />
-                            <Text type="h4" className="!text-[14px] !py-[10px]">Beni Hatırla</Text>
+                            <Text type="h4" className="!text-[14px] cursor-pointer !py-[10px]">Beni Hatırla</Text>
                         </div>
                         <div onClick={() => {
                             router.push('/auth/forgot-password')
-                        }}><Text type="h4" className="!text-[14px] font-nexa-light  !py-[10px]">Şifremi Unuttum</Text>
+                        }}><Text type="h4" className="!text-[14px] font-nexa-light cursor-pointer !py-[10px]">Şifremi Unuttum</Text>
                         </div>
                     </div>
                     <Button onClick={submitLogin} type="secondary"

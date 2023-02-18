@@ -75,13 +75,13 @@ const RegisterForm = () => {
             errors.Email = null;
         }
         if (credentials.Password === '' || credentials.Password.length < 6) {
-            errors.Password = 'Password is not valid';
+            errors.Password = 'Şifre uygun değil.';
 
         } else {
             errors.Password = null;
         }
         if (credentials.ConfirmPassword === '' || credentials.ConfirmPassword !== credentials.Password) {
-            errors.ConfirmPassword = 'Confirm password is not valid';
+            errors.ConfirmPassword = 'Şifreler uygun değil';
         } else {
             errors.ConfirmPassword = null;
         }
