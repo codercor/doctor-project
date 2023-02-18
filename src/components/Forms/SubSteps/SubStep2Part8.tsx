@@ -147,7 +147,7 @@ export default function SubStep2Part8({
                     onChange={handleChange}
                 />{
                     values.significantExposureToHarmfulChemical === "evet" && <FormInput
-                        label={`Kaç Adet ?`}
+                        label={`Kimyasalın adı, maruziyet süresi, zamanı ?`}
                         value={values.significantExposureToHarmfulChemicalDesc}
                         error={errors.significantExposureToHarmfulChemicalDesc}
                         name="significantExposureToHarmfulChemicalDesc"
@@ -213,7 +213,7 @@ export default function SubStep2Part8({
                     {
                         values.suitablePartsForYou?.includes("gece idrara çıkma") &&
                         <FormInput
-                            label={`Gecede kere idrara çıkıyorsunuz ?`}
+                            label={`Gecede Kaç kez ?`}
                             value={values.suitablePartsForYouPeeDesc}
                             error={errors.suitablePartsForYouPeeDesc}
                             name="suitablePartsForYouPeeDesc"

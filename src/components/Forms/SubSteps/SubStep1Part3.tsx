@@ -22,17 +22,28 @@ export default function SubStep1Part3({
         </h2>
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-        <FormInput
-          label={` Şu anda bir yeme bozukluğunuz var mı? Veya yiyecek ve bedenle ilgili rahatsız edici veya sorunlu davranışlar yaşıyor musunuz?
-        (örneğin; tıkanırcasına yeme, yiyecek kısıtlama, telafi edici egzersiz, kronik diyet, yo-yo veya hızlı kilo verme diyetleri, "temiz" yemeye verimsiz saplantı v patolojik saplantı vb.)
-        (Cevabınız evet ise açıklayınız)`}
+         <FormInputSelectOne
+          onChange={handleChange}
+          label={`Şu anda bir yeme bozukluğunuz var mı? Veya yiyecek ve bedenle ilgili rahatsız edici veya sorunlu davranışlar yaşıyor musunuz?
+          (örneğin; tıkanırcasına yeme, yiyecek kısıtlama, telafi edici egzersiz, kronik diyet, yo-yo veya hızlı kilo verme diyetleri, "temiz" yemeye verimsiz saplantı v patolojik saplantı vb.)`}
+          options={OPTIONS_EHB}
           value={values.foodDisorder}
           error={errors.foodDisorder}
           name="foodDisorder"
-          type="text"
-          onChange={handleChange}
           disabled={readOnly}
         />
+         {
+                    values.foodDisorder === "evet" && (
+                        <FormInput
+                            label="Lütfen detaylı olarak tarihleri ile anlatınız"
+                            name="foodDisorderDesc"
+                            type="text"
+                            error={errors?.foodDisorderDesc}
+                            value={values.foodDisorderDesc}
+                            onChange={handleChange}
+                        />
+                    )
+                }
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput

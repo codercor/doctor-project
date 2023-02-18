@@ -34,6 +34,18 @@ export default function SubStep1Part1({
           onChange={handleChange}
           disabled={readOnly}
         />
+        {
+                    values.parrentTolarance === "evet" && (
+                        <FormInput
+                            label="Açıklayınız"
+                            name="parrentTolaranceDesc"
+                            type="text"
+                            error={errors?.parrentTolaranceDesc}
+                            value={values.parrentTolaranceDesc}
+                            onChange={handleChange}
+                        />
+                    )
+                }
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
@@ -67,6 +79,18 @@ export default function SubStep1Part1({
           name="solidFood"
           disabled={readOnly}
         />
+         {
+                    values.solidFood === "evet" && (
+                        <FormInput
+                            label="Lütfen kaç yaşında yazınız"
+                            name="solidFoodDesc"
+                            type="text"
+                            error={errors?.solidFoodDesc}
+                            value={values.solidFoodDesc}
+                            onChange={handleChange}
+                        />
+                    )
+                }
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
@@ -82,6 +106,18 @@ export default function SubStep1Part1({
           name="babyAllergy"
           disabled={readOnly}
         />
+        {
+                    values.babyAllergy === "evet" && (
+                        <FormInput
+                            label="Açıklayınız"
+                            name="babyAllergyDesc"
+                            type="text"
+                            error={errors?.babyAllergyDesc}
+                            value={values.babyAllergyDesc}
+                            onChange={handleChange}
+                        />
+                    )
+                }
       </div>
     </>
   );
