@@ -95,60 +95,71 @@ export default function SubStep2Part6({
                 />
             </div>
 
-
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                <label> Aşağıdakilerden her biri günlük ne kadar strese neden olur? (1-10 arası puan verin, 10 en çok)</label>
-                <FormInput
-                    label={`İş`}
-                    value={values.workStress}
-                    error={errors.workStress}
-                    name="workStress"
-                    type="number"
-                    onChange={handleChange}
-                />
-                <FormInput
-                    label={`Aile`}
-                    value={values.familyStress}
-                    error={errors.familyStress}
-                    name="familyStress"
-                    type="number"
-                    onChange={handleChange}
-                />
-                <FormInput
-                    label={`Sağlık`}
-                    value={values.healtyStress}
-                    error={errors.healtyStress}
-                    name="healtyStress"
-                    type="number"
-                    onChange={handleChange}
-                />
-                <FormInput
-                    label={`Sosyal`}
-                    value={values.socialStress}
-                    error={errors.socialStress}
-                    name="socialStress"
-                    type="number"
-                    onChange={handleChange}
-                />
-                <FormInput
-                    label={`Maddi`}
-                    value={values.materialStress}
-                    error={errors.materialStress}
-                    name="materialStress"
-                    type="number"
-                    onChange={handleChange}
-                />
-                <FormInput
-                    label={`Diğer`}
-                    value={values.otherStress}
-                    error={errors.otherStress}
-                    name="otherStress"
-                    type="number"
-                    onChange={handleChange}
-                />
-
+            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center gap-[30px] pt-5 w-[full]">
+            <label> Aşağıdakilerden her biri günlük ne kadar strese neden olur? (1-10 arası puan verin, 10 en çok)</label>
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center gap-[30px] w-[full]">
+                <div className="min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[150px]">
+                    <FormInput
+                        label={`İş`}
+                        value={values.workStress}
+                        error={errors.workStress}
+                        name="workStress"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[150px]">
+                    <FormInput
+                        label={`Aile`}
+                        value={values.familyStress}
+                        error={errors.familyStress}
+                        name="familyStress"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[150px]">
+                    <FormInput
+                        label={`Sağlık`}
+                        value={values.healtyStress}
+                        error={errors.healtyStress}
+                        name="healtyStress"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[150px]">
+                    <FormInput
+                        label={`Sosyal`}
+                        value={values.socialStress}
+                        error={errors.socialStress}
+                        name="socialStress"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[150px]">
+                    <FormInput
+                        label={`Maddi`}
+                        value={values.materialStress}
+                        error={errors.materialStress}
+                        name="materialStress"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[150px]">
+                    <FormInput
+                        label={`Diğer`}
+                        value={values.otherStress}
+                        error={errors.otherStress}
+                        name="otherStress"
+                        type="number"
+                        onChange={handleChange}
+                    />
+                </div>
             </div>
-
+            </div>
             <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Gevşeme teknikleri kullanıyor musunuz?"

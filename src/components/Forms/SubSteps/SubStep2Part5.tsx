@@ -350,7 +350,7 @@ export default function SubStep2Part5({
                         onChange={handleChange}
                     />
                     {values.smokeBlock === "evet" && <FormInput
-                        label={`Kaç Yıldır:`}
+                        label={`Hangi yöntemleri denediniz ?`}
                         value={values.smokeBlockDesc}
                         error={errors.smokeBlockDesc}
                         name="smokeBlockDesc"
@@ -405,7 +405,7 @@ export default function SubStep2Part5({
             <h3 className="font-nexa-regular text-[16px]">Alkol</h3>
             <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
-                    label="Haftada ne kadar alkol alırsınız?"
+                    label="Haftada ne kadar alkol alırsınız?(1 içki = 150ml şarap, 360ml bira, 50ml alkollü içki)"
                     options={[
                         { value: "1-3", label: "1-3" },
                         { value: "4-6", label: "4-6" },
@@ -476,7 +476,7 @@ export default function SubStep2Part5({
             </div>
 
 
-            <h3 className="font-nexa-regular text-[16px]">Alkol</h3>
+            <h3 className="font-nexa-regular text-[16px]">Diğer Maddeler</h3>
             <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Şu anda keyif verici madde/ilaç kullanıyor musunuz?"
@@ -487,7 +487,7 @@ export default function SubStep2Part5({
                     onChange={handleChange}
                 />{
                     values.recreationalDrug === "evet" && <FormInput
-                        label={`Problemi açıklayınız `}
+                        label={`Ne tür?`}
                         value={values.recreationalDrugDesc}
                         error={errors.recreationalDrugDesc}
                         name="recreationalDrugDesc"

@@ -33,14 +33,6 @@ export default function SubStep2Part1({
           type="text"
           onChange={handleChange}
         />
-        <FormInput
-          label="Tarih"
-          value={values.date}
-          error={errors.date}
-          name="date"
-          type="text"
-          onChange={handleChange}
-        />
       </div>
       <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
@@ -66,6 +58,14 @@ export default function SubStep2Part1({
           value={values.address}
           error={errors.address}
           name="address"
+          type="text"
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Şehir"
+          value={values.city}
+          error={errors.city}
+          name="city"
           type="text"
           onChange={handleChange}
         />

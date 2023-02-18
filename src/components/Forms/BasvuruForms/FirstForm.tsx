@@ -143,7 +143,7 @@ export default function FirstForm() {
                                     name="identifiedDiseases"
                                     value={values.identifiedDiseases}
                                     onChange={handleChange}
-                                    label="Tanımlanan hastalıklarınız"
+                                    label="Tanı aldığınız hastalıklarınız"
                                     type="text"
                                 />
                             </div>
@@ -153,7 +153,7 @@ export default function FirstForm() {
                                     name="currentMedicationsAndTreatments"
                                     value={values.currentMedicationsAndTreatments}
                                     onChange={handleChange}
-                                    label="Kullandığınız ilaçlar ve tedaviler"
+                                    label="Şu an görmekte olduğunuz tedaviler ve kullandığınız ilaçlar"
                                     type="text"
                                 />
                             </div>
@@ -163,7 +163,7 @@ export default function FirstForm() {
                                     name="usedSupplementsAndTime"
                                     value={values.usedSupplementsAndTime}
                                     onChange={handleChange}
-                                    label="Kullandığınız takviyeler ve süreleri"
+                                    label="Kullandığınız takviyeleri ve en son ne zaman aldığınızı belirtiniz"
                                     type="text"
                                 />
                             </div>
@@ -175,7 +175,7 @@ export default function FirstForm() {
                                     name="shortStory"
                                     value={values.shortStory}
                                     onChange={handleChange}
-                                    label="Kısa bir öykünüz"
+                                    label="Kısaca rahatsızlığınızın öyküsünü anlatınız"
                                     type="text"
                                 />
                             </div>
@@ -185,7 +185,7 @@ export default function FirstForm() {
                                     name="purposeOfMeeting"
                                     value={values.purposeOfMeeting}
                                     onChange={handleChange}
-                                    label="Randevu amacı"
+                                    label="Bizimle yapacağınız görüşmede ne elde etmeyi umuyorsunuz?"
                                     type="text"
                                 />
                             </div>

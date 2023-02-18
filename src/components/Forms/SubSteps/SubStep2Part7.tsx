@@ -438,7 +438,7 @@ export default function SubStep2Part7({
                     onChange={handleChange}
                 />{
                     values.otherDentalProblems === "evet" && <FormInput
-                        label={`Kaç Adet ?`}
+                        label={`Açıklayınız`}
                         value={values.otherDentalProblemsDesc}
                         error={errors.otherDentalProblemsDesc}
                         name="otherDentalProblemsDesc"
@@ -456,7 +456,7 @@ export default function SubStep2Part7({
                     onChange={handleChange}
                 />{
                     values.removingYourMercuryFiller === "evet" && <FormInput
-                        label={`Kaç Adet ?`}
+                        label={`Ne zaman ?`}
                         value={values.removingYourMercuryFillerDesc}
                         error={errors.removingYourMercuryFillerDesc}
                         name="removingYourMercuryFillerDesc"
