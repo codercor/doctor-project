@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text';
-import { Add, ArrowDropDown, ArrowDropUp, RefreshRounded, SortByAlpha } from '@mui/icons-material';
+import { Add, ArrowDropDown, ArrowDropUp, Delete, RefreshRounded, SortByAlpha } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react'
 import DocumentsUpload from '@components/Upload/DocumentsUpload';
 import { Pagination } from '@mui/material'
@@ -9,6 +9,8 @@ import request from '@config';
 import { LocalLoading } from './appointment-management';
 import Search from '@components/Search/Search';
 import FormInput from '@components/Forms/FormInput/FormInput';
+import AreYouSureModal from '@components/Modals/AreYouSureModal';
+import { toast } from 'react-hot-toast';
 export interface Assay {
     Id: string;
     Name: string;
@@ -30,10 +32,26 @@ export default function Assays() {
 
     const [searchKey, setSearchKey] = useState('');
 
+    const [openAreYouSureModal, setOpenAreYouSureModal] = useState(false);
+
     const Row = ({ assay }: { assay: Assay }) => {
         const [open, setOpen] = useState(false);
         const [assayFiles, setAssayFiles] = useState<FileList | null>(null);
         return <div className='flex flex-col w-full'>
+            {openAreYouSureModal && <AreYouSureModal finish={({ confirmed }) => {
+                console.log("confirmed", confirmed);
+                if (confirmed) {
+                    request.delete(`/userassays/${assay.Id}`).then(() => { 
+                        refresh();
+                        toast.success('Tahlil silindi')
+                    }).catch(() => {
+                        toast.error('Tahlil silinemedi tekrar deneyin.')
+                        refresh();
+                    })
+                }
+                setOpenAreYouSureModal(false);
+            }} text='Tahlil silinecek' />}
+
             <div className='w-full flex p-3 border-t-[1px]'>
                 {assay?.user ? (<><div className='flex-[4]'>
                     <p> {assay.user?.information?.Fullname || '-'} </p>
@@ -77,6 +95,13 @@ export default function Assays() {
                         window.open(assay?.Link || '', '_blank')
                     }} className=' disabled:opacity-50 flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
                         <span>Görüntüle</span>
+                    </button>
+                </div>
+                <div className='flex-[2]'>
+                    <button onClick={() => {
+                        setOpenAreYouSureModal(true)
+                    }} className=' disabled:opacity-50 flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] '>
+                        <Delete className='!text-[#e46c6cea]' />
                     </button>
                 </div>
             </div>
