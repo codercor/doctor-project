@@ -1237,6 +1237,227 @@ export default function SubStep2Part8({
                 </div>
 
             </div>
+            <TogP1 values={values} handleChange={handleChange} />
+            <TogP2 values={values} handleChange={handleChange} />
+            <TogP3 values={values} handleChange={handleChange} />
+            <TogP4 values={values} handleChange={handleChange} />
         </>
     );
+}
+
+const TogP1 = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[650px] my-2">
+        <p className="font-nexa-bold text-[20px] my-4 text-[#4E929D]">Tıbbi özgeçmiş (devam)</p>
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2">
+                    <th>Görüntüleme yöntemi</th>
+                    <th>Tarih</th>
+                    <th>Sonuç</th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        {
+                            title: "Kemik dansitesi",
+                            name: "tog1",
+                        },
+                        {
+                            title: "Tomografi",
+                            name: "tog2",
+                        },
+                        {
+                            title: "Kolonoskopi",
+                            name: "tog3",
+                        },
+                        {
+                            title: "Kardiyak stres testi",
+                            name: "tog4",
+                        },
+                        {
+                            title: "EKG",
+                            name: "tog5",
+                        },
+                        {
+                            title: "MRI",
+                            name: "tog6",
+                        },
+                        {
+                            title: "Endoskopi",
+                            name: "tog7",
+                        },
+                        {
+                            title: "Üst GİS görüntüleme",
+                            name: "tog8",
+                        },
+                        {
+                            title: "Akciğer filmi",
+                            name: "tog9",
+                        },
+                        {
+                            title: "Diğer filmler",
+                            name: "tog10",
+                        },
+                        {
+                            title: "Baryum enema",
+                            name: "tog11",
+                        },
+                        {
+                            title: "Diğer",
+                            name: "tog12",
+                        },
+                    ].map((item) => {
+                        return (<tr key={item.title} className="table-row border-2">
+                            <td className="table-cell"> {item.title} </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + "Date"]} name={item.name + 'Date'} type="date" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + "Result"]} name={item.name + 'Result'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
+}
+
+const TogP2 = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[300px] my-1">
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2">
+                    <th>Yaralanmalar</th>
+                    <th>Tarih</th>
+                    <th>Sonuç</th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        {
+                            title: "Kemik kırığı",
+                            name: "togy1",
+                        },
+                        {
+                            title: "Omurga yaralanması",
+                            name: "togy2",
+                        },
+                        {
+                            title: "Boyun yaralanmas",
+                            name: "togy3",
+                        },
+                        {
+                            title: "Kafa travması",
+                            name: "togy4",
+                        },
+                        {
+                            title: "Diğer",
+                            name: "togy5",
+                        }
+                    ].map((item) => {
+                        return (<tr key={item.title} className="table-row border-2">
+                            <td className="table-cell"> {item.title} </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Date']} name={item.name + 'Date'} type="date" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Result']} name={item.name + 'Result'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
+}
+
+const TogP3 = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[440px] my-1">
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2">
+                    <th>Ameliyatlar</th>
+                    <th>Tarih</th>
+                    <th>Sonuç</th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        {
+                            title: "Apendektomi",
+                            name: "toga1",
+                        },
+                        {
+                            title: "Dişoperasyonları",
+                            name: "toga2",
+                        },
+                        {
+                            title: "Safrakesesi",
+                            name: "toga3",
+                        },
+                        {
+                            title: "Fıtık",
+                            name: "toga4",
+                        },
+                        {
+                            title: "Bademcik (tonsillektomi)",
+                            name: "toga5",
+                        },
+                        {
+                            title: "Eklem",
+                            name: "toga6",
+                        },
+                        {
+                            title: "Kalp ameliyatı",
+                            name: "toga7",
+                        },
+                        {
+                            title: "Diğer",
+                            name: "toga8",
+                        },
+                    ].map((item) => {
+                        return (<tr key={item.title} className="table-row border-2">
+                            <td className="table-cell"> {item.title} </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Date']} name={item.name + 'Date'} type="date" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Result']} name={item.name + 'Result'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
+}
+
+const TogP4 = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[300px] my-1">
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2">
+                    <th>Hastanede Yatış</th>
+                    <th>Tarih</th>
+                    <th>Yatma Nedeni</th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        {
+                            name: "togh1",
+                        },
+                        {
+                            name: "togh2",
+                        },
+                        {
+                            name: "togh3",
+                        },
+                        {
+                            name: "togh4",
+                        }
+                    ].map((item) => {
+                        return (<tr key={item.name} className="table-row border-2">
+                            <td className="table-cell">  <FormInput onChange={handleChange} value={values[item.name + 'Title']} name={item.name + 'Title'} type="text" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Date']} name={item.name + 'Date'} type="date" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Result']} name={item.name + 'Result'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
 }

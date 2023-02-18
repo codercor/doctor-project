@@ -585,6 +585,77 @@ export const flow3FormInitialValues = {
     anotherTest148: "orta",
     anotherTest149: "orta",
     anotherTest150: "orta",
+     //TOG 
+     tog1Date : "2023-02-18",
+     tog1Result: "tog1 result",
+     tog2Date : "2023-02-18",
+     tog2Result: "tog2 result",
+     tog3Date : "2023-02-18",
+     tog3Result: "tog3 result",
+     tog4Date : "2023-02-18",
+     tog4Result: "tog4 result",
+     tog5Date : "2023-02-18",
+     tog5Result: "tog5 result",
+     tog6Date : "2023-02-18",
+     tog6Result: "tog6 result",
+     tog7Date : "2023-02-18",
+     tog7Result: "tog7 result",
+     tog8Date : "2023-02-18",
+     tog8Result: "tog8 result",
+     tog9Date : "2023-02-18",
+     tog9Result: "tog9 result",
+     tog10Date : "2023-02-18",
+     tog10Result: "tog10 result",
+     tog11Date : "2023-02-18",
+     tog11Result: "tog11 result",
+     tog12Date : "2023-02-18",
+     tog12Result: "tog12 result",
+     //TOG END
+     //TOGY
+     togy1Date : "2023-02-18",
+     togy1Result: "togy1 result",
+     togy2Date : "2023-02-18",
+     togy2Result: "togy2 result",
+     togy3Date : "2023-02-18",
+     togy3Result: "togy3 result",
+     togy4Date : "2023-02-18",
+     togy4Result: "togy4 result",
+     togy5Date : "2023-02-18",
+     togy5Result: "togy5 result",
+     //TOGY END
+     //TOGA
+     toga1Date : "2023-02-18",
+     toga1Result: "toga1 result",
+     toga2Date : "2023-02-18",
+     toga2Result: "toga2 result",
+     toga3Date : "2023-02-18",
+     toga3Result: "toga3 result",
+     toga4Date : "2023-02-18",
+     toga4Result: "toga4 result",
+     toga5Date : "2023-02-18",
+     toga5Result: "toga5 result",
+     toga6Date : "2023-02-18",
+     toga6Result: "toga6 result",
+     toga7Date : "2023-02-18",
+     toga7Result: "toga7 result",
+     toga8Date : "2023-02-18",
+     toga8Result: "toga8 result",
+     //TOGA END
+     //TOGh
+     togh1Title : "togh1 title",
+     togh1Date: "2023-02-18",
+     togh1Result: "togh1 result",
+     togh2Title : "togh2 title",
+     togh2Date: "2023-02-18",
+     togh2Result: "togh2 result",
+     togh3Title : "togh3 x title",
+     togh3Date: "1999-02-14",
+     togh3Result: "togh3 sss result",
+     togh4Title : "togh4 title",
+     togh4Date: "1999-02-14",
+     togh4Result: "togh4 result",
+     //TOGh END
+
 }
 
 
@@ -738,5 +809,6 @@ export const flow5FormInitialValues = {
     textLast2Week: "ııı",
     textLifeStyleChange: "xx",
     textHaveAProblem: "yy",
-    textSomethingElse: "zz"
+    textSomethingElse: "zz",
+   
 }
