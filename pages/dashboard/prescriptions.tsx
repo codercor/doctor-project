@@ -29,32 +29,32 @@ interface IPrescriptionItem {
 const Row = ({ data }: { data: IPrescriptionItem }) => {
     return <div className='flex flex-col w-full'>
         <div className='w-full flex p-3 border-t-[1px]'>
-            <div className='flex-[6]'>
+            <div className='flex-[4]'>
                 <p>
                     {
-                        data.user?.Information?.Fullname || '-'
+                        data?.Name || '-'
                     }
                 </p>
             </div>
-            <div className='flex-[6]'>
+            <div className='flex-[4]'>
                 <p>
                     {
-                        data.user?.Email || '-'
+                        data?.Description
                     }
+                </p>
+            </div>
+            <div className='flex-[4]'>
+                <p>
+                    {
 
-                </p>
-            </div>
-            <div className='flex-[4]'>
-                <p>
-                    {
-                        data.user?.Information?.Phone || '-'
-                    }
-                </p>
-            </div>
-            <div className='flex-[4]'>
-                <p>
-                    {
-                        new Date(data.updated_at || data.created_at).toLocaleDateString() || '-'
+                        new Date(data.updated_at || data.created_at).toLocaleDateString("tr-TR", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                            hour: "numeric",
+                            minute: "numeric"
+                        })
+                        || '-'
                     }
                 </p>
             </div>
@@ -135,9 +135,8 @@ export default function Prescriptions() {
 
                 <div className="w-full flex flex-col">
                     <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                        <Text type="h3" className="text-secondary flex-[6] !text-[14px]">Ad Soyad</Text>
-                        <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
+                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Başlık</Text>
+                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Açıklama</Text>
                         <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Reçete Tarih</Text>
                         <div className='flex-[4]'>  </div>
                     </div>

@@ -133,6 +133,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      listStyleType: {
+        none: 'none',
+       disc: 'disc',
+       decimal: 'decimal',
+       square: 'square',
+       roman: 'upper-roman',
+      },
       gridTemplateColumns: {
         "14": "repeat(14, minmax(50px, 1fr))",
       },

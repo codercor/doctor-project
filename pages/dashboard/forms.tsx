@@ -137,6 +137,7 @@ export default function Forms() {
                 }
             }
             if (ability.LastDoneStep >= 1 && [2, 3, 4].includes(ability.LastWaitingDoneStep as number)) {
+                alert("okk")
                 setIsSecondToForthStepIsLocked(true)
             }
             setShowLastForm(ability.IsFormLocked)
@@ -152,7 +153,7 @@ export default function Forms() {
                 !isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">
                     <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
                 </div> : <div className="bg-[white]">
-                    <h1> step {selectedStep} locked {showLastForm + ""} last step {showLastFormStep + ""} </h1>
+                    {/* <h1> step {selectedStep} locked {showLastForm + ""} last step {showLastFormStep + ""} </h1> */}
                     <FormSteps
                         selectedStep={selectedStep}
                         setSelectedStep={setSelectedStep}
@@ -168,7 +169,7 @@ export default function Forms() {
                         {
                             !done ? forms.map((form) => {
                                 if (form.step === selectedStep) {
-                                    if (selectedStep == waitingDoneStep) {
+                                    if (selectedStep == waitingDoneStep || [2, 3, 4].includes(waitingDoneStep || 0)) {
                                         // eslint-disable-next-line react/jsx-key
                                         return (<FormAlert
                                             text="Göndermiş olduğunuz form onaylanmayı bekliyor"

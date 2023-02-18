@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text'
-import { Check, Close, MenuOpen, RefreshRounded, SortByAlpha } from '@mui/icons-material'
+import { Add, Cancel, Check, Close, Delete, MenuOpen, RefreshRounded, SortByAlpha } from '@mui/icons-material'
 import React, { useEffect, useState } from 'react'
 import { Pagination } from '@mui/material'
 import classNames from 'classnames'
@@ -10,6 +10,9 @@ import FormInputSelectOne from '@components/Forms/FormInput/FormInputSelectOne'
 import { Loading } from './create-training'
 import toast from "react-hot-toast";
 import FormInput from "@components/Forms/FormInput/FormInput";
+import { CreateAppointmentModal } from '@components/CreateAppointmentModal/CreateAppointmentModal'
+import { UserState } from '@app/User/user.types'
+import AreYouSureModal from '@components/Modals/AreYouSureModal'
 
 interface Appointment {
     Id: string;
@@ -87,6 +90,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
     const [tempDate, setTempDate] = useState(appointment.Date);
     const [isLoading, setIsLoading] = useState(false);
 
+    const [areYouSureModalState, setAreYouSureModalState] = useState<boolean>(false);
 
     const submit = async () => {
         const URL = `/userappointments/${appointment.Id}`
@@ -111,7 +115,8 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
         {
             isLoading && <LocalLoading message="Güncelleniyor" />
         }
-        <div className='w-full flex items-center text-start border-2  border-t-[1px]'>
+
+        <div className='w-full flex items-center text-start  border-t-[1px]'>
             <div className='flex-[6]'>
                 <p>
                     {
@@ -144,11 +149,20 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
                 }
             </div>
             <div className='flex-[2]'>
-                <button onClick={() => {
-                    //setOpen(!open)
+                <button onClick={(e) => {
+
                 }}
                     className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
                     <MenuOpen />
+                </button>
+            </div>
+            <div className='flex-[2]'>
+                <button onClick={(e) => {
+                    e.stopPropagation();
+                    setAreYouSureModalState(true);
+                }}
+                    className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#ce4343]'>
+                    <Delete />
                 </button>
             </div>
             {open && <CreateAssayModal userId={appointment.user.Id} finishEvent={() => {
@@ -156,6 +170,22 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
                 afterUpdate()
             }} />}
         </div>
+
+        {areYouSureModalState && <AreYouSureModal text="Randevu silinecek" finish={({ confirmed }) => {
+            if (confirmed) {
+                request.delete(`/userappointments/${appointment.Id}`).then(res => {
+                    toast.success("Randevu silindi");
+                    setAreYouSureModalState(false);
+                    afterUpdate();
+                }).catch(err => {
+                    console.log(err);
+                    toast.error("Bir hata oluştu");
+                    afterUpdate();
+                })
+            }
+            setAreYouSureModalState(false);
+        }} />}
+
         {
             updateTheUserModal &&
             <div onClick={(e) => {
@@ -230,6 +260,122 @@ const SelectStatus = ({ value, onChange }: {
 }
 export const LocalLoading = ({ message }: { message: string }) => <div className="z-[100] fixed top-0 left-0"><Loading
     message={message} /></div>
+
+export const SelectUserModal = ({ setter }: { setter: (v: any) => void }) => {
+    const [searchKey, setSearchKey] = useState<string>("");
+    const [searchResults, setSearchResults] = useState<UserState[]>([]);
+    const [selectedPatient, setSelectedPatient] = useState<UserState | null>(null);
+    const handleSearchPatient = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(e.currentTarget.value);
+        setSearchKey(e.currentTarget.value);
+    }
+
+    const searchPatient = (key: string) => {
+        request.post(`/search/user/patient?page=1`, {
+            key
+        }).then(res => {
+            console.log(res.data);
+            setSearchResults(res.data);
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+    useEffect(() => {
+        if (!selectedPatient && searchKey.length > 0) {
+            console.log("g 1");
+
+            searchPatient(searchKey);
+        } else {
+            console.log("g 2");
+            setSearchResults([]);
+        }
+    }, [searchKey, selectedPatient]);
+
+    const handleCancel = () => {
+        setter({
+            data: {
+                Fullname: "",
+                UserId: "",
+            }, open: false
+        })
+    }
+    const selectPatient = (UserId: string, Fullname: string) => {
+        setter({
+            data: {
+                Fullname,
+                UserId
+            },
+            open: true
+        })
+    }
+    const UserResultsItem = ({ item, cancel = false }: { item: UserState, cancel?: boolean }) => {
+        return (
+            <div onClick={() => {
+                setSelectedPatient(item)
+                item?.Id && selectPatient(item.Id, (item.Information.Fullname || 'YOOK'))
+            }} className="w-full h-[40px] border-t-[1px] flex items-center px-4">
+                <p>
+                    {item.Information.Fullname}
+                </p>
+                {
+                    cancel && (<button onClick={(
+                        e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                    ) => {
+                        e.stopPropagation();
+                        //setSelectedPatient işleminden sonra rerender edilmemesinin nedeni : https://stackoverflow.com/questions/53253940/react-hooks-usestate-not-updating-immediately
+                        setSelectedPatient(null)
+                        setSearchKey('');
+
+                    }} className="ml-auto">
+                        <Cancel />
+                    </button>)
+                }
+            </div>
+        )
+    }
+
+    const UserResults = () => {
+        return (<div className="w-full max-h-[400px] absolute top-[0px] z-[99] bg-[white]  border-[#4E929D]-500 border-2">
+            {searchResults.map((item, index) => <UserResultsItem key={index} item={item} />)}
+        </div>)
+    }
+
+    const handleConfirm = () => {
+        setter({
+            data: {
+                Fullname: selectedPatient?.Information.Fullname || '',
+                UserId: selectedPatient?.Id || ''
+            },
+            open: false
+        })
+    }
+
+    return <>
+        <div className="fixed z-99 w-screen h-screen top-0 left-0 bg-black-100 bg-opacity-70">
+            <div className="w-full h-full flex items-center justify-center">
+                <div className="w-[600px] h-[400px] py-[100px] bg-[white] rounded-[20px_5px] flex flex-col">
+                    <div className="w-full h-[50px] flex items-center justify-center">
+                        <p className="text-[#4E929D] text-[16px] font-nexa-bold">Hasta Seç</p>
+                    </div>
+                    {!selectedPatient && <div className="w-full h-[50px] flex items-center justify-center">
+                        <input onChange={handleSearchPatient} value={searchKey} className="w-[400px] h-[40px] border-[#4E929D]-500 border-2 rounded-[20px_5px] px-4" />
+                    </div>}
+                    <div className="w-[400px] min-h-[100px] self-center relative flex items-center justify-center">
+                        {
+                            selectedPatient ? <UserResultsItem item={selectedPatient} cancel /> : <UserResults />
+                        }
+                    </div>
+                    <div className="w-full h-[50px] flex items-center justify-center">
+                        {!selectedPatient ? <button onClick={handleCancel} className="w-[100px] h-[40px] bg-[#4E929D] text-[white] rounded-[20px_5px]">İptal</button> :
+                            <button onClick={handleConfirm} className="w-[100px] h-[40px] bg-[#4E929D] text-[white] rounded-[20px_5px]">Seç</button>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </>
+
+}
+
 export default function AppointmentManagement() {
     const [appointments, setAppointments] = useState<Appointment[]>([
         {
@@ -250,7 +396,13 @@ export default function AppointmentManagement() {
         console.log("Appointments", data);
         return data;
     }
-
+    const [selectUserModal, setSelectUserModal] = useState({
+        data: {
+            Fullname: "",
+            UserId: "",
+        },
+        open: false
+    })
     const getAndSetAppointments = async () => {
         setIsLoading(true)
         request.get(`/userappointments?page=${page}`).then((res) => {
@@ -289,19 +441,55 @@ export default function AppointmentManagement() {
         } else getAndSetAppointments()
     }, [page, searchKey])
 
+    const [openNewAppointmentModal, setOpenNewAppointmentModal] = useState(false)
+
+    useEffect(() => {
+        if (!selectUserModal.open && selectUserModal.data.UserId.length > 0) {
+            setOpenNewAppointmentModal(true)
+        }
+    }, [selectUserModal])
+
     return (
         <DashboardLayout>
             {
                 isLoading && <LocalLoading message="Randevularınız yükleniyor..." />
             }
+            {
+                openNewAppointmentModal && <CreateAppointmentModal UserId={selectUserModal.data.UserId} finish={() => {
+                    console.log("OLUŞTURULDUUU");
+                    refresh()
+                    setOpenNewAppointmentModal(false)
+                }} />
+            }
+            <div className="absolute top-0 left-0">
+                {
+                    selectUserModal.open && <SelectUserModal setter={(v) => {
+                        setSelectUserModal({
+                            ...v
+                        })
+                        console.log("SELECTED", v.data);
+                    }} />
+                }
+            </div>
+
             <div className="md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
-                <div className="w-1/3 flex flex-col text-start items-center justify-start py-[26px] px-[10px]">
+                <div className="w-full flex text-start items-center justify-start py-[26px] px-[10px]">
                     <div className="flex flex-col justify-between w-full">
                         <Text type="h3" className="text-[#4D5628] !text-[20px] w-full">Randevu Yönetimi</Text>
                         <Text type="h3" className="text-[#4D5628] font-nexa-light !text-[14px] w-full">Tüm
                             randevularınızı yönetin.</Text>
                     </div>
+                    <button onClick={() => {
+                        setSelectUserModal({
+                            data: selectUserModal.data,
+                            open: true
+                        })
+                    }} className='bg-[#4E929D] flex  min-w-[150px] h-[40px] items-center justify-center text-[white] rounded-[20px_5px]'>
+                        <Add className="text-[white] text-[14px]" />
+                        <p>Randevu Oluştur</p>
+                    </button>
                 </div>
+                {/* <CreateAppointmentModal  UserId='' finish={()=>{}} /> */}
                 <div className="w-[60%] gap-[10px] mt-[10px] mb-[30px] flex">
                     <input type="text" onChange={(e) => {
                         setSearchKey(e.target.value)
@@ -325,9 +513,10 @@ export default function AppointmentManagement() {
                                 <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Randevu Tarihi</Text>
                                 <Text type="h3" className="text-secondary flex-[2] !text-[14px] ">Durum</Text>
                                 <Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] "></Text>
+                                <Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] "></Text>
                             </div>
                             <div
-                                className='w-full border-2 max-h-[600px] overflow-auto p-3 scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>
+                                className='w-full max-h-[600px] overflow-auto p-3 scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>
                                 {
                                     appointments?.length > 0 ? appointments.map((appointment: Appointment) => {
                                         return <Row afterUpdate={() => {

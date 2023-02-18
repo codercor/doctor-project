@@ -48,11 +48,24 @@ export default function Assays() {
                     </div><div className='flex-[4]'>
                         <p> {'-'} </p>
                     </div></>}
-                <div className='flex-[4]'>
-                    <p> {assay?.Name || '-'} </p>
+                <div className='flex-[4]    '>
+                    <p className='break-words w-full'> {assay?.Name || '-'} </p>
                 </div>
-                <div className='flex-[2]'>
-                    <p> {new Date(assay?.created_at).toLocaleDateString("tr-TR") || '-'} </p>
+                <div className='flex-[4]'>
+                    <p>
+
+                        {
+
+                            new Date(assay.created_at).toLocaleDateString("tr-TR", {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                                hour: "numeric",
+                                minute: "numeric"
+                            })
+                            || '-'
+                        }
+                    </p>
                 </div>
                 {assay.Status ? <div className='flex-[2]'>
                     <p>{assay.Status} </p>
@@ -186,7 +199,7 @@ export default function Assays() {
                             <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
                             <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
                             <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Belge Adı</Text>
-                            <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Tarih</Text>
+                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Tarih</Text>
                             <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Durum</Text>
                             <div className='flex-[2] w-full'>  </div>
                         </div>

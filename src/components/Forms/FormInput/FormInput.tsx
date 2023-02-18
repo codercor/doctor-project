@@ -55,9 +55,24 @@ const FormInput = ({
         value={value}
         name={name}
         onChange={onChange}
-        onKeyUp={onKeyUp}
+        onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
+          if (onKeyUp) onKeyUp(e);
+        }}
+        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
+        }}
         className="text-[black] text-[16px] font-nexa-bold rounded-[5px_20px_0px_20px] disabled:opacity-60"
         type={type}
+
         placeholder={placeholder}
         disabled={disabled}
       />

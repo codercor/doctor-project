@@ -37,7 +37,7 @@ const validationSchema = Yup.object().shape({
     RegistrationAddress: Yup.string().required("Adres zorunludur").nullable(),
     TaxNumber: Yup.string().nullable().when("ContactType", {
         is: "company",
-        then: Yup.string().required("Vergi numarası zorunludur").nullable(),
+        then: Yup.string().min(10, "10 haneli").max(10, "10").required("Vergi numarası zorunludur").nullable(),
         otherwise: Yup.string().nullable()
     }),
     IdentityNumber: Yup.string().nullable().when("ContactType", {
@@ -45,7 +45,7 @@ const validationSchema = Yup.object().shape({
         then: Yup.string().required("T.C. Kimlik numarası zorunludur").nullable(),
         otherwise: Yup.string().when("ContactType", {
             is: "company",
-            then: Yup.string().required("Vergi numarası zorunludur").nullable(),
+            then: Yup.string().required("Vergi numarası zorunludur").nullable().length(10, "Vergi numarası 10 haneli olmalıdır").matches(/^[0-9]+$/, "Vergi numarası sadece sayılardan oluşmalıdır"),
             otherwise: Yup.string().nullable()
         })
     }),
@@ -120,6 +120,7 @@ const SettingsInvoiceSettings = () => {
         return <form onSubmit={(e) => {
             e.preventDefault();
             console.log("submit edildi", values);
+            if(!values.Surname) values.Surname = " "
             const updateUrl = `/user/billing/${user.Id}`;
             request.put(updateUrl, values).then((res) => {
                 toast.success("Fatura bilgileriniz başarıyla güncellendi");
@@ -138,8 +139,10 @@ const SettingsInvoiceSettings = () => {
             <FormInputSelectOne onChange={_handleChange} error={errors.ContactType} value={values.ContactType} disabled={!isEdit} name="ContactType" label="Fatura Tipi" options={[{ label: "Bireysel", value: "person" }, { label: "Kurumsal", value: "company" }]} />
             <FormInput error={errors.RegistrationAddress} onChange={_handleChange} value={values.RegistrationAddress} disabled={!isEdit} name="RegistrationAddress" label="Fatura Adresi" type="text" />
             <div className="flex gap-[41px]">
-                <FormInput onChange={_handleChange} value={values.Name} error={errors.Name} disabled={!isEdit} name="Name" label="Ad" type="text" />
-                <FormInput onChange={_handleChange} value={values.Surname} error={errors.Surname} disabled={!isEdit} name="Surname" label="Soyad" type="text" />
+                <FormInput onChange={_handleChange} value={values.Name} error={errors.Name} disabled={!isEdit} name="Name" label={values.ContactType != "company"? "Ad":"Firma Adı"} type="text" />
+                {
+                    values.ContactType != "company" && <FormInput onChange={_handleChange} value={values.Surname} error={errors.Surname} disabled={!isEdit} name="Surname" label="Soyad" type="text" />
+                }
             </div>
             <FormInput onChange={_handleChange} value={values.Email} disabled={!isEdit} error={errors.Email} name="Email" label="E-posta" type="email" />
             <FormInput onChange={_handleChange} value={values.IdentityNumber} disabled={!isEdit} error={errors.IdentityNumber} name="IdentityNumber" label={(values.ContactType == 'person' ? 'Tc Kimlik Numarası' : 'Vergi numarası')} type="text" />

@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text';
-import { Add, ArrowDropDown, ArrowDropUp, Cancel, Close, RefreshRounded, SortByAlpha } from '@mui/icons-material';
+import { Add, ArrowDropDown, ArrowDropUp, Cancel, Close, Delete, Description, Edit, RefreshRounded, SortByAlpha } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react'
 import DocumentsUpload from '@components/Upload/DocumentsUpload';
 import { Pagination } from '@mui/material'
@@ -10,6 +10,8 @@ import { v4 } from 'uuid';
 import { UserInformation, UserState } from '@app/User/user.types';
 import request from '@config';
 import { LocalLoading } from './appointment-management';
+import { toast } from 'react-hot-toast';
+import AreYouSureModal from '@components/Modals/AreYouSureModal';
 interface IPrescriptionItem {
     Id: string;
     UserId: string;
@@ -20,8 +22,56 @@ interface IPrescriptionItem {
     Name: string;
     user: null | any;
 }
-const Row = ({ data }: { data: IPrescriptionItem }) => {
+interface INewPrespriptionModal {
+    open: boolean;
+    data: {
+        Name: string;
+        UserId: string;
+        Description: string;
+        File: FileList | null;
+    }
+}
+
+interface IEditPrespriptionModal {
+    open: boolean;
+    data: {
+        Id: string;
+        Name: string;
+        UserId: string;
+        Description: string;
+        File: FileList | null;
+        UserName: string;
+    }
+}
+const Row = ({ data, refresh }: { data: IPrescriptionItem, refresh: () => void }) => {
+
+    console.log("Prespriction DAta", data);
+
+    const [areYouSureModalState, setAreYouSureModalState] = useState<boolean>(false)
+    const [editModalState, setEditModalState] = useState<IEditPrespriptionModal>({
+        open: false,
+        data: {
+            Id: data.Id,
+            UserId: data.UserId,
+            UserName: data.user?.information?.Fullname,
+            Name: data.Name,
+            Description: data.Description,
+            File: null
+        }
+    })
+
+
     return <div className='flex flex-col w-full'>
+        {editModalState.open && <EditPrespriptionModal setter={setEditModalState} finishEvent={(() => {
+            setEditModalState({
+                open: false,
+                data: {
+                    ...editModalState.data,
+                }
+            })
+            refresh()
+        })}
+            data={editModalState} />}
         <div className='w-full flex p-3 border-t-[1px]'>
             <div className='flex-[6]'>
                 <p>
@@ -48,29 +98,156 @@ const Row = ({ data }: { data: IPrescriptionItem }) => {
             <div className='flex-[4]'>
                 <p>
                     {
-                        new Date(data.updated_at || data.created_at).toLocaleDateString() || '-'
+
+                        new Date(data.updated_at || data.created_at).toLocaleDateString("tr-TR", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                            hour: "numeric",
+                            minute: "numeric"
+                        })
+                        || '-'
                     }
                 </p>
             </div>
-            <div className='flex-[4]'>
+            <div className='flex-[4] flex'>
                 <button onClick={() => {
                     window.open(data.Link, "_blank")
-                }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
+                }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[90px] h-[30px] text-[#4E929D]'>
                     <span>Görüntüle</span>
+                </button>
+                <button onClick={() => {
+                    setEditModalState({
+                        ...editModalState,
+                        open: true
+                    })
+                }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] min-w-[20px] ml-2 h-[30px] text-[#4E929D]'>
+                    <Edit />
+                </button>
+                {areYouSureModalState && <AreYouSureModal text="Reçete silinecek" finish={({ confirmed }) => {
+                    if (confirmed) {
+                        request.delete(`/userprescriptions/${data.Id}`).then(res => {
+                            toast.success("Reçete silindi");
+                            setAreYouSureModalState(false);
+                            refresh();
+                        }).catch(err => {
+                            console.log(err);
+                            toast.error("Bir hata oluştu");
+                            refresh();
+                        })
+                    }
+                    setAreYouSureModalState(false);
+                }} />}
+                <button onClick={() => {
+                    setAreYouSureModalState(true);
+                }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] min-w-[20px] ml-2 h-[30px] text-[#4E929D]'>
+                    <Delete />
                 </button>
             </div>
         </div>
     </div>
 }
-interface INewPrespriptionModal {
-    open: boolean;
-    data: {
-        Name: string;
-        UserId: string;
-        Description: string;
-        File: FileList | null;
+
+
+const EditPrespriptionModal = ({ data, setter, finishEvent }: { data: IEditPrespriptionModal, setter: (newData: IEditPrespriptionModal) => void, finishEvent: () => void }) => {
+    const [loading, setLoading] = useState(false);
+    const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setter({
+            ...data, data: {
+                ...data.data,
+                Name: e.currentTarget.value
+            }
+        })
     }
+    const handleChangeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setter({
+            ...data, data: {
+                ...data.data,
+                Description: e.currentTarget.value
+            }
+        })
+    }
+
+    const handleSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setter({
+            ...data, data: {
+                ...data.data,
+                File: e.currentTarget.files
+            }
+        })
+    }
+    const [valid, setValid] = useState(false);
+    const handleCreatePrescription = () => {
+        console.log(data);
+        setValid(false)
+        let formData = new FormData();
+        formData.append('Name', data.data.Name);
+        formData.append('UserId', data.data.UserId);
+        formData.append('Description', data.data.Description);
+        data.data.File && formData.append('File', data.data.File![0]);
+        setLoading(true);
+        request.post(`/userprescriptions/${data.data.Id}?_METHOD=PUT`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(res => {
+            setLoading(false);
+            toast.success("Reçete güncellendi");
+            console.log("update ok", res);
+            finishEvent();
+        }).catch(err => {
+            setLoading(false);
+            toast.error("Reçete güncellenirken bir sorun oluştu tekrar deneyin.");
+            console.log("update hata ", err);
+            finishEvent();
+        })
+    }
+    const handleCancel = () => {
+        setter({
+            data: {
+                ...data.data,
+            }, open: false
+        })
+    }
+
+    useEffect(() => {
+        if (data.data.Name && data.data.UserId && data.data.Description) {
+            setValid(true);
+        } else {
+            setValid(false);
+        }
+    }, [data.data])
+
+    return data.open ? <div onClick={(e) => {
+        handleCancel();
+        e.stopPropagation();
+    }} className='fixed z-[9999] top-0 grid place-content-center left-0 w-screen h-screen bg-opacity-50 bg-black-100'>
+        <div onClick={(e) => {
+            e.stopPropagation()
+        }} className="w-[904px] relative min-h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
+            {loading && <LocalLoading message='Bekleyiniz' />}
+            <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold">Reçeteyi Düzenle</h1>
+            <p className='text-[#5C5C5C] text-[16px]'>Reçeteyi düzenlemek için gerekli alanları doldurunuz.</p>
+            <div className="flex flex-col gap-4 mt-[45px] mb-2 relative">
+                <p className='font-nexa-bold text-[24px] opacity-75 cursor-not-allowed'> {data.data.UserName || 'YOOK'} </p>
+                <FormInput value={data.data.Name} label='Reçete Adı' onChange={handleChangeTitle} />
+                <FormInputTextArea value={data.data.Description} onChange={handleChangeDescription} label='Açıklama' />
+                <DocumentsUpload title="Güncel Reçete (Opsiyonel)" value={data.data.File} onChange={handleSelectFile} />
+            </div>
+            <button disabled={!valid} onClick={handleCreatePrescription} className={classNames('text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px]', {
+                "opacity-50 cursor-not-allowed": !valid,
+            })}>
+                Güncelle
+            </button>
+            <button onClick={handleCancel} className='w-[50px] right-[20px] top-[20px] absolute text-[white] h-[50px] hover:bg-[#df7676] hover:shadow-deepgreen-100 duration-200 grid place-content-center hover:animate-spin transition-all hover:shadow-inner bg-[#4E929D] rounded-full'>
+                <Close />
+            </button>
+        </div>
+
+    </div> : <></>
 }
+
+
 const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespriptionModal, setter: (newData: INewPrespriptionModal) => void, finishEvent: () => void }) => {
     //api'den gelen patient listesi
     //listeden bir patient seçildiğinde çalıştırılacak fonksiyon
@@ -87,6 +264,7 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
     const [searchResults, setSearchResults] = useState<UserState[]>([]);
     const [selectedPatient, setSelectedPatient] = useState<UserState | null>(null);
     const [searchKey, setSearchKey] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleSearchPatient = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log(e.currentTarget.value);
@@ -149,15 +327,20 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
         formData.append('UserId', data.data.UserId);
         formData.append('Description', data.data.Description);
         formData.append('File', data.data.File![0]);
+        setLoading(true);
         request.post('/userprescriptions', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(res => {
+            setLoading(false);
+            toast.success("Reçete oluşturuldu");
             console.log("EKLENDI", res);
             setSelectedPatient(null);
             finishEvent();
         }).catch(err => {
+            setLoading(false);
+            toast.error("Reçete oluşturulurken bir sorun oluştu tekrar deneyin.");
             console.log("EKLENEMEDI ", err);
             setSelectedPatient(null);
             finishEvent();
@@ -223,6 +406,7 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
         <div onClick={(e) => {
             e.stopPropagation()
         }} className="w-[904px] relative min-h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
+            {loading && <LocalLoading message='Bekleyiniz' />}
             <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold">Reçete Oluştur</h1>
             <p className='text-[#5C5C5C] text-[16px]'> Hastaya reçete oluşturmak için gerekli alanları doldurunuz.</p>
             <div className="flex flex-col gap-4 mt-[45px] mb-2 relative">
@@ -244,8 +428,6 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
         </div>
 
     </div> : <></>
-
-
 }
 export default function PrescriptionsManagement() {
 
@@ -368,7 +550,7 @@ export default function PrescriptionsManagement() {
                     <div className='w-full border-2'>
                         {
                             prescriptions?.length > 0 ? (prescriptions?.map((item) => {
-                                return <Row key={v4()} data={item} />
+                                return <Row key={v4()} refresh={refresh} data={item} />
                             }) || <></>) : <h1 className='text-[#4D5628] text-[20px] text-center'>Reçeteniz bulunmamaktadır</h1>
                         }
                     </div>

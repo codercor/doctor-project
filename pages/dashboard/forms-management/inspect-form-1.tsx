@@ -350,7 +350,7 @@ export default function InspectFirstForm() {
                                     />
                                 </div>
                             </div>
-                            {formStatus == "Waiting" && <div className="flex flex mb-[60px] gap-[30px] w-[full]">
+                            {formStatus == "Waiting" && <div className="flex mb-[60px] gap-[30px] w-[full]">
                                 <button onClick={() => {
                                     setAreYouSure({
                                         isPositive: true,

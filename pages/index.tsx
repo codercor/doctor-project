@@ -69,13 +69,13 @@ const Home: NextPage = () => {
           <div className="bg-[url(/images/png/avakado.png)]  overflow-visible rounded-xl relative bg-cover  bg-center h-[460px] w-full">
             <div className="md:w-[630px] w-full h-[315px] absolute md:top-[30px] top-[20%]  md:left-[40%] rounded-2xl overflow-hidden ">
               <Carousel autoPlay >
-                {presses.map((item) => <div key={v4()} className=" flex items-center gap-[20px] px-[10px] w-full h-[300px] md:w-[630px] md:h-[315px] relative text-left bg-white-300 bg-opacity-70">
-                  <div className="min-w-[170px] h-[170px] relative hover:min-w-[190px] hover:h-[190px]">
+                {presses.map((item) => <div key={v4()} className="flex items-center gap-[20px] px-[10px] w-full h-[300px] md:w-[630px] md:h-[315px] relative text-left bg-white-300 bg-opacity-70">
+                  <div className="min-w-[170px] h-[170px] relative transition-all hover:min-w-[190px] hover:h-[190px]">
                     <Image src={item.Image} layout="fill" objectFit="cover" />
                   </div>
-                  <div>
-                    <Text type="h5" className="text-[#404720]">{item.Title}</Text>
-                    <Text type="paragraph" className=" text-[#404720]"> {item.Description} </Text>
+                  <div className="max-h-[200px] ">
+                    <Text type="h5" className="text-[#404720] md:text-[25px] !text-[14px]">{item.Title}</Text>
+                    <Text type="paragraph" className=" text-[#404720] text-[10px] md:text-[16px]  line-clamp-6"> {item.Description} </Text>
                   </div>
                 </div>)}
               </Carousel>
@@ -175,7 +175,7 @@ const FAQ = () => {
           return (
             <div
               key={id}
-              className="md:min-w-[482px] min-w-[370px] snap-start scroll-smooth pt-[26px] pl-[30px] h-[255px] bg-quaternary-light rounded-md"
+              className="md:min-w-[482px] mr-[10px] min-w-[320px] snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] h-[255px] bg-quaternary-light rounded-md"
             >
               <div className="bg-[#DEE4C3] mb-[22px] relative w-[60px] h-[60px] rounded-full grid place-content-center">
                 <Image src="/images/svg/help-green.svg" width={36} height={36} />
