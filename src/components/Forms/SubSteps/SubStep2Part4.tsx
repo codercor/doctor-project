@@ -171,14 +171,9 @@ export default function SubStep2Part4({
             </div>
             <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">Egzersiz</h3>
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                <FormInputTextArea
-                    label="Şuanki egzersiz düzeniniz hakkında bilgi veriniz"
-                    name="exercise"
-                    error={errors?.exercise}
-                    value={values.exercise}
-                    onChange={handleChange}
-                />
+                <EGZ values={values} handleChange={handleChange} />
             </div>
+
             <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <div className="flex flex-col">
                     <FormInputSelectOne
@@ -413,4 +408,40 @@ export default function SubStep2Part4({
         </>
 
     );
+}
+
+
+const EGZ = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[400px] my-1">
+        <p className="font-nexa-bold text-[20px] my-4 text-[#4E929D]">Şuanki Egzersiz Programınız:</p>
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2 bg-[#82b5bd] h-[40px]">
+                    <th>Aktivite</th>
+                    <th>Egzersiz Tipi</th>
+                    <th>Haftada Kaç Kez </th>
+                    <th>Süre/Sıklık (Dakika) </th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        { title: 'Kardiyo/Aerobik', name: "egz1" },
+                        { title: 'Kuvvet/Dayanıklılık', name: "egz2" },
+                        { title: 'Esneme/Germe', name: "egz3" },
+                        { title: 'Denge', name: "egz4" },
+                        { title: 'Spor/Hobi (örnek: golf)', name: "egz5" },
+                        { title: 'Diğer:', name: "egz6" },
+                    ].map((item) => {
+                        return (<tr key={item.name} className="table-row border-2">
+                            <td className="table-cell"> {item.title} </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values?.[item.name + 'E']} name={item.name + 'E'} type="text" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values?.[item.name + 'H']} name={item.name + 'H'} type="text" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values?.[item.name + 'S']} name={item.name + 'S'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
 }
