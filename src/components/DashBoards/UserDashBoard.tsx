@@ -123,8 +123,8 @@ const AllTrainingsFloating = () => {
                     height: 328,
                     mHeight: 250,
                     isMobile,
-                    sizeType: isMobile ? "sm" : "md"
-
+                    sizeType: isMobile ? "sm" : "md",
+                    DiscountRate: item.DiscountRate,
                 })
             }
             ))
