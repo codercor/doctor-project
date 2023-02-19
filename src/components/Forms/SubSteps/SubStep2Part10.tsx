@@ -5,6 +5,7 @@ import FormInputSelectOne from "../FormInput/FormInputSelectOne";
 import FormInputSelectMulti from "../FormInput/FormInputSelectMulti";
 import useUser from "src/hooks/user.hook";
 import { Field } from "formik";
+import { useRouter } from "next/dist/client/router";
 
 const EH = [
     { value: "evet", label: "Evet" },
@@ -72,15 +73,21 @@ export default function SubStep2Part10({
 }
 ) {
     const { user } = useUser()
+    const { query: { flow_id } } = useRouter()
+
+    const patientGender = localStorage.getItem(flow_id + "-Gender") || user.Information?.Gender;
+
+    console.log("GENDER", patientGender);
+
     return (
         <>
             <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
                 <h2 className="font-nexa-regular text-[18px]">Belirtilerin İncelenmesi</h2>
             </div>
 
-            <div className="flex flex-col  justify-center border-2 min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Şu anda veya son 6 ay içinde bulunan şikayetleri ve şiddetini işaretleyin..</label>
-                <label className="text-center text-[16px] font-nexa-bold">Genel</label>
+            <div className="flex flex-col  justify-center border-2 min-h-[150px] bg-[#F9F9F9] items-start pl-[30px] gap-[30px]  w-[full]">
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Şu anda veya son 6 ay içinde bulunan şikayetleri ve şiddetini işaretleyin..</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Genel</label>
                 <FormInputSelectOne
                     label="Soğuk eller ve ayaklar"
                     name="examinationOfSymptomsGeneralQuestion1"
@@ -185,7 +192,7 @@ export default function SubStep2Part10({
                     error={errors?.examinationOfSymptomsGeneralQuestion13}
                     onChange={handleChange}
                 />
-                <label className="text-center text-[16px] font-nexa-bold">Baş, gözler ve kulaklar</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Baş, gözler ve kulaklar</label>
                 <FormInputSelectOne
                     label="Konjuktivit"
                     name="examinationOfSymptomsEyesAndEarQuestion1"
@@ -243,7 +250,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
-                    label="üGözkapağı kenarında kızarıklık"
+                    label="Gözkapağı kenarında kızarıklık"
                     name="examinationOfSymptomsEyesAndEarQuestion8"
                     options={HOS}
                     value={values.examinationOfSymptomsEyesAndEarQuestion8}
@@ -299,7 +306,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
 
-                <label className="text-center text-[16px] font-nexa-bold">Kas-iskelet</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Kas-iskelet</label>
                 <FormInputSelectOne
                     label="Sırt kasında spazm"
                     name="examinationOfSymptomsSkeletonQuestion1"
@@ -454,7 +461,7 @@ export default function SubStep2Part10({
                 />
 
 
-                <label className="text-center text-[16px] font-nexa-bold">Duygudurum/Sinirler</label>
+                <label className="font-nexa-bold text-[20px] text-left  text-[#4E929D]">Duygudurum/Sinirler</label>
                 <FormInputSelectOne
                     label="Agorafobi"
                     name="examinationOfSymptomsNervesQuestion1"
@@ -657,7 +664,7 @@ export default function SubStep2Part10({
                 />
 
 
-                <label className="text-center text-[16px] font-nexa-bold">Kalp-damar</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Kalp-damar</label>
                 <FormInputSelectOne
                     label="Anjina/Göğüs ağrısı"
                     name="examinationOfSymptomsHeartQuestion1"
@@ -747,7 +754,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
 
-                <label className="text-center text-[16px] font-nexa-bold">İdrar yolları</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">İdrar yolları</label>
 
                 <FormInputSelectOne
                     label="Yatağııslatma"
@@ -805,8 +812,8 @@ export default function SubStep2Part10({
                     error={errors?.examinationOfSymptomsPeeQuestion7}
                     onChange={handleChange}
                 />
-                {user.Information?.Gender === "Erkek" && <><FormInputSelectOne
-                    label="Prostat büyümes"
+                {patientGender === "Erkek" && <><FormInputSelectOne
+                    label="Prostat büyümesi"
                     name="examinationOfSymptomsPeeQuestion8"
                     options={HOS}
                     value={values.examinationOfSymptomsPeeQuestion8}
@@ -832,7 +839,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
 
-                <label className="text-center text-[16px] font-nexa-bold">Sindirim</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Sindirim</label>
 
                 <FormInputSelectOne
                     label="Anal spazm"
@@ -1139,7 +1146,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
 
-                <label className="text-center text-[16px] font-nexa-bold">Yeme Alışkanlığı</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Yeme Alışkanlığı</label>
                 <FormInputSelectOne
                     label="Çok fazla yemek"
                     name="anotherTest1"
@@ -1229,7 +1236,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
 
-                <label className="text-center text-[16px] font-nexa-bold">Solunum</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Solunum</label>
                 <FormInputSelectOne
                     label="Ağız kokusu"
                     name="anotherTest12"
@@ -1375,7 +1382,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
 
-                <label className="text-center text-[16px] font-nexa-bold">Tırnaklar</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Tırnaklar</label>
 
 
                 <FormInputSelectOne
@@ -1484,7 +1491,7 @@ export default function SubStep2Part10({
                 />
 
 
-                <label className="text-center text-[16px] font-nexa-bold">Lenf Bezleri</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Lenf Bezleri</label>
 
 
                 <FormInputSelectOne
@@ -1505,7 +1512,7 @@ export default function SubStep2Part10({
                 />
 
 
-                <label className="text-center text-[16px] font-nexa-bold">Deri, Kuruluk</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Deri, Kuruluk</label>
 
 
                 <FormInputSelectOne
@@ -1582,7 +1589,7 @@ export default function SubStep2Part10({
                 />
 
 
-                <label className="text-center text-[16px] font-nexa-bold">Deri Problemleri</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Deri Problemleri</label>
 
                 <FormInputSelectOne
                     label="Sırtta sivilce"
@@ -1826,7 +1833,7 @@ export default function SubStep2Part10({
                 />
 
 
-                <label className="text-center text-[16px] font-nexa-bold">Deride Kaşıntı</label>
+                <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Deride Kaşıntı</label>
 
                 <FormInputSelectOne
                     label="Anüste"
@@ -1933,9 +1940,9 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 {
-                    user.Information?.Gender === "Erkek" && <>
+                    patientGender === "Erkek" && <>
 
-                        <label className="text-center text-[16px] font-nexa-bold">Erkek Üreme sistemi</label>
+                        <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Erkek Üreme sistemi</label>
 
                         <FormInputSelectOne
                             label="Penisten boşalma"
@@ -2002,12 +2009,9 @@ export default function SubStep2Part10({
 
                 }
 
-
                 {
-                    user.Information?.Gender === "Kadın" && <>
-
-                        <label className="text-center text-[16px] font-nexa-bold">Kadın üreme</label>
-
+                    patientGender === "Kadın" && <>
+                        <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Kadın üreme</label>
                         <FormInputSelectOne
                             label="Memede kistler"
                             name="anotherTest104"

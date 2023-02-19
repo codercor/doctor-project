@@ -5,6 +5,7 @@ import FormInputSelectOne from "../FormInput/FormInputSelectOne";
 import FormInputSelectMulti from "../FormInput/FormInputSelectMulti";
 import useUser from "src/hooks/user.hook";
 import { Field } from "formik";
+import { useRouter } from "next/dist/client/router";
 
 const EH = [
     { value: "evet", label: "Evet" },
@@ -72,9 +73,11 @@ export default function SubStep2Part8({
 }
 ) {
     const { user } = useUser()
+    const { query: { flow_id } } = useRouter()
+    const patientGender = localStorage.getItem(flow_id + "-Gender") || user.Information?.Gender;
     return (
         <>
-           <label className="font-nexa-bold text-[20px] text-[#4E929D]">Çevresel/Detoksifikasyon Öyküsü</label>
+            <label className="font-nexa-bold text-[20px] text-[#4E929D]">Çevresel/Detoksifikasyon Öyküsü</label>
             <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Bunlardan hangileri sizi önemli derecede etkiler?"
@@ -182,7 +185,7 @@ export default function SubStep2Part8({
             </div>
 
 
-            {user.Information?.Gender === "Erkek" && <>
+            {patientGender === "Erkek" && <>
 
                 <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
                     <h2 className=" text-[18px]">Erkek özel özgeçmiş:</h2>
@@ -272,14 +275,14 @@ export default function SubStep2Part8({
             </>
             }
 
-            {user.Information?.Gender === "Kadın" && <>
+            {patientGender === "Kadın" && <>
 
                 <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
                     <h2 className=" text-[18px]">Kadın özel özgeçmiş:</h2>
                 </div>
 
                 <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                   <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kadın-doğum Öyküsü (Uygun olanları işaretleyip sayısını yazınız)</label>
+                    <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kadın-doğum Öyküsü (Uygun olanları işaretleyip sayısını yazınız)</label>
 
                     <FormInputSelectOne
                         label="Gebelik yaşadınız mı ?"
@@ -501,7 +504,7 @@ export default function SubStep2Part8({
                         </>
                     }
 
-                   <label className="font-nexa-bold text-[20px] text-[#4E929D]">Adet görme öyküsü:</label>
+                    <label className="font-nexa-bold text-[20px] text-[#4E929D]">Adet görme öyküsü:</label>
                     <FormInput
                         label={`İlk adet yaşınız ?`}
                         value={values.firstMenstrualAge}

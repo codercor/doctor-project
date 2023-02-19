@@ -82,6 +82,33 @@ export const flow3FormInitialValues = {
     sleepPills: "hayır",
     sleepPillsDetail: "uyku ilacı adı",
     exercise: "asdasd",
+
+    //EGZ 
+    egz1E: "qwer",
+    egz1H: "trw",
+    egz1S: "lnll",
+    
+    egz2E: "qwer",
+    egz2H: "trw",
+    egz2S: "lnll",
+
+    egz3E: "qwer",
+    egz3H: "trw",
+    egz3S: "lnll",
+
+    egz4E: "qwer",
+    egz4H: "trw",
+    egz4S: "lnll",
+
+    egz5E: "qwer",
+    egz5H: "trw",
+    egz5S: "lnll",
+
+    egz6E: "qwer",
+    egz6H: "trw",
+    egz6S: "lnll",
+    //EGZ
+
     exerciseWant: "evet",
     exerciseDisability: "evet",
     exerciseDisabilityDesc: "test",

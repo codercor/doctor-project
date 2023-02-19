@@ -60,12 +60,14 @@ export default function SecondForm({ }: any) {
     const { user: { Id: UserId } } = useUser()
     const router = useRouter()
     const [isMale, setIsMale] = useState(false);
+    const [ownerGender, setOwnerGender] = useState<undefined | "Erkek" | "Kadın">(undefined)
     const [data, setData] = useState<typeof initialValues>(initialValues)
     const flowId = router.query.flow_id
     const fetchFlow = async () => {
         if (!flowId) return;
         let response = await request.get(`/userflows/form/${flowId}`)
         console.log("response.data ", response.data);
+        localStorage.setItem(flowId + "-Gender", response.data.user.information.Gender)
         return response.data.Link
     }
 
@@ -196,13 +198,13 @@ export default function SecondForm({ }: any) {
                                     {(
                                         <SubstepViever subSteps={subSteps} activeSubStep={part} />
                                     )}
-                                     <div className='bg-[red] opacity-[0.01] w-full h-full absolute top-0 left-0'></div>
+                                    <div className='bg-[red] opacity-[0.01] w-full h-full absolute top-0 left-0'></div>
                                 </div>
                                 <Form2Footer parts={countOfSubSteps} setter={setPart} active={part} />
                                 <button onClick={() => {
                                     finalizeTheForm()
                                 }}
-                                className="bg-[#4e9d89] !rounded-[20px_5px] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
+                                    className="bg-[#4e9d89] !rounded-[20px_5px] w-[200px] h-[50px] text-[14px] text-[white] flex items-center justify-center">
                                     Onayla
                                 </button>
                             </form>
