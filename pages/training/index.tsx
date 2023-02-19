@@ -78,7 +78,7 @@ const BuyKit = ({ id, price, totalLength, DiscountRate }: { DiscountRate: number
                 <School />
                 <Text>Fiyat</Text>
             </div>
-            <Text> {Number(calculatedPrice) == 0 ? 'Ücretsiz' : <p className="flex items-center">  <span className="text-[12px] mr-1  text-[#CD2D2D] line-through">{price}<TL /></span>  {calculatedPrice}<TL /></p>}</Text>
+            <Text> {Number(calculatedPrice) == 0 ? 'Ücretsiz' : <p className="flex items-center">  <span className="text-[12px] mr-1  text-[#CD2D2D] line-through">{DiscountRate != 0 && price}{DiscountRate != 0 && <TL />}</span>  {calculatedPrice}<TL /></p>}</Text>
         </div>
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>
