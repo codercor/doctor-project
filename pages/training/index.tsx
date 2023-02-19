@@ -14,6 +14,7 @@ import useUser from 'src/hooks/user.hook'
 import Link from 'next/link'
 import { Zoom } from '@mui/material'
 import { toast } from 'react-hot-toast'
+import TL from '@components/Text/TL'
 const TrainingDocumentCard = ({ title, url }: { title: string, url: string }) => {
     const handleDownload = () => {
         window.open(url, '_blank')
@@ -68,15 +69,16 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
     </div>
 }
 
-const BuyKit = ({ id, price, totalLength }: { id: string, price: number, totalLength: number }) => {
+const BuyKit = ({ id, price, totalLength, DiscountRate }: { DiscountRate: number, id: string, price: number, totalLength: number }) => {
     const { user: { IsAuthenticated, BillingDetail } } = useUser()
+    const calculatedPrice = (Number(price) * ((100 - DiscountRate) / 100)).toFixed(1).toString();
     return <>
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>
                 <School />
                 <Text>Fiyat</Text>
             </div>
-            <Text> {price == 0 ? 'Ücretsiz ' : <>{price.toFixed(2)}₺</>}</Text>
+            <Text> {Number(calculatedPrice) == 0 ? 'Ücretsiz' : <p className="flex items-center">  <span className="text-[12px] mr-1  text-[#CD2D2D] line-through">{price}<TL /></span>  {calculatedPrice}<TL /></p>}</Text>
         </div>
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>
@@ -160,7 +162,7 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
                 </div>
             </div>
             <div className="md:w-[30%] w-full h-full bg-[#F4F4F4] pt-[42px] pl-[32px] pr-[30px]">
-                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price - (training.Price * (training.DiscountRate / 100))} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
+                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price} DiscountRate={training.DiscountRate} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
 
                 <Text type='h6' className='text-secondary-flat'>Eğitim Konuları</Text>
                 <div className="w-full scrollbar-thin scrollbar-thumb-tertiary-light overflow-auto h-[90%]">

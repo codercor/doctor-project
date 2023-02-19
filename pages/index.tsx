@@ -124,9 +124,10 @@ const EducationSection = () => {
           isMobile,
           title: publicTrainings[i].Name,
           description: publicTrainings[i].Details,
-          price: (publicTrainings[i].Price - (publicTrainings[i].Price * (publicTrainings[i].DiscountRate / 100))),
+          price: publicTrainings[i].Price,
           image: publicTrainings[i].Image,
-          Id: publicTrainings[i].Id
+          Id: publicTrainings[i].Id,
+          DiscountRate: publicTrainings[i].DiscountRate,
         }
       })
       console.log(formattedTrainings);
@@ -157,7 +158,7 @@ const EducationSection = () => {
         trainings.length > 0 && trainings.map((training, index) =>
           <TrainingCard {...training} key={v4()} />)
       }
-     
+
     </div>
   </Container>
 }

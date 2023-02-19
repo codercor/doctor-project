@@ -32,9 +32,9 @@ const Footer = () => {
 
                         </div>
                         <div className="md:ml-[60px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
-                            <Nav text="ANASAYFA" />
-                            <Nav text="HAKKIMDA" />
-                            <Nav text="EĞİTİMLER" />
+                            <Nav to="/" text="ANASAYFA" />
+                            <Nav to="/hakkimda" text="HAKKIMDA" />
+                            <Nav to="/egitimler" text="EĞİTİMLER" />
                         </div>
                         <div className="md:ml-[160px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
                             <Nav text="Gizlilik Politikası" to="/sozlesmeler/gizlilik" />

@@ -57,7 +57,8 @@ const TrainingCard = ({
     isMobile = false,
     Id,
     showPrice = true,
-}: TrainingCardProps & { Id?: string, showPrice?: boolean }) => {
+    DiscountRate = 0
+}: TrainingCardProps & { DiscountRate?: number, Id?: string, showPrice?: boolean }) => {
 
     console.log("Data", title);
 
@@ -144,20 +145,28 @@ const TrainingCard = ({
             <ArrowIcon color="#ffffff" />
         </span>
     </Button>;
-    const PriceWithBuyButton = () => <Button direction="right" type="transparent-white" className={priceClassName}>
-        <Text type="body" className="!text-[18px] text-[#3A356B]">{Number(price) == 0 ? 'Ücretsiz' : <> {price}<TL /> </>}</Text>
-        {showBuyButton &&
-            <Button type="tertiary-flat" onClick={() => Router.push(detailHref)} className={classNames("absolute flex items-center bottom-0 left-[120px] !bg-[#C3BFE8] !border-none", {
-                ...buttonSizeMixin
-            })}  >Satın Al</Button>
-        }
-    </Button>
-    const PriceButtonOnImage = () => <Button direction="right" type="transparent-white" className={priceClassName}>
-        <Text type="body" className={classNames(" text-[#3A356B]", {
-            "!text-[20px]": sizeType == "md",
-            "!text-[16px]": sizeType == "sm",
-        })}>{Number(price) == 0 ? 'Ücretsiz' : <> {price}<TL /> </>}</Text>
-    </Button>
+    const PriceWithBuyButton = () => {
+        let calculatedPrice = (Number(price) * ((100 - DiscountRate) / 100)).toFixed(1).toString();
+        return <Button direction="right" type="transparent-white" className={priceClassName + " w-auto  text-center flex  items-center justify-center !pl-4"}>
+            <Text type="body" className="!text-[16px]  text-[#3A356B]">
+                {Number(calculatedPrice) == 0 ? 'Ücretsiz' : <p className="flex items-center">  <span className="text-[12px] mr-1  text-[#CD2D2D] line-through">{price}<TL /></span>  {calculatedPrice}<TL /></p>}
+            </Text>
+            {showBuyButton &&
+                <Button type="tertiary-flat" onClick={() => Router.push(detailHref)} className={classNames("absolute flex items-center bottom-0 left-[120px] !bg-[#C3BFE8] !border-none", {
+                    ...buttonSizeMixin
+                })}  >Satın Al  </Button>
+            }
+        </Button>
+    }
+    const PriceButtonOnImage = () => {
+        let calculatedPrice = (Number(price) * ((100 - DiscountRate) / 100)).toFixed(1).toString();
+        return <Button direction="right" type="transparent-white" className={priceClassName + " w-auto pl-[10px]"}>
+            <Text type="body" className={classNames(" text-[#3A356B]", {
+                "!text-[20px]": sizeType == "md",
+                "!text-[16px]": sizeType == "sm",
+            })}> {Number(calculatedPrice) == 0 ? 'Ücretsiz' : <p className="flex items-center">  <span className="text-[12px] mr-1  text-[#CD2D2D] line-through">{price}<TL /></span>  {calculatedPrice}<TL /></p>}</Text>
+        </Button>
+    }
     return <div className={boxClassName} style={{
         minWidth: _width + "px",
         minHeight: _height + "px",

@@ -120,7 +120,7 @@ const SettingsInvoiceSettings = () => {
         return <form onSubmit={(e) => {
             e.preventDefault();
             console.log("submit edildi", values);
-            if(!values.Surname) values.Surname = " "
+            if (!values.Surname) values.Surname = " "
             const updateUrl = `/user/billing/${user.Id}`;
             request.put(updateUrl, values).then((res) => {
                 toast.success("Fatura bilgileriniz başarıyla güncellendi");
@@ -139,13 +139,21 @@ const SettingsInvoiceSettings = () => {
             <FormInputSelectOne onChange={_handleChange} error={errors.ContactType} value={values.ContactType} disabled={!isEdit} name="ContactType" label="Fatura Tipi" options={[{ label: "Bireysel", value: "person" }, { label: "Kurumsal", value: "company" }]} />
             <FormInput error={errors.RegistrationAddress} onChange={_handleChange} value={values.RegistrationAddress} disabled={!isEdit} name="RegistrationAddress" label="Fatura Adresi" type="text" />
             <div className="flex gap-[41px]">
-                <FormInput onChange={_handleChange} value={values.Name} error={errors.Name} disabled={!isEdit} name="Name" label={values.ContactType != "company"? "Ad":"Firma Adı"} type="text" />
+                <FormInput onChange={_handleChange} value={values.Name} error={errors.Name} disabled={!isEdit} name="Name" label={values.ContactType != "company" ? "Ad" : "Firma Adı"} type="text" />
                 {
                     values.ContactType != "company" && <FormInput onChange={_handleChange} value={values.Surname} error={errors.Surname} disabled={!isEdit} name="Surname" label="Soyad" type="text" />
                 }
             </div>
             <FormInput onChange={_handleChange} value={values.Email} disabled={!isEdit} error={errors.Email} name="Email" label="E-posta" type="email" />
             <FormInput onChange={_handleChange} value={values.IdentityNumber} disabled={!isEdit} error={errors.IdentityNumber} name="IdentityNumber" label={(values.ContactType == 'person' ? 'Tc Kimlik Numarası' : 'Vergi numarası')} type="text" />
+            {values.ContactType == 'company' && <FormInput onChange={_handleChange}
+                value={values.TaxOffice}
+                disabled={!isEdit}
+                error={errors.TaxOffice}
+                name="TaxOffice"
+                label="Vergi Dairesi"
+                type="text" />
+            }
             <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" />
             <FormInputSelect
                 disabled={!isEdit}
@@ -192,8 +200,7 @@ const SettingsInvoiceSettings = () => {
                 options={districts}
             />
             </>}
-            {
-                values.ContactType == 'company' && <FormInput onChange={_handleChange} value={values.TaxOffice} disabled={!isEdit} error={errors.TaxOffice} name="TaxOffice" label="Vergi Dairesi" type="text" />}
+
             <button type="submit" disabled={!isEdit} onClick={() => {
                 console.log("values", values);
 

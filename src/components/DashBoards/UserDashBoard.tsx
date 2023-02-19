@@ -100,12 +100,12 @@ const AllTrainingsFloating = () => {
         if (publicTrainings.length > 0) {
             setTrainings(publicTrainings.map((item) => {
                 console.log("IIITem", item);
-
+                //       (item.Price * ((100 - item.DiscountRate) / 100)).toFixed(1).toString(),
                 return ({
                     image: item.Image as string || '',
                     title: item.Name as string || '',
                     description: item.Details as string || '',
-                    price: (item.Price * ((100 - item.DiscountRate) / 100)).toFixed(1).toString(),
+                    price: (item.Price + ""),
                     backgroundColor: "!bg-[#EFEEF5]",
                     detailHref: `/training?id=${item.Id}`,
                     detailOnImage: true,

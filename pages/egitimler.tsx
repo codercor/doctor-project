@@ -162,7 +162,7 @@ const Egitimler = () => {
                     image: t.Image as string || '',
                     title: t.Name as string || '',
                     description: t.Details as string || '',
-                    price: (t.Price * ((100 - t.DiscountRate) / 100)).toFixed(1).toString(),
+                    price: t.Price, // (t.Price * ((100 - t.DiscountRate) / 100)).toFixed(1).toString()
                     backgroundColor: "!bg-[#EFEEF5]",
                     detailHref: `/training?id=${t.Id}`,
                     detailOnImage: isMobile ? true : false,
@@ -181,8 +181,8 @@ const Egitimler = () => {
                     mHeight: 250,
                     isMobile,
                     sizeType: isMobile ? "sm" : "md",
-                    Id: t.Id
-
+                    Id: t.Id,
+                    DiscountRate: t.DiscountRate
                 }
             });
             let temps = [...trainings];

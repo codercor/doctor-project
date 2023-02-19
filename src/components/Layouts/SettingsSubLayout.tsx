@@ -6,7 +6,7 @@ import useUser from "src/hooks/user.hook";
 const SettingsSubLayout = ({ children }: { children: React.ReactNode }) => {
     const { user: { IsAdmin } } = useUser()
     return (
-        <div className="md:h-[798px] scrollbar-thin scrollbar-thumb-tertiary-flat  flex md:flex-row flex-col overflow-scroll rounded-[30px_5px] bg-[#F4F4F4]">
+        <div className="md:min-h-[798px] scrollbar-thin scrollbar-thumb-tertiary-flat  flex md:flex-row flex-col overflow-scroll rounded-[30px_5px] bg-[#F4F4F4]">
             <div className="md:w-1/3 h-full flex flex-col text-start items-center justify-start py-[16px] md:py-[26px] px-[30px]">
 
                 <div className="w-full flex md:flex-col flex-row">
