@@ -32,16 +32,17 @@ export default function Assays() {
 
     const [searchKey, setSearchKey] = useState('');
 
-    const [openAreYouSureModal, setOpenAreYouSureModal] = useState(false);
+
 
     const Row = ({ assay }: { assay: Assay }) => {
         const [open, setOpen] = useState(false);
+        const [openAreYouSureModal, setOpenAreYouSureModal] = useState(false);
         const [assayFiles, setAssayFiles] = useState<FileList | null>(null);
         return <div className='flex flex-col w-full'>
             {openAreYouSureModal && <AreYouSureModal finish={({ confirmed }) => {
                 console.log("confirmed", confirmed);
                 if (confirmed) {
-                    request.delete(`/userassays/${assay.Id}`).then(() => { 
+                    request.delete(`/userassays/${assay.Id}`).then(() => {
                         refresh();
                         toast.success('Tahlil silindi')
                     }).catch(() => {
