@@ -16,8 +16,8 @@ import { useRouter } from "next/dist/client/router";
 
 const ChatUserCard = ({ chatLine, onClick, active }: { chatLine: ChatLine, onClick: () => void, active: boolean }) => {
     const { getChatLineMessages } = useChat();
+
     return <div onClick={() => {
-        getChatLineMessages(chatLine.ChatLineId);
         onClick()
     }} className={classNames("bg-[#D0E4E8] transition-all hover:bg-[white] duration-1000 hover:rounded-[5px_20px] hover:border-2  h-[97px] flex items-center justify-start p-[20px]", {
         "!bg-[white] transtion-all  border-2 rounded-[20px_5px] border-[#D0E4E8]": active
@@ -49,8 +49,9 @@ const ChatMessage = ({ isMe = true, message }: ChatMessageProps) => {
     </div>
 }
 const ChatBox = () => {
-    const { chat: { Messages, SelectedChatLineId, ChatLines }, sendMessage } = useChat();
+    const { chat: { Messages, SelectedChatLineId, ChatLines, }, sendMessage, getChatLineMessages } = useChat();
     const { user: { Id } } = useUser()
+    const router = useRouter();
     console.log("Id", Id);
     console.log("Messages", Messages[0]);
     const [message, setMessage] = useState('');
@@ -61,8 +62,12 @@ const ChatBox = () => {
     }, [Messages]);
     const [disabled, setDisabled] = useState(false);
     return <div className="px-[30px] relative w-full h-full flex flex-col bg-[#F9FBFC]">
+        {SelectedChatLineId && <div onClick={() => {
+            getChatLineMessages(SelectedChatLineId)
+        }} className="w-[40px] hover:shadow-md shadow-xl transition-all cursor-pointer grid place-content-center rounded-[5px_20px] absolute top-0 right-0 h-[40px] bg-secondary text-[white]">
+            <Refresh />
+        </div>}
 
-        <div className="w-full h-[30px] text-center flex items-center justify-center sticky top-0 bg-[#F9FBFC]"> <Text className="text-gray-300"></Text> </div>
         <div className="w-full relative overflow-auto h-full flex flex-col-reverse">
 
             {Messages.map((item) => <ChatMessage key={v4()} message={item} isMe={!(item.SenderId == Id)} />)}
@@ -111,22 +116,14 @@ const ChatBox = () => {
     </div>
 }
 const Chat = () => {
-    const { chat: { ChatLinesLoading }, getChatLines, ChatLines } = useChat();
+    const { chat: { ChatLinesLoading }, getChatLines, ChatLines, getChatLineMessages } = useChat();
     const [toastId, setToastId] = useState<string>('');
     const [activeLineId, setActiveLineId] = useState<string | null>(null);
-    useEffect(() => {
-        if (ChatLinesLoading) {
-            setToastId(toast.loading('Mesaj listesi Yükleniyor...'))
-        }
-        else {
-            setTimeout(() => {
-                toast.remove(toastId);
-                toast.success('Mesaj listesi Yüklendi');
-            }, 500);
-        }
-    }, [ChatLinesLoading]);
     const { user: { Information } } = useUser()
     const router = useRouter();
+
+
+
     useEffect(() => {
         const userGender = Information.Gender
         const userFullName = Information.Fullname
@@ -135,8 +132,19 @@ const Chat = () => {
             router.push("/dashboard/account");
             return;
         }
-        getChatLines();
+
     }, []);
+    useEffect(() => {
+        let loadingToast = toast.loading("Mesajlar yükleniyor...")
+        getChatLines()?.then(() => {
+            toast.dismiss(loadingToast);
+            toast.success("Mesajlar yüklendi.")
+        })?.catch(() => {
+            toast.dismiss(loadingToast);
+            toast.error("Mesajlar yüklenirken bir hata oluştu.")
+        })
+
+    }, [activeLineId]);
     const isDesktop = useIsDesktop();
     return (
         <DashboardLayout>
@@ -146,19 +154,19 @@ const Chat = () => {
                 <div className=" md:h-[798px] flex h-full  rounded-[30px_5px] bg-[#F4F4F4]">
                     <div className="w-1/3 h-full flex relative flex-col text-start items-center justify-start py-[26px] px-[30px]">
                         <div className="flex justify-between w-full">
-                            <Text type="h3" className="text-secondary !text-[20px] w-full">Mesajlar</Text>
+                            <Text type="h3" className="text-secondary !text-[20px] w-full">Mesajlar   </Text>
                         </div>
-                        <div onClick={() => {
-                            router.reload();
-                        }} className="w-[40px] hover:shadow-md shadow-xl transition-all cursor-pointer grid place-content-center rounded-[5px_20px] absolute top-0 right-0 h-[40px] bg-secondary text-[white]">
-                            <Refresh />
-                        </div>
+
                         <div className="w-full h-full flex flex-col gap-[10px] overflow-auto  scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100">
-                            {ChatLines.map((item) => <ChatUserCard active={
-                                activeLineId == item.ChatLineId
-                            } onClick={() => {
-                                setActiveLineId(item.ChatLineId);
-                            }} chatLine={item} key={v4()} />)}
+
+                            {ChatLines.map((item) => <>
+                                {/* <> {item.ChatLineId}</> */}
+                                <ChatUserCard active={
+                                    activeLineId == item.ChatLineId
+                                } onClick={() => {
+                                    getChatLineMessages(item.ChatLineId);
+                                    setActiveLineId(item.ChatLineId);
+                                }} chatLine={item} key={v4()} /></>)}
                         </div>
                     </div>
 

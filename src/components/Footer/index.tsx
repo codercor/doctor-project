@@ -2,6 +2,7 @@ import Container from "@components/Container";
 import ArrowIcon from "@components/Icon/ArrowIcon";
 import Logo from "@components/Logo";
 import Text from "@components/Text";
+import { Facebook, Instagram, Twitter, YouTube } from "@mui/icons-material";
 import Image from "next/image";
 import { useRouter } from "next/router"
 
@@ -57,12 +58,18 @@ const Footer = () => {
                             </div>
                             <Text type="paragraph" className="text-[white] mt-[2px] md:mt-[7px]">TAKİP ET</Text>
                             <div className="flex gap-2">
-                                <Image onClick={() => {
+                                <Instagram onClick={() => {
                                     window.open("https://www.instagram.com/nazanuysalharzadin", "_blank")
-                                }} src="/images/svg/instagram.svg" width={24} height={24} />
-                                <Image onClick={() => {
+                                }} className="!text-[32px] text-[white]" />
+                                <YouTube onClick={() => {
                                     window.open("https://www.youtube.com/channel/UCUXLeXnl9FLy3HziVsoLTKQ?app=desktop", "_blank")
-                                }} src="/images/svg/youtube.svg" width={24} height={24} />
+                                }} className="!text-[32px] text-[white]" />
+                                <Facebook onClick={() => {
+                                    window.open("https://www.facebook.com/nazanuysalharzadin?locale=tr_TR", "_blank")
+                                }} className="!text-[32px] text-[white]" />
+                                <Twitter onClick={() => {
+                                    window.open("https://twitter.com/nazanuysalharza", "_blank")
+                                }} className="!text-[32px] text-[white]" />
                             </div>
                         </div>
                     </div>
@@ -75,7 +82,7 @@ const Footer = () => {
             </Container>
             <Container className="h-[48px] !max-w-[100vw] bg-secondary">
                 <Container className="h-full flex  !max-w-[1240px]  items-center">
-                    <Text type="overline" className="text-[white] md:ml-0 ml-[40px]">Prof.Dr. Nazan Uysal Harzadın © 2022</Text>
+                    <Text type="overline" className="text-[white] md:ml-0 ml-[40px]">Prof.Dr. Nazan Uysal Harzadın © 2023</Text>
                 </Container>
             </Container>
         </Container>
