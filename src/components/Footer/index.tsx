@@ -26,8 +26,10 @@ const Footer = () => {
                 <Container className="h-[calc(100%-48px)] flex flex-col  !max-w-[1240px] bg-primary-flat">
                     <div className="flex md:flex-row flex-col md:items-start items-center">
                         <div className="md:block flex flex-col items-center ">
-                            <Logo />
-                            <div className="mt-4">
+                            <Logo  />
+                            <div className="mt-4 cursor-pointer" onClick={() => {
+                                window.open("https://www.ifm.org/practitioners/nazan-uysal-harzadin/", "_blank")
+                            }}>
                                 <Image src="/images/svg/cert.svg" width={140} height={36} />
                             </div>
 
@@ -60,16 +62,16 @@ const Footer = () => {
                             <div className="flex gap-2">
                                 <Instagram onClick={() => {
                                     window.open("https://www.instagram.com/nazanuysalharzadin", "_blank")
-                                }} className="!text-[32px] text-[white]" />
+                                }} className="!text-[32px] cursor-pointer hover:scale-[1.1] text-[white]" />
                                 <YouTube onClick={() => {
                                     window.open("https://www.youtube.com/channel/UCUXLeXnl9FLy3HziVsoLTKQ?app=desktop", "_blank")
-                                }} className="!text-[32px] text-[white]" />
+                                }} className="!text-[32px] cursor-pointer hover:scale-[1.1] text-[white]" />
                                 <Facebook onClick={() => {
                                     window.open("https://www.facebook.com/nazanuysalharzadin?locale=tr_TR", "_blank")
-                                }} className="!text-[32px] text-[white]" />
+                                }} className="!text-[32px] cursor-pointer hover:scale-[1.1] text-[white]" />
                                 <Twitter onClick={() => {
                                     window.open("https://twitter.com/nazanuysalharza", "_blank")
-                                }} className="!text-[32px] text-[white]" />
+                                }} className="!text-[32px] cursor-pointer hover:scale-[1.1] text-[white]" />
                             </div>
                         </div>
                     </div>

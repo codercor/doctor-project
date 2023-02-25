@@ -34,7 +34,9 @@ const FirstBanner = () => {
                         - Lana Rafaela</Text>
                     {/* <Button type="secondary" onClick={() => Router.push('/egitimler')}  >Eğitimlere Göz At</Button> */}
                 </div>
-                <div className="w-[630px] h-fit">
+                <div onClick={()=>{
+                    window.open("https://www.ifm.org/practitioners/nazan-uysal-harzadin/", "_blank")
+                }} className="w-[630px] h-fit cursor-pointer">
                     <Image src="/images/svg/cert.svg" height={120} width={400} />
                 </div>
             </Container>

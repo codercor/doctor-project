@@ -8,6 +8,8 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
     const [IsLoading, setIsLoading] = useState(false);
     const [page, setPage] = useState(1);
 
+    
+
     useEffect(() => {
         setIsLoading(true);
         adminGetLastSalesRequest(page).then(res => {

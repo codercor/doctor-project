@@ -32,6 +32,7 @@ export default function BlogYazilari({ }: Props) {
         return req.data;
     }
 
+
     useEffect(() => {
         setLoading(true)
         getBlogs().then(res => {
@@ -51,7 +52,7 @@ export default function BlogYazilari({ }: Props) {
                 <p className="font-nexa-bold text-[16px] md:text-[24px] z-[1] max-w-[600px] px-[10px] text-center">
                     Mutlu ve canlı bir yaşam yaratmak için sizin için hazırladığım blog yazılarına göz atın ve sağlıklı yaşama bir adım daha yaklaşın.
                 </p>
-                <Image src="/images/png/blog-bg.png" layout="fill"  className='md:object-[00px_00px] brightness-75 object-[-920px_0px]' objectFit="cover" />
+                <Image src="/images/png/blog-bg.png" layout="fill" className='md:object-[00px_00px] brightness-75 object-[-920px_0px]' objectFit="cover" />
             </div>
             <div className='flex flex-wrap max-w-[1280px] md:min-h-[400px] mx-auto md:flex-row my-[40px] flex-col items-center justify-center gap-[20px]'>
                 {loading ? <CircularProgress className='mx-auto' />

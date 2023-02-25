@@ -147,6 +147,7 @@ const EducationSection = () => {
 import { ScrollContainer, MouseButton } from 'react-indiana-drag-scroll';
 import 'react-indiana-drag-scroll/dist/style.css'
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import { toast } from "react-hot-toast";
 
 const FAQ = () => {
 
@@ -154,6 +155,7 @@ const FAQ = () => {
   const childRef = useRef<HTMLDivElement>(null)
   const parentRef = useRef<HTMLDivElement>(null)
 
+ 
 
   const scrollForward = () => {
     if (childRef?.current && parentRef?.current) {

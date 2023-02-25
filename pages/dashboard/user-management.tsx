@@ -113,6 +113,7 @@ export default function UserManagement() {
     const [IsLoading, setIsLoading] = useState(false);
     const [keyword, setKeyword] = useState("");
     const [page, setPage] = useState(1);
+    
     const fetchUsers = () => {
         setIsLoading(true);
         request.get(`/user?page=${page}`).then(res => {
