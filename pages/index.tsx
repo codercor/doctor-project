@@ -11,7 +11,7 @@ import Text from "@components/Text";
 import { NextPage } from "next";
 import Image from "next/image";
 import Router from "next/router";
-import { useEffect, useId, useState } from "react";
+import React, { ElementType, RefObject, useEffect, useId, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import useTraining from "src/hooks/training.hook";
 import { v4 } from 'uuid'
@@ -138,13 +138,12 @@ const EducationSection = () => {
     }
   }, [publicTrainings.length])
   return <Container className="md:max-w-[1455px] h-full px-[20px] md:px-0 flex justify-around md:flex-row flex-col">
-    <div className="flex  md:ml-28 gap-4 md:text-left text-center items-center md:items-start mt-[80px] flex-col md:max-w-[535px] md:h-full md:mb-0 mb-5">
-      <Text type="h4" className="text-purple-800" >Eğitimler</Text>
-      <Text type="paragraph" className="text-secondary-flat">
+    <div className="flex  md:ml-28 gap-4 text-left items-center md:items-start mt-[80px] flex-col md:max-w-[535px] md:h-full md:mb-0 mb-5">
+      <Text type="h4" className="text-purple-800 w-full text-left" >Eğitimler</Text>
+      <p className="text-secondary-flat font-nexa-regular md:font-[18px]  font-[16px]">
         Besinler sürekli yenilenen, onarılan vücudumuza hammadde olurlar, kaliteli besinler yerseniz kaliteli hücreleriniz olur.
         Diğer taraftan besinler bizi birbirimize yakınlaştırır, bu nedenle beslenmede matematik çoğu zaman işlemez.
-
-      </Text>
+      </p>
       <Button
         onClick={() => {
           Router.push("/egitimler")
@@ -162,21 +161,54 @@ const EducationSection = () => {
     </div>
   </Container>
 }
-import { ScrollContainer } from 'react-indiana-drag-scroll';
+import { ScrollContainer, MouseButton } from 'react-indiana-drag-scroll';
 import 'react-indiana-drag-scroll/dist/style.css'
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 
 const FAQ = () => {
 
   const id = useId()
-  return (
-    <div className="z-20 pb-10 md:pb-0 mt-[46px] scrollbar-none snap-x overflow-auto w-screen">
-      <ScrollContainer className="!min-w-full w-[900px] select-none cursor-move flex gap-[20px]">
-        {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i, index) => {
+  /* 
+  [{
+   "resource": "/c:/Users/musta/OneDrive/Documents/GitHub/doctor-project/pages/index.tsx",
+   "owner": "typescript",
+   "code": "2322",
+   "severity": 8,
+   "message": "Type 'MutableRefObject<RefObject<HTMLDivElement>>' is not assignable to type '((string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null) & MutableRefObject<...>) | undefined'.\n  Type 'MutableRefObject<RefObject<HTMLDivElement>>' is not assignable to type 'ReactPortal & MutableRefObject<RefObject<HTMLDivElement>>'.\n    Type 'MutableRefObject<RefObject<HTMLDivElement>>' is missing the following properties from type 'ReactPortal': key, children, type, props",
+   "source": "ts",
+   "startLineNumber": 180,
+   "startColumn": 24,
+   "endLineNumber": 180,
+   "endColumn": 27,
+   "relatedInformation": [
+     {
+       "startLineNumber": 8,
+       "startColumn": 5,
+       "endLineNumber": 8,
+       "endColumn": 8,
+       "message": "The expected type comes from property 'ref' which is declared here on type 'IntrinsicAttributes & ((DefaultProps | CustomizedProps<DefaultScrollOptions>) & { ref?: MutableRefObject<RefObject<...>> | undefined; } & HTMLAttributes<...>)'",
+       "resource": "/c:/Users/musta/OneDrive/Documents/GitHub/doctor-project/node_modules/react-indiana-drag-scroll/dist/components/ScrollContainer.d.ts"
+     }
+   ]
+ }]
+ fix this error
+  */
+  const ref = useRef<ElementType>()
+
+
+  const scrollForward = () => {
+
+  }
+
+  return (<>
+    <div className="z-20 pb-4 md:pb-0 mt-[46px] scrollbar-none snap-x overflow-auto w-screen">
+      <ScrollContainer ref={ref} className="!min-w-full snap-mandatory snap-center  select-none cursor-move flex gap-[20px]">
+        {[1, 1, 1, 1, 1].map((i, index) => {
 
           return (
             <div
               key={id}
-              className="md:min-w-[482px] mr-[10px] min-w-[320px] snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] h-[255px] bg-quaternary-light rounded-md"
+              className="md:min-w-[482px] mr-[10px] min-w-[100vw] snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] h-[255px] bg-quaternary-light rounded-md"
             >
               <div className="bg-[#DEE4C3] mb-[22px] relative w-[60px] h-[60px] rounded-full grid place-content-center">
                 <Image src="/images/svg/help-green.svg" width={36} height={36} />
@@ -188,6 +220,11 @@ const FAQ = () => {
         })}
       </ScrollContainer>
     </div>
+    <div className="inline-flex opacity-25 md:hidden w-screen items-center  gap-[12px] justify-end pb-[44px] px-[20px] ">
+      <button className="min-w-[42px] text-[white] rounded-full min-h-[42px] bg-[#5B623D]"> <ArrowBack /> </button>
+      <button className="min-w-[42px] text-[white] rounded-full min-h-[42px] bg-[#5B623D]"> <ArrowForward /> </button>
+    </div>
+  </>
   );
 };
 
