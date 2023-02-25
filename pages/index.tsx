@@ -68,7 +68,7 @@ const Home: NextPage = () => {
           <Text type="h4" className="text-[34px] mt-[80px] mb-[60px] text-quaternary-flat">Basında Nazan Uysal Harzadın</Text>
           <div className="bg-[url(/images/png/avakado.png)]  overflow-visible rounded-xl relative bg-cover  bg-center h-[460px] w-full">
             <div className="md:w-[630px] w-full h-[315px] absolute md:top-[30px] top-[20%]  md:left-[40%] rounded-2xl overflow-hidden ">
-              <Carousel autoPlay >
+              <Carousel autoPlay infiniteLoop >
                 {presses.map((item) => <div key={v4()} className="flex items-center gap-[20px] px-[10px] w-full h-[300px] md:w-[630px] md:h-[315px] relative text-left bg-white-300 bg-opacity-70">
                   <div className="min-w-[170px] h-[170px] relative transition-all hover:min-w-[190px] hover:h-[190px]">
                     <Image src={item.Image} layout="fill" objectFit="cover" />
@@ -139,7 +139,7 @@ const EducationSection = () => {
     <div className="flex content-center py-8 flex-col h-full flex-wrap  gap-4 itesm-start justify-start  md:flex-1">
       {
         trainings.length > 0 && trainings.map((training, index) =>
-          <div className="lg:w-1/2  self-center justify-self-center w-fit z-[3] h-[380px]" key={v4()}><TrainingCard {...training}  /></div>)
+          <div className="lg:w-1/2  self-center justify-self-center w-fit z-[3] h-[380px]" key={v4()}><TrainingCard {...training} /></div>)
       }
     </div>
   </div>
@@ -150,24 +150,35 @@ import { ArrowBack, ArrowForward } from "@mui/icons-material";
 
 const FAQ = () => {
 
-  const id = useId()
 
-  const ref = useRef<ElementType>()
+  const childRef = useRef<HTMLDivElement>(null)
+  const parentRef = useRef<HTMLDivElement>(null)
 
 
   const scrollForward = () => {
+    if (childRef?.current && parentRef?.current) {
+      const boxWidth = childRef.current.getBoundingClientRect().width
+      parentRef.current.scrollBy({ left: Number(boxWidth), behavior: 'smooth' })
+    }
+  }
 
+  const scrollBackward = () => {
+    if (childRef?.current && parentRef?.current) {
+      const boxWidth = childRef.current.getBoundingClientRect().width
+      parentRef.current.scrollBy({ left: -(Number(boxWidth)), behavior: 'smooth' })
+    }
   }
 
   return (<>
-    <div className="z-20 pb-4 md:pb-0 mt-[46px] scrollbar-none snap-x overflow-auto w-screen">
-      { /* @ts-ignore-next-line */}
-      <ScrollContainer ref={ref} className="!min-w-full snap-mandatory snap-center  select-none cursor-move flex gap-[20px]">
+    <div className="z-20  pb-4 md:pb-0 mt-[46px] scrollbar-none snap-x overflow-auto w-screen">
+      {/* @ts-ignore-next-line */}
+      <ScrollContainer component="div" ref={parentRef} className="!min-w-full snap-mandatory snap-center  select-none cursor-move flex md:gap-[20px]">
         {[1, 1, 1, 1, 1].map((i, index) => {
           return (
             <div
-              key={id}
-              className="md:min-w-[482px] mr-[10px] min-w-[100vw] snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] h-[255px] bg-quaternary-light rounded-md"
+              key={useId()}
+              ref={childRef}
+              className="md:min-w-[482px]  border-2 border-red-500  min-w-[100vw] snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] h-[255px] bg-quaternary-light rounded-md"
             >
               <div className="bg-[#DEE4C3] mb-[22px] relative w-[60px] h-[60px] rounded-full grid place-content-center">
                 <Image src="/images/svg/help-green.svg" width={36} height={36} />
@@ -179,9 +190,15 @@ const FAQ = () => {
         })}
       </ScrollContainer>
     </div>
-    <div className="inline-flex opacity-25 md:hidden w-screen items-center  gap-[12px] justify-end pb-[44px] px-[20px] ">
-      <button className="min-w-[42px] text-[white] rounded-full min-h-[42px] bg-[#5B623D]"> <ArrowBack /> </button>
-      <button className="min-w-[42px] text-[white] rounded-full min-h-[42px] bg-[#5B623D]"> <ArrowForward /> </button>
+    <div className="inline-flex  md:hidden w-screen items-center  gap-[12px] justify-end pb-[44px] px-[20px] ">
+      <button
+        onClick={() => {
+          scrollBackward()
+        }}
+        className="min-w-[42px] text-[white] rounded-full min-h-[42px] bg-[#5B623D]"> <ArrowBack /> </button>
+      <button onClick={() => {
+        scrollForward()
+      }} className="min-w-[42px] text-[white] rounded-full min-h-[42px] bg-[#5B623D]"> <ArrowForward /> </button>
     </div>
   </>
   );

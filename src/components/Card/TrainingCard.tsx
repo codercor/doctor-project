@@ -34,9 +34,9 @@ const TrainingCard = ({
             <button className="bg-[#FFFFFF] min-w-[110px] items-center justify-center absolute  bottom-2 right-2 flex-col flex font-nexa-bold bg-opacity-95 text-[#3A356B] py-[8px] px-[15px] rounded-[20px_5px]">
                 <span className="text-[10px] text-start font-nexa-bold"> *KDV Dahil </span>
                 <div className="flex items-center justify-center gap-2">
-                    <span className=" text-[16px] "> {DiscountRate > 0 ? (Number(price) * ((100 - DiscountRate) / 100)).toFixed(1).toString() : price}
+                    <span className=" text-[16px] "> {DiscountRate > 0 ? (Number(price) * ((100 - DiscountRate) / 100)).toFixed(2).toString() : Number(price).toFixed(2).toString()}
                         <TL /> </span>
-                    <span className="text-[10px] line-through text-[#c22d2d]"> {price} <TL /> </span>
+                    <span className="text-[10px] line-through text-[#c22d2d]"> {Number(price).toFixed(2).toString()} <TL /> </span>
                 </div>
             </button>
         </div>

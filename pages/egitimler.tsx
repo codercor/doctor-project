@@ -88,7 +88,7 @@ const Egitimler = () => {
                             setPage(page + 1)
                         }
 
-                    }} className="mx-auto md:h-[936px] px-[20px] md:px-0 scrollbar-thin scrollbar-track-[white]  scrollbar-thumb-quaternary scrollbar-thumb-rounded  h-[700px]  md:w-[1000px] overflow-auto max-w-[1000px] items-center md:items-start flex gap-[20px] md:flex-row flex-col ">
+                    }} className="mx-auto md:h-[936px]  px-[20px] md:px-0 scrollbar-thin scrollbar-track-[white]  scrollbar-thumb-quaternary scrollbar-thumb-rounded  h-[700px]  lg:w-[1000px] overflow-auto max-w-[1000px] items-center lg:items-start flex gap-[20px] lg:flex-row flex-col ">
                         <div className="flex flex-col items-center md:items-start md:justify-between h-full gap-[20px]">
                             {
                                 filteredTrainings.filter((_, i) => i % 2 == 0).map((training, index) =>
