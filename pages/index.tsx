@@ -178,7 +178,7 @@ const FAQ = () => {
             <div
               key={useId()}
               ref={childRef}
-              className="md:min-w-[482px]  border-2 border-red-500  min-w-[100vw] snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] h-[255px] bg-quaternary-light rounded-md"
+              className="md:min-w-[482px]  min-w-[100vw] snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] h-[255px] bg-quaternary-light rounded-md"
             >
               <div className="bg-[#DEE4C3] mb-[22px] relative w-[60px] h-[60px] rounded-full grid place-content-center">
                 <Image src="/images/svg/help-green.svg" width={36} height={36} />
