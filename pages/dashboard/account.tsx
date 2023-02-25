@@ -222,7 +222,7 @@ const Account = () => {
                     <div className="flex justify-between w-full">
                         <Text type="h3" className="text-[#4E929D] !text-[20px] w-full">Hesabım</Text>
                         <div onClick={handleEdit}
-                            className="bg-tertiary min-w-[36px] rounded-sm min-h-[36px] grid place-content-center">
+                            className="bg-tertiary min-w-[36px] hover:cursor-pointer rounded-sm min-h-[36px] grid place-content-center">
                             <Edit className="text-[white] text-[16px]" />
                         </div>
                     </div>

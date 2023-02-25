@@ -111,7 +111,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
 
     return <div onClick={() => {
         setUpdateTheUserModal(true)
-    }} className='flex border-2 flex-col w-full'>
+    }} className='flex border-2 hover:cursor-pointer flex-col w-full'>
         {
             isLoading && <LocalLoading message="Güncelleniyor" />
         }

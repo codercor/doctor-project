@@ -23,7 +23,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     })(window, document, "clarity", "script", "fnmj0v9z8s");`}
         </Script>
         <Component {...pageProps} />
-        <Toaster />
+        <Toaster toastOptions={{
+          duration: 4500
+        }} />
       </PersistGate>
     </Provider>
   </>)

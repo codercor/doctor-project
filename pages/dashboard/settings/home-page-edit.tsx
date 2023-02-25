@@ -124,7 +124,7 @@ const EditBanner = () => {
         <Input value={bannerData.Description} onChange={(e) => {
             setBannerData({ ...bannerData, Description: e.target.value })
         }} text="Banner Kısa Metin (en az 50 karakter)" type="text" />
-        <div className="w-full flex justify-end mt-4 h-fit">
+        <div className="w-full  flex justify-end mt-4 h-fit">
             <Button disabled={(!formValidation.title || !formValidation.description || !formValidation.imageSelected)} type="secondary" className='!p-0 !px-[20px] w-fit justify-end !py-[10px] grid place-content-center ' onClick={() => {
                 (editedBannerData.Image && bannerData.Title && bannerData.Description) && adminUpdateBanner({
                     Id: bannerData.Id,
@@ -186,7 +186,7 @@ const PressForm = ({ refreshPresses }: { refreshPresses: () => void }) => {
         <div className="flex w-full shadow-lg !bg-[inherit] h-fit py-[10px] gap-[10px] items-center justify-between px-[10px]">
             <div onClick={() => {
                 imageRef.current?.click();
-            }} className='min-w-[110px] min-h-[90px] relative rounded-md overflow-hidden'>
+            }} className='min-w-[120px] hover:cursor-pointer min-h-[90px] relative rounded-md overflow-hidden'>
                 <Image src={
                     form.Image ? URL.createObjectURL(form.Image) : '/images/png/no-image.png'
                 } layout='fill' objectFit='cover' />
@@ -231,7 +231,7 @@ const EditPress = () => {
     }, [])
     return <div className='pb-4'>
         <div className="flex justify-between items-center  mt-2 mb-2 px-[20px]">
-            <Text type="h6" className='text-deepgreen-200'>Banner</Text>
+            <Text type="h6" className='text-deepgreen-200'>Press</Text>
         </div>
         <PressForm refreshPresses={refreshPresses} />
         <Divider />

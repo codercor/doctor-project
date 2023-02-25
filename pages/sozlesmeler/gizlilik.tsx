@@ -22,7 +22,7 @@ const GizlilikSozlesmesi = () => {
                 <div className="backdrop-brightness-[65%] w-full h-full">
                     <Container className="md:!max-w-[1455px] grid  place-items-end   justify-center pb-20 md:pb-22 h-full">
                         <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-regular">
-                            KVKK Sözleşmesi
+                            Gizlilik Sözleşmesi
                         </Text>
                     </Container>
                 </div>
