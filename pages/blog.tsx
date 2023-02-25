@@ -53,11 +53,11 @@ const Blog = () => {
                     <Image src={"/images/png/bg-blog-detay-figure.png"} layout="fill" objectFit="contain" />
                 </div>
                 <div className='relative my-[36px] md:px-0 px-[16px]  text-[#314E53] flex  max-w-[1280px] mx-auto flex-col gap-[40px] w-full min-h-[340px]'>
-                    <div className="flex flex-row">
+                    <div className="flex flex-col md:flex-row">
                         <div className='relative  text-[#314E53] flex justify-center items-center flex-col gap-[40px] md:w-[380px] aspect-video w-full min-h-[340px]'>
                             <Image src={blog?.Image || "/images/png/blog-header.png"} layout="fill" objectFit="cover" />
                         </div>
-                        <div className="flex flex-col pl-[30px] justify-center">
+                        <div className="flex flex-col md:pt-0 pt-[34px] pl-[30px] justify-center">
                             <h1 className='font-nexa-regular text-[37px] text-[#314E53]'>  {blog?.Title} </h1>
                             <div className="flex gap-[20px] md:gap-[30px]  items-center ">
                                 <p className='text-[#629DA7]  font-nexa-bold text-[18px]'> {new Date(blog?.updated_at || '').toLocaleString("tr-TR", {
