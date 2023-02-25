@@ -1,5 +1,5 @@
 // @ts-nocheck
- /* tslint:disable */
+/* tslint:disable */
 import { UserInformation } from "@app/User/user.types";
 import Button from "@components/Button";
 import Input from "@components/Input/Input";
@@ -28,7 +28,7 @@ const Account = () => {
     const { user } = useAuth(); //TODO ADD -> update user
     const { updateUser, refetchUser } = useUser();
     const router = useRouter();
-    const [isEdit, setIsEdit] = React.useState(false);
+    const [isEdit, setIsEdit] = React.useState(true);
     const [_userInfo, setUserInfo] = React.useState<UserInformation>({
         Id: user.Information?.Id,
         Fullname: user.Information.Fullname,
@@ -67,7 +67,7 @@ const Account = () => {
         updateUser(values).then(() => {
             refetchUser();
         })
-        setIsEdit(!isEdit);
+        //setIsEdit(!isEdit);
     }
 
     const validationSchema = Yup.object().shape({
@@ -79,7 +79,7 @@ const Account = () => {
         Country: Yup.string().required("Ülke zorunludur").nullable(),
         District: Yup.string().when("Country", {
             is: "Turkey",
-            then: Yup.string().required("Şehir zorunludur").nullable(),
+            then: Yup.string().required("İlçe zorunludur").nullable(),
             otherwise: Yup.string().nullable()
         }),
         City: Yup.string().when("Country", {
@@ -107,6 +107,17 @@ const Account = () => {
         );
 
         useEffect(() => {
+            if (!values.Country && !values.City && !values.District) {
+                setFieldValue("Country", "Turkey");
+                setFieldValue("City", "İstanbul");
+                setFieldValue("District", "Beyoğlu");
+                setTimeout(() => {
+                    validateForm();
+                }, 50);
+            }
+        }, []);
+
+        useEffect(() => {
             if (values.Country == "Turkey") {
                 setCities(ililce.map((city) => {
                     return { value: city.il_adi, label: city.il_adi };
@@ -114,14 +125,13 @@ const Account = () => {
             } else {
                 setCities([]);
             }
-            if (values.Country == "Turkey" && values.City) {
+            if (values.Country == "Turkey" && values.City?.length > 0) {
                 setDistricts((ililce.find((city) => city.il_adi === values.City)?.ilceler as any[])?.map((district) => {
                     return { value: district.ilce_adi, label: district.ilce_adi };
                 }));
             } else {
                 setDistricts([]);
             }
-
         }, [values.Country, values.City]);
 
 
@@ -221,10 +231,10 @@ const Account = () => {
                 <div className="md:w-1/2 w-full h-full flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
                     <div className="flex justify-between w-full">
                         <Text type="h3" className="text-[#4E929D] !text-[20px] w-full">Hesabım</Text>
-                        <div onClick={handleEdit}
+                        {/* <div onClick={handleEdit}
                             className="bg-tertiary min-w-[36px] hover:cursor-pointer rounded-sm min-h-[36px] grid place-content-center">
                             <Edit className="text-[white] text-[16px]" />
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="md:max-w-[450px] w-full flex flex-col">

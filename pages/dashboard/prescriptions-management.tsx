@@ -374,7 +374,7 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
                 item?.Id && selectPatient(item.Id)
             }} className="w-full h-[40px] border-t-[1px] flex items-center px-4">
                 <p>
-                    {item.Information.Fullname}
+                  <span>  {item.Information.Fullname} </span> <span className='bg-[#94c5ce] ml-4 px-[6px] align-middle text-center rounded-[10px]'>{item.Email}</span>
                 </p>
                 {
                     cancel && (<button onClick={(

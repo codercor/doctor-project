@@ -59,7 +59,7 @@ const validationSchema = Yup.object().shape({
 
 const SettingsInvoiceSettings = () => {
 
-    const [isEdit, setIsEdit] = useState(false);
+    const [isEdit, setIsEdit] = useState(true);
     const { user, updateUserBillingDetail } = useUser();
     const BillingDetail = user.BillingDetail;
     const [billingDetail, setBillingDetail] = useState(BillingDetail);
@@ -220,7 +220,7 @@ const SettingsInvoiceSettings = () => {
         <DashboardLayout>
             <SettingsSubLayout>
                 <div className="bg-[#F9FBFC] p-[32px] flex flex-col rounded-[20px_5px_20px_5px] w-full md:w-2/3 h-full">
-                    <div className="flex justify-between items-center"> <Text>Fatura Ayarları (Satın alım için bu alanları doldurmak zorunludur) </Text><div onClick={() => setIsEdit(!isEdit)}> <EditButton /> </div></div>
+                    <div className="flex justify-between items-center"> <Text>Fatura Ayarları (Satın alım için bu alanları doldurmak zorunludur) </Text></div>
                     <div className="flex flex-col w-full gap-[12px]">
                         <Formik onSubmit={(values) => {
 

@@ -181,7 +181,7 @@ export default function Assays() {
 
                 setOpenAddAssayModal(false);
             }} className="z-[999] grid place-content-center h-screen w-screen fixed bg-[black] bg-opacity-25">
-                <div onClick={(e) => e.stopPropagation()} className='w-[400px] p-[20px] relative flex flex-col gap-[10px] rounded-[20px_5px] max-h-[300px] bg-[white]'>
+                <div onClick={(e) => e.stopPropagation()} className='w-[600px] p-[20px] relative flex flex-col gap-[10px] rounded-[20px_5px] max-h-[300px] bg-[white]'>
                     <h1 className='text-[#184E57] text-[24px] leading-none mb-[10px] font-nexa-bold '> Tahlil Talebi Oluştur </h1>
                     {isLoading && <LocalLoading message='Tahlil talebiniz oluşturuluyor...' />}
                     <FormInput placeholder='Tahlil adı' value={assayName} onChange={(e) => { setAssayName(e.currentTarget.value) }} />

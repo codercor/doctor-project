@@ -56,9 +56,9 @@ const UserResultsItem = ({ item, cancel = false, actions }: { item: UserState, c
     return (
         <div onClick={() => {
             actions.setSelected(item)
-        }} className="w-full  h-[40px]  flex items-center px-4">
+        }} className="w-full border-b-[1px] h-[40px]  flex items-center px-4">
             <p>
-                {item.Information.Fullname}
+                {item.Information.Fullname}  <span className='bg-[#94c5ce] px-[6px] align-middle text-center rounded-[10px]'>{item.Email}</span>
             </p>
             {
                 cancel && (<button onClick={(
