@@ -23,130 +23,9 @@ const TrainingSearchInput = ({ value, onChange }: { value: string, onChange: (e:
     </div>)
 }
 const Egitimler = () => {
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
     const { publicTrainingsProcess: { loading }, getPublicTrainings, publicTrainings } = useTraining()
 
     const [trainings, setTrainings] = useState<Array<TrainingCardProps & { Id?: string }>>([
-        // {
-        //     image: "/images/png/yesilzemin-muz.png",
-        //     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-        //     description: "Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.",
-        //     price: "1000",
-        //     backgroundColor: "!bg-[#EFEEF5]",
-        //     detailHref: "/egitimler/1",
-        //     detailOnImage: isMobile ? true : false,
-        //     detailPos: "br",
-        //     imageRounded: "br",
-        //     boxRounded: "tl",
-        //     priceBackgroundColor: "!bg-[#ffffff]",
-        //     priceOnImage: isMobile ? true : false,
-        //     pricePos: "bl",
-        //     type: "vertical",
-        //     showBuyButton: true,
-        //     detailButtonDirection: "right",
-        //     width: 482,
-        //     mWidth: 314,
-        //     height: 328,
-        //     mHeight: 250,
-        //     isMobile,
-        //     sizeType: isMobile ? "sm" : "md"
-        // },
-        // {
-        //     image: "/images/png/mavizemin-avakado.png",
-        //     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-        //     description: "Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.",
-        //     price: "1000",
-        //     backgroundColor: "!bg-[#EFEEF5]",
-        //     detailHref: "/egitimler/1",
-        //     detailOnImage: true,
-        //     detailPos: "bl",
-        //     imageRounded: "br",
-        //     boxRounded: "tr",
-        //     priceBackgroundColor: "!bg-[#ffffff]",
-        //     priceOnImage: isMobile ? true : false,
-        //     pricePos: isMobile ? "br" : "bl",
-        //     type: !isMobile ? "horizontal-reverse" : "vertical",
-        //     showBuyButton: isMobile ? false : true,
-        //     detailButtonDirection: "right",
-        //     width: 482,
-        //     height: 254,
-        //     mWidth: 314,
-        //     mHeight: 250,
-        //     isMobile,
-        //     sizeType: isMobile ? "sm" : "md"
-        // },
-        // {
-        //     image: "/images/png/sarizemin-gevrek.png",
-        //     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-        //     description: "Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.",
-        //     price: "1000",
-        //     backgroundColor: "!bg-[#EFEEF5]",
-        //     detailHref: "/egitimler/1",
-        //     detailOnImage: true,
-        //     detailPos: "br",
-        //     imageRounded: "bl",
-        //     boxRounded: "tr",
-        //     priceBackgroundColor: "!bg-[#ffffff]",
-        //     priceOnImage: isMobile ? true : false,
-        //     pricePos: "bl",
-        //     type: !isMobile ? "horizontal" : "vertical",
-        //     showBuyButton: isMobile ? false : true,
-        //     detailButtonDirection: "right",
-        //     width: 482,
-        //     height: 254,
-        //     mWidth: 314,
-        //     mHeight: 250,
-        //     isMobile,
-        //     sizeType: isMobile ? "sm" : "md"
-        // }, {
-        //     image: "/images/png/badem.png",
-        //     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-        //     description: "Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.",
-        //     price: "1000",
-        //     backgroundColor: "!bg-[#EFEEF5]",
-        //     detailHref: "/egitimler/1",
-        //     detailOnImage: isMobile ? true : false,
-        //     detailPos: "br",
-        //     imageRounded: "br",
-        //     boxRounded: "br",
-        //     priceBackgroundColor: "!bg-[#ffffff]",
-        //     priceOnImage: isMobile ? true : false,
-        //     pricePos: "bl",
-        //     type: "vertical",
-        //     showBuyButton: isMobile ? false : true,
-        //     detailButtonDirection: "right",
-        //     width: 482,
-        //     height: 328,
-        //     mWidth: 314,
-        //     mHeight: 250,
-        //     isMobile,
-        //     sizeType: isMobile ? "sm" : "md"
-        // }, {
-        //     image: "/images/png/yulaf.png",
-        //     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-        //     description: "Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.",
-        //     price: "1000",
-        //     backgroundColor: "!bg-[#EFEEF5]",
-        //     detailHref: "/egitimler/1",
-        //     detailOnImage: true,
-        //     detailPos: "br",
-        //     imageRounded: "bl",
-        //     boxRounded: "bl",
-        //     priceBackgroundColor: "!bg-[#ffffff]",
-        //     priceOnImage: isMobile ? true : false,
-        //     pricePos: "bl",
-        //     type: isMobile ? "vertical" : "horizontal",
-        //     showBuyButton: isMobile ? false : true,
-        //     detailButtonDirection: "right",
-        //     height: 254,
-        //     width: 482,
-        //     mWidth: 314,
-        //     mHeight: 250,
-        //     isMobile,
-        //     sizeType: isMobile ? "sm" : "md"
-        // },
-
-
     ])
     const [page, setPage] = useState(1);
     useEffect(() => {
@@ -163,24 +42,7 @@ const Egitimler = () => {
                     title: t.Name as string || '',
                     description: t.Details as string || '',
                     price: t.Price, // (t.Price * ((100 - t.DiscountRate) / 100)).toFixed(1).toString()
-                    backgroundColor: "!bg-[#EFEEF5]",
                     detailHref: `/training?id=${t.Id}`,
-                    detailOnImage: isMobile ? true : false,
-                    detailPos: "br",
-                    imageRounded: "br",
-                    boxRounded: "tl",
-                    priceBackgroundColor: "!bg-[#ffffff]",
-                    priceOnImage: isMobile ? true : false,
-                    pricePos: "bl",
-                    type: "vertical",
-                    showBuyButton: true,
-                    detailButtonDirection: "right",
-                    width: 482,
-                    mWidth: 314,
-                    height: 328,
-                    mHeight: 250,
-                    isMobile,
-                    sizeType: isMobile ? "sm" : "md",
                     Id: t.Id,
                     DiscountRate: t.DiscountRate
                 }
@@ -226,16 +88,14 @@ const Egitimler = () => {
                             setPage(page + 1)
                         }
 
-
-
-                    }} className="mx-auto md:h-[936px]  scrollbar-thin scrollbar-track-[white]  scrollbar-thumb-quaternary scrollbar-thumb-rounded  h-[700px]  md:w-[1000px] overflow-auto max-w-[1000px] items-center md:items-start flex gap-[20px] md:flex-row flex-col ">
-                        <div className="flex flex-col items-center md:items-start  md:justify-between h-full w-full max-w-full gap-[20px]">
+                    }} className="mx-auto md:h-[936px] px-[20px] md:px-0 scrollbar-thin scrollbar-track-[white]  scrollbar-thumb-quaternary scrollbar-thumb-rounded  h-[700px]  md:w-[1000px] overflow-auto max-w-[1000px] items-center md:items-start flex gap-[20px] md:flex-row flex-col ">
+                        <div className="flex flex-col items-center md:items-start md:justify-between h-full gap-[20px]">
                             {
                                 filteredTrainings.filter((_, i) => i % 2 == 0).map((training, index) =>
                                     <TrainingCard {...training} key={v4()} />)
                             }
                         </div>
-                        <div className="flex flex-col items-center md:items-start md:justify-between min-h-full gap-[20px]">
+                        <div className="flex flex-col items-center md:items-start md:justify-between h-full gap-[20px]">
                             {
                                 filteredTrainings.filter((_, i) => i % 2 == 1).map((training, index) =>
                                     <TrainingCard {...training} key={v4()} />)

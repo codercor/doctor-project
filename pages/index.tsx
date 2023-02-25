@@ -35,17 +35,17 @@ const Home: NextPage = () => {
     <LandingLayout>
       <Banner />
       <InfoBanner />
-      <Container className="bg-[#F2F4EE] md:!max-w-[100%] md:h-[704px]">
-        <div className="w-full absolute h-full overflow-hidden ">
-          <span className="absolute hidden md:block bottom-[-220px] rotate-45 left-[-80px]">
+      <div className="bg-[#F2F4EE]  relative w-full lg:h-[840px] h-[1600px] min-h-[800px]">
+        <div className="w-full absolute bottom-0 h-full overflow-hidden ">
+          <span className="absolute hidden z-[0] md:block bottom-[-220px] rotate-45 left-[-80px]">
             <Image src="/images/png/tabak.png" layout="fixed" width={600} height={900} />
           </span>
-          <span className="absolute hidden md:block bottom-0 right-[-50px]">
+          <span className="absolute hidden z-[1] lg:block bottom-0 right-[-50px]">
             <Image src="/images/png/bogurtlen-cilek.png" layout="fixed" width={800} height={400} />
           </span>
         </div>
         <EducationSection />
-      </Container>
+      </div>
       <Container className="bg-primary  md:!max-w-[100%] ">
         <Container className="md:!max-w-[1455px] md:h-[706px] flex ">
           <div className="md:w-1/2 md:px-0 relative h-fit flex flex-col md:mt-[150px] mt-[50px] leading-none">
@@ -91,7 +91,6 @@ const Home: NextPage = () => {
 }
 
 const EducationSection = () => {
-  const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
   const { publicTrainingsProcess: { loading }, publicTrainings, getPublicTrainings } = useTraining()
   const [trainings, setTrainings] = useState<Array<TrainingCardProps & { Id?: string }>>([])
   useEffect(() => {
@@ -104,41 +103,26 @@ const EducationSection = () => {
     if (publicTrainings.length > 0) {
       let formattedTrainings = publicTrainings.slice(0, 3).map((t, i) => {
         return {
-          backgroundColor: "!bg-[white]",
-          detailHref: "/training?id=" + t.Id,
-          detailOnImage: false,
-          detailPos: "bl",
-          imageRounded: "br",
-          boxRounded: "tl",
-          priceBackgroundColor: "!bg-[#ffffff]",
-          priceOnImage: true,
-          pricePos: "br",
-          type: "vertical",
-          showBuyButton: false,
-          detailButtonDirection: "left",
-          height: 328,
-          width: 314,
-          mWidth: 340,
-          mHeight: 257,
-          sizeType: "sm",
-          isMobile,
-          title: publicTrainings[i].Name,
-          description: publicTrainings[i].Details,
-          price: publicTrainings[i].Price,
-          image: publicTrainings[i].Image,
-          Id: publicTrainings[i].Id,
-          DiscountRate: publicTrainings[i].DiscountRate,
+          image: t.Image as string || '',
+          title: t.Name as string || '',
+          description: t.Details as string || '',
+          price: t.Price, // (t.Price * ((100 - t.DiscountRate) / 100)).toFixed(1).toString()
+          detailHref: `/training?id=${t.Id}`,
+          Id: t.Id,
+          DiscountRate: t.DiscountRate
         }
       })
       console.log(formattedTrainings);
-
+      if (formattedTrainings.length < 3) {
+        formattedTrainings = [...formattedTrainings, formattedTrainings[0]]
+      }
       //@ts-ignore
       setTrainings(formattedTrainings)
 
     }
   }, [publicTrainings.length])
-  return <Container className="md:max-w-[1455px] h-full px-[20px] md:px-0 flex justify-around md:flex-row flex-col">
-    <div className="flex  md:ml-28 gap-4 text-left items-center md:items-start mt-[80px] flex-col md:max-w-[535px] md:h-full md:mb-0 mb-5">
+  return <div className="lg:max-w-[1368px] mx-auto   h-full px-[20px] md:px-0 flex  lg:flex-row flex-col">
+    <div className="flex md:ml-28 gap-4 md:flex-1  text-left items-center md:items-start mt-[80px] flex-col md:mb-0 mb-5">
       <Text type="h4" className="text-purple-800 w-full text-left" >Eğitimler</Text>
       <p className="text-secondary-flat font-nexa-regular md:font-[18px]  font-[16px]">
         Besinler sürekli yenilenen, onarılan vücudumuza hammadde olurlar, kaliteli besinler yerseniz kaliteli hücreleriniz olur.
@@ -152,14 +136,13 @@ const EducationSection = () => {
         <Text type="paragraph" className="text-[white]">Tüm Eğitimler</Text>
       </Button>
     </div>
-    <div className="flex md:pb-0 pb-10 flex-col md:w-[775px] mx-auto w-full justify-start items-start md:h-full   flex-wrap gap-[20px]">
+    <div className="flex content-center py-8 flex-col h-full flex-wrap  gap-4 itesm-start justify-start  md:flex-1">
       {
         trainings.length > 0 && trainings.map((training, index) =>
-          <TrainingCard {...training} key={v4()} />)
+          <div className="lg:w-1/2  self-center justify-self-center w-fit z-[3] h-[380px]"><TrainingCard {...training} key={v4()} /></div>)
       }
-
     </div>
-  </Container>
+  </div>
 }
 import { ScrollContainer, MouseButton } from 'react-indiana-drag-scroll';
 import 'react-indiana-drag-scroll/dist/style.css'
@@ -168,31 +151,7 @@ import { ArrowBack, ArrowForward } from "@mui/icons-material";
 const FAQ = () => {
 
   const id = useId()
-  /* 
-  [{
-   "resource": "/c:/Users/musta/OneDrive/Documents/GitHub/doctor-project/pages/index.tsx",
-   "owner": "typescript",
-   "code": "2322",
-   "severity": 8,
-   "message": "Type 'MutableRefObject<RefObject<HTMLDivElement>>' is not assignable to type '((string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null) & MutableRefObject<...>) | undefined'.\n  Type 'MutableRefObject<RefObject<HTMLDivElement>>' is not assignable to type 'ReactPortal & MutableRefObject<RefObject<HTMLDivElement>>'.\n    Type 'MutableRefObject<RefObject<HTMLDivElement>>' is missing the following properties from type 'ReactPortal': key, children, type, props",
-   "source": "ts",
-   "startLineNumber": 180,
-   "startColumn": 24,
-   "endLineNumber": 180,
-   "endColumn": 27,
-   "relatedInformation": [
-     {
-       "startLineNumber": 8,
-       "startColumn": 5,
-       "endLineNumber": 8,
-       "endColumn": 8,
-       "message": "The expected type comes from property 'ref' which is declared here on type 'IntrinsicAttributes & ((DefaultProps | CustomizedProps<DefaultScrollOptions>) & { ref?: MutableRefObject<RefObject<...>> | undefined; } & HTMLAttributes<...>)'",
-       "resource": "/c:/Users/musta/OneDrive/Documents/GitHub/doctor-project/node_modules/react-indiana-drag-scroll/dist/components/ScrollContainer.d.ts"
-     }
-   ]
- }]
- fix this error
-  */
+
   const ref = useRef<ElementType>()
 
 
@@ -202,9 +161,9 @@ const FAQ = () => {
 
   return (<>
     <div className="z-20 pb-4 md:pb-0 mt-[46px] scrollbar-none snap-x overflow-auto w-screen">
+      { /* @ts-ignore-next-line */}
       <ScrollContainer ref={ref} className="!min-w-full snap-mandatory snap-center  select-none cursor-move flex gap-[20px]">
         {[1, 1, 1, 1, 1].map((i, index) => {
-
           return (
             <div
               key={id}

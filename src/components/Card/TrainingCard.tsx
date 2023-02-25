@@ -7,190 +7,50 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { useMediaQuery } from 'react-responsive'
 import Router from "next/router";
+import { ArrowForwardIos } from "@mui/icons-material";
 export type TrainingCardProps = {
-    width?: number;
-    height?: number;
-    mWidth?: number;
-    mHeight?: number;
     image: string;
     title: string;
     description: string;
     price?: string;
-    detailHref: string;
-    detailOnImage: boolean;
-    priceOnImage: boolean;
-    pricePos: "bl" | "br" | "tl" | "tr";
-    detailPos: "bl" | "br" | "tl" | "tr";
-    type: "vertical" | "horizontal" | "horizontal-reverse";
-    imageRounded: "none" | "tl" | "tr" | "bl" | "br" | "all";
-    boxRounded?: "none" | "tl" | "tr" | "bl" | "br" | "all";
-    backgroundColor: string;
-    priceBackgroundColor: string;
     showBuyButton?: boolean;
-    detailButtonDirection: "left" | "right";
-    sizeType?: "sm" | "md";
-    isMobile?: boolean;
+    DiscountRate?: number;
+    Id?: string;
 }
 
 const TrainingCard = ({
-    width = 482,
-    height = 380,
-    mWidth = 314,
-    mHeight = 328,
+
     image,
     title,
     description,
     price,
-    detailHref,
-    detailOnImage,
-    priceOnImage,
-    pricePos,
-    detailPos,
-    type,
-    imageRounded,
-    boxRounded = "none",
-    backgroundColor,
-    priceBackgroundColor,
-    showBuyButton = false,
-    detailButtonDirection = "right",
-    sizeType = "md",
-    isMobile = false,
     Id,
     showPrice = true,
     DiscountRate = 0
 }: TrainingCardProps & { DiscountRate?: number, Id?: string, showPrice?: boolean }) => {
-
-    console.log("Data", title);
-
-
-    const _width = (!isMobile ? width : mWidth)
-    const _height = (!isMobile ? height : mHeight)
-
-
-
-    const buttonSizeMixin = {
-        "w-[113px] h-[36px] !pl-[24px]": sizeType == "sm",
-        "w-[134px] h-[48px]": sizeType == "md"
-    }
-    const descriptionMixin = {
-        "!text-[12px] mt-[7px]": sizeType == "sm",
-        "!text-[14px] mt-[14px] ": sizeType == "md"
-    }
-    const titleMixin = {
-        "!text-[14px]": sizeType == "sm",
-        "!text-[16px]": sizeType == "md"
-    }
-
-
-    const boxClassName = classNames({
-        "relative flex overflow-hidden !leading-none": true,
-        "flex-col": type === "vertical",
-        "flex-row-reverse": type === "horizontal",
-        "flex-row": type === "horizontal-reverse",
-        "rounded-tl-[30px]": boxRounded === "tl",
-        "rounded-tr-[30px]": boxRounded === "tr",
-        "rounded-bl-[30px]": boxRounded === "bl",
-        "rounded-br-[30px]": boxRounded === "br",
-        "rounded-[30px]": boxRounded === "all",
-        "rounded-none": boxRounded === "none" || !boxRounded,
-        [backgroundColor]: backgroundColor,
-    })
-
-
-    const imageClassName = classNames({
-        "relative": true,
-        "min-h-[45%] w-full relative overflow-hidden": type === "vertical",
-        "min-h-full min-w-[40%] relative overflow-hidden ": type === "horizontal" || type === "horizontal-reverse",
-        "rounded-tl-[30px]": imageRounded === "tl",
-        "rounded-tr-[30px]": imageRounded === "tr",
-        "rounded-bl-[30px]": imageRounded === "bl",
-        "rounded-br-[30px]": imageRounded === "br",
-        "rounded-[30px]": imageRounded === "all",
-        "rounded-none": imageRounded === "none" || !imageRounded,
-    });
-
-    const priceClassName = classNames({
-        "absolute  border-none m-[18px]": true,
-        ...buttonSizeMixin,
-        "bg-purple-800 leading-none": true,
-        "overflow-visible flex items-center text-center justify-between": true,
-        "bottom-0 left-0": pricePos === "bl",
-        "bottom-0 right-0": pricePos === "br",
-        "top-0 left-0": pricePos === "tl",
-        "top-0 right-0": pricePos === "tr",
-        [priceBackgroundColor]: priceBackgroundColor || "bg-transparent",
-    });
-
-    const detailClassName = classNames({
-        "absolute  m-[18px]": true,
-        ...buttonSizeMixin,
-        "bg-purple-800 leading-none": true,
-        "overflow-hidden flex items-center text-center justify-between": true,
-        "bottom-0 left-0": detailPos === "bl",
-        "bottom-0 right-0": detailPos === "br",
-        "top-0 left-0": detailPos === "tl",
-        "top-0 right-0": detailPos === "tr",
-    });
-
-    const contentClassName = classNames("relative flex flex-col items-center  justify-between  p-[18px] ", {
-        "h-[55%]": type === "vertical",
-        "h-full w-[60%]": type === "horizontal" || type === "horizontal-reverse",
-        "pt-[24px]": sizeType == "md",
-        "pt-[16px]": sizeType == "sm",
-    })
-
-    const DetailButton = () => <Button direction={detailButtonDirection} type="quaternary-flat" onClick={() => Router.push(detailHref)} className={detailClassName}>
-        <Text type="body" className="!text-[14px] text-[white]">Detaylar</Text>
-        <span>
-            <ArrowIcon color="#ffffff" />
-        </span>
-    </Button>;
-    const PriceWithBuyButton = () => {
-        let calculatedPrice = (Number(price) * ((100 - DiscountRate) / 100)).toFixed(1).toString();
-        return <Button direction="right" type="transparent-white" className={priceClassName + " w-auto  text-center flex  items-center justify-center !pl-4"}>
-            <Text type="body" className="!text-[16px]  text-[#3A356B]">
-                {Number(calculatedPrice) == 0 ? 'Ücretsiz' : <p className="flex items-center"> <span className="text-[12px] mr-1  text-[#CD2D2D] line-through">{DiscountRate != 0 && price}{DiscountRate != 0 && <TL />}</span>  {calculatedPrice}<TL /></p>}
-            </Text>
-            {showBuyButton &&
-                <Button type="tertiary-flat" onClick={() => Router.push(detailHref)} className={classNames("absolute flex items-center bottom-0 left-[120px] !bg-[#C3BFE8] !border-none", {
-                    ...buttonSizeMixin
-                })}  >Satın Al  </Button>
-            }
-        </Button>
-    }
-    const PriceButtonOnImage = () => {
-        let calculatedPrice = (Number(price) * ((100 - DiscountRate) / 100)).toFixed(1).toString();
-        return <Button direction="right" type="transparent-white" className={priceClassName + " w-auto pl-[10px]"}>
-            <Text type="body" className={classNames(" text-[#3A356B]", {
-                "!text-[20px]": sizeType == "md",
-                "!text-[16px]": sizeType == "sm",
-            })}> {Number(calculatedPrice) == 0 ? 'Ücretsiz' : <p className="flex items-center"> <span className="text-[12px] mr-1  text-[#CD2D2D] line-through">{DiscountRate != 0 && price}{DiscountRate != 0 && <TL />}</span>  {calculatedPrice}<TL /></p>}</Text>
-        </Button>
-    }
-    return <div className={boxClassName} style={{
-        minWidth: _width + "px",
-        minHeight: _height + "px",
-        height: _height + "px",
-        width: _width + "px",
-    }}>
-        <span className="hidden"> {_width} {_height} </span>
-        <div className={imageClassName} >
+    return <div className="flex w-full z-[2]  max-w-[482px] justify-between  max-h-[380px] rounded-[20px_0px] overflow-clip h-full flex-col bg-[#EFEEF5]" >
+        <div className="relative w-full min-w-full rounded-br-[20px] overflow-clip min-h-[47%]">
             <Image src={image} layout="fill" objectFit="cover" />
-            {(priceOnImage && showPrice) && <PriceButtonOnImage />}
-            {(detailOnImage) && <DetailButton />}
+            <button className="bg-[#FFFFFF] min-w-[110px] items-center justify-center absolute  bottom-2 right-2 flex-col flex font-nexa-bold bg-opacity-95 text-[#3A356B] py-[8px] px-[15px] rounded-[20px_5px]">
+                <span className="text-[10px] text-start font-nexa-bold"> *KDV Dahil </span>
+                <div className="flex items-center justify-center gap-2">
+                    <span className=" text-[16px] "> {DiscountRate > 0 ? (Number(price) * ((100 - DiscountRate) / 100)).toFixed(1).toString() : price}
+                        <TL /> </span>
+                    <span className="text-[10px] line-through text-[#c22d2d]"> {price} <TL /> </span>
+                </div>
+            </button>
         </div>
-        <div className={contentClassName}>
-            <div className="h-full">
-                <Text type="h4" className={classNames("text-[#3A356B]", { ...titleMixin })}>{title}</Text>
-                <Text type="h5" className={classNames("text-[#7A7C6D] !max-h-[45%] !overflow-hidden font-nexa-regular", {
-                    ...descriptionMixin
-                })}>{description}</Text>
-            </div>
-            {!detailOnImage && <DetailButton />}
-            {!priceOnImage &&
-                <PriceWithBuyButton />
-            }
-
+        <div className="relative flex-col flex  px-[25px] pt-[20px]">
+            <p className="text-[#3A356B] text-[16px] font-nexa-bold">{title}</p>
+            <p className="text-[#7A7C6D] font-nexa-regular text-[14px] line-clamp-4 leading-[14px] ">
+                {description}
+                Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.
+            </p>
+        </div>
+        <div onClick={() => {
+            Router.push(`/training?id=${Id}`)
+        }} className="flex justify-between px-[25px] pt-[10px] justify-self-end pb-[20px]">
+            <button className="bg-[#3A356B] pl-[20px] font-nexa-bold text-[14px] text-[white] p-[10px] rounded-[20px_5px]"> Detaylar <ArrowForwardIos className="scale-[0.7]" fontSize={"small"} /> </button>
         </div>
     </div >
 }
