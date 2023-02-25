@@ -139,7 +139,7 @@ const EducationSection = () => {
     <div className="flex content-center py-8 flex-col h-full flex-wrap  gap-4 itesm-start justify-start  md:flex-1">
       {
         trainings.length > 0 && trainings.map((training, index) =>
-          <div className="lg:w-1/2  self-center justify-self-center w-fit z-[3] h-[380px]"><TrainingCard {...training} key={v4()} /></div>)
+          <div className="lg:w-1/2  self-center justify-self-center w-fit z-[3] h-[380px]" key={v4()}><TrainingCard {...training}  /></div>)
       }
     </div>
   </div>
