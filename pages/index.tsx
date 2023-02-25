@@ -14,7 +14,7 @@ import Router from "next/router";
 import React, { ElementType, RefObject, useEffect, useId, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import useTraining from "src/hooks/training.hook";
-import { v4 } from 'uuid'
+import { v4, v5 } from 'uuid'
 
 
 import { Carousel } from 'react-responsive-carousel';
@@ -35,7 +35,7 @@ const Home: NextPage = () => {
     <LandingLayout>
       <Banner />
       <InfoBanner />
-      <div className="bg-[#F2F4EE]  relative w-full lg:h-[840px] h-[1600px] min-h-[800px]">
+      <div className="bg-[#F2F4EE]  relative w-full lg:h-[840px] h-[1600px] h-auto min-h-[400px]">
         <div className="w-full absolute bottom-0 h-full overflow-hidden ">
           <span className="absolute hidden z-[0] md:block bottom-[-220px] rotate-45 left-[-80px]">
             <Image src="/images/png/tabak.png" layout="fixed" width={600} height={900} />
@@ -112,16 +112,15 @@ const EducationSection = () => {
           DiscountRate: t.DiscountRate
         }
       })
-      console.log(formattedTrainings);
-      if (formattedTrainings.length < 3) {
-        formattedTrainings = [...formattedTrainings, formattedTrainings[0]]
-      }
+      // if (formattedTrainings.length < 3) {
+      //   formattedTrainings = [...formattedTrainings, formattedTrainings[0]]
+      // }
       //@ts-ignore
       setTrainings(formattedTrainings)
 
     }
   }, [publicTrainings.length])
-  return <div className="lg:max-w-[1368px] mx-auto   h-full px-[20px] md:px-0 flex  lg:flex-row flex-col">
+  return <div className="lg:max-w-[1368px] mx-auto h-full px-[20px] md:px-0 flex  lg:flex-row flex-col">
     <div className="flex md:ml-28 gap-4 md:flex-1  text-left items-center md:items-start mt-[80px] flex-col md:mb-0 mb-5">
       <Text type="h4" className="text-purple-800 w-full text-left" >Eğitimler</Text>
       <p className="text-secondary-flat font-nexa-regular md:font-[18px]  font-[16px]">
@@ -155,7 +154,7 @@ const FAQ = () => {
   const childRef = useRef<HTMLDivElement>(null)
   const parentRef = useRef<HTMLDivElement>(null)
 
- 
+
 
   const scrollForward = () => {
     if (childRef?.current && parentRef?.current) {
@@ -178,7 +177,7 @@ const FAQ = () => {
         {[1, 1, 1, 1, 1].map((i, index) => {
           return (
             <div
-              key={useId()}
+              key={v4()}
               ref={childRef}
               className="md:min-w-[482px]  min-w-[100vw] snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] h-[255px] bg-quaternary-light rounded-md"
             >
