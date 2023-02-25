@@ -4,7 +4,7 @@ import SettingsMenuButton from "@components/Button/SettingsMenuButton";
 import Input from "@components/Input/Input";
 import DashboardLayout from "@components/Layouts/DashboardLayout";
 import Text from "@components/Text";
-import { Star, SendSharp } from "@mui/icons-material";
+import { Star, SendSharp, Refresh } from "@mui/icons-material";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { useChat } from "src/hooks/chat.hook";
@@ -59,28 +59,54 @@ const ChatBox = () => {
         console.log("Messages", Messages, "ID", Id);
 
     }, [Messages]);
+    const [disabled, setDisabled] = useState(false);
+    return <div className="px-[30px] relative w-full h-full flex flex-col bg-[#F9FBFC]">
 
-    return <div className="px-[30px] w-full h-full flex flex-col bg-[#F9FBFC]">
-        <div className="w-full h-[30px] text-center flex items-center justify-center sticky top-0 bg-[#F9FBFC]"> <Text className="text-gray-300">11 Ekim 2022</Text> </div>
-        <div className="w-full  overflow-auto h-full flex flex-col-reverse">
+        <div className="w-full h-[30px] text-center flex items-center justify-center sticky top-0 bg-[#F9FBFC]"> <Text className="text-gray-300"></Text> </div>
+        <div className="w-full relative overflow-auto h-full flex flex-col-reverse">
+
             {Messages.map((item) => <ChatMessage key={v4()} message={item} isMe={!(item.SenderId == Id)} />)}
         </div>
         {SelectedChatLineId && <div className="flex my-[30px] items-center justify-start w-full min-h-[52px] bg-[transparent]">
             <div className="w-[90%] h-full">
-                <Input value={message} onChange={(e) => {
-                    setMessage(e.target.value);
-                }} type="text" placeholder="Mesaj Yaz" />
+                <Input
+                    onKeyUp={(e) => {
+                        if (e.key == 'Enter') {
+                            setDisabled(true);
+                            sendMessage({
+                                ChatLineId: SelectedChatLineId,
+                                Message: message,
+                                RecieverId: ChatLines.find(line => line.ChatLineId == SelectedChatLineId)?.UserId || '',
+                                SenderId: Id
+                            })?.then(() => {
+                                setDisabled(false);
+                            })?.catch(() => {
+                                setDisabled(false);
+                            })
+                        }
+                    }}
+                    disabled={disabled}
+                    value={message} onChange={(e) => {
+                        setMessage(e.target.value);
+                    }} type="text" placeholder="Mesaj Yaz" />
             </div>
-            <div onClick={() => {
-                sendMessage({
-                    ChatLineId: SelectedChatLineId,
-                    Message: message,
-                    RecieverId: ChatLines.find(line => line.ChatLineId == SelectedChatLineId)?.UserId || '',
-                    SenderId: Id
-                })
-            }} className="w-[62px]  h-full overflow-hidden rounded-[20px_5px_20px_5px] ml-[13px]">
+            <button
+                disabled={disabled}
+                onClick={() => {
+                    setDisabled(true);
+                    sendMessage({
+                        ChatLineId: SelectedChatLineId,
+                        Message: message,
+                        RecieverId: ChatLines.find(line => line.ChatLineId == SelectedChatLineId)?.UserId || '',
+                        SenderId: Id
+                    })?.then(() => {
+                        setDisabled(false);
+                    })?.catch(() => {
+                        setDisabled(false);
+                    })
+                }} className="w-[62px] disabled:opacity-40  h-full overflow-hidden rounded-[20px_5px_20px_5px] ml-[13px]">
                 <SendButton />
-            </div>
+            </button>
         </div>}
     </div>
 }
@@ -118,11 +144,16 @@ const Chat = () => {
                 <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
             </div> :
                 <div className=" md:h-[798px] flex h-full  rounded-[30px_5px] bg-[#F4F4F4]">
-                    <div className="w-1/3 h-full flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
+                    <div className="w-1/3 h-full flex relative flex-col text-start items-center justify-start py-[26px] px-[30px]">
                         <div className="flex justify-between w-full">
                             <Text type="h3" className="text-secondary !text-[20px] w-full">Mesajlar</Text>
                         </div>
-                        <div className="w-full h-full overflow-auto scrollbar-thin scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100">
+                        <div onClick={() => {
+                            router.reload();
+                        }} className="w-[40px] hover:shadow-md shadow-xl transition-all cursor-pointer grid place-content-center rounded-[5px_20px] absolute top-0 right-0 h-[40px] bg-secondary text-[white]">
+                            <Refresh />
+                        </div>
+                        <div className="w-full h-full flex flex-col gap-[10px] overflow-auto  scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100">
                             {ChatLines.map((item) => <ChatUserCard active={
                                 activeLineId == item.ChatLineId
                             } onClick={() => {
@@ -130,6 +161,7 @@ const Chat = () => {
                             }} chatLine={item} key={v4()} />)}
                         </div>
                     </div>
+
                     <ChatBox />
                 </div>}
         </DashboardLayout>

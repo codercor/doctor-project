@@ -83,7 +83,7 @@ const BuyKit = ({ id, price, totalLength, DiscountRate }: { DiscountRate: number
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>
                 <TimelapseSharp />
-                <Text>Süre</Text>
+                <Text>Eğitim Süresi</Text>
             </div>
             <Text>{totalLength}dk</Text>
         </div>

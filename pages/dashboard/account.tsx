@@ -136,9 +136,9 @@ const Account = () => {
 
 
         return <form onSubmit={handleSubmit}>
-            <div className="flex gap-[16px]">
-                <FormInput disabled={!isEdit} name="Name" error={errors.Name} value={values.Name} onChange={_handleChange} label="Ad" type="text" />
-                <FormInput disabled={!isEdit} name="Surname" error={errors.Surname} value={values.Surname} onChange={_handleChange} label="Soyad" type="text" />
+            <div className="flex  flex-col lg:flex-row max-w-full gap-[16px]">
+                <FormInput inputClass="w-full" disabled={!isEdit} name="Name" error={errors.Name} value={values.Name} onChange={_handleChange} label="Ad" type="text" />
+                <FormInput inputClass="w-full" disabled={!isEdit} name="Surname" error={errors.Surname} value={values.Surname} onChange={_handleChange} label="Soyad" type="text" />
             </div>
             <FormInput disabled={true} name="Email" error={errors.Email} value={values.Email} onChange={_handleChange} label="E-Posta" type="email" />
             <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" />
@@ -249,7 +249,7 @@ const Account = () => {
                 </div>
                 <div
                     className="bg-[url(/images/png/register.png)] hidden md:grid place-content-center rounded-[20px_5px_20px_5px] bg-cover bg-center  bg-no-repeat w-1/2 h-full">
-                    <Text type="paragraph" className="text-[25px] text-center text-[white] h-[186px] w-[448px]">
+                    <Text type="paragraph" className="!xl:text-[25px] !md:text-[16px] text-center text-[white] h-[186px] w-full">
                         İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir
                         hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza
                         başlayın.</Text>
