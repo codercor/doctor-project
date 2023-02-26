@@ -38,6 +38,7 @@ const Footer = () => {
                             <Nav to="/" text="ANASAYFA" />
                             <Nav to="/hakkimda" text="HAKKIMDA" />
                             <Nav to="/egitimler" text="EĞİTİMLER" />
+                            <Nav to="/blog-yazilari" text="BLOG" />
                         </div>
                         <div className="md:ml-[160px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
                             <Nav text="Gizlilik Politikası" to="/sozlesmeler/gizlilik" />
@@ -53,7 +54,7 @@ const Footer = () => {
                                 <a href="tel:+90 554 797 14 97">+90 554 797 14 97</a>
                             </Text>
                             <Text type="paragraph" className="text-[white] font-nexa-light !text-[14px]">
-                                info@nazanuysalharzadin.com
+                                info@nazanuysalharzadin.com.tr
                             </Text>
                             <div className="pt-0">
                                 <Image src="/images/svg/iyzico_white.svg" width={90} height={36} />

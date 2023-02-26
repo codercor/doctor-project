@@ -49,7 +49,7 @@ const AdminDashBoard = () => {
                 <StatsCard title="Toplam Üye" value={stats.UsersCount} />
                 <StatsCard title="Toplam Eğitim" value={stats.Education} />
             </div>
-            <div className="w-full h-[270px] justify-around flex opacity-10 overflow-auto">
+            <div className="w-full h-[270px] justify-around flex  overflow-auto">
                 <EarningChart />
             </div>
         </div>}

@@ -220,7 +220,7 @@ const Account = () => {
                 type="button"
                 disabled={!isEdit}
                 className="disabled:opacity-40 rounded-br-[20px] rounded-tl-[20px] text-[white] !bg-secondary text-white  border-secondary w-[200px] self-end mt-[20px] h-[48px] leading-none flex items-center justify-center">
-                <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Kaydet</Text>
+                <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Güncelle</Text>
             </button>
         </form>
     }

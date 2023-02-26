@@ -80,7 +80,6 @@ const MyTrainings = () => {
 }
 
 const AllTrainingsFloating = () => {
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
     const { publicTrainings, getPublicTrainings } = useTraining();
     const { user: { Information } } = useUser();
     const router = useRouter();
@@ -106,25 +105,9 @@ const AllTrainingsFloating = () => {
                     title: item.Name as string || '',
                     description: item.Details as string || '',
                     price: (item.Price + ""),
-                    backgroundColor: "!bg-[#EFEEF5]",
                     detailHref: `/training?id=${item.Id}`,
-                    detailOnImage: true,
-                    detailPos: "br",
-                    imageRounded: "br",
-                    boxRounded: "tl",
-                    priceBackgroundColor: "!bg-[#ffffff]",
-                    priceOnImage: true,
-                    pricePos: "bl",
-                    type: "vertical",
-                    showBuyButton: false,
-                    detailButtonDirection: "right",
-                    width: 378,
-                    mWidth: 314,
-                    height: 328,
-                    mHeight: 250,
-                    isMobile,
-                    sizeType: isMobile ? "sm" : "md",
                     DiscountRate: item.DiscountRate,
+                    Id: item.Id as string || '',
                 })
             }
             ))
@@ -147,10 +130,10 @@ const AllTrainingsFloating = () => {
                 }} className="w-[52px] h-[52px] bg-[#7C467B] grid place-content-center text-[white] rounded-[5px_10px_5px_10px]">  <ArrowForwardIos /> </div>
             </div>
         </div>
-        <div ref={floatingContainerRef} className="flex h-fit overflow-scroll md:flex-row items-center md:items-start scrollbar-thin">
+        <div ref={floatingContainerRef} className="flex  h-fit overflow-scroll md:flex-row items-center md:items-start scrollbar-thin">
             {
                 trainings.map((training, index) => {
-                    return <div key={v4()} className="mx-[14px]">
+                    return <div key={v4()} className="mx-[14px] h-[380px] min-w-[400px]">
                         <TrainingCard  {...training} />
                     </div>
                 })
