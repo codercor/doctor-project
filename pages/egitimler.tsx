@@ -12,6 +12,8 @@ import { useMediaQuery } from 'react-responsive'
 import React, { useEffect, useState } from "react";
 import LandingLayout from "@components/Layouts/LandingLayout";
 import useTraining from "src/hooks/training.hook";
+import { getPublicTrainingsRequest } from "@app/Training/training.utils";
+import { TrainingDataType } from "@app/Training/training.types";
 
 
 const TrainingSearchInput = ({ value, onChange }: { value: string, onChange: (e: any) => void }) => {
@@ -23,10 +25,19 @@ const TrainingSearchInput = ({ value, onChange }: { value: string, onChange: (e:
     </div>)
 }
 const Egitimler = () => {
-    const { publicTrainingsProcess: { loading }, getPublicTrainings, publicTrainings } = useTraining()
-
-    const [trainings, setTrainings] = useState<Array<TrainingCardProps & { Id?: string }>>([
-    ])
+    const [loading, setLoading] = useState(false)
+    const [publicTrainings, setPublicTrainings] = useState<TrainingDataType[]>([])
+    const [pageCount, setPageCount] = useState(1)
+    const getPublicTrainings = async (page: number) => {
+        getPublicTrainingsRequest(page).then((res: any) => {
+            setPublicTrainings(res.data)
+            setPageCount(res.pageCount)
+            setLoading(false)
+        }).catch(() => {
+            setLoading(false)
+        })
+    }
+    const [trainings, setTrainings] = useState<Array<TrainingCardProps & { Id?: string }>>([])
     const [page, setPage] = useState(1);
     useEffect(() => {
         getPublicTrainings(page)
