@@ -103,7 +103,7 @@ const Egitimler = () => {
                         <div className="flex flex-row flex-wrap items-center md:items-center  md:justify-center h-full gap-[10px]">
                             {
                                 filteredTrainings.map((training, index) =>
-                                    <div className="min-h-[380px] h-[380px] min-w-[350px]">  <TrainingCard {...training} key={v4()} /></div>)
+                                    <div key={v4()} className="min-h-[380px] h-[380px] min-w-[350px]">  <TrainingCard {...training} /></div>)
                             }
                         </div>
                     </div>

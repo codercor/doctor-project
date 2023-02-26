@@ -64,8 +64,8 @@ const MyTrainings = () => {
             {(UsersTrainings).filter(item => item?.Image).map((item) => {
                 console.log("item", item);
                 //@ts-ignore
-                return <div className="min-w-[300px] md:w-[360px] h-[320px]">
-                    <TrainingCard key={v4()} {
+                return <div key={v4()} className="min-w-[300px] md:w-[360px] h-[320px]">
+                    <TrainingCard  {
                         ...{
                             image: item.Image as string || '',
                             title: item.Name as string || '',
