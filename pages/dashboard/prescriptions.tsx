@@ -85,6 +85,7 @@ export default function Prescriptions() {
     const { user: { Id: UserId, Information } } = useUser()
 
     const [page, setPage] = useState(1)
+    const [pageCount, setPageCount] = useState(1)
 
     const router = useRouter();
 
@@ -93,8 +94,10 @@ export default function Prescriptions() {
         request.get(`/userprescriptions/${UserId}?page=${page}`).then((resp) => {
             setLoading(false);
             console.log(resp.data);
-            setPrescriptions(resp.data);
+            setPrescriptions(resp.data.data);
+            setPageCount(resp.data.PageCount)
             setPage(page)
+            
         }).catch((err) => {
             setLoading(false);
             console.log(err);
@@ -150,7 +153,7 @@ export default function Prescriptions() {
                 </div>
                 <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                     setPage(value)
-                }} count={prescriptions.length > 0 ? page + 1 : page} />
+                }} count={pageCount} />
             </div>
         </>}
     </DashboardLayout>
