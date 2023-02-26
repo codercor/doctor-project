@@ -12,6 +12,7 @@ import { ErrorOutlined } from "@mui/icons-material";
 import axios from "axios";
 import UserContract from "@components/ContractContents/UserContract";
 import UserIlluminationContract from "@components/ContractContents/UserIlluminationContract";
+import request from "@config";
 
 const Register = () => <><RegisterForm /></>
 
@@ -23,10 +24,20 @@ const RegisterForm = () => {
         Email: 'corxjs@gmail.com',
     });
     const router = useRouter();
-
+    const [disabledButton, setDisabledButton] = useState<boolean>(false);
     const { user, register, error } = useAuth();
     const submitRegister = () => {
-      
+        setDisabledButton(true);
+        request.post("/auth/preregistration", { Email: credentials.Email }).then((res) => {
+            toast.success("Kayıt başarılı, lütfen e-posta adresinize gelen linke tıklayarak kaydınızı tamamlayınız", {
+                duration: 10000,
+            })
+        }).catch((err) => {
+            toast.error(err.response.data.message, {
+                duration: 10000,
+            })
+            setDisabledButton(false);
+        })
     }
 
     type ValidationErrors = {
@@ -86,8 +97,8 @@ const RegisterForm = () => {
                         onChange={(e) => setCredentials({ ...credentials, Email: e.target.value })} />
                     {(typeof validationErrors.Email) &&
                         <Text type="paragraph" className="text-red-500 text-[12px]">{validationErrors.Email}</Text>}
-                    <Button onClick={submitRegister} type="secondary"
-                        className="w-full mt-[20px] h-[48px] leading-none flex items-center justify-center">
+                    <Button disabled={disabledButton} onClick={submitRegister} type="secondary"
+                        className="w-full mt-[20px] h-[48px] !disabled:opacity-5 leading-none flex items-center justify-center">
                         <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Üye ol</Text>
                     </Button>
                 </div>
