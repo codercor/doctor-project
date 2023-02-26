@@ -32,7 +32,7 @@ export default function Assays() {
 
     const [searchKey, setSearchKey] = useState('');
 
-
+    const [pageCount, setPageCount] = React.useState(1)
 
     const Row = ({ assay }: { assay: Assay }) => {
         const [open, setOpen] = useState(false);
@@ -121,7 +121,8 @@ export default function Assays() {
         try {
             const res = await request.get(`/userassays?page=${page}`);
             console.log("DATA", res.data);
-            setAssays(res.data);
+            setAssays(res.data.data);
+            setPageCount(res.data.PageCount);
         } catch (error) {
             console.log("error", error);
 
@@ -135,7 +136,8 @@ export default function Assays() {
                 key: searchKey
             });
             console.log("DATA", res.data);
-            setAssays(res.data);
+            setAssays(res.data.data);
+            setPageCount(res.data.PageCount);
         } catch (error) {
             console.log("error", error);
         }
@@ -157,15 +159,19 @@ export default function Assays() {
         const [selected, setSelected] = useState<any>();
         const [assayName, setAssayName] = useState('');
         const [isLoading, setIsLoading] = useState(false);
+
+        const createAssay = async () => {
+            return request.post('/userassays', {
+                Name: assayName,
+                UserId: selected?.Id
+            })
+        }
+
         const handleCreateAssay = async () => {
             try {
                 setIsLoading(true);
-                const res = await request.post('/userassays', {
-                    Name: assayName,
-                    UserId: selected?.Id
-                });
-                console.log("res", res);
-                getAssays();
+                await createAssay()
+                await getAssays();
                 setOpenAddAssayModal(false);
                 setIsLoading(false);
             } catch (error) {
@@ -239,7 +245,7 @@ export default function Assays() {
                     </div>
                     <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                         setPage(value)
-                    }} count={assays.length > 0 ? page + 1 : page} />
+                    }} count={pageCount} />
                 </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>}
             </div>
         </DashboardLayout></>

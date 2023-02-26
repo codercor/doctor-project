@@ -28,7 +28,7 @@ const Search = (props: Props) => {
         const result = await request.post(url, {
             key: _key,
         })
-        setResults(result.data)
+        setResults(result.data.data)
         return result
     }
     useEffect(() => {

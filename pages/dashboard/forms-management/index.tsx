@@ -38,6 +38,7 @@ export default function FormManagement() {
     const [activeTab, setActiveTab] = useState(0);
     const [searchKey, setSearchKey] = useState("");
     const [page, setPage] = useState(1);
+    const [pageCount, setPageCount] = useState(1);
 
     const [flows, setFlows] = useState<any[]>([])
 
@@ -47,7 +48,8 @@ export default function FormManagement() {
         })
             .then((res) => {
                 console.log("floowwwss", res)
-                setFlows(res.data);
+                setFlows(res.data.data);
+                setPageCount(res.data.PageCount)
             })
             .catch((err) => {
                 console.log("err", err);
@@ -149,7 +151,7 @@ export default function FormManagement() {
             </div>
             <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                 setPage(value)
-            }} count={flows.length > 0 ? page + 1 : page} />
+            }} count={pageCount} />
         </div>
     </DashboardLayout>
 }

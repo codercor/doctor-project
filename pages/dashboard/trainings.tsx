@@ -12,6 +12,7 @@ import { TrainingSliceProps } from '@app/Training/training.slice'
 import { TrainingDataType } from 'src/types/Training'
 import { v4 } from 'uuid'
 import { CircularProgress, Pagination } from '@mui/material'
+import request, { ADMIN_TRAINING } from '@config'
 const Training = ({ training }: { training: TrainingDataType }) => {
     const { deleteTrainingById } = useTraining();
     return <div className="flex  items-center mt-4  justify-between px-4 bg-[white] w-full h-[85px]">
@@ -43,6 +44,7 @@ const Training = ({ training }: { training: TrainingDataType }) => {
 
 export default function Trainings() {
     const [page, setPage] = React.useState(1);
+    const [pageCount, setPageCount] = React.useState(1);
     const router = useRouter()
     const handleGoToCreate = () => {
         router.push('/dashboard/create-training')
@@ -50,7 +52,14 @@ export default function Trainings() {
     //fix ref type error
     const ref = React.createRef<HTMLDivElement>();
 
-    const { adminTrainings, refetchAdminTrainings, deleteTrainingProcess, loadingProcess } = useTraining();
+    const { deleteTrainingProcess, loadingProcess } = useTraining();
+
+    const [adminTrainings, setAdminTrainings] = React.useState<TrainingDataType[]>([]);
+    const refetchAdminTrainings = async (page: number) => {
+        const response = await request.get(`${ADMIN_TRAINING}?page=${page}`);
+        setAdminTrainings(response.data.data);
+        setPageCount(response.data.PageCount);
+    }
 
 
     useEffect(() => {
@@ -93,7 +102,7 @@ export default function Trainings() {
 
                 </div>
                 <Pagination siblingCount={page} className="mt-auto mb-[10px] mx-auto"
-                 onChange={(e: any, value: number) => { setPage(value) }} count={adminTrainings?.length > 0 ? page + 1 : page} />
+                    onChange={(e: any, value: number) => { setPage(value) }} count={pageCount} />
             </div>
         </DashboardLayout>
     )

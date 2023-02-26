@@ -274,8 +274,7 @@ export const SelectUserModal = ({ setter }: { setter: (v: any) => void }) => {
         request.post(`/search/user/patient?page=1`, {
             key
         }).then(res => {
-            console.log(res.data);
-            setSearchResults(res.data);
+            setSearchResults(res.data.data);
         }).catch(err => {
             console.log(err);
         })
@@ -388,6 +387,7 @@ export default function AppointmentManagement() {
         },
     ])
     const [page, setPage] = useState(1)
+    const [pageCount, setPageCount] = useState(1)
     const [searchKey, setSearchKey] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [keyword, setKeyword] = useState("")
@@ -403,10 +403,12 @@ export default function AppointmentManagement() {
         },
         open: false
     })
+
     const getAndSetAppointments = async () => {
         setIsLoading(true)
         request.get(`/userappointments?page=${page}`).then((res) => {
-            setAppointments(res.data)
+            setAppointments(res.data.data)
+            setPageCount(res.data.PageCount)
             setIsLoading(false)
         }).catch((err) => {
             console.log("err", err)
@@ -418,7 +420,8 @@ export default function AppointmentManagement() {
         request.post(`/search/appointment?page=${page}`, {
             key: keyword
         }).then((res) => {
-            setAppointments(res.data)
+            setAppointments(res.data.data)
+            setPageCount(res.data.PageCount)
         }).catch((err) => {
             console.log("err", err)
         })
@@ -433,7 +436,7 @@ export default function AppointmentManagement() {
         if (searchKey.trim().length > 0) {
             request.post(`/search/appointment?page=${page}`, { key: searchKey })
                 .then((data) => {
-                    setAppointments(data.data)
+                    setAppointments(data.data.data)
                 })
                 .catch((err) => {
                     toast.error("Arama yapılırken bir hata oluştu");
@@ -529,7 +532,7 @@ export default function AppointmentManagement() {
                         <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]"
                             onChange={(e: any, value: number) => {
                                 setPage(value)
-                            }} count={appointments.length > 0 ? page + 1 : page} />
+                            }} count={pageCount} />
                     </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
                 }
             </div>

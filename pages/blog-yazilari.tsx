@@ -26,10 +26,11 @@ export default function BlogYazilari({ }: Props) {
     const [loading, setLoading] = React.useState(true)
     const [page, setPage] = React.useState(1);
     const [blogs, setBlogs] = React.useState<Blog[]>([])
-
+    const [pageCount, setPageCount] = React.useState(1)
     const getBlogs = async () => {
         let req = await request.get(`/forum?page=${page}`);
-        return req.data;
+        setPageCount(req.data.PageCount)
+        return req.data.data;
     }
 
 
@@ -75,7 +76,7 @@ export default function BlogYazilari({ }: Props) {
                 <Pagination
                     page={page}
                     onChange={(event, value) => setPage(value)}
-                    className='w-fit' count={blogs.length > 0 ? page + 1 : page} siblingCount={3} variant='outlined' shape='rounded' color='primary' />
+                    className='w-fit' count={pageCount} siblingCount={3} variant='outlined' shape='rounded' color='primary' />
             </div>
         </LandingLayout>
     )

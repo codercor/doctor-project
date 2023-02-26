@@ -275,8 +275,7 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
         request.post(`/search/user/patient?page=1`, {
             key
         }).then(res => {
-            console.log(res.data);
-            setSearchResults(res.data);
+            setSearchResults(res.data.data);
         }).catch(err => {
             console.log(err);
         })
@@ -284,11 +283,8 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
 
     useEffect(() => {
         if (!selectedPatient && searchKey.length > 0) {
-            console.log("g 1");
-
             searchPatient(searchKey);
         } else {
-            console.log("g 2");
             setSearchResults([]);
         }
     }, [searchKey, selectedPatient]);
@@ -320,7 +316,6 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
     }
     const [valid, setValid] = useState(false);
     const handleCreatePrescription = () => {
-        console.log(data);
         setValid(false)
         let formData = new FormData();
         formData.append('Name', data.data.Name);
@@ -374,7 +369,7 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
                 item?.Id && selectPatient(item.Id)
             }} className="w-full h-[40px] border-t-[1px] flex items-center px-4">
                 <p>
-                  <span>  {item.Information.Fullname} </span> <span className='bg-[#94c5ce] ml-4 px-[6px] align-middle text-center rounded-[10px]'>{item.Email}</span>
+                    <span>  {item.Information.Fullname} </span> <span className='bg-[#94c5ce] ml-4 px-[6px] align-middle text-center rounded-[10px]'>{item.Email}</span>
                 </p>
                 {
                     cancel && (<button onClick={(
@@ -433,7 +428,7 @@ export default function PrescriptionsManagement() {
 
     const [prescriptions, setPrescriptions] = useState<IPrescriptionItem[]>([]);
     const [loading, setLoading] = useState(false);
-
+    const [pageCount, setPageCount] = React.useState(1)
     const [keyword, setKeyword] = useState<string>('');
     const getSearchResults = () => {
         ///api/search/assay?page=21
@@ -443,9 +438,8 @@ export default function PrescriptionsManagement() {
             key: keyword
         }).then((resp) => {
             //setLoading(false);
-            console.log("GEELDI");
-            console.log(resp.data);
-            setPrescriptions(resp.data);
+            setPrescriptions(resp.data.data);
+            setPageCount(resp.data.PageCount)
             setPage(page)
         }).catch((err) => {
             //   setLoading(false);
@@ -458,9 +452,8 @@ export default function PrescriptionsManagement() {
         setLoading(true);
         request.get(`/userprescriptions?page=${page}`).then((resp) => {
             setLoading(false);
-            console.log("GEELDI");
-            console.log(resp.data);
-            setPrescriptions(resp.data);
+            setPrescriptions(resp.data.data);
+            setPageCount(resp.data.PageCount)
             setPage(page)
         }).catch((err) => {
             setLoading(false);
@@ -557,7 +550,7 @@ export default function PrescriptionsManagement() {
                 </div>
                 <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                     setPage(value)
-                }} count={prescriptions.length > 0 ? page + 1 : page} />
+                }} count={pageCount} />
             </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Reçete bulunmamaktadır </h1>}
         </div>
     </DashboardLayout>
