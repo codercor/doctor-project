@@ -100,16 +100,10 @@ const Egitimler = () => {
                         }
 
                     }} className="mx-auto md:h-[936px]  px-[20px] md:px-0 scrollbar-thin scrollbar-track-[white]  scrollbar-thumb-quaternary scrollbar-thumb-rounded  h-[700px]  lg:w-[1000px] overflow-auto max-w-[1000px] items-center lg:items-start flex gap-[20px] lg:flex-row flex-col ">
-                        <div className="flex flex-col items-center md:items-start md:justify-between h-full gap-[20px]">
+                        <div className="flex flex-row flex-wrap items-center md:items-center  md:justify-center h-full gap-[10px]">
                             {
-                                filteredTrainings.filter((_, i) => i % 2 == 0).map((training, index) =>
-                                    <TrainingCard {...training} key={v4()} />)
-                            }
-                        </div>
-                        <div className="flex flex-col items-center md:items-start md:justify-between h-full gap-[20px]">
-                            {
-                                filteredTrainings.filter((_, i) => i % 2 == 1).map((training, index) =>
-                                    <TrainingCard {...training} key={v4()} />)
+                                filteredTrainings.map((training, index) =>
+                                    <div className="min-h-[380px] h-[380px] min-w-[350px]">  <TrainingCard {...training} key={v4()} /></div>)
                             }
                         </div>
                     </div>

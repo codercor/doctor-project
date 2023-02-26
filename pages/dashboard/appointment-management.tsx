@@ -154,6 +154,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
                 }}
                     className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
                     <MenuOpen />
+                    <MenuOpen />
                 </button>
             </div>
             <div className='flex-[2]'>
