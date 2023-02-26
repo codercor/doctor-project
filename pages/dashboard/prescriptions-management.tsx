@@ -12,6 +12,7 @@ import request from '@config';
 import { LocalLoading } from './appointment-management';
 import { toast } from 'react-hot-toast';
 import AreYouSureModal from '@components/Modals/AreYouSureModal';
+import { useRouter } from "next/router";
 interface IPrescriptionItem {
     Id: string;
     UserId: string;
@@ -430,6 +431,16 @@ export default function PrescriptionsManagement() {
     const [loading, setLoading] = useState(false);
     const [pageCount, setPageCount] = React.useState(1)
     const [keyword, setKeyword] = useState<string>('');
+    const { query: { name } } = useRouter();
+
+    useEffect(() => {
+        if (name && !loading && prescriptions.length > 1) {
+            setTimeout(() => {
+                setKeyword(name as string);
+            }, 1000);
+        }
+    }, [name, loading])
+
     const getSearchResults = () => {
         ///api/search/assay?page=21
         if (keyword.trim().length < 1) return;

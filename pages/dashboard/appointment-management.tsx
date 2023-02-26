@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text'
-import { Add, Cancel, Check, Close, Delete, MenuOpen, RefreshRounded, SortByAlpha } from '@mui/icons-material'
+import { Add, BookmarkAdded, Cancel, Check, Close, Delete, MenuOpen, RefreshRounded, Router, SortByAlpha, TaskOutlined } from '@mui/icons-material'
 import React, { useEffect, useState } from 'react'
 import { Pagination } from '@mui/material'
 import classNames from 'classnames'
@@ -13,7 +13,7 @@ import FormInput from "@components/Forms/FormInput/FormInput";
 import { CreateAppointmentModal } from '@components/CreateAppointmentModal/CreateAppointmentModal'
 import { UserState } from '@app/User/user.types'
 import AreYouSureModal from '@components/Modals/AreYouSureModal'
-
+import { useRouter } from "next/router";
 interface Appointment {
     Id: string;
     UserId: string;
@@ -91,7 +91,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
     const [isLoading, setIsLoading] = useState(false);
 
     const [areYouSureModalState, setAreYouSureModalState] = useState<boolean>(false);
-
+    const router = useRouter();
     const submit = async () => {
         const URL = `/userappointments/${appointment.Id}`
         try {
@@ -108,7 +108,6 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
         }
         afterUpdate()
     }
-
     return <div onClick={() => {
         setUpdateTheUserModal(true)
     }} className='flex border-2 hover:cursor-pointer flex-col w-full'>
@@ -148,13 +147,28 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
                     appointment.Status === "Acil" ? <StatusBox type="Acil" /> : <StatusBox type="Randevulu" />
                 }
             </div>
-            <div className='flex-[2]'>
+            <div className='flex-[2] flex'>
                 <button onClick={(e) => {
 
                 }}
                     className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
                     <MenuOpen />
-                    <MenuOpen />
+                </button>
+                <button onClick={(e) => {
+                    e.stopPropagation();
+                    router.push(`/dashboard/forms-management/?name=${appointment.user?.information?.Fullname}`)
+                }}
+                    title='Form'
+                    className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
+                    <TaskOutlined />
+                </button>
+                <button onClick={(e) => {
+                    e.stopPropagation();
+                    router.push(`/dashboard/prescriptions-management/?name=${appointment.user?.information?.Fullname}`)
+                }}
+                    title='Reçete'
+                    className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
+                    <BookmarkAdded />
                 </button>
             </div>
             <div className='flex-[2]'>
@@ -162,6 +176,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
                     e.stopPropagation();
                     setAreYouSureModalState(true);
                 }}
+                    title='Sil'
                     className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#ce4343]'>
                     <Delete />
                 </button>
