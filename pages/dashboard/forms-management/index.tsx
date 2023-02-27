@@ -38,16 +38,26 @@ export default function FormManagement() {
     const [activeTab, setActiveTab] = useState(0);
     const [searchKey, setSearchKey] = useState("");
     const [page, setPage] = useState(1);
+    const [pageCount, setPageCount] = useState(1);
 
     const [flows, setFlows] = useState<any[]>([])
+    const { query: { name } } = useRouter();
 
+    useEffect(() => {
+        if (name) {
+            setTimeout(() => {
+                setSearchKey(name as string);
+            }, 1000);
+        }
+    }, [name])
     const getFlow = () => {
         request.post(`/search/flow/${activeTab + 1}?page=${page}`, {
             key: searchKey
         })
             .then((res) => {
                 console.log("floowwwss", res)
-                setFlows(res.data);
+                setFlows(res.data.data);
+                setPageCount(res.data.PageCount)
             })
             .catch((err) => {
                 console.log("err", err);
@@ -127,7 +137,7 @@ export default function FormManagement() {
             </div>
             <FormTypeGrid active={activeTab} setActive={setActiveTab} />
             <div className="w-[60%] gap-[10px] mt-[30px] mb-[30px] flex">
-                <input type="text" onChange={(e) => setSearchKey(e.currentTarget.value)} placeholder='Ad Soyad ile arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
+                <input type="text" value={searchKey} onChange={(e) => setSearchKey(e.currentTarget.value)} placeholder='Ad Soyad ile arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
                 <button onClick={() => refresh()} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
                     <RefreshRounded />
                 </button>
@@ -149,7 +159,7 @@ export default function FormManagement() {
             </div>
             <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                 setPage(value)
-            }} count={flows.length > 0 ? page + 1 : page} />
+            }} count={pageCount} />
         </div>
     </DashboardLayout>
 }

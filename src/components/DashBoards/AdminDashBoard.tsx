@@ -44,13 +44,13 @@ const AdminDashBoard = () => {
         {stats && <div className="h-[462px] overflow-auto bg-[#F4F4F4] p-[32px] scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100">
             <Text type="h6" className="text-[#4D5628] text-[14px] font-nexa-regular">Eğitim İstatislikleri</Text>
             <div className="flex justify-between md:mt-2 overflow-auto" >
-                <StatsCard title="Kazanç" value={stats.Earned + "₺"} />
+                <StatsCard title="Kazanç" value={Number(stats.Earned).toFixed(2) + "₺"} />
                 <StatsCard title="Toplam Satın Alınan" value={stats.Purchased} />
                 <StatsCard title="Toplam Üye" value={stats.UsersCount} />
                 <StatsCard title="Toplam Eğitim" value={stats.Education} />
             </div>
-            <div className="w-full h-[270px] justify-around flex opacity-10 overflow-auto">
-                <EarningChart />
+            <div className="w-full h-[270px] justify-around flex  overflow-auto">
+                <EarningChart data={stats} />
             </div>
         </div>}
     </div>

@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text'
-import { Add, Cancel, Check, Close, Delete, MenuOpen, RefreshRounded, SortByAlpha } from '@mui/icons-material'
+import { Add, BookmarkAdded, Cancel, Check, Close, Delete, MenuOpen, RefreshRounded, Router, SortByAlpha, TaskOutlined } from '@mui/icons-material'
 import React, { useEffect, useState } from 'react'
 import { Pagination } from '@mui/material'
 import classNames from 'classnames'
@@ -13,7 +13,7 @@ import FormInput from "@components/Forms/FormInput/FormInput";
 import { CreateAppointmentModal } from '@components/CreateAppointmentModal/CreateAppointmentModal'
 import { UserState } from '@app/User/user.types'
 import AreYouSureModal from '@components/Modals/AreYouSureModal'
-
+import { useRouter } from "next/router";
 interface Appointment {
     Id: string;
     UserId: string;
@@ -91,7 +91,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
     const [isLoading, setIsLoading] = useState(false);
 
     const [areYouSureModalState, setAreYouSureModalState] = useState<boolean>(false);
-
+    const router = useRouter();
     const submit = async () => {
         const URL = `/userappointments/${appointment.Id}`
         try {
@@ -108,10 +108,9 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
         }
         afterUpdate()
     }
-
     return <div onClick={() => {
         setUpdateTheUserModal(true)
-    }} className='flex border-2 flex-col w-full'>
+    }} className='flex border-2 hover:cursor-pointer flex-col w-full'>
         {
             isLoading && <LocalLoading message="Güncelleniyor" />
         }
@@ -148,12 +147,28 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
                     appointment.Status === "Acil" ? <StatusBox type="Acil" /> : <StatusBox type="Randevulu" />
                 }
             </div>
-            <div className='flex-[2]'>
+            <div className='flex-[2] flex'>
                 <button onClick={(e) => {
 
                 }}
                     className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
                     <MenuOpen />
+                </button>
+                <button onClick={(e) => {
+                    e.stopPropagation();
+                    router.push(`/dashboard/forms-management/?name=${appointment.user?.information?.Fullname}`)
+                }}
+                    title='Form'
+                    className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
+                    <TaskOutlined />
+                </button>
+                <button onClick={(e) => {
+                    e.stopPropagation();
+                    router.push(`/dashboard/prescriptions-management/?name=${appointment.user?.information?.Fullname}`)
+                }}
+                    title='Reçete'
+                    className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
+                    <BookmarkAdded />
                 </button>
             </div>
             <div className='flex-[2]'>
@@ -161,6 +176,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
                     e.stopPropagation();
                     setAreYouSureModalState(true);
                 }}
+                    title='Sil'
                     className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#ce4343]'>
                     <Delete />
                 </button>
@@ -274,8 +290,7 @@ export const SelectUserModal = ({ setter }: { setter: (v: any) => void }) => {
         request.post(`/search/user/patient?page=1`, {
             key
         }).then(res => {
-            console.log(res.data);
-            setSearchResults(res.data);
+            setSearchResults(res.data.data);
         }).catch(err => {
             console.log(err);
         })
@@ -315,7 +330,7 @@ export const SelectUserModal = ({ setter }: { setter: (v: any) => void }) => {
                 item?.Id && selectPatient(item.Id, (item.Information.Fullname || 'YOOK'))
             }} className="w-full h-[40px] border-t-[1px] flex items-center px-4">
                 <p>
-                    {item.Information.Fullname}
+                    <span>  {item.Information.Fullname} </span> <span className='bg-[#94c5ce] ml-4 px-[6px] align-middle text-center rounded-[10px]'>{item.Email}</span>
                 </p>
                 {
                     cancel && (<button onClick={(
@@ -388,6 +403,7 @@ export default function AppointmentManagement() {
         },
     ])
     const [page, setPage] = useState(1)
+    const [pageCount, setPageCount] = useState(1)
     const [searchKey, setSearchKey] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [keyword, setKeyword] = useState("")
@@ -403,10 +419,12 @@ export default function AppointmentManagement() {
         },
         open: false
     })
+
     const getAndSetAppointments = async () => {
         setIsLoading(true)
         request.get(`/userappointments?page=${page}`).then((res) => {
-            setAppointments(res.data)
+            setAppointments(res.data.data)
+            setPageCount(res.data.PageCount)
             setIsLoading(false)
         }).catch((err) => {
             console.log("err", err)
@@ -418,7 +436,8 @@ export default function AppointmentManagement() {
         request.post(`/search/appointment?page=${page}`, {
             key: keyword
         }).then((res) => {
-            setAppointments(res.data)
+            setAppointments(res.data.data)
+            setPageCount(res.data.PageCount)
         }).catch((err) => {
             console.log("err", err)
         })
@@ -433,7 +452,7 @@ export default function AppointmentManagement() {
         if (searchKey.trim().length > 0) {
             request.post(`/search/appointment?page=${page}`, { key: searchKey })
                 .then((data) => {
-                    setAppointments(data.data)
+                    setAppointments(data.data.data)
                 })
                 .catch((err) => {
                     toast.error("Arama yapılırken bir hata oluştu");
@@ -529,7 +548,7 @@ export default function AppointmentManagement() {
                         <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]"
                             onChange={(e: any, value: number) => {
                                 setPage(value)
-                            }} count={appointments.length > 0 ? page + 1 : page} />
+                            }} count={pageCount} />
                     </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
                 }
             </div>

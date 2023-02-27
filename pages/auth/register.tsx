@@ -12,6 +12,7 @@ import { ErrorOutlined } from "@mui/icons-material";
 import axios from "axios";
 import UserContract from "@components/ContractContents/UserContract";
 import UserIlluminationContract from "@components/ContractContents/UserIlluminationContract";
+import request from "@config";
 
 const Register = () => <><RegisterForm /></>
 
@@ -30,6 +31,23 @@ const RegisterForm = () => {
     const submitRegister = () => {
         register(credentials);
     }
+
+    useEffect(() => {
+        if (router.query.id) {
+            request.post("/auth/checkpreregistration", {
+                Id: router.query.id
+            }).then((res) => {
+                setCredentials({
+                    ...credentials,
+                    Email: res.data.Email
+                })
+            }).catch((err) => {
+                toast.error(err.response.data.message, {
+                    duration: 4000,
+                })
+            })
+        }
+    }, [router.query.id])
 
     type ValidationErrors = {
         Email: string | null,
@@ -135,8 +153,8 @@ const RegisterForm = () => {
                 <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">
                     <Text type="h3" className="text-white !text-[34px]">Üye Ol</Text>
                     {error.IsError &&
-                        <Text type="paragraph" className="text-red-500 !text-[14px]">{error.ErrorMessage}</Text>}
-                    <Input onBlur={() => registerValidation()} text="E-posta" value={credentials.Email} type="email"
+                        <Text type="paragraph" className="text-red-500  !text-[14px]">{error.ErrorMessage}</Text>}
+                    <Input disabled={true} onBlur={() => registerValidation()} text="E-posta" value={credentials.Email} type="email"
                         onChange={(e) => setCredentials({ ...credentials, Email: e.target.value })} />
                     {(typeof validationErrors.Email) &&
                         <Text type="paragraph" className="text-red-500 text-[12px]">{validationErrors.Email}</Text>}

@@ -174,7 +174,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         if (!user.IsAuthenticated) {
             router.push("/auth/login")
         }
-    }, [user])
+    }, [user.IsAuthenticated])
     const [showMenu, setShowMenu] = React.useState(true);
     return (
         <div className="overflow-auto   flex w-full h-screen">

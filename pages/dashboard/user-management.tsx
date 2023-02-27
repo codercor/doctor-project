@@ -113,14 +113,17 @@ export default function UserManagement() {
     const [IsLoading, setIsLoading] = useState(false);
     const [keyword, setKeyword] = useState("");
     const [page, setPage] = useState(1);
+    const [pageCount, setPageCount] = React.useState(1)
+
     const fetchUsers = () => {
         setIsLoading(true);
         request.get(`/user?page=${page}`).then(res => {
-            let results = res.data.map((item: any) => {
+            let results = res.data.data.map((item: any) => {
                 if (!item.Information.Fullname) item.Information.Fullname = "-";
                 if (!item.Information.Phone) item.Information.Phone = "-";
                 return item;
             })
+            setPageCount(res.data.PageCount);
             setList(results);
             setIsLoading(false);
         }).catch(err => {
@@ -132,7 +135,8 @@ export default function UserManagement() {
         request.post(`/search/user?page=${page}`, {
             key: keyword
         }).then(res => {
-            setList(res.data);
+            setList(res.data.data);
+            setPageCount(res.data.PageCount);
         }).catch(err => {
             console.log("search error", err);
         })
@@ -242,7 +246,7 @@ export default function UserManagement() {
                         <Pagination siblingCount={3} variant="text" className="mt-[20px] mb-[30px]"
                             onChange={(e: any, value: number) => {
                                 setPage(value)
-                            }} count={list?.length > 0 ? page + 1 : page} />
+                            }} count={pageCount} />
                     </TableContainer>
                 </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kullanıcı bulunmamaktadır </h1>}
             </div>

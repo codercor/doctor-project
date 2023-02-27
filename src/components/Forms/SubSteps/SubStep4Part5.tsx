@@ -34,7 +34,7 @@ export default function SubStep4Part5({
                     <p>4 – Sıklıkla var, etkisi şiddetli</p>
                 </div>
                 <div className="w-full flex my-[20px]">
-                    <FormInputTextArea disabled={readOnly} value={values.textLast2Week} onChange={handleChange} error={errors.textLast2Week} name="textLast2Week" label="Bu geçen 2 hafta nasıldı?" />
+                    <FormInputTextArea disabled={readOnly} value={values.textLast2Week} onChange={handleChange} error={errors.textLast2Week} name="textLast2Week" label="Bu geçen 1 ay nasıldı?" />
                 </div>
                 <div className="w-full flex my-[20px]">
                     <FormInputTextArea disabled={readOnly} value={values.textLifeStyleChange} onChange={handleChange} error={errors.textLifeStyleChange} name="textLifeStyleChange" label="Yaşam şeklinizi dönüştürürken nerelerde zorlandınız?" />

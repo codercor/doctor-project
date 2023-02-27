@@ -2,6 +2,7 @@ import Container from "@components/Container";
 import ArrowIcon from "@components/Icon/ArrowIcon";
 import Logo from "@components/Logo";
 import Text from "@components/Text";
+import { Facebook, Instagram, Twitter, YouTube } from "@mui/icons-material";
 import Image from "next/image";
 import { useRouter } from "next/router"
 
@@ -25,16 +26,19 @@ const Footer = () => {
                 <Container className="h-[calc(100%-48px)] flex flex-col  !max-w-[1240px] bg-primary-flat">
                     <div className="flex md:flex-row flex-col md:items-start items-center">
                         <div className="md:block flex flex-col items-center ">
-                            <Logo />
-                            <div className="mt-4">
+                            <Logo  />
+                            <div className="mt-4 cursor-pointer" onClick={() => {
+                                window.open("https://www.ifm.org/practitioners/nazan-uysal-harzadin/", "_blank")
+                            }}>
                                 <Image src="/images/svg/cert.svg" width={140} height={36} />
                             </div>
 
                         </div>
                         <div className="md:ml-[60px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
-                            <Nav text="ANASAYFA" />
-                            <Nav text="HAKKIMDA" />
-                            <Nav text="EĞİTİMLER" />
+                            <Nav to="/" text="ANASAYFA" />
+                            <Nav to="/hakkimda" text="HAKKIMDA" />
+                            <Nav to="/egitimler" text="EĞİTİMLER" />
+                            <Nav to="/blog-yazilari" text="BLOG" />
                         </div>
                         <div className="md:ml-[160px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
                             <Nav text="Gizlilik Politikası" to="/sozlesmeler/gizlilik" />
@@ -50,19 +54,25 @@ const Footer = () => {
                                 <a href="tel:+90 554 797 14 97">+90 554 797 14 97</a>
                             </Text>
                             <Text type="paragraph" className="text-[white] font-nexa-light !text-[14px]">
-                                info@nazanuysalharzadin.com
+                                info@nazanuysalharzadin.com.tr
                             </Text>
                             <div className="pt-0">
                                 <Image src="/images/svg/iyzico_white.svg" width={90} height={36} />
                             </div>
                             <Text type="paragraph" className="text-[white] mt-[2px] md:mt-[7px]">TAKİP ET</Text>
                             <div className="flex gap-2">
-                                <Image onClick={() => {
+                                <Instagram onClick={() => {
                                     window.open("https://www.instagram.com/nazanuysalharzadin", "_blank")
-                                }} src="/images/svg/instagram.svg" width={24} height={24} />
-                                <Image onClick={() => {
+                                }} className="!text-[32px] cursor-pointer hover:scale-[1.1] text-[white]" />
+                                <YouTube onClick={() => {
                                     window.open("https://www.youtube.com/channel/UCUXLeXnl9FLy3HziVsoLTKQ?app=desktop", "_blank")
-                                }} src="/images/svg/youtube.svg" width={24} height={24} />
+                                }} className="!text-[32px] cursor-pointer hover:scale-[1.1] text-[white]" />
+                                <Facebook onClick={() => {
+                                    window.open("https://www.facebook.com/nazanuysalharzadin?locale=tr_TR", "_blank")
+                                }} className="!text-[32px] cursor-pointer hover:scale-[1.1] text-[white]" />
+                                <Twitter onClick={() => {
+                                    window.open("https://twitter.com/nazanuysalharza", "_blank")
+                                }} className="!text-[32px] cursor-pointer hover:scale-[1.1] text-[white]" />
                             </div>
                         </div>
                     </div>
@@ -75,7 +85,7 @@ const Footer = () => {
             </Container>
             <Container className="h-[48px] !max-w-[100vw] bg-secondary">
                 <Container className="h-full flex  !max-w-[1240px]  items-center">
-                    <Text type="overline" className="text-[white] md:ml-0 ml-[40px]">Prof.Dr. Nazan Uysal Harzadın © 2022</Text>
+                    <Text type="overline" className="text-[white] md:ml-0 ml-[40px]">Prof.Dr. Nazan Uysal Harzadın © 2023</Text>
                 </Container>
             </Container>
         </Container>

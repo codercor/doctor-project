@@ -62,7 +62,7 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
     const { logout } = useAuth();
 
     return (
-        <div className="md:h-auto flex  justify-between absolute z-20 w-full top-0 left-0 md:px-0 px-[20px]">
+        <div className="md:h-auto flex  justify-between absolute z-[99] w-full top-0 left-0 md:px-0 px-[20px]">
             <Logo  />
             <div className="md:flex hidden  flex-col gap-[20px] md:flex-row md:justify-between md:items-center">
                 {(navs).map((nav: Route) => <NavbarItem key={nav.text} route={nav} />)}
@@ -80,7 +80,7 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
                             </Button></>
 
                     </> : <><Button onClick={() => {
-                        Router.push("/auth/register")
+                        Router.push("/auth/pre-register")
                     }} type={backColor === "light" ? "transparent-secondary" : "transparent-white"} direction="right">
                         <Text type="paragraph">Kayıt Ol</Text>
                     </Button>
@@ -113,7 +113,7 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
                 <div className="flex flex-col mt-[50px]">
                     <Text className='text-purple-800 text-[18px]' type='h6'>İLETİŞİM</Text>
                     <Text className='text-purple-800 text-[14px] mt-[16px]' type='body'>0 (232) 123 45 67</Text>
-                    <Text className='text-purple-800 text-[14px] mt-[12px]' type='body'>merhaba@nazanuysalharzadin.com</Text>
+                    <Text className='text-purple-800 text-[14px] mt-[12px]' type='body'>merhaba@nazanuysalharzadin.com.tr</Text>
                 </div>
                 <div className="flex flex-col mt-[50px]">
                     <Text className='text-purple-800 text-[18px]' type='overline'>TAKİP ET</Text>
@@ -141,7 +141,7 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
                         :
                         <>
                             <button onClick={() => {
-                                Router.push("/auth/register")
+                                Router.push("/auth/pre-register")
                             }} className="bg-quaternary-light mt-auto mb-[6px] rounded-tl-[20px] rounded-br-[20px] h-[48px] w-full ">
                                 <Text className='text-[14px] text-purple-800' type='body'> Kayıt Ol </Text>
                             </button>

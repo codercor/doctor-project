@@ -49,33 +49,40 @@ const Blog = () => {
 
             <>
                 <div className="h-[150px] "> </div>
-                <div className='relative  text-[#314E53] flex justify-center items-center flex-col gap-[40px] w-full min-h-[340px]'>
-                    <Image src={blog?.Image || "/images/png/blog-header.png"} layout="fill" objectFit="cover" />
+                <div className='relative md:flex bg-gradient-to-b from-[#DFEBEC]  text-[#314E53] hidden justify-center items-center flex-col gap-[40px] w-full h-[340px]'>
+                    <Image src={"/images/png/bg-blog-detay-figure.png"} layout="fill" objectFit="contain" />
                 </div>
                 <div className='relative my-[36px] md:px-0 px-[16px]  text-[#314E53] flex  max-w-[1280px] mx-auto flex-col gap-[40px] w-full min-h-[340px]'>
-                    <h1 className='font-nexa-regular text-[37px] text-[#314E53]'>  {blog?.Title} </h1>
-                    <div className="flex gap-[20px] md:gap-[30px]  items-center ">
-                        <p className='text-[#629DA7]  font-nexa-bold text-[18px]'> {new Date(blog?.updated_at || '').toLocaleString("tr-TR", {
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric'
-                        })}</p>
-                        <span onClick={() => {
-                            window.open(`whatsapp://send?text=${blog?.Title} Okumak için tıklayın : ${window.location.href}`)
-                        }}>
+                    <div className="flex flex-col md:flex-row">
+                        <div className='relative  text-[#314E53] flex justify-center items-center flex-col gap-[40px] md:w-[380px] aspect-video w-full min-h-[340px]'>
+                            <Image src={blog?.Image || "/images/png/blog-header.png"} layout="fill" objectFit="cover" />
+                        </div>
+                        <div className="flex flex-col md:pt-0 pt-[34px] pl-[30px] justify-center">
+                            <h1 className='font-nexa-regular text-[37px] text-[#314E53]'>  {blog?.Title} </h1>
+                            <div className="flex gap-[20px] md:gap-[30px]  items-center ">
+                                <p className='text-[#629DA7]  font-nexa-bold text-[18px]'> {new Date(blog?.updated_at || '').toLocaleString("tr-TR", {
+                                    day: 'numeric',
+                                    month: 'long',
+                                    year: 'numeric'
+                                })}</p>
+                                <span onClick={() => {
+                                    window.open(`whatsapp://send?text=${blog?.Title} Okumak için tıklayın : ${window.location.href}`)
+                                }}>
 
-                            <WhatsApp className='bg-[#4E929D] rounded-full min-h-[42px] p-[6px] min-w-[42px] text-[white]' />
-                        </span>
-                        <span onClick={() => {
-                            window.open(`http://twitter.com/share?text=${blog?.Title}&url=${window.location.href}`)
-                        }}>
-                            <Twitter className='bg-[#4E929D] rounded-full min-h-[42px] p-[6px] min-w-[42px] text-[white]' />
-                        </span>
-                        <span onClick={() => {
-                            window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`)
-                        }}>
-                            <Facebook className='bg-[#4E929D] rounded-full min-h-[42px] p-[6px] min-w-[42px] text-[white]' />
-                        </span>
+                                    <WhatsApp className='bg-[#4E929D] cursor-pointer rounded-full min-h-[42px] p-[6px] min-w-[42px] text-[white]' />
+                                </span>
+                                <span onClick={() => {
+                                    window.open(`http://twitter.com/share?text=${blog?.Title}&url=${window.location.href}`)
+                                }}>
+                                    <Twitter className='bg-[#4E929D] cursor-pointer rounded-full min-h-[42px] p-[6px] min-w-[42px] text-[white]' />
+                                </span>
+                                <span onClick={() => {
+                                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`)
+                                }}>
+                                    <Facebook className='bg-[#4E929D] cursor-pointer rounded-full min-h-[42px] p-[6px] min-w-[42px] text-[white]' />
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <p className='text-[#314E53] font-nexa-regular text-[18px]'>
                         {
@@ -99,7 +106,7 @@ const OtherBlogs = () => {
         setLoading(true)
         try {
             const req = await request.get('/forum?page=1')
-            return [...req.data].slice(0, 3)
+            return [...req.data.data].slice(0, 3)
         } catch (error) {
             toast.error('Bir hata oluştu');
         }

@@ -32,16 +32,17 @@ export default function Assays() {
 
     const [searchKey, setSearchKey] = useState('');
 
-    const [openAreYouSureModal, setOpenAreYouSureModal] = useState(false);
+    const [pageCount, setPageCount] = React.useState(1)
 
     const Row = ({ assay }: { assay: Assay }) => {
         const [open, setOpen] = useState(false);
+        const [openAreYouSureModal, setOpenAreYouSureModal] = useState(false);
         const [assayFiles, setAssayFiles] = useState<FileList | null>(null);
         return <div className='flex flex-col w-full'>
             {openAreYouSureModal && <AreYouSureModal finish={({ confirmed }) => {
                 console.log("confirmed", confirmed);
                 if (confirmed) {
-                    request.delete(`/userassays/${assay.Id}`).then(() => { 
+                    request.delete(`/userassays/${assay.Id}`).then(() => {
                         refresh();
                         toast.success('Tahlil silindi')
                     }).catch(() => {
@@ -120,7 +121,8 @@ export default function Assays() {
         try {
             const res = await request.get(`/userassays?page=${page}`);
             console.log("DATA", res.data);
-            setAssays(res.data);
+            setAssays(res.data.data);
+            setPageCount(res.data.PageCount);
         } catch (error) {
             console.log("error", error);
 
@@ -134,7 +136,8 @@ export default function Assays() {
                 key: searchKey
             });
             console.log("DATA", res.data);
-            setAssays(res.data);
+            setAssays(res.data.data);
+            setPageCount(res.data.PageCount);
         } catch (error) {
             console.log("error", error);
         }
@@ -156,15 +159,19 @@ export default function Assays() {
         const [selected, setSelected] = useState<any>();
         const [assayName, setAssayName] = useState('');
         const [isLoading, setIsLoading] = useState(false);
+
+        const createAssay = async () => {
+            return request.post('/userassays', {
+                Name: assayName,
+                UserId: selected?.Id
+            })
+        }
+
         const handleCreateAssay = async () => {
             try {
                 setIsLoading(true);
-                const res = await request.post('/userassays', {
-                    Name: assayName,
-                    UserId: selected?.Id
-                });
-                console.log("res", res);
-                getAssays();
+                await createAssay()
+                await getAssays();
                 setOpenAddAssayModal(false);
                 setIsLoading(false);
             } catch (error) {
@@ -180,7 +187,7 @@ export default function Assays() {
 
                 setOpenAddAssayModal(false);
             }} className="z-[999] grid place-content-center h-screen w-screen fixed bg-[black] bg-opacity-25">
-                <div onClick={(e) => e.stopPropagation()} className='w-[400px] p-[20px] relative flex flex-col gap-[10px] rounded-[20px_5px] max-h-[300px] bg-[white]'>
+                <div onClick={(e) => e.stopPropagation()} className='w-[600px] p-[20px] relative flex flex-col gap-[10px] rounded-[20px_5px] max-h-[300px] bg-[white]'>
                     <h1 className='text-[#184E57] text-[24px] leading-none mb-[10px] font-nexa-bold '> Tahlil Talebi Oluştur </h1>
                     {isLoading && <LocalLoading message='Tahlil talebiniz oluşturuluyor...' />}
                     <FormInput placeholder='Tahlil adı' value={assayName} onChange={(e) => { setAssayName(e.currentTarget.value) }} />
@@ -238,7 +245,7 @@ export default function Assays() {
                     </div>
                     <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                         setPage(value)
-                    }} count={assays.length > 0 ? page + 1 : page} />
+                    }} count={pageCount} />
                 </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>}
             </div>
         </DashboardLayout></>

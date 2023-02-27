@@ -3,7 +3,7 @@ import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
 import BeforeFooter from "@components/Section/BeforeFooter";
 
-const LandingLayout = ({ children, backColor="dark" }: { children: any, backColor?:"dark" | "light" }) => {
+const LandingLayout = ({ children, backColor = "dark" }: { children: any, backColor?: "dark" | "light" }) => {
     return (
         <div className="overflow-hidden">
             <Container>

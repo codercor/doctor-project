@@ -8,13 +8,14 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
     const [IsLoading, setIsLoading] = useState(false);
     const [page, setPage] = useState(1);
 
+    const [pageCount, setPageCount] = useState(1)
+
     useEffect(() => {
         setIsLoading(true);
         adminGetLastSalesRequest(page).then(res => {
-            limited ? setList(res.slice(0, 5)) : setList(res);
-            console.log(res);
-
+            limited ? setList(res.data.slice(0, 5)) : setList(res.data);
             setIsLoading(false);
+            setPageCount(res.data.PageCount)
         }).catch(err => {
             setIsLoading(false);
         })
@@ -60,7 +61,7 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
             <div className="flex w-full mt-auto absolute bottom-0">
                 <Pagination siblingCount={3} variant="text" page={page} className="mx-auto w-fit" onChange={(e: any, value: number) => {
                     setPage(value)
-                }} count={list.length > 0 ? page + 1 : page} />
+                }} count={pageCount} />
             </div>
         </div>
     </>
