@@ -17,7 +17,7 @@ const KvkkSozlesmesi = () => {
                     <Navbar />
                 </Container>
             </Container>
-            <Container className=" h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom   md:bg-cover bg-[url(/images/png/brokoli.png)]">
+            <Container className=" h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom   md:bg-cover bg-[url(/images/png/kvkk.webp)]">
                 <div className="backdrop-brightness-[65%] w-full h-full">
                     <Container className="md:!max-w-[1455px] grid  place-items-end   justify-center pb-20 md:pb-22 h-full">
                         <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-regular"> 
