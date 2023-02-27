@@ -195,7 +195,7 @@ const FAQ = () => {
   }
 
   return (<>
-    <div className="z-20  pb-4 md:pb-0 mt-[46px] scrollbar-none snap-x overflow-auto w-screen">
+    <div className="z-20 pb-4 md:pb-0 mt-[46px] scrollbar-none snap-x overflow-auto min-w-[100vw]">
       {/* @ts-ignore-next-line */}
       <ScrollContainer component="div" ref={parentRef} className="!min-w-full snap-mandatory snap-center  select-none cursor-move flex md:gap-[20px]">
         {sss.map((i, index) => {
@@ -203,7 +203,7 @@ const FAQ = () => {
             <div
               key={v4()}
               ref={childRef}
-              className="md:min-w-[482px]  min-w-[100vw] snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] h-[290px] bg-quaternary-light rounded-md"
+              className="md:min-w-[462px]  min-w-[100vw] snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] h-[290px] bg-quaternary-light rounded-md"
             >
               <div className="bg-[#DEE4C3] mb-[22px] relative w-[70px] h-[60px] rounded-full grid place-content-center">
                 <Image src="/images/svg/help-green.svg" width={36} height={36} />
