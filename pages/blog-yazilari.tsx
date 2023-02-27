@@ -51,7 +51,7 @@ export default function BlogYazilari({ }: Props) {
             <div className='relative text-[white] textx-[#314E53] flex justify-center items-center flex-col gap-[40px] w-full h-[481px]'>
                 <h1 className='font-nexa-bold text-[36px] md:text-[42px] z-[1]'>Blog</h1>
                 <p className="font-nexa-bold text-[16px] md:text-[24px] z-[1] max-w-[600px] px-[10px] text-center">
-                    Mutlu ve canlı bir yaşam yaratmak için sizin için hazırladığım blog yazılarına göz atın ve sağlıklı yaşama bir adım daha yaklaşın.
+                    Sizlere daha sağlıklı ve mutlu bir yaşam için hazırladığım blog yazılarıma göz atın, sağlıklı yaşama bir adım daha yaklaşın.
                 </p>
                 <Image src="/images/png/blog-bg.png" layout="fill" className='md:object-[00px_00px] brightness-75 object-[-920px_0px]' objectFit="cover" />
             </div>

@@ -49,15 +49,16 @@ const Hakkimda: NextPage = () => {
                         <h1 className="mt-[20px] font-nexa-bold"> MESLEKİ DENEYİM:</h1>
                         <div className="flex flex-col md:flex-row gap-[10px]">
                             <ul className="flex-[1] list-disc">
-                                <li>1996-2023: Tıp Fakültesi, Hemşirelik Fakültesi, Fizik Tedavi Fakültesi, Eğitim Fakültesi, Sağlık Bilimleri Enstitüsü, Sağlık Hizmetleri Meslek Yüksek Okulu, Spor Bilimleri Yüksek Okulunda lisans, yüksek lisans ve doktora düzeyinde dersler verdim.</li>
+                                <li>1994-1996: Kütahya Simav Merkez Sağlık Ocağında mecburi hizmetimi tamamladım</li>
+                                <li>1996-2023: Tıp Fakültesi, Hemşirelik Fakültesi, Fizik Tedavi Fakültesi, Eğitim Fakültesi, Sağlık Bilimleri Enstitüsü, Sağlık Hizmetleri Meslek Yüksek Okulu, Spor Bilimleri Yüksek Okulunda lisans, yüksek lisans ve doktora düzeyinde dersler verdim.</li>   
                                 <li>2006-2023: Yüksek lisans, Doktora, Yardımcı Doçent, Doçent ve Profesörlük jürilerinde görev aldım.</li>
                                 <li>1998-2023: Ulusal ve Uluslararası birçok bilimsel derginin gönüllü hakemler listesinde bulunmaktayım.</li>
                                 <li>2006-2023: TÜBİTAK’ ta ve Türkiye’ deki birçok üniversitenin bilimsel araştırma projeleri biriminde proje değerlendirme hakemi olarak çalıştım.</li>
                                 <li>2009- Halen: BMC (British Medical Journal) Neuroscience dergisinin editörleri arasındayım.</li>
-                                <li>2013: Dokuz Eylül üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Davranış Fizyoloji Bilim Dalının Kurulmasında çalıştı.</li>
+                                <li>2013: Dokuz Eylül Üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Davranış Fizyoloji Bilim Dalının Kurulmasında çalıştı.</li>
                             </ul>
                             <ul className="flex-[1]  list-disc">
-                                <li>2016: Dokuz Eylül üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Merkezinin ve Etik Kurulunun Kurulmasında çalıştı.</li>
+                                <li>2016: Dokuz Eylül Üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Merkezinin ve Etik Kurulunun Kurulmasında çalıştı.</li>
                                 <li>2016-2020: Dokuz Eylül üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Etik Kurulu (DEU-TF-HADYEK) Başkanı olarak çalıştım.</li>
                                 <li>2020-2022: Dokuz Eylül Üniversitesi, Deney Hayvanları Etik Kurulu (DEU-HADYEK) Başkan Yardımcısı olarak çalıştım.</li>
                                 <li>2020-2021: İstanbul Mutfak Sanatları Akademisi Fonksiyonel Beslenme Programı Eğitimi verdim.</li>

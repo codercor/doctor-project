@@ -157,7 +157,7 @@ const Account = () => {
                         _handleChange(e);
                         return;
                     }
-                    setFieldValue("City", "Istanbul");
+                    setFieldValue("City", "İstanbul");
                     _handleChange(e);
                 }}
                 label="Ülke"
@@ -248,7 +248,7 @@ const Account = () => {
                     </div>
                 </div>
                 <div
-                    className="bg-[url(/images/png/register.png)] hidden md:grid place-content-center rounded-[20px_5px_20px_5px] bg-cover bg-center  bg-no-repeat w-1/2 h-full">
+                    className="bg-[url(/images/png/nazanlogin.jpeg)] hidden md:grid place-content-center rounded-[20px_5px_20px_5px] bg-cover bg-center  bg-no-repeat w-1/2 h-full">
                     <Text type="paragraph" className="!xl:text-[25px] !md:text-[16px] text-center text-[white] h-[186px] w-full">
                         İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir
                         hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza
