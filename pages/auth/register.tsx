@@ -157,12 +157,6 @@ const RegisterForm = () => {
                     <UserIlluminationContract />
                 </SozlesmeModal>
             }
-            {/* {
-                sozlesmeler.aydinlatma.modal &&
-                <SozlesmeModal content={kullaniciAydinlatma} closeWithValue={(x) => {
-                    setSozlesmeler({ ...sozlesmeler, aydinlatma: { value: x, modal: false } })
-                }} />
-            } */}
             <div
                 className="md:w-[1440px] md:h-full h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px]">
                 <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">
