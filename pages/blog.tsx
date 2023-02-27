@@ -106,7 +106,7 @@ const OtherBlogs = () => {
         setLoading(true)
         try {
             const req = await request.get('/forum?page=1')
-            return [...req.data].slice(0, 3)
+            return [...req.data.data].slice(0, 3)
         } catch (error) {
             toast.error('Bir hata oluştu');
         }

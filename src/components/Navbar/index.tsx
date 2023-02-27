@@ -80,7 +80,7 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
                             </Button></>
 
                     </> : <><Button onClick={() => {
-                        Router.push("/auth/register")
+                        Router.push("/auth/pre-register")
                     }} type={backColor === "light" ? "transparent-secondary" : "transparent-white"} direction="right">
                         <Text type="paragraph">Kayıt Ol</Text>
                     </Button>
@@ -141,7 +141,7 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
                         :
                         <>
                             <button onClick={() => {
-                                Router.push("/auth/register")
+                                Router.push("/auth/pre-register")
                             }} className="bg-quaternary-light mt-auto mb-[6px] rounded-tl-[20px] rounded-br-[20px] h-[48px] w-full ">
                                 <Text className='text-[14px] text-purple-800' type='body'> Kayıt Ol </Text>
                             </button>

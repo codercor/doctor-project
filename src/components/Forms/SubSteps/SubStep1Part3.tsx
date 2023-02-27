@@ -21,7 +21,7 @@ export default function SubStep1Part3({
           ERİŞKİN DÖNEMDE BESLENME VE YEME DÜZENİ
         </h2>
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
          <FormInputSelectOne
           onChange={handleChange}
           label={`Şu anda bir yeme bozukluğunuz var mı? Veya yiyecek ve bedenle ilgili rahatsız edici veya sorunlu davranışlar yaşıyor musunuz?
@@ -45,7 +45,7 @@ export default function SubStep1Part3({
                     )
                 }
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="En sevdiğin yiyecek ne?"
           value={values.favoriteFood}
@@ -56,7 +56,7 @@ export default function SubStep1Part3({
           disabled={readOnly}
         />
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="En sık yediğin yiyecekler hangileri?"
           value={values.mostEatenFood}
@@ -67,7 +67,7 @@ export default function SubStep1Part3({
           disabled={readOnly}
         />
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Yiyeceklerinizi kim hazırlıyor?"
           value={values.foodPreparedBy}
@@ -78,7 +78,7 @@ export default function SubStep1Part3({
           disabled={readOnly}
         />
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Yediklerinizi kim satın alıyor?"
           value={values.foodPurchasedBy}
@@ -89,7 +89,7 @@ export default function SubStep1Part3({
           disabled={readOnly}
         />
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Hangi sıklıkla yemek pişiriyorsunuz?"
           value={values.cookingFrequency}
@@ -100,7 +100,7 @@ export default function SubStep1Part3({
           disabled={readOnly}
         />
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Sence en besleyici gıdayı hayatında ne zaman yedin?"
           value={values.mostNutritiousFood}
@@ -111,7 +111,7 @@ export default function SubStep1Part3({
           disabled={readOnly}
         />
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Sence en az besleyici gıdayı hayatında ne zaman yedin?"
           value={values.leastNutritiousFood}

@@ -12,23 +12,46 @@ import { Loading } from "pages/dashboard/create-training";
 import useTraining from "src/hooks/training.hook";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/dist/client/router";
+import request, { TRAINING, TRAININGS_WITH_USER_ID } from "@config";
+import { TrainingDataType } from "@app/Training/training.types";
 
 
 
 const MyTrainings = () => {
-    const {
-        getUsersTrainings,
-        user: {
-            UsersTrainings,
-            UsersTrainingsProcess: {
-                IsLoading
-            }
+    // const {
+    //     getUsersTrainings,
+    //     user: {
+    //         UsersTrainings,
+    //         UsersTrainingsProcess: {
+    //             IsLoading
+    //         }
+    //     }
+    // } = useUser();
+    const { user: { Id } } = useUser()
+    const [UsersTrainings, setUserTrainings] = useState<TrainingDataType[]>([])
+    const [IsLoading, setIsLoading] = useState(false)
+    const getUsersTrainings = async () => {
+        setIsLoading(true)
+        const _toast = toast.loading("Kullanıcı eğitimleri yükleniyor...")
+        try {
+            const response = await request.get(
+                TRAININGS_WITH_USER_ID.replace(':UserId', Id),
+            );
+            toast.success('Kullanıcı eğitimleri yüklendi.', { id: _toast });
+            let filtered = response.data.data.map((item: any) => item.Education);
+            setUserTrainings(filtered)
+            setIsLoading(false)
         }
-    } = useUser();
+        catch (error) {
+            toast.error('Kullanıcı eğitimleri yüklenirken hata oluştu.', { id: _toast });
+            setIsLoading(false)
+        }
+    }
 
     useEffect(() => {
         getUsersTrainings();
-    }, [])
+    }, [Id])
+
 
 
     return <div className="h-[462px] bg-[#F4F4F4] p-[32px]">
@@ -41,8 +64,8 @@ const MyTrainings = () => {
             {(UsersTrainings).filter(item => item?.Image).map((item) => {
                 console.log("item", item);
                 //@ts-ignore
-                return <div className="w-[400px] h-[320px]">
-                    <TrainingCard key={v4()} {
+                return <div key={v4()} className="min-w-[300px] md:w-[360px] h-[320px]">
+                    <TrainingCard  {
                         ...{
                             image: item.Image as string || '',
                             title: item.Name as string || '',
@@ -61,9 +84,16 @@ const MyTrainings = () => {
 }
 
 const AllTrainingsFloating = () => {
-    const { publicTrainings, getPublicTrainings } = useTraining();
+    // const { publicTrainings } = useTraining();
+    const [publicTrainings, setPublicTrainings] = useState<TrainingDataType[]>([])
+    const [pageCount, setPageCount] = useState(1)
     const { user: { Information } } = useUser();
     const router = useRouter();
+    const getPublicTrainings = async (page: number) => {
+        const response = await request.get(`${TRAINING}?page=${page}`)
+        setPublicTrainings(response.data.data)
+        setPageCount(response.data.pageCount)
+    }
     useEffect(() => {
         const userGender = Information.Gender
         const userFullName = Information.Fullname
@@ -74,6 +104,9 @@ const AllTrainingsFloating = () => {
         }
         if (publicTrainings.length < 1) getPublicTrainings(1);
     }, [])
+
+
+
     const [trainings, setTrainings] = useState<TrainingCardProps[]>([]);
 
     useEffect(() => {

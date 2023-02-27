@@ -20,7 +20,7 @@ export default function SubStep1Part1({
           DOĞUM ÖNCESİ, DOĞUM VE DOĞUM SONRASI BESLENME
         </h2>
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
           label="Biyolojik ebeveynlerinizin herhangi bir besine karşı alerji, intolerans veya hassasiyeti var mı ?"
           options={[

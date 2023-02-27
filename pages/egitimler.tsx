@@ -12,6 +12,8 @@ import { useMediaQuery } from 'react-responsive'
 import React, { useEffect, useState } from "react";
 import LandingLayout from "@components/Layouts/LandingLayout";
 import useTraining from "src/hooks/training.hook";
+import { getPublicTrainingsRequest } from "@app/Training/training.utils";
+import { TrainingDataType } from "@app/Training/training.types";
 
 
 const TrainingSearchInput = ({ value, onChange }: { value: string, onChange: (e: any) => void }) => {
@@ -23,10 +25,19 @@ const TrainingSearchInput = ({ value, onChange }: { value: string, onChange: (e:
     </div>)
 }
 const Egitimler = () => {
-    const { publicTrainingsProcess: { loading }, getPublicTrainings, publicTrainings } = useTraining()
-
-    const [trainings, setTrainings] = useState<Array<TrainingCardProps & { Id?: string }>>([
-    ])
+    const [loading, setLoading] = useState(false)
+    const [publicTrainings, setPublicTrainings] = useState<TrainingDataType[]>([])
+    const [pageCount, setPageCount] = useState(1)
+    const getPublicTrainings = async (page: number) => {
+        getPublicTrainingsRequest(page).then((res: any) => {
+            setPublicTrainings(res.data)
+            setPageCount(res.pageCount)
+            setLoading(false)
+        }).catch(() => {
+            setLoading(false)
+        })
+    }
+    const [trainings, setTrainings] = useState<Array<TrainingCardProps & { Id?: string }>>([])
     const [page, setPage] = useState(1);
     useEffect(() => {
         getPublicTrainings(page)
@@ -89,16 +100,10 @@ const Egitimler = () => {
                         }
 
                     }} className="mx-auto md:h-[936px]  px-[20px] md:px-0 scrollbar-thin scrollbar-track-[white]  scrollbar-thumb-quaternary scrollbar-thumb-rounded  h-[700px]  lg:w-[1000px] overflow-auto max-w-[1000px] items-center lg:items-start flex gap-[20px] lg:flex-row flex-col ">
-                        <div className="flex flex-col items-center md:items-start md:justify-between h-full gap-[20px]">
+                        <div className="flex flex-row flex-wrap items-center md:items-center  md:justify-center h-full gap-[10px]">
                             {
-                                filteredTrainings.filter((_, i) => i % 2 == 0).map((training, index) =>
-                                    <TrainingCard {...training} key={v4()} />)
-                            }
-                        </div>
-                        <div className="flex flex-col items-center md:items-start md:justify-between h-full gap-[20px]">
-                            {
-                                filteredTrainings.filter((_, i) => i % 2 == 1).map((training, index) =>
-                                    <TrainingCard {...training} key={v4()} />)
+                                filteredTrainings.map((training, index) =>
+                                    <div key={v4()} className="min-h-[380px] h-[380px] min-w-[350px]">  <TrainingCard {...training} /></div>)
                             }
                         </div>
                     </div>
