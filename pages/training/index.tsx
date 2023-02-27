@@ -42,9 +42,13 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
     return <div className='transition-all duration-700 hover:whitespace-normal truncate w-full  h-fit mt-4  flex flex-col items-start justify-between p-[10px] text-ellipsis text-[#6E7846] hover:text-[white] hover:bg-secondary  bg-[#FFFFFF]'>
         <Text type='paragraph' className='text-inherit   h-fit hover:text-clip hover:whitespace-normal  truncate  text-[16px] w-[99%]'>{Order}-{Content}</Text>
         <div className="w-full flex justify-between">
-            <div className='flex'>
+            <div className='flex items-center'>
                 <DateRange />
-                <Text type='paragraph' className='text-inherit text-[16px]'>{StartDate}</Text>
+                <Text type='paragraph' className='text-inherit text-[12px]'>{new Date(StartDate).toLocaleDateString("tr-TR", {
+                    year: "numeric",
+                    month: "long",
+                    day: "2-digit",
+                })}</Text>
             </div>
             <div className='flex'>
                 <Timelapse />
@@ -78,7 +82,7 @@ const BuyKit = ({ id, price, totalLength, DiscountRate }: { DiscountRate: number
                 <School />
                 <Text>Fiyat</Text>
             </div>
-            <Text> {Number(calculatedPrice) == 0 ? 'Ücretsiz' : <p className="flex items-center"> <span className='text-[8px] font-nexa-bold mr-1'>*KDV Dahil </span> <span className="text-[12px] mr-1  text-[#CD2D2D] line-through">{DiscountRate != 0 &&  Number(price).toFixed(2)}{DiscountRate != 0 && <TL />}</span>  {calculatedPrice}<TL /></p>}</Text>
+            <Text> {Number(calculatedPrice) == 0 ? 'Ücretsiz' : <p className="flex items-center"> <span className='text-[8px] font-nexa-bold mr-1'>*KDV Dahil </span> <span className="text-[12px] mr-1  text-[#CD2D2D] line-through">{DiscountRate != 0 && Number(price).toFixed(2)}{DiscountRate != 0 && <TL />}</span>  {calculatedPrice}<TL /></p>}</Text>
         </div>
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>

@@ -31,7 +31,7 @@ const AdminDashBoard = () => {
                     <LastSalesTable />
                     <div onClick={() => {
                         Router.push("/dashboard/last-sales")
-                    }} className="w-full cursor-pointer transition-colors hover:bg-[#eeeeee] h-[50px] text-[black] text-[10px] flex flex-col justify-center items-center">
+                    }} className="w-full cursor-pointer transition-colors translate-y-4 hover:bg-[#eeeeee] h-[50px] text-[black] text-[10px] flex flex-col justify-center items-center">
                         <Text type="paragraph" className="text-[12px]" > Daha fazla göster </Text>
                         <ArrowDownward sx={{ fontSize: '12px' }} />
                     </div>

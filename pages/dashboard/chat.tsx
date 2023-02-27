@@ -40,7 +40,11 @@ const ChatMessage = ({ isMe = true, message }: ChatMessageProps) => {
             <Star />
         </div>}
         <div className="h-fit mt-[36px] ml-2 leading-none  w-[calc(100%-80px)] bg-[white] pt-[3px] rounded-[10px_3px_10px_3px] pl-[5px]">
-            <Text className="text-[12px] w-full h-auto"> {new Date(message?.created_at).toLocaleDateString()} </Text>
+            <Text className="text-[12px] w-full h-auto"> {new Date(message?.created_at).toLocaleDateString("tr-TR", {
+                year: "numeric",
+                month: "long",
+                day: "2-digit",
+            })} </Text>
             <Text className="text-[16px] break-words max-h-auto h-fit">{message?.Message}</Text>
         </div>
         {!isMe && <div className="flex  text-[white] items-center justify-center min-w-[60px] h-[60px] rounded-full bg-secondary">

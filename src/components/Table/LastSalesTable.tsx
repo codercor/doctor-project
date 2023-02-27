@@ -43,7 +43,11 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
                                         className={"border-2 p-0 leading-none h-[10px] " + (index % 2 != 0 ? 'bg-[#DEEEF0]' : '')}
                                     >
                                         <TableCell className="leading-none" component="th" scope="row">
-                                            {new Date(row?.Date).toLocaleString() || '-'}
+                                            {new Date(row?.Date).toLocaleString("tr-TR",{
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "2-digit",
+                                            }) || '-'}
                                         </TableCell>
                                         <TableCell className="leading-none" align="left">{row.User?.Information.Fullname || '-'}</TableCell>
                                         <TableCell className="leading-none" align="left">{row?.Education?.Name || '-'}</TableCell>
