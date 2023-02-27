@@ -13,6 +13,7 @@ import axios from "axios";
 import UserContract from "@components/ContractContents/UserContract";
 import UserIlluminationContract from "@components/ContractContents/UserIlluminationContract";
 import request from "@config";
+import Head from "next/dist/shared/lib/head";
 
 const Register = () => <><RegisterForm /></>
 
@@ -141,6 +142,9 @@ const RegisterForm = () => {
 
     return (
         <AuthLayout>
+            <Head>
+                <title> Kayıt Tamamla | Nazan Uysal Harzadın </title>
+            </Head>
             {
                 sozlesmeler.kullanici.modal &&
                 <SozlesmeModal closeWithValue={(x) => {
@@ -215,7 +219,7 @@ const RegisterForm = () => {
                         <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Üye ol</Text>
                     </Button>
                 </div>
-                <div 
+                <div
                     className="bg-[url(/images/png/nazanlogin.jpeg)] hidden md:grid place-content-center bg-cover bg-no-repeat w-[610px] h-[620px]" >
                     <Text type="paragraph" className="text-[25px] text-center text-[white] h-[186px] w-[448px]">
                         İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir

@@ -8,6 +8,7 @@ import { UserCredentials } from "src/app/User/user.types";
 import useAuth from "src/hooks/auth.hook";
 import toast from "react-hot-toast";
 import { ErrorOutlined } from "@mui/icons-material";
+import Head from "next/dist/shared/lib/head";
 
 
 const Login = () => {
@@ -42,6 +43,9 @@ const Login = () => {
 
     return (
         <AuthLayout>
+            <Head>
+                <title> Giriş Yap | Nazan Uysal Harzadın </title>
+            </Head>
             <div
                 className="md:w-[1440px] md:h-full h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px]">
                 <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">

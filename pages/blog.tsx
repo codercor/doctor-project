@@ -8,6 +8,7 @@ import { Blog as BlogT } from './blog-yazilari'
 import { Facebook, Instagram, InstallDesktopSharp, Twitter, WhatsApp } from '@mui/icons-material'
 import BlogCard from '@components/Card/BlogCard'
 import { CircularProgress } from '@mui/material'
+import Head from 'next/dist/shared/lib/head'
 
 const Blog = () => {
 
@@ -46,7 +47,9 @@ const Blog = () => {
     }, [router.query.id])
     return (
         <LandingLayout backColor='light'>
-
+            <Head>
+                <title> {blog?.Title || 'Blog'} | Nazan Uysal Harzadın </title>
+            </Head>
             <>
                 <div className="h-[150px] "> </div>
                 <div className='relative md:flex bg-gradient-to-b from-[#DFEBEC]  text-[#314E53] hidden justify-center items-center flex-col gap-[40px] w-full h-[340px]'>

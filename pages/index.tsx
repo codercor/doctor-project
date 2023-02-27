@@ -33,6 +33,9 @@ const Home: NextPage = () => {
   }, [])
   return (
     <LandingLayout>
+      <Head>
+        <title> Anasayfa | Nazan Uysal Harzadın </title>
+      </Head>
       <Banner />
       <InfoBanner />
       <div className="bg-[#F2F4EE]  relative w-full lg:h-[840px] h-[1600px] h-auto min-h-[400px]">
@@ -124,14 +127,14 @@ const EducationSection = () => {
     <div className="flex md:ml-28 gap-4 md:flex-1  text-left items-center md:items-start mt-[80px] flex-col md:mb-0 mb-5">
       <Text type="h4" className="text-purple-800 w-full text-left" >Eğitimler</Text>
       <p className="text-secondary-flat font-nexa-regular md:font-[18px]  font-[16px]">
-      Vücudumuz harika çalışan bir makine, çevreden aldığımız bilgilerle genlerimizde bulunan kodları kullanarak sürekli yenilenerek yeniden şekillenir. 
-      Bu yeniden şekillenme, yenilenme hatta onarılmada yaşam şeklimiz çok önemli. 
-      Eğitim planımızda sağlığımızı korumak için beslenmenin ve yaşam şeklinin önemine odaklanacağız. 
-      Yaşam şeklimizi bizim bünyemize uygun hale getirmek için yapabileceklerimizi öğreneceğiz. 
-      Yaşam şeklinin önemli bileşenlerinden olan beslenme konusunda yapabileceğimiz çok şey var. 
-      Besinleri tanıyarak, doğru besinleri seçmeyi, doğru besin kombinasyonlarını oluşturulmayı, doğru pişirme tekniklerini kullanarak mutfağımızı sağlığımızı iyileştirmede nasıl kullanacağımızı konuşacağız.
-      Böylece sağlıklı kalmak, hastalıklara gidişi engellemek, hatta hastalıklarımızı iyileştirmek için ipuçlarını bulacaksınız.
-      Tüm bunları öğrenirken vücudumuzu da tanıyacağız, vücudumuzdan gelen gidişatın ipuçlarını öğreneceğiz.
+        Vücudumuz harika çalışan bir makine, çevreden aldığımız bilgilerle genlerimizde bulunan kodları kullanarak sürekli yenilenerek yeniden şekillenir.
+        Bu yeniden şekillenme, yenilenme hatta onarılmada yaşam şeklimiz çok önemli.
+        Eğitim planımızda sağlığımızı korumak için beslenmenin ve yaşam şeklinin önemine odaklanacağız.
+        Yaşam şeklimizi bizim bünyemize uygun hale getirmek için yapabileceklerimizi öğreneceğiz.
+        Yaşam şeklinin önemli bileşenlerinden olan beslenme konusunda yapabileceğimiz çok şey var.
+        Besinleri tanıyarak, doğru besinleri seçmeyi, doğru besin kombinasyonlarını oluşturulmayı, doğru pişirme tekniklerini kullanarak mutfağımızı sağlığımızı iyileştirmede nasıl kullanacağımızı konuşacağız.
+        Böylece sağlıklı kalmak, hastalıklara gidişi engellemek, hatta hastalıklarımızı iyileştirmek için ipuçlarını bulacaksınız.
+        Tüm bunları öğrenirken vücudumuzu da tanıyacağız, vücudumuzdan gelen gidişatın ipuçlarını öğreneceğiz.
       </p>
       <Button
         onClick={() => {
@@ -153,26 +156,27 @@ import { ScrollContainer, MouseButton } from 'react-indiana-drag-scroll';
 import 'react-indiana-drag-scroll/dist/style.css'
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { toast } from "react-hot-toast";
+import Head from "next/head";
 
 const FAQ = () => {
 
 
   const childRef = useRef<HTMLDivElement>(null)
   const parentRef = useRef<HTMLDivElement>(null)
-  const sss  = [
-    { title: "Vücudumuzdaki inflamasyonu nasıl azaltırız?", description: "İnflamasyona neden olan besinleri, alışkanlıkları, olayları, kişileri hayatınızdan çıkarmalısınız. İnflamasyona neden olan besinler; işlenmiş, rafine, katkı koruyucu içeren besinler, kızartmalar, fastfood, şekerli, glisemik indeksi yüksek besinler, glüten, tarım ilacı ve toksin içeren besinler."},
-    { title: "Kan B12 vitamini ve Demir seviyesi takviyeye rağmen yükselmiyorsa sebebi ne olabilir?", description: "Bu iki mikrobesin de yetersiz ise mide asit yetersizliğinden şüphelenmek gerekir. Önce yeterli mide asidi için tedavi etmeli."},
-    { title: "Daha fonksiyonel hale getirmek için brokoli çorbasına neler ekleyelim?", description: "Pişirmeden önce doğrayıp 10-15 dakika bekleyin ki sülforafan açığı çıksın. Kemik suyu, kükürtlü guruptan soğan, sarımsak içindeki allicin ile, havuçtan beta karoten, kuru domatesten likopen, börülce içindeki birçok polifenol, filizlendirilmiş karabuğday, zerdeçal, karabiber, ve muhakkak bolca myrozinaz enzimi içeren hardal ekleyin"},
-    { title: "Lahanagilleri menopoz döneminde yiyelim mi?", description: "Brokoli, kırmızı ve beyaz lahana, bürüksel lahanası, karnabahar, alabaş, turp, roka, tere, suteresi, kale, bokchoy yani lahana ailesini menopoz döneminde özellikle yemelisiniz, östrojen hormon dengesine yardım eder. Günün sonunda toplam 250gram yemiş olun."},
-    { title: "Homosistein takviye, diyet ve egzersize rağmen düşmüyorsa ne yapalım?", description: "Homosistein metilasyonu değerlendirmemizde önemli bir parametre. Homosistein yüksekliğine neden olan 4 başlığa odaklanırız: metil donörlerinin yeterli olmasına (B grubu vitamin eksikliği, kötü beslenme, sindirim/emilim problemi), metil donör ihtiyacının artması (stres, menopoz, gebelik, ergenlik), metilasyon enzimlerinde gen defekti, yaşlanmak."},
-    { title: "Sık sık söylendiği gibi demli çay, kahve demir eksikliği yapar mı?", description: "Çayın ve kahvenin içindeki polifenoller besinlerimizdeki demiri ve başka birçok mikrobesini bağlar. Böylece besinlerin içindeki faydalı birçok vitamin ve minerali alamayız. Bu nedenle çay ve kahveyi yemekten en az 1 saat sonra içelim."},
-    { title: "Kanda Ferritin seviyesi yüksek, düşürmek için ne yapmalıyım?", description: "Depo demiri ferritin yüksekliğinin iki nedeni vardır; kronik derin inflamasyon (romatoid artrit, hipertiroidi, karaciğer hastalıkları, bazı kanserler vb) ve demir fazlalığı. Nedeni tespit edip onu tedavi etmeli. Neden inflamasyon değilse kan bağışı yapmayı öneririm."},
-    { title: "Kemik suyu faydalı mı, içindeki kollajen bağırsaklardan emilebilir mi?", description: "Kemik suyu içinde kollajenin yanı sıra, kalsiyum, magnezyum ve birçok diğer mikrobesinler bulunur. Emilebilmesi için mide asidinizin, mide, ince bağırsak ve pankreas enzimlerinizin yeterli olması gereklidir."},
-    { title: "Kahve içmek magnezyumun etkisini azaltır mı?", description: "Kafein magnezyum ihtiyacını arttırır. Çünkü kafein magnezyum emilimini bozar. Ayrıca kafeinin vücutta işlenmesi ve atılması sürecinde bolca magnezyum kullanılır, kafein ile artan stres hormonları idrar aracılığı ile magnezyum kaybına neden olur."},
-    { title: "Ayak tabanımda nasır var, neden olur, ne yapmalıyım?", description: "Nasırın kök nedeni omega3 yağ asidi eksikliğidir. Haftada 1-2 kez uskumru, sardalye, hamsi gibi yağlı yüzey balıklarından, her gün ketentohumu, ceviz yiyebilirsiniz. Günlük en az 1gram IFOs onayı olan omega3 takviyesi alabilirsiniz."},
-    { title: "Memedeki fibrokistleri nasıl azaltabiliriz?", description: "Memenin fibrokistik hastalığının kök nedenleri insülin direnci, iyot eksikliği, östrojen dominansı. Nedenlerin tespit edilip ortadan kaldırılması, fibrokistlerin yok olmasını sağlayabilir."},
-    { title: "İnsülin değerimiz kaç olmalı? İnsülin direncinden kurtulmanın altın kuralı nedir?", description: "İdeal insülin seviyesi 5 mIU/ml altında olmalı. İnsülin direncinden kurtulmada altın kural, düşük glisemik indeksli beslenmek ve aralıklı açlık uygulamak."},
-    { title: "Sarımsağın içindeki allicini nasıl açığa çıkaralım?", description: "Kuru sarımsağı ezelim ve 5-10 dakika bekleyelim. Taze sarımsağı minik minik doğrayalım ve 5-10 dakika bekleyelim. Doğrudan çiğnerek yerken de allicinin açığa çıkar."},
+  const sss = [
+    { title: "Vücudumuzdaki inflamasyonu nasıl azaltırız?", description: "İnflamasyona neden olan besinleri, alışkanlıkları, olayları, kişileri hayatınızdan çıkarmalısınız. İnflamasyona neden olan besinler; işlenmiş, rafine, katkı koruyucu içeren besinler, kızartmalar, fastfood, şekerli, glisemik indeksi yüksek besinler, glüten, tarım ilacı ve toksin içeren besinler." },
+    { title: "Kan B12 vitamini ve Demir seviyesi takviyeye rağmen yükselmiyorsa sebebi ne olabilir?", description: "Bu iki mikrobesin de yetersiz ise mide asit yetersizliğinden şüphelenmek gerekir. Önce yeterli mide asidi için tedavi etmeli." },
+    { title: "Daha fonksiyonel hale getirmek için brokoli çorbasına neler ekleyelim?", description: "Pişirmeden önce doğrayıp 10-15 dakika bekleyin ki sülforafan açığı çıksın. Kemik suyu, kükürtlü guruptan soğan, sarımsak içindeki allicin ile, havuçtan beta karoten, kuru domatesten likopen, börülce içindeki birçok polifenol, filizlendirilmiş karabuğday, zerdeçal, karabiber, ve muhakkak bolca myrozinaz enzimi içeren hardal ekleyin" },
+    { title: "Lahanagilleri menopoz döneminde yiyelim mi?", description: "Brokoli, kırmızı ve beyaz lahana, bürüksel lahanası, karnabahar, alabaş, turp, roka, tere, suteresi, kale, bokchoy yani lahana ailesini menopoz döneminde özellikle yemelisiniz, östrojen hormon dengesine yardım eder. Günün sonunda toplam 250gram yemiş olun." },
+    { title: "Homosistein takviye, diyet ve egzersize rağmen düşmüyorsa ne yapalım?", description: "Homosistein metilasyonu değerlendirmemizde önemli bir parametre. Homosistein yüksekliğine neden olan 4 başlığa odaklanırız: metil donörlerinin yeterli olmasına (B grubu vitamin eksikliği, kötü beslenme, sindirim/emilim problemi), metil donör ihtiyacının artması (stres, menopoz, gebelik, ergenlik), metilasyon enzimlerinde gen defekti, yaşlanmak." },
+    { title: "Sık sık söylendiği gibi demli çay, kahve demir eksikliği yapar mı?", description: "Çayın ve kahvenin içindeki polifenoller besinlerimizdeki demiri ve başka birçok mikrobesini bağlar. Böylece besinlerin içindeki faydalı birçok vitamin ve minerali alamayız. Bu nedenle çay ve kahveyi yemekten en az 1 saat sonra içelim." },
+    { title: "Kanda Ferritin seviyesi yüksek, düşürmek için ne yapmalıyım?", description: "Depo demiri ferritin yüksekliğinin iki nedeni vardır; kronik derin inflamasyon (romatoid artrit, hipertiroidi, karaciğer hastalıkları, bazı kanserler vb) ve demir fazlalığı. Nedeni tespit edip onu tedavi etmeli. Neden inflamasyon değilse kan bağışı yapmayı öneririm." },
+    { title: "Kemik suyu faydalı mı, içindeki kollajen bağırsaklardan emilebilir mi?", description: "Kemik suyu içinde kollajenin yanı sıra, kalsiyum, magnezyum ve birçok diğer mikrobesinler bulunur. Emilebilmesi için mide asidinizin, mide, ince bağırsak ve pankreas enzimlerinizin yeterli olması gereklidir." },
+    { title: "Kahve içmek magnezyumun etkisini azaltır mı?", description: "Kafein magnezyum ihtiyacını arttırır. Çünkü kafein magnezyum emilimini bozar. Ayrıca kafeinin vücutta işlenmesi ve atılması sürecinde bolca magnezyum kullanılır, kafein ile artan stres hormonları idrar aracılığı ile magnezyum kaybına neden olur." },
+    { title: "Ayak tabanımda nasır var, neden olur, ne yapmalıyım?", description: "Nasırın kök nedeni omega3 yağ asidi eksikliğidir. Haftada 1-2 kez uskumru, sardalye, hamsi gibi yağlı yüzey balıklarından, her gün ketentohumu, ceviz yiyebilirsiniz. Günlük en az 1gram IFOs onayı olan omega3 takviyesi alabilirsiniz." },
+    { title: "Memedeki fibrokistleri nasıl azaltabiliriz?", description: "Memenin fibrokistik hastalığının kök nedenleri insülin direnci, iyot eksikliği, östrojen dominansı. Nedenlerin tespit edilip ortadan kaldırılması, fibrokistlerin yok olmasını sağlayabilir." },
+    { title: "İnsülin değerimiz kaç olmalı? İnsülin direncinden kurtulmanın altın kuralı nedir?", description: "İdeal insülin seviyesi 5 mIU/ml altında olmalı. İnsülin direncinden kurtulmada altın kural, düşük glisemik indeksli beslenmek ve aralıklı açlık uygulamak." },
+    { title: "Sarımsağın içindeki allicini nasıl açığa çıkaralım?", description: "Kuru sarımsağı ezelim ve 5-10 dakika bekleyelim. Taze sarımsağı minik minik doğrayalım ve 5-10 dakika bekleyelim. Doğrudan çiğnerek yerken de allicinin açığa çıkar." },
   ]
 
 

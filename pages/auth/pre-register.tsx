@@ -13,6 +13,7 @@ import axios from "axios";
 import UserContract from "@components/ContractContents/UserContract";
 import UserIlluminationContract from "@components/ContractContents/UserIlluminationContract";
 import request from "@config";
+import Head from "next/dist/shared/lib/head";
 
 const Register = () => <><RegisterForm /></>
 
@@ -87,6 +88,9 @@ const RegisterForm = () => {
 
     return (
         <AuthLayout>
+            <Head>
+                <title> Kayıt Ol | Nazan Uysal Harzadın </title>
+            </Head>
             <div
                 className="md:w-[1440px] md:h-full h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px]">
                 <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">

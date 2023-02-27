@@ -5,6 +5,7 @@ import Navbar from "@components/Navbar";
 import BeforeFooter from "@components/Section/BeforeFooter";
 import Text from "@components/Text";
 import axios from "axios";
+import Head from "next/dist/shared/lib/head";
 import { useEffect, useState } from "react";
 
 const Sozlesmeler = () => {
@@ -13,6 +14,9 @@ const Sozlesmeler = () => {
 
     return (
         <div className="overflow-hidden md:bg-none bg-primary-light">
+            <Head>
+                <title> Kullanıcı Sözleşmesi | Nazan Uysal Harzadın </title>
+            </Head>
             <Container>
                 <Container className="md:!max-w-[1455px]">
                     <Navbar />

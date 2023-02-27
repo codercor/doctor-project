@@ -14,6 +14,7 @@ import LandingLayout from "@components/Layouts/LandingLayout";
 import useTraining from "src/hooks/training.hook";
 import { getPublicTrainingsRequest } from "@app/Training/training.utils";
 import { TrainingDataType } from "@app/Training/training.types";
+import Head from "next/dist/shared/lib/head";
 
 
 const TrainingSearchInput = ({ value, onChange }: { value: string, onChange: (e: any) => void }) => {
@@ -83,6 +84,9 @@ const Egitimler = () => {
 
     return (
         <LandingLayout>
+            <Head>
+                <title> Eğitimler | Nazan Uysal Harzadın </title>
+            </Head>
             <Container className=" h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px]  md:bg-cover overflow-clip bg-[url(/images/png/best.png)]">
                 <Container className="grid  place-items-end !min-w-full backdrop-brightness-50   justify-center  pb-20 md:pb-22 h-full">
                     <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold">Eğitimler</Text>

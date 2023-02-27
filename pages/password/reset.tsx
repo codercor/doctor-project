@@ -3,6 +3,7 @@ import Button from '@components/Button'
 import Input from '@components/Input/Input'
 import AuthLayout from '@components/Layouts/AuthLayout'
 import Text from '@components/Text'
+import Head from 'next/dist/shared/lib/head'
 import Router from 'next/router'
 import React from 'react'
 
@@ -42,6 +43,9 @@ const ResetContent = () => {
             })
     }, [Router.query])
     return <div className="md:w-[1440px] md:h-full h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px]">
+        <Head>
+            <title> Yeni Şifre | Nazan Uysal Harzadın </title>
+        </Head>
         <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">
             <Text type="h3" className="text-white !text-[34px]">Yenile</Text>
             <Input value={password}

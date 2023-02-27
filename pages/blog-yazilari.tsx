@@ -7,6 +7,7 @@ import { Pagination } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { request } from '@config';
 import blog from './blog';
+import Head from 'next/dist/shared/lib/head';
 type Props = {}
 
 export interface Blog {
@@ -47,6 +48,9 @@ export default function BlogYazilari({ }: Props) {
 
     return (
         <LandingLayout backColor='light'>
+            <Head>
+                <title> Blog Yazıları | Nazan Uysal Harzadın </title>
+            </Head>
             <div className="h-[150px] "> </div>
             <div className='relative text-[white] textx-[#314E53] flex justify-center items-center flex-col gap-[40px] w-full h-[481px]'>
                 <h1 className='font-nexa-bold text-[36px] md:text-[42px] z-[1]'>Blog</h1>

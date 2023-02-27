@@ -10,12 +10,16 @@ import AcademicsListModal from "@components/SozlesmeModal/AcademicsListModal";
 import SozlesmeModal from "@components/SozlesmeModal/SozlesmeModal";
 import Text from "@components/Text";
 import { NextPage } from "next";
+import Head from "next/dist/shared/lib/head";
 import Image from "next/image";
 import { useState } from "react";
 
 const Hakkimda: NextPage = () => {
     const [showAcademicList, setShowAcademicList] = useState(false)
     return <LandingLayout>
+        <Head>
+            <title> Hakkımda | Nazan Uysal Harzadın </title>
+        </Head>
         <Container className=" h-[300px] md:h-[300px]  w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px] overflow-clip   md:bg-cover bg-[url(/images/png/hakkimda2.png)]">
             <Container className="md:!max-w-[1455px] grid  place-items-end min-w-full backdrop-brightness-50  justify-center pb-20 md:pb-22 h-full">
                 <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold">Prof.Dr. Nazan Uysal Harzadın</Text>
@@ -50,7 +54,7 @@ const Hakkimda: NextPage = () => {
                         <div className="flex flex-col md:flex-row gap-[10px]">
                             <ul className="flex-[1] list-disc">
                                 <li>1994-1996: Kütahya Simav Merkez Sağlık Ocağında mecburi hizmetimi tamamladım</li>
-                                <li>1996-2023: Tıp Fakültesi, Hemşirelik Fakültesi, Fizik Tedavi Fakültesi, Eğitim Fakültesi, Sağlık Bilimleri Enstitüsü, Sağlık Hizmetleri Meslek Yüksek Okulu, Spor Bilimleri Yüksek Okulunda lisans, yüksek lisans ve doktora düzeyinde dersler verdim.</li>   
+                                <li>1996-2023: Tıp Fakültesi, Hemşirelik Fakültesi, Fizik Tedavi Fakültesi, Eğitim Fakültesi, Sağlık Bilimleri Enstitüsü, Sağlık Hizmetleri Meslek Yüksek Okulu, Spor Bilimleri Yüksek Okulunda lisans, yüksek lisans ve doktora düzeyinde dersler verdim.</li>
                                 <li>2006-2023: Yüksek lisans, Doktora, Yardımcı Doçent, Doçent ve Profesörlük jürilerinde görev aldım.</li>
                                 <li>1998-2023: Ulusal ve Uluslararası birçok bilimsel derginin gönüllü hakemler listesinde bulunmaktayım.</li>
                                 <li>2006-2023: TÜBİTAK’ ta ve Türkiye’ deki birçok üniversitenin bilimsel araştırma projeleri biriminde proje değerlendirme hakemi olarak çalıştım.</li>

@@ -3,6 +3,7 @@ import Button from "@components/Button";
 import Input from "@components/Input/Input";
 import AuthLayout from "@components/Layouts/AuthLayout";
 import Text from "@components/Text";
+import Head from "next/dist/shared/lib/head";
 import { Router, useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { UserCredentials } from "src/app/User/user.types";
@@ -19,6 +20,9 @@ const Login = () => {
 
     return (
         <AuthLayout>
+            <Head>
+                <title> Şifremi Unuttum | Nazan Uysal Harzadın </title>
+            </Head>
             <div className="md:w-[1440px] md:h-full h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px]">
                 <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">
                     <Text type="h3" className="text-white cursor-pointer !text-[34px]">Şifremi unuttum</Text>

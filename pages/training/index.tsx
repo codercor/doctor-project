@@ -15,6 +15,7 @@ import Link from 'next/link'
 import { Zoom } from '@mui/material'
 import { toast } from 'react-hot-toast'
 import TL from '@components/Text/TL'
+import Head from 'next/dist/shared/lib/head'
 const TrainingDocumentCard = ({ title, url }: { title: string, url: string }) => {
     const handleDownload = () => {
         window.open(url, '_blank')
@@ -219,6 +220,9 @@ export default function TrainingDetailPage() {
     if (!trainingData) return <Loading message='Eğitim yükleniyor...' />
     return (
         <LandingLayout>
+            <Head>
+                <title> {trainingData?.Name || 'Eğitim'} | Nazan Uysal Harzadın </title>
+            </Head>
             <Container className={"h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom  overflow-hidden rounded-br-[150px] md:bg-cover "}>
                 <Container className="md:!max-w-[1455px] grid  place-items-end  justify-center pb-20 md:pb-22 h-full">
                     <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold z-50"> {oneTraining?.Name} </Text>
