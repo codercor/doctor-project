@@ -127,8 +127,8 @@ const OtherBlogs = () => {
     }, [])
     return (
         <div className='relative my-[36px]  text-[#314E53] flex  max-w-[1280px] mx-auto flex-col gap-[12px] w-full'>
-            <h1 className='font-nexa-regular text-[28px] text-[#4D5729]  leading-none'> Son Yazılar </h1>
-            <p className='text-[#9D9D9D] text-[18px] leading-none'>Benzer yazılarımıza göz atmak ister misiniz ? Diğer blog içeriklerine göz atın</p>
+            <h1 className='font-nexa-regular text-[28px]  text-[#4D5729]  leading-none'> Son Yazılar </h1>
+            <p className='text-[#9D9D9D] text-[18px] mb-[24px] leading-none'>Benzer yazılarımıza göz atmak ister misiniz ? Diğer blog içeriklerine göz atın</p>
             <div className="flex md:flex-row flex-col gap-[30px] items-center ">
                 {
                     loading ? <CircularProgress /> : blogs.map((blog, index) => (

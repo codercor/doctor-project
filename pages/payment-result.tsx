@@ -26,6 +26,7 @@ const Failed = () => {
 export default function PaymentFailed() {
     const {
         query: { Status },
+        push
     } = useRouter()
     const [content, setContent] = React.useState(<></>)
     useEffect(() => {
@@ -34,7 +35,14 @@ export default function PaymentFailed() {
         } else {
             setContent(Failed)
         }
+
+        setTimeout(() => {
+            push('/dashboard')
+        }, 4000)
+
     }, [Status])
+
+
 
     return (
         <LandingLayout>

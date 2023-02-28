@@ -34,7 +34,7 @@ const RegisterForm = () => {
                 duration: 10000,
             })
         }).catch((err) => {
-            toast.error(err.response.data.message, {
+            toast.error(err.response.data.Message, {
                 duration: 10000,
             })
             setDisabledButton(false);
@@ -107,8 +107,8 @@ const RegisterForm = () => {
                     </Button>
                 </div>
                 <div
-                    className="bg-[url(/images/png/register.png)] hidden md:grid place-content-center bg-cover bg-no-repeat w-[610px] h-[620px]">
-                    <Text type="paragraph" className="text-[25px] text-center text-[white] h-[186px] w-[448px]">
+                    className="bg-[url(/images/png/nazanlogin.jpeg)] bg-bottom  hidden md:flex justify-center pt-10 bg-cover bg-no-repeat w-[610px] h-[620px]" >
+                    <Text type="paragraph" className="text-[25px] backdrop-brightness-75  text-center text-[white] h-[186px] w-[448px]">
                         İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir
                         hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza
                         başlayın.</Text>

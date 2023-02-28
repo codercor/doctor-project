@@ -186,12 +186,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 </Fab>
             </div>
             <div
-                className={classNames("md:sticky fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[18%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
+                className={classNames("md:sticky cursor-pointer fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[18%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
                     hidden: !showMenu
                 })}>
                 <div onClick={() => {
                     router.push("/")
-                }} className="md:w-[125px] md:h-[43px] relative md:mt-[40px]">
+                }} className="md:w-[125px] md:h-[43px] mx-auto relative md:mt-[40px]">
                     <Image src="/images/svg/brandmark6.svg" layout="fill" objectFit="contain" />
                 </div>
                 <div

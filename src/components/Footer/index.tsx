@@ -26,7 +26,7 @@ const Footer = () => {
                 <Container className="h-[calc(100%-48px)] flex flex-col  !max-w-[1240px] bg-primary-flat">
                     <div className="flex md:flex-row flex-col md:items-start items-center">
                         <div className="md:block flex flex-col items-center ">
-                            <Logo  />
+                            <Logo />
                             <div className="mt-4 cursor-pointer" onClick={() => {
                                 window.open("https://www.ifm.org/practitioners/nazan-uysal-harzadin/", "_blank")
                             }}>
@@ -76,8 +76,8 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="md:w-[992px] w-[300px] md:self-end self-center md:mb-0 mb-3">
-                        <Text className="text-[white] !text-[12px]  md:h-[48px] self-end mt-[30px]" type="paragraph">
+                    <div className="lg:w-[992px] md:w-[500px] w-[300px] lg:self-end lg:-translate-x-10 self-center  md:mb-0 mb-3">
+                        <Text className="text-[white] w-full !text-[12px]  md:h-[48px] self-end mt-[30px]" type="paragraph">
                             Bu site sağlık hizmeti vermemektedir, kişileri bilgilendirmek ve site sahibi hakkında bilgi vermek amacı ile hazırlanmıştır. Sitedeki bilgiler hastalıkların tanı veya tedavisinde kullanılmak üzere verilmemiştir. Tanı ve tedaviler mutlaka bir hekim tarafından yapılması gereken işlemlerdir. Site içeriğinin bir şekilde tanı ve tedavi amacıyla kullanımından doğacak sorumluluk ziyaretçiye aittir.
                         </Text>
                     </div>

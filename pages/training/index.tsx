@@ -22,7 +22,7 @@ const TrainingDocumentCard = ({ title, url }: { title: string, url: string }) =>
     }
     return <div className='w-full h-[67px] mt-8 flex items-center justify-between px-[20px] bg-secondary text-[white]'>
         <Text type='paragraph' className='text-[white]'>{title}</Text>
-        <div onClick={handleDownload} className='text-white w-fit h-fit'>
+        <div onClick={handleDownload} className='text-white cursor-pointer w-fit h-fit'>
             <Download />
         </div>
     </div>

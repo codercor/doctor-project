@@ -71,13 +71,13 @@ const Home: NextPage = () => {
           <Text type="h4" className="text-[34px] mt-[80px] mb-[60px] text-quaternary-flat">Basında Nazan Uysal Harzadın</Text>
           <div className="bg-[url(/images/png/avakado.png)]  overflow-visible rounded-xl relative bg-cover  bg-center h-[460px] w-full">
             <div className="md:w-[630px] w-full h-[315px] absolute md:top-[30px] top-[20%]  md:left-[40%] rounded-2xl overflow-hidden ">
-              <Carousel autoPlay infiniteLoop >
+              <Carousel interval={4000} emulateTouch={true} autoPlay={true} infiniteLoop={true} >
                 {presses.map((item) => <div key={v4()} className="flex items-center gap-[20px] px-[10px] w-full h-[300px] md:w-[630px] md:h-[315px] relative text-left bg-white-300 bg-opacity-70">
                   <div className="min-w-[170px] h-[170px] relative transition-all hover:min-w-[190px] hover:h-[190px]">
                     <Image src={item.Image} layout="fill" objectFit="cover" />
                   </div>
                   <div className="max-h-[200px] ">
-                    <Text type="h5" className="text-[#404720] md:text-[25px] !text-[14px]">{item.Title}</Text>
+                    <Text type="h5" className="text-[#404720] md:text-[20px] !text-[20px]">{item.Title}</Text>
                     <Text type="paragraph" className=" text-[#404720] text-[10px] md:text-[16px]  line-clamp-6"> {item.Description} </Text>
                   </div>
                 </div>)}

@@ -154,6 +154,9 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
                     className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
                     <MenuOpen />
                 </button>
+
+            </div>
+            <div className='flex-[2]'>
                 <button onClick={(e) => {
                     e.stopPropagation();
                     router.push(`/dashboard/forms-management/?name=${appointment.user?.information?.Fullname}`)
@@ -162,6 +165,8 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
                     className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
                     <TaskOutlined />
                 </button>
+            </div>
+            <div className='flex-[2]'>
                 <button onClick={(e) => {
                     e.stopPropagation();
                     router.push(`/dashboard/prescriptions-management/?name=${appointment.user?.information?.Fullname}`)
@@ -531,8 +536,10 @@ export default function AppointmentManagement() {
                                 <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Telefon</Text>
                                 <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Randevu Tarihi</Text>
                                 <Text type="h3" className="text-secondary flex-[2] !text-[14px] ">Durum</Text>
-                                <Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] "></Text>
-                                <Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] "></Text>
+                                <Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Güncelle</Text>
+                                <Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Form</Text>
+                                <Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Reçete</Text>
+                                <Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Sil</Text>
                             </div>
                             <div
                                 className='w-full max-h-[600px] overflow-auto p-3 scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>

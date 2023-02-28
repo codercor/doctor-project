@@ -24,14 +24,14 @@ const AdminDashBoard = () => {
         })
     }, [])
     return <div className="flex flex-col gap-[10px] ">
-        <div className="h-[462px] bg-[#F4F4F4] overflow-auto p-[32px] scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100">
+        <div className="h-[500px] bg-[#F4F4F4] overflow-auto p-[32px] scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100">
             <Text type="h6" className="text-[#4D5628] text-[14px] font-nexa-regular">Son Satın Alımlar</Text>
-            <div className="w-full h-[390px] justify-around flex mt-2">
+            <div className="w-full h-[400px] justify-around flex mt-2">
                 <div className="w-full h-full">
                     <LastSalesTable />
                     <div onClick={() => {
                         Router.push("/dashboard/last-sales")
-                    }} className="w-full cursor-pointer transition-colors translate-y-4 hover:bg-[#eeeeee] h-[50px] text-[black] text-[10px] flex flex-col justify-center items-center">
+                    }} className="w-full cursor-pointer transition-colors translate-y-10 hover:bg-[#eeeeee] h-[50px] text-[black] text-[10px] flex flex-col justify-center items-center">
                         <Text type="paragraph" className="text-[12px]" > Daha fazla göster </Text>
                         <ArrowDownward sx={{ fontSize: '12px' }} />
                     </div>

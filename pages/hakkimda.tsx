@@ -52,32 +52,32 @@ const Hakkimda: NextPage = () => {
                     <Text type="body" className="!font-nexa-regular px-[30px]">
                         <h1 className="mt-[20px] font-nexa-bold"> MESLEKİ DENEYİM:</h1>
                         <div className="flex flex-col md:flex-row gap-[10px]">
-                            <ul className="flex-[1] list-disc">
-                                <li>1994-1996: Kütahya Simav Merkez Sağlık Ocağında mecburi hizmetimi tamamladım</li>
-                                <li>1996-2023: Tıp Fakültesi, Hemşirelik Fakültesi, Fizik Tedavi Fakültesi, Eğitim Fakültesi, Sağlık Bilimleri Enstitüsü, Sağlık Hizmetleri Meslek Yüksek Okulu, Spor Bilimleri Yüksek Okulunda lisans, yüksek lisans ve doktora düzeyinde dersler verdim.</li>
-                                <li>2006-2023: Yüksek lisans, Doktora, Yardımcı Doçent, Doçent ve Profesörlük jürilerinde görev aldım.</li>
-                                <li>1998-2023: Ulusal ve Uluslararası birçok bilimsel derginin gönüllü hakemler listesinde bulunmaktayım.</li>
-                                <li>2006-2023: TÜBİTAK’ ta ve Türkiye’ deki birçok üniversitenin bilimsel araştırma projeleri biriminde proje değerlendirme hakemi olarak çalıştım.</li>
-                                <li>2009- Halen: BMC (British Medical Journal) Neuroscience dergisinin editörleri arasındayım.</li>
-                                <li>2013: Dokuz Eylül Üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Davranış Fizyoloji Bilim Dalının Kurulmasında çalıştı.</li>
+                            <ul className="flex-[1] list-none">
+                                <li><span className="font-nexa-bold">1994-1996</span>: Kütahya Simav Merkez Sağlık Ocağında mecburi hizmetimi tamamladım</li>
+                                <li><span className="font-nexa-bold">1996-2023 </span>: Tıp Fakültesi, Hemşirelik Fakültesi, Fizik Tedavi Fakültesi, Eğitim Fakültesi, Sağlık Bilimleri Enstitüsü, Sağlık Hizmetleri Meslek Yüksek Okulu, Spor Bilimleri Yüksek Okulunda lisans, yüksek lisans ve doktora düzeyinde dersler verdim.</li>
+                                <li><span className="font-nexa-bold">2006-2023</span>:  Yüksek lisans, Doktora, Yardımcı Doçent, Doçent ve Profesörlük jürilerinde görev aldım.</li>
+                                <li><span className="font-nexa-bold">1998-2023</span>:  Ulusal ve Uluslararası birçok bilimsel derginin gönüllü hakemler listesinde bulunmaktayım.</li>
+                                <li><span className="font-nexa-bold">2006-2023</span>:  TÜBİTAK’ ta ve Türkiye’ deki birçok üniversitenin bilimsel araştırma projeleri biriminde proje değerlendirme hakemi olarak çalıştım.</li>
+                                <li><span className="font-nexa-bold">2009- Halen </span>: BMC (British Medical Journal) Neuroscience dergisinin editörleri arasındayım.</li>
+                                <li><span className="font-nexa-bold">2013 </span>: Dokuz Eylül Üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Davranış Fizyoloji Bilim Dalının Kurulmasında çalıştı.</li>
                             </ul>
-                            <ul className="flex-[1]  list-disc">
-                                <li>2016: Dokuz Eylül Üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Merkezinin ve Etik Kurulunun Kurulmasında çalıştı.</li>
-                                <li>2016-2020: Dokuz Eylül üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Etik Kurulu (DEU-TF-HADYEK) Başkanı olarak çalıştım.</li>
-                                <li>2020-2022: Dokuz Eylül Üniversitesi, Deney Hayvanları Etik Kurulu (DEU-HADYEK) Başkan Yardımcısı olarak çalıştım.</li>
-                                <li>2020-2021: İstanbul Mutfak Sanatları Akademisi Fonksiyonel Beslenme Programı Eğitimi verdim.</li>
-                                <li>2021-2022: Dokuz Eylül Üniversitesi Sürekli Eğitim Merkezi Fonksiyonel Beslenme Becerileri Eğitimleri verdim.</li>
-                                <li>2021-2022: Dokuz Eylül Üniversitesi Geleneksel ve Tamamlayıcı Tıp Uygulamaları Merkezi Merkez Yönetim Kurulu Üyesi olarak çalıştım.</li>
-                                <li>2022-2023: Dokuz Eylül Üniversitesi Sürekli Eğitim Merkezi Merkez Danışma Kurulu Üyesi olarak çalıştım.</li>
+                            <ul className="flex-[1]  list-none">
+                                <li><span className="font-nexa-bold">2016</span>: Dokuz Eylül Üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Merkezinin ve Etik Kurulunun Kurulmasında çalıştı.</li>
+                                <li><span className="font-nexa-bold">2016-2020:</span> Dokuz Eylül üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Etik Kurulu (DEU-TF-HADYEK) Başkanı olarak çalıştım.</li>
+                                <li><span className="font-nexa-bold">2020-2022:</span> Dokuz Eylül Üniversitesi, Deney Hayvanları Etik Kurulu (DEU-HADYEK) Başkan Yardımcısı olarak çalıştım.</li>
+                                <li><span className="font-nexa-bold">2020-2021:</span> İstanbul Mutfak Sanatları Akademisi Fonksiyonel Beslenme Programı Eğitimi verdim.</li>
+                                <li><span className="font-nexa-bold">2021-2022:</span> Dokuz Eylül Üniversitesi Sürekli Eğitim Merkezi Fonksiyonel Beslenme Becerileri Eğitimleri verdim.</li>
+                                <li><span className="font-nexa-bold">2021-2022:</span> Dokuz Eylül Üniversitesi Geleneksel ve Tamamlayıcı Tıp Uygulamaları Merkezi Merkez Yönetim Kurulu Üyesi olarak çalıştım.</li>
+                                <li><span className="font-nexa-bold">2022-2023:</span> Dokuz Eylül Üniversitesi Sürekli Eğitim Merkezi Merkez Danışma Kurulu Üyesi olarak çalıştım.</li>
                             </ul>
                         </div>
                         <h1 className="font-nexa-bold mt-[20px]">EĞİTİM:</h1>
-                        <ul className="list-disc">
-                            <li>1994: Lisans: Dokuz Eylül Üniversitesi, Tıp Fakültesi</li>
-                            <li className="text-[14px]">1998: Tıpta Uzmanlık: Dokuz Eylül Üniversitesi Tıp Fakültesi Fizyoloji Anabilim Dalı</li>
-                            <li>2006: Fizyoloji Doçenti</li>
-                            <li>2011: Fizyoloji Profesörü</li>
-                            <li>2022: IFM Fonksiyonel Tıp Uygulayıcısı</li>
+                        <ul className="list-none">
+                            <li><span className="font-nexa-bold">1994</span>: Lisans: Dokuz Eylül Üniversitesi, Tıp Fakültesi</li>
+                            <li className="text-[14px]"><span className="font-nexa-bold">1998</span>: Tıpta Uzmanlık: Dokuz Eylül Üniversitesi Tıp Fakültesi Fizyoloji Anabilim Dalı</li>
+                            <li><span className="font-nexa-bold">2006</span>: Fizyoloji Doçenti</li>
+                            <li><span className="font-nexa-bold">2011</span>: Fizyoloji Profesörü</li>
+                            <li><span className="font-nexa-bold">2022</span>: IFM Fonksiyonel Tıp Uygulayıcısı</li>
                         </ul>
                     </Text>
                     <button className="mt-[50px] hover:border-2 transition-all hover:bg-primary hover:text-secondary hover:rounded-[20px] my-4 py-2" onClick={() => { setShowAcademicList(true) }}> Akademik Makalelerimi Görmek İçin Tıklayın </button>

@@ -19,7 +19,7 @@ import Head from "next/dist/shared/lib/head";
 
 const TrainingSearchInput = ({ value, onChange }: { value: string, onChange: (e: any) => void }) => {
     return (<div className="md:w-[546px] h-[52px] mx-auto relative top-[-25px] z-[3]">
-        <input value={value} onChange={onChange} type="text" placeholder="Eğitim Ara" className="w-full h-full pl-[48px] rounded-[20px_5px_20px_5px] bg-white-200 font-nexa-bold text-[16px] text-[#949B64] focus:outline-none" />
+        <input value={value} onChange={onChange} type="text" placeholder="Eğitim Ara" className="w-full h-full border-[#CFD2B7] pl-[48px] rounded-[20px_5px_20px_5px] bg-white-200 font-nexa-bold text-[16px] text-[#949B64]  focus:outline-none" />
         <div className="absolute top-[17px] left-[17px]">
             <SearchIcon />
         </div>
