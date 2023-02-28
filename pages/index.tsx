@@ -11,7 +11,7 @@ import Text from "@components/Text";
 import { NextPage } from "next";
 import Image from "next/image";
 import Router from "next/router";
-import React, { ElementType, RefObject, useEffect, useId, useRef, useState } from "react";
+import React, { ElementType, Ref, RefObject, useEffect, useId, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import useTraining from "src/hooks/training.hook";
 import { v4, v5 } from 'uuid'
@@ -51,7 +51,7 @@ const Home: NextPage = () => {
       </div>
       <Container className="bg-primary  md:!max-w-[100%] ">
         <Container className="md:!max-w-[1455px] md:h-[706px] flex ">
-          <div className="md:w-1/2 md:px-0 relative h-fit flex flex-col md:mt-[150px] mt-[50px] leading-none">
+          <div className="w-full z-10 md:px-0 relative h-fit flex flex-col md:mt-[150px] mt-[50px] leading-none">
             <div className="max-w-[540px] w-fit px-[20px]">
               <Text type="h4" className="text-deepgreen-100 text-[34px] ">
                 Sıkça Sorulan Sorular
@@ -61,7 +61,7 @@ const Home: NextPage = () => {
             </div>
             <FAQ />
           </div>
-          <div className="w-full  relative h-full">
+          <div className="absolute hidden md:block w-1/2 right-0 h-full">
             <Image src="/images/png/faq.png" layout="fill" objectFit="cover" />
           </div>
         </Container>
@@ -157,12 +157,29 @@ import 'react-indiana-drag-scroll/dist/style.css'
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { toast } from "react-hot-toast";
 import Head from "next/head";
+import { useDraggable } from "react-use-draggable-scroll";
+
+
+const FaqItem = React.forwardRef((({ item }: { item: any }, ref: Ref<HTMLDivElement>) => {
+  return <div
+    ref={ref}
+    className="md:!min-w-[462px] !min-w-full snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] min-h-[296px] bg-quaternary-light rounded-md"
+  >
+    <div className="bg-[#DEE4C3] mb-[22px] relative w-[70px] h-[60px] rounded-full grid place-content-center">
+      <Image src="/images/svg/help-green.svg" width={36} height={36} />
+    </div>
+    <Text type="h6" className="text-secondary-flat mb-[16px]">{item.title}</Text>
+    <Text type="body" className="text-[#676344] text-[14px]">{item.description}</Text>
+  </div>
+}))
 
 const FAQ = () => {
 
-
   const childRef = useRef<HTMLDivElement>(null)
-  const parentRef = useRef<HTMLDivElement>(null)
+  const parentRef = useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
+  const { events } = useDraggable(parentRef, {
+    applyRubberBandEffect: true,
+  });
   const sss = [
     { title: "Vücudumuzdaki inflamasyonu nasıl azaltırız?", description: "İnflamasyona neden olan besinleri, alışkanlıkları, olayları, kişileri hayatınızdan çıkarmalısınız. İnflamasyona neden olan besinler; işlenmiş, rafine, katkı koruyucu içeren besinler, kızartmalar, fastfood, şekerli, glisemik indeksi yüksek besinler, glüten, tarım ilacı ve toksin içeren besinler." },
     { title: "Kan B12 vitamini ve Demir seviyesi takviyeye rağmen yükselmiyorsa sebebi ne olabilir?", description: "Bu iki mikrobesin de yetersiz ise mide asit yetersizliğinden şüphelenmek gerekir. Önce yeterli mide asidi için tedavi etmeli." },
@@ -195,25 +212,13 @@ const FAQ = () => {
   }
 
   return (<>
-    <div className="z-20 pb-4 md:pb-0 mt-[46px] scrollbar-none snap-x overflow-auto min-w-[100vw]">
-      {/* @ts-ignore-next-line */}
-      <ScrollContainer component="div" ref={parentRef} className="!min-w-full snap-mandatory snap-center  select-none cursor-move flex md:gap-[20px]">
-        {sss.map((i, index) => {
-          return (
-            <div
-              key={v4()}
-              ref={childRef}
-              className="md:min-w-[462px]  min-w-[100vw] snap-start scroll-smooth pb-[26px] pt-[26px] px-[30px] h-[290px] bg-quaternary-light rounded-md"
-            >
-              <div className="bg-[#DEE4C3] mb-[22px] relative w-[70px] h-[60px] rounded-full grid place-content-center">
-                <Image src="/images/svg/help-green.svg" width={36} height={36} />
-              </div>
-              <Text type="h6" className="text-secondary-flat mb-[16px]">{i.title}</Text>
-              <Text type="body" className="text-[#676344]">{i.description}</Text>
-            </div>
-          );
-        })}
-      </ScrollContainer>
+    {/* @ts-ignore-next-line */}
+    <div ref={parentRef} {...events} className="flex md:space-x-3 overflow-x-scroll scrollbar-none w-full">
+      {sss.map((i, index) => {
+        return (
+          <FaqItem ref={(index == 0 ? childRef : undefined)} key={v4()} item={i} />
+        );
+      })}
     </div>
     <div className="inline-flex  md:hidden w-screen items-center  gap-[12px] justify-end pb-[44px] px-[20px] ">
       <button
