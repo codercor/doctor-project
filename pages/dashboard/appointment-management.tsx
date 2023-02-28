@@ -398,14 +398,7 @@ export const SelectUserModal = ({ setter }: { setter: (v: any) => void }) => {
 
 export default function AppointmentManagement() {
     const [appointments, setAppointments] = useState<Appointment[]>([
-        {
-            Id: "1",
-            UserId: "1",
-            Date: "09.01.2022",
-            Status: "Acil",
-            created_at: "09.01.2022",
-            updated_at: "09.01.2022"
-        },
+
     ])
     const [page, setPage] = useState(1)
     const [pageCount, setPageCount] = useState(1)

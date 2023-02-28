@@ -22,9 +22,9 @@ export default Register;
 
 const RegisterForm = () => {
     const [credentials, setCredentials] = useState<UserRegisterCredentials>({
-        Email: 'corxjs@gmail.com',
-        Password: '159753@Bbng',
-        ConfirmPassword: '159753@Bbng'
+        Email: '',
+        Password: '',
+        ConfirmPassword: ''
     });
     const router = useRouter();
 

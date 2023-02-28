@@ -14,8 +14,8 @@ import Head from "next/dist/shared/lib/head";
 const Login = () => {
     const router = useRouter();
     const [credentials, setCredentials] = useState<UserCredentials>({
-        Email: 'nazanuysal@gmail.com',
-        Password: '159753@Bbng'
+        Email: '',
+        Password: ''
     });
     const { user, login, error } = useAuth();
     const submitLogin = () => {

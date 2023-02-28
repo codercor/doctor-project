@@ -12,7 +12,7 @@ import useAuth from "src/hooks/auth.hook";
 
 const Login = () => {
     const [credentials, setCredentials] = useState<{ Email: string }>({
-        Email: 'nurettin@gmail.com',
+        Email: '',
     });
     const submitForgot = () => {
         forgotPasswordRequest(credentials.Email);

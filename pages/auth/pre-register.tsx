@@ -22,7 +22,7 @@ export default Register;
 
 const RegisterForm = () => {
     const [credentials, setCredentials] = useState<{ Email: string }>({
-        Email: 'corxjs@gmail.com',
+        Email: '',
     });
     const router = useRouter();
     const [disabledButton, setDisabledButton] = useState<boolean>(false);
