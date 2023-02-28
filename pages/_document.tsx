@@ -5,13 +5,12 @@ export default function Document() {
     return (
         <Html>
             <Head>
-                <Script async src="[https://www.googletagmanager.com/gtag/js?id=G-2FJRSCR3PY](https://www.googletagmanager.com/gtag/js?id=G-2FJRSCR3PY)"></Script>
+                <Script id="g-tag" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
                 <Script id="google-analytics" strategy="afterInteractive">
                     {`window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', 'G-2FJRSCR3PY');`}
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'G-D0HTKY3R5J');`}
                 </Script>
             </Head>
             <body>
