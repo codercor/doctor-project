@@ -159,7 +159,7 @@ import { toast } from "react-hot-toast";
 import Head from "next/head";
 import { useDraggable } from "react-use-draggable-scroll";
 
-
+// eslint-disable-next-line react/display-name
 const FaqItem = React.forwardRef((({ item }: { item: any }, ref: Ref<HTMLDivElement>) => {
   return <div
     ref={ref}
