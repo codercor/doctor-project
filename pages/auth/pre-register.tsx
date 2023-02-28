@@ -13,6 +13,7 @@ import axios from "axios";
 import UserContract from "@components/ContractContents/UserContract";
 import UserIlluminationContract from "@components/ContractContents/UserIlluminationContract";
 import request from "@config";
+import Head from "next/dist/shared/lib/head";
 
 const Register = () => <><RegisterForm /></>
 
@@ -33,7 +34,7 @@ const RegisterForm = () => {
                 duration: 10000,
             })
         }).catch((err) => {
-            toast.error(err.response.data.message, {
+            toast.error(err.response.data.Message, {
                 duration: 10000,
             })
             setDisabledButton(false);
@@ -87,6 +88,9 @@ const RegisterForm = () => {
 
     return (
         <AuthLayout>
+            <Head>
+                <title> Kayıt Ol | Nazan Uysal Harzadın </title>
+            </Head>
             <div
                 className="md:w-[1440px] md:h-full h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px]">
                 <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">
@@ -103,8 +107,8 @@ const RegisterForm = () => {
                     </Button>
                 </div>
                 <div
-                    className="bg-[url(/images/png/register.png)] hidden md:grid place-content-center bg-cover bg-no-repeat w-[610px] h-[620px]">
-                    <Text type="paragraph" className="text-[25px] text-center text-[white] h-[186px] w-[448px]">
+                    className="bg-[url(/images/png/nazanlogin.jpeg)] bg-bottom  hidden md:flex justify-center pt-10 bg-cover bg-no-repeat w-[610px] h-[620px]" >
+                    <Text type="paragraph" className="text-[25px] backdrop-brightness-75  text-center text-[white] h-[186px] w-[448px]">
                         İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir
                         hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza
                         başlayın.</Text>

@@ -2,6 +2,7 @@ import Container from '@components/Container'
 import LandingLayout from '@components/Layouts/LandingLayout'
 import { CheckCircleOutlined, ErrorOutlineRounded } from '@mui/icons-material'
 import { useRouter } from 'next/dist/client/router'
+import Head from 'next/dist/shared/lib/head'
 import React, { useEffect } from 'react'
 
 const Success = () => {
@@ -25,6 +26,7 @@ const Failed = () => {
 export default function PaymentFailed() {
     const {
         query: { Status },
+        push
     } = useRouter()
     const [content, setContent] = React.useState(<></>)
     useEffect(() => {
@@ -33,10 +35,20 @@ export default function PaymentFailed() {
         } else {
             setContent(Failed)
         }
+
+        setTimeout(() => {
+            push('/dashboard')
+        }, 4000)
+
     }, [Status])
+
+
 
     return (
         <LandingLayout>
+            <Head>
+                <title> Ödeme İşlemi | Nazan Uysal Harzadın </title>
+            </Head>
             <Container className=" h-[200px] md:h-[200px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-center  md:bg-cover overflow-clip bg-[url(/images/png/best.png)]">
                 <Container className="grid  mx-auto place-items-end !min-w-full backdrop-brightness-50   justify-center  pb-20 md:pb-22 h-full">
                 </Container>

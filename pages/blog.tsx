@@ -8,6 +8,7 @@ import { Blog as BlogT } from './blog-yazilari'
 import { Facebook, Instagram, InstallDesktopSharp, Twitter, WhatsApp } from '@mui/icons-material'
 import BlogCard from '@components/Card/BlogCard'
 import { CircularProgress } from '@mui/material'
+import Head from 'next/dist/shared/lib/head'
 
 const Blog = () => {
 
@@ -46,7 +47,9 @@ const Blog = () => {
     }, [router.query.id])
     return (
         <LandingLayout backColor='light'>
-
+            <Head>
+                <title> {blog?.Title || 'Blog'} | Nazan Uysal Harzadın </title>
+            </Head>
             <>
                 <div className="h-[150px] "> </div>
                 <div className='relative md:flex bg-gradient-to-b from-[#DFEBEC]  text-[#314E53] hidden justify-center items-center flex-col gap-[40px] w-full h-[340px]'>
@@ -124,8 +127,8 @@ const OtherBlogs = () => {
     }, [])
     return (
         <div className='relative my-[36px]  text-[#314E53] flex  max-w-[1280px] mx-auto flex-col gap-[12px] w-full'>
-            <h1 className='font-nexa-regular text-[28px] text-[#4D5729]  leading-none'> Son Yazılar </h1>
-            <p className='text-[#9D9D9D] text-[18px] leading-none'>Benzer yazılarımıza göz atmak ister misiniz ? Diğer blog içeriklerine göz atın</p>
+            <h1 className='font-nexa-regular text-[28px]  text-[#4D5729]  leading-none'> Son Yazılar </h1>
+            <p className='text-[#9D9D9D] text-[18px] mb-[24px] leading-none'>Benzer yazılarımıza göz atmak ister misiniz ? Diğer blog içeriklerine göz atın</p>
             <div className="flex md:flex-row flex-col gap-[30px] items-center ">
                 {
                     loading ? <CircularProgress /> : blogs.map((blog, index) => (

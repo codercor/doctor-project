@@ -36,7 +36,11 @@ const SettingsOrderHistory = () => {
                                 orderNumber={item.Detail.PurchaseId}
                                 date={item.Date}
                                 price={item.Detail.Price}
-                                name={new Date(item.Date).toLocaleDateString()}
+                                name={new Date(item.Date).toLocaleDateString("tr-TR", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "2-digit",
+                                })}
                                 type={"TYPE"}
                                 invoiceURL={item.Detail.EInvoiceLink}
                             />

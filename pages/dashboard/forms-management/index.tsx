@@ -94,7 +94,11 @@ export default function FormManagement() {
                 <div className='flex-[4]'>
                     <p>
                         {
-                            new Date(flow.created_at).toLocaleDateString("tr-TR")
+                            new Date(flow.created_at).toLocaleDateString("tr-TR", {
+                                year: "numeric",
+                                month: "long",
+                                day: "2-digit",
+                            })
                         }
                     </p>
                 </div>

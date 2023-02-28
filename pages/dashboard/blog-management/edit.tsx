@@ -41,7 +41,7 @@ const SelectImage = ({
         return ''
     }, [file])
     return <div className="flex flex-col items-start justify-start">
-        <div onClick={() => ref.current?.click()} className="flex-[2] relative text-[#A6A5A5] flex justify-center text-center items-center flex-col border-2 border-dotted border-[#CDCDCD] w-[400px] max-h-[330px]">
+        <div onClick={() => ref.current?.click()} className="flex-[2] cursor-pointer relative text-[#A6A5A5] flex justify-center text-center items-center flex-col border-2 border-dotted border-[#CDCDCD] w-[400px] max-h-[330px]">
             <input
                 ref={ref}
                 type="file"

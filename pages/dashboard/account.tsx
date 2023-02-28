@@ -24,6 +24,9 @@ import FormInput, { FormInputSelect } from "@components/Forms/FormInput/FormInpu
 //@ts-ignore
 import CountryCityService from "countries-cities";
 import ililce from '../../src/il-ilce'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+
 const Account = () => {
     const { user } = useAuth(); //TODO ADD -> update user
     const { updateUser, refetchUser } = useUser();
@@ -134,14 +137,35 @@ const Account = () => {
             }
         }, [values.Country, values.City]);
 
-
+        const [phoneCode, setPhoneCode] = useState<string>("+90");
         return <form onSubmit={handleSubmit}>
             <div className="flex  flex-col lg:flex-row max-w-full gap-[16px]">
                 <FormInput inputClass="w-full" disabled={!isEdit} name="Name" error={errors.Name} value={values.Name} onChange={_handleChange} label="Ad" type="text" />
                 <FormInput inputClass="w-full" disabled={!isEdit} name="Surname" error={errors.Surname} value={values.Surname} onChange={_handleChange} label="Soyad" type="text" />
             </div>
             <FormInput disabled={true} name="Email" error={errors.Email} value={values.Email} onChange={_handleChange} label="E-Posta" type="email" />
-            <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" />
+            {/* <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" /> */}
+            <label className="text-[#4E929D] text-[16px] font-nexa-bold">
+                Telefon
+            </label>
+            <PhoneInput
+                country={'tr'}
+                value={values.Phone}
+                inputProps={{
+                    name: 'Phone',
+                    className: 'text-[black] text-[16px] w-full pl-[50px] font-nexa-bold rounded-[5px_20px_0px_20px] disabled:opacity-60',
+                    // onChange: (e) => { setFieldValue("Phone", phoneCode + e.target.value) },
+                    value: values.Phone
+                }}
+                containerClass="w-full"
+
+                onChange={phone => setFieldValue("Phone", phone)}
+            />
+            {errors.Phone && (
+                <span className="text-[#FF0000] text-[16px] font-nexa-regular ml-2">
+                    * {errors.Phone}
+                </span>
+            )}
             <FormInputSelect
                 disabled={!isEdit}
                 error={errors.Country}
@@ -157,7 +181,7 @@ const Account = () => {
                         _handleChange(e);
                         return;
                     }
-                    setFieldValue("City", "Istanbul");
+                    setFieldValue("City", "İstanbul");
                     _handleChange(e);
                 }}
                 label="Ülke"
@@ -248,7 +272,7 @@ const Account = () => {
                     </div>
                 </div>
                 <div
-                    className="bg-[url(/images/png/register.png)] hidden md:grid place-content-center rounded-[20px_5px_20px_5px] bg-cover bg-center  bg-no-repeat w-1/2 h-full">
+                    className="bg-[url(/images/png/nazanlogin.jpeg)] hidden md:grid place-content-center rounded-[20px_5px_20px_5px] bg-cover bg-center  bg-no-repeat w-1/2 h-full">
                     <Text type="paragraph" className="!xl:text-[25px] !md:text-[16px] text-center text-[white] h-[186px] w-full">
                         İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir
                         hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza

@@ -2,6 +2,7 @@ import Container from "@components/Container";
 import Logo from "@components/Logo";
 import Text from "@components/Text";
 import classNames from "classnames";
+import Head from "next/dist/shared/lib/head";
 import Image from "next/image";
 
 const _404 = () => {
@@ -9,6 +10,9 @@ const _404 = () => {
     const className = classNames("relative min-w-full h-screen bg-cover", bgImages[Math.floor(Math.random() * bgImages.length)]);
     return (
         <Container className={className}>
+            <Head>
+                <title> Sayfa Bulunamadı | Nazan Uysal Harzadın </title>
+            </Head>
             <Container className="absolute !w-[1260px] mx-auto">
                 <Logo />
             </Container>

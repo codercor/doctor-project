@@ -15,13 +15,14 @@ import Link from 'next/link'
 import { Zoom } from '@mui/material'
 import { toast } from 'react-hot-toast'
 import TL from '@components/Text/TL'
+import Head from 'next/dist/shared/lib/head'
 const TrainingDocumentCard = ({ title, url }: { title: string, url: string }) => {
     const handleDownload = () => {
         window.open(url, '_blank')
     }
     return <div className='w-full h-[67px] mt-8 flex items-center justify-between px-[20px] bg-secondary text-[white]'>
         <Text type='paragraph' className='text-[white]'>{title}</Text>
-        <div onClick={handleDownload} className='text-white w-fit h-fit'>
+        <div onClick={handleDownload} className='text-white cursor-pointer w-fit h-fit'>
             <Download />
         </div>
     </div>
@@ -42,9 +43,13 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
     return <div className='transition-all duration-700 hover:whitespace-normal truncate w-full  h-fit mt-4  flex flex-col items-start justify-between p-[10px] text-ellipsis text-[#6E7846] hover:text-[white] hover:bg-secondary  bg-[#FFFFFF]'>
         <Text type='paragraph' className='text-inherit   h-fit hover:text-clip hover:whitespace-normal  truncate  text-[16px] w-[99%]'>{Order}-{Content}</Text>
         <div className="w-full flex justify-between">
-            <div className='flex'>
+            <div className='flex items-center'>
                 <DateRange />
-                <Text type='paragraph' className='text-inherit text-[16px]'>{StartDate}</Text>
+                <Text type='paragraph' className='text-inherit text-[12px]'>{new Date(StartDate).toLocaleDateString("tr-TR", {
+                    year: "numeric",
+                    month: "long",
+                    day: "2-digit",
+                })}</Text>
             </div>
             <div className='flex'>
                 <Timelapse />
@@ -78,7 +83,7 @@ const BuyKit = ({ id, price, totalLength, DiscountRate }: { DiscountRate: number
                 <School />
                 <Text>Fiyat</Text>
             </div>
-            <Text> {Number(calculatedPrice) == 0 ? 'Ücretsiz' : <p className="flex items-center"> <span className='text-[8px] font-nexa-bold mr-1'>*KDV Dahil </span> <span className="text-[12px] mr-1  text-[#CD2D2D] line-through">{DiscountRate != 0 &&  Number(price).toFixed(2)}{DiscountRate != 0 && <TL />}</span>  {calculatedPrice}<TL /></p>}</Text>
+            <Text> {Number(calculatedPrice) == 0 ? 'Ücretsiz' : <p className="flex items-center"> <span className='text-[8px] font-nexa-bold mr-1'>*KDV Dahil </span> <span className="text-[12px] mr-1  text-[#CD2D2D] line-through">{DiscountRate != 0 && Number(price).toFixed(2)}{DiscountRate != 0 && <TL />}</span>  {calculatedPrice}<TL /></p>}</Text>
         </div>
         <div className='w-full justify-between h-[50px] mb-2 bg-[#EFEEF5] rounded-[5px_20px_5px_20px] flex items-center px-4 text-[#3A356B]'>
             <div className='flex gap-2'>
@@ -215,6 +220,9 @@ export default function TrainingDetailPage() {
     if (!trainingData) return <Loading message='Eğitim yükleniyor...' />
     return (
         <LandingLayout>
+            <Head>
+                <title> {trainingData?.Name || 'Eğitim'} | Nazan Uysal Harzadın </title>
+            </Head>
             <Container className={"h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom  overflow-hidden rounded-br-[150px] md:bg-cover "}>
                 <Container className="md:!max-w-[1455px] grid  place-items-end  justify-center pb-20 md:pb-22 h-full">
                     <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold z-50"> {oneTraining?.Name} </Text>
