@@ -114,7 +114,7 @@ export default function Assays() {
                 {!isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">
                     <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
                 </div> :
-                    <div className=" md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
+                    <div className=" lg:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
                         <div className="w-1/3 flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
                             <div className="flex flex-col justify-between w-full">
                                 <Text type="h3" className="text-secondary !text-[20px] w-full">Tahlillerim</Text>

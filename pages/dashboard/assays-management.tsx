@@ -38,7 +38,7 @@ export default function Assays() {
         const [open, setOpen] = useState(false);
         const [openAreYouSureModal, setOpenAreYouSureModal] = useState(false);
         const [assayFiles, setAssayFiles] = useState<FileList | null>(null);
-        return <div className='flex flex-col w-full'>
+        return <div className='flex flex-col  w-full'>
             {openAreYouSureModal && <AreYouSureModal finish={({ confirmed }) => {
                 console.log("confirmed", confirmed);
                 if (confirmed) {
@@ -187,7 +187,7 @@ export default function Assays() {
 
                 setOpenAddAssayModal(false);
             }} className="z-[999] grid place-content-center h-screen w-screen fixed bg-[black] bg-opacity-25">
-                <div onClick={(e) => e.stopPropagation()} className='w-[600px] p-[20px] relative flex flex-col gap-[10px] rounded-[20px_5px] max-h-[300px] bg-[white]'>
+                <div onClick={(e) => e.stopPropagation()} className='lg:w-[600px] p-[20px] relative flex flex-col gap-[10px] rounded-[20px_5px] max-h-[300px] bg-[white]'>
                     <h1 className='text-[#184E57] text-[24px] leading-none mb-[10px] font-nexa-bold '> Tahlil Talebi Oluştur </h1>
                     {isLoading && <LocalLoading message='Tahlil talebiniz oluşturuluyor...' />}
                     <FormInput placeholder='Tahlil adı' value={assayName} onChange={(e) => { setAssayName(e.currentTarget.value) }} />
@@ -208,13 +208,13 @@ export default function Assays() {
                         <Text type="h3" className="text-[#4D5628] !text-[20px] w-full">Tahliller</Text>
                         <Text type="h3" className="text-[#4D5628] font-nexa-light !text-[14px] w-full">Hastalara ait tahlilleri görüntüleyin.</Text>
                     </div>
-                    <button onClick={() => { setOpenAddAssayModal(true) }} className='bg-[#4E929D] flex  w-[150px] h-[40px] items-center justify-center text-[white] rounded-[20px_5px]'>
-                        <Add className="text-[white] text-[14px]" />
+                    <button onClick={() => { setOpenAddAssayModal(true) }} className='bg-[#4E929D] flex text-[14px]  w-[150px] h-[40px] items-center justify-center text-[white] rounded-[20px_5px]'>
+                        <Add className="text-[white] text-[8px] md:text-[14px]" />
                         <p>Tahlil Talebi</p>
                     </button>
                 </div>
 
-                <div className="w-[60%] gap-[10px] mt-[10px] mb-[30px] flex">
+                <div className="w-[100%] md:w-[60%] gap-[10px] px-3 mt-[10px] mb-[30px] flex">
                     <input type="text" value={searchKey} onChange={(e) => {
                         setSearchKey(e.currentTarget.value)
                     }} placeholder='Ad Soyad ile arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
@@ -225,22 +225,25 @@ export default function Assays() {
                     </button>
                 </div>
                 {assays?.length > 0 ? <>
-                    <div className="w-full flex flex-col">
-                        <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Ad Soyad</Text>
-                            <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
-                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
-                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Belge Adı</Text>
-                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Tarih</Text>
-                            <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Durum</Text>
-                            <div className='flex-[2] w-full'>  </div>
-                        </div>
-                        <div className='w-full border-2'>
-                            {
-                                assays?.length > 0 ? assays.map((assay, index) => {
-                                    return <Row assay={assay} key={index} />
-                                }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>
-                            }
+                    <div className="overflow-auto scrollbar-thin">
+                        <div className="w-full  min-w-[900px] flex flex-col">
+                            <div className='w-full flex justify-evenly border-2 text-start h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
+                                <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Ad Soyad</Text>
+                                <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
+                                <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
+                                <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Belge Adı</Text>
+                                <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Tarih</Text>
+                                <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Durum</Text>
+                                <div className='!flex-[2] w-full'>  </div>
+                                <div className='!flex-[2] w-full'>  </div>
+                            </div>
+                            <div className='w-full border-2'>
+                                {
+                                    assays?.length > 0 ? assays.map((assay, index) => {
+                                        return <Row assay={assay} key={index} />
+                                    }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>
+                                }
+                            </div>
                         </div>
                     </div>
                     <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {

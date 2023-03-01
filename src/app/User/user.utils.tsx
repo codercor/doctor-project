@@ -93,7 +93,7 @@ export const fetchUsersTrainingsRequest = async (id: string) => {
         );
         console.log("users trainings data", response.data);
         toast.success('Kullanıcı eğitimleri getirildi.', { id: _toast });
-        let filtered = response.data.map((item: any) => item.Education);
+        let filtered = response.data.data.map((item: any) => item.Education);
         return filtered;
     } catch (err: any) {
         toast.error('Kullanıcı eğitimleri getirilemedi.', { id: _toast });
@@ -272,7 +272,7 @@ export const getUserOrderHistoryRequest = async (UserId: string) => {
         const response = await request.get(
             ORDER_HISTORY_WITH_USER_ID.replace(':UserId', UserId)
         );
-        return response.data;
+        return response.data.data;
     } catch (err: any) {
         throw new Error(err.response.data.message)
     }

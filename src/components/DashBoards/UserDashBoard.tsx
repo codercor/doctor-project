@@ -29,6 +29,7 @@ const MyTrainings = () => {
     //     }
     // } = useUser();
     const { user: { Id } } = useUser()
+    const router = useRouter()
     const { user: { IsAuthenticated } } = useAuth()
     const [UsersTrainings, setUserTrainings] = useState<TrainingDataType[]>([])
     const [IsLoading, setIsLoading] = useState(false)
@@ -41,6 +42,8 @@ const MyTrainings = () => {
             );
             toast.success('Kullanıcı eğitimleri yüklendi.', { id: _toast });
             let filtered = response.data.data.map((item: any) => item.Education);
+            console.log("Filtered", filtered);
+
             setUserTrainings(filtered)
             setIsLoading(false)
         }
@@ -51,7 +54,7 @@ const MyTrainings = () => {
     }
 
     useEffect(() => {
-        IsAuthenticated && getUsersTrainings();
+        (IsAuthenticated && Id) && getUsersTrainings();
     }, [Id])
 
 

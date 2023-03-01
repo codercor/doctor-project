@@ -49,6 +49,8 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
                     year: "numeric",
                     month: "long",
                     day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit"
                 })}</Text>
             </div>
             <div className='flex'>
@@ -150,13 +152,13 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
                     })()
                     }
                 </div>
-                <div className='w-full mt-10'>
+                {(training?.Documentations?.length as number) > 0 && <div className='w-full mt-10'>
                     <Text type='h6' className='text-secondary-flat'>Dökümanlar</Text>
                     {training?.Documentations && training?.Documentations.map((item, index) => {
                         return <TrainingDocumentCard key={v4()} title={`Döküman ${index + 1}.pdf`} url={item.Link} />
                     })}
-                </div>
-                {(IsAdmin || hasUser) && <div className='w-full mt-10 mb-10'>
+                </div>}
+                {((IsAdmin || hasUser) && training?.Videos?.length as number > 0) && <div className='w-full mt-10 mb-10'>
                     <Text type='h6' className='text-secondary-flat'>Videolar</Text>
                     <div className="flex w-full gap-2">
                         {(training?.Videos) && training?.Videos.map((item, index) => {
@@ -190,6 +192,8 @@ export default function TrainingDetailPage() {
 
     console.log("query", query.id);
     const { user: { IsAuthenticated, UsersTrainings, IsAdmin }, getUsersTrainings } = useUser();
+
+   
     const [hasUser, setHasUser] = useState(false)
     const [ownTraining, setOwnTraining] = useState(null)
     useEffect(() => {
