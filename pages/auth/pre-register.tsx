@@ -18,7 +18,9 @@ import Head from "next/dist/shared/lib/head";
 const Register = () => <><RegisterForm /></>
 
 export default Register;
-
+export type ValidationErrors = {
+    Email: string | null,
+}
 
 const RegisterForm = () => {
     const [credentials, setCredentials] = useState<{ Email: string }>({
@@ -27,23 +29,8 @@ const RegisterForm = () => {
     const router = useRouter();
     const [disabledButton, setDisabledButton] = useState<boolean>(false);
     const { user, register, error } = useAuth();
-    const submitRegister = () => {
-        setDisabledButton(true);
-        request.post("/auth/preregistration", { Email: credentials.Email }).then((res) => {
-            toast.success("Kayıt başarılı, lütfen e-posta adresinize gelen linke tıklayarak kaydınızı tamamlayınız", {
-                duration: 10000,
-            })
-        }).catch((err) => {
-            toast.error(err.response.data.Message, {
-                duration: 10000,
-            })
-            setDisabledButton(false);
-        })
-    }
 
-    type ValidationErrors = {
-        Email: string | null,
-    }
+
     const [validationErrors, setValidationErrors] = useState<ValidationErrors>({
         Email: null,
     });
@@ -51,6 +38,25 @@ const RegisterForm = () => {
     useEffect(() => {
         console.log("validationErrors", validationErrors);
     }, [validationErrors])
+    const submitRegister = () => {
+        if (validationErrors.Email) return;
+        setDisabledButton(true);
+        request.post("/auth/preregistration", { Email: credentials.Email }).then((res) => {
+            toast.success("Kayıt başarılı, lütfen e-posta adresinize gelen linke tıklayarak kaydınızı tamamlayınız", {
+                duration: 10000,
+            })
+            setTimeout(() => {
+                router.push("/auth/login")
+            }, 1000)
+
+        }).catch((err) => {
+            toast.error(err.response.data.Message, {
+                duration: 10000,
+            })
+            setDisabledButton(false);
+
+        })
+    }
 
 
 
@@ -59,10 +65,8 @@ const RegisterForm = () => {
             Email: null,
         }
         if (credentials.Email === '' || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(credentials.Email) === false) {
-            console.log("Email is not valid");
-            errors.Email = 'Email is not valid';
+            errors.Email = 'Geçerli bir eposta giriniz';
         } else {
-            console.log("Email is valid");
             errors.Email = null;
         }
         setValidationErrors(errors);
@@ -91,14 +95,18 @@ const RegisterForm = () => {
             <Head>
                 <title> Kayıt Ol | Nazan Uysal Harzadın </title>
             </Head>
+
             <div
-                className="md:w-[1440px] md:h-full h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px]">
-                <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">
+                className="md:h-full h-[500px] w-[340px] md:w-full lg:w-[340px]  flex justify-center items-center rounded-[30px_5px]">
+                <div className="w-[380px] md:min-w-full 2xl:w-full h-[402px] flex flex-col items-center lg:mr-[62px]">
                     <Text type="h3" className="text-white !text-[34px]">Üye Ol</Text>
                     {error.IsError &&
                         <Text type="paragraph" className="text-red-500 !text-[14px]">{error.ErrorMessage}</Text>}
                     <Input onBlur={() => registerValidation()} text="E-posta" value={credentials.Email} type="email"
-                        onChange={(e) => setCredentials({ ...credentials, Email: e.target.value })} />
+                        onChange={(e) => {
+                            registerValidation()
+                            setCredentials({ ...credentials, Email: e.target.value })
+                        }} />
                     {(typeof validationErrors.Email) &&
                         <Text type="paragraph" className="text-red-500 text-[12px]">{validationErrors.Email}</Text>}
                     <Button disabled={disabledButton} onClick={submitRegister} type="secondary"
@@ -107,7 +115,7 @@ const RegisterForm = () => {
                     </Button>
                 </div>
                 <div
-                    className="bg-[url(/images/png/nazanlogin.jpeg)] bg-bottom  hidden md:flex justify-center pt-10 bg-cover bg-no-repeat w-[610px] h-[620px]" >
+                    className="bg-[url(/images/png/nazanlogin.jpeg)] hidden lg:grid place-content-center bg-center bg-cover bg-no-repeat md:min-w-[410px] lg:min-w-[610px] h-[620px]" >
                     <Text type="paragraph" className="text-[25px] backdrop-brightness-75  text-center text-[white] h-[186px] w-[448px]">
                         İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir
                         hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza

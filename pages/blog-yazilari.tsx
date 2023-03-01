@@ -66,7 +66,7 @@ export default function BlogYazilari({ }: Props) {
                         {
                             blogs.length < 1 ? <>
 
-                                <h1 className='text-[56px] font-nexa-light'> 🤷  </h1>
+                                <h1 className='text-[56px] font-nexa-light'> Blog Bulunamadı  </h1>
                             </> : blogs.map((blog, index) => {
                                 return (
                                     <BlogCard key={index} blog={blog} />
@@ -76,7 +76,7 @@ export default function BlogYazilari({ }: Props) {
                     </>}
 
             </div>
-            <div className="max-w-[1280px] w-full justify-center flex mx-auto pl-[46px] mb-[30px]">
+            <div className="max-w-[1280px] w-full justify-center flex mx-auto px-[46px] mb-[30px]">
                 <Pagination
                     page={page}
                     onChange={(event, value) => setPage(value)}

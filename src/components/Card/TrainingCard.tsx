@@ -28,7 +28,9 @@ const TrainingCard = ({
 }: TrainingCardProps) => {
     const calculatedPrice = (DiscountRate > 0 ? (Number(price) * ((100 - DiscountRate) / 100)).toFixed(2).toString() : Number(price).toFixed(2).toString())
     return <div className="flex w-full z-[2]  max-w-[482px] justify-between  max-h-[380px] rounded-[20px_0px] overflow-clip h-full flex-col bg-[#EFEEF5]" >
-        <div className="relative w-full min-w-full rounded-br-[20px] overflow-clip min-h-[47%]">
+        <div onClick={() => {
+            Router.push(`/training?id=${Id}`)
+        }} className="relative  w-full min-w-full rounded-br-[20px] overflow-clip min-h-[47%]">
             <Image src={image} layout="fill" objectFit="cover" />
             {price != undefined && <button className="bg-[#FFFFFF] min-w-[110px] items-center justify-center absolute  bottom-2 right-2 flex-col flex font-nexa-bold bg-opacity-95 text-[#3A356B] py-[8px] px-[15px] rounded-[20px_5px]">
                 {calculatedPrice != "0.00" && <span className="text-[10px] text-start font-nexa-bold"> *KDV Dahil </span>}

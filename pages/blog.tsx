@@ -56,7 +56,7 @@ const Blog = () => {
                     <Image src={"/images/png/bg-blog-detay-figure.png"} layout="fill" objectFit="contain" />
                 </div>
                 <div className='relative my-[36px] md:px-0 px-[16px]  text-[#314E53] flex  max-w-[1280px] mx-auto flex-col gap-[40px] w-full min-h-[340px]'>
-                    <div className="flex flex-col md:flex-row">
+                    <div className="flex flex-col  md:flex-row">
                         <div className='relative  text-[#314E53] flex justify-center items-center flex-col gap-[40px] md:w-[380px] aspect-video w-full min-h-[340px]'>
                             <Image src={blog?.Image || "/images/png/blog-header.png"} layout="fill" objectFit="cover" />
                         </div>
@@ -87,7 +87,7 @@ const Blog = () => {
                             </div>
                         </div>
                     </div>
-                    <p className='text-[#314E53] font-nexa-regular text-[18px]'>
+                    <p className='text-[#314E53] indent-6 lg:px-0 px-[20px] font-nexa-regular text-[18px]'>
                         {
                             blog?.Text
                         }
@@ -126,7 +126,7 @@ const OtherBlogs = () => {
         })
     }, [])
     return (
-        <div className='relative my-[36px]  text-[#314E53] flex  max-w-[1280px] mx-auto flex-col gap-[12px] w-full'>
+        <div className='relative my-[36px] px-[20px] lg:px-0 text-[#314E53] flex  max-w-[1280px] mx-auto flex-col gap-[12px] w-full'>
             <h1 className='font-nexa-regular text-[28px]  text-[#4D5729]  leading-none'> Son Yazılar </h1>
             <p className='text-[#9D9D9D] text-[18px] mb-[24px] leading-none'>Benzer yazılarımıza göz atmak ister misiniz ? Diğer blog içeriklerine göz atın</p>
             <div className="flex md:flex-row flex-col gap-[30px] items-center ">

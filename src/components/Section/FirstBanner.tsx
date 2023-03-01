@@ -26,7 +26,7 @@ const FirstBanner = () => {
                     <p className="text-[white] break-words text-start text-[12px] md:text-[31px] w-full font-nexa-bold">{data.Title}</p>
                     <p className="text-[white] break-words w-full text-start text-[8px] md:text-[16px] font-nexa-light">{data.Description}</p>
                     <Text className="text-[white] hidden md:block break-words w-full text-[13px] mt-[10px]" type="paragraph">
-                        "Sabahları Ruhunun Yorgun Olmasına ve kemiklerinin ağrımasına rağmen kalkman cesurca, <br />
+                        "Sabahları ruhunun yorgun olmasına ve kemiklerinin ağrımasına rağmen kalkman cesurca, <br />
                         Nasıl yapılacağından tereddüt etsen de, yaşamaya devam etmen cesurca <br />
                         Hergün yuvarlanan dalgaları itip, savaşmaya karar vermen cesurca <br />
                         Vazgeçmek istediğin günler olduğunu biliyorum, ama asla vazgeçmemen cesurca <br />

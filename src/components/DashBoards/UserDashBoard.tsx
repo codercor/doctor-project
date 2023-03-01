@@ -14,6 +14,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/dist/client/router";
 import request, { TRAINING, TRAININGS_WITH_USER_ID } from "@config";
 import { TrainingDataType } from "@app/Training/training.types";
+import useAuth from "src/hooks/auth.hook";
 
 
 
@@ -28,6 +29,7 @@ const MyTrainings = () => {
     //     }
     // } = useUser();
     const { user: { Id } } = useUser()
+    const { user: { IsAuthenticated } } = useAuth()
     const [UsersTrainings, setUserTrainings] = useState<TrainingDataType[]>([])
     const [IsLoading, setIsLoading] = useState(false)
     const getUsersTrainings = async () => {
@@ -49,7 +51,7 @@ const MyTrainings = () => {
     }
 
     useEffect(() => {
-        getUsersTrainings();
+        IsAuthenticated && getUsersTrainings();
     }, [Id])
 
 
@@ -129,31 +131,36 @@ const AllTrainingsFloating = () => {
     }, [publicTrainings.length])
 
     const floatingContainerRef = useRef<HTMLDivElement>(null)
-    return <div>
-        <div className="flex justify-between mb-[34px]">
-            <div className="px-4">
-                <Text className="text-[#4D5628] text-[20px] font-nexa-bold">Tüm Eğitimler</Text>
-                <Text className="text-[#BFBFBF] text-[14px] font-nexa-regular">Prof.Dr Nazan Uysal Harzadın’in tüm eğitimlerini inceleyin.</Text>
-            </div>
-            <div className="flex px-4 gap-[20px] transition-all">
-                <div onClick={() => {
-                    floatingContainerRef.current?.scrollTo({ left: floatingContainerRef.current.scrollLeft - 406, behavior: "smooth" })
-                }} className="w-[52px] h-[52px] bg-[#7C467B] grid place-content-center text-[white] rounded-[5px_10px_5px_10px] pl-2">  <ArrowBackIos /> </div>
-                <div onClick={() => {
-                    floatingContainerRef.current?.scrollTo({ left: floatingContainerRef.current.scrollLeft + 406, behavior: "smooth" })
-                }} className="w-[52px] h-[52px] bg-[#7C467B] grid place-content-center text-[white] rounded-[5px_10px_5px_10px]">  <ArrowForwardIos /> </div>
-            </div>
-        </div>
-        <div ref={floatingContainerRef} className="flex  h-fit overflow-scroll md:flex-row items-center md:items-start scrollbar-thin">
-            {
-                trainings.map((training, index) => {
-                    return <div key={v4()} className="mx-[14px] h-[380px] min-w-[360px]">
-                        <TrainingCard  {...training} />
+    return <>
+        {
+            trainings.length == 0 ? <> </> : <div>
+                <div className="flex justify-between mb-[34px]">
+                    <div className="px-4">
+                        <Text className="text-[#4D5628] text-[20px] font-nexa-bold">Tüm Eğitimler</Text>
+                        <Text className="text-[#BFBFBF] text-[14px] font-nexa-regular">Prof.Dr Nazan Uysal Harzadın’in tüm eğitimlerini inceleyin.</Text>
                     </div>
-                })
-            }
-        </div>
-    </div>
+                    <div className="flex px-4 gap-[20px] transition-all">
+                        <div onClick={() => {
+                            floatingContainerRef.current?.scrollTo({ left: floatingContainerRef.current.scrollLeft - 406, behavior: "smooth" })
+                        }} className="w-[52px] h-[52px] bg-[#7C467B] grid place-content-center text-[white] rounded-[5px_10px_5px_10px] pl-2">  <ArrowBackIos /> </div>
+                        <div onClick={() => {
+                            floatingContainerRef.current?.scrollTo({ left: floatingContainerRef.current.scrollLeft + 406, behavior: "smooth" })
+                        }} className="w-[52px] h-[52px] bg-[#7C467B] grid place-content-center text-[white] rounded-[5px_10px_5px_10px]">  <ArrowForwardIos /> </div>
+                    </div>
+                </div>
+                <div ref={floatingContainerRef} className="flex  h-fit overflow-scroll md:flex-row items-center md:items-start scrollbar-thin">
+                    {
+                        trainings.map((training, index) => {
+                            return <div key={v4()} className="mx-[14px] h-[380px] min-w-[360px]">
+                                <TrainingCard  {...training} />
+                            </div>
+                        })
+                    }
+                </div>
+            </div>
+        }
+
+    </>
 }
 const UserDashBoard = () => {
     return <>

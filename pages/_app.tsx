@@ -13,6 +13,14 @@ const persistor = persistStore(store, {}, function () {
 function MyApp({ Component, pageProps }: AppProps) {
   return (<>
     <NextNProgress height={10} color="#8C88BB" />
+    <div className="fixed top-0 left-0 text-[24px] z-[9999] bg-transparent text-[red]">
+      <h1 className="block  sm:hidden"> XS </h1>
+      <h1 className="hidden sm:block md:hidden"> SM </h1>
+      <h1 className="md:block hidden lg:hidden"> MD </h1>
+      <h1 className="lg:block hidden xl:hidden"> LG </h1>
+      <h1 className="xl:block hidden 2xl:hidden"> XL </h1>
+      <h1 className="2xl:block hidden xl:hidden"> 2XL </h1>
+    </div>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Script id="clarity" type="text/javascript">
@@ -26,6 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Toaster toastOptions={{
           duration: 4500
         }} />
+
       </PersistGate>
     </Provider>
   </>)

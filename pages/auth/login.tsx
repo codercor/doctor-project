@@ -47,8 +47,8 @@ const Login = () => {
                 <title> Giriş Yap | Nazan Uysal Harzadın </title>
             </Head>
             <div
-                className="md:w-[1440px] md:h-full h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px]">
-                <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">
+                className="md:h-full h-[500px] w-[340px] md:w-full lg:w-[340px]  flex justify-center items-center rounded-[30px_5px]">
+                <div className="w-[380px] md:min-w-full 2xl:w-full h-[402px] flex flex-col items-center lg:mr-[62px]">
                     <Text type="h3" className="text-white !text-[34px]">Giriş Yap</Text>
                     {error.IsError &&
                         <Text type="paragraph" className="text-red-500 !text-[14px]">{error.ErrorMessage}</Text>}
@@ -77,8 +77,8 @@ const Login = () => {
                     </Button>
                 </div>
                 <div
-                    className="bg-[url(/images/png/login.png)] hidden md:grid place-content-center bg-cover bg-no-repeat w-[610px] h-[620px]">
-                    <Text type="paragraph" className="text-[25px] text-center text-[white] h-[186px] w-[448px]">İyi
+                    className="bg-[url(/images/png/login.png)] hidden lg:grid place-content-center bg-cover bg-center bg-no-repeat md:min-w-[410px] lg:min-w-[610px] h-[620px]">
+                    <Text type="paragraph" className="lg:text-[25px] md:text-[18px] text-center text-[white] h-[186px] w-full">İyi
                         sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir hareket
                         programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza başlayın.</Text>
                 </div>

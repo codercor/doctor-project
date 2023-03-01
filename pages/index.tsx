@@ -38,16 +38,17 @@ const Home: NextPage = () => {
       </Head>
       <Banner />
       <InfoBanner />
-      <div className="bg-[#F2F4EE]  relative w-full lg:h-[840px] h-[1600px] h-auto min-h-[400px]">
+      <div className="bg-[#F2F4EE]  relative w-full lg:h-[840px]  h-auto min-h-[400px]">
+        <EducationSection />
         <div className="w-full absolute bottom-0 h-full overflow-hidden ">
-          <span className="absolute hidden z-[0] md:block bottom-[-220px] rotate-45 left-[-80px]">
+          <span className="absolute hidden z-[0] lg:block bottom-[-220px] rotate-45 left-[-80px]">
             <Image src="/images/png/tabak.png" layout="fixed" width={600} height={900} />
           </span>
-          <span className="absolute hidden z-[1] lg:block bottom-0 right-[-50px]">
+          <span className="absolute hidden z-[0] lg:block bottom-0 right-[-50px]">
             <Image src="/images/png/bogurtlen-cilek.png" layout="fixed" width={800} height={400} />
           </span>
         </div>
-        <EducationSection />
+
       </div>
       <Container className="bg-primary  md:!max-w-[100%] ">
         <Container className="md:!max-w-[1455px] md:h-[706px] flex ">
@@ -94,11 +95,16 @@ const Home: NextPage = () => {
 }
 
 const EducationSection = () => {
-  const { publicTrainingsProcess: { loading }, publicTrainings, getPublicTrainings } = useTraining()
+  const [publicTrainings, setPublicTrainings] = useState<any[]>([])
   const [trainings, setTrainings] = useState<Array<TrainingCardProps & { Id?: string }>>([])
   useEffect(() => {
-    getPublicTrainings(1)
+    getPublicTrainingsRequest(1).then((data) => {
+      setPublicTrainings(data.data)
+    }).catch((err) => {
+      console.log("public trainings err", err)
+    })
   }, [])
+
 
   useEffect(() => {
     console.log(publicTrainings);
@@ -123,8 +129,8 @@ const EducationSection = () => {
 
     }
   }, [publicTrainings.length])
-  return <div className="lg:max-w-[1368px] mx-auto h-full px-[20px] md:px-0 flex  lg:flex-row flex-col">
-    <div className="flex md:ml-28 gap-4 md:flex-1  text-left items-center md:items-start mt-[80px] flex-col md:mb-0 mb-5">
+  return <div className="lg:max-w-[1368px] z-10 mx-auto h-full px-[20px] md:px-0 flex  lg:flex-row flex-col">
+    <div className="flex md:ml-28 gap-4 md:flex-1 z-10  text-left items-center md:items-start mt-[80px] flex-col md:mb-0 mb-5">
       <Text type="h4" className="text-purple-800 w-full text-left" >Eğitimler</Text>
       <p className="text-secondary-flat font-nexa-regular md:font-[18px]  font-[16px]">
         Vücudumuz harika çalışan bir makine, çevreden aldığımız bilgilerle genlerimizde bulunan kodları kullanarak sürekli yenilenerek yeniden şekillenir.
@@ -140,7 +146,7 @@ const EducationSection = () => {
         onClick={() => {
           Router.push("/egitimler")
         }}
-        type="tertiary-flat" className="w-fit mt-4">
+        type="tertiary-flat" className="w-fit mt-4 ">
         <Text type="paragraph" className="text-[white]">Tüm Eğitimler</Text>
       </Button>
     </div>
@@ -158,6 +164,7 @@ import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { toast } from "react-hot-toast";
 import Head from "next/head";
 import { useDraggable } from "react-use-draggable-scroll";
+import { getPublicTrainingsRequest } from "@app/Training/training.utils";
 
 // eslint-disable-next-line react/display-name
 const FaqItem = React.forwardRef((({ item }: { item: any }, ref: Ref<HTMLDivElement>) => {
@@ -220,7 +227,7 @@ const FAQ = () => {
         );
       })}
     </div>
-    <div className="inline-flex  md:hidden w-screen items-center  gap-[12px] justify-end pb-[44px] px-[20px] ">
+    <div className="inline-flex mt-[20px]  md:hidden w-screen items-center  gap-[12px] justify-end pb-[24px] px-[30px] ">
       <button
         onClick={() => {
           scrollBackward()

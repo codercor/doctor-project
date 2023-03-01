@@ -191,7 +191,6 @@ export const forgotPasswordRequest = async (email: string) => {
         return response.data;
     } catch (err: any) {
         toast.error('Şifre sıfırlama maili gönderilemedi.', { id: _toast });
-        throw new Error(err.response.data.message)
     }
 }
 

@@ -87,7 +87,7 @@ const Egitimler = () => {
             <Head>
                 <title> Eğitimler | Nazan Uysal Harzadın </title>
             </Head>
-            <Container className=" h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px]  md:bg-cover overflow-clip bg-[url(/images/png/best.png)]">
+            <Container className=" h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px]  md:bg-cover overflow-clip bg-[url(/images/png/egitimler-bg.png)]">
                 <Container className="grid  place-items-end !min-w-full backdrop-brightness-50   justify-center  pb-20 md:pb-22 h-full">
                     <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold">Eğitimler</Text>
                 </Container>
@@ -104,11 +104,17 @@ const Egitimler = () => {
                         }
 
                     }} className="mx-auto md:h-[936px]  px-[20px] md:px-0 scrollbar-thin scrollbar-track-[white]  scrollbar-thumb-quaternary scrollbar-thumb-rounded  h-[700px]  lg:w-[1000px] overflow-auto max-w-[1000px] items-center lg:items-start flex gap-[20px] lg:flex-row flex-col ">
+                        {
+                            filteredTrainings.length === 0 && <div className="flex flex-col w-full  items-center justify-start h-full">
+                                <Text className="text-[#949B64] text-[24px] font-nexa-bold">Eğitim bulunamadı</Text>
+                            </div>
+                        }
                         <div className="flex flex-row flex-wrap items-center md:items-center  md:justify-center h-full gap-[10px]">
                             {
                                 filteredTrainings.map((training, index) =>
                                     <div key={v4()} className="min-h-[380px] h-[380px] min-w-[350px]">  <TrainingCard {...training} /></div>)
                             }
+
                         </div>
                     </div>
                 </Container>

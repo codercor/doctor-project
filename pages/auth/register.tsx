@@ -116,9 +116,12 @@ const RegisterForm = () => {
 
         setValidationErrors(errors);
     }
-
+    const [renderCount, setRenderCount] = useState(0);
     useEffect(() => {
-        registerValidation()
+        if (renderCount != 0) {
+            registerValidation()
+            setRenderCount(renderCount + 1);
+        }
     }, [credentials])
 
     const checkUserInformationCompleted = () => {
@@ -162,8 +165,8 @@ const RegisterForm = () => {
                 </SozlesmeModal>
             }
             <div
-                className="md:w-[1440px] md:h-full h-[500px] w-[340px] flex justify-center items-center rounded-[30px_5px]">
-                <div className=" w-[380px] h-[402px] flex flex-col items-center md:mr-[102px]">
+                className="md:h-full  min-h-[500px] w-[340px] md:w-full lg:w-[340px]  flex justify-center items-center rounded-[30px_5px]">
+                <div className="w-[380px] md:min-w-full 2xl:w-full min-h-[402px] flex flex-col items-center lg:mr-[62px]">
                     <Text type="h3" className="text-white !text-[34px]">Üye Ol</Text>
                     {error.IsError &&
                         <Text type="paragraph" className="text-red-500  !text-[14px]">{error.ErrorMessage}</Text>}
@@ -220,7 +223,7 @@ const RegisterForm = () => {
                     </Button>
                 </div>
                 <div
-                    className="bg-[url(/images/png/nazanlogin.jpeg)] bg-bottom  hidden md:flex justify-center pt-10 bg-cover bg-no-repeat w-[610px] h-[620px]" >
+                    className="bg-[url(/images/png/nazanlogin.jpeg)] hidden lg:grid place-content-center bg-center bg-cover bg-no-repeat md:min-w-[410px] lg:min-w-[610px] h-[620px]" >
                     <Text type="paragraph" className="text-[25px] backdrop-brightness-75  text-center text-[white] h-[186px] w-[448px]">
                         İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir
                         hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza

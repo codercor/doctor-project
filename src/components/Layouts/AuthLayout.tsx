@@ -12,7 +12,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
             </Container>
             <Container className="h-[170px] .bg-[url(/images/png/kara-uzum.png)]  bg-no-repeat bg-cover !min-w-full">
             </Container>
-            <Container className="md:h-[740px] h-[550px] grid place-content-center  bg-no-repeat bg-cover !min-w-full">
+            <Container className="md:min-h-[740px] min-h-[350px] grid place-content-center   bg-no-repeat bg-cover !min-w-full">
                 {children}
             </Container>
             <Footer />

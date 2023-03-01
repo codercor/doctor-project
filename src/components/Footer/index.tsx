@@ -24,7 +24,7 @@ const Footer = () => {
         <Container className="!max-w-[100vw]  md:h-[452px] bg-primary-flat ">
             <Container className="h-[calc(100%-48px)] !max-w-[100vw] bg-primary-flat">
                 <Container className="h-[calc(100%-48px)] flex flex-col  !max-w-[1240px] bg-primary-flat">
-                    <div className="flex md:flex-row flex-col md:items-start items-center">
+                    <div className="flex md:flex-row flex-col  md:items-start items-center">
                         <div className="md:block flex flex-col items-center ">
                             <Logo />
                             <div className="mt-4 cursor-pointer" onClick={() => {
@@ -34,19 +34,19 @@ const Footer = () => {
                             </div>
 
                         </div>
-                        <div className="md:ml-[60px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
+                        <div className="lg:ml-[60px]  md:ml-[30px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
                             <Nav to="/" text="ANASAYFA" />
                             <Nav to="/hakkimda" text="HAKKIMDA" />
                             <Nav to="/egitimler" text="EĞİTİMLER" />
                             <Nav to="/blog-yazilari" text="BLOG" />
                         </div>
-                        <div className="md:ml-[160px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
+                        <div className="lg:ml-[160px] md:ml-[30px] mt-[77px] flex flex-col gap-4 h-fit w-[200px]">
                             <Nav text="Gizlilik Politikası" to="/sozlesmeler/gizlilik" />
                             <Nav text="Kullanıcı Şartları" to="/sozlesmeler/kullanici-sozlesmesi/" />
                             <Nav text="KVKK Metni" to="/sozlesmeler/kvkk" />
                             <Nav text="Aydınlatma Metni" to="/sozlesmeler/aydinlatma-metni/" />
                         </div>
-                        <div className="md:ml-[160px] mt-[77px] leading-none flex flex-col gap-4 h-fit w-[250px]">
+                        <div className="lg:ml-[160px] md:ml-[30px] mt-[77px] leading-none flex flex-col gap-4 h-fit w-[250px]">
                             <Text type="paragraph" className="text-[white]">
                                 İLETİŞİM
                             </Text>
