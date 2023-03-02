@@ -212,23 +212,23 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
             <div onClick={(e) => {
                 e.stopPropagation();
                 setUpdateTheUserModal(false)
-            }} className='fixed top-0 grid place-content-center left-0 w-screen h-screen bg-opacity-50 bg-black-100'>
+            }} className='fixed z-20 top-0 grid place-content-center left-0 w-full h-screen bg-opacity-50 bg-black-100'>
 
                 <div onClick={(e) => {
                     e.stopPropagation()
-                }} className="lg:w-[904px] w-[80%] relative h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
+                }} className="w-[80%] self-center justify-self-center relative min-h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
                     <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold">Güncelle</h1>
                     <p className='text-[#5C5C5C] text-[16px]'> Hastaya ait randevu ve durum güncellemesi yapın.</p>
                     <div className="flex flex-col mt-[45px]">
                         <h3 className='text-[#4E929D] !text-[14px] font-nexa-bold'>
                             Hasta Durumu
                         </h3>
-                        <div className='flex gap-[50px] '>
+                        <div className='flex md:flex-row items-start flex-col gap-4 md:gap-[50px] '>
                             <SelectStatus value={tempStatus} onChange={(v) => {
                                 setTempStatus(v)
                             }} />
 
-                            <div className="flex ml-auto flex-col w-[400px] items-start justify-center gap-[10px]">
+                            <div className="flex ml-auto flex-col w-full md:w-[400px] items-start justify-center gap-[10px]">
                                 <h3 className='text-[#4E929D] !text-[14px] font-nexa-bold'>
                                     Randevu Tarihi
                                 </h3>
@@ -242,7 +242,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
                     <button onClick={() => {
                         submit()
                     }}
-                        className='text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px]'>
+                        className='text-[white] md:mt-auto mt-4 rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-full max-w-[252px] h-[50px]'>
                         Güncelle
                     </button>
                     <button onClick={() => {

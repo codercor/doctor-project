@@ -243,8 +243,8 @@ export default function Assays() {
                                     <TableCell align="left">Belge Adı</TableCell>
                                     <TableCell align="left">Tarih</TableCell>
                                     <TableCell align="left">Durum</TableCell>
-                                    <TableCell align="left">Görüntüle</TableCell>
-                                    <TableCell align="left">Sil</TableCell>
+                                    <TableCell align="center">Görüntüle</TableCell>
+                                    <TableCell align="center">Sil</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>

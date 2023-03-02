@@ -13,6 +13,7 @@ import { LocalLoading } from './appointment-management';
 import { toast } from 'react-hot-toast';
 import AreYouSureModal from '@components/Modals/AreYouSureModal';
 import { useRouter } from "next/router";
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 interface IPrescriptionItem {
     Id: string;
     UserId: string;
@@ -62,7 +63,7 @@ const Row = ({ data, refresh }: { data: IPrescriptionItem, refresh: () => void }
     })
 
 
-    return <div className='flex flex-col w-full'>
+    return <TableRow>
         {editModalState.open && <EditPrespriptionModal setter={setEditModalState} finishEvent={(() => {
             setEditModalState({
                 open: false,
@@ -73,80 +74,82 @@ const Row = ({ data, refresh }: { data: IPrescriptionItem, refresh: () => void }
             refresh()
         })}
             data={editModalState} />}
-        <div className='w-full flex p-3 border-t-[1px]'>
-            <div className='flex-[6]'>
-                <p>
-                    {
-                        data.user?.information?.Fullname || '-'
-                    }
-                </p>
-            </div>
-            <div className='flex-[6]'>
-                <p>
-                    {
-                        data.user?.Email || '-'
-                    }
+        <TableCell className="leading-none" component="th" scope="row">
+            <p>
+                {
+                    data.user?.information?.Fullname || '-'
+                }
+            </p>
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <p>
+                {
+                    data.user?.Email || '-'
+                }
 
-                </p>
-            </div>
-            <div className='flex-[4]'>
-                <p>
-                    {
-                        data.user?.information?.Phone || '-'
-                    }
-                </p>
-            </div>
-            <div className='flex-[4]'>
-                <p>
-                    {
+            </p>
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <p>
+                {
+                    data.user?.information?.Phone || '-'
+                }
+            </p>
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <p>
+                {
 
-                        new Date(data.updated_at || data.created_at).toLocaleDateString("tr-TR", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                            hour: "numeric",
-                            minute: "numeric"
-                        })
-                        || '-'
-                    }
-                </p>
-            </div>
-            <div className='flex-[4] flex'>
-                <button onClick={() => {
-                    window.open(data.Link, "_blank")
-                }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[90px] h-[30px] text-[#4E929D]'>
-                    <span>Görüntüle</span>
-                </button>
-                <button onClick={() => {
-                    setEditModalState({
-                        ...editModalState,
-                        open: true
+                    new Date(data.updated_at || data.created_at).toLocaleDateString("tr-TR", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric"
                     })
-                }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] min-w-[20px] ml-2 h-[30px] text-[#4E929D]'>
-                    <Edit />
-                </button>
-                {areYouSureModalState && <AreYouSureModal text="Reçete silinecek" finish={({ confirmed }) => {
-                    if (confirmed) {
-                        request.delete(`/userprescriptions/${data.Id}`).then(res => {
-                            toast.success("Reçete silindi");
-                            setAreYouSureModalState(false);
-                            refresh();
-                        }).catch(err => {
-                            console.log(err);
-                            toast.error("Bir hata oluştu");
-                            refresh();
-                        })
-                    }
-                    setAreYouSureModalState(false);
-                }} />}
-                <button onClick={() => {
-                    setAreYouSureModalState(true);
-                }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] min-w-[20px] ml-2 h-[30px] text-[#4E929D]'>
-                    <Delete />
-                </button>
-            </div>
-        </div>
-    </div>
+                    || '-'
+                }
+            </p>
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <button onClick={() => {
+                window.open(data.Link, "_blank")
+            }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[90px] h-[30px] text-[#4E929D]'>
+                <span>Görüntüle</span>
+            </button>
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <button onClick={() => {
+                setEditModalState({
+                    ...editModalState,
+                    open: true
+                })
+            }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] ml-2 h-[30px] text-[#4E929D]'>
+                <Edit />
+            </button>
+            {areYouSureModalState && <AreYouSureModal text="Reçete silinecek" finish={({ confirmed }) => {
+                if (confirmed) {
+                    request.delete(`/userprescriptions/${data.Id}`).then(res => {
+                        toast.success("Reçete silindi");
+                        setAreYouSureModalState(false);
+                        refresh();
+                    }).catch(err => {
+                        console.log(err);
+                        toast.error("Bir hata oluştu");
+                        refresh();
+                    })
+                }
+                setAreYouSureModalState(false);
+            }} />}
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <button onClick={() => {
+                setAreYouSureModalState(true);
+            }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] ml-2 h-[30px] text-[#ce4343]'>
+                <Delete />
+            </button>
+        </TableCell>
+    </TableRow>
 }
 
 
@@ -225,7 +228,7 @@ const EditPrespriptionModal = ({ data, setter, finishEvent }: { data: IEditPresp
     }} className='fixed z-[9999] top-0 grid place-content-center left-0 w-screen h-screen bg-opacity-50 bg-black-100'>
         <div onClick={(e) => {
             e.stopPropagation()
-        }} className="w-[904px] relative min-h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
+        }} className="w-full  relative min-h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
             {loading && <LocalLoading message='Bekleyiniz' />}
             <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold">Reçeteyi Düzenle</h1>
             <p className='text-[#5C5C5C] text-[16px]'>Reçeteyi düzenlemek için gerekli alanları doldurunuz.</p>
@@ -401,7 +404,7 @@ const NewPrespriptionModal = ({ data, setter, finishEvent }: { data: INewPrespri
     }} className='fixed z-[9999] top-0 grid place-content-center left-0 w-screen h-screen bg-opacity-50 bg-black-100'>
         <div onClick={(e) => {
             e.stopPropagation()
-        }} className="w-[904px] relative min-h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
+        }} className="w-full relative min-h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
             {loading && <LocalLoading message='Bekleyiniz' />}
             <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold">Reçete Oluştur</h1>
             <p className='text-[#5C5C5C] text-[16px]'> Hastaya reçete oluşturmak için gerekli alanları doldurunuz.</p>
@@ -532,7 +535,7 @@ export default function PrescriptionsManagement() {
                 </div>
             </div>
 
-            <div className="w-[80%] gap-[10px] mt-[10px] mb-[30px] flex">
+            <div className="w-full md:w-[80%] px-4 gap-[10px] mt-[10px] mb-[30px] flex">
                 <input type="text" value={keyword} onChange={
                     (e) => { setKeyword(e.currentTarget.value) }
                 } placeholder='Ad Soyad ile arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
@@ -543,22 +546,28 @@ export default function PrescriptionsManagement() {
                 </button>
             </div>
             {prescriptions?.length > 0 ? <>
-                <div className="w-full flex flex-col">
-                    <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                        <Text type="h3" className="text-secondary flex-[6] !text-[14px]">Ad Soyad</Text>
-                        <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Reçete Tarih</Text>
-                        <div className='flex-[4]'>  </div>
-                    </div>
-                    <div className='w-full border-2'>
-                        {
-                            prescriptions?.length > 0 ? (prescriptions?.map((item) => {
-                                return <Row key={v4()} refresh={refresh} data={item} />
-                            }) || <></>) : <h1 className='text-[#4D5628] text-[20px] text-center'>Reçeteniz bulunmamaktadır</h1>
-                        }
-                    </div>
-                </div>
+                <TableContainer className='bg-[white] '>
+                    <Table aria-label="collapsible table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align="left">  Ad Soyad</TableCell>
+                                <TableCell align="left">  E-posta</TableCell>
+                                <TableCell align="left">  Telefon</TableCell>
+                                <TableCell align="left"> Reçete Tarih</TableCell>
+                                <TableCell align="center">  Görüntüle </TableCell>
+                                <TableCell align="center">  Düzenle </TableCell>
+                                <TableCell align="center">  Sil </TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {
+                                prescriptions?.length > 0 ? (prescriptions?.map((item) => {
+                                    return <Row key={v4()} refresh={refresh} data={item} />
+                                }) || <></>) : <h1 className='text-[#4D5628] text-[20px] text-center'>Reçeteniz bulunmamaktadır</h1>
+                            }
+                        </TableBody>
+                    </Table>
+                </TableContainer>
                 <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                     setPage(value)
                 }} count={pageCount} />
