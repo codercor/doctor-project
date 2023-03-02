@@ -45,6 +45,7 @@ const Footer = () => {
                             <Nav text="Kullanıcı Şartları" to="/sozlesmeler/kullanici-sozlesmesi/" />
                             <Nav text="KVKK Metni" to="/sozlesmeler/kvkk" />
                             <Nav text="Aydınlatma Metni" to="/sozlesmeler/aydinlatma-metni/" />
+                            <Nav text="Çerez Politikası" to="/sozlesmeler/cerez-politikasi" />
                         </div>
                         <div className="lg:ml-[160px] md:ml-[30px] mt-[77px] leading-none flex flex-col gap-4 h-fit w-[250px]">
                             <Text type="paragraph" className="text-[white]">

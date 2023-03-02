@@ -7,6 +7,8 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import { Toaster } from 'react-hot-toast';
 import Script from 'next/dist/client/script';
+import CookieConsent from "react-cookie-consent";
+import { Router } from 'next/dist/client/router';
 const persistor = persistStore(store, {}, function () {
   persistor.persist();
 });
@@ -36,6 +38,27 @@ function MyApp({ Component, pageProps }: AppProps) {
         }} />
 
       </PersistGate>
+      <CookieConsent
+        enableDeclineButton
+        flipButtons
+        location="bottom"
+        buttonText="Anladım Kabul ediyorum"
+        declineButtonText="Kabul Etmiyorum"
+        cookieName="YourCoockieName"
+        style={{ background: '#4E929D' }}
+        buttonStyle={{
+          backgroundColor: '#4e9d89',
+          fontSize: '15px',
+          color:'white'
+        }}
+        declineButtonStyle={{
+          backgroundColor: '#9d4e61',
+          margin: '10px 10px 10px 0',
+        }}
+        expires={450}
+      >Bu site çerezleri kullanıyor. 
+      <span className='underline cursor-pointer' onClick={()=>{ window.open("/sozlesmeler/cerez-politikasi/","_blank") }}>Çerez Politikamızı okumak için tıklayın. </span>
+      </CookieConsent>
     </Provider>
   </>)
 }
