@@ -11,6 +11,7 @@ import Search from '@components/Search/Search';
 import FormInput from '@components/Forms/FormInput/FormInput';
 import AreYouSureModal from '@components/Modals/AreYouSureModal';
 import { toast } from 'react-hot-toast';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 export interface Assay {
     Id: string;
     Name: string;
@@ -38,7 +39,7 @@ export default function Assays() {
         const [open, setOpen] = useState(false);
         const [openAreYouSureModal, setOpenAreYouSureModal] = useState(false);
         const [assayFiles, setAssayFiles] = useState<FileList | null>(null);
-        return <div className='flex flex-col  w-full'>
+        return <>
             {openAreYouSureModal && <AreYouSureModal finish={({ confirmed }) => {
                 console.log("confirmed", confirmed);
                 if (confirmed) {
@@ -53,25 +54,31 @@ export default function Assays() {
                 setOpenAreYouSureModal(false);
             }} text='Tahlil silinecek' />}
 
-            <div className='w-full flex p-3 border-t-[1px]'>
-                {assay?.user ? (<><div className='flex-[4]'>
-                    <p> {assay.user?.information?.Fullname || '-'} </p>
-                </div><div className='flex-[6]'>
+            <TableRow>
+                {assay?.user ? (<> <TableCell >
+                    <p className='max-w-[150px] m w-max'> {assay.user?.information?.Fullname || '-'} </p>
+                </TableCell>
+                    <TableCell >
                         <p> {assay.user?.Email} </p>
-                    </div><div className='flex-[4]'>
+                    </TableCell>
+                    <TableCell >
                         <p> {assay.user?.information?.Phone || '-'} </p>
-                    </div></>) : <><div className='flex-[4]'>
+                    </TableCell></>) : <>
+                    <TableCell >
                         <p> {'-'} </p>
-                    </div><div className='flex-[6]'>
+                    </TableCell>
+                    <TableCell >
                         <p> {'-'} </p>
-                    </div><div className='flex-[4]'>
+                    </TableCell>
+                    <TableCell>
                         <p> {'-'} </p>
-                    </div></>}
-                <div className='flex-[4]    '>
-                    <p className='break-words w-full'> {assay?.Name || '-'} </p>
-                </div>
-                <div className='flex-[4]'>
-                    <p>
+                    </TableCell>
+                </>}
+                <TableCell>
+                    <p className='max-w-[150px] m w-max'> {assay?.Name || '-'} </p>
+                </TableCell>
+                <TableCell>
+                    <p className='max-w-[150px] m w-max'>
 
                         {
 
@@ -85,27 +92,27 @@ export default function Assays() {
                             || '-'
                         }
                     </p>
-                </div>
-                {assay.Status ? <div className='flex-[2]'>
+                </TableCell>
+                {assay.Status ? <TableCell>
                     <p>{assay.Status} </p>
-                </div> : <div className='flex-[2]'>
+                </TableCell> : <TableCell>
                     <p> boş </p>
-                </div>}
-                <div className='flex-[2]'>
+                </TableCell>}
+                <TableCell>
                     <button disabled={!assay?.Link} onClick={() => {
                         window.open(assay?.Link || '', '_blank')
                     }} className=' disabled:opacity-50 flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
                         <span>Görüntüle</span>
                     </button>
-                </div>
-                <div className='flex-[2]'>
+                </TableCell>
+                <TableCell>
                     <button onClick={() => {
                         setOpenAreYouSureModal(true)
                     }} className=' disabled:opacity-50 flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] '>
                         <Delete className='!text-[#e46c6cea]' />
                     </button>
-                </div>
-            </div>
+                </TableCell>
+            </TableRow>
             {
                 open && <div className="w-full flex flex-col gap-3 min-h-[276px] p-4 bg-[transparent]">
                     <DocumentsUpload title=" " value={assayFiles} onChange={(e) => {
@@ -114,8 +121,9 @@ export default function Assays() {
                     }} />
 
                     <button className='bg-[#4E929D] text-[white] rounded-[20px_5px] self-end w-[146px] h-[50px]'>Gönder</button>
-                </div>}
-        </div>
+                </div>
+            }
+        </>
     }
     const getAssays = async () => {
         try {
@@ -225,27 +233,29 @@ export default function Assays() {
                     </button>
                 </div>
                 {assays?.length > 0 ? <>
-                    <div className="overflow-auto scrollbar-thin">
-                        <div className="w-full  min-w-[900px] flex flex-col">
-                            <div className='w-full flex justify-evenly border-2 text-start h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                                <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Ad Soyad</Text>
-                                <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
-                                <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
-                                <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Belge Adı</Text>
-                                <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Tarih</Text>
-                                <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Durum</Text>
-                                <div className='!flex-[2] w-full'>  </div>
-                                <div className='!flex-[2] w-full'>  </div>
-                            </div>
-                            <div className='w-full border-2'>
+                    <TableContainer className='bg-[white] '>
+                        <Table aria-label="collapsible table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="left">Ad Soyad</TableCell>
+                                    <TableCell align="left">E-posta</TableCell>
+                                    <TableCell align="left">Telefon</TableCell>
+                                    <TableCell align="left">Belge Adı</TableCell>
+                                    <TableCell align="left">Tarih</TableCell>
+                                    <TableCell align="left">Durum</TableCell>
+                                    <TableCell align="left">Görüntüle</TableCell>
+                                    <TableCell align="left">Sil</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
                                 {
                                     assays?.length > 0 ? assays.map((assay, index) => {
                                         return <Row assay={assay} key={index} />
                                     }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>
                                 }
-                            </div>
-                        </div>
-                    </div>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                     <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                         setPage(value)
                     }} count={pageCount} />
