@@ -47,7 +47,7 @@ export default function SelectTraining({ selectedTrainingId, handleChange }: {
 
 
     return (
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <FormControl sx={{ m: 1, minWidth: 120}}>
             <InputLabel id="demo-simple-select-helper-label">Eğitim</InputLabel>
             <Select
                 labelId="demo-simple-select-helper-label"

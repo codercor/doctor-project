@@ -333,10 +333,10 @@ export const SelectUserModal = ({ setter }: { setter: (v: any) => void }) => {
             <div onClick={() => {
                 setSelectedPatient(item)
                 item?.Id && selectPatient(item.Id, (item.Information.Fullname || 'YOOK'))
-            }} className="w-full h-[40px] border-t-[1px] flex items-center px-4">
-                <p>
-                    <span>  {item.Information.Fullname} </span> <span className='bg-[#94c5ce] ml-4 px-[6px] align-middle text-center rounded-[10px]'>{item.Email}</span>
-                </p>
+            }} className="w-full py-2 min-h-[40px] border-t-[1px] flex items-center px-4">
+                <div className="flex flex-wrap gap-1 ">
+                    <span>  {item.Information.Fullname} </span> <span className='bg-[#94c5ce] h-fit px-[6px] align-middle text-center rounded-[10px]'>{item.Email}</span>
+                </div>
                 {
                     cancel && (<button onClick={(
                         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -371,16 +371,16 @@ export const SelectUserModal = ({ setter }: { setter: (v: any) => void }) => {
     }
 
     return <>
-        <div className="fixed z-99 w-screen h-screen top-0 left-0 bg-black-100 bg-opacity-70">
-            <div className="w-full h-full flex items-center justify-center">
-                <div className="w-[600px] h-[400px] py-[100px] bg-[white] rounded-[20px_5px] flex flex-col">
+        <div className="fixed z-[20] flex justify-center w-full h-screen border-2 border-red-600 top-0 left-0 bg-black-100 bg-opacity-70">
+            <div className="md:w-[40%] w-full h-full flex items-center justify-center">
+                <div className="w-full h-[400px] py-[100px] bg-[white] rounded-[20px_5px] flex flex-col">
                     <div className="w-full h-[50px] flex items-center justify-center">
                         <p className="text-[#4E929D] text-[16px] font-nexa-bold">Hasta Seç</p>
                     </div>
-                    {!selectedPatient && <div className="w-full h-[50px] flex items-center justify-center">
-                        <input onChange={handleSearchPatient} value={searchKey} className="w-[400px] h-[40px] border-[#4E929D]-500 border-2 rounded-[20px_5px] px-4" />
+                    {!selectedPatient && <div className="w-full min-h-[50px]  flex items-center justify-center">
+                        <input onChange={handleSearchPatient} value={searchKey} className="w-[80%] h-[40px] border-[#4E929D]-500 border-2 rounded-[20px_5px] px-4" />
                     </div>}
-                    <div className="w-[400px] min-h-[100px] self-center relative flex items-center justify-center">
+                    <div className="w-[80%] min-h-[100px] self-center relative md:flex-row flex-col flex items-center justify-center">
                         {
                             selectedPatient ? <UserResultsItem item={selectedPatient} cancel /> : <UserResults />
                         }
@@ -507,7 +507,7 @@ export default function AppointmentManagement() {
                     </button>
                 </div>
                 {/* <CreateAppointmentModal  UserId='' finish={()=>{}} /> */}
-                <div className="w-[60%] gap-[10px] mt-[10px] mb-[30px] flex">
+                <div className="w-full md:w-[60%] px-4 gap-[10px] mt-[10px] mb-[30px] flex">
                     <input type="text" onChange={(e) => {
                         setSearchKey(e.target.value)
                     }

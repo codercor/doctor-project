@@ -63,19 +63,19 @@ export const CreateAppointmentModal = ({finish, UserId}: Iprops) => {
 
             <div onClick={(e) => {
                 e.stopPropagation()
-            }} className="w-[904px] relative h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
+            }} className="w-full relative min-h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
                 <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold">Randevu Oluştur</h1>
                 <p className='text-[#5C5C5C] text-[16px]'> Hastaya ait randevu ekleyin.</p>
                 <div className="flex flex-col mt-[45px]">
                     <h3 className='text-[#4E929D] !text-[14px] font-nexa-bold'>
                         Hasta Durumu
                     </h3>
-                    <div className='flex gap-[50px] '>
+                    <div className='flex md:flex-row items-start flex-col gap-[20px] md:gap-[50px] '>
                         <SelectStatus value={tempStatus} onChange={(v) => {
                             setTempStatus(v)
                         }}/>
 
-                        <div className="flex ml-auto flex-col w-[400px] items-start justify-center gap-[10px]">
+                        <div className="flex ml-auto flex-col w-full items-start justify-center gap-[10px]">
                             <h3 className='text-[#4E929D] !text-[14px] font-nexa-bold'>
                                 Randevu Tarihi
                             </h3>
@@ -90,7 +90,7 @@ export const CreateAppointmentModal = ({finish, UserId}: Iprops) => {
                     createAppointment()
                 }}
                         disabled={loading || !tempDate}
-                        className='text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px] disabled:opacity-[50%]'>
+                        className='text-[white] mt-4 md:mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px] disabled:opacity-[50%]'>
                     {loading ?  <CircularProgress sx={{color:'white'}} size="24px" />:'Oluştur' }
 
                 </button>

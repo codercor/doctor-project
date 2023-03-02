@@ -51,24 +51,24 @@ export default function TrainingDocuments() {
     return (
         <DashboardLayout>
 
-            <div className=" md:h-fit py-[50px] flex flex-col px-[200px] items-center rounded-[30px_5px] bg-[#F4F4F4]">
+            <div className=" md:h-fit py-[50px] gap-4 flex flex-col md:px-[100px] items-center rounded-[30px_5px] bg-[#F4F4F4]">
                 {loading ? <div className="w-full">
                     <LinearProgress color="secondary" />
                 </div> :
-                    <> <div className='flex justify-between w-full items-center'>
+                    <> <div className='flex md:flex-row flex-col justify-between w-full items-center'>
                         <p> Eğitim Seçildi {!selectedTrainingId ? '❌' : '✅'}</p>
                         <p> Google drive Klasörü  Seçildi {!selectedDriveItemId ? '❌' : '✅'} </p>
                     </div>
-                        <div className='flex justify-between w-full items-center'>
+                        <div className='flex md:flex-row flex-col justify-between w-full items-center'>
                             <SelectTraining handleChange={handleChange} selectedTrainingId={selectedTrainingId} />
                             <SelectDriveItem setSelectedDriveItemId={setSelectedDriveItemId} isActive={selectDriveIsActive} />
                         </div>
-                        <div className="w-full flex justify-center items-center border-2">
+                        <div className="w-full flex justify-center items-center">
                             <Button onClick={() => {
                                 console.log('selectedTrainingId', selectedTrainingId)
                                 console.log('selectedDriveItemId', selectedDriveItemId)
                                 handleClickAttach()
-                            }} className='h-fit w-fit border-2 border-green-500' type="secondary" disabled={!valid}>Eşleştir</Button>
+                            }} className='h-fit w-fit' type="secondary" disabled={!valid}>Eşleştir</Button>
                         </div></>}
             </div>
         </DashboardLayout>
