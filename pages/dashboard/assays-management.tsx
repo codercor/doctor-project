@@ -11,6 +11,7 @@ import Search from '@components/Search/Search';
 import FormInput from '@components/Forms/FormInput/FormInput';
 import AreYouSureModal from '@components/Modals/AreYouSureModal';
 import { toast } from 'react-hot-toast';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 export interface Assay {
     Id: string;
     Name: string;
@@ -225,27 +226,56 @@ export default function Assays() {
                     </button>
                 </div>
                 {assays?.length > 0 ? <>
-                    <div className="overflow-auto scrollbar-thin">
-                        <div className="w-full  min-w-[900px] flex flex-col">
-                            <div className='w-full flex justify-evenly border-2 text-start h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                                <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Ad Soyad</Text>
-                                <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
-                                <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
-                                <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Belge Adı</Text>
-                                <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Tarih</Text>
-                                <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Durum</Text>
-                                <div className='!flex-[2] w-full'>  </div>
-                                <div className='!flex-[2] w-full'>  </div>
-                            </div>
-                            <div className='w-full border-2'>
-                                {
-                                    assays?.length > 0 ? assays.map((assay, index) => {
-                                        return <Row assay={assay} key={index} />
-                                    }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>
-                                }
-                            </div>
-                        </div>
-                    </div>
+
+                    <TableContainer className='bg-[white] '>
+                        <Table aria-label="collapsible table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="left">Ad Soyad</TableCell>
+                                    <TableCell align="left">E-posta</TableCell>
+                                    <TableCell align="left">Telefon</TableCell>
+                                    <TableCell align="left">Belge Adı</TableCell>
+                                    <TableCell align="left">Tarih</TableCell>
+                                    <TableCell align="left">Durum</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            {
+                                assays?.length > 0 ? assays.map((assay, index) => (
+                                    <TableRow
+                                        key={assay.Id}
+                                        className={"border-2 p-0 leading-none h-[10px] " + (index % 2 != 0 ? 'bg-[#DEEEF0]' : '')}
+                                    >
+                                          <TableCell className="leading-none" component="th" scope="row">
+                                            {assay.user?.information.Fullname || '-'}
+                                        </TableCell>
+                                        <TableCell className="leading-none" component="th" scope="row">
+                                            {assay.user?.Email || '-'}
+                                        </TableCell>
+                                        <TableCell className="leading-none" component="th" scope="row">
+                                            {assay.user?.information?.Phone || '-'}
+                                        </TableCell>
+                                        <TableCell className="leading-none" component="th" scope="row">
+                                            {assay.Name || '-'}
+                                        </TableCell>
+                                        <TableCell className="leading-none" align="left">{
+                                            new Date(assay.created_at).toLocaleDateString('tr-TR', {
+                                                year: 'numeric',
+                                                month: 'long',
+                                                day: 'numeric',
+                                            })
+                                        }</TableCell>
+                                           <TableCell className="leading-none" component="th" scope="row">
+                                            {assay.Status || '-'}
+                                        </TableCell>
+                                         </TableRow>
+                                )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahlil bulunmamaktadır </h1>
+                            }
+                          
+                            </TableBody>
+                            </Table>
+                            </TableContainer>
+
                     <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                         setPage(value)
                     }} count={pageCount} />
