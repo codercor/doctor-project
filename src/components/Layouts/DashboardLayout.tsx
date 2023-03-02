@@ -23,7 +23,7 @@ import {
     TaskTwoTone,
     BookmarkSharp,
     BookmarkAdded,
-    MenuBook, ErrorOutlined
+    MenuBook, ErrorOutlined, CloseOutlined
 } from '@mui/icons-material';
 import ChromeReaderModeIcon from '@mui/icons-material/ChromeReaderMode';
 import { useRouter } from "next/router";
@@ -35,7 +35,7 @@ import classNames from "classnames";
 import useUser from "../../hooks/user.hook";
 import toast, { useToasterStore } from "react-hot-toast";
 import BurgerIcon from "@components/Icon/BurgerIcon";
-
+import MenuIcon from '@mui/icons-material/Menu';
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     const { user, logout } = useAuth()
@@ -43,13 +43,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
     const [dashboardNavs, setDashboardNavs] = useState<DNavButtonProps[]>([])
 
-
-
     useEffect(() => {
         refetchUser()
     }, [])
-
-
 
     useEffect(() => {
 
@@ -162,36 +158,29 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 href: "/dashboard/patient-agreements",
                 Icon: TaskOutlined
             })
-
             setDashboardNavs(userNavs)
         }
-
     }, [user])
-
 
     const router = useRouter();
     useEffect(() => {
         if (!user.IsAuthenticated) {
             router.push("/auth/login")
         }
-    }, [user])
-    const [showMenu, setShowMenu] = React.useState(true);
+    }, [user.IsAuthenticated])
+    const [showMenu, setShowMenu] = React.useState(false);
     return (
-        <div className="overflow-auto   flex w-full h-screen">
-            <div className="md:hidden w-fit h-fit  absolute bottom-[30px] right-[30px]">
-                <Fab size="small" onClick={() => {
-                    setShowMenu(!showMenu)
-                }} className="bg-primary" aria-label="add">
-                    <BurgerIcon color="black" />
-                </Fab>
-            </div>
+        <div onClick={() => {
+            if (showMenu) setShowMenu(false)
+        }} className="overflow-auto   flex w-full h-screen">
+            {  /*  Sidebar Normal */}
             <div
-                className={classNames("md:sticky fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[18%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
-                    hidden: !showMenu
+                className={classNames("lg:sticky cursor-pointer hidden lg:block fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[40%] lg:min-w-[20%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
+
                 })}>
                 <div onClick={() => {
                     router.push("/")
-                }} className="md:w-[125px] md:h-[43px] relative md:mt-[40px]">
+                }} className="md:w-[125px] md:h-[43px] mx-auto relative md:mt-[40px]">
                     <Image src="/images/svg/brandmark6.svg" layout="fill" objectFit="contain" />
                 </div>
                 <div
@@ -215,8 +204,42 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     </div>
                 </div>
             </div>
-            <Container className="md:pl-[144px] md:pt-[30px] md:pr-[260px] md:w-[82%] h-[98%] flex flex-col gap-[37px]">
-                <DashBoardNavbar />
+            {  /*  Sidebar Mobile */}
+            <div
+                onClick={(e) => {
+                    e.stopPropagation()
+                }}
+                className={classNames("cursor-pointer lg:hidden fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[50%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
+                    hidden: !showMenu
+                })}>
+                <div onClick={() => {
+                    router.push("/")
+                }} className="md:w-[125px] md:h-[43px] mx-auto relative md:mt-[40px]">
+                    <Image src="/images/svg/brandmark6.svg" layout="fill" objectFit="contain" />
+                </div>
+                <div
+                    className="flex flex-col pr-4 mt-[60px]  h-[80%] overflow-scroll scrollbar-thin scrollbar-track-[#d4ee5e8] scrollbar-thumb-[white]">
+                    {dashboardNavs.map((nav, index) => <NavButton key={index} {...nav} />)}
+                    <Button onClick={() => logout()}
+                        className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] !bg-[red]">
+                        <PowerSettingsNew className="text-[white]" />
+                        <Text className="text-[white]">
+                            Çıkış Yap
+                        </Text>
+                    </Button>
+                </div>
+                <div className="absolute bottom-0  h-[7%]   flex flex-col justify-end left-0 w-full">
+                    <div className="h-full bg-secondary grid place-content-center text-center">
+                        <Text className="text-[10px] text-[white]"> Kullanım Koşulları - Gizlilik Politikası</Text>
+                        <Text type="overline" className="!font-nexa-light text-[#ACE2EB]">Prof.Dr. Nazan Uysal Harzadın
+                            © 2022 </Text>
+                    </div>
+                </div>
+            </div>
+            <Container className={classNames("lg:pl-[144px] md:pt-[30px] lg:pr-[144px] lg:w-[80%] md:w-full  h-full flex flex-col gap-[37px]", {
+                "md:blur-sm lg:blur-none": showMenu
+            })}>
+                <DashBoardNavbar showMenu={showMenu} setShowMenu={setShowMenu} />
                 {children}
             </Container>
         </div>

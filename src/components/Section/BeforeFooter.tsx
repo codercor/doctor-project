@@ -23,7 +23,7 @@ const BeforeFooter = () => {
         <Container className="!max-w-[100vw]  h-[304px] bg-[url(/images/png/kara-uzum.png)] bg-top">
             <Container className="!max-w-full backdrop-brightness-[55%] h-full bg-center">
                 <Container className="md:!max-w-[1200px] h-full items-center  flex flex-col justify-center px-[20px] md:px-0">
-                    <Text type="paragraph" className="md:text-[26px] text-center  text-[white]"> <span dangerouslySetInnerHTML={{ __html: text }} >
+                    <Text type="paragraph" className="lg:!text-[26px] md:!text-[18px] !text-[16px] text-center  text-[white]"> <span dangerouslySetInnerHTML={{ __html: text }} >
                     </span> </Text>
                     <Button onClick={() => Router.push('/egitimler')} className="mt-[40px]" type="tertiary-flat" >Tüm Eğitimler</Button>
                 </Container>

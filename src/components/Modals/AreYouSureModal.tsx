@@ -16,7 +16,7 @@ const AreYouSureModal = ({ finish, text }: {
         }} className='fixed top-0 z-[2] grid place-content-center left-0 w-screen h-screen bg-opacity-50 bg-black-100'>
             <div onClick={(e) => {
                 e.stopPropagation()
-            }} className="w-[504px] relative  px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
+            }} className="lg:w-[504px] w-[90%] ml-[5%] relative  px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
                 <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold"> Emin misiniz ? </h1>
                 <p className='text-[#5C5C5C] text-[16px] mb-[20px]'>
                     {text}

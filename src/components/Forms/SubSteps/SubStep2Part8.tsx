@@ -5,6 +5,7 @@ import FormInputSelectOne from "../FormInput/FormInputSelectOne";
 import FormInputSelectMulti from "../FormInput/FormInputSelectMulti";
 import useUser from "src/hooks/user.hook";
 import { Field } from "formik";
+import { useRouter } from "next/dist/client/router";
 
 const EH = [
     { value: "evet", label: "Evet" },
@@ -72,10 +73,12 @@ export default function SubStep2Part8({
 }
 ) {
     const { user } = useUser()
+    const { query: { flow_id } } = useRouter()
+    const patientGender = localStorage.getItem(flow_id + "-Gender") || user.Information?.Gender;
     return (
         <>
-            <label>Çevresel/Detoksifikasyon Öyküsü</label>
-            <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <label className="font-nexa-bold text-[20px] text-[#4E929D]">Çevresel/Detoksifikasyon Öyküsü</label>
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Bunlardan hangileri sizi önemli derecede etkiler?"
                     options={[
@@ -165,30 +168,30 @@ export default function SubStep2Part8({
                     onChange={handleChange}
                 />{
                     values.petOrFarmAnimal === "evet" && <>
-                     <FormInputSelectOne
-                        label="Nerede yaşıyor ? "
-                        name="petOrFarmAnimalDesc"
-                        options={[
-                            { value: "içerde", label: "İçerde" },
-                            { value: "dışarda", label: "Dışarda" },
-                            { value: "hem içerde hem dışarda", label: "Hem içerde hem dışarda" },
-                        ]}
-                        value={values.petOrFarmAnimalDesc}
-                        error={errors?.petOrFarmAnimalDesc}
-                        onChange={handleChange}
-                    />
+                        <FormInputSelectOne
+                            label="Nerede yaşıyor ? "
+                            name="petOrFarmAnimalDesc"
+                            options={[
+                                { value: "içerde", label: "İçerde" },
+                                { value: "dışarda", label: "Dışarda" },
+                                { value: "hem içerde hem dışarda", label: "Hem içerde hem dışarda" },
+                            ]}
+                            value={values.petOrFarmAnimalDesc}
+                            error={errors?.petOrFarmAnimalDesc}
+                            onChange={handleChange}
+                        />
                     </>
                 }
             </div>
 
 
-            {user.Information?.Gender === "Erkek" && <>
+            {patientGender === "Erkek" && <>
 
                 <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
                     <h2 className=" text-[18px]">Erkek özel özgeçmiş:</h2>
                 </div>
 
-                <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+                <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
 
                     <FormInputSelectMulti
                         label="Sizin için uygun olanları işaretleyiniz"
@@ -206,7 +209,7 @@ export default function SubStep2Part8({
                             { value: "idrara sıkışma/başlatamama/akışta değişiklik", label: "İdrara sıkışma/başlatamama/akışta değişiklik" },
                             { value: "vazektomi", label: "Vazektomi" },
                             { value: "gece idrara çıkma", label: "Gece idrara çıkma" },
-                            { value: "cinsel yol ile bulaşan hastalık", label: "Cinsel yol ile bulaşan hastalık" },
+                            { value: "cinsel yol ile bulaşan hastalık", label: "Cinsel yolla bulaşan hastalık" },
                         ]}
                         name="suitablePartsForYou"
                         value={values.suitablePartsForYou}
@@ -222,16 +225,17 @@ export default function SubStep2Part8({
                             type="text"
                             onChange={handleChange}
                         />
-                         
-                        //     values.suitablePartsForYou.includes("cinsel yol ile bulaşan hastalık") && 
-                        //     <FormInput
-                        //     label={`Cinsel yolla bulaşan hastalığınız nedir ?`}
-                        //     value={values.suitablePartsForYouSexualDesc}
-                        //     error={errors.suitablePartsForYouSexualDesc}
-                        //     name="suitablePartsForYouSexualDesc"
-                        //     type="text"
-                        //     onChange={handleChange}
-                        // />
+                    }
+                    {
+                        values.suitablePartsForYou?.includes("cinsel yol ile bulaşan hastalık") &&
+                        <FormInput
+                            label={`Cinsel yol ile bulaşan hastalığı tanımlayın`}
+                            value={values.suitablePartsForYouSexualDesc}
+                            error={errors.suitablePartsForYouSexualDesc}
+                            name="suitablePartsForYouSexualDesc"
+                            type="text"
+                            onChange={handleChange}
+                        />
                     }
 
                     <FormInputSelectOne
@@ -271,14 +275,14 @@ export default function SubStep2Part8({
             </>
             }
 
-            {user.Information?.Gender === "Kadın" && <>
+            {patientGender === "Kadın" && <>
 
                 <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
                     <h2 className=" text-[18px]">Kadın özel özgeçmiş:</h2>
                 </div>
 
-                <div className="flex flex-col min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
-                    <label htmlFor="">Kadın-doğum Öyküsü (Uygun olanları işaretleyip sayısını yazınız)</label>
+                <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+                    <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kadın-doğum Öyküsü (Uygun olanları işaretleyip sayısını yazınız)</label>
 
                     <FormInputSelectOne
                         label="Gebelik yaşadınız mı ?"
@@ -500,7 +504,7 @@ export default function SubStep2Part8({
                         </>
                     }
 
-                    <label htmlFor="">Adet görme öyküsü:</label>
+                    <label className="font-nexa-bold text-[20px] text-[#4E929D]">Adet görme öyküsü:</label>
                     <FormInput
                         label={`İlk adet yaşınız ?`}
                         value={values.firstMenstrualAge}
@@ -1239,6 +1243,227 @@ export default function SubStep2Part8({
                 </div>
 
             </div>
+            <TogP1 values={values} handleChange={handleChange} />
+            <TogP2 values={values} handleChange={handleChange} />
+            <TogP3 values={values} handleChange={handleChange} />
+            <TogP4 values={values} handleChange={handleChange} />
         </>
     );
+}
+
+const TogP1 = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[650px] my-2">
+        <p className="font-nexa-bold text-[20px] my-4 text-[#4E929D]">Tıbbi özgeçmiş (devam)</p>
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2">
+                    <th>Görüntüleme yöntemi</th>
+                    <th>Tarih</th>
+                    <th>Sonuç</th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        {
+                            title: "Kemik dansitesi",
+                            name: "tog1",
+                        },
+                        {
+                            title: "Tomografi",
+                            name: "tog2",
+                        },
+                        {
+                            title: "Kolonoskopi",
+                            name: "tog3",
+                        },
+                        {
+                            title: "Kardiyak stres testi",
+                            name: "tog4",
+                        },
+                        {
+                            title: "EKG",
+                            name: "tog5",
+                        },
+                        {
+                            title: "MRI",
+                            name: "tog6",
+                        },
+                        {
+                            title: "Endoskopi",
+                            name: "tog7",
+                        },
+                        {
+                            title: "Üst GİS görüntüleme",
+                            name: "tog8",
+                        },
+                        {
+                            title: "Akciğer filmi",
+                            name: "tog9",
+                        },
+                        {
+                            title: "Diğer filmler",
+                            name: "tog10",
+                        },
+                        {
+                            title: "Baryum enema",
+                            name: "tog11",
+                        },
+                        {
+                            title: "Diğer",
+                            name: "tog12",
+                        },
+                    ].map((item) => {
+                        return (<tr key={item.title} className="table-row border-2">
+                            <td className="table-cell"> {item.title} </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + "Date"]} name={item.name + 'Date'} type="date" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + "Result"]} name={item.name + 'Result'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
+}
+
+const TogP2 = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[300px] my-1">
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2">
+                    <th>Yaralanmalar</th>
+                    <th>Tarih</th>
+                    <th>Sonuç</th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        {
+                            title: "Kemik kırığı",
+                            name: "togy1",
+                        },
+                        {
+                            title: "Omurga yaralanması",
+                            name: "togy2",
+                        },
+                        {
+                            title: "Boyun yaralanmas",
+                            name: "togy3",
+                        },
+                        {
+                            title: "Kafa travması",
+                            name: "togy4",
+                        },
+                        {
+                            title: "Diğer",
+                            name: "togy5",
+                        }
+                    ].map((item) => {
+                        return (<tr key={item.title} className="table-row border-2">
+                            <td className="table-cell"> {item.title} </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Date']} name={item.name + 'Date'} type="date" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Result']} name={item.name + 'Result'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
+}
+
+const TogP3 = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[440px] my-1">
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2">
+                    <th>Ameliyatlar</th>
+                    <th>Tarih</th>
+                    <th>Sonuç</th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        {
+                            title: "Apendektomi",
+                            name: "toga1",
+                        },
+                        {
+                            title: "Dişoperasyonları",
+                            name: "toga2",
+                        },
+                        {
+                            title: "Safrakesesi",
+                            name: "toga3",
+                        },
+                        {
+                            title: "Fıtık",
+                            name: "toga4",
+                        },
+                        {
+                            title: "Bademcik (tonsillektomi)",
+                            name: "toga5",
+                        },
+                        {
+                            title: "Eklem",
+                            name: "toga6",
+                        },
+                        {
+                            title: "Kalp ameliyatı",
+                            name: "toga7",
+                        },
+                        {
+                            title: "Diğer",
+                            name: "toga8",
+                        },
+                    ].map((item) => {
+                        return (<tr key={item.title} className="table-row border-2">
+                            <td className="table-cell"> {item.title} </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Date']} name={item.name + 'Date'} type="date" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Result']} name={item.name + 'Result'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
+}
+
+const TogP4 = ({ values, handleChange }: { values: any, handleChange: any }) => {
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[300px] my-1">
+        <table className="table-auto w-full  row-span-4 col-span-1">
+            <thead className="table-header-group text-left">
+                <tr className="table-row border-2">
+                    <th>Hastanede Yatış</th>
+                    <th>Tarih</th>
+                    <th>Yatma Nedeni</th>
+                </tr>
+            </thead>
+            <tbody className="table-row-group">
+                {
+                    [
+                        {
+                            name: "togh1",
+                        },
+                        {
+                            name: "togh2",
+                        },
+                        {
+                            name: "togh3",
+                        },
+                        {
+                            name: "togh4",
+                        }
+                    ].map((item) => {
+                        return (<tr key={item.name} className="table-row border-2">
+                            <td className="table-cell">  <FormInput onChange={handleChange} value={values[item.name + 'Title']} name={item.name + 'Title'} type="text" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Date']} name={item.name + 'Date'} type="date" /> </td>
+                            <td className="table-cell"> <FormInput onChange={handleChange} value={values[item.name + 'Result']} name={item.name + 'Result'} type="text" /> </td>
+                        </tr>)
+                    })
+                }
+            </tbody>
+        </table>
+    </div>)
 }

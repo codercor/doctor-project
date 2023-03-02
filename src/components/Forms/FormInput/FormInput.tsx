@@ -32,6 +32,7 @@ interface FormInputProps {
   name?: string;
   error?: string;
   disabled?: boolean;
+  inputClass?: string;
 }
 const FormInput = ({
   error,
@@ -42,6 +43,7 @@ const FormInput = ({
   label,
   placeholder = "Lütfen doldurunuz",
   type = "text",
+  inputClass = "",
   disabled = false,
 }: FormInputProps) => {
   return (
@@ -70,7 +72,9 @@ const FormInput = ({
             return;
           }
         }}
-        className="text-[black] text-[16px] font-nexa-bold rounded-[5px_20px_0px_20px] disabled:opacity-60"
+        className={classNames("text-[black] text-[16px] font-nexa-bold rounded-[5px_20px_0px_20px] disabled:opacity-60", {
+          [inputClass]: inputClass ? true : true,
+        })}
         type={type}
 
         placeholder={placeholder}

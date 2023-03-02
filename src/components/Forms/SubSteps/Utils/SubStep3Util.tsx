@@ -119,7 +119,7 @@ export function generateForm(key: string, values: any, errors: any, handleChange
     const symptoms = Object.keys(values).filter((s) => s.startsWith(key))
 
     return (<>
-        <h3 className="font-nexa-regular text-[16px]">{getSectionTitle(key)}</h3>
+        <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">{getSectionTitle(key)}</h3>
         {
             symptoms.map((symptom, index) => (<>
                 <FormInput

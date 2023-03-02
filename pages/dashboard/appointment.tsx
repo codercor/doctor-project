@@ -186,6 +186,7 @@ export default function AppointmentManagement() {
 
     ])
     const [page, setPage] = useState(1)
+    const [pageCount, setPageCount] = useState(1)
     const [searchKey, setSearchKey] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const getAppointments = async () => {
@@ -196,8 +197,9 @@ export default function AppointmentManagement() {
 
     const getAndSetAppointments = async () => {
         setIsLoading(true)
-        getAppointments().then((data: Appointment[]) => {
-            setAppointments(data)
+        getAppointments().then((data: { PageCount: number, data: Appointment[] }) => {
+            setAppointments(data.data)
+            setPageCount(data.PageCount)
             setIsLoading(false)
         }).catch((err) => {
             console.log("err", err)
@@ -272,7 +274,7 @@ export default function AppointmentManagement() {
                     <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]"
                         onChange={(e: any, value: number) => {
                             setPage(value)
-                        }} count={appointments.length > 0 ? page + 1 : page} />
+                        }} count={pageCount} />
                 </div>
             </>}
         </DashboardLayout>

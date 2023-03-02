@@ -11,16 +11,16 @@ const SelectStatus = ({value, onChange}: {
     onChange: (value: string) => void;
 }) => {
     return <>
-        <div className="flex items-center justify-center gap-[10px]">
+        <div className="flex  items-center justify-center gap-[10px]">
             <div onClick={() => onChange("Acil")}
-                 className={classNames("bg-[#D4E5E8] text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]")}>
+                 className={classNames("bg-[#D4E5E8] hover:cursor-pointer text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]")}>
                 {value == "Acil" && <Check/>}
             </div>
             <p className="text-[black] text-[16px] font-nexa-bold"> Acil </p>
         </div>
-        <div className="flex items-center justify-center gap-[10px]">
+        <div className="flex  items-center justify-center gap-[10px]">
             <div onClick={() => onChange("Randevulu")}
-                 className={classNames("bg-[#D4E5E8] text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]")}>
+                 className={classNames("bg-[#D4E5E8] hover:cursor-pointer text-[#4E929D] flex items-center justify-center  border-none h-[48px] w-[48px] rounded-[5px_20px]")}>
                 {value == "Randevulu" && <Check/>}
             </div>
             <p className="text-[black] text-[16px] font-nexa-bold"> Randevulu </p>
@@ -49,7 +49,7 @@ export const CreateAppointmentModal = ({finish, UserId}: Iprops) => {
             setLoading(false);
             finish();
         }).catch((e) => {
-            toast.error("Randevu oluşturulamadı");
+            toast.error("Randevu oluşturulamadı kullanıcın formunun olduğundan emin olun.");
             setLoading(false);
             finish();
         });

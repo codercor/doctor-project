@@ -7,6 +7,7 @@ import { Pagination } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { request } from '@config';
 import blog from './blog';
+import Head from 'next/dist/shared/lib/head';
 type Props = {}
 
 export interface Blog {
@@ -26,11 +27,13 @@ export default function BlogYazilari({ }: Props) {
     const [loading, setLoading] = React.useState(true)
     const [page, setPage] = React.useState(1);
     const [blogs, setBlogs] = React.useState<Blog[]>([])
-
+    const [pageCount, setPageCount] = React.useState(1)
     const getBlogs = async () => {
         let req = await request.get(`/forum?page=${page}`);
-        return req.data;
+        setPageCount(req.data.PageCount)
+        return req.data.data;
     }
+
 
     useEffect(() => {
         setLoading(true)
@@ -45,13 +48,16 @@ export default function BlogYazilari({ }: Props) {
 
     return (
         <LandingLayout backColor='light'>
+            <Head>
+                <title> Blog Yazıları | Nazan Uysal Harzadın </title>
+            </Head>
             <div className="h-[150px] "> </div>
             <div className='relative text-[white] textx-[#314E53] flex justify-center items-center flex-col gap-[40px] w-full h-[481px]'>
                 <h1 className='font-nexa-bold text-[36px] md:text-[42px] z-[1]'>Blog</h1>
                 <p className="font-nexa-bold text-[16px] md:text-[24px] z-[1] max-w-[600px] px-[10px] text-center">
-                    Mutlu ve canlı bir yaşam yaratmak için sizin için hazırladığım blog yazılarına göz atın ve sağlıklı yaşama bir adım daha yaklaşın.
+                    Sizlere daha sağlıklı ve mutlu bir yaşam için hazırladığım blog yazılarıma göz atın, sağlıklı yaşama bir adım daha yaklaşın.
                 </p>
-                <Image src="/images/png/blog-bg.png" layout="fill"  className='md:object-[00px_00px] brightness-75 object-[-920px_0px]' objectFit="cover" />
+                <Image src="/images/png/blog-bg.png" layout="fill" className='md:object-[00px_00px] brightness-75 object-[-920px_0px]' objectFit="cover" />
             </div>
             <div className='flex flex-wrap max-w-[1280px] md:min-h-[400px] mx-auto md:flex-row my-[40px] flex-col items-center justify-center gap-[20px]'>
                 {loading ? <CircularProgress className='mx-auto' />
@@ -60,7 +66,7 @@ export default function BlogYazilari({ }: Props) {
                         {
                             blogs.length < 1 ? <>
 
-                                <h1 className='text-[56px] font-nexa-light'> 🤷  </h1>
+                                <h1 className='text-[56px] font-nexa-light'> Blog Bulunamadı  </h1>
                             </> : blogs.map((blog, index) => {
                                 return (
                                     <BlogCard key={index} blog={blog} />
@@ -70,11 +76,11 @@ export default function BlogYazilari({ }: Props) {
                     </>}
 
             </div>
-            <div className="max-w-[1280px] w-full justify-center flex mx-auto pl-[46px] mb-[30px]">
+            <div className="max-w-[1280px] w-full justify-center flex mx-auto px-[46px] mb-[30px]">
                 <Pagination
                     page={page}
                     onChange={(event, value) => setPage(value)}
-                    className='w-fit' count={blogs.length > 0 ? page + 1 : page} siblingCount={3} variant='outlined' shape='rounded' color='primary' />
+                    className='w-fit' count={pageCount} siblingCount={3} variant='outlined' shape='rounded' color='primary' />
             </div>
         </LandingLayout>
     )

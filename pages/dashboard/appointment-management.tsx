@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text'
-import { Add, Cancel, Check, Close, Delete, MenuOpen, RefreshRounded, SortByAlpha } from '@mui/icons-material'
+import { Add, BookmarkAdded, Cancel, Check, Close, Delete, MenuOpen, RefreshRounded, Router, SortByAlpha, TaskOutlined } from '@mui/icons-material'
 import React, { useEffect, useState } from 'react'
 import { Pagination } from '@mui/material'
 import classNames from 'classnames'
@@ -13,7 +13,8 @@ import FormInput from "@components/Forms/FormInput/FormInput";
 import { CreateAppointmentModal } from '@components/CreateAppointmentModal/CreateAppointmentModal'
 import { UserState } from '@app/User/user.types'
 import AreYouSureModal from '@components/Modals/AreYouSureModal'
-
+import { useRouter } from "next/router";
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 interface Appointment {
     Id: string;
     UserId: string;
@@ -91,7 +92,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
     const [isLoading, setIsLoading] = useState(false);
 
     const [areYouSureModalState, setAreYouSureModalState] = useState<boolean>(false);
-
+    const router = useRouter();
     const submit = async () => {
         const URL = `/userappointments/${appointment.Id}`
         try {
@@ -108,68 +109,88 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
         }
         afterUpdate()
     }
-
-    return <div onClick={() => {
+    return <TableRow onClick={() => {
         setUpdateTheUserModal(true)
-    }} className='flex border-2 flex-col w-full'>
+    }} >
         {
             isLoading && <LocalLoading message="Güncelleniyor" />
         }
 
-        <div className='w-full flex items-center text-start  border-t-[1px]'>
-            <div className='flex-[6]'>
-                <p>
-                    {
-                        appointment.user?.information?.Fullname || "-"
-                    }
-                </p>
-            </div>
-            <div className='flex-[6]'>
-                <p>{appointment.user?.Email || '-'}</p>
-            </div>
-            <div className='flex-[4]'>
-                <p> {appointment.user?.information?.Phone || '-'} </p>
-            </div>
-            <div className='flex-[4]'>
-                <p>
-                    {
-                        new Date(appointment.Date).toLocaleDateString("tr-TR", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                            hour: "numeric",
-                            minute: "numeric"
-                        })
-                    }
-                </p>
-            </div>
-            <div className='flex-[2]'>
+        <TableCell className="leading-none" component="th" scope="row">
+            <p>
                 {
-                    appointment.Status === "Acil" ? <StatusBox type="Acil" /> : <StatusBox type="Randevulu" />
+                    appointment.user?.information?.Fullname || "-"
                 }
-            </div>
-            <div className='flex-[2]'>
-                <button onClick={(e) => {
+            </p>
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <p>{appointment.user?.Email || '-'}</p>
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <p> {appointment.user?.information?.Phone || '-'} </p>
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <p>
+                {
+                    new Date(appointment.Date).toLocaleDateString("tr-TR", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric"
+                    })
+                }
+            </p>
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            {
+                appointment.Status === "Acil" ? <StatusBox type="Acil" /> : <StatusBox type="Randevulu" />
+            }
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <button onClick={(e) => {
 
-                }}
-                    className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
-                    <MenuOpen />
-                </button>
-            </div>
-            <div className='flex-[2]'>
-                <button onClick={(e) => {
-                    e.stopPropagation();
-                    setAreYouSureModalState(true);
-                }}
-                    className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#ce4343]'>
-                    <Delete />
-                </button>
-            </div>
-            {open && <CreateAssayModal userId={appointment.user.Id} finishEvent={() => {
-                setOpen(false)
-                afterUpdate()
-            }} />}
-        </div>
+            }}
+                className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
+                <MenuOpen />
+            </button>
+
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <button onClick={(e) => {
+                e.stopPropagation();
+                router.push(`/dashboard/forms-management/?name=${appointment.user?.information?.Fullname}`)
+            }}
+                title='Form'
+                className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
+                <TaskOutlined />
+            </button>
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <button onClick={(e) => {
+                e.stopPropagation();
+                router.push(`/dashboard/prescriptions-management/?name=${appointment.user?.information?.Fullname}`)
+            }}
+                title='Reçete'
+                className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
+                <BookmarkAdded />
+            </button>
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <button onClick={(e) => {
+                e.stopPropagation();
+                setAreYouSureModalState(true);
+            }}
+                title='Sil'
+                className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#ce4343]'>
+                <Delete />
+            </button>
+        </TableCell>
+        {open && <CreateAssayModal userId={appointment.user.Id} finishEvent={() => {
+            setOpen(false)
+            afterUpdate()
+        }} />}
+
 
         {areYouSureModalState && <AreYouSureModal text="Randevu silinecek" finish={({ confirmed }) => {
             if (confirmed) {
@@ -195,7 +216,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
 
                 <div onClick={(e) => {
                     e.stopPropagation()
-                }} className="w-[904px] relative h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
+                }} className="lg:w-[904px] w-[80%] relative h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
                     <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold">Güncelle</h1>
                     <p className='text-[#5C5C5C] text-[16px]'> Hastaya ait randevu ve durum güncellemesi yapın.</p>
                     <div className="flex flex-col mt-[45px]">
@@ -234,7 +255,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
 
             </div>
         }
-    </div>
+    </TableRow>
 }
 
 const SelectStatus = ({ value, onChange }: {
@@ -274,8 +295,7 @@ export const SelectUserModal = ({ setter }: { setter: (v: any) => void }) => {
         request.post(`/search/user/patient?page=1`, {
             key
         }).then(res => {
-            console.log(res.data);
-            setSearchResults(res.data);
+            setSearchResults(res.data.data);
         }).catch(err => {
             console.log(err);
         })
@@ -315,7 +335,7 @@ export const SelectUserModal = ({ setter }: { setter: (v: any) => void }) => {
                 item?.Id && selectPatient(item.Id, (item.Information.Fullname || 'YOOK'))
             }} className="w-full h-[40px] border-t-[1px] flex items-center px-4">
                 <p>
-                    {item.Information.Fullname}
+                    <span>  {item.Information.Fullname} </span> <span className='bg-[#94c5ce] ml-4 px-[6px] align-middle text-center rounded-[10px]'>{item.Email}</span>
                 </p>
                 {
                     cancel && (<button onClick={(
@@ -378,16 +398,10 @@ export const SelectUserModal = ({ setter }: { setter: (v: any) => void }) => {
 
 export default function AppointmentManagement() {
     const [appointments, setAppointments] = useState<Appointment[]>([
-        {
-            Id: "1",
-            UserId: "1",
-            Date: "09.01.2022",
-            Status: "Acil",
-            created_at: "09.01.2022",
-            updated_at: "09.01.2022"
-        },
+
     ])
     const [page, setPage] = useState(1)
+    const [pageCount, setPageCount] = useState(1)
     const [searchKey, setSearchKey] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [keyword, setKeyword] = useState("")
@@ -403,10 +417,12 @@ export default function AppointmentManagement() {
         },
         open: false
     })
+
     const getAndSetAppointments = async () => {
         setIsLoading(true)
         request.get(`/userappointments?page=${page}`).then((res) => {
-            setAppointments(res.data)
+            setAppointments(res.data.data)
+            setPageCount(res.data.PageCount)
             setIsLoading(false)
         }).catch((err) => {
             console.log("err", err)
@@ -418,7 +434,8 @@ export default function AppointmentManagement() {
         request.post(`/search/appointment?page=${page}`, {
             key: keyword
         }).then((res) => {
-            setAppointments(res.data)
+            setAppointments(res.data.data)
+            setPageCount(res.data.PageCount)
         }).catch((err) => {
             console.log("err", err)
         })
@@ -433,7 +450,7 @@ export default function AppointmentManagement() {
         if (searchKey.trim().length > 0) {
             request.post(`/search/appointment?page=${page}`, { key: searchKey })
                 .then((data) => {
-                    setAppointments(data.data)
+                    setAppointments(data.data.data)
                 })
                 .catch((err) => {
                     toast.error("Arama yapılırken bir hata oluştu");
@@ -505,31 +522,37 @@ export default function AppointmentManagement() {
                 </div>
                 {
                     appointments?.length > 0 ? <>
-                        <div className="w-full flex flex-col">
-                            <div className='w-full flex  h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                                <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">Ad Soyad</Text>
-                                <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">E-posta</Text>
-                                <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Telefon</Text>
-                                <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Randevu Tarihi</Text>
-                                <Text type="h3" className="text-secondary flex-[2] !text-[14px] ">Durum</Text>
-                                <Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] "></Text>
-                                <Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] "></Text>
-                            </div>
-                            <div
-                                className='w-full max-h-[600px] overflow-auto p-3 scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>
-                                {
-                                    appointments?.length > 0 ? appointments.map((appointment: Appointment) => {
-                                        return <Row afterUpdate={() => {
-                                            getAndSetAppointments()
-                                        }} key={v4()} appointment={appointment} />
-                                    }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
-                                }
-                            </div>
-                        </div>
+                        <TableContainer className='bg-[white] '>
+                            <Table aria-label="collapsible table">
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell align="left"><Text type="h3" className="text-secondary flex-[6] !text-[14px] ">Ad Soyad</Text></TableCell>
+                                        <TableCell align="left"><Text type="h3" className="text-secondary flex-[6] !text-[14px] ">E-posta</Text></TableCell>
+                                        <TableCell align="left"><Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Telefon</Text></TableCell>
+                                        <TableCell align="left"><Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Randevu Tarihi</Text></TableCell>
+                                        <TableCell align="left"><Text type="h3" className="text-secondary flex-[2] !text-[14px] ">Durum</Text></TableCell>
+                                        <TableCell align="left"><Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Güncelle</Text></TableCell>
+                                        <TableCell align="left"><Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Form</Text></TableCell>
+                                        <TableCell align="left"><Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Reçete</Text></TableCell>
+                                        <TableCell align="left"><Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Sil</Text></TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+
+                                    {
+                                        appointments?.length > 0 ? appointments.map((appointment: Appointment) => {
+                                            return <Row afterUpdate={() => {
+                                                getAndSetAppointments()
+                                            }} key={v4()} appointment={appointment} />
+                                        }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
+                                    }
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
                         <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]"
                             onChange={(e: any, value: number) => {
                                 setPage(value)
-                            }} count={appointments.length > 0 ? page + 1 : page} />
+                            }} count={pageCount} />
                     </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
                 }
             </div>

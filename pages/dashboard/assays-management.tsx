@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text';
-import { Add, ArrowDropDown, ArrowDropUp, RefreshRounded, SortByAlpha } from '@mui/icons-material';
+import { Add, ArrowDropDown, ArrowDropUp, Delete, RefreshRounded, SortByAlpha } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react'
 import DocumentsUpload from '@components/Upload/DocumentsUpload';
 import { Pagination } from '@mui/material'
@@ -9,6 +9,9 @@ import request from '@config';
 import { LocalLoading } from './appointment-management';
 import Search from '@components/Search/Search';
 import FormInput from '@components/Forms/FormInput/FormInput';
+import AreYouSureModal from '@components/Modals/AreYouSureModal';
+import { toast } from 'react-hot-toast';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 export interface Assay {
     Id: string;
     Name: string;
@@ -30,10 +33,27 @@ export default function Assays() {
 
     const [searchKey, setSearchKey] = useState('');
 
+    const [pageCount, setPageCount] = React.useState(1)
+
     const Row = ({ assay }: { assay: Assay }) => {
         const [open, setOpen] = useState(false);
+        const [openAreYouSureModal, setOpenAreYouSureModal] = useState(false);
         const [assayFiles, setAssayFiles] = useState<FileList | null>(null);
-        return <div className='flex flex-col w-full'>
+        return <div className='flex flex-col  w-full'>
+            {openAreYouSureModal && <AreYouSureModal finish={({ confirmed }) => {
+                console.log("confirmed", confirmed);
+                if (confirmed) {
+                    request.delete(`/userassays/${assay.Id}`).then(() => {
+                        refresh();
+                        toast.success('Tahlil silindi')
+                    }).catch(() => {
+                        toast.error('Tahlil silinemedi tekrar deneyin.')
+                        refresh();
+                    })
+                }
+                setOpenAreYouSureModal(false);
+            }} text='Tahlil silinecek' />}
+
             <div className='w-full flex p-3 border-t-[1px]'>
                 {assay?.user ? (<><div className='flex-[4]'>
                     <p> {assay.user?.information?.Fullname || '-'} </p>
@@ -79,6 +99,13 @@ export default function Assays() {
                         <span>Görüntüle</span>
                     </button>
                 </div>
+                <div className='flex-[2]'>
+                    <button onClick={() => {
+                        setOpenAreYouSureModal(true)
+                    }} className=' disabled:opacity-50 flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] '>
+                        <Delete className='!text-[#e46c6cea]' />
+                    </button>
+                </div>
             </div>
             {
                 open && <div className="w-full flex flex-col gap-3 min-h-[276px] p-4 bg-[transparent]">
@@ -95,7 +122,8 @@ export default function Assays() {
         try {
             const res = await request.get(`/userassays?page=${page}`);
             console.log("DATA", res.data);
-            setAssays(res.data);
+            setAssays(res.data.data);
+            setPageCount(res.data.PageCount);
         } catch (error) {
             console.log("error", error);
 
@@ -109,7 +137,8 @@ export default function Assays() {
                 key: searchKey
             });
             console.log("DATA", res.data);
-            setAssays(res.data);
+            setAssays(res.data.data);
+            setPageCount(res.data.PageCount);
         } catch (error) {
             console.log("error", error);
         }
@@ -131,15 +160,19 @@ export default function Assays() {
         const [selected, setSelected] = useState<any>();
         const [assayName, setAssayName] = useState('');
         const [isLoading, setIsLoading] = useState(false);
+
+        const createAssay = async () => {
+            return request.post('/userassays', {
+                Name: assayName,
+                UserId: selected?.Id
+            })
+        }
+
         const handleCreateAssay = async () => {
             try {
                 setIsLoading(true);
-                const res = await request.post('/userassays', {
-                    Name: assayName,
-                    UserId: selected?.Id
-                });
-                console.log("res", res);
-                getAssays();
+                await createAssay()
+                await getAssays();
                 setOpenAddAssayModal(false);
                 setIsLoading(false);
             } catch (error) {
@@ -155,7 +188,7 @@ export default function Assays() {
 
                 setOpenAddAssayModal(false);
             }} className="z-[999] grid place-content-center h-screen w-screen fixed bg-[black] bg-opacity-25">
-                <div onClick={(e) => e.stopPropagation()} className='w-[400px] p-[20px] relative flex flex-col gap-[10px] rounded-[20px_5px] max-h-[300px] bg-[white]'>
+                <div onClick={(e) => e.stopPropagation()} className='lg:w-[600px] p-[20px] relative flex flex-col gap-[10px] rounded-[20px_5px] max-h-[300px] bg-[white]'>
                     <h1 className='text-[#184E57] text-[24px] leading-none mb-[10px] font-nexa-bold '> Tahlil Talebi Oluştur </h1>
                     {isLoading && <LocalLoading message='Tahlil talebiniz oluşturuluyor...' />}
                     <FormInput placeholder='Tahlil adı' value={assayName} onChange={(e) => { setAssayName(e.currentTarget.value) }} />
@@ -176,13 +209,13 @@ export default function Assays() {
                         <Text type="h3" className="text-[#4D5628] !text-[20px] w-full">Tahliller</Text>
                         <Text type="h3" className="text-[#4D5628] font-nexa-light !text-[14px] w-full">Hastalara ait tahlilleri görüntüleyin.</Text>
                     </div>
-                    <button onClick={() => { setOpenAddAssayModal(true) }} className='bg-[#4E929D] flex  w-[150px] h-[40px] items-center justify-center text-[white] rounded-[20px_5px]'>
-                        <Add className="text-[white] text-[14px]" />
+                    <button onClick={() => { setOpenAddAssayModal(true) }} className='bg-[#4E929D] flex text-[14px]  w-[150px] h-[40px] items-center justify-center text-[white] rounded-[20px_5px]'>
+                        <Add className="text-[white] text-[8px] md:text-[14px]" />
                         <p>Tahlil Talebi</p>
                     </button>
                 </div>
 
-                <div className="w-[60%] gap-[10px] mt-[10px] mb-[30px] flex">
+                <div className="w-[100%] md:w-[60%] gap-[10px] px-3 mt-[10px] mb-[30px] flex">
                     <input type="text" value={searchKey} onChange={(e) => {
                         setSearchKey(e.currentTarget.value)
                     }} placeholder='Ad Soyad ile arayın' className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
@@ -193,27 +226,59 @@ export default function Assays() {
                     </button>
                 </div>
                 {assays?.length > 0 ? <>
-                    <div className="w-full flex flex-col">
-                        <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Ad Soyad</Text>
-                            <Text type="h3" className="text-secondary flex-[6] !text-[14px]">E-posta</Text>
-                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Telefon</Text>
-                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Belge Adı</Text>
-                            <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Tarih</Text>
-                            <Text type="h3" className="text-secondary flex-[2] !text-[14px]">Durum</Text>
-                            <div className='flex-[2] w-full'>  </div>
-                        </div>
-                        <div className='w-full border-2'>
+
+                    <TableContainer className='bg-[white] '>
+                        <Table aria-label="collapsible table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="left">Ad Soyad</TableCell>
+                                    <TableCell align="left">E-posta</TableCell>
+                                    <TableCell align="left">Telefon</TableCell>
+                                    <TableCell align="left">Belge Adı</TableCell>
+                                    <TableCell align="left">Tarih</TableCell>
+                                    <TableCell align="left">Durum</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
                             {
-                                assays?.length > 0 ? assays.map((assay, index) => {
-                                    return <Row assay={assay} key={index} />
-                                }) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>
+                                assays?.length > 0 ? assays.map((assay, index) => (
+                                    <TableRow
+                                        key={assay.Id}
+                                        className={"border-2 p-0 leading-none h-[10px] " + (index % 2 != 0 ? 'bg-[#DEEEF0]' : '')}
+                                    >
+                                          <TableCell className="leading-none" component="th" scope="row">
+                                            {assay.user?.information.Fullname || '-'}
+                                        </TableCell>
+                                        <TableCell className="leading-none" component="th" scope="row">
+                                            {assay.user?.Email || '-'}
+                                        </TableCell>
+                                        <TableCell className="leading-none" component="th" scope="row">
+                                            {assay.user?.information?.Phone || '-'}
+                                        </TableCell>
+                                        <TableCell className="leading-none" component="th" scope="row">
+                                            {assay.Name || '-'}
+                                        </TableCell>
+                                        <TableCell className="leading-none" align="left">{
+                                            new Date(assay.created_at).toLocaleDateString('tr-TR', {
+                                                year: 'numeric',
+                                                month: 'long',
+                                                day: 'numeric',
+                                            })
+                                        }</TableCell>
+                                           <TableCell className="leading-none" component="th" scope="row">
+                                            {assay.Status || '-'}
+                                        </TableCell>
+                                         </TableRow>
+                                )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahlil bulunmamaktadır </h1>
                             }
-                        </div>
-                    </div>
+                          
+                            </TableBody>
+                            </Table>
+                            </TableContainer>
+
                     <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                         setPage(value)
-                    }} count={assays.length > 0 ? page + 1 : page} />
+                    }} count={pageCount} />
                 </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>}
             </div>
         </DashboardLayout></>

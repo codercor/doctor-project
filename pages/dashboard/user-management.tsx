@@ -69,10 +69,10 @@ const ChangeIsPatientModal = ({
     }} className='fixed z-[9999] top-0 grid place-content-center left-0 w-screen h-screen bg-opacity-50 bg-black-100'>
         <div onClick={(e) => {
             e.stopPropagation()
-        }} className="w-[904px] relative min-h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
+        }} className="lg:w-[30vw] md:w-[50vw] relative min-h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
             <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold">Güncelle</h1>
             <p className='text-[#5C5C5C] text-[16px]'> Kullanıcı durumunu güncelleyin. </p>
-            <div className="flex flex-col w-[40%] gap-4 mt-[45px] mb-2">
+            <div className="flex flex-col gap-4 mt-[45px] mb-2">
                 <FormInputSelect
                     options={
                         [
@@ -113,14 +113,17 @@ export default function UserManagement() {
     const [IsLoading, setIsLoading] = useState(false);
     const [keyword, setKeyword] = useState("");
     const [page, setPage] = useState(1);
+    const [pageCount, setPageCount] = React.useState(1)
+
     const fetchUsers = () => {
         setIsLoading(true);
         request.get(`/user?page=${page}`).then(res => {
-            let results = res.data.map((item: any) => {
+            let results = res.data.data.map((item: any) => {
                 if (!item.Information.Fullname) item.Information.Fullname = "-";
                 if (!item.Information.Phone) item.Information.Phone = "-";
                 return item;
             })
+            setPageCount(res.data.PageCount);
             setList(results);
             setIsLoading(false);
         }).catch(err => {
@@ -132,7 +135,8 @@ export default function UserManagement() {
         request.post(`/search/user?page=${page}`, {
             key: keyword
         }).then(res => {
-            setList(res.data);
+            setList(res.data.data);
+            setPageCount(res.data.PageCount);
         }).catch(err => {
             console.log("search error", err);
         })
@@ -239,12 +243,13 @@ export default function UserManagement() {
                             </TableBody>
 
                         </Table>
-                        <Pagination siblingCount={3} variant="text" className="mt-[20px] mb-[30px]"
-                            onChange={(e: any, value: number) => {
-                                setPage(value)
-                            }} count={list?.length > 0 ? page + 1 : page} />
+
                     </TableContainer>
                 </> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kullanıcı bulunmamaktadır </h1>}
+                <Pagination siblingCount={3} variant="text" className="mt-[20px] mx-auto mb-[30px]"
+                    onChange={(e: any, value: number) => {
+                        setPage(value)
+                    }} count={pageCount} />
             </div>
         </DashboardLayout></>
     )

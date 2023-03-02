@@ -38,10 +38,10 @@ const CreateTraining = () => {
     const [trainingImage, setUploadImages] = React.useState<null | File>(null);
     const [trainingDocuments, setTrainingDocuments] = React.useState<null | FileList>(null);
     const [trainingData, setTrainingData] = React.useState<TrainingDataType>({
-        Name: 'Örnek Eğitim',
-        Details: 'Bu yazıyı değiştirerek eğitim açıklamasını yazabilirsiniz.',
-        DiscountRate: 5,
-        Price: 1000.00,
+        Name: '',
+        Details: '',
+        DiscountRate: 0,
+        Price: 0.00,
         GeneralDetail: {
             StartDate: formatDate(new Date().toISOString()),
             EndDate: formatDate(new Date().toISOString()),

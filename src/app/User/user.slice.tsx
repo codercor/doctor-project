@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { toast } from 'react-hot-toast';
 import { RootState, AppThunk } from '../store';
 import { UserCredentials, UserState, UserInformation, UserBillingDetail, BannerData } from './user.types';
 import {
@@ -118,7 +119,7 @@ export const updateUserPassword = createAsyncThunk(
         const state = thunkApi.getState() as RootState;
         const id = state.user.Id;
         let result = (await updatePasswordRequest(id, newPassword));
-        alert("Şifreniz başarıyla değiştirildi.");
+        toast.success("Şifreniz başarıyla güncellendi");
         return result;
     });
 

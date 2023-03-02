@@ -87,19 +87,13 @@ export default function SubStep2Part1({
           type="text"
           onChange={handleChange}
         />
+      </div>
+      <div className="flex  min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Acil durumlarda ulaşılacak kişi:"
           value={values.emergencyContact}
           error={errors.emergencyContact}
           name="emergencyContact"
-          type="text"
-          onChange={handleChange}
-        />
-        <FormInput
-          label="Acil durumlarda ulaşılacak kişi Telefon:"
-          value={values.emergencyContactPhoneCell}
-          error={errors.emergencyContactPhoneCell}
-          name="emergencyContactPhoneCell"
           type="text"
           onChange={handleChange}
         />
@@ -112,7 +106,36 @@ export default function SubStep2Part1({
           onChange={handleChange}
         />
       </div>
-      <div className="flex flex-col min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex  min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+
+
+        <FormInput
+          label="Acil durumlarda ulaşılacak kişi Telefon (Cep):"
+          value={values.emergencyContactPhoneCell}
+          error={errors.emergencyContactPhoneCell}
+          name="emergencyContactPhoneCell"
+          type="text"
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Acil durumlarda ulaşılacak kişi Telefon (Ev):"
+          value={values.emergencyContactPhoneCellHome}
+          error={errors.emergencyContactPhoneCellHome}
+          name="emergencyContactPhoneCellHome"
+          type="text"
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Acil durumlarda ulaşılacak kişi Telefon (İş):"
+          value={values.emergencyContactPhoneCellWork}
+          error={errors.emergencyContactPhoneCellWork}
+          name="emergencyContactPhoneCellWork"
+          type="text"
+          onChange={handleChange}
+        />
+
+      </div>
+      <div className="flex py-4 py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
         <div>
           <FormInputSelectOne
             label="Beni nereden duydunuz?"

@@ -1,5 +1,5 @@
 // @ts-nocheck
- /* tslint:disable */
+/* tslint:disable */
 import { UserInformation } from "@app/User/user.types";
 import Button from "@components/Button";
 import Input from "@components/Input/Input";
@@ -24,11 +24,14 @@ import FormInput, { FormInputSelect } from "@components/Forms/FormInput/FormInpu
 //@ts-ignore
 import CountryCityService from "countries-cities";
 import ililce from '../../src/il-ilce'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+
 const Account = () => {
     const { user } = useAuth(); //TODO ADD -> update user
     const { updateUser, refetchUser } = useUser();
     const router = useRouter();
-    const [isEdit, setIsEdit] = React.useState(false);
+    const [isEdit, setIsEdit] = React.useState(true);
     const [_userInfo, setUserInfo] = React.useState<UserInformation>({
         Id: user.Information?.Id,
         Fullname: user.Information.Fullname,
@@ -67,7 +70,7 @@ const Account = () => {
         updateUser(values).then(() => {
             refetchUser();
         })
-        setIsEdit(!isEdit);
+        //setIsEdit(!isEdit);
     }
 
     const validationSchema = Yup.object().shape({
@@ -79,7 +82,7 @@ const Account = () => {
         Country: Yup.string().required("Ülke zorunludur").nullable(),
         District: Yup.string().when("Country", {
             is: "Turkey",
-            then: Yup.string().required("Şehir zorunludur").nullable(),
+            then: Yup.string().required("İlçe zorunludur").nullable(),
             otherwise: Yup.string().nullable()
         }),
         City: Yup.string().when("Country", {
@@ -107,6 +110,17 @@ const Account = () => {
         );
 
         useEffect(() => {
+            if (!values.Country && !values.City && !values.District) {
+                setFieldValue("Country", "Turkey");
+                setFieldValue("City", "İstanbul");
+                setFieldValue("District", "Beyoğlu");
+                setTimeout(() => {
+                    validateForm();
+                }, 50);
+            }
+        }, []);
+
+        useEffect(() => {
             if (values.Country == "Turkey") {
                 setCities(ililce.map((city) => {
                     return { value: city.il_adi, label: city.il_adi };
@@ -114,24 +128,44 @@ const Account = () => {
             } else {
                 setCities([]);
             }
-            if (values.Country == "Turkey" && values.City) {
+            if (values.Country == "Turkey" && values.City?.length > 0) {
                 setDistricts((ililce.find((city) => city.il_adi === values.City)?.ilceler as any[])?.map((district) => {
                     return { value: district.ilce_adi, label: district.ilce_adi };
                 }));
             } else {
                 setDistricts([]);
             }
-
         }, [values.Country, values.City]);
 
-
+        const [phoneCode, setPhoneCode] = useState<string>("+90");
         return <form onSubmit={handleSubmit}>
-            <div className="flex gap-[16px]">
-                <FormInput disabled={!isEdit} name="Name" error={errors.Name} value={values.Name} onChange={_handleChange} label="Ad" type="text" />
-                <FormInput disabled={!isEdit} name="Surname" error={errors.Surname} value={values.Surname} onChange={_handleChange} label="Soyad" type="text" />
+            <div className="flex  flex-col lg:flex-row max-w-full gap-[16px]">
+                <FormInput inputClass="w-full" disabled={!isEdit} name="Name" error={errors.Name} value={values.Name} onChange={_handleChange} label="Ad" type="text" />
+                <FormInput inputClass="w-full" disabled={!isEdit} name="Surname" error={errors.Surname} value={values.Surname} onChange={_handleChange} label="Soyad" type="text" />
             </div>
             <FormInput disabled={true} name="Email" error={errors.Email} value={values.Email} onChange={_handleChange} label="E-Posta" type="email" />
-            <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" />
+            {/* <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" /> */}
+            <label className="text-[#4E929D] text-[16px] font-nexa-bold">
+                Telefon
+            </label>
+            <PhoneInput
+                country={'tr'}
+                value={values.Phone}
+                inputProps={{
+                    name: 'Phone',
+                    className: 'text-[black] text-[16px] w-full pl-[50px] font-nexa-bold rounded-[5px_20px_0px_20px] disabled:opacity-60',
+                    // onChange: (e) => { setFieldValue("Phone", phoneCode + e.target.value) },
+                    value: values.Phone
+                }}
+                containerClass="w-full"
+
+                onChange={phone => setFieldValue("Phone", phone)}
+            />
+            {errors.Phone && (
+                <span className="text-[#FF0000] text-[16px] font-nexa-regular ml-2">
+                    * {errors.Phone}
+                </span>
+            )}
             <FormInputSelect
                 disabled={!isEdit}
                 error={errors.Country}
@@ -147,7 +181,7 @@ const Account = () => {
                         _handleChange(e);
                         return;
                     }
-                    setFieldValue("City", "Istanbul");
+                    setFieldValue("City", "İstanbul");
                     _handleChange(e);
                 }}
                 label="Ülke"
@@ -210,7 +244,7 @@ const Account = () => {
                 type="button"
                 disabled={!isEdit}
                 className="disabled:opacity-40 rounded-br-[20px] rounded-tl-[20px] text-[white] !bg-secondary text-white  border-secondary w-[200px] self-end mt-[20px] h-[48px] leading-none flex items-center justify-center">
-                <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Kaydet</Text>
+                <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Güncelle</Text>
             </button>
         </form>
     }
@@ -221,10 +255,10 @@ const Account = () => {
                 <div className="md:w-1/2 w-full h-full flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
                     <div className="flex justify-between w-full">
                         <Text type="h3" className="text-[#4E929D] !text-[20px] w-full">Hesabım</Text>
-                        <div onClick={handleEdit}
-                            className="bg-tertiary min-w-[36px] rounded-sm min-h-[36px] grid place-content-center">
+                        {/* <div onClick={handleEdit}
+                            className="bg-tertiary min-w-[36px] hover:cursor-pointer rounded-sm min-h-[36px] grid place-content-center">
                             <Edit className="text-[white] text-[16px]" />
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="md:max-w-[450px] w-full flex flex-col">
@@ -238,8 +272,8 @@ const Account = () => {
                     </div>
                 </div>
                 <div
-                    className="bg-[url(/images/png/register.png)] hidden md:grid place-content-center rounded-[20px_5px_20px_5px] bg-cover bg-center  bg-no-repeat w-1/2 h-full">
-                    <Text type="paragraph" className="text-[25px] text-center text-[white] h-[186px] w-[448px]">
+                    className="bg-[url(/images/png/nazanlogin.jpeg)] hidden md:grid place-content-center rounded-[20px_5px_20px_5px] bg-cover bg-center  bg-no-repeat w-1/2 h-full">
+                    <Text type="paragraph" className="!xl:text-[25px] !md:text-[16px] text-center text-[white] h-[186px] w-full">
                         İyi sağlığın temelleri sağlıklı beslenme, kaliteli uyku, düşük stres, rahatlama ve uygun bir
                         hareket programında yatmaktadır. Eğitimler ile daha iyi bir sağlık yolculuğunuza
                         başlayın.</Text>

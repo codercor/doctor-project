@@ -137,7 +137,6 @@ export default function Forms() {
                 }
             }
             if (ability.LastDoneStep >= 1 && [2, 3, 4].includes(ability.LastWaitingDoneStep as number)) {
-                alert("okk")
                 setIsSecondToForthStepIsLocked(true)
             }
             setShowLastForm(ability.IsFormLocked)

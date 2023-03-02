@@ -12,142 +12,33 @@ import { useMediaQuery } from 'react-responsive'
 import React, { useEffect, useState } from "react";
 import LandingLayout from "@components/Layouts/LandingLayout";
 import useTraining from "src/hooks/training.hook";
+import { getPublicTrainingsRequest } from "@app/Training/training.utils";
+import { TrainingDataType } from "@app/Training/training.types";
+import Head from "next/dist/shared/lib/head";
 
 
 const TrainingSearchInput = ({ value, onChange }: { value: string, onChange: (e: any) => void }) => {
     return (<div className="md:w-[546px] h-[52px] mx-auto relative top-[-25px] z-[3]">
-        <input value={value} onChange={onChange} type="text" placeholder="Eğitim Ara" className="w-full h-full pl-[48px] rounded-[20px_5px_20px_5px] bg-white-200 font-nexa-bold text-[16px] text-[#949B64] focus:outline-none" />
+        <input value={value} onChange={onChange} type="text" placeholder="Eğitim Ara" className="w-full h-full border-[#CFD2B7] pl-[48px] rounded-[20px_5px_20px_5px] bg-white-200 font-nexa-bold text-[16px] text-[#949B64]  focus:outline-none" />
         <div className="absolute top-[17px] left-[17px]">
             <SearchIcon />
         </div>
     </div>)
 }
 const Egitimler = () => {
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
-    const { publicTrainingsProcess: { loading }, getPublicTrainings, publicTrainings } = useTraining()
-
-    const [trainings, setTrainings] = useState<Array<TrainingCardProps & { Id?: string }>>([
-        // {
-        //     image: "/images/png/yesilzemin-muz.png",
-        //     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-        //     description: "Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.",
-        //     price: "1000",
-        //     backgroundColor: "!bg-[#EFEEF5]",
-        //     detailHref: "/egitimler/1",
-        //     detailOnImage: isMobile ? true : false,
-        //     detailPos: "br",
-        //     imageRounded: "br",
-        //     boxRounded: "tl",
-        //     priceBackgroundColor: "!bg-[#ffffff]",
-        //     priceOnImage: isMobile ? true : false,
-        //     pricePos: "bl",
-        //     type: "vertical",
-        //     showBuyButton: true,
-        //     detailButtonDirection: "right",
-        //     width: 482,
-        //     mWidth: 314,
-        //     height: 328,
-        //     mHeight: 250,
-        //     isMobile,
-        //     sizeType: isMobile ? "sm" : "md"
-        // },
-        // {
-        //     image: "/images/png/mavizemin-avakado.png",
-        //     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-        //     description: "Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.",
-        //     price: "1000",
-        //     backgroundColor: "!bg-[#EFEEF5]",
-        //     detailHref: "/egitimler/1",
-        //     detailOnImage: true,
-        //     detailPos: "bl",
-        //     imageRounded: "br",
-        //     boxRounded: "tr",
-        //     priceBackgroundColor: "!bg-[#ffffff]",
-        //     priceOnImage: isMobile ? true : false,
-        //     pricePos: isMobile ? "br" : "bl",
-        //     type: !isMobile ? "horizontal-reverse" : "vertical",
-        //     showBuyButton: isMobile ? false : true,
-        //     detailButtonDirection: "right",
-        //     width: 482,
-        //     height: 254,
-        //     mWidth: 314,
-        //     mHeight: 250,
-        //     isMobile,
-        //     sizeType: isMobile ? "sm" : "md"
-        // },
-        // {
-        //     image: "/images/png/sarizemin-gevrek.png",
-        //     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-        //     description: "Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.",
-        //     price: "1000",
-        //     backgroundColor: "!bg-[#EFEEF5]",
-        //     detailHref: "/egitimler/1",
-        //     detailOnImage: true,
-        //     detailPos: "br",
-        //     imageRounded: "bl",
-        //     boxRounded: "tr",
-        //     priceBackgroundColor: "!bg-[#ffffff]",
-        //     priceOnImage: isMobile ? true : false,
-        //     pricePos: "bl",
-        //     type: !isMobile ? "horizontal" : "vertical",
-        //     showBuyButton: isMobile ? false : true,
-        //     detailButtonDirection: "right",
-        //     width: 482,
-        //     height: 254,
-        //     mWidth: 314,
-        //     mHeight: 250,
-        //     isMobile,
-        //     sizeType: isMobile ? "sm" : "md"
-        // }, {
-        //     image: "/images/png/badem.png",
-        //     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-        //     description: "Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.",
-        //     price: "1000",
-        //     backgroundColor: "!bg-[#EFEEF5]",
-        //     detailHref: "/egitimler/1",
-        //     detailOnImage: isMobile ? true : false,
-        //     detailPos: "br",
-        //     imageRounded: "br",
-        //     boxRounded: "br",
-        //     priceBackgroundColor: "!bg-[#ffffff]",
-        //     priceOnImage: isMobile ? true : false,
-        //     pricePos: "bl",
-        //     type: "vertical",
-        //     showBuyButton: isMobile ? false : true,
-        //     detailButtonDirection: "right",
-        //     width: 482,
-        //     height: 328,
-        //     mWidth: 314,
-        //     mHeight: 250,
-        //     isMobile,
-        //     sizeType: isMobile ? "sm" : "md"
-        // }, {
-        //     image: "/images/png/yulaf.png",
-        //     title: "Fonksiyonel Tıp ve Fonksiyonel Beslenme Programı - 1",
-        //     description: "Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.",
-        //     price: "1000",
-        //     backgroundColor: "!bg-[#EFEEF5]",
-        //     detailHref: "/egitimler/1",
-        //     detailOnImage: true,
-        //     detailPos: "br",
-        //     imageRounded: "bl",
-        //     boxRounded: "bl",
-        //     priceBackgroundColor: "!bg-[#ffffff]",
-        //     priceOnImage: isMobile ? true : false,
-        //     pricePos: "bl",
-        //     type: isMobile ? "vertical" : "horizontal",
-        //     showBuyButton: isMobile ? false : true,
-        //     detailButtonDirection: "right",
-        //     height: 254,
-        //     width: 482,
-        //     mWidth: 314,
-        //     mHeight: 250,
-        //     isMobile,
-        //     sizeType: isMobile ? "sm" : "md"
-        // },
-
-
-    ])
+    const [loading, setLoading] = useState(false)
+    const [publicTrainings, setPublicTrainings] = useState<TrainingDataType[]>([])
+    const [pageCount, setPageCount] = useState(1)
+    const getPublicTrainings = async (page: number) => {
+        getPublicTrainingsRequest(page).then((res: any) => {
+            setPublicTrainings(res.data)
+            setPageCount(res.pageCount)
+            setLoading(false)
+        }).catch(() => {
+            setLoading(false)
+        })
+    }
+    const [trainings, setTrainings] = useState<Array<TrainingCardProps & { Id?: string }>>([])
     const [page, setPage] = useState(1);
     useEffect(() => {
         getPublicTrainings(page)
@@ -162,27 +53,10 @@ const Egitimler = () => {
                     image: t.Image as string || '',
                     title: t.Name as string || '',
                     description: t.Details as string || '',
-                    price: (t.Price * ((100 - t.DiscountRate) / 100)).toFixed(1).toString(),
-                    backgroundColor: "!bg-[#EFEEF5]",
+                    price: t.Price, // (t.Price * ((100 - t.DiscountRate) / 100)).toFixed(1).toString()
                     detailHref: `/training?id=${t.Id}`,
-                    detailOnImage: isMobile ? true : false,
-                    detailPos: "br",
-                    imageRounded: "br",
-                    boxRounded: "tl",
-                    priceBackgroundColor: "!bg-[#ffffff]",
-                    priceOnImage: isMobile ? true : false,
-                    pricePos: "bl",
-                    type: "vertical",
-                    showBuyButton: true,
-                    detailButtonDirection: "right",
-                    width: 482,
-                    mWidth: 314,
-                    height: 328,
-                    mHeight: 250,
-                    isMobile,
-                    sizeType: isMobile ? "sm" : "md",
-                    Id: t.Id
-
+                    Id: t.Id,
+                    DiscountRate: t.DiscountRate
                 }
             });
             let temps = [...trainings];
@@ -210,7 +84,10 @@ const Egitimler = () => {
 
     return (
         <LandingLayout>
-            <Container className=" h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px]  md:bg-cover overflow-clip bg-[url(/images/png/best.png)]">
+            <Head>
+                <title> Eğitimler | Nazan Uysal Harzadın </title>
+            </Head>
+            <Container className=" h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px]  md:bg-cover overflow-clip bg-[url(/images/png/egitimler-bg.png)]">
                 <Container className="grid  place-items-end !min-w-full backdrop-brightness-50   justify-center  pb-20 md:pb-22 h-full">
                     <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold">Eğitimler</Text>
                 </Container>
@@ -226,20 +103,18 @@ const Egitimler = () => {
                             setPage(page + 1)
                         }
 
-
-
-                    }} className="mx-auto md:h-[936px]  scrollbar-thin scrollbar-track-[white]  scrollbar-thumb-quaternary scrollbar-thumb-rounded  h-[700px]  md:w-[1000px] overflow-auto max-w-[1000px] items-center md:items-start flex gap-[20px] md:flex-row flex-col ">
-                        <div className="flex flex-col items-center md:items-start  md:justify-between h-full w-full max-w-full gap-[20px]">
+                    }} className="mx-auto md:h-[936px]  px-[20px] md:px-0 scrollbar-thin scrollbar-track-[white]  scrollbar-thumb-quaternary scrollbar-thumb-rounded  h-[700px]  lg:w-[1000px] overflow-auto max-w-[1000px] items-center lg:items-start flex gap-[20px] lg:flex-row flex-col ">
+                        {
+                            filteredTrainings.length === 0 && <div className="flex flex-col w-full  items-center justify-start h-full">
+                                <Text className="text-[#949B64] text-[24px] font-nexa-bold">Eğitim bulunamadı</Text>
+                            </div>
+                        }
+                        <div className="flex flex-row flex-wrap items-center md:items-center  md:justify-center h-full gap-[10px]">
                             {
-                                filteredTrainings.filter((_, i) => i % 2 == 0).map((training, index) =>
-                                    <TrainingCard {...training} key={v4()} />)
+                                filteredTrainings.map((training, index) =>
+                                    <div key={v4()} className="min-h-[380px] h-[380px] min-w-[350px]">  <TrainingCard {...training} /></div>)
                             }
-                        </div>
-                        <div className="flex flex-col items-center md:items-start md:justify-between min-h-full gap-[20px]">
-                            {
-                                filteredTrainings.filter((_, i) => i % 2 == 1).map((training, index) =>
-                                    <TrainingCard {...training} key={v4()} />)
-                            }
+
                         </div>
                     </div>
                 </Container>

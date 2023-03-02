@@ -10,12 +10,16 @@ import AcademicsListModal from "@components/SozlesmeModal/AcademicsListModal";
 import SozlesmeModal from "@components/SozlesmeModal/SozlesmeModal";
 import Text from "@components/Text";
 import { NextPage } from "next";
+import Head from "next/dist/shared/lib/head";
 import Image from "next/image";
 import { useState } from "react";
 
 const Hakkimda: NextPage = () => {
     const [showAcademicList, setShowAcademicList] = useState(false)
     return <LandingLayout>
+        <Head>
+            <title> Hakkımda | Nazan Uysal Harzadın </title>
+        </Head>
         <Container className=" h-[300px] md:h-[300px]  w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px] overflow-clip   md:bg-cover bg-[url(/images/png/hakkimda2.png)]">
             <Container className="md:!max-w-[1455px] grid  place-items-end min-w-full backdrop-brightness-50  justify-center pb-20 md:pb-22 h-full">
                 <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold">Prof.Dr. Nazan Uysal Harzadın</Text>
@@ -23,62 +27,60 @@ const Hakkimda: NextPage = () => {
         </Container>
         <Container className="flex  flex-col  mt-[20px] md:mt-[46px]">
 
-            <div className="flex md:flex-row flex-col md:mb-0 mb-[20px]">
-                <div className="md:min-h-[533px] md:min-w-[846px] min-h-[400px] overflow-clip rounded-r-[30px] border-2 px-[20px] relative">
+            <div className="flex lg:flex-row flex-col w-full md:mb-0 mb-[20px]">
+                <div className="lg:min-w-[48%] min-w-full min-h-[300px] md:min-h-[400px] lg:min-h-[700px] lg:h-auto overflow-clip rounded-r-[30px] border-2 px-[20px] relative lg:absolute">
                     <Image src="/images/png/hakkimda-nazan.png" layout="fill" objectFit="cover" />
                 </div>
-                <div className="flex flex-col md:max-w-[584px] gap-4 md:ml-[50px] md:mt-0 mt-[20px] md:mx-0 mx-[20px]  justify-center">
-                    <Text type="body" className="!font-nexa-regular">1994 yılında Dokuz Eylül Üniversitesi Tıp Fakültesinden mezun oldum. Kütahya Simav’ da mecburi hizmetimi tamamladıktan sonra,
-                        Tıpta Uzmanlık Sınavı ile aynı üniversitede Fizyoloji alanında uzmanlık eğitimine başladım. Aralık 1998’ de Fizyoloji Uzmanı, 2006’ da Fizyoloji doçenti, 2011 yılında 39 yaşımda Fizyoloji
-                        profesörü oldum. Fizyoloji insan vücudunun normal işleyişini, normalden sapmaların hastalıklara gidişi nasıl etkilediğini, fizyopatolojik alanda hastalıkların kök nedenlerini inceleyen bir
-                        bilim dalıdır. Üniversitede çalıştığım süre boyunca sinirbilim, metabolizma, mikrobesinler, egzersiz, stres konularında ve Diyabet, Alzheimer gibi hastalıkların nedenleri ve tedavilerini
-                        içeren bilimsel araştırmalar yaptım. Uluslararası indeksli dergilerde toplam 89 adet bilimsel makalem bulunmaktadır.
-                        Vücudumuz harika çalışan bir makine. Bu mükemmel makinanın iyi çalışması için, optimal sağlık için yapabileceklerimiz, sağlıklı yaşam ve sağlıklı beslenme konularına meslek hayatımın başından itibaren özel ilgim vardı. 2018 yılında sağlığımızı korumada ve kronik hastalıkların tedavisinde yeni bir yaklaşım sunan Cleveland Clinic Institute of Functional Medicine (IFM) in fonksiyonel tıp sertifika programına başladım.
-                        2021 yılındaki sınavı alarak IFM Fonksiyonel Tıp Uygulayıcısı sertifikasını aldım. Sağlığı korumada fonksiyonel beslenmeye özel bir ilgi duyuyorum. Pandemi döneminde İstanbul Mutfak Sanatları Akademisi ile Fonksiyonel Beslenme programı açarak, fonksiyonel beslenmeyi bilen aşçılar yetiştirdik. Sonrasında Dokuz Eylül Üniversitesi Sürekli Eğitim Merkezinde Fonksiyonel Beslenme kursları verdim.
-                        2023 Ocak ayında Dokuz Eylül üniversitesindeki görevimden emekli olarak ayrıldım. Halen kendi kliniğimde hizmet vermekteyim.
-                        2016 yılından bu yana “Sağlıklı Yaşıyoruz” sosyal sorumluluk projesinin danışma kurulunda yer almaktayım. 2021 yılından bu yana keten tohumunun ülkemizde üretilmesini ve kullanılmasını teşvik amacı ile kurulan AR-GE kooperatifi olan “Döngü Kooperatifi” nin danışma kurulunda yer almaktayım.
-                        Amatör olarak piyano çalmayı seviyorum.
-                        Rüzgâr sörfü, bisiklet ve kayak sporları ile ilgileniyorum.
-                    </Text>
-                    <div className="relative md:w-[400px] h-[120px] mt-[30px] rotate-[-12deg]">
-                        <Image src="/images/svg/brandmark3.svg" objectFit="contain" layout="fill" />
-                    </div>
-                </div>
-            </div>
-            <div className="flex md:flex-row flex-col mb-[20px] md:mx-0 mx-[20px] justify-center items-center md:mt-[60px] md:mb-[77px]">
-                <div className="flex flex-col md:max-w-[584px] gap-4 md:ml-[50px]  justify-center">
-                    <Text type="body" className="!font-nexa-regular">
-                        <h1 className="font-nexa-bold">EĞİTİM:</h1>
-                        <ul className="list-disc">
-                            <li>1994: Lisans: Dokuz Eylül Üniversitesi, Tıp Fakültesi</li>
-                            <li className="text-[14px]">1998: Tıpta Uzmanlık: Dokuz Eylül Üniversitesi Tıp Fakültesi Fizyoloji Anabilim Dalı</li>
-                            <li>2006: Fizyoloji Doçenti</li>
-                            <li>2011: Fizyoloji Profesörü</li>
-                            <li>2022: IFM Fonksiyonel Tıp Uygulayıcısı</li>
-                        </ul>
 
+            </div>
+            <div className="flex flex-col mx-auto max-w-[1250px]  gap-4 items-end justify-center">
+                <p className="!font-nexa-regular p-[10px] lg:w-1/2 text-[16px]">1994 yılında Dokuz Eylül Üniversitesi Tıp Fakültesinden mezun oldum. Kütahya Simav’ da mecburi hizmetimi tamamladıktan sonra,
+                    Tıpta Uzmanlık Sınavı ile aynı üniversitede Fizyoloji alanında uzmanlık eğitimine başladım. Aralık 1998’ de Fizyoloji Uzmanı, 2006’ da Fizyoloji doçenti, 2011 yılında 39 yaşımda Fizyoloji
+                    profesörü oldum. Fizyoloji insan vücudunun normal işleyişini, normalden sapmaların hastalıklara gidişi nasıl etkilediğini, fizyopatolojik alanda hastalıkların kök nedenlerini inceleyen bir
+                    bilim dalıdır. Üniversitede çalıştığım süre boyunca sinirbilim, metabolizma, mikrobesinler, egzersiz, stres konularında ve Diyabet, Alzheimer gibi hastalıkların nedenleri ve tedavilerini
+                    içeren bilimsel araştırmalar yaptım. Uluslararası indeksli dergilerde toplam 89 adet bilimsel makalem bulunmaktadır.
+                    Vücudumuz harika çalışan bir makine. Bu mükemmel makinanın iyi çalışması için, optimal sağlık için yapabileceklerimiz, sağlıklı yaşam ve sağlıklı beslenme konularına meslek hayatımın başından itibaren özel ilgim vardı. 2018 yılında sağlığımızı korumada ve kronik hastalıkların tedavisinde yeni bir yaklaşım sunan Cleveland Clinic Institute of Functional Medicine (IFM) in fonksiyonel tıp sertifika programına başladım.
+                    2021 yılındaki sınavı alarak IFM Fonksiyonel Tıp Uygulayıcısı sertifikasını aldım. Sağlığı korumada fonksiyonel beslenmeye özel bir ilgi duyuyorum. Pandemi döneminde İstanbul Mutfak Sanatları Akademisi ile Fonksiyonel Beslenme programı açarak, fonksiyonel beslenmeyi bilen aşçılar yetiştirdik. Sonrasında Dokuz Eylül Üniversitesi Sürekli Eğitim Merkezinde Fonksiyonel Beslenme kursları verdim.
+                    2023 Ocak ayında Dokuz Eylül üniversitesindeki görevimden emekli olarak ayrıldım. Halen kendi kliniğimde hizmet vermekteyim.
+                    2016 yılından bu yana “Sağlıklı Yaşıyoruz” sosyal sorumluluk projesinin danışma kurulunda yer almaktayım. 2021 yılından bu yana keten tohumunun ülkemizde üretilmesini ve kullanılmasını teşvik amacı ile kurulan AR-GE kooperatifi olan “Döngü Kooperatifi” nin danışma kurulunda yer almaktayım.
+                    Amatör olarak piyano çalmayı seviyorum.
+                    Rüzgâr sörfü, bisiklet ve kayak sporları ile ilgileniyorum.
+                </p>
+            </div>
+            <div className="flex flex-col max-w-[1250px] mb-[20px]  mx-auto justify-center items-center md:mt-[60px] md:mb-[77px]">
+                <div className="flex  flex-col w-full gap-4 md:ml-[50px]  justify-center">
+                    <Text type="body" className="!font-nexa-regular px-[30px]">
                         <h1 className="mt-[20px] font-nexa-bold"> MESLEKİ DENEYİM:</h1>
                         <div className="flex flex-col md:flex-row gap-[10px]">
-                            <ul className="flex-[1] list-disc">
-                                <li>1996-2023: Tıp Fakültesi, Hemşirelik Fakültesi, Fizik Tedavi Fakültesi, Eğitim Fakültesi, Sağlık Bilimleri Enstitüsü, Sağlık Hizmetleri Meslek Yüksek Okulu, Spor Bilimleri Yüksek Okulunda lisans, yüksek lisans ve doktora düzeyinde dersler verdim.</li>
-                                <li>2006-2023: Yüksek lisans, Doktora, Yardımcı Doçent, Doçent ve Profesörlük jürilerinde görev aldım.</li>
-                                <li>1998-2023: Ulusal ve Uluslararası birçok bilimsel derginin gönüllü hakemler listesinde bulunmaktayım.</li>
-                                <li>2006-2023: TÜBİTAK’ ta ve Türkiye’ deki birçok üniversitenin bilimsel araştırma projeleri biriminde proje değerlendirme hakemi olarak çalıştım.</li>
-                                <li>2009- Halen: BMC (British Medical Journal) Neuroscience dergisinin editörleri arasındayım.</li>
-                                <li>2013: Dokuz Eylül üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Davranış Fizyoloji Bilim Dalının Kurulmasında çalıştı.</li>
+                            <ul className="flex-[1] list-none">
+                                <li><span className="font-nexa-bold">1994-1996</span>: Kütahya Simav Merkez Sağlık Ocağında mecburi hizmetimi tamamladım</li>
+                                <li><span className="font-nexa-bold">1996-2023 </span>: Tıp Fakültesi, Hemşirelik Fakültesi, Fizik Tedavi Fakültesi, Eğitim Fakültesi, Sağlık Bilimleri Enstitüsü, Sağlık Hizmetleri Meslek Yüksek Okulu, Spor Bilimleri Yüksek Okulunda lisans, yüksek lisans ve doktora düzeyinde dersler verdim.</li>
+                                <li><span className="font-nexa-bold">2006-2023</span>:  Yüksek lisans, Doktora, Yardımcı Doçent, Doçent ve Profesörlük jürilerinde görev aldım.</li>
+                                <li><span className="font-nexa-bold">1998-2023</span>:  Ulusal ve Uluslararası birçok bilimsel derginin gönüllü hakemler listesinde bulunmaktayım.</li>
+                                <li><span className="font-nexa-bold">2006-2023</span>:  TÜBİTAK’ ta ve Türkiye’ deki birçok üniversitenin bilimsel araştırma projeleri biriminde proje değerlendirme hakemi olarak çalıştım.</li>
+                                <li><span className="font-nexa-bold">2009- Halen </span>: BMC (British Medical Journal) Neuroscience dergisinin editörleri arasındayım.</li>
+                                <li><span className="font-nexa-bold">2013 </span>: Dokuz Eylül Üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Davranış Fizyoloji Bilim Dalının Kurulmasında çalıştı.</li>
                             </ul>
-                            <ul className="flex-[1]  list-disc">
-                                <li>2016: Dokuz Eylül üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Merkezinin ve Etik Kurulunun Kurulmasında çalıştı.</li>
-                                <li>2016-2020: Dokuz Eylül üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Etik Kurulu (DEU-TF-HADYEK) Başkanı olarak çalıştım.</li>
-                                <li>2020-2022: Dokuz Eylül Üniversitesi, Deney Hayvanları Etik Kurulu (DEU-HADYEK) Başkan Yardımcısı olarak çalıştım.</li>
-                                <li>2020-2021: İstanbul Mutfak Sanatları Akademisi Fonksiyonel Beslenme Programı Eğitimi verdim.</li>
-                                <li>2021-2022: Dokuz Eylül Üniversitesi Sürekli Eğitim Merkezi Fonksiyonel Beslenme Becerileri Eğitimleri verdim.</li>
-                                <li>2021-2022: Dokuz Eylül Üniversitesi Geleneksel ve Tamamlayıcı Tıp Uygulamaları Merkezi Merkez Yönetim Kurulu Üyesi olarak çalıştım.</li>
-                                <li>2022-2023: Dokuz Eylül Üniversitesi Sürekli Eğitim Merkezi Merkez Danışma Kurulu Üyesi olarak çalıştım.</li>
+                            <ul className="flex-[1]  list-none">
+                                <li><span className="font-nexa-bold">2016</span>: Dokuz Eylül Üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Merkezinin ve Etik Kurulunun Kurulmasında çalıştı.</li>
+                                <li><span className="font-nexa-bold">2016-2020:</span> Dokuz Eylül üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Etik Kurulu (DEU-TF-HADYEK) Başkanı olarak çalıştım.</li>
+                                <li><span className="font-nexa-bold">2020-2022:</span> Dokuz Eylül Üniversitesi, Deney Hayvanları Etik Kurulu (DEU-HADYEK) Başkan Yardımcısı olarak çalıştım.</li>
+                                <li><span className="font-nexa-bold">2020-2021:</span> İstanbul Mutfak Sanatları Akademisi Fonksiyonel Beslenme Programı Eğitimi verdim.</li>
+                                <li><span className="font-nexa-bold">2021-2022:</span> Dokuz Eylül Üniversitesi Sürekli Eğitim Merkezi Fonksiyonel Beslenme Becerileri Eğitimleri verdim.</li>
+                                <li><span className="font-nexa-bold">2021-2022:</span> Dokuz Eylül Üniversitesi Geleneksel ve Tamamlayıcı Tıp Uygulamaları Merkezi Merkez Yönetim Kurulu Üyesi olarak çalıştım.</li>
+                                <li><span className="font-nexa-bold">2022-2023:</span> Dokuz Eylül Üniversitesi Sürekli Eğitim Merkezi Merkez Danışma Kurulu Üyesi olarak çalıştım.</li>
                             </ul>
                         </div>
+                        <h1 className="font-nexa-bold mt-[20px]">EĞİTİM:</h1>
+                        <ul className="list-none">
+                            <li><span className="font-nexa-bold">1994</span>: Lisans: Dokuz Eylül Üniversitesi, Tıp Fakültesi</li>
+                            <li className="text-[14px]"><span className="font-nexa-bold">1998</span>: Tıpta Uzmanlık: Dokuz Eylül Üniversitesi Tıp Fakültesi Fizyoloji Anabilim Dalı</li>
+                            <li><span className="font-nexa-bold">2006</span>: Fizyoloji Doçenti</li>
+                            <li><span className="font-nexa-bold">2011</span>: Fizyoloji Profesörü</li>
+                            <li><span className="font-nexa-bold">2022</span>: IFM Fonksiyonel Tıp Uygulayıcısı</li>
+                        </ul>
                     </Text>
-                    <button className="mt-[50px] hover:border-2 transition-all hover:bg-primary hover:text-secondary hover:rounded-[20px] py-2" onClick={() => { setShowAcademicList(true) }}> Akademik Makalelerimi Görmek İçin Tıklayın </button>
+                    <button className="mt-[50px] hover:border-2 transition-all hover:bg-primary hover:text-secondary hover:rounded-[20px] my-4 py-2" onClick={() => { setShowAcademicList(true) }}> Akademik Makalelerimi Görmek İçin Tıklayın </button>
                     {showAcademicList && <AcademicsListModal closeWithValue={(v) => {
                         setShowAcademicList(false)
                     }} >
@@ -188,13 +190,18 @@ const Hakkimda: NextPage = () => {
                         </div>
                     </AcademicsListModal>}
                 </div>
-                <div className="leading-none rounded-md ml-[160px] rounded-bl-3xl bg-opacity-80 overflow-hidden md:min-h-[264px] md:max-h-[264px] md:min-w-[710px] md:max-w-[710px] relative bg-secondary-flat">
-                    <div className="absolute  right-0 bottom-0 rotate-[-13deg] h-[120px] w-[280px]">
+                <div className="leading-none  rounded-md w-[90%] flex items-center justify-center rounded-bl-3xl bg-opacity-80 overflow-hidden md:min-h-[264px] md:max-h-[264px] w-fulll relative bg-secondary-flat">
+                    <div className="absolute  md:block hidden right-0 bottom-0 rotate-[-13deg] h-[100px] w-[280px]">
                         <Image src="/images/svg/brandmark5.svg" layout="fill" />
                     </div>
-                    <Text type="h5" className="text-[white] !font-nexa-regular !text-[30px] leading-[34px] mt-[20px] md:mt-[52px] ml-[34px] mr-[61px] md:mb-[44px] mb-[100px]">
-                        “Fonksiyonel beslenme ile daha sağlıklı yaşamın keyfini sürebilirsiniz. Sağlıklı yaşam yolculuğunuza rehberlik etmek için buradayım” -NUH
-                    </Text>
+                    <div className="absolute  left-0 bottom-0  h-[100px] w-[280px]" style={{
+                        transform: "rotateY(180deg) rotateZ(-13deg)"
+                    }}>
+                        <Image src="/images/svg/brandmark5.svg" layout="fill" />
+                    </div>
+                    <p className="text-[white] text-center font-nexa-regular max-w-[504px]  -translate-y-2 text-[18px] lg:text-[26px] leading-[34px] mt-[20px] md:mt-[52px] ml-[34px] mr-[61px] md:mb-[44px] mb-[100px]">
+                        “Fonksiyonel beslenme ile daha sağlıklı yaşamın keyfini sürebilirsiniz. Sağlıklı yaşam yolculuğunuza rehberlik etmek için buradayım” <br /> - Prof. Dr. Nazan Uysal Harzadın
+                    </p>
                 </div>
             </div>
         </Container>
@@ -210,20 +217,6 @@ const Hakkimda: NextPage = () => {
                     "f7.png",
                     "f8.png",
                 ]} to="right" />
-            </Container>
-        </Container>
-        <Container className="!max-w-[100vw] h-[245px] mb-[40px]" >
-            <Container className=" h-full">
-                <FloatingImages images={[
-                    "f3.png",
-                    "f4.png",
-                    "f8.png",
-                    "f2.png",
-                    "f6.png",
-                    "f1.png",
-                    "f5.png",
-                    "f7.png",
-                ]} to="left" />
             </Container>
         </Container>
     </LandingLayout>
