@@ -218,7 +218,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     <Image src="/images/svg/brandmark6.svg" layout="fill" objectFit="contain" />
                 </div>
                 <div
-                    className="flex flex-col pr-4 mt-[60px] md:h-[calc(100vh-220px)] h-[calc(100vh-180px)] overflow-scroll scrollbar-thin scrollbar-track-[#d4ee5e8] scrollbar-thumb-[white]">
+                    className="flex flex-col pr-4 mt-[60px]  h-[80%] overflow-scroll scrollbar-thin scrollbar-track-[#d4ee5e8] scrollbar-thumb-[white]">
                     {dashboardNavs.map((nav, index) => <NavButton key={index} {...nav} />)}
                     <Button onClick={() => logout()}
                         className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] !bg-[red]">
@@ -228,17 +228,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                         </Text>
                     </Button>
                 </div>
-                <div className="absolute bottom-0  h-fit md:h-fit flex flex-col justify-end left-0 w-full">
-                    {/* <div className="px-[30px] mb-[34px]">
-                        <Button onClick={() => logout()}
-                            className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] !bg-[red]">
-                            <PowerSettingsNew className="text-[white]" />
-                            <Text className="text-[white]">
-                                Çıkış Yap
-                            </Text>
-                        </Button>
-                    </div> */}
-                    <div className="h-[64px] bg-secondary grid place-content-center text-center">
+                <div className="absolute bottom-0  h-[7%]   flex flex-col justify-end left-0 w-full">
+                    <div className="h-full bg-secondary grid place-content-center text-center">
                         <Text className="text-[10px] text-[white]"> Kullanım Koşulları - Gizlilik Politikası</Text>
                         <Text type="overline" className="!font-nexa-light text-[#ACE2EB]">Prof.Dr. Nazan Uysal Harzadın
                             © 2022 </Text>
