@@ -106,7 +106,7 @@ export default class EarningChart extends Component<any, any> {
 
     render() {
         return (
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer className="scale-80 sm:scale-100" width="100%" height="100%">
                 <PieChart width={400} height={400}>
                     <Pie
                         activeIndex={this.state.activeIndex}
