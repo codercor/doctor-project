@@ -194,7 +194,7 @@ export default function Assays() {
             <div onClick={(e) => {
 
                 setOpenAddAssayModal(false);
-            }} className="z-[999] grid place-content-center h-screen w-screen fixed bg-[black] bg-opacity-25">
+            }} className="z-[9999] grid place-content-center h-screen w-screen fixed bg-[black] bg-opacity-25">
                 <div onClick={(e) => e.stopPropagation()} className='lg:w-[600px] p-[20px] relative flex flex-col gap-[10px] rounded-[20px_5px] max-h-[300px] bg-[white]'>
                     <h1 className='text-[#184E57] text-[24px] leading-none mb-[10px] font-nexa-bold '> Tahlil Talebi Oluştur </h1>
                     {isLoading && <LocalLoading message='Tahlil talebiniz oluşturuluyor...' />}

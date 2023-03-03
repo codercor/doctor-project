@@ -6,6 +6,7 @@ import BeforeFooter from "@components/Section/BeforeFooter";
 import Text from "@components/Text";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import {
     Home,
     Person,
@@ -169,7 +170,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         }
     }, [user.IsAuthenticated])
     const [showMenu, setShowMenu] = React.useState(false);
-    return (
+    return (<>
+        <Head>
+            <title>Panel</title>
+        </Head>
         <div onClick={() => {
             if (showMenu) setShowMenu(false)
         }} className="overflow-auto   flex w-full h-screen">
@@ -243,7 +247,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 {children}
             </Container>
         </div>
-
+    </>
     );
 }
 
