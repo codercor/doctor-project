@@ -78,7 +78,7 @@ export default function SubStep2Part8({
     return (
         <>
             <label className="font-nexa-bold text-[20px] text-[#4E929D]">Çevresel/Detoksifikasyon Öyküsü</label>
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Bunlardan hangileri sizi önemli derecede etkiler?"
                     options={[
@@ -191,7 +191,7 @@ export default function SubStep2Part8({
                     <h2 className=" text-[18px]">Erkek özel özgeçmiş:</h2>
                 </div>
 
-                <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+                <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
 
                     <FormInputSelectMulti
                         label="Sizin için uygun olanları işaretleyiniz"
@@ -281,7 +281,7 @@ export default function SubStep2Part8({
                     <h2 className=" text-[18px]">Kadın özel özgeçmiş:</h2>
                 </div>
 
-                <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+                <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                     <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kadın-doğum Öyküsü (Uygun olanları işaretleyip sayısını yazınız)</label>
 
                     <FormInputSelectOne

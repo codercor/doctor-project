@@ -22,7 +22,7 @@ export default function SelectTraining({ selectedTrainingId, handleChange }: {
     const refetchAdminTrainings = async (page: number) => {
         setLoadingProcess(true)
         try {
-            const response = await request.get(`${TRAINING}?page=${page}`);
+            const response = await request.get(`/admin${TRAINING}s?page=${page}`);
             setAdminTrainings(response.data.data);
             setLoadingProcess(false)
         } catch (error: any) {
@@ -47,7 +47,7 @@ export default function SelectTraining({ selectedTrainingId, handleChange }: {
 
 
     return (
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <FormControl sx={{ m: 1, minWidth: 120}}>
             <InputLabel id="demo-simple-select-helper-label">Eğitim</InputLabel>
             <Select
                 labelId="demo-simple-select-helper-label"

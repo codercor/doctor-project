@@ -89,6 +89,8 @@ function Flow2Form({ setSelectedStep }: PropsCanSelectStep) {
                         handleChange={handleChange}
                     />,
                 }
+
+
                 const countOfSubSteps = Object.keys(subSteps).length;
                 return (
                     <form onSubmit={handleSubmit}>
@@ -105,6 +107,7 @@ function Flow2Form({ setSelectedStep }: PropsCanSelectStep) {
                                 <button
                                     onClick={(e) => {
                                         e.preventDefault();
+                                        console.log("errors", errors);
                                         if (Object.keys(errors).length > 0) {
                                             toast.error("Lütfen tüm alanları doldurunuz.")
                                         } else submitForm()

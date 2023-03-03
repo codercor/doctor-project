@@ -103,7 +103,7 @@ const PatientAgreements = () => {
                             }} checked={patientUserAggrement}
                                 className="h-[24px]  appearance-none w-[24px] bg-primary-flat checked:accent-black-100  checked:after:rounded-[5px_0px_5px_0] relative checked:after:w-[24px] checked:after:h-[24px] checked:after:absolute checked:after:grid checked:after:place-content-center checked:after:top-0 checked:left-0 checked:after:bg-[black] checked:after:content-['✓']"
                                 type="checkbox" />
-                            <p className="font-nexa-regular">
+                            <p className="font-nexa-regular text-[12px] self-center md:text-[16px] min-w-full">
                                 Hasta Kullanıcı Sözleşmesi
                             </p>
                         </div>
@@ -114,7 +114,7 @@ const PatientAgreements = () => {
                             }} checked={patientIlluminationText}
                                 className="h-[24px] appearance-none w-[24px] bg-primary-flat checked:accent-black-100  checked:after:rounded-[5px_0px_5px_0] relative checked:after:w-[24px] checked:after:h-[24px] checked:after:absolute checked:after:grid checked:after:place-content-center checked:after:top-0 checked:left-0 checked:after:bg-[black] checked:after:content-['✓']"
                                 type="checkbox" />
-                            <p className="font-nexa-regular">
+                            <p className="font-nexa-regular text-[12px] self-center md:text-[16px] min-w-full">
                                 Aydınlatma Metni
                             </p>
 

@@ -16,7 +16,7 @@ export default function SubStep2Part1({
       <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
         <h2 className="font-nexa-regular text-[18px]">Genel Bilgiler</h2>
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="İsim"
           value={values.name}
@@ -34,7 +34,7 @@ export default function SubStep2Part1({
           onChange={handleChange}
         />
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Doğum Tarihi"
           value={values.birthDate}
@@ -52,7 +52,7 @@ export default function SubStep2Part1({
           onChange={handleChange}
         />
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Adres"
           value={values.address}
@@ -78,7 +78,7 @@ export default function SubStep2Part1({
           onChange={handleChange}
         />
       </div>
-      <div className="flex  min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex  min-h-[150px] py-[10px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Sağlık hizmetini en son nerede, ne zaman ve kimden aldınız?"
           value={values.lastHealt}
@@ -88,7 +88,7 @@ export default function SubStep2Part1({
           onChange={handleChange}
         />
       </div>
-      <div className="flex  min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex  min-h-[150px] py-[10px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInput
           label="Acil durumlarda ulaşılacak kişi:"
           value={values.emergencyContact}
@@ -106,7 +106,7 @@ export default function SubStep2Part1({
           onChange={handleChange}
         />
       </div>
-      <div className="flex  min-h-[150px] py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex  min-h-[150px] py-[10px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
 
 
         <FormInput
@@ -135,7 +135,7 @@ export default function SubStep2Part1({
         />
 
       </div>
-      <div className="flex py-4 py-[10px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex py-4 py-[10px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <div>
           <FormInputSelectOne
             label="Beni nereden duydunuz?"

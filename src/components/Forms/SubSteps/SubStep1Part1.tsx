@@ -20,7 +20,7 @@ export default function SubStep1Part1({
           DOĞUM ÖNCESİ, DOĞUM VE DOĞUM SONRASI BESLENME
         </h2>
       </div>
-      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
           label="Biyolojik ebeveynlerinizin herhangi bir besine karşı alerji, intolerans veya hassasiyeti var mı ?"
           options={[
@@ -47,7 +47,7 @@ export default function SubStep1Part1({
           )
         }
       </div>
-      <div className="flex py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
           onChange={handleChange}
           label="Bebeklik döneminde ne ile beslendiniz, annesütü mü, formül mama mı?"
@@ -93,7 +93,7 @@ export default function SubStep1Part1({
         </div>
       </div>
 
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
           onChange={handleChange}
           label="Katı gıda yemeye kaç yaşında başladığınızı biliyor musunuz?"
@@ -119,7 +119,7 @@ export default function SubStep1Part1({
           )
         }
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
           onChange={handleChange}
           label="Bebeklik döneminde herhangi bir besin alerjisi, intoleransı, hassasiyeti yaşadınız mı?"

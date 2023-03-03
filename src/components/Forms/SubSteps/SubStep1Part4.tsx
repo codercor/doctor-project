@@ -21,7 +21,7 @@ export default function SubStep1Part4({
           DOĞUM ÖNCESİ, DOĞUM VE DOĞUM SONRASI BESLENME
         </h2>
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInputTextArea
           label="Sizin hakkınızda, yeme alışkanlıklarınız, beslenme geçmişiniz ve/veya gıda ve vücutla ilişkiniz hakkında başka neler bilmemi istersiniz?"
           value={values.extraInfo}
@@ -32,7 +32,7 @@ export default function SubStep1Part4({
           disabled={readOnly}
         />
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInputTextArea
           label="Benimle çalışmanın sonucunda ne elde etmeyi umuyorsunuz?"
           value={values.purposeOfFinal}

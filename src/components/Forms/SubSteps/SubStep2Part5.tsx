@@ -75,7 +75,7 @@ export default function SubStep2Part5({
         <>
             <h3 className="font-nexa-regular text-[22px] mt-8 text-[#4E929D]">Beslenme</h3>
            <label className="font-nexa-bold text-[20px] text-[#4E929D]">Lütfen bir günde neler yediğinizi yazınız:</label>
-            <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label={`Kahvaltı`}
                     value={values.breakfast}
@@ -85,7 +85,7 @@ export default function SubStep2Part5({
                     onChange={handleChange}
                 />
             </div>
-            <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label={`Öğle`}
                     value={values.lunch}
@@ -95,7 +95,7 @@ export default function SubStep2Part5({
                     onChange={handleChange}
                 />
             </div>
-            <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label={`Akşam`}
                     value={values.dinner}
@@ -105,7 +105,7 @@ export default function SubStep2Part5({
                     onChange={handleChange}
                 />
             </div>
-            <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label={`Atıştırmalar`}
                     value={values.snacks}
@@ -115,7 +115,7 @@ export default function SubStep2Part5({
                     onChange={handleChange}
                 />
             </div>
-            <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label={`İçecekler`}
                     value={values.beverages}
@@ -127,7 +127,7 @@ export default function SubStep2Part5({
             </div>
 
             <label className="font-nexa-bold text-[20px] text-[#4E929D]">Bir haftada aşağıdakilerden kaç porsiyon yersiniz:</label>
-            <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Meyve (suyu değil)"
                     name="fruit"
@@ -147,7 +147,7 @@ export default function SubStep2Part5({
                 />
             </div>
 
-            <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Kurubaklagil (fasülye,bezelye vb)"
                     name="legumes"
@@ -167,7 +167,7 @@ export default function SubStep2Part5({
                 />
             </div>
 
-            <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Balık"
                     name="fish"
@@ -187,7 +187,7 @@ export default function SubStep2Part5({
                 />
             </div>
 
-            <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Kuruyemiş&tohum"
                     name="nutsAndSeeds"
@@ -207,7 +207,7 @@ export default function SubStep2Part5({
                 />
             </div>
 
-            <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Kutu içecek (normal veya diyet)"
                     name="cannedDrink"
@@ -227,7 +227,7 @@ export default function SubStep2Part5({
                 />
             </div>
 
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Kafeinli içecek içer misiniz? Evet ise, miktarını işaretleyiniz:"
                     options={EH}
@@ -269,7 +269,7 @@ export default function SubStep2Part5({
                 }
             </div>
 
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Kafeine olumsuz reaksiyonunuz var mı? Evet ise açıklayınız:"
                     options={EH}
@@ -290,7 +290,7 @@ export default function SubStep2Part5({
             </div>
 
 
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectMulti
                     label="Kafein içtiğinizde bunları hisseder misiniz ?"
                     options={[
@@ -303,7 +303,7 @@ export default function SubStep2Part5({
                 />
             </div>
             <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">Sigara</h3>
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Sigara içiyor musunuz ?"
                     options={EH}
@@ -361,7 +361,7 @@ export default function SubStep2Part5({
                 }
             </div>
 
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Daha önce sigara kullandını mı ?"
                     options={EH}
@@ -390,7 +390,7 @@ export default function SubStep2Part5({
                 }
             </div>
 
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Düzenli olarak sigara dumanına maruz kaldınız mı?"
                     options={EH}
@@ -403,7 +403,7 @@ export default function SubStep2Part5({
 
 
             <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">Alkol</h3>
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Haftada ne kadar alkol alırsınız?(1 içki = 150ml şarap, 360ml bira, 50ml alkollü içki)"
                     options={[
@@ -419,7 +419,7 @@ export default function SubStep2Part5({
                     onChange={handleChange}
                 />
             </div>
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Daha önce alkol kullandınız mı?"
                     options={[
@@ -436,7 +436,7 @@ export default function SubStep2Part5({
                 />
             </div>
 
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Daha önce hiç alkol ile probleminiz oldu mu?"
                     options={EH}
@@ -477,7 +477,7 @@ export default function SubStep2Part5({
 
 
             <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">Diğer Maddeler</h3>
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Şu anda keyif verici madde/ilaç kullanıyor musunuz?"
                     options={EH}

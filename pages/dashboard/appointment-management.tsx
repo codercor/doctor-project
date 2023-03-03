@@ -212,23 +212,23 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
             <div onClick={(e) => {
                 e.stopPropagation();
                 setUpdateTheUserModal(false)
-            }} className='fixed top-0 grid place-content-center left-0 w-screen h-screen bg-opacity-50 bg-black-100'>
+            }} className='fixed z-20 top-0 grid place-content-center left-0 w-full h-screen bg-opacity-50 bg-black-100'>
 
                 <div onClick={(e) => {
                     e.stopPropagation()
-                }} className="lg:w-[904px] w-[80%] relative h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
+                }} className="w-[80%] self-center justify-self-center relative min-h-[356px] px-[32px] py-[40px] bg-[white] rounded-[10px] flex flex-col">
                     <h1 className="text-[#4E929D] !text-[24px] font-nexa-bold">Güncelle</h1>
                     <p className='text-[#5C5C5C] text-[16px]'> Hastaya ait randevu ve durum güncellemesi yapın.</p>
                     <div className="flex flex-col mt-[45px]">
                         <h3 className='text-[#4E929D] !text-[14px] font-nexa-bold'>
                             Hasta Durumu
                         </h3>
-                        <div className='flex gap-[50px] '>
+                        <div className='flex md:flex-row items-start flex-col gap-4 md:gap-[50px] '>
                             <SelectStatus value={tempStatus} onChange={(v) => {
                                 setTempStatus(v)
                             }} />
 
-                            <div className="flex ml-auto flex-col w-[400px] items-start justify-center gap-[10px]">
+                            <div className="flex ml-auto flex-col w-full md:w-[400px] items-start justify-center gap-[10px]">
                                 <h3 className='text-[#4E929D] !text-[14px] font-nexa-bold'>
                                     Randevu Tarihi
                                 </h3>
@@ -242,7 +242,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
                     <button onClick={() => {
                         submit()
                     }}
-                        className='text-[white] mt-auto rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-[252px] h-[50px]'>
+                        className='text-[white] md:mt-auto mt-4 rounded-[20px_5px] font-nexa-bold bg-[#4E929D] w-full max-w-[252px] h-[50px]'>
                         Güncelle
                     </button>
                     <button onClick={() => {
@@ -333,10 +333,10 @@ export const SelectUserModal = ({ setter }: { setter: (v: any) => void }) => {
             <div onClick={() => {
                 setSelectedPatient(item)
                 item?.Id && selectPatient(item.Id, (item.Information.Fullname || 'YOOK'))
-            }} className="w-full h-[40px] border-t-[1px] flex items-center px-4">
-                <p>
-                    <span>  {item.Information.Fullname} </span> <span className='bg-[#94c5ce] ml-4 px-[6px] align-middle text-center rounded-[10px]'>{item.Email}</span>
-                </p>
+            }} className="w-full py-2 min-h-[40px] border-t-[1px] flex items-center px-4">
+                <div className="flex flex-wrap gap-1 ">
+                    <span>  {item.Information.Fullname} </span> <span className='bg-[#94c5ce] h-fit px-[6px] align-middle text-center rounded-[10px]'>{item.Email}</span>
+                </div>
                 {
                     cancel && (<button onClick={(
                         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -371,16 +371,16 @@ export const SelectUserModal = ({ setter }: { setter: (v: any) => void }) => {
     }
 
     return <>
-        <div className="fixed z-99 w-screen h-screen top-0 left-0 bg-black-100 bg-opacity-70">
-            <div className="w-full h-full flex items-center justify-center">
-                <div className="w-[600px] h-[400px] py-[100px] bg-[white] rounded-[20px_5px] flex flex-col">
+        <div className="fixed z-[20] flex justify-center w-full h-screen border-2 border-red-600 top-0 left-0 bg-black-100 bg-opacity-70">
+            <div className="md:w-[40%] w-full h-full flex items-center justify-center">
+                <div className="w-full h-[400px] py-[100px] bg-[white] rounded-[20px_5px] flex flex-col">
                     <div className="w-full h-[50px] flex items-center justify-center">
                         <p className="text-[#4E929D] text-[16px] font-nexa-bold">Hasta Seç</p>
                     </div>
-                    {!selectedPatient && <div className="w-full h-[50px] flex items-center justify-center">
-                        <input onChange={handleSearchPatient} value={searchKey} className="w-[400px] h-[40px] border-[#4E929D]-500 border-2 rounded-[20px_5px] px-4" />
+                    {!selectedPatient && <div className="w-full min-h-[50px]  flex items-center justify-center">
+                        <input onChange={handleSearchPatient} value={searchKey} className="w-[80%] h-[40px] border-[#4E929D]-500 border-2 rounded-[20px_5px] px-4" />
                     </div>}
-                    <div className="w-[400px] min-h-[100px] self-center relative flex items-center justify-center">
+                    <div className="w-[80%] min-h-[100px] self-center relative md:flex-row flex-col flex items-center justify-center">
                         {
                             selectedPatient ? <UserResultsItem item={selectedPatient} cancel /> : <UserResults />
                         }
@@ -507,7 +507,7 @@ export default function AppointmentManagement() {
                     </button>
                 </div>
                 {/* <CreateAppointmentModal  UserId='' finish={()=>{}} /> */}
-                <div className="w-[60%] gap-[10px] mt-[10px] mb-[30px] flex">
+                <div className="w-full md:w-[60%] px-4 gap-[10px] mt-[10px] mb-[30px] flex">
                     <input type="text" onChange={(e) => {
                         setSearchKey(e.target.value)
                     }

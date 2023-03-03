@@ -14,6 +14,7 @@ import { LocalLoading } from './appointment-management';
 import { useBreakpoint, useIsDesktop } from 'src/hooks/breakpoint';
 import { useRouter } from 'next/dist/client/router';
 import { toast } from 'react-hot-toast';
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 interface IPrescriptionItem {
     Id: string;
     UserId: string;
@@ -27,46 +28,44 @@ interface IPrescriptionItem {
     user: null | UserState | any;
 }
 const Row = ({ data }: { data: IPrescriptionItem }) => {
-    return <div className='flex flex-col w-full'>
-        <div className='w-full flex p-3 border-t-[1px]'>
-            <div className='flex-[4]'>
-                <p>
-                    {
-                        data?.Name || '-'
-                    }
-                </p>
-            </div>
-            <div className='flex-[4]'>
-                <p>
-                    {
-                        data?.Description
-                    }
-                </p>
-            </div>
-            <div className='flex-[4]'>
-                <p>
-                    {
+    return <TableRow >
+        <TableCell >
+            <p>
+                {
+                    data?.Name || '-'
+                }
+            </p>
+        </TableCell>
+        <TableCell >
+            <p>
+                {
+                    data?.Description
+                }
+            </p>
+        </TableCell>
+        <TableCell >
+            <p>
+                {
 
-                        new Date(data.updated_at || data.created_at).toLocaleDateString("tr-TR", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                            hour: "numeric",
-                            minute: "numeric"
-                        })
-                        || '-'
-                    }
-                </p>
-            </div>
-            <div className='flex-[4]'>
-                <button onClick={() => {
-                    window.open(data.Link, "_blank")
-                }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
-                    <span>Görüntüle</span>
-                </button>
-            </div>
-        </div>
-    </div>
+                    new Date(data.updated_at || data.created_at).toLocaleDateString("tr-TR", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric"
+                    })
+                    || '-'
+                }
+            </p>
+        </TableCell>
+        <TableCell >
+            <button onClick={() => {
+                window.open(data.Link, "_blank")
+            }} className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
+                <span>Görüntüle</span>
+            </button>
+        </TableCell>
+    </TableRow>
 }
 interface INewPrespriptionModal {
     open: boolean;
@@ -97,7 +96,7 @@ export default function Prescriptions() {
             setPrescriptions(resp.data.data);
             setPageCount(resp.data.PageCount)
             setPage(page)
-            
+
         }).catch((err) => {
             setLoading(false);
             console.log(err);
@@ -122,9 +121,7 @@ export default function Prescriptions() {
         </DashboardLayout>
     }
     return <DashboardLayout>
-        {!isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">
-            <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
-        </div> : <>
+        <>
             {loading && <LocalLoading message='Reçeteler getiriliyor...' />}
             <div className=" md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
                 <div className="w-full flex  text-start items-center justify-between  py-[26px] px-[10px]">
@@ -136,25 +133,29 @@ export default function Prescriptions() {
                 </div>
 
 
-                <div className="w-full flex flex-col">
-                    <div className='w-full flex justify-evenly border-2 h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Başlık</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Açıklama</Text>
-                        <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Reçete Tarih</Text>
-                        <div className='flex-[4]'>  </div>
-                    </div>
-                    <div className='w-full border-2'>
-                        {
-                            prescriptions?.length > 0 ? prescriptions?.map((item) => {
-                                return <Row key={v4()} data={item} />
-                            }) || <></> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Reçeteniz bulunmamaktadır </h1>
-                        }
-                    </div>
-                </div>
+                <TableContainer className='bg-[white] '>
+                    <Table aria-label="collapsible table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align="left">  <Text type="h3" className="text-secondary flex-[4] w-[100px] !text-[14px]">Başlık</Text></TableCell>
+                                <TableCell align="left">  <Text type="h3" className="text-secondary flex-[4] w-[100px] !text-[14px]">Açıklama</Text></TableCell>
+                                <TableCell align="left">  <Text type="h3" className="text-secondary flex-[4] w-[120px] !text-[14px]">Reçete Tarih</Text></TableCell>
+                                <TableCell align="left">  <Text type="h3" className="text-secondary flex-[4] !text-[14px]">Görüntüle</Text></TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {
+                                prescriptions?.length > 0 ? prescriptions?.map((item) => {
+                                    return <Row key={v4()} data={item} />
+                                }) || <></> : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Reçeteniz bulunmamaktadır </h1>
+                            }
+                        </TableBody>
+                    </Table>
+                </TableContainer>
                 <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]" onChange={(e: any, value: number) => {
                     setPage(value)
                 }} count={pageCount} />
             </div>
-        </>}
+        </>
     </DashboardLayout>
 }

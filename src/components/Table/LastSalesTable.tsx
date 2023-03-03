@@ -43,14 +43,17 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
                                         className={"border-2 p-0 leading-none h-[10px] " + (index % 2 != 0 ? 'bg-[#DEEEF0]' : '')}
                                     >
                                         <TableCell className="leading-none" component="th" scope="row">
-                                            {new Date(row?.Date).toLocaleString("tr-TR",{
-                                                year: "numeric",
-                                                month: "long",
-                                                day: "2-digit",
-                                            }) || '-'}
+                                            <p className="min-w-[140px] w-fit ">
+                                                {new Date(row?.Date).toLocaleString("tr-TR", {
+                                                    year: "numeric",
+                                                    month: "long",
+                                                    day: "2-digit",
+                                                    hour: "2-digit",
+                                                    minute: "2-digit",
+                                                }) || '-'}</p>
                                         </TableCell>
-                                        <TableCell className="leading-none" align="left">{row.User?.Information.Fullname || '-'}</TableCell>
-                                        <TableCell className="leading-none" align="left">{row?.Education?.Name || '-'}</TableCell>
+                                        <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{row.User?.Information.Fullname || '-'} </p>}</TableCell>
+                                        <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{row?.Education?.Name} || '-'</p>}</TableCell>
                                     </TableRow>
                                 )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kayıt bulunmamaktadır </h1>
                                 }

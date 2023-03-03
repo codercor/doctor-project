@@ -77,7 +77,7 @@ export default function SubStep2Part11({
                 <h2 className="font-nexa-regular text-[18px]">Hazırlık Değerlendirmesi ve Sağlık Hedefleri</h2>
             </div>
 
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">5 (çokistekli) ile 1 (istekli değil) arasında derecelendirin:</label>
 
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Sağlığınızı iyileştirmek için bunları yapmaya ne kadar isteklisiniz:</label>
@@ -242,7 +242,7 @@ export default function SubStep2Part11({
                 <h2 className="font-nexa-regular text-[18px]">Sağlık Hedefleri</h2>
             </div>
 
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label="Bizimle yaptığınız görüşmede ne elde etmeyi umuyorsunuz ? "
                     name="anotherTest142"

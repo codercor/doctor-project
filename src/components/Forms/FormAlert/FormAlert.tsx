@@ -13,7 +13,7 @@ const FormAlert = ({ status, text }: { status: FormAlertType, text: string }) =>
     const icon = status === "confirmed" ? <CheckCircleOutlineOutlined fontSize='small' /> : status === "rejected" ? <HighlightOffRounded /> : status === "pending" ? <AccessTimeFilledOutlined /> : <AccessTimeFilledOutlined />
 
     return <div className={statusColorClasses}>
-        <p className="text-[12px] font-nexa-regular flex items-center justify-start gap-[10px] ml-[10px] w-full leading-none">
+        <p className="text-[10px] font-nexa-regular flex items-center justify-start gap-[10px] ml-[10px] w-full leading-none">
             {icon}
             {text.toUpperCase()}</p>
     </div>

@@ -74,7 +74,7 @@ export default function SubStep2Part7({
     return (
         <>
             <label className="font-nexa-bold text-[20px] text-[#4E929D]">Sence hayatında işler nasıl gidiyor? (1–10 arası ölçekte işaretleyin, uygun değilse N/A işaretle) (1)Kötü (5) Orta  (10) Çok iyi</label>
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Genel olarak"
                     name="general"
@@ -170,7 +170,7 @@ export default function SubStep2Part7({
                 <h2 className="font-nexa-regular text-[18px]">Özgeçmiş</h2>
             </div>
             <label className="font-nexa-bold text-[20px] text-[#4E929D]">Hastanın doğum/çocukluk öyküsü:</label>
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Doğumunuz :"
                     name="birth"
@@ -185,7 +185,7 @@ export default function SubStep2Part7({
                 />
             </div>
 
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Gebelik/doğum komplikasyonu oldu mu? "
                     name="birthComplication"
@@ -204,7 +204,7 @@ export default function SubStep2Part7({
                     />
                 }
             </div>
-            <div className="flex py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     onChange={handleChange}
                     label="Bebeklik döneminde ne ile beslendiniz, annesütü mü, formül mama mı?"
@@ -249,7 +249,7 @@ export default function SubStep2Part7({
                 </div>
             </div>
             <label className="font-nexa-bold text-[20px] text-[#4E929D]">Başlama yaşı:</label>
-            <div className="flex  py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex  py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label={`Katı gıdalar:`}
                     value={values.solidFoods}
@@ -276,7 +276,7 @@ export default function SubStep2Part7({
                 />
             </div>
 
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Çocukken sizde semptoma neden olduğundan kaçınılan yiyecekler var mıydı?"
                     name="avoidedFood"
@@ -297,7 +297,7 @@ export default function SubStep2Part7({
                 }
             </div>
 
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Çocukken çok fazla şeker veya tatlı yediniz mi?"
                     name="sugarOrSweet"
@@ -308,7 +308,7 @@ export default function SubStep2Part7({
                 />
             </div>
             <label className="font-nexa-bold text-[20px] text-[#4E929D]">Diş Sağlığı</label>
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <label className="font-nexa-bold text-[20px] text-[#4E929D]">Ağzınızda aşağıdakilerden hangisi/hangileri var, kaç adet ise boşluğa yazınız:</label>
                 <FormInputSelectOne
                     label="Gümüş rengi civalı dolgu"

@@ -32,7 +32,7 @@ const FormInputSelectOne = ({
       )}
       <div
         role="group"
-        className="w-full flex-wrap gap-[12px] flex items-center justify-start"
+        className="w-full flex-wrap gap-[10px] flex items-center justify-start"
         aria-labelledby="my-radio-group"
       >
         {options.map((option: any) => (

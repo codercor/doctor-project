@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import useUser from "../../src/hooks/user.hook";
 import { useBreakpoint, useIsDesktop } from 'src/hooks/breakpoint'
 import { useRouter } from 'next/dist/client/router'
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 
 interface Appointment {
     Id: string;
@@ -67,46 +68,41 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
         afterUpdate()
     }
 
-    return <div onClick={() => {
-        // setUpdateTheUserModal(true)
-    }} className='flex flex-col w-full'>
+    return <TableRow >
         {
             isLoading && <LocalLoading message="Güncelleniyor" />
         }
-        <div className='w-full flex items-center text-start   border-t-[1px]'>
-            <div className='flex-[6] '>
-                <p>
-                    {
-                        appointment.user?.information?.Fullname || "-"
-                    }
-                </p>
-            </div>
-            <div className='flex-[6] '>
-                <p>{appointment.user?.Email || '-'}</p>
-            </div>
-            <div className='flex-[4] '>
-                <p> {appointment.user?.information?.Phone || '-'} </p>
-            </div>
-            <div className='flex-[4] '>
-                <p>
-                    {
-                        new Date(appointment.Date).toLocaleDateString("tr-TR", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                            hour: "numeric",
-                            minute: "numeric"
-                        })
-                    }
-                </p>
-            </div>
-            <div className='flex-[2] '>
+        <TableCell >
+            <p>
                 {
-                    appointment.Status === "Acil" ? <StatusBox type="Acil" /> : <StatusBox type="Randevulu" />
+                    appointment.user?.information?.Fullname || "-"
                 }
-            </div>
-
-        </div>
+            </p>
+        </TableCell>
+        <TableCell >
+            <p>{appointment.user?.Email || '-'}</p>
+        </TableCell>
+        <TableCell >
+            <p> {appointment.user?.information?.Phone || '-'} </p>
+        </TableCell>
+        <TableCell >
+            <p>
+                {
+                    new Date(appointment.Date).toLocaleDateString("tr-TR", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric"
+                    })
+                }
+            </p>
+        </TableCell>
+        <TableCell>
+            {
+                appointment.Status === "Acil" ? <StatusBox type="Acil" /> : <StatusBox type="Randevulu" />
+            }
+        </TableCell>
         {
             updateTheUserModal && <div onClick={(e) => {
                 e.stopPropagation();
@@ -153,7 +149,7 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
 
             </div>
         }
-    </div>
+    </TableRow>
 }
 
 const SelectStatus = ({ value, onChange }: {
@@ -224,43 +220,30 @@ export default function AppointmentManagement() {
     }
     return (
         <DashboardLayout>
-            {!isDesktop ? <div className="w-full h-full items-center justify-center flex p-[30px]">
-                <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
-            </div> : <>
-                {
-                    isLoading && <LocalLoading message="Randevularınız yükleniyor..." />
-                }
-                <div className="md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
-                    <div className="w-1/3 flex flex-col text-start items-center justify-start py-[26px] px-[10px]">
-                        <div className="flex flex-col justify-between w-full">
-                            <Text type="h3" className="text-[#4D5628] !text-[20px] w-full">Randevularım</Text>
-                            <Text type="h3" className="text-[#4D5628] font-nexa-light !text-[14px] w-full">Tüm
-                                randevularınızı yönetin.</Text>
-                        </div>
+            {
+                isLoading && <LocalLoading message="Randevularınız yükleniyor..." />
+            }
+            <div className="md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
+                <div className="w-full flex flex-col text-start items-center justify-start py-[26px] px-[10px]">
+                    <div className="flex flex-col justify-between w-full">
+                        <Text type="h3" className="text-[#4D5628] !text-[20px] w-full">Randevularım</Text>
+                        <Text type="h3" className="text-[#4D5628] font-nexa-light !text-[14px] w-full">Tüm
+                            randevularınızı yönetin.</Text>
                     </div>
-                    <div className="w-[60%] gap-[10px] mt-[10px] mb-[30px] flex">
-                        <input type="text" onChange={(e) => {
-                            setSearchKey(e.target.value)
-                        }
-                        } placeholder='Ad Soyad ya da E-posta adresine göre arayın'
-                            className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
-
-                        <button onClick={() => {
-                            getAndSetAppointments()
-                        }} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
-                            <RefreshRounded />
-                        </button>
-                    </div>
-                    <div className="w-full flex flex-col">
-                        <div className='w-full flex  h-[62px] p-3 bg-[#f5f5f5] items-center text-start'>
-                            <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">Ad Soyad</Text>
-                            <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">E-posta</Text>
-                            <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Telefon</Text>
-                            <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Tarih/Saat</Text>
-                            <Text type="h3" className="text-secondary flex-[2] !text-[14px] ">Durum</Text>
-                        </div>
-                        <div
-                            className='w-full  max-h-[600px] overflow-auto p-3 scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100'>
+                </div>
+               
+                <TableContainer className='bg-[white] '>
+                    <Table aria-label="collapsible table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell className='min-w-[120px]' align="left">   <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">Ad Soyad</Text></TableCell>
+                                <TableCell className='min-w-[120px]' align="left">   <Text type="h3" className="text-secondary flex-[6] !text-[14px] ">E-posta</Text></TableCell>
+                                <TableCell className='min-w-[120px]' align="left">   <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Telefon</Text></TableCell>
+                                <TableCell className='min-w-[120px]' align="left">   <Text type="h3" className="text-secondary flex-[4] !text-[14px] ">Tarih/Saat</Text></TableCell>
+                                <TableCell className='min-w-[120px]' align="left">   <Text type="h3" className="text-secondary flex-[2] !text-[14px] ">Durum</Text></TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
                             {
                                 appointments?.length > 0 ? appointments.map((appointment: Appointment) => {
                                     return <Row afterUpdate={() => {
@@ -269,14 +252,14 @@ export default function AppointmentManagement() {
                                 })
                                     : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
                             }
-                        </div>
-                    </div>
-                    <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]"
-                        onChange={(e: any, value: number) => {
-                            setPage(value)
-                        }} count={pageCount} />
-                </div>
-            </>}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <Pagination siblingCount={3} variant="text" className="mt-auto mx-auto mb-[30px]"
+                    onChange={(e: any, value: number) => {
+                        setPage(value)
+                    }} count={pageCount} />
+            </div>
         </DashboardLayout>
     )
 }

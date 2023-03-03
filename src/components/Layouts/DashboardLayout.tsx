@@ -6,6 +6,7 @@ import BeforeFooter from "@components/Section/BeforeFooter";
 import Text from "@components/Text";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import {
     Home,
     Person,
@@ -153,11 +154,15 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     Icon: Settings
                 }
             ]
-            if (user?.IsPatient) userNavs.push({
-                text: "Hasta Kabul Formları",
-                href: "/dashboard/patient-agreements",
-                Icon: TaskOutlined
-            })
+            if (user?.IsPatient) {
+                let item = {
+                    text: "Hasta Kabul Formları",
+                    href: "/dashboard/patient-agreements",
+                    Icon: TaskOutlined
+                }
+                userNavs.splice(4, 0, item)
+            }
+
             setDashboardNavs(userNavs)
         }
     }, [user])
@@ -169,13 +174,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         }
     }, [user.IsAuthenticated])
     const [showMenu, setShowMenu] = React.useState(false);
-    return (
+    return (<>
+        <Head>
+            <title>Panel</title>
+        </Head>
         <div onClick={() => {
             if (showMenu) setShowMenu(false)
         }} className="overflow-auto   flex w-full h-screen">
             {  /*  Sidebar Normal */}
             <div
-                className={classNames("lg:sticky cursor-pointer hidden lg:block fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[40%] lg:min-w-[20%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
+                className={classNames("lg:sticky cursor-pointer hidden lg:block fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[40%] lg:min-w-[25%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
 
                 })}>
                 <div onClick={() => {
@@ -236,14 +244,14 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     </div>
                 </div>
             </div>
-            <Container className={classNames("lg:pl-[144px] md:pt-[30px] lg:pr-[144px] lg:w-[80%] md:w-full  h-full flex flex-col gap-[37px]", {
+            <Container className={classNames("lg:pl-[100px] md:pt-[30px] lg:pr-[100px] lg:w-[80%] md:w-full  h-full flex flex-col gap-[37px]", {
                 "md:blur-sm lg:blur-none": showMenu
             })}>
                 <DashBoardNavbar showMenu={showMenu} setShowMenu={setShowMenu} />
                 {children}
             </Container>
         </div>
-
+    </>
     );
 }
 

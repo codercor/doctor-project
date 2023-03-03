@@ -81,7 +81,7 @@ const BlogCardAdmin = ({ blog, refresh }: Props) => {
 
     return (
 
-        <div className="h-[390px] w-[368px]  rounded-[20px_5px] overflow-hidden bg-[#EFF5F6]">
+        <div className="h-[390px] w-full sm:w-[368px]  rounded-[20px_5px] overflow-hidden bg-[#EFF5F6]">
             {showAreYouSure && <AreYouSureModal />}
            
             <div className="relative rounded-br-3xl h-[75%] overflow-hidden">
