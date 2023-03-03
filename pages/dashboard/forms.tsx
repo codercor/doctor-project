@@ -150,7 +150,7 @@ export default function Forms() {
         <DashboardLayout>
             {<>
                 <div className="w-full sm:hidden h-full items-center justify-center flex p-[30px]">
-                    <h1> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
+                    <h1 className="font-nexa-bold text-[18px] px-10 text-center"> Bu sayfayı görüntülemek için mobil cihazlar uygun değildir. </h1>
                 </div>
                 <div className="bg-[white] hidden sm:block px-4">
                     {/* <h1> step {selectedStep} locked {showLastForm + ""} last step {showLastFormStep + ""} </h1> */}
