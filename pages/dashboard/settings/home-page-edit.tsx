@@ -141,13 +141,13 @@ const EditBanner = () => {
 
 const Press = (props: { Id: string, Title: string, Description: string, Image: string, refreshPresses: () => void }) => {
     return <>
-        <div className="flex w-full shadow-lg !bg-[inherit] py-[8px] min-h-[165px] gap-[10px] items-center justify-between px-[10px]">
-            <div className='w-[110px] h-min min-h-[110px] relative rounded-md overflow-hidden'>
+        <div className="flex sm:flex-row flex-col w-full max-w-full shadow-lg !bg-[inherit] py-[8px] min-h-[165px] gap-[10px] items-center justify-between px-[10px]">
+            <div className='min-w-[110px] w-[110px] h-min min-h-[110px] relative rounded-md overflow-hidden'>
                 <Image src={props.Image} layout='fill' objectFit='cover' />
             </div>
-            <div className="w-full min-h-[110px]">
-                <Text type="h6" className='text-secondary'>{props.Title}</Text>
-                <Text type="paragraph" className='text-deepgreen-200 text-[12px]'>{props.Description}</Text>
+            <div className="w-full overflow-x-auto min-h-[110px]">
+                <Text type="h6" className='text-secondary break-words w-full'>{props.Title}</Text>
+                <Text type="paragraph" className='text-deepgreen-200 break-words text-[12px]'>{props.Description}</Text>
             </div>
             <div className='w-[60px] min-h-[110px] flex items-start'>
                 <Button onClick={() => {
@@ -254,7 +254,7 @@ export default function HomePageEdit() {
     return (
         <DashboardLayout>
             <SettingsSubLayout>
-                <div className="flex flex-col w-full h-full">
+                <div className="flex flex-col px-8 w-full h-full">
                     <EditBanner />
                     <EditPress />
                 </div>
