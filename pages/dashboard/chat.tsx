@@ -178,9 +178,6 @@ const Chat = () => {
                             }} chatLine={item} key={v4()} /></>)}
                     </div>
                 </div>
-                <button className="absolute" onClick={() => {
-                    setActiveLineId(null);
-                }}> DEL </button>
                 {activeLineId && <ChatBox back={back} />}
             </div>
         </DashboardLayout>
