@@ -26,7 +26,7 @@ export default function SubStep2Part2({
 
                 <h3 className="font-nexa-regular text-[14px]">Lütfen mevcut ve devam eden sağlık sorunlarınızı öncelik sırasına göre sıralayın</h3>
             </div>
-            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <Combined4Input
                     errors={errors}
                     values={values}

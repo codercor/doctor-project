@@ -67,7 +67,7 @@ const BlogManagement = () => {
                             {
                                 blogs.length < 1 ? <>
 
-                                    <h1 className='text-[56px] self-center justify-self-center w-full text-center font-nexa-light'> 🤷  </h1>
+                                    <h1 className='md:text-[36px] text-[24px] w-full text-center font-nexa-light'> Blog Bulunamadı  </h1>
                                 </> : blogs.map((blog, index) => {
                                     return (
                                         <BlogCardAdmin refresh={refresh} key={index} blog={blog} />
@@ -77,12 +77,12 @@ const BlogManagement = () => {
                         </>}
 
                 </div>
-                <div className="w-full pb-[46px]">
+                {blogs.length > 0 && <div className="w-full pb-[46px]">
                     <Pagination
                         page={page}
                         onChange={(event, value) => setPage(value)}
                         className='mx-auto w-fit' count={pageCount} siblingCount={3} variant='outlined' shape='rounded' color='primary' />
-                </div>
+                </div>}
             </div>
         </DashboardLayout>
     )

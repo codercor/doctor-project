@@ -21,7 +21,7 @@ export default function SubStep1Part2({
           ÇOCUKLUK DÖNEMİ BESLENME VE YEME DÜZENİ
         </h2>
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
           onChange={handleChange}
           label="Çocukken veya ergenlikte, herhangi bir besine vücudunuzun tepki verdiğini hatırlıyor musunuz?"
@@ -44,7 +44,7 @@ export default function SubStep1Part2({
                     )
                 }
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
           onChange={handleChange}
           label="Çocukken ve ergenlikte sağlıklı gıdalara (yani, taze meyveler, sebzeler ve diğer besin açısından yoğun gıdalar) tutarlı ve güvenilir bir şekilde erişebildiniz mi?"
@@ -55,7 +55,7 @@ export default function SubStep1Part2({
           disabled={readOnly}
         />
       </div>
-      <div className="flex h-[150px] bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+      <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <FormInputSelectOne
           onChange={handleChange}
           label="Çocukken veya ergenlikte, herhangi bir yeme bozukluğu Teşhisi kondu mu veya besin ve vücut tepkisi ile ilgili olumsuz bir deneyiminiz oldu mu? (sık diyet yapmak, fazla egzersiz yapmak vb.)?"

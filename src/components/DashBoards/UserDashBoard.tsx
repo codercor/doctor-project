@@ -64,7 +64,7 @@ const MyTrainings = () => {
         {IsLoading ? <div className="z-[100] fixed top-0 left-0"> <Loading message="Eğitimler yükleniyor" /></div> : UsersTrainings.length < 1 ? <div className="w-full h-full  grid place-content-center">
             <School className="text-[#BABCAC] mx-auto text-[32px]" />
             <Text className="text-[#BABCAC] text-[14px] font-nexa-regular">Satın aldığınız eğitim bulunmamaktadır.</Text>
-        </div> : <div className="flex mt-2 gap-12 border-red-500 overflow-auto  scrollbar-thumb-secondary scrollbar-thin p-4 shadow-2xl">
+        </div> : ((UsersTrainings).filter(item => item?.Image).length < 1 ? <h1 className='md:text-[36px] mt-4 text-[24px] w-full text-center font-nexa-light'>  Satın alımış eğitiminiz bulunmamaktadır  </h1> : <div className="flex mt-2 gap-12 border-red-500 overflow-auto  scrollbar-thumb-secondary scrollbar-thin p-4 shadow-2xl">
 
             {(UsersTrainings).filter(item => item?.Image).map((item) => {
                 console.log("item", item);
@@ -84,7 +84,7 @@ const MyTrainings = () => {
             )
             }
 
-        </div>}
+        </div>)}
     </div>
 }
 

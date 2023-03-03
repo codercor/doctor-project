@@ -76,7 +76,7 @@ export default function SubStep2Part9({
         <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
                     <h2 className=" text-[18px]">Tıbbi Özgeçmiş: Hastalıklar/Durumlar</h2>
                 </div>
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center pl-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">EVET&apos; i işaretle = Şu anda varsa, ÖNCE&apos; yi işaretle = geçmişte varsa, Hayır&apos; ı işaretle = yok ise.</label>
 
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">sindirim</label>

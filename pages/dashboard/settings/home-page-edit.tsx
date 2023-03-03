@@ -24,7 +24,7 @@ const EditBannerImage = ({ image, setImageFile }: {
     useEffect(() => {
         //@ts-ignore
         if (ref.current?.files?.length < 1) {
-            setPreviewImage(image  || '/default.png');
+            setPreviewImage(image || '/default.png');
         }
 
     }, [image])
@@ -46,7 +46,7 @@ const EditBannerImage = ({ image, setImageFile }: {
         }
     }
 
-    return <div className='w-full !h-[424px] border-2 border-black-100 relative shadow-2xl'>
+    return <div className='w-full h-[324px] md:!h-[424px] border-2 border-black-100 relative shadow-2xl'>
         <input onChange={handleFileChange} ref={ref} type='file' hidden accept='image/*' />
         {<Image src={previewImage} layout='fill' />}
         <button onClick={() => ref?.current && ref?.current.click()} className=' shadow-md shadow-secondary-flat absolute top-2 right-4 z-10 bg-secondary text-[white] w-[40px] h-[40px] grid place-content-center rounded-[4px]'>
@@ -66,7 +66,7 @@ const EditBanner = () => {
 
 
     const [bannerData, setBannerData] = React.useState<any>({
-        Id:"",
+        Id: "",
         Title: '',
         Description: '',
         Image: ''
@@ -125,7 +125,7 @@ const EditBanner = () => {
             setBannerData({ ...bannerData, Description: e.target.value })
         }} text="Banner Kısa Metin (en az 50 karakter)" type="text" />
         <div className="w-full  flex justify-end mt-4 h-fit">
-            <Button disabled={(!formValidation.title || !formValidation.description || !formValidation.imageSelected)} type="secondary" className='!p-0 !px-[20px] w-fit justify-end !py-[10px] grid place-content-center ' onClick={() => {
+            <Button disabled={((!formValidation.title || !formValidation.description || !formValidation.imageSelected) || UpdateHomePageProcess.IsLoading)} type="secondary" className='!p-0 !px-[20px] w-fit justify-end !py-[10px] grid place-content-center ' onClick={() => {
                 (editedBannerData.Image && bannerData.Title && bannerData.Description) && adminUpdateBanner({
                     Id: bannerData.Id,
                     Title: bannerData.Title,
@@ -141,15 +141,15 @@ const EditBanner = () => {
 
 const Press = (props: { Id: string, Title: string, Description: string, Image: string, refreshPresses: () => void }) => {
     return <>
-        <div className="flex w-full shadow-lg !bg-[inherit] h-[165px] gap-[10px] items-center justify-between px-[10px]">
-            <div className='w-[110px] h-[110px] relative rounded-md overflow-hidden'>
+        <div className="flex w-full shadow-lg !bg-[inherit] py-[8px] min-h-[165px] gap-[10px] items-center justify-between px-[10px]">
+            <div className='w-[110px] h-min min-h-[110px] relative rounded-md overflow-hidden'>
                 <Image src={props.Image} layout='fill' objectFit='cover' />
             </div>
-            <div className="w-full h-[110px]">
+            <div className="w-full min-h-[110px]">
                 <Text type="h6" className='text-secondary'>{props.Title}</Text>
                 <Text type="paragraph" className='text-deepgreen-200 text-[12px]'>{props.Description}</Text>
             </div>
-            <div className='w-[60px] h-[110px] flex items-start'>
+            <div className='w-[60px] min-h-[110px] flex items-start'>
                 <Button onClick={() => {
                     deletePress(props.Id).then(() => {
                         props.refreshPresses()
@@ -181,6 +181,9 @@ const PressForm = ({ refreshPresses }: { refreshPresses: () => void }) => {
             }
         }
     }, [form])
+
+    const [createLoading, setCreateLoading] = React.useState(false);
+
     return <>
         <input ref={imageRef} accept="image/*" type="file" hidden />
         <div className="flex w-full shadow-lg !bg-[inherit] h-fit py-[10px] gap-[10px] items-center justify-between px-[10px]">
@@ -195,16 +198,19 @@ const PressForm = ({ refreshPresses }: { refreshPresses: () => void }) => {
                 <Input value={form.Title} onChange={(e) => setForm({ ...form, Title: e.target.value })} text={`Basın  Başlık (min 20/${form.Title.length} karakter)`} type="text" />
                 <Input value={form.Description} onChange={(e) => setForm({ ...form, Description: e.target.value })} text={`Basın Metin (min 50/${form.Description.length} karakter)`} type="text" />
                 <Button disabled={
-                    !(form.Title.length > 20 && form.Description.length > 50 && form.Image)
+                    ((!(form.Title.length >= 20 && form.Description.length >= 50 && form.Image)) || createLoading)
                 } onClick={async () => {
+                    setCreateLoading(true);
                     createPress(form).then(() => {
                         setForm({
                             Title: '',
                             Description: '',
                             Image: null
                         })
+                        setCreateLoading(false);
                         refreshPresses();
                     }).catch(err => {
+                        setCreateLoading(false);
                         setForm({
                             Title: '',
                             Description: '',

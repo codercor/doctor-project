@@ -154,11 +154,15 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     Icon: Settings
                 }
             ]
-            if (user?.IsPatient) userNavs.push({
-                text: "Hasta Kabul Formları",
-                href: "/dashboard/patient-agreements",
-                Icon: TaskOutlined
-            })
+            if (user?.IsPatient) {
+                let item = {
+                    text: "Hasta Kabul Formları",
+                    href: "/dashboard/patient-agreements",
+                    Icon: TaskOutlined
+                }
+                userNavs.splice(4, 0, item)
+            }
+
             setDashboardNavs(userNavs)
         }
     }, [user])

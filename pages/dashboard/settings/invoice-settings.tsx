@@ -16,6 +16,8 @@ import ililce from '../../../src/il-ilce';
 import FormInputSelectOne from "@components/Forms/FormInput/FormInputSelectOne";
 import request from "@config";
 import { toast } from "react-hot-toast";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 const validationSchema = Yup.object().shape({
     Name: Yup.string().nullable().required("Ad zorunludur"),
@@ -42,7 +44,7 @@ const validationSchema = Yup.object().shape({
     }),
     IdentityNumber: Yup.string().nullable().when("ContactType", {
         is: "person",
-        then: Yup.string().required("T.C. Kimlik numarası zorunludur").nullable(),
+        then: Yup.string().required("T.C. Kimlik numarası zorunludur").nullable().length(11, "TC Kimlik numarası 11 haneli olmalıdır").matches(/^[0-9]+$/, "TC Kimlik numarası sadece sayılardan oluşmalıdır"),
         otherwise: Yup.string().when("ContactType", {
             is: "company",
             then: Yup.string().required("Vergi numarası zorunludur").nullable().length(10, "Vergi numarası 10 haneli olmalıdır").matches(/^[0-9]+$/, "Vergi numarası sadece sayılardan oluşmalıdır"),
@@ -63,22 +65,7 @@ const SettingsInvoiceSettings = () => {
     const { user, updateUserBillingDetail } = useUser();
     const BillingDetail = user.BillingDetail;
     const [billingDetail, setBillingDetail] = useState(BillingDetail);
-
-    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     const { name, value } = e.target;
-    //     setBillingDetail({ ...billingDetail, [name]: value })
-    // }
     const router = useRouter()
-    // const handleSave = () => {
-    //     setIsEdit(!isEdit);
-    //     updateUserBillingDetail(billingDetail);
-    //     if (localStorage.getItem("after-complete-billing-details")) {
-    //         let to = localStorage.getItem("after-complete-billing-details");
-    //         router.push(to as string);
-    //         localStorage.removeItem("after-complete-billing-details");
-    //     }
-    // }
-
     const [nextPage, setNextPage] = useState("");
 
     useEffect(() => {
@@ -137,7 +124,7 @@ const SettingsInvoiceSettings = () => {
 
         }} >
             <FormInputSelectOne onChange={_handleChange} error={errors.ContactType} value={values.ContactType} disabled={!isEdit} name="ContactType" label="Fatura Tipi" options={[{ label: "Bireysel", value: "person" }, { label: "Kurumsal", value: "company" }]} />
-            <div className="flex gap-[41px]">
+            <div className="flex sm:flex-row flex-col md:gap-[41px]">
                 <FormInput onChange={_handleChange} value={values.Name} error={errors.Name} disabled={!isEdit} name="Name" label={values.ContactType != "company" ? "Ad" : "Firma Adı"} type="text" />
                 {
                     values.ContactType != "company" && <FormInput onChange={_handleChange} value={values.Surname} error={errors.Surname} disabled={!isEdit} name="Surname" label="Soyad" type="text" />
@@ -154,7 +141,30 @@ const SettingsInvoiceSettings = () => {
                 label="Vergi Dairesi"
                 type="text" />
             }
-            <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" />
+            {/* <FormInput disabled={!isEdit} name="Phone" error={errors.Phone} value={values.Phone} onChange={_handleChange} label="Telefon" type="tel" /> */}
+            <label className="text-[#4E929D] text-[16px] font-nexa-bold">
+                Telefon
+            </label>
+            <PhoneInput
+                country={'tr'}
+                disabled={!isEdit}
+                value={values.Phone}
+                placeholder="90 555 555 55 55"
+                inputProps={{
+                    name: 'Phone',
+                    className: 'text-[black] text-[16px] w-full pl-[50px] font-nexa-bold rounded-[5px_20px_0px_20px] disabled:opacity-60',
+                    // onChange: (e) => { setFieldValue("Phone", phoneCode + e.target.value) },
+                    value: values.Phone
+                }}
+                containerClass="w-full"
+
+                onChange={phone => setFieldValue("Phone", phone)}
+            />
+            {errors.Phone && (
+                <span className="text-[#FF0000] text-[16px] font-nexa-regular ml-2">
+                    * {errors.Phone}
+                </span>
+            )}
             <FormInputSelect
                 disabled={!isEdit}
                 error={errors.Country}
@@ -229,7 +239,7 @@ const SettingsInvoiceSettings = () => {
                             initialValues={{
                                 Name: BillingDetail.Name || "",
                                 Surname: BillingDetail.Surname || "",
-                                Phone: BillingDetail.Phone || "",
+                                Phone: BillingDetail.Phone || "90",
                                 Country: BillingDetail.Country || "Turkey",
                                 Email: BillingDetail.Email || "",
                                 District: BillingDetail.District || "",

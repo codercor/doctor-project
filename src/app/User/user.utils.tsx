@@ -147,7 +147,7 @@ export const createPress = async (data: any) => {
     form.append("Image", data.Image);
     form.append("Title", data.Title);
     form.append("Description", data.Description);
-    let _toast = toast.loading('Basın bülteni oluşturuluyor...');
+    let _toast = toast.loading('Basın bülteni oluşturuluyor...', { duration: 20000 });
     try {
         const response = await request.post(
             PRESS,

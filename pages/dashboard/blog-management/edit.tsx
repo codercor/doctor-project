@@ -41,7 +41,7 @@ const SelectImage = ({
         return ''
     }, [file])
     return <div className="flex flex-col items-start justify-start">
-        <div onClick={() => ref.current?.click()} className="flex-[2] cursor-pointer relative text-[#A6A5A5] flex justify-center text-center items-center flex-col border-2 border-dotted border-[#CDCDCD] w-[400px] max-h-[330px]">
+        <div onClick={() => ref.current?.click()} className="flex-[2] cursor-pointer relative text-[#A6A5A5] flex justify-center text-center items-center flex-col border-2 border-dotted self-center border-[#CDCDCD] min-w-[270px]   max-h-[330px] min-h-[240px]">
             <input
                 ref={ref}
                 type="file"
@@ -64,7 +64,7 @@ const SelectImage = ({
                     </p>
 
                 </div>
-            </div> : <div className='w-full h-full relative'>
+            </div> : <div className='h-[270px] sm:h-[460px] sm:w-[520px] w-[330px] border-2 border-red-500 relative'>
                 <Image onClick={(e) => {
                     e.stopPropagation()
                     ref.current?.click()
@@ -108,18 +108,18 @@ const BlogEdit = () => {
     }, [id])
     return (
         <DashboardLayout>
-            <div className="w-full h-[105px] relative px-[30px] flex gap-[22px] py-[28px] bg-[#E7F0F1]">
+            <div className="w-full h-fit min-h-[105px] relative px-[30px] flex gap-[22px] items-center bg-[#E7F0F1]">
 
                 <button onClick={() => {
                     router.back()
-                }} className="w-[48px] flex justify-center text-center items-center h-[48px] rounded-[20px_5px] bg-[#4E929D]">
+                }} className="min-w-[48px] flex justify-center text-center items-center min-h-[48px] rounded-[20px_5px] bg-[#4E929D]">
                     <ArrowBackIos className='text-[white] text-center translate-x-1' />
                 </button>
-                <div className="flex flex-col">
+                <div className="flex h-full justify-center flex-col">
                     <h1 className="font-nexa-bold text-[#4E929D]">
                         Düzenle
                     </h1>
-                    <p className='font-nexa-light text-[#828282]'>
+                    <p className='font-nexa-light text-[12px] md:text-[16px] text-[#828282]'>
                         Blog yazınızı düzenleyebilirsiniz.
                     </p>
                 </div>
@@ -133,14 +133,14 @@ const BlogEdit = () => {
                 }} initialValues={data} validationSchema={validationSchema}>
                     {({ handleChange, handleSubmit, values, setFieldValue, errors, submitForm, resetForm }) => {
                         return (<>
-                            <form onSubmit={handleSubmit} className="w-full flex gap-[50px]">
+                            <form onSubmit={handleSubmit} className="w-full px-4 lg:flex-row flex-col-reverse flex gap-[50px]">
                                 {loading && <div className="absolute flex items-center justify-center w-full h-full top-0 left-0 border-2">
                                     <CircularProgress className='text-[60px]' size={70} />
                                 </div>}
                                 <div className="flex-[3] flex flex-col gap-[24px]">
                                     <FormInput disabled={loading} onChange={handleChange} error={errors.title} name="title" value={values.title} label='Başlık' placeholder='' />
                                     <FormInputTextArea disabled={loading} onChange={handleChange} error={errors.content} name="content" value={values.content} inputClassName='h-[300px]' label='İçerik' placeholder='' />
-                                    <button type='button' disabled={loading} onClick={(e) => {
+                                    <button type='button' disabled={(loading || Object.keys(errors).length > 0 || !!Object.values(values).includes(""))} onClick={(e) => {
                                         e.preventDefault()
                                         let form = new FormData()
                                         if (!values.image) return;
@@ -166,7 +166,7 @@ const BlogEdit = () => {
                                             console.log("err", err);
                                             setLoading(false)
                                         })
-                                    }} className="bg-[#4E929D] rounded-[20px_5px] w-[252px] h-[50px] text-[white]">
+                                    }} className="bg-[#4E929D] disabled:opacity-60 self-center md:self-start rounded-[20px_5px] w-[252px] h-[50px] text-[white]">
                                         İçerik Yayınla
                                     </button>
                                 </div>

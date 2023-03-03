@@ -66,7 +66,7 @@ export default function BlogYazilari({ }: Props) {
                         {
                             blogs.length < 1 ? <>
 
-                                <h1 className='text-[56px] font-nexa-light'> Blog Bulunamadı  </h1>
+                                <h1 className='md:text-[56px] text-[24px] font-nexa-light'> Blog Bulunamadı  </h1>
                             </> : blogs.map((blog, index) => {
                                 return (
                                     <BlogCard key={index} blog={blog} />
