@@ -155,7 +155,7 @@ const Press = (props: { Id: string, Title: string, Description: string, Image: s
                         props.refreshPresses()
                     })
                 }} type="secondary" className='!p-0 bg-red-400 !px-[10px] !rounded-sm w-fit justify-end !py-[10px] grid place-content-center ' >
-                    <Remove />
+                    Sil
                 </Button>
             </div>
         </div>

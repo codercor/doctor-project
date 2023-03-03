@@ -231,19 +231,7 @@ export default function AppointmentManagement() {
                             randevularınızı yönetin.</Text>
                     </div>
                 </div>
-                <div className="w-full px-2 md:w-[60%] gap-[10px] mt-[10px] mb-[30px] flex">
-                    <input type="text" onChange={(e) => {
-                        setSearchKey(e.target.value)
-                    }
-                    } placeholder='Ad Soyad ya da E-posta adresine göre arayın'
-                        className='bg-[#D4E5E8] rounded-[20px_5px] w-full pl-[15px]' />
-
-                    <button onClick={() => {
-                        getAndSetAppointments()
-                    }} className='bg-[#EBF3F4] rounded-[20px_5px] w-[60px]'>
-                        <RefreshRounded />
-                    </button>
-                </div>
+               
                 <TableContainer className='bg-[white] '>
                     <Table aria-label="collapsible table">
                         <TableHead>
