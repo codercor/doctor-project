@@ -35,7 +35,7 @@ const Account = () => {
     const [_userInfo, setUserInfo] = React.useState<UserInformation>({
         Id: user.Information?.Id,
         Fullname: user.Information.Fullname,
-        Phone: user.Information.Phone,
+        Phone: user.Information.Phone || '90',
         Email: user.Email,
         BirthDate: user.Information.BirthDate,
         Gender: user.Information.Gender,
@@ -139,7 +139,7 @@ const Account = () => {
 
         const [phoneCode, setPhoneCode] = useState<string>("+90");
         return <form onSubmit={handleSubmit}>
-            <div className="flex  flex-col lg:flex-row max-w-full gap-[16px]">
+            <div className="flex  flex-col lg:flex-row max-w-full md:gap-[16px]">
                 <FormInput inputClass="w-full" disabled={!isEdit} name="Name" error={errors.Name} value={values.Name} onChange={_handleChange} label="Ad" type="text" />
                 <FormInput inputClass="w-full" disabled={!isEdit} name="Surname" error={errors.Surname} value={values.Surname} onChange={_handleChange} label="Soyad" type="text" />
             </div>
@@ -151,6 +151,7 @@ const Account = () => {
             <PhoneInput
                 country={'tr'}
                 value={values.Phone}
+                placeholder="90 555 555 55 55"
                 inputProps={{
                     name: 'Phone',
                     className: 'text-[black] text-[16px] w-full pl-[50px] font-nexa-bold rounded-[5px_20px_0px_20px] disabled:opacity-60',
@@ -231,7 +232,7 @@ const Account = () => {
                     </div>
                 </div>
             </RadioGroup>
-            {errors?.Gender && <p className="text-red-500 !text-[14px]  !py-[10px]">{errors.BirthDate}</p>}
+            {errors?.Gender && <p className="text-red-500 !text-[14px]  !py-[10px]">{errors?.Gender}</p>}
             <button onClick={(e) => {
                 console.log("values", values);
 

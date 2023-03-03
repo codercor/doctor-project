@@ -175,7 +175,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         }} className="overflow-auto   flex w-full h-screen">
             {  /*  Sidebar Normal */}
             <div
-                className={classNames("lg:sticky cursor-pointer hidden lg:block fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[40%] lg:min-w-[20%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
+                className={classNames("lg:sticky cursor-pointer hidden lg:block fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[40%] lg:min-w-[25%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
 
                 })}>
                 <div onClick={() => {
@@ -236,7 +236,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     </div>
                 </div>
             </div>
-            <Container className={classNames("lg:pl-[144px] md:pt-[30px] lg:pr-[144px] lg:w-[80%] md:w-full  h-full flex flex-col gap-[37px]", {
+            <Container className={classNames("lg:pl-[100px] md:pt-[30px] lg:pr-[100px] lg:w-[80%] md:w-full  h-full flex flex-col gap-[37px]", {
                 "md:blur-sm lg:blur-none": showMenu
             })}>
                 <DashBoardNavbar showMenu={showMenu} setShowMenu={setShowMenu} />
