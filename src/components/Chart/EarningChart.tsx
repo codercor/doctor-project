@@ -61,7 +61,7 @@ const renderActiveShape = (props: any) => {
 export default class EarningChart extends Component<any, any> {
 
     state = {
-        activeIndex: 0,
+        activeIndex: 1,
         data: []
     };
 
