@@ -18,25 +18,25 @@ const Training = ({ training }: { training: TrainingDataType }) => {
     return <div className="flex  items-center mt-4  justify-between px-4 bg-[white] w-full h-[85px]">
         <div className="flex flex-col items-start justify-start gap-2">
             <Text type='overline' className="text-[#4E929D] text-left !font-nexa-bold text-[14px]"> Eğitim adı </Text>
-            <Text type="paragraph" className="text-[black] text-left !font-nexa-bold text-[20px]"> {training.Name} </Text>
+            <Text type="paragraph" className="text-[black] text-left !font-nexa-bold text-[14px] sm:text-[20px]"> {training.Name} </Text>
         </div>
         <div className="flex flex-row items-start justify-start gap-2">
             <Button onClick={() => {
                 Router.push(`/training?id=${training.Id}`)
-            }} type="secondary" className="bg-[#9AA567] w-fit !p-4 gap-1 flex rounded-sm min-h-[36px]">
-                <Visibility className="text-[white] text-[16px]" />
+            }} type="secondary" className="bg-[#9AA567] w-fit sm:!p-4 !p-2  gap-1 flex rounded-sm min-h-[36px]">
+                <Visibility className="text-[white] !text-[16px] md:!text-[20px]" />
             </Button>
             <Button onClick={() => {
                 Router.push(`/dashboard/edit-training?id=${training.Id}`)
-            }} type="secondary" className="bg-[#E49B4F] w-fit  !p-4 gap-1 flex rounded-sm min-h-[36px]">
-                <Edit className="text-[white] text-[16px]" />
+            }} type="secondary" className="bg-[#E49B4F] w-fit  sm:!p-4 !p-2  gap-1 flex rounded-sm min-h-[36px]">
+                <Edit className="text-[white] !text-[16px] md:!text-[20px]" />
             </Button>
             <Button
                 onClick={() => {
                     if (training?.Id) deleteTrainingById(training?.Id);
                 }}
-                type="secondary" className="bg-[#CD2D2D] w-fit !p-4 gap-1 flex rounded-sm min-h-[36px]">
-                <Delete className="text-[white] text-[16px]" />
+                type="secondary" className="bg-[#CD2D2D] w-fit sm:!p-4  !p-2 gap-1 flex rounded-sm min-h-[36px]">
+                <Delete className="text-[white] !text-[16px] md:!text-[20px]" />
             </Button>
         </div>
     </div>
@@ -75,10 +75,10 @@ export default function Trainings() {
             <div className=" md:h-[798px] flex flex-col  rounded-[30px_5px] bg-[#F4F4F4]">
                 <div className="w-full h-fit flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
                     <div className="flex justify-between w-full">
-                        <Text type="h3" className="text-[#4E929D] !text-[20px] w-full">Tüm Eğitimler   </Text>
-                        <Button type="secondary" onClick={handleGoToCreate} className="bg-tertiary !min-w-[180px]  justify-center gap-1 flex items-center !min-h-[30px]">
+                        <Text type="h3" className="text-[#4E929D] !text-[16px] md:!text-[20px]  flex-1">Tüm Eğitimler   </Text>
+                        <Button type="secondary" onClick={handleGoToCreate} className="bg-tertiary max-w-[180px] flex-1 md:!min-w-[180px]  justify-center gap-1 flex items-center !min-h-[30px]">
                             <Edit className="text-[white] text-[12px]" />
-                            <Text className='text-[12px] w-full'>Eğitim ekle</Text>
+                            <Text className='!text-[12px] w-full'>Eğitim ekle</Text>
                         </Button>
                     </div>
                 </div>

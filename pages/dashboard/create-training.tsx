@@ -62,7 +62,7 @@ const validationSchema = Yup.object().shape({
         Content: Yup.string().required("Bu alan zorunludur"),
         StartDate: Yup.string().required("Bu alan zorunludur"),
         Time: Yup.number().required("Bu alan zorunludur").min(1, "Süre 0 ya da küçük olamaz"),
-    })).required("Bu alan zorunludur")
+    }))
 });
 
 const CreateTraining = () => {
@@ -123,7 +123,7 @@ const CreateTraining = () => {
                     </div>
                 </div>
                 <Formik validationSchema={validationSchema} onSubmit={() => { }} initialValues={trainingData}>
-                    {({ handleSubmit, values, handleChange: _handleChange, errors, setFieldValue, validateForm }) => {
+                    {({ handleSubmit, values, handleChange: _handleChange, errors, setFieldValue, validateForm, dirty, status, isValid }) => {
                         console.log("errors", errors);
                         const _handleSubmit = () => {
                             if (Object.keys(errors).length > 0 && !!trainingImage) return;
@@ -210,7 +210,7 @@ const CreateTraining = () => {
                                 <div className="bg-tertiary-flat min-w-[20px] min-h-[20px] h-fit rounded-full w-fit grid place-content-center px-2 text-[12px] text-[white] font-nexa-bold">
                                     {values.EducationSections.length} Adet
                                 </div>
-                                <div className="relative flex w-full pt-2 flex-col mt-4 snap-y h-[400px] scrollbar-thin scrollbar-thumb-quaternary border-red-400 overflow-auto">
+                                <div className="relative flex border-[1px] w-full pt-2 flex-col mt-4 snap-y h-[400px] scrollbar-thin scrollbar-thumb-quaternary border-[white] overflow-auto">
                                     {/* {
                                         trainingData.EducationSections.map((section, index) => (
                                             <TrainingBranch Time={section.Time} onChanges={(data, order) => {
@@ -258,7 +258,9 @@ const CreateTraining = () => {
                                         } />
                                     }
                                 </div>
-                                <Button onClick={_handleSubmit} type="secondary" className=" self-end mt-10 bg-tertiary w-[224px] h-[56px] !px-[16px] !py-[14px] gap-1 flex justify-center items-center !rounded-[10px_5px_10px_5px] min-h-[36px]">
+                                <Button onClick={_handleSubmit} disabled={
+                                    !(isValid && dirty && !!trainingImage)
+                                } type="secondary" className=" self-end mt-10 bg-tertiary disabled:cursor-not-allowed w-[224px] h-[56px] !px-[16px] !py-[14px] gap-1 flex justify-center items-center !rounded-[10px_5px_10px_5px] min-h-[36px]">
                                     <Add className="text-[white]" fontSize="medium" />
                                     <Text className="text-[20px]">Eğitimi Ekle</Text>
                                 </Button>
@@ -291,16 +293,17 @@ const TrainingBranch = ({ Content = "", StartDate = "", Time = 0, onChanges = ()
 
         onChanges(_tempBranchData, Order);
     }, [_tempBranchData, Order])
-    return <div className="flex flex-col shadow-lg bg-primary mt-4 border-2 p-1 relative snap-start">
-        <div onClick={() => onDelete()} className="rounded-full w-[30px] h-[30px] grid place-content-center bg-red-400 text-[white] absolute right-[0px] top-[-8px]">
+    return <div className="flex flex-col px-2 bg-opacity-40 shadow-lg bg-primary mt-4 border-2 p-1 relative snap-start">
+        <div onClick={() => onDelete()} className="rounded-full cursor-pointer w-[30px] h-[30px] grid place-content-center bg-red-400 text-[white] absolute right-[1px] top-[-2px]">
             <Delete fontSize="small" />
         </div>
         <FormInput value={_tempBranchData.Content} onChange={handleChange} name="Content" error={error?.Content} label="Alt Başlık" />
         <div className="flex flex-wrap flex-row gap-4">
             <div className="flex-1">
-                <FormInput value={_tempBranchData.StartDate} type="datetime-local" onChange={handleChange} name="StartDate" error={error?.StartDate} label="Eğitim Başlama Tarihi" />
+                <FormInput value={_tempBranchData.StartDate} type="datetime-local" inputClass="!text-[12px]" onChange={handleChange} name="StartDate" error={error?.StartDate} label="Eğitim Başlama Tarihi" />
             </div>    {/* <Input value={_tempBranchData.StartDate} type="datetime-local" onChange={handleChange} name="StartDate" text="Eğitim Başlama Tarihi" /> */}
-            <div className="flex-1">   <FormInput value={_tempBranchData.Time.toString()} type="number" onChange={handleChange} name="Time" label="Eğitim Süresi (dk)" error={error?.Time} />
+            <div className="flex-1">
+                <FormInput value={_tempBranchData.Time.toString()} type="number" onChange={handleChange} name="Time" label="Eğitim Süresi (dk)" error={error?.Time} />
                 {/* <Input value={_tempBranchData.Time.toString()} type="number" min={0} onChange={handleChange} name="Time" text="Eğitim Süresi (dk)" /> */}
             </div>
         </div>
