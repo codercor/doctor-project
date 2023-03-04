@@ -32,11 +32,16 @@ export default function PaymentForm({ EducationId, UserId }: { EducationId: stri
     console.log("style", style);
 
     const [cardData, setCardData] = React.useState({
-        CardHolderName: "John Doe",
-        CardNumber: "5528790000000008",
-        ExpireMonth: "12",
-        ExpireYear: "2030",
-        Cvc: "123",
+        // CardHolderName: "John Doe",
+        // CardNumber: "5528790000000008",
+        // ExpireMonth: "12",
+        // ExpireYear: "2030",
+        // Cvc: "123",
+        CardHolderName: "",
+        CardNumber: "",
+        ExpireMonth: "",
+        ExpireYear: "",
+        Cvc: "",
     });
 
     const { htmlContent } = useSelector(selectPayment)
@@ -96,7 +101,7 @@ export default function PaymentForm({ EducationId, UserId }: { EducationId: stri
                     </div>
                     <div className="mb-3 -mx-2 flex items-end">
                         <div className="px-2 w-1/2">
-                            <label className="font-bold text-sm mb-2 ml-1">Son Kul. Tarihi</label>
+                            <label className="font-bold text-sm mb-2 ml-1">Son Kullanma Tarihi</label>
                             <div>
                                 <select
                                     name="ExpireMonth"

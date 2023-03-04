@@ -314,86 +314,99 @@ export const flow3FormValidationSchema = Yup.object({
     significantExposureToHarmfulChemicalDesc: SelectIsValueValidation("significantExposureToHarmfulChemical"),
     petOrFarmAnimal: textValidationSchema,
     petOrFarmAnimalDesc: textValidationSchema,
+
+
+
+
+
+    //erkek
     suitablePartsForYou: Yup.array().of(
-        textValidationSchema
+        freeTextValidationSchema
     ),
     suitablePartsForYouPeeDesc: Yup.string().when("suitablePartsForYou", {
         is: (val: any) => val.includes("gece idrara çıkma"),
-        then: textValidationSchema
+        then: freeTextValidationSchema
     }),
     suitablePartsForYouSexualDesc: Yup.string().when("suitablePartsForYou", {
         is: (val: any) => val.includes("cinsel yol ile bulaşan hastalık"),
-        then: textValidationSchema
+        then: freeTextValidationSchema
     }),
+// son
+
+
+
     pillEffect1: textValidationSchema,
     pillEffect1Desc: SelectIsValueValidation("pillEffect1"),
     ABUse1: textValidationSchema,
     ABUse1Desc: SelectIsValueValidation("ABUse1"),
-    psa: textValidationSchema,
-    psaValue: textValidationSchema,
-    otherTest: textValidationSchema,
-    pregnancy: textValidationSchema,
-    pregnancyCount: textValidationSchema,
-    low: textValidationSchema,
-    lowCount: textValidationSchema,
-    abortion: textValidationSchema,
-    abortionCount: textValidationSchema,
-    livingChild: textValidationSchema,
-    livingChildCount: textValidationSchema,
-    naturalChildbirth: textValidationSchema,
-    naturalChildbirthCount: textValidationSchema,
-    cesareanDelivery: textValidationSchema,
-    cesareanDeliveryCount: textValidationSchema,
-    birthdayOnTheDay: textValidationSchema,
-    birthdayOnTheDayCount: textValidationSchema,
-    premature: textValidationSchema,
-    prematureCount: textValidationSchema,
-    bigbaby: textValidationSchema,
-    bigbabyCount: textValidationSchema,
-    smallbaby: textValidationSchema,
-    smallbabyCount: textValidationSchema,
-    postPregnancyProblems: textValidationSchema,
+
+
+//erkek
+    psa: freeTextValidationSchema,
+    psaValue: freeTextValidationSchema,
+    otherTest: freeTextValidationSchema,
+    pregnancy: freeTextValidationSchema,
+    pregnancyCount: freeTextValidationSchema,
+    low: freeTextValidationSchema,
+    lowCount: freeTextValidationSchema,
+    abortion: freeTextValidationSchema,
+    abortionCount: freeTextValidationSchema,
+    livingChild: freeTextValidationSchema,
+    livingChildCount: freeTextValidationSchema,
+    naturalChildbirth: freeTextValidationSchema,
+    naturalChildbirthCount: freeTextValidationSchema,
+    cesareanDelivery: freeTextValidationSchema,
+    cesareanDeliveryCount: freeTextValidationSchema,
+    birthdayOnTheDay: freeTextValidationSchema,
+    birthdayOnTheDayCount: freeTextValidationSchema,
+    premature: freeTextValidationSchema,
+    prematureCount: freeTextValidationSchema,
+    bigbaby: freeTextValidationSchema,
+    bigbabyCount: freeTextValidationSchema,
+    smallbaby: freeTextValidationSchema,
+    smallbabyCount: freeTextValidationSchema,
+    postPregnancyProblems: freeTextValidationSchema,
     postPregnancyProblemsDesc: freeTextValidationSchema,
 
     //date alan
-    firstMenstrualAge: textValidationSchema,
-    lastMenstrualAge: textValidationSchema,
+    firstMenstrualAge: freeTextValidationSchema,
+    lastMenstrualAge: freeTextValidationSchema,
 
 
-    menstruationInterval: textValidationSchema,
-    menstrualPeriod: textValidationSchema,
-    menstrualCramp: textValidationSchema,
-    menstrualPain: textValidationSchema,
-    menstrualProblems: textValidationSchema,
+    menstruationInterval: freeTextValidationSchema,
+    menstrualPeriod: freeTextValidationSchema,
+    menstrualCramp: freeTextValidationSchema,
+    menstrualPain: freeTextValidationSchema,
+    menstrualProblems: freeTextValidationSchema,
     menstrualProblemsDesc: freeTextValidationSchema,
-    lastMenstrualProblems: textValidationSchema,
+    lastMenstrualProblems: freeTextValidationSchema,
     lastMenstrualProblemsDesc: freeTextValidationSchema,
-    hormonalBirthControl: textValidationSchema,
+    hormonalBirthControl: freeTextValidationSchema,
     hormonalBirthControlDesc: freeTextValidationSchema,
-    anotherMethod: textValidationSchema,
+    anotherMethod: freeTextValidationSchema,
     anotherMethods: Yup.array().of(
-        textValidationSchema
+        freeTextValidationSchema
     ),
-    IsMenopause: textValidationSchema,
-    MenopauseLastedAge: textValidationSchema,
-    surgicalMenopause: textValidationSchema,
+    IsMenopause: freeTextValidationSchema,
+    MenopauseLastedAge: freeTextValidationSchema,
+    surgicalMenopause: freeTextValidationSchema,
     surgicalMenopauseDesc: freeTextValidationSchema,
     menopauseComplaints: Yup.array().of(
-        textValidationSchema
+        freeTextValidationSchema
     ),
-    hormoneTherapy: textValidationSchema,
+    hormoneTherapy: freeTextValidationSchema,
     hormoneTherapyDesc: freeTextValidationSchema,
     gynecologicalSymptoms: Yup.array().of(
-        textValidationSchema
+        freeTextValidationSchema
     ),
     gynecologicalSymptomsDesc: freeTextValidationSchema,
-    smearTest: textValidationSchema,
-    smearTestResponse: textValidationSchema,
-    mammographyTest: textValidationSchema,
-    mammographyTestResponse: textValidationSchema,
-    bone: textValidationSchema,
-    boneResponse: textValidationSchema,
-    anotherTest: textValidationSchema,
+    smearTest: freeTextValidationSchema,
+    smearTestResponse: freeTextValidationSchema,
+    mammographyTest: freeTextValidationSchema,
+    mammographyTestResponse: freeTextValidationSchema,
+    bone: freeTextValidationSchema,
+    boneResponse: freeTextValidationSchema,
+    anotherTest: freeTextValidationSchema,
     anotherTestDesc: freeTextValidationSchema,
 
     medicalResumeDigestionQuestion1: textValidationSchema,
@@ -569,9 +582,11 @@ export const flow3FormValidationSchema = Yup.object({
     examinationOfSymptomsPeeQuestion5: textValidationSchema,
     examinationOfSymptomsPeeQuestion6: textValidationSchema,
     examinationOfSymptomsPeeQuestion7: textValidationSchema,
-    examinationOfSymptomsPeeQuestion8: textValidationSchema,
-    examinationOfSymptomsPeeQuestion9: textValidationSchema,
-    examinationOfSymptomsPeeQuestion10: textValidationSchema,
+
+    //erkek
+    examinationOfSymptomsPeeQuestion8: freeTextValidationSchema,
+    examinationOfSymptomsPeeQuestion9: freeTextValidationSchema,
+    examinationOfSymptomsPeeQuestion10: freeTextValidationSchema,
 
 
     examinationOfSymptomsDigestionQuestion1: textValidationSchema,
@@ -663,28 +678,31 @@ export const flow3FormValidationSchema = Yup.object({
     anotherTest92: textValidationSchema, anotherTest93: textValidationSchema,
     anotherTest94: textValidationSchema, anotherTest95: textValidationSchema,
     anotherTest96: textValidationSchema, 
-
-
+    
+    //erkek
     anotherTest97: freeTextValidationSchema,
     anotherTest98: freeTextValidationSchema, anotherTest99: freeTextValidationSchema,
     anotherTest100: freeTextValidationSchema, anotherTest101: freeTextValidationSchema,
     anotherTest102: freeTextValidationSchema, anotherTest103: freeTextValidationSchema,
+    anotherTest104: freeTextValidationSchema,
+    //erkek son
 
-
-    anotherTest104: textValidationSchema, anotherTest105: textValidationSchema,
-    anotherTest106: textValidationSchema, anotherTest107: textValidationSchema,
-    anotherTest108: textValidationSchema, anotherTest109: textValidationSchema,
-    anotherTest110: textValidationSchema, anotherTest111: textValidationSchema,
-    anotherTest112: textValidationSchema, anotherTest113: textValidationSchema,
-    anotherTest114: textValidationSchema, anotherTest115: textValidationSchema,
-    anotherTest116: textValidationSchema, anotherTest117: textValidationSchema,
-    anotherTest118: textValidationSchema, anotherTest119: textValidationSchema,
-    anotherTest120: textValidationSchema, anotherTest121: textValidationSchema,
-    anotherTest122: textValidationSchema, anotherTest123: textValidationSchema,
-    anotherTest124: textValidationSchema, anotherTest125: textValidationSchema,
-    anotherTest126: textValidationSchema, anotherTest127: textValidationSchema,
-    anotherTest128: textValidationSchema, anotherTest129: textValidationSchema,
-    anotherTest130: textValidationSchema,
+    //kadın
+    anotherTest105: freeTextValidationSchema,
+    anotherTest106: freeTextValidationSchema, anotherTest107: freeTextValidationSchema,
+    anotherTest108: freeTextValidationSchema, anotherTest109: freeTextValidationSchema,
+    anotherTest110: freeTextValidationSchema, anotherTest111: freeTextValidationSchema,
+    anotherTest112: freeTextValidationSchema, anotherTest113: freeTextValidationSchema,
+    anotherTest114: freeTextValidationSchema, anotherTest115: freeTextValidationSchema,
+    anotherTest116: freeTextValidationSchema, anotherTest117: freeTextValidationSchema,
+    anotherTest118: freeTextValidationSchema, anotherTest119: freeTextValidationSchema,
+    anotherTest120: freeTextValidationSchema, anotherTest121: freeTextValidationSchema,
+    anotherTest122: freeTextValidationSchema, anotherTest123: freeTextValidationSchema,
+    anotherTest124: freeTextValidationSchema, anotherTest125: freeTextValidationSchema,
+    anotherTest126: freeTextValidationSchema, anotherTest127: freeTextValidationSchema,
+    anotherTest128: freeTextValidationSchema, anotherTest129: freeTextValidationSchema,
+    anotherTest130: freeTextValidationSchema,
+ //kadın son
     anotherTest131: Yup.number().required("Bu alan zorunludur").min(1, "En az 1 olmalıdır").max(5, "En fazla 5 olmalıdır"),
     anotherTest132: Yup.number().required("Bu alan zorunludur").min(1, "En az 1 olmalıdır").max(5, "En fazla 5 olmalıdır"),
     anotherTest133: Yup.number().required("Bu alan zorunludur").min(1, "En az 1 olmalıdır").max(5, "En fazla 5 olmalıdır"),
@@ -705,7 +723,7 @@ export const flow3FormValidationSchema = Yup.object({
     anotherTest148: textValidationSchema,
     anotherTest149: textValidationSchema,
     anotherTest150: textValidationSchema,
-    anotherTest151: textValidationSchema,
+    anotherTest151: freeTextValidationSchema,
 })
 
 
