@@ -99,7 +99,9 @@ export const flow3FormValidationSchema = Yup.object({
     name: textValidationSchema,
     age: Yup.number().min(0,"Minumum 0 olabilir").required("Zorunlu alan"),
     birthDate: textValidationSchema,
-    email: textValidationSchema,
+    email: Yup.string()
+    .email("Geçerli bir email giriniz")
+    .required("Zorunlu alan"),
     address: textValidationSchema,
     city: textValidationSchema,
     phoneCell: textValidationSchema,
