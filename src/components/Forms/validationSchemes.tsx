@@ -662,10 +662,15 @@ export const flow3FormValidationSchema = Yup.object({
     anotherTest90: textValidationSchema, anotherTest91: textValidationSchema,
     anotherTest92: textValidationSchema, anotherTest93: textValidationSchema,
     anotherTest94: textValidationSchema, anotherTest95: textValidationSchema,
-    anotherTest96: textValidationSchema, anotherTest97: textValidationSchema,
-    anotherTest98: textValidationSchema, anotherTest99: textValidationSchema,
-    anotherTest100: textValidationSchema, anotherTest101: textValidationSchema,
-    anotherTest102: textValidationSchema, anotherTest103: textValidationSchema,
+    anotherTest96: textValidationSchema, 
+
+
+    anotherTest97: freeTextValidationSchema,
+    anotherTest98: freeTextValidationSchema, anotherTest99: freeTextValidationSchema,
+    anotherTest100: freeTextValidationSchema, anotherTest101: freeTextValidationSchema,
+    anotherTest102: freeTextValidationSchema, anotherTest103: freeTextValidationSchema,
+
+
     anotherTest104: textValidationSchema, anotherTest105: textValidationSchema,
     anotherTest106: textValidationSchema, anotherTest107: textValidationSchema,
     anotherTest108: textValidationSchema, anotherTest109: textValidationSchema,
