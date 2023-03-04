@@ -186,7 +186,7 @@ export const flow3FormInitialValues = {
     job: "",
     oldJob: "",
     emotionalSupport: "",
-    emotionalSupportSelect: [],
+    emotionalSupportSelect: "",
     emotionalSupportOther: "",
     general: "",
     school: "",

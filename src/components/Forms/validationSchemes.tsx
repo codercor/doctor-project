@@ -86,14 +86,6 @@ return Yup.string().when(name, {
 })
 }
 
-export function SelectIsMultiValueValidation(name:string,value:string = "evet"){
-    return Yup.string().when(name, {
-        is: (name: string[]) => name.includes(value),
-        then: Yup.string().required("Zorunlu alan"),
-        otherwise: Yup.string(),
-    })
-    }
-
 export const flow3FormValidationSchema = Yup.object({
     motherMilk: singleSelectValidationSchema,
     motherMilkDesc: Yup.string().when("motherMilk", {
@@ -148,8 +140,10 @@ export const flow3FormValidationSchema = Yup.object({
     diet: Yup.array().of(
         textValidationSchema
     ),
-    dietDesc: SelectIsMultiValueValidation("diet","diğer"),
-    
+    dietDesc: Yup.string().when("diet", {
+        is: (val: any) => val.includes("diğer"),
+        then: textValidationSchema
+    }),
     foodSensitivity: textValidationSchema,
     foodSensitivityDetail: SelectIsValueValidation("foodSensitivity"),
     foodAvoid: textValidationSchema,
@@ -247,11 +241,10 @@ export const flow3FormValidationSchema = Yup.object({
     job: textValidationSchema,
     oldJob: textValidationSchema,
     emotionalSupport: textValidationSchema,
-    emotionalSupportSelect: SelectIsMultiValueValidation("emotionalSupport","diger"),
-    emotionalSupportOther: Yup.string().when("emotionalSupportSelect", {
-        is: (val: any) => val.includes("diger"),
-        then: textValidationSchema
-    }),
+    emotionalSupportSelect: Yup.array().of(
+        textValidationSchema
+    ),
+    emotionalSupportOther: SelectIsValueValidation("emotionalSupportSelect"),
     worship: textValidationSchema,
     worshipDesc: SelectIsValueValidation("worship"),
     general: textValidationSchema,
