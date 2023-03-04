@@ -91,7 +91,6 @@ export const fetchUsersTrainingsRequest = async (id: string) => {
         const response = await request.get(
             TRAININGS_WITH_USER_ID.replace(':UserId', id),
         );
-        console.log("users trainings data", response.data);
         toast.success('Kullanıcı eğitimleri getirildi.', { id: _toast });
         let filtered = response.data.data.map((item: any) => item.Education);
         return filtered;

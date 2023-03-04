@@ -193,14 +193,13 @@ export default function TrainingDetailPage() {
     console.log("query", query.id);
     const { user: { IsAuthenticated, UsersTrainings, IsAdmin }, getUsersTrainings } = useUser();
 
-   
+
     const [hasUser, setHasUser] = useState(false)
     const [ownTraining, setOwnTraining] = useState(null)
     useEffect(() => {
         if (IsAdmin) return;
-        if (IsAuthenticated && UsersTrainings.length < 1) {
+        if (IsAuthenticated && UsersTrainings.length > 0) {
             getUsersTrainings()
-        } else if (IsAuthenticated && UsersTrainings.length > 0) {
             console.log("UsersTrainings", UsersTrainings);
             if (UsersTrainings.filter(item => item).find(item => item.Id == query.id)) {
                 setHasUser(true)
