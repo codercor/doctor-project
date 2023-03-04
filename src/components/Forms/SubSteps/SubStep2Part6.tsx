@@ -97,8 +97,8 @@ export default function SubStep2Part6({
 
             <div className="flex py-4 flex-col bg-[#F9F9F9] items-center gap-[30px] pt-5 w-[full]">
            <label className="font-nexa-bold text-[20px] text-[#4E929D]"> Aşağıdakilerden her biri günlük ne kadar strese neden olur? (1-10 arası puan verin, 10 en çok)</label>
-            <div className="flex min-h-[150px] bg-[#F9F9F9] items-center gap-[30px] w-[full]">
-                <div className="min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[150px]">
+            <div className="flex min-h-[150px] flex-wrap px-[30px]  bg-[#F9F9F9] items-center gap-[30px] w-[full]">
+                <div className="bg-[#F9F9F9] items-center gap-[30px] min-w-[100px]">
                     <FormInput
                         label={`İş`}
                         value={values.workStress}
@@ -108,7 +108,7 @@ export default function SubStep2Part6({
                         onChange={handleChange}
                     />
                 </div>
-                <div className="min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[150px]">
+                <div className="bg-[#F9F9F9] items-center gap-[30px] min-w-[100px]">
                     <FormInput
                         label={`Aile`}
                         value={values.familyStress}
@@ -118,7 +118,7 @@ export default function SubStep2Part6({
                         onChange={handleChange}
                     />
                 </div>
-                <div className="min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[150px]">
+                <div className="bg-[#F9F9F9] items-center gap-[30px] min-w-[100px]">
                     <FormInput
                         label={`Sağlık`}
                         value={values.healtyStress}
@@ -128,7 +128,7 @@ export default function SubStep2Part6({
                         onChange={handleChange}
                     />
                 </div>
-                <div className="min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[150px]">
+                <div className="bg-[#F9F9F9] items-center gap-[30px] min-w-[100px]">
                     <FormInput
                         label={`Sosyal`}
                         value={values.socialStress}
@@ -138,7 +138,7 @@ export default function SubStep2Part6({
                         onChange={handleChange}
                     />
                 </div>
-                <div className="min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[150px]">
+                <div className="bg-[#F9F9F9] items-center gap-[30px] min-w-[100px]">
                     <FormInput
                         label={`Maddi`}
                         value={values.materialStress}
@@ -148,7 +148,7 @@ export default function SubStep2Part6({
                         onChange={handleChange}
                     />
                 </div>
-                <div className="min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[150px]">
+                <div className="bg-[#F9F9F9] items-center gap-[30px] min-w-[100px]">
                     <FormInput
                         label={`Diğer`}
                         value={values.otherStress}

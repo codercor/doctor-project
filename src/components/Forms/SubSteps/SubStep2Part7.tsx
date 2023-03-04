@@ -73,7 +73,7 @@ export default function SubStep2Part7({
     const { user } = useUser()
     return (
         <>
-            <label className="font-nexa-bold text-[20px] text-[#4E929D]">Sence hayatında işler nasıl gidiyor? (1–10 arası ölçekte işaretleyin, uygun değilse N/A işaretle) (1)Kötü (5) Orta  (10) Çok iyi</label>
+            <label className="font-nexa-bold text-[20px] text-[#4E929D] py-3">Sence hayatında işler nasıl gidiyor? (1–10 arası ölçekte işaretleyin, uygun değilse N/A işaretle) (1)Kötü (5) Orta  (10) Çok iyi</label>
             <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
                     label="Genel olarak"
@@ -204,7 +204,7 @@ export default function SubStep2Part7({
                     />
                 }
             </div>
-            <div className="flex py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
+            <div className="flex py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-full">
                 <FormInputSelectOne
                     onChange={handleChange}
                     label="Bebeklik döneminde ne ile beslendiniz, annesütü mü, formül mama mı?"

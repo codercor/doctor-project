@@ -244,7 +244,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     </div>
                 </div>
             </div>
-            <Container className={classNames("lg:pl-[100px] md:pt-[30px] lg:pr-[100px] lg:w-[80%] md:w-full  h-full flex flex-col gap-[37px]", {
+            <Container className={classNames("lg:pl-[50px] md:pt-[30px] lg:pr-[50px] lg:w-[80%] md:w-full  h-full flex flex-col gap-[37px]", {
                 "md:blur-sm lg:blur-none": showMenu
             })}>
                 <DashBoardNavbar showMenu={showMenu} setShowMenu={setShowMenu} />

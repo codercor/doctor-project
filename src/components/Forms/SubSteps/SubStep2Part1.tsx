@@ -54,7 +54,7 @@ export default function SubStep2Part1({
           value={values.email}
           error={errors.email}
           name="email"
-          type="text"
+          type="email"
           onChange={handleChange}
         />
       </div>

@@ -561,7 +561,7 @@ export default function SubStep2Part8({
 
                     <FormInputSelectOne
                         label="Adet öncesi problem yaşar mısınız (şişkinlik, memelerde hassasiyet, sinirlilik…)?"
-                        name="postPregnancyProblems"
+                        name="menstrualProblems"
                         options={EH}
                         value={values.menstrualProblems}
                         error={errors?.menstrualProblems}
@@ -586,7 +586,7 @@ export default function SubStep2Part8({
                         error={errors?.lastMenstrualProblems}
                         onChange={handleChange}
                     />{
-                        values.postPregnancyProblems === "evet" &&
+                        values.lastMenstrualProblems === "evet" &&
                         <FormInput
                             label={`Açıklayınız ?`}
                             value={values.lastMenstrualProblemsDesc}
@@ -624,7 +624,7 @@ export default function SubStep2Part8({
                         error={errors?.anotherMethod}
                         onChange={handleChange}
                     />{
-                        values.postPregnancyProblems === "evet" &&
+                        values.anotherMethod === "evet" &&
                         <FormInputSelectMulti
                             label="Başka yöntem kullanıyor musunuz?"
                             name="anotherMethods"
@@ -647,7 +647,7 @@ export default function SubStep2Part8({
                         error={errors?.IsMenopause}
                         onChange={handleChange}
                     />{
-                        values.postPregnancyProblems === "evet" && <>
+                        values.IsMenopause === "evet" && <>
                             <FormInput
                                 label={`Son adet yaşı ?`}
                                 value={values.MenopauseLastedAge}
