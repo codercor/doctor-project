@@ -48,7 +48,7 @@ const Login = () => {
             </Head>
             <div
                 className="md:h-full h-[500px] w-[340px] md:w-full lg:w-[340px]  flex justify-center items-center rounded-[30px_5px]">
-                <div className="w-[380px] md:min-w-full 2xl:w-full h-[402px] flex flex-col items-center lg:mr-[62px]">
+                <div className="sm:w-[380px] w-[90%] md:min-w-full 2xl:w-full h-[402px] flex flex-col items-center lg:mr-[62px]">
                     <Text type="h3" className="text-white !text-[34px]">Giriş Yap</Text>
                     {error.IsError &&
                         <Text type="paragraph" className="text-red-500 !text-[14px]">{error.ErrorMessage}</Text>}

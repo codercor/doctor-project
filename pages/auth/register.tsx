@@ -46,6 +46,7 @@ const RegisterForm = () => {
                 toast.error(err.response.data.message, {
                     duration: 4000,
                 })
+                router.push("/auth/pre-register");
             })
         }
     }, [router.query.id])

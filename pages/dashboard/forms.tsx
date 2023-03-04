@@ -149,7 +149,10 @@ export default function Forms() {
     return (
         <DashboardLayout>
             {<>
-                <div className="bg-[white] sm:block px-4">
+                <div className="block md:hidden">
+                    <FormAlert text="Bu sayfa mobil cihazlar tarafından desteklenmiyor" status="inReview" />
+                </div>
+                <div className="bg-[white] hidden md:block px-4">
                     {/* <h1> step {selectedStep} locked {showLastForm + ""} last step {showLastFormStep + ""} </h1> */}
                     <FormSteps
                         selectedStep={selectedStep}

@@ -29,8 +29,11 @@ const Egitimler = () => {
     const [loading, setLoading] = useState(false)
     const [publicTrainings, setPublicTrainings] = useState<TrainingDataType[]>([])
     const [pageCount, setPageCount] = useState(1)
+    let [stopGet, setStopGet] = useState(false)
     const getPublicTrainings = async (page: number) => {
+        if (stopGet == true) return;
         getPublicTrainingsRequest(page).then((res: any) => {
+            if (res.data.length == 0) setStopGet(true)
             setPublicTrainings(res.data)
             setPageCount(res.pageCount)
             setLoading(false)

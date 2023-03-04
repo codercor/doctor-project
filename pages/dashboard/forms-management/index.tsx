@@ -131,8 +131,10 @@ export default function FormManagement() {
     }
 
     return <DashboardLayout>
-
-        <div className=" md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
+        <div className="block md:hidden">
+            <FormAlert text="Bu sayfa mobil cihazlar tarafından desteklenmiyor" status="inReview" />
+        </div>
+        <div className=" md:min-h-[798px] hidden md:flex flex-col  rounded-[30px_5px] bg-[transparent]">
             <div className="w-1/3 flex flex-col text-start items-center justify-start py-[26px] px-[10px]">
                 <div className="flex flex-col justify-between w-full">
                     <Text type="h3" className="text-[#4D5628] !text-[20px] w-full">Formlar</Text>
