@@ -1997,7 +1997,8 @@ export default function SubStep2Part10({
                             error={errors?.anotherTest102}
                             onChange={handleChange}
                         />
-                        <FormInputSelectOne
+                     <div className="pb-4">
+                     <FormInputSelectOne
                             label="Düşük libido (sex isteğinde azalma)"
                             name="anotherTest103"
                             options={HOS}
@@ -2005,6 +2006,7 @@ export default function SubStep2Part10({
                             error={errors?.anotherTest103}
                             onChange={handleChange}
                         />
+                     </div>
                     </>
 
                 }

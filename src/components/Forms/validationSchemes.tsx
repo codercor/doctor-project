@@ -241,9 +241,7 @@ export const flow3FormValidationSchema = Yup.object({
     job: textValidationSchema,
     oldJob: textValidationSchema,
     emotionalSupport: textValidationSchema,
-    emotionalSupportSelect: Yup.array().of(
-        textValidationSchema
-    ),
+    emotionalSupportSelect:multiSelectValidationSchema,
     emotionalSupportOther: Yup.string().when("emotionalSupportSelect", {
         is: (val: any) => val.includes("diger"),
         then: textValidationSchema
