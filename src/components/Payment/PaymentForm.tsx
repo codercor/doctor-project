@@ -7,6 +7,10 @@ import { payment, setPaymentCredentials, selectPayment } from '@app/Payment/paym
 import axios from 'axios';
 import { Dispatch } from '@reduxjs/toolkit';
 import { Loading } from 'pages/dashboard/create-training';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import validator from 'card-validator'
+
 const Form = ({ htmlContent }: { htmlContent: string }) => {
     //get form from htmlContent
     const ref = React.useRef<HTMLDivElement>(null);
@@ -28,9 +32,28 @@ const Form = ({ htmlContent }: { htmlContent: string }) => {
     </>
     )
 }
-export default function PaymentForm({ EducationId, UserId }: { EducationId: string, UserId: string }) {
-    console.log("style", style);
 
+const validationSchema = Yup.object().shape({
+    CardNumber: Yup.string().test('is-valid', 'Geçersiz kart numarası', (value) => {
+        const card = validator.number(value as string);
+        return card.isValid;
+    }),
+    ExpireMonth: Yup.string().test('is-valid', 'Geçersiz ay', (value) => {
+        const month = validator.expirationMonth(value as string);
+        return month.isValid;
+    }),
+    ExpireYear: Yup.string().test('is-valid', 'Geçersiz yıl', (value) => {
+        const year = validator.expirationYear(value as string);
+        return year.isValid;
+    }),
+    Cvc: Yup.string().test('is-valid', 'Geçersiz cvc', (value) => {
+        const cvc = validator.cvv(value as string);
+        return cvc.isValid;
+    }),
+    CardHolderName: Yup.string().required('Kart sahibi adı zorunludur'),
+})
+
+export default function PaymentForm({ EducationId, UserId }: { EducationId: string, UserId: string }) {
     const [cardData, setCardData] = React.useState({
         // CardHolderName: "John Doe",
         // CardNumber: "5528790000000008",
@@ -43,7 +66,6 @@ export default function PaymentForm({ EducationId, UserId }: { EducationId: stri
         ExpireYear: "",
         Cvc: "",
     });
-
     const { htmlContent } = useSelector(selectPayment)
     useEffect(() => {
         htmlContent && console.log("htmlContent", (htmlContent));
@@ -82,95 +104,108 @@ export default function PaymentForm({ EducationId, UserId }: { EducationId: stri
                             </label>
                         </div>
                     </div>
-                    <div className="mb-3">
-                        <label className="font-bold text-sm mb-2 ml-1"> Kart Üzerindeki İsim </label>
-                        <div>
-                            <input
-                                name="CardHolderName"
-                                onChange={handleChange} value={cardData.CardHolderName} className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="AD SOYAD" type="text" />
-                        </div>
-                    </div>
-                    <div className="mb-3">
-                        <label className="font-bold text-sm mb-2 ml-1">Kart Numarası</label>
-                        <div>
-                            <input
-
-                                name="CardNumber"
-                                onChange={handleChange} value={cardData.CardNumber} className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="0000 0000 0000 0000" type="text" />
-                        </div>
-                    </div>
-                    <div className="mb-3 -mx-2 flex items-end">
-                        <div className="px-2 w-1/2">
-                            <label className="font-bold text-sm mb-2 ml-1">Son Kullanma Tarihi</label>
-                            <div>
-                                <select
-                                    name="ExpireMonth"
-                                    onChange={handleChange} value={cardData.ExpireMonth} className={classNames("w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer", style['payment-form-select'])}>
-                                    <option value="01">01</option>
-                                    <option value="02">02</option>
-                                    <option value="03">03 </option>
-                                    <option value="04">04</option>
-                                    <option value="05">05 </option>
-                                    <option value="06">06</option>
-                                    <option value="07">07</option>
-                                    <option value="08">08</option>
-                                    <option value="09">09</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className="px-2 w-1/2">
-                            <select
-                                name="ExpireYear"
-                                onChange={handleChange} value={cardData.ExpireYear} className={classNames("w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer", style['payment-form-select'])}>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
-                                <option value="2025">2025</option>
-                                <option value="2026">2026</option>
-                                <option value="2027">2027</option>
-                                <option value="2028">2028</option>
-                                <option value="2029">2029</option>
-                                <option value="2030">2030</option>
-                                <option value="2031">2031</option>
-                                <option value="2032">2032</option>
-                                <option value="2033">2033</option>
-                                <option value="2034">2034</option>
-                                <option value="2035">2035</option>
-                                <option value="2036">2036</option>
-                                <option value="2037">2037</option>
-                                <option value="2038">2038</option>
-                                <option value="2039">2039</option>
-                                <option value="2040">2040</option>
-
-                            </select>
-                        </div>
-                    </div>
-                    <div className="mb-10">
-                        <label className="font-bold text-sm mb-2 ml-1">CVV</label>
-                        <div>
-                            <input
-                                name="Cvc"
-                                onChange={handleChange} value={cardData.Cvc} className="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="000" type="text" />
-                        </div>
-                    </div>
-                    <div>
-                        <button onClick={() => {
-                            let paymentData = {
-                                ...cardData,
-                                EducationId,
-                                UserId,
-
-                            }
-                            console.log("paymentData", paymentData);
-                            dispatch(setPaymentCredentials(paymentData))
-                            //@ts-ignore
-                            dispatch(payment())
-
-                        }} className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-[white] rounded-lg px-3 py-3 font-semibold"><i className="mdi mdi-lock-outline mr-1"></i>Ödeme Yap</button>
-                    </div>
+                    <Formik validationSchema={validationSchema} initialValues={{
+                        ...cardData,
+                    }} onSubmit={() => { }}>
+                        {({ validateForm, values, errors, handleChange: _handleChange, isValid }) => {
+                            return <form>
+                                <div className="mb-0">
+                                    <label className="font-bold text-sm mb-2 ml-1"> Kart Üzerindeki İsim </label>
+                                    <div>
+                                        <input
+                                            name="CardHolderName"
+                                            onChange={_handleChange} value={values.CardHolderName} className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="AD SOYAD" type="text" />
+                                    </div>
+                                </div>
+                                <p className="text-red-500 leading-none !text-[14px]"> {errors.CardHolderName} </p>
+                                <div className="mb-0">
+                                    <label className="font-bold text-sm mb-2 ml-1">Kart Numarası</label>
+                                    <div>
+                                        <input
+                                            name="CardNumber"
+                                            onChange={_handleChange} value={values.CardNumber} className="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="0000 0000 0000 0000" type="text" />
+                                    </div>
+                                </div>
+                                <p className="text-red-500 leading-none !text-[14px]"> {errors.CardNumber} </p>
+                                <div className="mb-2 -mx-2 flex items-end">
+                                    <div className="px-2 w-1/2">
+                                        <label className="font-bold text-sm mb-2 ml-1">Son Kullanma Tarihi</label>
+                                        <div>
+                                            <select
+                                                name="ExpireMonth"
+                                                onChange={_handleChange} value={values.ExpireMonth} className={classNames("w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer", style['payment-form-select'])}>
+                                                <option value="01">01</option>
+                                                <option value="02">02</option>
+                                                <option value="03">03 </option>
+                                                <option value="04">04</option>
+                                                <option value="05">05 </option>
+                                                <option value="06">06</option>
+                                                <option value="07">07</option>
+                                                <option value="08">08</option>
+                                                <option value="09">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className="px-2 w-1/2">
+                                        <select
+                                            name="ExpireYear"
+                                            onChange={_handleChange} value={values.ExpireYear} className={classNames("w-full px-3 pt-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer", style['payment-form-select'])}>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
+                                            <option value="2024">2024</option>
+                                            <option value="2025">2025</option>
+                                            <option value="2026">2026</option>
+                                            <option value="2027">2027</option>
+                                            <option value="2028">2028</option>
+                                            <option value="2029">2029</option>
+                                            <option value="2030">2030</option>
+                                            <option value="2031">2031</option>
+                                            <option value="2032">2032</option>
+                                            <option value="2033">2033</option>
+                                            <option value="2034">2034</option>
+                                            <option value="2035">2035</option>
+                                            <option value="2036">2036</option>
+                                            <option value="2037">2037</option>
+                                            <option value="2038">2038</option>
+                                            <option value="2039">2039</option>
+                                            <option value="2040">2040</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <p className="text-red-500 leading-none !text-[14px]"> {errors.ExpireMonth} </p>
+                                <p className="text-red-500 leading-none !text-[14px]"> {errors.ExpireYear} </p>
+                                <div className="mb-0">
+                                    <label className="font-bold text-sm mb-2 ml-1">CVV</label>
+                                    <div>
+                                        <input
+                                            name="Cvc"
+                                            onChange={_handleChange} value={values.Cvc} className="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="000" type="text" />
+                                    </div>
+                                </div>
+                                <p className="text-red-500 leading-none mb-4 align-middle !text-[14px]"> {errors.Cvc} </p>
+                                <div>
+                                    <button
+                                        disabled={!isValid}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            if (!isValid) return;
+                                            let paymentData = {
+                                                ...values,
+                                                EducationId,
+                                                UserId,
+                                            }
+                                            console.log("paymentData", paymentData);
+                                            dispatch(setPaymentCredentials(paymentData))
+                                            //@ts-ignore
+                                            dispatch(payment())
+                                        }} className="block w-full disabled:opacity-70 max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-[white] rounded-lg px-3 py-3 font-semibold"><i className="mdi mdi-lock-outline mr-1"></i>Ödeme Yap</button>
+                                </div>
+                            </form>
+                        }}
+                    </Formik>
                 </div>
             </div>
             </>
