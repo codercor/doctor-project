@@ -52,8 +52,8 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
                                                     minute: "2-digit",
                                                 }) || '-'}</p>
                                         </TableCell>
-                                        <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{row.User?.Information.Fullname || '-'} </p>}</TableCell>
-                                        <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{row?.Education?.Name} || '-'</p>}</TableCell>
+                                        <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{(row.User?.Information.Fullname || '-')} </p>}</TableCell>
+                                        <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{(row?.Education?.Name || '-')}</p>}</TableCell>
                                     </TableRow>
                                 )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kayıt bulunmamaktadır </h1>
                                 }

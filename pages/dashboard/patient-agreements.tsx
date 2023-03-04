@@ -74,7 +74,7 @@ const PatientAgreements = () => {
                         gerekmektedir
                     </span>
                 </h3>
-                <div className="flex items-center justify-start w-full h-full">
+                <div className="flex  items-center justify-start w-full h-full">
                     {
                         modals.userAgreement &&
                         <SozlesmeModal closeWithValue={(x) => {

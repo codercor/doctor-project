@@ -25,13 +25,19 @@ export default function SubStep2Part1({
           type="text"
           onChange={handleChange}
         />
+        
         <FormInput
           label="Yaş"
           value={values.age}
           error={errors.age}
           name="age"
-          type="text"
+          type="number"
           onChange={handleChange}
+          onKeyUp={(e) => {
+            if (e.charCode < 48) {
+              e.preventDefault();
+            }
+          }}
         />
       </div>
       <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">

@@ -2293,6 +2293,7 @@ export default function SubStep2Part10({
                         name="ABUse1Desc"
                         onChange={handleChange}
                         value={values.ABUse1Desc}
+                        error={errors.ABUse1Desc}
                         label="Evet ise açıklayınız:" />
                 </>
             }

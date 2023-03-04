@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 
+
 export const multiSelectValidationSchema = Yup.array()
     .of(Yup.string())
     .required("Zorunlu alan")
@@ -11,7 +12,11 @@ export const textValidationSchema = Yup.string().required("Zorunlu alan");
 export const freeTextValidationSchema = Yup.string()
 export const flow2FormValidationSchema = Yup.object({
     parrentTolarance: singleSelectValidationSchema,
-    parrentTolaranceDesc: freeTextValidationSchema,
+    parrentTolaranceDesc: Yup.string().when("parrentTolarance", {
+        is: (parrentTolarance: string) => parrentTolarance === "evet",
+        then: Yup.string().required("Zorunlu alan"),
+        otherwise: Yup.string(),
+    }),
     motherMilk: singleSelectValidationSchema,
     motherMilkDesc: Yup.string().when("motherMilk", {
         is: (motherMilk: string) => motherMilk === "anne sutu" || motherMilk === "Anne Sütü ve Formül Mama",
@@ -23,16 +28,18 @@ export const flow2FormValidationSchema = Yup.object({
         then: Yup.string().required("Zorunlu alan"),
         otherwise: Yup.string(),
     }),
+
     solidFood: singleSelectValidationSchema,
-    solidFoodDesc: freeTextValidationSchema,
+    solidFoodDesc: SelectIsValueValidation("solidFood"),
     babyAllergy: singleSelectValidationSchema,
+    babyAllergyDesc: SelectIsValueValidation("babyAllergy"),
     childFoodReact: singleSelectValidationSchema,
-    childFoodReactDesc: freeTextValidationSchema,
+    childFoodReactDesc: SelectIsValueValidation("childFoodReact"),
     childFoodAccess: singleSelectValidationSchema,
     childFoodDisorder: singleSelectValidationSchema,
-    childFoodDisorderDesc: freeTextValidationSchema,
+    childFoodDisorderDesc: SelectIsValueValidation("childFoodDisorder"),
     foodDisorder: textValidationSchema,
-    foodDisorderDesc: freeTextValidationSchema,
+    foodDisorderDesc:SelectIsValueValidation("foodDisorder"),
     favoriteFood: textValidationSchema,
     mostEatenFood: textValidationSchema,
     foodPreparedBy: textValidationSchema,
@@ -53,7 +60,7 @@ export const flow1FormValidationSchema = Yup.object({
             /^[a-zA-ZşŞıİçÇöÖüÜ]+(?:[\s-][a-zA-ZşŞıİçÇöÖüÜ]+){1,3}$/,
             "Geçerli bir isim giriniz"
         ),
-    age: Yup.number().required("Zorunlu alan"),
+    age: Yup.number().min(0,"Minumum 0 olabilir").required("Zorunlu alan"),
     gender: Yup.string()
         .required("Zorunlu alan")
         .oneOf(["kadın", "erkek", "diger"], "Cinsiyet seçiniz"),
@@ -71,6 +78,14 @@ export const flow1FormValidationSchema = Yup.object({
     meetingType: textValidationSchema,
 });
 
+export function SelectIsValueValidation(name:string,value:string = "evet"){
+return Yup.string().when(name, {
+    is: (name: string) => name === value,
+    then: Yup.string().required("Zorunlu alan"),
+    otherwise: Yup.string(),
+})
+}
+
 export const flow3FormValidationSchema = Yup.object({
     motherMilk: singleSelectValidationSchema,
     motherMilkDesc: Yup.string().when("motherMilk", {
@@ -82,7 +97,7 @@ export const flow3FormValidationSchema = Yup.object({
         then: Yup.string().required("Zorunlu alan"),
     }),
     name: textValidationSchema,
-    age: textValidationSchema,
+    age: Yup.number().min(0,"Minumum 0 olabilir").required("Zorunlu alan"),
     birthDate: textValidationSchema,
     email: textValidationSchema,
     address: textValidationSchema,
@@ -93,10 +108,7 @@ export const flow3FormValidationSchema = Yup.object({
     emergencyContactRelation: textValidationSchema,
     emergencyContactPhoneCell: textValidationSchema,
     whereDidYouHear: textValidationSchema,
-    whereDidYouHearOther: Yup.string().when("whereDidYouHear", {
-        is: (whereDidYouHear: string) => whereDidYouHear === "Diğer",
-        then: textValidationSchema,
-    }),
+    whereDidYouHearOther: SelectIsValueValidation("whereDidYouHear","Diğer"),
     currentDisease: Yup.array().of(
         Yup.object().shape({
             problem: Yup.string().required("Zorunlu"),
@@ -118,14 +130,11 @@ export const flow3FormValidationSchema = Yup.object({
     snore: textValidationSchema,
     wakeUp: textValidationSchema,
     sleepPills: textValidationSchema,
-    sleepPillsDetail: Yup.string().when("sleepPills", {
-        is: (sleepPills: string) => sleepPills === "evet",
-        then: textValidationSchema,
-    }),
+    sleepPillsDetail: SelectIsValueValidation("sleepPills"),
     exercise: textValidationSchema,
     exerciseWant: textValidationSchema,
     exerciseDisability: textValidationSchema,
-    exerciseDisabilityDesc: freeTextValidationSchema,
+    exerciseDisabilityDesc: SelectIsValueValidation("exerciseDisability"),
     exerciseLater: textValidationSchema,
     exerciseLaterDesc: freeTextValidationSchema,
     diet: Yup.array().of(
@@ -136,35 +145,20 @@ export const flow3FormValidationSchema = Yup.object({
         then: textValidationSchema,
     }),
     foodSensitivity: textValidationSchema,
-    foodSensitivityDetail: Yup.string().when("foodSensitivity", {
-        is: "evet",
-        then: textValidationSchema
-    }),
+    foodSensitivityDetail: SelectIsValueValidation("foodSensitivity"),
     foodAvoid: textValidationSchema,
-    foodAvoidDetail: Yup.string().when("foodAvoid", {
-        is: "evet",
-        then: textValidationSchema
-    }),
+    foodAvoidDetail: SelectIsValueValidation("foodAvoid"),
     foodsReaction: Yup.array().required("Bu alan zorunludur"),
     foodsReactionDetail: Yup.string().when("foodsReaction", {
         is: (val: any) => val.includes("diğer"),
         then: textValidationSchema
     }),
     foodsLike: textValidationSchema,
-    foodsLikeDetail: Yup.string().when("foodsLike", {
-        is: "evet",
-        then: textValidationSchema
-    }),
+    foodsLikeDetail: SelectIsValueValidation("foodsLike"),
     threeMeal: textValidationSchema,
-    threeMealDetail: Yup.string().when("threeMeal", {
-        is: "hayır",
-        then: textValidationSchema
-    }),
+    threeMealDetail: SelectIsValueValidation("threeMeal","hayır"),
     skipMeal: textValidationSchema,
-    skipMealDetail: Yup.string().when("skipMeal", {
-        is: "evet",
-        then: textValidationSchema
-    }),
+    skipMealDetail: SelectIsValueValidation("skipMeal"),
     outsideMeal: textValidationSchema,
     lifestyleAboutEating: Yup.array().of(
         textValidationSchema
@@ -195,7 +189,7 @@ export const flow3FormValidationSchema = Yup.object({
     teaQuantity: textValidationSchema,
     carbonatedCoffeeQuantity: textValidationSchema,
     caffeineReaction: textValidationSchema,
-    caffeineReactionDesc: freeTextValidationSchema,
+    caffeineReactionDesc: SelectIsValueValidation("caffeineReaction"),
     caffeineSensation: Yup.array().of(
         textValidationSchema
     ),
@@ -203,22 +197,22 @@ export const flow3FormValidationSchema = Yup.object({
     smokeType: Yup.array().of(
         textValidationSchema
     ),
-    smokeQuantity: textValidationSchema,
-    smokeYear: textValidationSchema,
+    smokeQuantity: SelectIsValueValidation("smoke"),
+    smokeYear: SelectIsValueValidation("smoke"),
     smokeBlock: textValidationSchema,
-    smokeBlockDesc: freeTextValidationSchema,
+    smokeBlockDesc: SelectIsValueValidation("smokeBlock"),
     oldSmoke: textValidationSchema,
-    oldSmokeQuantity: textValidationSchema,
-    oldSmokeYear: textValidationSchema,
+    oldSmokeQuantity: SelectIsValueValidation("oldSmoke"),
+    oldSmokeYear: SelectIsValueValidation("oldSmoke"),
     cigaretteSmoke: textValidationSchema,
     alcoholWeek: textValidationSchema,
     oldAlcohol: textValidationSchema,
     oldAlcoholProblems: textValidationSchema,
-    oldAlcoholProblemsWhatTime: textValidationSchema,
-    oldAlcoholProblemsDesc: freeTextValidationSchema,
-    oldAlcoholProblemsHelp: textValidationSchema,
+    oldAlcoholProblemsWhatTime: SelectIsValueValidation("oldAlcoholProblems"),
+    oldAlcoholProblemsDesc: SelectIsValueValidation("oldAlcoholProblems"),
+    oldAlcoholProblemsHelp:  SelectIsValueValidation("oldAlcoholProblems"),
     recreationalDrug: textValidationSchema,
-    recreationalDrugDesc: freeTextValidationSchema,
+    recreationalDrugDesc: SelectIsValueValidation("recreationalDrug"),
     inhaledSubstance: textValidationSchema,
     stress: textValidationSchema,
     copeWithStress: textValidationSchema,
@@ -229,14 +223,17 @@ export const flow3FormValidationSchema = Yup.object({
     materialStress: Yup.number().min(1, "minimum 1").max(10, "maximum 10").required("Zorunlu"),
     otherStress: Yup.number().min(1, "minimum 1").max(10, "maximum 10").required("Zorunlu"),
     relaxationTechniques: textValidationSchema,
-    relaxationTechniquesDesc: freeTextValidationSchema,
+    relaxationTechniquesDesc: SelectIsValueValidation("relaxationTechniques"),
     techniques: Yup.array().of(
         textValidationSchema
     ),
-    techniquesDesc: freeTextValidationSchema,
+    techniquesDesc: Yup.string().when("techniques", {
+        is: (val: any) => val.includes("diğer"),
+        then: textValidationSchema
+    }),
     consultancy: textValidationSchema,
     therapy: textValidationSchema,
-    therapyDesc: freeTextValidationSchema,
+    therapyDesc: SelectIsValueValidation("therapy"),
     molestation: textValidationSchema,
     hobbies: textValidationSchema,
     maritalStatus: textValidationSchema,
@@ -251,6 +248,8 @@ export const flow3FormValidationSchema = Yup.object({
         is: (val: any) => val.includes("diger"),
         then: textValidationSchema
     }),
+    worship: textValidationSchema,
+    worshipDesc: SelectIsValueValidation("worship"),
     general: textValidationSchema,
     school: textValidationSchema,
     businessLife: textValidationSchema,
@@ -264,36 +263,37 @@ export const flow3FormValidationSchema = Yup.object({
     partner: textValidationSchema,
     birth: textValidationSchema,
     birthComplication: textValidationSchema,
-    birthComplicationDesc: freeTextValidationSchema,
+    birthComplicationDesc: SelectIsValueValidation("birthComplication"),
 
 
     solidFoods: textValidationSchema,
     wheat: textValidationSchema,
     dairy: textValidationSchema,
     avoidedFood: textValidationSchema,
+    avoidedFoodDesc: SelectIsValueValidation("avoidedFood"),
     sugarOrSweet: textValidationSchema,
     silverMercuryFiller: textValidationSchema,
-    silverMercuryFillerDesc: freeTextValidationSchema,
+    silverMercuryFillerDesc: SelectIsValueValidation("silverMercuryFiller"),
     GoldFiller: textValidationSchema,
-    GoldFillerDesc: freeTextValidationSchema,
+    GoldFillerDesc: SelectIsValueValidation("GoldFiller"),
     rootCanalTreatment: textValidationSchema,
-    rootCanalTreatmentDesc: freeTextValidationSchema,
+    rootCanalTreatmentDesc: SelectIsValueValidation("rootCanalTreatment"),
     Implant: textValidationSchema,
-    ImplantDesc: freeTextValidationSchema,
+    ImplantDesc: SelectIsValueValidation("Implant"),
     platingMetal: textValidationSchema,
-    platingMetalDesc: freeTextValidationSchema,
+    platingMetalDesc: SelectIsValueValidation("platingMetal"),
     toothache: textValidationSchema,
-    toothacheDesc: freeTextValidationSchema,
+    toothacheDesc: SelectIsValueValidation("toothache"),
     bleedingGums: textValidationSchema,
-    bleedingGumsDesc: freeTextValidationSchema,
+    bleedingGumsDesc: SelectIsValueValidation("bleedingGums"),
     gumProblem: textValidationSchema,
-    gumProblemDesc: freeTextValidationSchema,
+    gumProblemDesc: SelectIsValueValidation("gumProblem"),
     chewingProblems: textValidationSchema,
-    chewingProblemsDesc: freeTextValidationSchema,
+    chewingProblemsDesc: SelectIsValueValidation("chewingProblems"),
     otherDentalProblems: textValidationSchema,
-    otherDentalProblemsDesc: freeTextValidationSchema,
+    otherDentalProblemsDesc: SelectIsValueValidation("otherDentalProblems"),
     removingYourMercuryFiller: textValidationSchema,
-    removingYourMercuryFillerDesc: freeTextValidationSchema,
+    removingYourMercuryFillerDesc: SelectIsValueValidation("removingYourMercuryFiller"),
     howManyFillersAsAChild: textValidationSchema,
     brushingTeeth: textValidationSchema,
     floss: textValidationSchema,
@@ -301,20 +301,36 @@ export const flow3FormValidationSchema = Yup.object({
     affectsYouSignificantly: Yup.array().of(
         textValidationSchema
     ).required("Zorunlu").min(1, "En az birini seçmelisiniz"),
-    affectsYouSignificantlyDesc: freeTextValidationSchema,
+    affectsYouSignificantlyDesc: Yup.string().when("affectsYouSignificantly", {
+        is: (val: any) => val.includes("diğer"),
+        then: textValidationSchema
+    }),
     exposedToAtWorkOrAtHome: Yup.array().of(
         textValidationSchema
     ),
-    exposedToAtWorkOrAtHomeDesc: freeTextValidationSchema,
+    exposedToAtWorkOrAtHomeDesc: Yup.string().when("exposedToAtWorkOrAtHome", {
+        is: (val: any) => val.includes("diğer"),
+        then: textValidationSchema
+    }),
     significantExposureToHarmfulChemical: textValidationSchema,
-    significantExposureToHarmfulChemicalDesc: freeTextValidationSchema,
+    significantExposureToHarmfulChemicalDesc: SelectIsValueValidation("significantExposureToHarmfulChemical"),
     petOrFarmAnimal: textValidationSchema,
-    petOrFarmAnimalDesc: freeTextValidationSchema,
+    petOrFarmAnimalDesc: textValidationSchema,
     suitablePartsForYou: Yup.array().of(
         textValidationSchema
     ),
-    suitablePartsForYouPeeDesc: freeTextValidationSchema,
-    suitablePartsForYouSexualDesc: freeTextValidationSchema,
+    suitablePartsForYouPeeDesc: Yup.string().when("suitablePartsForYou", {
+        is: (val: any) => val.includes("gece idrara çıkma"),
+        then: textValidationSchema
+    }),
+    suitablePartsForYouSexualDesc: Yup.string().when("suitablePartsForYou", {
+        is: (val: any) => val.includes("cinsel yol ile bulaşan hastalık"),
+        then: textValidationSchema
+    }),
+    pillEffect1: textValidationSchema,
+    pillEffect1Desc: SelectIsValueValidation("pillEffect1"),
+    ABUse1: textValidationSchema,
+    ABUse1Desc: SelectIsValueValidation("ABUse1"),
     psa: textValidationSchema,
     psaValue: textValidationSchema,
     otherTest: textValidationSchema,

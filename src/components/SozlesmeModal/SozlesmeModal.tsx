@@ -38,7 +38,7 @@ export default function SozlesmeModal({
 
   return (
     <div
-      className="w-screen h-screen bg-[#00000099] fixed top-0 left-0 z-50 flex justify-center items-center"
+      className="w-screen h-screen bg-[#00000099] fixed top-0 left-0 z-[99] flex justify-center items-center"
       onClick={() => closeWithValue(false)}
     >
       <div className="w-[800px] min-h-[200px]  h-[400px] bg-secondary-light rounded-[30px_5px] p-[30px]">

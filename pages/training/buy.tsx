@@ -64,11 +64,12 @@ export default function TrainingDetailPage() {
         }
         setClickedToBuy(true)
     }
+    
 
 
     if (isFPaymentLoading) return <Loading message='Eğitim yükleniyor...' />
     if (!trainingData) return <Loading message='Eğitim yükleniyor...' />
-    if (trainingData.Price == 0) return (<LandingLayout>
+    if ((trainingData.Price - ((trainingData.Price * (trainingData.DiscountRate as number))/100)== 0)) return (<LandingLayout>
         <Container className={"h-[300px] md:h-[250px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom  overflow-hidden rounded-br-[150px] md:bg-cover " + bgClass}>
             <Container className="md:!max-w-[1455px] grid  place-items-end  justify-center pb-20 md:pb-22 h-full">
                 <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold z-50"> {oneTraining?.Name} Satın Alım</Text>

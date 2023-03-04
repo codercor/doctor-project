@@ -146,6 +146,7 @@ function Flow3Form({ setSelectedStep }: PropsCanSelectStep) {
                                 className="min-h-[112px] my-[10px] w-full px-[40px] rounded-[20px_5px] p-2 flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-center">
                                 <button type="button"
                                     onClick={() => {
+                                        console.log(errors,"hatalar");
                                         if (Object.keys(errors).length > 0) {
                                             console.log("flow 3 errors", errors);
 

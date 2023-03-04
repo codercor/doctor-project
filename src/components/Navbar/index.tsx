@@ -113,8 +113,8 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
                 </div>
                 <div className="flex flex-col mt-[50px]">
                     <Text className='text-purple-800 text-[18px]' type='h6'>İLETİŞİM</Text>
-                    <Text className='text-purple-800 text-[14px] mt-[16px]' type='body'>0 (232) 123 45 67</Text>
-                    <Text className='text-purple-800 text-[14px] mt-[12px]' type='body'>merhaba@nazanuysalharzadin.com.tr</Text>
+                    <Text className='text-purple-800 text-[14px] mt-[16px]' type='body'>+90 (554) 797 14 97</Text>
+                    <Text className='text-purple-800 text-[14px] mt-[12px]' type='body'>info@nazanuysalharzadin.com.tr</Text>
                 </div>
                 <div className="flex flex-col mt-[50px] mb-[20px]">
                     <Text className='text-purple-800 text-[18px]' type='overline'>TAKİP ET</Text>
