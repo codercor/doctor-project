@@ -121,7 +121,7 @@ export const flow3FormInitialValues = {
     genetikhastaliklar: {
 
     },
-    currentDietOther: "",
+    //currentDietOther: "",
     breakfast: "",
     lunch: "",
     dinner: "",

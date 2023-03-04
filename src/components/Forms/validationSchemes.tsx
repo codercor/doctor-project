@@ -173,7 +173,7 @@ export const flow3FormValidationSchema = Yup.object({
         textValidationSchema
     ),
 
-    currentDietOther: freeTextValidationSchema,
+    //currentDietOther: freeTextValidationSchema,
     breakfast: textValidationSchema,
     lunch: textValidationSchema,
     dinner: textValidationSchema,
@@ -247,7 +247,7 @@ export const flow3FormValidationSchema = Yup.object({
     job: textValidationSchema,
     oldJob: textValidationSchema,
     emotionalSupport: textValidationSchema,
-    emotionalSupportSelect: SelectIsValueValidation("emotionalSupport"),
+    emotionalSupportSelect: SelectIsMultiValueValidation("emotionalSupport","diger"),
     emotionalSupportOther: Yup.string().when("emotionalSupportSelect", {
         is: (val: any) => val.includes("diger"),
         then: textValidationSchema
