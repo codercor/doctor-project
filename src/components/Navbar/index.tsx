@@ -65,7 +65,7 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
     return (
         <div className="md:h-auto flex  justify-between absolute z-[99] w-full top-0 left-0 md:px-0 px-[20px]">
             <Logo />
-            <div className="md:flex hidden  flex-col gap-[20px] md:flex-row md:justify-between md:items-center">
+            <div className="md:flex hidden flex-col gap-[20px] md:flex-row md:justify-between md:items-center">
                 {(navs).map((nav: Route) => <NavbarItem key={nav.text} route={nav} />)}
                 <div className="flex">
                     {IsAuthenticated ? <>
@@ -97,7 +97,7 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
                 <BurgerIcon />
             </div>
             {/* mobile menu */}
-            <div className={classNames(['bg-purple-200 md:hidden fixed top-0 left-0 min-w-full h-full px-[20px] flex flex-col z-10'], {
+            <div className={classNames(['bg-purple-200 md:hidden gap-[20px] overflow-auto fixed top-0 left-0 min-w-full h-full px-[20px] flex flex-col z-10'], {
                 'hidden': !isOpen,
             })}>
                 <div className="h-[66px] pt-[10px] flex justify-between items-center md:max-w-[1064px] md:mx-auto">
@@ -107,16 +107,15 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
                         <CloseIcon />
                     </div>
                 </div>
-                <div className="flex flex-col mt-[50px] gap-[20px]">
+                <div className="flex flex-col gap-[16px]">
                     {navs.map((nav: Route) => <div key={nav.text} onClick={() => { Router.push(nav.href) }}> <Text className='text-purple-800 text-[18px]' type='h6'> {nav.text.toUpperCase()} </Text></div>)}
-
                 </div>
-                <div className="flex flex-col mt-[50px]">
+                <div className="flex flex-col ">
                     <Text className='text-purple-800 text-[18px]' type='h6'>İLETİŞİM</Text>
                     <Text className='text-purple-800 text-[14px] mt-[16px]' type='body'>+90 (554) 797 14 97</Text>
                     <Text className='text-purple-800 text-[14px] mt-[12px]' type='body'>info@nazanuysalharzadin.com.tr</Text>
                 </div>
-                <div className="flex flex-col mt-[50px] mb-[20px]">
+                <div className="flex flex-col mb-[10px]">
                     <Text className='text-purple-800 text-[18px]' type='overline'>TAKİP ET</Text>
                     <div className="flex gap-2">
                         <Instagram onClick={() => {
@@ -139,7 +138,7 @@ const Navbar = ({ backColor = "dark" }: { backColor?: string }) => {
                         <>
                             <button onClick={() => {
                                 Router.push("/dashboard")
-                            }} className="bg-quaternary-light mt-auto mb-[6px] rounded-tl-[20px] rounded-br-[20px] min-h-[40px] h-[48px] w-full ">
+                            }} className="bg-quaternary-light mt-auto mb-[3px] rounded-tl-[20px] rounded-br-[20px] min-h-[40px] h-[48px] w-full ">
                                 <Text className='text-[14px] text-purple-800' type='body'> Panel </Text>
                             </button>
                             <button onClick={() => {
