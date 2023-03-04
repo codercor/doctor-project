@@ -198,7 +198,7 @@ export default function TrainingDetailPage() {
     const [ownTraining, setOwnTraining] = useState(null)
     useEffect(() => {
         if (IsAdmin) return;
-        if (IsAuthenticated && UsersTrainings.length > 0) {
+        if (IsAuthenticated) {
             getUsersTrainings()
             console.log("UsersTrainings", UsersTrainings);
             if (UsersTrainings.filter(item => item).find(item => item.Id == query.id)) {
