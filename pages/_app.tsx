@@ -23,14 +23,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <div className="absolute top-0 left-0 text-[24px] z-[999] bg-blue w-[50px]  h-[50px] backdrop-brightness-50 backdrop-blur-lg text-[red]">
+        {/* <div className="absolute top-0 left-0 text-[24px] z-[999] bg-blue w-[50px]  h-[50px] backdrop-brightness-50 backdrop-blur-lg text-[red]">
           <h1 className="block  sm:hidden"> XS </h1>
           <h1 className="hidden sm:block md:hidden"> SM </h1>
           <h1 className="md:block hidden lg:hidden"> MD </h1>
           <h1 className="lg:block hidden xl:hidden"> LG </h1>
           <h1 className="xl:block hidden 2xl:hidden"> XL </h1>
           <h1 className="2xl:block hidden xl:hidden"> 2XL </h1>
-        </div>
+        </div> */}
         <Component {...pageProps} />
         <Toaster toastOptions={{
           duration: 4500

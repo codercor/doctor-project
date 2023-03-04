@@ -73,7 +73,7 @@ export const flow3FormInitialValues = {
     wakeUp: "",
     sleepPills: "",
     sleepPillsDetail: "",
-    exercise: "",
+    //exercise: "",
 
     //EGZ 
     egz1E: "",
@@ -138,7 +138,7 @@ export const flow3FormInitialValues = {
     cannedDrink: "",
     dessert: "",
     caffeinatedBeverage: "",
-    caffeinatedBeverageYes: "",
+    //caffeinatedBeverageYes: "",
     coffeQuantity: "",
     teaQuantity: "",
     carbonatedCoffeeQuantity: "",
