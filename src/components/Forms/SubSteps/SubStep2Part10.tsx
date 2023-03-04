@@ -2016,10 +2016,10 @@ export default function SubStep2Part10({
                         <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Kadın üreme</label>
                         <FormInputSelectOne
                             label="Memede kistler"
-                            name="anotherTest104"
+                            name="anotherTest151"
                             options={HOS}
-                            value={values.anotherTest104}
-                            error={errors?.anotherTest104}
+                            value={values.anotherTest151}
+                            error={errors?.anotherTest151}
                             onChange={handleChange}
                         />
                         <FormInputSelectOne
