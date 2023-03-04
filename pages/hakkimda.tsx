@@ -29,11 +29,11 @@ const Hakkimda: NextPage = () => {
 
             <div className="flex lg:flex-row flex-col w-full md:mb-0 mb-[20px]">
                 <div className="lg:min-w-[48%] min-w-full min-h-[300px] md:min-h-[400px] lg:min-h-[700px] lg:h-auto overflow-clip rounded-r-[30px] border-2 px-[20px] relative lg:absolute">
-                    <Image src="/images/png/hakkimda-nazan.png" layout="fill" objectFit="cover" />
+                    <Image src="/images/png/hakkimda3.jpg" layout="fill" objectFit="cover" />
                 </div>
 
             </div>
-            <div className="flex flex-col mx-auto max-w-[1250px]  gap-4 items-end justify-center">
+            <div className="flex flex-col mx-auto max-w-[1250px]  gap-4 items-end justify-center"> 
                 <p className="!font-nexa-regular p-[10px] lg:w-1/2 text-[16px]">1994 yılında Dokuz Eylül Üniversitesi Tıp Fakültesinden mezun oldum. Kütahya Simav’ da mecburi hizmetimi tamamladıktan sonra,
                     Tıpta Uzmanlık Sınavı ile aynı üniversitede Fizyoloji alanında uzmanlık eğitimine başladım. Aralık 1998’ de Fizyoloji Uzmanı, 2006’ da Fizyoloji doçenti, 2011 yılında 39 yaşımda Fizyoloji
                     profesörü oldum. Fizyoloji insan vücudunun normal işleyişini, normalden sapmaların hastalıklara gidişi nasıl etkilediğini, fizyopatolojik alanda hastalıkların kök nedenlerini inceleyen bir
