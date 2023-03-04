@@ -86,6 +86,14 @@ return Yup.string().when(name, {
 })
 }
 
+export function SelectIsMultiValueValidation(name:string,value:string = "evet"){
+    return Yup.string().when(name, {
+        is: (name: string[]) => name.includes(value),
+        then: Yup.string().required("Zorunlu alan"),
+        otherwise: Yup.string(),
+    })
+    }
+
 export const flow3FormValidationSchema = Yup.object({
     motherMilk: singleSelectValidationSchema,
     motherMilkDesc: Yup.string().when("motherMilk", {
@@ -131,7 +139,7 @@ export const flow3FormValidationSchema = Yup.object({
     wakeUp: textValidationSchema,
     sleepPills: textValidationSchema,
     sleepPillsDetail: SelectIsValueValidation("sleepPills"),
-    exercise: textValidationSchema,
+    //exercise: textValidationSchema,
     exerciseWant: textValidationSchema,
     exerciseDisability: textValidationSchema,
     exerciseDisabilityDesc: SelectIsValueValidation("exerciseDisability"),
@@ -140,10 +148,8 @@ export const flow3FormValidationSchema = Yup.object({
     diet: Yup.array().of(
         textValidationSchema
     ),
-    dietDesc: Yup.string().required().when("diet", {
-        is: (diet: string[]) => diet.includes("diğer"),
-        then: textValidationSchema,
-    }),
+    dietDesc: SelectIsMultiValueValidation("diet","diğer"),
+    
     foodSensitivity: textValidationSchema,
     foodSensitivityDetail: SelectIsValueValidation("foodSensitivity"),
     foodAvoid: textValidationSchema,
@@ -167,7 +173,7 @@ export const flow3FormValidationSchema = Yup.object({
         textValidationSchema
     ),
 
-    currentDietOther: textValidationSchema,
+    currentDietOther: freeTextValidationSchema,
     breakfast: textValidationSchema,
     lunch: textValidationSchema,
     dinner: textValidationSchema,
@@ -184,10 +190,10 @@ export const flow3FormValidationSchema = Yup.object({
     cannedDrink: textValidationSchema,
     dessert: textValidationSchema,
     caffeinatedBeverage: textValidationSchema,
-    caffeinatedBeverageYes: textValidationSchema,
-    coffeQuantity: textValidationSchema,
-    teaQuantity: textValidationSchema,
-    carbonatedCoffeeQuantity: textValidationSchema,
+    //caffeinatedBeverageYes: textValidationSchema,
+    coffeQuantity: SelectIsValueValidation("caffeinatedBeverage"),
+    teaQuantity: SelectIsValueValidation("caffeinatedBeverage"),
+    carbonatedCoffeeQuantity: SelectIsValueValidation("caffeinatedBeverage"),
     caffeineReaction: textValidationSchema,
     caffeineReactionDesc: SelectIsValueValidation("caffeineReaction"),
     caffeineSensation: Yup.array().of(
@@ -199,7 +205,7 @@ export const flow3FormValidationSchema = Yup.object({
     ),
     smokeQuantity: SelectIsValueValidation("smoke"),
     smokeYear: SelectIsValueValidation("smoke"),
-    smokeBlock: textValidationSchema,
+    smokeBlock: SelectIsValueValidation("smoke"),
     smokeBlockDesc: SelectIsValueValidation("smokeBlock"),
     oldSmoke: textValidationSchema,
     oldSmokeQuantity: SelectIsValueValidation("oldSmoke"),
@@ -241,7 +247,7 @@ export const flow3FormValidationSchema = Yup.object({
     job: textValidationSchema,
     oldJob: textValidationSchema,
     emotionalSupport: textValidationSchema,
-    emotionalSupportSelect:multiSelectValidationSchema,
+    emotionalSupportSelect: SelectIsValueValidation("emotionalSupport"),
     emotionalSupportOther: Yup.string().when("emotionalSupportSelect", {
         is: (val: any) => val.includes("diger"),
         then: textValidationSchema
@@ -313,7 +319,7 @@ export const flow3FormValidationSchema = Yup.object({
     significantExposureToHarmfulChemical: textValidationSchema,
     significantExposureToHarmfulChemicalDesc: SelectIsValueValidation("significantExposureToHarmfulChemical"),
     petOrFarmAnimal: textValidationSchema,
-    petOrFarmAnimalDesc: textValidationSchema,
+    petOrFarmAnimalDesc: SelectIsValueValidation("petOrFarmAnimal"),
 
 
 
