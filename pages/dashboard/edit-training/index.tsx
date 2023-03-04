@@ -331,7 +331,7 @@ const EditTraining = () => {
                                                 } */}
                                             <FieldArray name="EducationSections" validateOnChange={false} render={(arrHelpers) => {
                                                 return values.EducationSections.map((section, index) => {
-                                                    return <TrainingBranch Time={section.Time} onChanges={(data, order) => {
+                                                    return <TrainingBranch key={index} Time={section.Time} onChanges={(data, order) => {
                                                         console.log("data", data);
                                                         setFieldValue(`EducationSections[${index}]`, data);
                                                     }} Order={section.Order} Content={section.Content} StartDate={section.StartDate}
