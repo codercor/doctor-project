@@ -294,7 +294,7 @@ export default function SubStep2Part6({
 
             <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
-                    label="Şu anki işiniz:"
+                    label="Şuanki işiniz:"
                     name="job"
                     value={values.job}
                     error={errors?.job}
@@ -305,7 +305,7 @@ export default function SubStep2Part6({
 
             <div className="flex flex-col flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
-                    label="Şu anki işiniz:"
+                    label="Önceki işiniz:"
                     name="oldJob"
                     value={values.oldJob}
                     error={errors?.oldJob}

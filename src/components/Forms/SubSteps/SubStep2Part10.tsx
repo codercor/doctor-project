@@ -2293,6 +2293,7 @@ export default function SubStep2Part10({
                         name="ABUse1Desc"
                         onChange={handleChange}
                         value={values.ABUse1Desc}
+                        error={errors.ABUse1Desc}
                         label="Evet ise açıklayınız:" />
                 </>
             }
@@ -2304,7 +2305,7 @@ export default function SubStep2Part10({
     );
 }
 const AKN = ({ values, handleChange }: { values: any, handleChange: any }) => {
-    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[300px] my-1">
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular min-h-[300px] my-1">
         <table className="table-auto w-full  row-span-4 col-span-1">
             <thead className="table-header-group text-left">
                 <tr className="table-row border-2">
@@ -2359,7 +2360,7 @@ const AKN = ({ values, handleChange }: { values: any, handleChange: any }) => {
 }
 
 const STK = ({ values, handleChange }: { values: any, handleChange: any }) => {
-    return (<div className="w-full flex flex-col py-4 font-nexa-regular h-[300px] my-1">
+    return (<div className="w-full flex flex-col py-4 font-nexa-regular min-h-[300px] my-1">
         <table className="table-auto w-full  row-span-4 col-span-1">
             <thead className="table-header-group text-left">
                 <tr className="table-row border-2">

@@ -123,8 +123,10 @@ const SettingsInvoiceSettings = () => {
             })
 
         }} >
+              <div className="flex flex-col md:flex-row xs:gap-[10] md:gap-[30px]">
             <FormInputSelectOne onChange={_handleChange} error={errors.ContactType} value={values.ContactType} disabled={!isEdit} name="ContactType" label="Fatura Tipi" options={[{ label: "Bireysel", value: "person" }, { label: "Kurumsal", value: "company" }]} />
-            <div className="flex sm:flex-row flex-col md:gap-[41px]">
+            </div>
+            <div className="flex mt-3 flex-col md:flex-row xs:gap-[10] md:gap-[10px]">
                 <FormInput onChange={_handleChange} value={values.Name} error={errors.Name} disabled={!isEdit} name="Name" label={values.ContactType != "company" ? "Ad" : "Firma Adı"} type="text" />
                 {
                     values.ContactType != "company" && <FormInput onChange={_handleChange} value={values.Surname} error={errors.Surname} disabled={!isEdit} name="Surname" label="Soyad" type="text" />
