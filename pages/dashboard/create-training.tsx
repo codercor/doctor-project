@@ -156,13 +156,6 @@ const CreateTraining = () => {
                                     console.log("value ", e.target.files);
                                     // @ts-ignore
                                     let value = e.target.files[0];
-                                    if ((value as File)?.size > 1024 * 1024 * 2) {
-                                        toast.error("Resim boyutu 2MB'dan büyük olamaz.", {
-                                            duration: 5000,
-                                        });
-                                        // @ts-ignore
-                                        value = "";
-                                    }
                                     // @ts-ignore
                                     setUploadImages(value);
                                 }} value={trainingImage} />
