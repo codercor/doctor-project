@@ -8,13 +8,10 @@ export default function Document() {
             <Head>
                 <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
                 <Script id="g-tag-2" strategy='lazyOnload'>
-                    {` <script>
-                        window.dataLayer = window.dataLayer || [];
+                    {`window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
-
-                        gtag('config', 'G-D0HTKY3R5J');
-                    </script>`}
+                        gtag('config', 'G-D0HTKY3R5J');`}
                 </Script>
             </Head>
             <body>
