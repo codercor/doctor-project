@@ -46,7 +46,7 @@ export default function Upload({ onChange, value }: UploadProps) {
                 <AddAPhoto />
                 <Text type="h4" className="!text-[14px] !py-[10px]">Resim Yükle</Text>
                 <Text type="paragraph" className="!text-[14px] !py-[10px]">
-                    Yükleyeceğiniz resim formatı PNG veya JPG olmalıdır. En iyi deneyim için yükleyeceğiniz resim  400 x 400 boyutlarında olmalıdır.
+                    Yükleyeceğiniz resim formatı PNG veya JPG olmalıdır. En iyi deneyim için yükleyeceğiniz resim  400 x 200 boyutlarında olmalıdır.
                 </Text>
             </div> :
                 <div className='overflow-auto scrollbar-thin scrollbar-thumb-secondary md:wfull md:h-[168px] outline-dotted outline-2 outline-secondary rounded-[5px_20px_0_20px] flex justify-start gap-2 items-center px-[50px] py-[20px] text-center text-secondary'>
