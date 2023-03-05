@@ -222,11 +222,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 })}>
                 <div onClick={() => {
                     router.push("/")
-                }} className="md:w-[125px] md:h-[43px] mx-auto relative md:mt-[40px]">
+                }} className="md:w-[125px] mx-auto md:mt-[40px] h-[5%] w-[60px] absolute top-3 left-[40%] md:top-[-30px] md:h-[3%] md:left-[35%]">
                     <Image src="/images/svg/brandmark6.svg" layout="fill" objectFit="contain" />
                 </div>
                 <div
-                    className="flex flex-col pr-4 mt-[60px]  h-[80%] overflow-scroll scrollbar-thin scrollbar-track-[#d4ee5e8] scrollbar-thumb-[white]">
+                    className="flex flex-col pr-4 mt-[60px] h-[80%] overflow-scroll scrollbar-thin scrollbar-track-[#d4ee5e8] scrollbar-thumb-[white]">
                     {dashboardNavs.map((nav, index) => <NavButton key={index} {...nav} />)}
                     <Button onClick={() => logout()}
                         className="w-full flex items-center justify-center gap-2   pl-[16px] py-[15px] !bg-[red]">
