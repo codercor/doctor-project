@@ -1,6 +1,6 @@
 import DashboardLayout from '@components/Layouts/DashboardLayout'
 import Text from '@components/Text'
-import { Add, BookmarkAdded, Cancel, Check, Close, Delete, MenuOpen, RefreshRounded, Router, SortByAlpha, TaskOutlined } from '@mui/icons-material'
+import { Add,Assignment, BookmarkAdded, Cancel, Check, Close, Delete, MenuOpen, RefreshRounded, Router, SortByAlpha, TaskOutlined } from '@mui/icons-material'
 import React, { useEffect, useState } from 'react'
 import { Pagination } from '@mui/material'
 import classNames from 'classnames'
@@ -174,6 +174,16 @@ const Row = ({ appointment, afterUpdate }: { appointment: any, afterUpdate: () =
                 title='Reçete'
                 className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
                 <BookmarkAdded />
+            </button>
+        </TableCell>
+        <TableCell className="leading-none" component="th" scope="row">
+            <button onClick={(e) => {
+                e.stopPropagation();
+                router.push(`/dashboard/assays-management/?name=${appointment.user?.information?.Fullname}`)
+            }}
+                title='Tahlil'
+                className='flex justify-around items-center font-nexa-bold bg-[#EBF3F4] w-[97px] h-[30px] text-[#4E929D]'>
+                <Assignment />
             </button>
         </TableCell>
         <TableCell className="leading-none" component="th" scope="row">
@@ -534,6 +544,7 @@ export default function AppointmentManagement() {
                                         <TableCell align="left"><Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Güncelle</Text></TableCell>
                                         <TableCell align="left"><Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Form</Text></TableCell>
                                         <TableCell align="left"><Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Reçete</Text></TableCell>
+                                        <TableCell align="left"><Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Tahlil</Text></TableCell>
                                         <TableCell align="left"><Text type="h3" className="text-secondary flex-[2] w-full !text-[14px] text-center ">Sil</Text></TableCell>
                                     </TableRow>
                                 </TableHead>

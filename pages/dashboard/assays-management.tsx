@@ -11,6 +11,7 @@ import Search from '@components/Search/Search';
 import FormInput from '@components/Forms/FormInput/FormInput';
 import AreYouSureModal from '@components/Modals/AreYouSureModal';
 import { toast } from 'react-hot-toast';
+import { useRouter } from "next/router";
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material'
 export interface Assay {
     Id: string;
@@ -34,6 +35,17 @@ export default function Assays() {
     const [searchKey, setSearchKey] = useState('');
 
     const [pageCount, setPageCount] = React.useState(1)
+    const { query: { name } } = useRouter();
+
+    useEffect(() => {
+        if (name) {
+            setTimeout(() => {
+                setSearchKey(name as string);
+                refresh();
+            }, 1000);
+        }
+    }, [name])
+
 
     const Row = ({ assay }: { assay: Assay }) => {
         const [open, setOpen] = useState(false);
