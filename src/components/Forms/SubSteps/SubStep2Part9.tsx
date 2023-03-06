@@ -76,7 +76,7 @@ export default function SubStep2Part9({
         <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
                     <h2 className=" text-[18px]">Tıbbi Özgeçmiş: Hastalıklar/Durumlar</h2>
                 </div>
-            <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
+            <div className="flex flex-col py-4 bg-[#F9F9F9]  px-[30px] gap-[30px]">
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">EVET&apos; i işaretle = Şu anda varsa, ÖNCE&apos; yi işaretle = geçmişte varsa, Hayır&apos; ı işaretle = yok ise.</label>
 
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">sindirim</label>
@@ -128,22 +128,27 @@ export default function SubStep2Part9({
                     error={errors?.medicalResumeDigestionQuestion6}
                     onChange={handleChange}
                 />
-                {/* <FormInput
+                <FormInput
+                inputClass="w-[57%]"
                     label={`Diğer`}
-                    value={values.medicalResumeDigestionQuestion7Desc}
-                    error={errors.medicalResumeDigestionQuestion7Desc}
-                    name="medicalResumeDigestionQuestionDesc"
+                    value={values.medicalResumeDigestionQuestion7}
+                    error={errors.medicalResumeDigestionQuestion7}
+                    name="medicalResumeDigestionQuestion7"
                     type="text"
                     onChange={handleChange}
                 />
-                <FormInputSelectOne
-                    label="Diğer"
-                    name="medicalResumeDigestionQuestion7"
-                    options={EOH}
-                    value={values.medicalResumeDigestionQuestion7}
-                    error={errors?.medicalResumeDigestionQuestion7}
-                    onChange={handleChange}
-                /> */}
+               {
+                 values.medicalResumeDigestionQuestion7 != '' &&
+                  <FormInputSelectOne
+                      label= ''
+                      name="medicalResumeDigestionQuestion7Desc"
+                      options={EOH}
+                      value={values.medicalResumeDigestionQuestion7Desc}
+                      error={errors?.medicalResumeDigestionQuestion7Desc}
+                      onChange={handleChange}
+                  />  
+               }
+                
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Solunum</label>
                 <FormInputSelectOne
                     label="Bronşit"
@@ -193,22 +198,26 @@ export default function SubStep2Part9({
                     error={errors?.medicalResumeBreathingQuestion6}
                     onChange={handleChange}
                 />
-                {/* <FormInput
+                <FormInput
+                  inputClass="w-[57%]"
                     label={`Diğer`}
-                    value={values.anotherTestDesc}
-                    error={errors.anotherTestDesc}
-                    name="medicalResumeBreathingQuestion7Desc"
+                    value={values.medicalResumeBreathingQuestion7}
+                    error={errors.medicalResumeBreathingQuestion7}
+                    name="medicalResumeBreathingQuestion7"
                     type="text"
                     onChange={handleChange}
                 />
-                <FormInputSelectOne
-                    label="Diğer"
-                    name="anotherTest"
-                    options={EOH}
-                    value={values.medicalResumeBreathingQuestion7}
-                    error={errors?.medicalResumeBreathingQuestion7}
-                    onChange={handleChange}
-                /> */}
+               {
+                 values.medicalResumeBreathingQuestion7 != '' &&
+                  <FormInputSelectOne
+                      label= ''
+                      name="medicalResumeBreathingQuestion7Desc"
+                      options={EOH}
+                      value={values.medicalResumeBreathingQuestion7Desc}
+                      error={errors?.medicalResumeBreathingQuestion7Desc}
+                      onChange={handleChange}
+                  />  
+               }
 
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Boşaltım/Genital</label>
                 <FormInputSelectOne
@@ -267,23 +276,26 @@ export default function SubStep2Part9({
                     error={errors?.medicalResumeGenitalQuestion7}
                     onChange={handleChange}
                 />
-                {/* <FormInput
+                <FormInput
+                  inputClass="w-[57%]"
                     label={`Diğer`}
-                    value={values.anotherTestDesc}
-                    error={errors.anotherTestDesc}
-                    name="anotherTestDesc"
+                    value={values.medicalResumeGenitalQuestion8}
+                    error={errors.medicalResumeGenitalQuestion8}
+                    name="medicalResumeGenitalQuestion8"
                     type="text"
                     onChange={handleChange}
                 />
-                <FormInputSelectOne
-                    label="Diğer"
-                    name="anotherTest"
-                    options={EOH}
-                    value={values.anotherTest}
-                    error={errors?.anotherTest}
-                    onChange={handleChange}
-                /> */}
-
+                {
+                 values.medicalResumeGenitalQuestion8 != '' &&
+                  <FormInputSelectOne
+                      label= ''
+                      name="medicalResumeGenitalQuestion8Desc"
+                      options={EOH}
+                      value={values.medicalResumeGenitalQuestion8Desc}
+                      error={errors?.medicalResumeGenitalQuestion8Desc}
+                      onChange={handleChange}
+                  />  
+               }
 
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Endokrin/Metabolik</label>
                 <FormInputSelectOne
@@ -342,22 +354,26 @@ export default function SubStep2Part9({
                     error={errors?.medicalResumeMetabolicQuestion7}
                     onChange={handleChange}
                 />
-                {/* <FormInput
+                <FormInput
+                  inputClass="w-[57%]"
                     label={`Diğer`}
-                    value={values.anotherTestDesc}
-                    error={errors.anotherTestDesc}
-                    name="anotherTestDesc"
+                    value={values.medicalResumeMetabolicQuestion8}
+                    error={errors.medicalResumeMetabolicQuestion8}
+                    name="medicalResumeMetabolicQuestion8"
                     type="text"
                     onChange={handleChange}
                 />
-                <FormInputSelectOne
-                    label="Diğer"
-                    name="anotherTest"
-                    options={EOH}
-                    value={values.anotherTest}
-                    error={errors?.anotherTest}
-                    onChange={handleChange}
-                /> */}
+               {
+                 values.medicalResumeMetabolicQuestion8 != '' &&
+                  <FormInputSelectOne
+                      label= ''
+                      name="medicalResumeMetabolicQuestion8Desc"
+                      options={EOH}
+                      value={values.medicalResumeMetabolicQuestion8Desc}
+                      error={errors?.medicalResumeMetabolicQuestion8Desc}
+                      onChange={handleChange}
+                  />  
+               }
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Inflamatuvar/İmmün</label>
                 <FormInputSelectOne
                     label="Romatoid artrit"
@@ -431,22 +447,26 @@ export default function SubStep2Part9({
                     error={errors?.medicalResumeInflammatoryQuestion9}
                     onChange={handleChange}
                 />
-                {/* <FormInput
+                <FormInput
+                  inputClass="w-[57%]"
                     label={`Diğer`}
-                    value={values.anotherTestDesc}
-                    error={errors.anotherTestDesc}
-                    name="anotherTestDesc"
+                    value={values.medicalResumeInflammatoryQuestion10}
+                    error={errors.medicalResumeInflammatoryQuestion10}
+                    name="medicalResumeInflammatoryQuestion10"
                     type="text"
                     onChange={handleChange}
                 />
-                <FormInputSelectOne
-                    label="Diğer"
-                    name="anotherTest"
-                    options={EOH}
-                    value={values.anotherTest}
-                    error={errors?.anotherTest}
-                    onChange={handleChange}
-                /> */}
+                 {
+                 values.medicalResumeInflammatoryQuestion10 != '' &&
+                  <FormInputSelectOne
+                      label= ''
+                      name="medicalResumeInflammatoryQuestion10Desc"
+                      options={EOH}
+                      value={values.medicalResumeInflammatoryQuestion10Desc}
+                      error={errors?.medicalResumeInflammatoryQuestion10Desc}
+                      onChange={handleChange}
+                  />  
+               }
 
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kasiskelet</label>
                 <FormInputSelectOne
@@ -473,22 +493,26 @@ export default function SubStep2Part9({
                     error={errors?.medicalResumeMusculoskeletalQuestion3}
                     onChange={handleChange}
                 />
-                {/* <FormInput
+                <FormInput
+                  inputClass="w-[57%]"
                     label={`Diğer`}
-                    value={values.anotherTestDesc}
-                    error={errors.anotherTestDesc}
-                    name="anotherTestDesc"
+                    value={values.medicalResumeMusculoskeletalQuestion4}
+                    error={errors.medicalResumeMusculoskeletalQuestion4}
+                    name="medicalResumeMusculoskeletalQuestion4"
                     type="text"
                     onChange={handleChange}
                 />
-                <FormInputSelectOne
-                    label="Diğer"
-                    name="anotherTest"
-                    options={EOH}
-                    value={values.anotherTest}
-                    error={errors?.anotherTest}
-                    onChange={handleChange}
-                /> */}
+                 {
+                 values.medicalResumeMusculoskeletalQuestion4 != '' &&
+                  <FormInputSelectOne
+                      label= ''
+                      name="medicalResumeMusculoskeletalQuestion4Desc"
+                      options={EOH}
+                      value={values.medicalResumeMusculoskeletalQuestion4Desc}
+                      error={errors?.medicalResumeMusculoskeletalQuestion4Desc}
+                      onChange={handleChange}
+                  />  
+               }
 
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Deri</label>
                 <FormInputSelectOne
@@ -523,22 +547,26 @@ export default function SubStep2Part9({
                     error={errors?.medicalResumeLeatherQuestion4}
                     onChange={handleChange}
                 />
-                {/* <FormInput
+                <FormInput
+                  inputClass="w-[57%]"
                     label={`Diğer`}
-                    value={values.anotherTestDesc}
-                    error={errors.anotherTestDesc}
-                    name="anotherTestDesc"
+                    value={values.medicalResumeLeatherQuestion5}
+                    error={errors.medicalResumeLeatherQuestion5}
+                    name="medicalResumeLeatherQuestion5"
                     type="text"
                     onChange={handleChange}
                 />
-                <FormInputSelectOne
-                    label="Diğer"
-                    name="anotherTest"
-                    options={EOH}
-                    value={values.anotherTest}
-                    error={errors?.anotherTest}
-                    onChange={handleChange}
-                /> */}
+               {
+                 values.medicalResumeLeatherQuestion5 != '' &&
+                  <FormInputSelectOne
+                      label= ''
+                      name="medicalResumeLeatherQuestion5Desc"
+                      options={EOH}
+                      value={values.medicalResumeLeatherQuestion5Desc}
+                      error={errors?.medicalResumeLeatherQuestion5Desc}
+                      onChange={handleChange}
+                  />  
+               }
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kalp-damar</label>
                 <FormInputSelectOne
                     label="Göğüs ağrısı"
@@ -620,23 +648,26 @@ export default function SubStep2Part9({
                     error={errors?.medicalResumeHeartQuestion10}
                     onChange={handleChange}
                 />
-                {/* <FormInput
+                <FormInput
+                  inputClass="w-[57%]"
                     label={`Diğer`}
-                    value={values.anotherTestDesc}
-                    error={errors.anotherTestDesc}
-                    name="anotherTestDesc"
+                    value={values.medicalResumeHeartQuestion11}
+                    error={errors.medicalResumeHeartQuestion11}
+                    name="medicalResumeHeartQuestion11"
                     type="text"
                     onChange={handleChange}
                 />
-                <FormInputSelectOne
-                    label="Diğer"
-                    name="anotherTest"
-                    options={EOH}
-                    value={values.anotherTest}
-                    error={errors?.anotherTest}
-                    onChange={handleChange}
-                /> */}
-
+               {
+                 values.medicalResumeHeartQuestion11 != '' &&
+                  <FormInputSelectOne
+                      label= ''
+                      name="medicalResumeHeartQuestion11Desc"
+                      options={EOH}
+                      value={values.medicalResumeHeartQuestion11Desc}
+                      error={errors?.medicalResumeHeartQuestion11Desc}
+                      onChange={handleChange}
+                  />  
+               }
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Nörolojik/Duygusal</label>
                 <FormInputSelectOne
                     label="Epilepsi/Nöbet"
@@ -718,22 +749,26 @@ export default function SubStep2Part9({
                     error={errors?.medicalResumeNeurologicalQuestion10}
                     onChange={handleChange}
                 />
-                {/* <FormInput
+                <FormInput
+                  inputClass="w-[57%]"
                     label={`Diğer`}
-                    value={values.anotherTestDesc}
-                    error={errors.anotherTestDesc}
-                    name="anotherTestDesc"
+                    value={values.medicalResumeNeurologicalQuestion11}
+                    error={errors.medicalResumeNeurologicalQuestion11}
+                    name="medicalResumeNeurologicalQuestion11"
                     type="text"
                     onChange={handleChange}
                 />
-                <FormInputSelectOne
-                    label="Diğer"
-                    name="anotherTest"
-                    options={EOH}
-                    value={values.anotherTest}
-                    error={errors?.anotherTest}
-                    onChange={handleChange}
-                /> */}
+               {
+                 values.medicalResumeNeurologicalQuestion11 != '' &&
+                  <FormInputSelectOne
+                      label= ''
+                      name="medicalResumeNeurologicalQuestion11Desc"
+                      options={EOH}
+                      value={values.medicalResumeNeurologicalQuestion11Desc}
+                      error={errors?.medicalResumeNeurologicalQuestion11Desc}
+                      onChange={handleChange}
+                  />  
+               }
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kanser</label>
                 <FormInputSelectOne
                     label="Akciğer"
@@ -775,22 +810,26 @@ export default function SubStep2Part9({
                     error={errors?.medicalResumeCancerQuestion5}
                     onChange={handleChange}
                 />
-                {/* <FormInput
+                <FormInput
+                  inputClass="w-[57%]"
                     label={`Diğer`}
-                    value={values.anotherTestDesc}
-                    error={errors.anotherTestDesc}
-                    name="anotherTestDesc"
+                    value={values.medicalResumeCancerQuestion6}
+                    error={errors.medicalResumeCancerQuestion6}
+                    name="medicalResumeCancerQuestion6"
                     type="text"
                     onChange={handleChange}
                 />
-                <FormInputSelectOne
-                    label="Diğer"
-                    name="anotherTest"
-                    options={EOH}
-                    value={values.anotherTest}
-                    error={errors?.anotherTest}
-                    onChange={handleChange}
-                /> */}
+                {
+                 values.medicalResumeCancerQuestion6 != '' &&
+                  <FormInputSelectOne
+                      label= ''
+                      name="medicalResumeCancerQuestion6Desc"
+                      options={EOH}
+                      value={values.medicalResumeCancerQuestion6Desc}
+                      error={errors?.medicalResumeCancerQuestion6Desc}
+                      onChange={handleChange}
+                  />  
+               }
             </div>
         </>
     );

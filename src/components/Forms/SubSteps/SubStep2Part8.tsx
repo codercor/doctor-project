@@ -561,7 +561,7 @@ export default function SubStep2Part8({
 
                     <FormInputSelectOne
                         label="Adet öncesi problem yaşar mısınız (şişkinlik, memelerde hassasiyet, sinirlilik…)?"
-                        name="menstrualProblems"
+                        name="postPregnancyProblems"
                         options={EH}
                         value={values.menstrualProblems}
                         error={errors?.menstrualProblems}
@@ -586,7 +586,7 @@ export default function SubStep2Part8({
                         error={errors?.lastMenstrualProblems}
                         onChange={handleChange}
                     />{
-                        values.lastMenstrualProblems === "evet" &&
+                        values.postPregnancyProblems === "evet" &&
                         <FormInput
                             label={`Açıklayınız ?`}
                             value={values.lastMenstrualProblemsDesc}
@@ -624,7 +624,7 @@ export default function SubStep2Part8({
                         error={errors?.anotherMethod}
                         onChange={handleChange}
                     />{
-                        values.anotherMethod === "evet" &&
+                        values.postPregnancyProblems === "evet" &&
                         <FormInputSelectMulti
                             label="Başka yöntem kullanıyor musunuz?"
                             name="anotherMethods"
@@ -647,7 +647,7 @@ export default function SubStep2Part8({
                         error={errors?.IsMenopause}
                         onChange={handleChange}
                     />{
-                        values.IsMenopause === "evet" && <>
+                        values.postPregnancyProblems === "evet" && <>
                             <FormInput
                                 label={`Son adet yaşı ?`}
                                 value={values.MenopauseLastedAge}
@@ -853,37 +853,35 @@ export default function SubStep2Part8({
 
 
                     <div className=" border-2  text-[14px]  text-left"> (Sağ) Yaşı </div>
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy1" name="sn1" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy2" name="sn2" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy3" name="sn3" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy4" name="sn4" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy5" name="sn5" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy6" name="sn6" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy7" name="sn7" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy8" name="sn8" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy9" name="sn9" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy10" name="sn10" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy11" name="sn11" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy12" name="sn12" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="sy13" name="sn13" className=" border-2 text-[14px] h-full text-left" />
 
                     <div className=" border-2  text-[14px]  text-left"> (Ölü) Ölüm Yaşı </div>
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-                    <input type="number" min={0} max={130} className=" border-2  text-[14px]   h-full text-left" />
-
-
-                    {/* KOLONLAR */}
+                    <input type="number" min={0} max={130} value="oy1" name="on1" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="oy2" name="on2" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="oy3" name="on3" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="oy4" name="on4" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="oy5" name="on5" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="oy6" name="on6" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="oy7" name="on7" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="oy8" name="on8" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="oy9" name="on9" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="oy10" name="on10" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="oy11" name="on11" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="oy12" name="on12" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} value="oy13" name="on13" className=" border-2 text-[14px] h-full text-left" />   
+                              {/* KOLONLAR */}
                     <div className=" border-2 w-full text text-[10px] flex flex-col  h-[750px] text-left">
                         <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Kanser</p>
                         <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Kalp hastalığı</p>

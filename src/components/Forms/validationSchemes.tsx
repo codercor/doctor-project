@@ -423,6 +423,10 @@ export const flow3FormValidationSchema = Yup.object({
     medicalResumeBreathingQuestion4: textValidationSchema,
     medicalResumeBreathingQuestion5: textValidationSchema,
     medicalResumeBreathingQuestion6: textValidationSchema,
+    medicalResumeBreathingQuestion7: freeTextValidationSchema,
+    medicalResumeBreathingQuestion7Desc: freeTextValidationSchema,
+
+
 
     medicalResumeGenitalQuestion1: textValidationSchema,
     medicalResumeGenitalQuestion2: textValidationSchema,
@@ -431,6 +435,8 @@ export const flow3FormValidationSchema = Yup.object({
     medicalResumeGenitalQuestion5: textValidationSchema,
     medicalResumeGenitalQuestion6: textValidationSchema,
     medicalResumeGenitalQuestion7: textValidationSchema,
+    medicalResumeGenitalQuestion8: freeTextValidationSchema,
+    medicalResumeGenitalQuestion8Desc: freeTextValidationSchema,
 
     medicalResumeMetabolicQuestion1: textValidationSchema,
     medicalResumeMetabolicQuestion2: textValidationSchema,
@@ -439,6 +445,8 @@ export const flow3FormValidationSchema = Yup.object({
     medicalResumeMetabolicQuestion5: textValidationSchema,
     medicalResumeMetabolicQuestion6: textValidationSchema,
     medicalResumeMetabolicQuestion7: textValidationSchema,
+    medicalResumeMetabolicQuestion8: freeTextValidationSchema,
+    medicalResumeMetabolicQuestion8Desc: freeTextValidationSchema,
 
     medicalResumeInflammatoryQuestion1: textValidationSchema,
     medicalResumeInflammatoryQuestion2: textValidationSchema,
@@ -449,15 +457,22 @@ export const flow3FormValidationSchema = Yup.object({
     medicalResumeInflammatoryQuestion7: textValidationSchema,
     medicalResumeInflammatoryQuestion8: textValidationSchema,
     medicalResumeInflammatoryQuestion9: textValidationSchema,
+    medicalResumeInflammatoryQuestion10: freeTextValidationSchema,
+    medicalResumeInflammatoryQuestion10Desc: freeTextValidationSchema,
 
     medicalResumeMusculoskeletalQuestion1: textValidationSchema,
     medicalResumeMusculoskeletalQuestion2: textValidationSchema,
     medicalResumeMusculoskeletalQuestion3: textValidationSchema,
+    medicalResumeMusculoskeletalQuestion4: freeTextValidationSchema,
+    medicalResumeMusculoskeletalQuestion4Desc: freeTextValidationSchema,
+
 
     medicalResumeLeatherQuestion1: textValidationSchema,
     medicalResumeLeatherQuestion2: textValidationSchema,
     medicalResumeLeatherQuestion3: textValidationSchema,
     medicalResumeLeatherQuestion4: textValidationSchema,
+    medicalResumeLeatherQuestion5: freeTextValidationSchema,
+    medicalResumeLeatherQuestion5Desc: freeTextValidationSchema,
 
     medicalResumeHeartQuestion1: textValidationSchema,
     medicalResumeHeartQuestion2: textValidationSchema,
@@ -469,6 +484,8 @@ export const flow3FormValidationSchema = Yup.object({
     medicalResumeHeartQuestion8: textValidationSchema,
     medicalResumeHeartQuestion9: textValidationSchema,
     medicalResumeHeartQuestion10: textValidationSchema,
+    medicalResumeHeartQuestion11: freeTextValidationSchema,
+    medicalResumeHeartQuestion11Desc: freeTextValidationSchema,
 
     medicalResumeNeurologicalQuestion1: textValidationSchema,
     medicalResumeNeurologicalQuestion2: textValidationSchema,
@@ -480,6 +497,8 @@ export const flow3FormValidationSchema = Yup.object({
     medicalResumeNeurologicalQuestion8: textValidationSchema,
     medicalResumeNeurologicalQuestion9: textValidationSchema,
     medicalResumeNeurologicalQuestion10: textValidationSchema,
+    medicalResumeNeurologicalQuestion11: freeTextValidationSchema,
+    medicalResumeNeurologicalQuestion11Desc: freeTextValidationSchema,
 
 
     medicalResumeCancerQuestion1: textValidationSchema,
@@ -487,6 +506,8 @@ export const flow3FormValidationSchema = Yup.object({
     medicalResumeCancerQuestion3: textValidationSchema,
     medicalResumeCancerQuestion4: textValidationSchema,
     medicalResumeCancerQuestion5: textValidationSchema,
+    medicalResumeCancerQuestion6: freeTextValidationSchema,
+    medicalResumeCancerQuestion6Desc: freeTextValidationSchema,
 
     examinationOfSymptomsGeneralQuestion1: textValidationSchema,
     examinationOfSymptomsGeneralQuestion2: textValidationSchema,

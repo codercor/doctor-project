@@ -317,7 +317,9 @@ export const flow3FormInitialValues = {
     medicalResumeBreathingQuestion4: "",
     medicalResumeBreathingQuestion5: "",
     medicalResumeBreathingQuestion6: "",
-    // medicalResumeGenitalQuestion 7
+    medicalResumeBreathingQuestion7: "",
+    medicalResumeBreathingQuestion7Desc: "",
+
     medicalResumeGenitalQuestion1: "",
     medicalResumeGenitalQuestion2: "",
     medicalResumeGenitalQuestion3: "",
@@ -325,6 +327,9 @@ export const flow3FormInitialValues = {
     medicalResumeGenitalQuestion5: "",
     medicalResumeGenitalQuestion6: "",
     medicalResumeGenitalQuestion7: "",
+    medicalResumeGenitalQuestion8: "",
+    medicalResumeGenitalQuestion8Desc: "",
+
     //medicalResumeMetabolicQuestion 7
     medicalResumeMetabolicQuestion1: "",
     medicalResumeMetabolicQuestion2: "",
@@ -333,6 +338,8 @@ export const flow3FormInitialValues = {
     medicalResumeMetabolicQuestion5: "",
     medicalResumeMetabolicQuestion6: "",
     medicalResumeMetabolicQuestion7: "",
+    medicalResumeMetabolicQuestion8: "",
+    medicalResumeMetabolicQuestion8Desc: "",
     //medicalResumeInflammatoryQuestion 9
     medicalResumeInflammatoryQuestion1: "",
     medicalResumeInflammatoryQuestion2: "",
@@ -343,15 +350,21 @@ export const flow3FormInitialValues = {
     medicalResumeInflammatoryQuestion7: "",
     medicalResumeInflammatoryQuestion8: "",
     medicalResumeInflammatoryQuestion9: "",
+    medicalResumeInflammatoryQuestion10: "",
+    medicalResumeInflammatoryQuestion10Desc: "",
     //medicalResumeMusculoskeletalQuestion 3
     medicalResumeMusculoskeletalQuestion1: "",
     medicalResumeMusculoskeletalQuestion2: "",
     medicalResumeMusculoskeletalQuestion3: "",
+    medicalResumeMusculoskeletalQuestion4: "",
+    medicalResumeMusculoskeletalQuestion4Desc: "",
     //medicalResumeLeatherQuestion 4
     medicalResumeLeatherQuestion1: "",
     medicalResumeLeatherQuestion2: "",
     medicalResumeLeatherQuestion3: "",
     medicalResumeLeatherQuestion4: "",
+    medicalResumeLeatherQuestion5: "",
+    medicalResumeLeatherQuestion5Desc: "",
 
     //medicalResumeHeartQuestion 10
     medicalResumeHeartQuestion1: "",
@@ -364,6 +377,8 @@ export const flow3FormInitialValues = {
     medicalResumeHeartQuestion8: "",
     medicalResumeHeartQuestion9: "",
     medicalResumeHeartQuestion10: "",
+    medicalResumeHeartQuestion11: "",
+    medicalResumeHeartQuestion11Desc: "",
     //medicalResumeNeurologicalQuestion 10
     medicalResumeNeurologicalQuestion1: "",
     medicalResumeNeurologicalQuestion2: "",
@@ -375,6 +390,8 @@ export const flow3FormInitialValues = {
     medicalResumeNeurologicalQuestion8: "",
     medicalResumeNeurologicalQuestion9: "",
     medicalResumeNeurologicalQuestion10: "",
+    medicalResumeNeurologicalQuestion11: "",
+    medicalResumeNeurologicalQuestion11Desc: "",
     //medicalResumeCancerQuestion 5
     medicalResumeCancerQuestion1: "",
     medicalResumeCancerQuestion2: "",
