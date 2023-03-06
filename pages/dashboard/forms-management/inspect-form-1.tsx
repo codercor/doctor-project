@@ -217,8 +217,7 @@ export default function InspectFirstForm() {
                                         label="Cinsiyetiniz"
                                         options={[
                                             { value: "kadın", label: "Kadın" },
-                                            { value: "erkek", label: "Erkek" },
-                                            { value: "diger", label: "Diğer" },
+                                            { value: "erkek", label: "Erkek" }
                                         ]}
                                         disabled={true}
                                     />

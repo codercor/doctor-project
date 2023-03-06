@@ -438,7 +438,7 @@ export default function SubStep2Part7({
                 }
 
                 <FormInputSelectOne
-                    label="Diş Sorunu"
+                    label="Dişeti Sorunu"
                     name="gumProblem"
                     options={EH}
                     value={values.gumProblem}

@@ -260,7 +260,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
-                    label="UCinsel yol ile bulaşan hastalık"
+                    label="Cinsel yol ile bulaşan hastalık"
                     name="medicalResumeGenitalQuestion7"
                     options={EOH}
                     value={values.medicalResumeGenitalQuestion7}

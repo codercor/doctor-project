@@ -191,7 +191,7 @@ export default function SubStep2Part4({
                 <div className="flex flex-col">
                     <FormInputSelectOne
                         label="Egzersiz yapmanızı engelleyen sorun var mı?"
-                        options={[...EH, { value: "biraz", label: "Biraz" }]}
+                        options={EH}
                         name="exerciseDisability"
                         onChange={handleChange}
                         value={values.exerciseDisability}
@@ -222,7 +222,7 @@ export default function SubStep2Part4({
                     />
                     {
                         //son soru evet ise input açılacak
-                        values.sleeping === "evet" && (
+                        values.exerciseLater === "evet" && (
                             <FormInput
                                 label="Evet ise açıklama"
                                 name="exerciseLaterDesc"

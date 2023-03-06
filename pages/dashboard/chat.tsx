@@ -14,13 +14,14 @@ import useUser from "src/hooks/user.hook";
 import { useBreakpoint, useIsDesktop } from "src/hooks/breakpoint";
 import { useRouter } from "next/dist/client/router";
 
-const ChatUserCard = ({ chatLine, onClick, active }: { chatLine: ChatLine, onClick: () => void, active: boolean }) => {
+const ChatUserCard = ({ chatLine, onClick, active ,IsSeen}: { chatLine: ChatLine, onClick: () => void, active: boolean,IsSeen: boolean }) => {
     const { getChatLineMessages } = useChat();
 
     return <div onClick={() => {
         onClick()
     }} className={classNames("bg-[#D0E4E8] w-full transition-all hover:bg-[white] duration-1000 hover:rounded-[5px_20px] hover:border-2  h-[97px] flex items-center justify-start p-[20px]", {
-        "!bg-[white] transtion-all  border-2 rounded-[20px_5px] border-[#D0E4E8]": active
+        "!bg-[white] transtion-all  border-2 rounded-[20px_5px] border-[#D0E4E8]": active ,
+        "!bg-[#75b44c] border-2": IsSeen
     })}>
         <div className="bg-[#4E929D] w-[60px] h-[60px] rounded-full text-[white] grid place-content-center">
             <Star className="text-[34px]" />
@@ -151,7 +152,9 @@ const Chat = () => {
             toast.dismiss(loadingToast);
             toast.error("Mesajlar yüklenirken bir hata oluştu.")
         })
-
+        setInterval(() => {
+            getChatLines()
+        },30000)
     }, [activeLineId]);
 
     const back = () => {
@@ -162,19 +165,27 @@ const Chat = () => {
         <DashboardLayout>
 
             <div className=" md:h-[798px] flex h-full  rounded-[30px_5px] bg-[#F4F4F4]">
-                <div className="md:w-1/2 w-full h-full flex relative flex-col text-start items-center justify-start py-[26px] px-[30px]">
+                <div className={classNames("md:w-1/2 w-full h-full flex relative flex-col text-start items-center justify-start py-[26px] px-[30px]",{
+                    "hidden md:flex" : activeLineId
+                })}>
                     <div className="flex justify-between w-full">
-                        <Text type="h3" className="text-secondary !text-[20px] w-full">Mesajlar   </Text>
+                        <Text type="h3" className="text-secondary !text-[20px] w-full">Mesajlar</Text>
                     </div>
 
                     <div className="w-full h-full flex flex-col gap-[10px] overflow-auto  scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100">
                         {ChatLines.map((item) => <>
-                            {/* <> {item.ChatLineId}</> */}
                             <ChatUserCard active={
                                 activeLineId == item.ChatLineId
-                            } onClick={() => {
+                            } 
+                            IsSeen={item.IsSeen == 1} 
+                            onClick={() => {
                                 getChatLineMessages(item.ChatLineId);
+                                setInterval(() => {
+                                    getChatLineMessages(item.ChatLineId);
+                                },30000)
+                               
                                 setActiveLineId(item.ChatLineId);
+                                getChatLines();
                             }} chatLine={item} key={v4()} /></>)}
                     </div>
                 </div>

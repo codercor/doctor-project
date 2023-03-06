@@ -123,7 +123,7 @@ export default function Form2Footer({active, setter, parts}: Props) {
             </div>
 
             <div className="flex gap-[20px]">
-                <button
+               { active!=1 && <button
                     className={classNames(
                         "rounded-[5px_20px] min-w-[152px] min-h-[56px] hover:bg-[white] transition-all shadow-2xl duration-100 hover:shadow-inner hover:text-[#83895E] bg-[#83895E] text-[#FFFFFF]"
                     )}
@@ -131,7 +131,8 @@ export default function Form2Footer({active, setter, parts}: Props) {
                 >
                     Önceki
                 </button>
-                <button
+                }
+                { active!=parts && <button
                     onClick={next}
                     className={classNames(
                         "rounded-[20px_5px] min-w-[152px] min-h-[56px] hover:bg-[white] transition-all shadow-2xl duration-100 hover:shadow-inner hover:text-[#83895E] bg-[#83895E] text-[#FFFFFF]"
@@ -139,6 +140,7 @@ export default function Form2Footer({active, setter, parts}: Props) {
                 >
                     Sonraki
                 </button>
+                }
             </div>
         </div>
     );

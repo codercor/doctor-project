@@ -5,6 +5,7 @@ export interface ChatLine {
     UserName: string;
     IsAdmin: boolean;
     ChatLineId: string;
+    IsSeen: Number;
 }
 
 export interface SendMessage {

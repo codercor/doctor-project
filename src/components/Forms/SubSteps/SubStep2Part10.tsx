@@ -22,6 +22,7 @@ const HOS = [
     { value: "hafif", label: "Hafif" },
     { value: "orta", label: "Orta" },
     { value: "şiddetli", label: "Şiddetli" },
+    { value: "yok", label: "Yok" },
 ]
 
 const Quantity = [
@@ -631,7 +632,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
-                    label="İntihar düşünces"
+                    label="İntihar düşüncesi"
                     name="examinationOfSymptomsNervesQuestion22"
                     options={HOS}
                     value={values.examinationOfSymptomsNervesQuestion22}
@@ -1511,6 +1512,16 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
 
+                <FormInputSelectOne
+                    label="Diğer Büyümüş/Hassas lenf bezleri"
+                    name="anotherTest153"
+                    options={HOS}
+                    value={values.anotherTest153}
+                    error={errors?.anotherTest153}
+                    onChange={handleChange}
+                />
+
+
 
                 <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Deri, Kuruluk</label>
 
@@ -1857,6 +1868,14 @@ export default function SubStep2Part10({
                     options={HOS}
                     value={values.anotherTest86}
                     error={errors?.anotherTest86}
+                    onChange={handleChange}
+                />
+                  <FormInputSelectOne
+                    label="Gözlerde"
+                    name="anotherTest152"
+                    options={HOS}
+                    value={values.anotherTest152}
+                    error={errors?.anotherTest152}
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
@@ -2453,11 +2472,11 @@ const HKITP1 = ({ values, handleChange }: { values: any, handleChange: any }) =>
 
 const GTP1 = ({ values, handleChange }: { values: any, handleChange: any }) => {
     return (<div className="w-full flex flex-col py-4 font-nexa-regular min-h-[400px] my-1">
-        <p className="font-nexa-bold text-[20px] my-4 text-[#4E929D]">Halen kullandığın ilaçlar (reçeteli ve reçetesiz ilaçlar dahil)</p>
+        <p className="font-nexa-bold text-[20px] my-4 text-[#4E929D]">Gıda Takviyeleri (vitamin/mineral/bitkisel vb.)</p>
         <table className="table-auto w-full  row-span-4 col-span-1">
             <thead className="table-header-group text-left">
                 <tr className="table-row border-2 bg-[#82b5bd] h-[40px]">
-                    <th>İlaç</th>
+                    <th>İsmi ve markası</th>
                     <th>Doz</th>
                     <th>Başlama zamanı(ay/yıl) </th>
                     <th>Kullanma nedeni </th>
