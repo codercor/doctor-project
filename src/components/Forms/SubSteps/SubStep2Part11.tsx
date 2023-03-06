@@ -272,13 +272,6 @@ export default function SubStep2Part11({
                     onChange={handleChange}
                 />
                 <FormInput
-                    label="Daha iyi hissetmene ne neden olur?"
-                    name="anotherTest146"
-                    value={values.anotherTest146}
-                    error={errors?.anotherTest146}
-                    onChange={handleChange}
-                />
-                <FormInput
                     label="Daha kötü hissetmene ne neden olur?"
                     name="anotherTest147"
                     value={values.anotherTest147}
