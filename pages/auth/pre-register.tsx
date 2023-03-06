@@ -64,7 +64,8 @@ const RegisterForm = () => {
         let errors: ValidationErrors = {
             Email: null,
         }
-        if (credentials.Email === '' || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(credentials.Email) === false) {
+        // if (credentials.Email === '' || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(credentials.Email) === false) {
+            if (credentials.Email === '' || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})*$/.test(credentials.Email) === false) {
             errors.Email = 'Geçerli bir eposta giriniz';
         } else {
             errors.Email = null;
