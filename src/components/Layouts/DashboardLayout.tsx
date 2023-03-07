@@ -190,6 +190,14 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     }, [user.IsAuthenticated])
     useEffect(() => {
         if (dashboardNavs.length < 1) return;
+        if (router.pathname.includes("/dashboard/form")) {
+            if (router.pathname != "/dashboard/forms" && !user.IsAdmin) {
+                router.push("/dashboard/forms")
+            }
+            if (!router.pathname.startsWith("/dashboard/forms-management") && user.IsAdmin) {
+                router.push("/dashboard/forms-management")
+            }
+        }
         const isExistOnNavs = dashboardNavs.findIndex(x => x?.href == router.pathname) > -1
         if (!router.pathname.includes("/dashboard/settings") && !router.pathname.includes("/dashboard/form") && !isExistOnNavs) {
             router.push("/dashboard")
