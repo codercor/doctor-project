@@ -199,9 +199,21 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             }
             return;
         }
+        if (router.pathname == "/dashboard/last-sales") {
+            if (!user.IsAdmin) {
+                router.push("/dashboard")
+            }
+            return
+        }
         if (router.pathname == "/dashboard/create-training" || router.pathname == "/dashboard/edit-training") {
             if (!user.IsAdmin) {
                 router.push("/dashboard/trainings")
+            }
+            return;
+        }
+        if (router.pathname.startsWith("/dashboard/blog-management")) {
+            if (!user.IsAdmin) {
+                router.push("/dashboard/training-documents")
             }
             return;
         }

@@ -64,7 +64,7 @@ const SelectImage = ({
                     </p>
 
                 </div>
-            </div> : <div className='h-[270px] sm:h-[460px] sm:w-[520px] w-[330px] border-2 border-red-500 relative'>
+            </div> : <div className='h-[270px] sm:h-[460px] sm:w-[520px] w-[330px] relative'>
                 <Image onClick={(e) => {
                     e.stopPropagation()
                     ref.current?.click()
