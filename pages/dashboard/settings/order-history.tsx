@@ -41,6 +41,7 @@ const SettingsOrderHistory = () => {
                                     month: "long",
                                     day: "2-digit",
                                 })}
+                                Id={item.Id}
                                 type={"TYPE"}
                                 invoiceURL={item.Detail.EInvoiceLink}
                             />

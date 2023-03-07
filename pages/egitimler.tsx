@@ -15,6 +15,7 @@ import useTraining from "src/hooks/training.hook";
 import { getPublicTrainingsRequest } from "@app/Training/training.utils";
 import { TrainingDataType } from "@app/Training/training.types";
 import Head from "next/dist/shared/lib/head";
+import { CircularProgress } from '@mui/material'
 
 
 const TrainingSearchInput = ({ value, onChange }: { value: string, onChange: (e: any) => void }) => {
@@ -32,6 +33,7 @@ const Egitimler = () => {
     let [stopGet, setStopGet] = useState(false)
     const getPublicTrainings = async (page: number) => {
         if (stopGet == true) return;
+        setLoading(true)
         getPublicTrainingsRequest(page).then((res: any) => {
             if (res.data.length == 0) setStopGet(true)
             setPublicTrainings(res.data)
@@ -96,6 +98,8 @@ const Egitimler = () => {
                 </Container>
             </Container>
             <Container className=" md:min-h-[1135px] pb-10  !min-w-full bg-[white] ">
+
+
                 <Container className="md:!max-w-[1455px] min-h-full bg-no-repeat bg-[position:100%_25%] bg-[white] md:bg-[url(/images/png/bogurtlen-cilek.png)]">
                     <TrainingSearchInput value={search} onChange={(e) => { setSearch(e.target.value) }} />
                     <div onScroll={(e: any) => {
@@ -107,8 +111,12 @@ const Egitimler = () => {
                         }
 
                     }} className="mx-auto md:h-[936px]  px-[20px] md:px-0 scrollbar-thin scrollbar-track-[white]  scrollbar-thumb-quaternary scrollbar-thumb-rounded  h-[700px]  lg:w-[1000px] overflow-auto max-w-[1000px] items-center lg:items-start flex gap-[20px] lg:flex-row flex-col ">
+
+                        {loading && <div className="absolute top-[14%] z-[3] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
+                            <CircularProgress size={120} />
+                        </div>}
                         {
-                            filteredTrainings.length === 0 && <div className="flex flex-col w-full  items-center justify-start h-full">
+                            (!loading && filteredTrainings.length) === 0 && <div className="flex flex-col w-full  items-center justify-start h-full">
                                 <Text className="text-[#949B64] text-[24px] font-nexa-bold">Eğitim bulunamadı</Text>
                             </div>
                         }

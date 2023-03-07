@@ -92,7 +92,7 @@ export default function TrainingDetailPage() {
                 </Container>
                 <Image src={trainingData?.Image as string} layout="fill" objectFit="cover" />
             </Container>
-            <div className='xl:px-[400px]  lg:px-[200px] border-2 border-red-500 h-fit flex justify-center items-center'>
+            <div className='xl:px-[400px]  lg:px-[200px]h-fit flex justify-center items-center'>
                 <PaymentForm EducationId={trainingData.Id as string} UserId={user.Id as string} />
             </div>
         </LandingLayout>

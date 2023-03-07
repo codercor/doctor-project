@@ -1,6 +1,8 @@
 import Button from "@components/Button";
 import Text from "@components/Text";
-import { Download } from "@mui/icons-material";
+import request from "@config";
+import { BackpackSharp, Download, Replay } from "@mui/icons-material";
+import { toast } from "react-hot-toast";
 
 export type OrderHistoryCardProp = {
     orderNumber: string;
@@ -9,10 +11,23 @@ export type OrderHistoryCardProp = {
     name: string;
     type: string;
     invoiceURL: string | null
+    Id: string;
 }
 
-const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL }: OrderHistoryCardProp) => {
-    return <div className="flex flex-col w-full px-[26px] py-[20px] bg-[white]">
+const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id }: OrderHistoryCardProp) => {
+    const refundRequest = () => {
+        let toastId = toast.loading("İade talebiniz gönderiliyor...");
+        request.post("/purchase/refund", {
+            PurchaseId: orderNumber
+        }).then((res) => {
+            toast.dismiss(toastId);
+            toast.success("İade talebiniz başarıyla gönderildi.");
+        }).catch((err) => {
+            toast.dismiss(toastId);
+            toast.error("İade talebiniz gönderilirken bir hata oluştu.");
+        })
+    }
+    return <div className="flex flex-col w-full min-w-[280px] px-[26px] py-[20px] bg-[white]">
         <Text className="text-[10px] text-[#9F9F9F]">11.10.2022 15.52</Text>
         <div className="flex justify-between items-center">
             <div className="flex flex-col">
@@ -22,6 +37,12 @@ const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL }: 
             <div className="flex flex-col">
                 <Text className="text-[#C17B32] text-[12px] md:text-[18px]">Tutar</Text>
                 <Text className="text-[black] text-[12px] sm:text-[16px]">{price}₺</Text>
+            </div>
+            <div className="text-[10px] flex-col  flex font-nexa-light">
+                <Text className="text-[#C17B32] text-[10px] md:text-[18px]">İade</Text>
+                <div onClick={() => {
+                    refundRequest()
+                }}> <Replay className="text-secondary !text-[36px] bg-secondary-light p-2 rounded-[20px_5px] cursor-pointer" /></div>
             </div>
             <Button disabled={
                 !invoiceURL
