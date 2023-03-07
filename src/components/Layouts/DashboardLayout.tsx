@@ -178,7 +178,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 }
                 userNavs.splice(4, 0, item)
             }
-
             setDashboardNavs(userNavs)
         }
     }, [user])
@@ -192,10 +191,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         if (dashboardNavs.length < 1) return;
         const isExistOnNavs = dashboardNavs.findIndex(x => x?.href == router.pathname) > -1
-        if (!router.pathname.includes("/dashboard/settings") && !isExistOnNavs) {
+        if (!router.pathname.includes("/dashboard/settings") && !router.pathname.includes("/dashboard/form") && !isExistOnNavs) {
             router.push("/dashboard")
         }
-    }, [router.pathname, dashboardNavs.length])
+    }, [router.pathname, dashboardNavs.length, user])
     const [showMenu, setShowMenu] = React.useState(false);
     return (<>
         <Head>
