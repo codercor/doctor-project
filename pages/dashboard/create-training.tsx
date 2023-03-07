@@ -30,7 +30,7 @@ const formatDate = (date: string) => {
 
 
 export const Loading = ({ message }: { message: string }) => {
-    return <div className="absolute  top-0 left-0 w-screen h-screen bg-black-100 bg-opacity-40 z-50 grid place-content-center">
+    return <div className="absolute  top-0 left-0 w-screen h-screen backdrop-blur-3xl bg-transparent z-50 grid place-content-center">
         <div className="w-[400px] h-[400px]  animate-pulse text-center bg-secondary-light flex flex-col justify-center items-center gap-2 rounded-full">
             <div>  <CircularProgress /></div>
             <Text type="h1" className="text-secondary !text-[20px]  w-full text-center">{message}</Text>

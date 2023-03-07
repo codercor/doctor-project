@@ -96,7 +96,8 @@ export default function Trainings() {
                                     <div className='w-full h-full flex justify-center items-center flex-col gap-[10px]'>
                                         <School />
                                         <Text> Hiç eğitim yok... </Text>
-                                    </div>}
+                                    </div>
+                            }
                         </>
                     }
 

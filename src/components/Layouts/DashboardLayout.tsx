@@ -197,6 +197,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             if (!router.pathname.startsWith("/dashboard/forms-management") && user.IsAdmin) {
                 router.push("/dashboard/forms-management")
             }
+            return;
+        }
+        if (router.pathname == "/dashboard/create-training" || router.pathname == "/dashboard/edit-training") {
+            if (!user.IsAdmin) {
+                router.push("/dashboard/trainings")
+            }
+            return;
         }
         const isExistOnNavs = dashboardNavs.findIndex(x => x?.href == router.pathname) > -1
         if (!router.pathname.includes("/dashboard/settings") && !router.pathname.includes("/dashboard/form") && !isExistOnNavs) {

@@ -220,9 +220,10 @@ export default function TrainingDetailPage() {
         if (oneTraining) setTrainingData(oneTraining);
     }, [oneTraining]);
 
-    if (!trainingData) return <Loading message='Eğitim yükleniyor...' />
+    // if () return
     return (
         <LandingLayout>
+            {!trainingData && <Loading message='Eğitim yükleniyor...' />}
             <Head>
                 <title> {trainingData?.Name || 'Eğitim'} | Nazan Uysal Harzadın </title>
             </Head>
