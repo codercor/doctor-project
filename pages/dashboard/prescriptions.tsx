@@ -80,7 +80,7 @@ interface INewPrespriptionModal {
 export default function Prescriptions() {
 
     const [prescriptions, setPrescriptions] = useState<IPrescriptionItem[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const { user: { Id: UserId, Information } } = useUser()
 
     const [page, setPage] = useState(1)
@@ -115,7 +115,7 @@ export default function Prescriptions() {
 
 
     const isDesktop = useIsDesktop();
-    if (prescriptions?.length < 1) {
+    if (prescriptions?.length < 1 && !loading) {
         return <DashboardLayout>
             <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Reçeteniz bulunmamaktadır </h1>
         </DashboardLayout>

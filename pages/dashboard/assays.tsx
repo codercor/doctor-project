@@ -25,11 +25,14 @@ export default function Assays() {
     const { user: { Id, Information } } = useUser()
     const [assays, setAssays] = useState<any[]>([]);
     const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
     const [pageCount, setPageCount] = useState(1);
     const getAssays = async () => {
         try {
             if (!Id) return
+            setLoading(true);
             const res = await request.get(`/userassays/${Id}?page=${page}`);
+            setLoading(false);
             console.log("DATA", res.data.data)
             setAssays(res.data.data);
             setPageCount(res.data.PageCount)
@@ -110,7 +113,7 @@ export default function Assays() {
         </>
     }
     const isDesktop = useIsDesktop();
-    if (assays.length < 1) {
+    if (assays.length < 1 && !loading) {
         return <DashboardLayout>
             <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Tahliliniz bulunmamaktadır </h1>
         </DashboardLayout>
@@ -118,6 +121,9 @@ export default function Assays() {
     return <>
         {
             <DashboardLayout>
+                {
+                    loading && <LocalLoading message='Yükleniyor...' />
+                }
                 <div className=" lg:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
                     <div className="w-full flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
                         <div className="flex flex-col justify-between w-full">

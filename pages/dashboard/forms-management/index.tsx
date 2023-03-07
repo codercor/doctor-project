@@ -6,7 +6,7 @@ import DocumentsUpload from '@components/Upload/DocumentsUpload';
 import { Pagination } from '@mui/material'
 import { v4 } from 'uuid';
 import classNames from 'classnames';
-import { StatusBox } from '../appointment-management';
+import { LocalLoading, StatusBox } from '../appointment-management';
 import FormAlert from '@components/Forms/FormAlert/FormAlert';
 import StepStatus from '@components/Forms/Status/Status';
 import request from '@config';
@@ -39,7 +39,7 @@ export default function FormManagement() {
     const [searchKey, setSearchKey] = useState("");
     const [page, setPage] = useState(1);
     const [pageCount, setPageCount] = useState(1);
-
+    const [loading, setLoading] = useState(false);
     const [flows, setFlows] = useState<any[]>([])
     const { query: { name } } = useRouter();
 
@@ -51,6 +51,7 @@ export default function FormManagement() {
         }
     }, [name])
     const getFlow = () => {
+        setLoading(true);
         request.post(`/search/flow/${activeTab + 1}?page=${page}`, {
             key: searchKey
         })
@@ -58,9 +59,11 @@ export default function FormManagement() {
                 console.log("floowwwss", res)
                 setFlows(res.data.data);
                 setPageCount(res.data.PageCount)
+                setLoading(false);
             })
             .catch((err) => {
                 console.log("err", err);
+                setLoading(false);
             })
     }
 
@@ -131,6 +134,7 @@ export default function FormManagement() {
     }
 
     return <DashboardLayout>
+        {loading && <LocalLoading message='Yükleniyor' />}
         <div className="block md:hidden">
             <FormAlert text="Bu sayfa mobil cihazlar tarafından desteklenmiyor" status="inReview" />
         </div>

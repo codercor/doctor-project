@@ -213,7 +213,7 @@ export default function AppointmentManagement() {
         }
         getAndSetAppointments()
     }, [page, searchKey])
-    if (appointments?.length < 1) {
+    if (appointments?.length < 1 && !isLoading) {
         return <DashboardLayout>
             <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Randevunuz bulunmamaktadır </h1>
         </DashboardLayout>

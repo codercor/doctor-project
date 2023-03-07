@@ -31,7 +31,7 @@ export default function Assays() {
 
     const [assays, setAssays] = useState<Assay[]>([]);
     const [page, setPage] = useState(1);
-
+    const [loading, setLoading] = useState(false);
     const [searchKey, setSearchKey] = useState('');
 
     const [pageCount, setPageCount] = React.useState(1)
@@ -139,6 +139,7 @@ export default function Assays() {
     }
     const getAssays = async () => {
         try {
+            setLoading(true);
             const res = await request.get(`/userassays?page=${page}`);
             console.log("DATA", res.data);
             setAssays(res.data.data);
@@ -147,6 +148,7 @@ export default function Assays() {
             console.log("error", error);
 
         }
+        setLoading(false);
     }
 
     const search = async () => {
@@ -220,6 +222,7 @@ export default function Assays() {
     }
 
     return <>
+        {loading && <LocalLoading message='Tahliller yükleniyor...' />}
         {openAddAssayModal && <AddAssayModal />}
         <DashboardLayout>
             <div className=" md:min-h-[798px] flex flex-col  rounded-[30px_5px] bg-[transparent]">
