@@ -131,14 +131,14 @@ export default function SubStep2Part9({
                 <FormInput
                 inputClass="w-[57%]"
                     label={`Diğer`}
-                    value={values.medicalResumeDigestionQuestion7}
+                    value={values.medicalResumeDigestionQuestion7 || null}
                     error={errors.medicalResumeDigestionQuestion7}
                     name="medicalResumeDigestionQuestion7"
                     type="text"
                     onChange={handleChange}
                 />
                {
-                 values.medicalResumeDigestionQuestion7 != '' &&
+                 values.medicalResumeDigestionQuestion7 &&
                   <FormInputSelectOne
                       label= ''
                       name="medicalResumeDigestionQuestion7Desc"
