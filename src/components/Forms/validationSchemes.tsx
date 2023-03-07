@@ -77,7 +77,7 @@ export const flow1FormValidationSchema = Yup.object({
     purposeOfMeeting: textValidationSchema,
     meetingType: textValidationSchema,
 });
-
+const numberValidationNonRequired = Yup.number()
 export function SelectIsValueValidation(name:string,value:string = "evet"){
 return Yup.string().when(name, {
     is: (name: string) => name === value,
@@ -168,9 +168,35 @@ export const flow3FormValidationSchema = Yup.object({
     currentDiet: Yup.array().of(
         textValidationSchema
     ),
-
+    
     //currentDietOther: freeTextValidationSchema,
-    breakfast: textValidationSchema,
+    breakfast:textValidationSchema,
+    sy1:numberValidationNonRequired,
+    sy2:numberValidationNonRequired,
+    sy3:numberValidationNonRequired,
+    sy4:numberValidationNonRequired,
+    sy5:numberValidationNonRequired,
+    sy6:numberValidationNonRequired,
+    sy7:numberValidationNonRequired,
+    sy8:numberValidationNonRequired,
+    sy9:numberValidationNonRequired,
+    sy10:numberValidationNonRequired,
+    sy11:numberValidationNonRequired,
+    sy12:numberValidationNonRequired,
+    sy13:numberValidationNonRequired,
+    oy1:numberValidationNonRequired,
+    oy2:numberValidationNonRequired,
+    oy3:numberValidationNonRequired,
+    oy4:numberValidationNonRequired,
+    oy5:numberValidationNonRequired,
+    oy6:numberValidationNonRequired,
+    oy7:numberValidationNonRequired,
+    oy8:numberValidationNonRequired,
+    oy9:numberValidationNonRequired,
+    oy10:numberValidationNonRequired,
+    oy11:numberValidationNonRequired ,
+    oy12:numberValidationNonRequired,
+    oy13:numberValidationNonRequired,
     lunch: textValidationSchema,
     dinner: textValidationSchema,
     snacks: textValidationSchema,

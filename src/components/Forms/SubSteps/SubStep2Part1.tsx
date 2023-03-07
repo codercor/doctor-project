@@ -45,6 +45,7 @@ export default function SubStep2Part1({
           label="Doğum Tarihi"
           value={values.birthDate}
           error={errors.birthDate}
+          placeholder="01/01/2023"
           name="birthDate"
           type="text"
           onChange={handleChange}

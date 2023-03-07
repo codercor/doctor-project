@@ -853,34 +853,34 @@ export default function SubStep2Part8({
 
 
                     <div className=" border-2  text-[14px]  text-left"> (Sağ) Yaşı </div>
-                    <input type="number" min={0} max={130} value="sy1" name="sn1" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="sy2" name="sn2" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="sy3" name="sn3" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="sy4" name="sn4" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="sy5" name="sn5" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="sy6" name="sn6" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="sy7" name="sn7" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="sy8" name="sn8" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="sy9" name="sn9" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="sy10" name="sn10" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="sy11" name="sn11" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="sy12" name="sn12" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="sy13" name="sn13" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy1} name="sy1" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy2} name="sy2" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy3} name="sy3" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy4} name="sy4" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy5} name="sy5" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy6} name="sy6" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy7} name="sy7" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy8} name="sy8" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy9} name="sy9" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy10} name="sy10" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy11} name="sy11" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy12} name="sy12" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.sy13} name="sy13" className=" border-2 text-[14px] h-full text-left" />
 
                     <div className=" border-2  text-[14px]  text-left"> (Ölü) Ölüm Yaşı </div>
-                    <input type="number" min={0} max={130} value="oy1" name="on1" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="oy2" name="on2" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="oy3" name="on3" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="oy4" name="on4" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="oy5" name="on5" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="oy6" name="on6" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="oy7" name="on7" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="oy8" name="on8" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="oy9" name="on9" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="oy10" name="on10" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="oy11" name="on11" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="oy12" name="on12" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} value="oy13" name="on13" className=" border-2 text-[14px] h-full text-left" />   
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy1} name="oy1" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy2} name="oy2" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy3} name="oy3" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy4} name="oy4" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy5} name="oy5" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy6} name="oy6" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy7} name="oy7" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy8} name="oy8" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy9} name="oy9" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy10} name="oy10" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy11} name="oy11" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy12} name="oy12" className=" border-2 text-[14px] h-full text-left" />
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy13} name="oy13" className=" border-2 text-[14px] h-full text-left" />   
                               {/* KOLONLAR */}
                     <div className=" border-2 w-full text text-[10px] flex flex-col  h-[750px] text-left">
                         <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Kanser</p>
