@@ -6,8 +6,9 @@ import EarningChart from "@components/Chart/EarningChart";
 import { useEffect, useState } from "react";
 import { adminGetLastSalesRequest, getAdminStats } from "@app/User/user.utils";
 import CircularProgress from '@mui/material/CircularProgress';
-import Router from "next/router";
+import { useRouter } from "next/router";
 import LastSalesTable from "@components/Table/LastSalesTable";
+import useUser from "src/hooks/user.hook";
 
 
 const StatsCard = ({ title, value }: { title: string, value: string }) => <div className="bg-[#DEEEF0] flex flex-row sm:flex-col items-center sm:items-start justify-between sm:justify-center p-[18px] w-full h-[70px] sm:h-[100px]">
@@ -17,12 +18,15 @@ const StatsCard = ({ title, value }: { title: string, value: string }) => <div c
 
 const AdminDashBoard = () => {
     const [stats, setStats] = useState<any>(null);
+    const { user: { IsAdmin } } = useUser()
+    const router = useRouter()
     useEffect(() => {
+       
         getAdminStats().then(res => {
             console.log(res);
             setStats(res);
         })
-    }, [])
+    }, [IsAdmin])
     return <div className="flex flex-col gap-[10px] ">
         <div className="h-[500px] bg-[#F4F4F4] overflow-auto p-[32px] scrollbar-thumb-white-default scrollbar-thin scrollbar-track-indigo-100">
             <Text type="h6" className="text-[#4D5628] text-[14px] font-nexa-regular">Son Satın Alımlar</Text>
@@ -30,7 +34,7 @@ const AdminDashBoard = () => {
                 <div className="w-full h-full">
                     <LastSalesTable />
                     <div onClick={() => {
-                        Router.push("/dashboard/last-sales")
+                        router.push("/dashboard/last-sales")
                     }} className="w-full cursor-pointer transition-colors translate-y-10 hover:bg-[#eeeeee] h-[50px] text-[black] text-[10px] flex flex-col justify-center items-center">
                         <Text type="paragraph" className="text-[12px]" > Daha fazla göster </Text>
                         <ArrowDownward sx={{ fontSize: '12px' }} />

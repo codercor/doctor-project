@@ -38,11 +38,15 @@ import toast, { useToasterStore } from "react-hot-toast";
 import BurgerIcon from "@components/Icon/BurgerIcon";
 import MenuIcon from '@mui/icons-material/Menu';
 
+
+
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     const { user, logout } = useAuth()
     const { refetchUser } = useUser()
 
-    const [dashboardNavs, setDashboardNavs] = useState<DNavButtonProps[]>([])
+    const [dashboardNavs, setDashboardNavs] = useState<(DNavButtonProps & { admin?: boolean })[]>([])
+
+
 
     useEffect(() => {
         refetchUser()
@@ -55,63 +59,75 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 {
                     text: "Anasayfa",
                     href: "/dashboard",
-                    Icon: Home
+                    Icon: Home,
+                    admin: true
                 },
                 {
                     text: "Hesabım",
                     href: "/dashboard/account",
-                    Icon: Person
+                    Icon: Person,
+                    admin: true
                 },
                 {
                     text: "Eğitimler",
                     href: "/dashboard/trainings",
-                    Icon: School
+                    Icon: School,
+                    admin: true
                 },
                 {
                     text: "Eğitim Dökümanları",
                     href: "/dashboard/training-documents",
-                    Icon: Article
+                    Icon: Article,
+                    admin: true
                 },
                 {
                     text: "Tahliller",
                     href: "/dashboard/assays-management",
-                    Icon: Assignment
+                    Icon: Assignment,
+                    admin: true
                 },
                 {
                     text: "Hasta Kabul Formları",
                     href: "/dashboard/forms-management",
-                    Icon: TaskTwoTone
+                    Icon: TaskTwoTone,
+                    admin: true
                 },
                 {
                     text: 'Reçetele Yönetimi',
                     href: '/dashboard/prescriptions-management',
-                    Icon: BookmarkAdded
+                    Icon: BookmarkAdded,
+                    admin: true
                 },
                 {
                     text: "Kullanıcı yönetimi",
                     href: "/dashboard/user-management",
-                    Icon: PeopleAlt
+                    Icon: PeopleAlt,
+                    admin: true
                 },
 
                 {
                     text: "Randevu Yönetimi",
                     href: "/dashboard/appointment-management",
-                    Icon: CalendarToday
+                    Icon: CalendarToday,
+                    admin: true
                 },
                 {
                     text: "Chat",
                     href: "/dashboard/chat",
-                    Icon: MarkChatUnread
+                    Icon: MarkChatUnread,
+                    admin: true
                 },
                 {
                     text: "Blog",
                     href: "/dashboard/blog-management",
-                    Icon: ChromeReaderModeIcon
+                    Icon: ChromeReaderModeIcon,
+                    admin: true
                 },
                 {
                     text: "Ayarlar",
                     href: "/dashboard/settings",
-                    Icon: Settings
+                    Icon: Settings,
+                    admin: true
                 }
             ])
         } else {
@@ -173,6 +189,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             router.push("/auth/login")
         }
     }, [user.IsAuthenticated])
+    useEffect(() => {
+        if (dashboardNavs.length < 1) return;
+        const isExistOnNavs = dashboardNavs.findIndex(x => x?.href == router.pathname) > -1
+        if (!router.pathname.includes("/dashboard/settings") && !isExistOnNavs) {
+            router.push("/dashboard")
+        }
+    }, [router.pathname, dashboardNavs.length])
     const [showMenu, setShowMenu] = React.useState(false);
     return (<>
         <Head>

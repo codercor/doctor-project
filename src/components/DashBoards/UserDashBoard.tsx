@@ -165,6 +165,9 @@ const AllTrainingsFloating = () => {
     </>
 }
 const UserDashBoard = () => {
+    const { user: { IsAdmin } } = useUser();
+    const router = useRouter()
+   
     return <>
         <MyTrainings />
         <AllTrainingsFloating />
