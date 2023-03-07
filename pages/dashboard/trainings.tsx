@@ -13,6 +13,7 @@ import { TrainingDataType } from 'src/types/Training'
 import { v4 } from 'uuid'
 import { CircularProgress, Pagination } from '@mui/material'
 import request, { ADMIN_TRAINING } from '@config'
+import { LocalLoading } from './appointment-management'
 const Training = ({ training }: { training: TrainingDataType }) => {
     const { deleteTrainingById } = useTraining();
     return <div className="flex  items-center mt-4  justify-between px-4 bg-[white] w-full h-[85px]">
@@ -46,6 +47,7 @@ export default function Trainings() {
     const [page, setPage] = React.useState(1);
     const [pageCount, setPageCount] = React.useState(1);
     const router = useRouter()
+    const [loading, setLoading] = React.useState(false)
     const handleGoToCreate = () => {
         router.push('/dashboard/create-training')
     }
@@ -56,9 +58,16 @@ export default function Trainings() {
 
     const [adminTrainings, setAdminTrainings] = React.useState<TrainingDataType[]>([]);
     const refetchAdminTrainings = async (page: number) => {
-        const response = await request.get(`${ADMIN_TRAINING}?page=${page}`);
-        setAdminTrainings(response.data.data);
-        setPageCount(response.data.PageCount);
+        setLoading(true)
+        try {
+            const response = await request.get(`${ADMIN_TRAINING}?page=${page}`);
+            setAdminTrainings(response.data.data);
+            setPageCount(response.data.PageCount);
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+        }
+
     }
 
 
@@ -72,6 +81,7 @@ export default function Trainings() {
 
     return (
         <DashboardLayout>
+            {loading && <LocalLoading message='Yükleniyor...'/>}
             <div className=" md:h-[798px] flex flex-col  rounded-[30px_5px] bg-[#F4F4F4]">
                 <div className="w-full h-fit flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
                     <div className="flex justify-between w-full">
