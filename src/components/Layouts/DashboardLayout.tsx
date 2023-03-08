@@ -232,7 +232,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         }} className="overflow-auto   flex w-full h-screen">
             {  /*  Sidebar Normal */}
             <div
-                className={classNames("lg:sticky cursor-pointer hidden lg:block fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[40%] lg:min-w-[25%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
+                className={classNames("lg:sticky cursor-pointer hidden lg:block fixed top-0 min-w-[100%] h-[100%] px-[20px] z-[99] md:min-w-[40%]  lg:w-full lg:min-w-[20%] xl:min-w-[20%] md:px-[34px] md:h-[100%] bg-[#D4E5E8]", {
 
                 })}>
                 <div onClick={() => {

@@ -41,7 +41,8 @@ const MyTrainings = () => {
                 TRAININGS_WITH_USER_ID.replace(':UserId', Id),
             );
             toast.success('Kullanıcı eğitimleri yüklendi.', { id: _toast });
-            let filtered = response.data.data.map((item: any) => item.Education);
+            console.log("filtered b", response.data.data);
+                let filtered = response.data.data.filter((item: any) => !item.Detail.IsCanceled).map((item: any) => item.Education)
             console.log("Filtered", filtered);
 
             setUserTrainings(filtered)
@@ -56,8 +57,6 @@ const MyTrainings = () => {
     useEffect(() => {
         (IsAuthenticated && Id) && getUsersTrainings();
     }, [Id])
-
-
 
     return <div className="h-[462px] bg-[#F4F4F4] p-[32px]">
         <Text className="text-[#4D5628] text-[20px] font-nexa-bold">Eğitimlerim</Text>
@@ -167,7 +166,7 @@ const AllTrainingsFloating = () => {
 const UserDashBoard = () => {
     const { user: { IsAdmin } } = useUser();
     const router = useRouter()
-   
+
     return <>
         <MyTrainings />
         <AllTrainingsFloating />

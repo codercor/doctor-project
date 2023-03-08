@@ -42,6 +42,7 @@ const SettingsOrderHistory = () => {
                                     day: "2-digit",
                                 })}
                                 Id={item.Id}
+                                IsCanceled={item.Detail.IsCanceled}
                                 type={"TYPE"}
                                 invoiceURL={item.Detail?.EInvoiceLink}
                             />

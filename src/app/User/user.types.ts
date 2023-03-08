@@ -64,6 +64,7 @@ export interface OrderHistoyItem {
         PurchaseId: string;
         EInvoiceLink: string | null;
         Price: string;
+        IsCanceled: boolean;
     },
     Date: string;
 }

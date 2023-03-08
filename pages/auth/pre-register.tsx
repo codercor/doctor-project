@@ -65,7 +65,7 @@ const RegisterForm = () => {
             Email: null,
         }
         // if (credentials.Email === '' || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(credentials.Email) === false) {
-            if (credentials.Email === '' || /^([_a-z0-9]+[\._a-z0-9]*)(\+[a-z0-9]+)?@(([a-z0-9-]+\.)*[a-z]{2,3})$/.test(credentials.Email) === false) {
+        if (credentials.Email === '' || /^([_a-z0-9]+[\._a-z0-9]*)(\+[a-z0-9]+)?@(([a-z0-9-]+\.)*[a-z]{2,3})$/.test(credentials.Email) === false) {
             errors.Email = 'Geçerli bir eposta giriniz';
         } else {
             errors.Email = null;
@@ -91,6 +91,12 @@ const RegisterForm = () => {
         }
     }, [user])
 
+    useEffect(() => {
+        if (credentials.Email) {
+            registerValidation()
+        }
+    }, [credentials.Email])
+
     return (
         <AuthLayout>
             <Head>
@@ -105,7 +111,6 @@ const RegisterForm = () => {
                         <Text type="paragraph" className="text-red-500 !text-[14px]">{error.ErrorMessage}</Text>}
                     <Input onBlur={() => registerValidation()} text="E-posta" value={credentials.Email} type="email"
                         onChange={(e) => {
-                            registerValidation()
                             setCredentials({ ...credentials, Email: e.target.value })
                         }} />
                     {(typeof validationErrors.Email) &&

@@ -12,9 +12,10 @@ export type OrderHistoryCardProp = {
     type: string;
     invoiceURL: string | null
     Id: string;
+    IsCanceled: boolean;
 }
 
-const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id }: OrderHistoryCardProp) => {
+const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id, IsCanceled }: OrderHistoryCardProp) => {
     const refundRequest = () => {
         let toastId = toast.loading("İade talebiniz gönderiliyor...");
         request.post("/purchase/refund", {
@@ -27,7 +28,7 @@ const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id
             toast.error("İade talebiniz gönderilirken bir hata oluştu.");
         })
     }
-    return <div className="flex flex-col w-full min-w-[280px] px-[26px] py-[20px] bg-[white]">
+    return <div className="flex flex-col w-full min-w-[280px] relative px-[26px] py-[20px] bg-[white]">
         <Text className="text-[10px] text-[#9F9F9F]">11.10.2022 15.52</Text>
         <div className="flex justify-between items-center">
             <div className="flex flex-col">
@@ -39,30 +40,30 @@ const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id
                 <Text className="text-[black] text-[12px] sm:text-[16px]">{price}₺</Text>
             </div>
             <div className="text-[10px] flex-col  flex font-nexa-light">
-              <Text className="text-[#C17B32] text-[10px] md:text-[18px]">İade</Text>
-                <div onClick={
+                <Text className="text-[#C17B32] text-[10px] md:text-[18px]">İade</Text>
+                <button className="disabled:opacity-30" disabled={
+                    (Number(price) == 0 || IsCanceled)
+                } onClick={
                     () => {
-                        price!= "0" &&
-                    refundRequest()
-                }}> {price == "0" ?
-                (<Replay className="text-secondary !text-[36px] bg-emerald-500 bg-opacity-10 p-2 rounded-[20px_5px]" />
-                ) : (
-                <Replay className="!text-slate-50 !text-[36px] bg-secondary p-2 rounded-[20px_5px] cursor-pointer" />) 
-                } </div>
+                        refundRequest()
+                    }}>
+                    <Replay className="!text-slate-50  !text-[36px] bg-secondary p-2 rounded-[20px_5px] cursor-pointer" />
+                </button>
             </div>
             <Button disabled={
                 !invoiceURL
-            } 
-            onClick={
-                () => {
-                    if (invoiceURL) {
-                        window.open(invoiceURL, "_blank");
+            }
+                onClick={
+                    () => {
+                        if (invoiceURL) {
+                            window.open(invoiceURL, "_blank");
+                        }
                     }
-                }
-            } className="!p-0 !px-[10px]  sm:w-[146px] h-[50px] flex items-center justify-center !bg-secondary text-[12px]">
+                } className="!p-0 !px-[10px]  sm:w-[146px] h-[50px] flex items-center justify-center !bg-secondary text-[12px]">
                 <Download className="text-[white]" />
                 <Text className="text-[white] hidden sm:block text-[12px]">E-Fatura</Text>
             </Button>
+            {IsCanceled && <span className="text-[12px] absolute text-red-500 bottom-0 right-1 z-9"> İdae edilmiştir </span>}
         </div>
     </div>
 }
