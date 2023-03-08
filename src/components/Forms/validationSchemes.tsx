@@ -576,7 +576,7 @@ export const flow3FormValidationSchema = Yup.object({
     examinationOfSymptomsSkeletonQuestion9: textValidationSchema,
     examinationOfSymptomsSkeletonQuestion10: textValidationSchema,
     examinationOfSymptomsSkeletonQuestion11: textValidationSchema,
-    examinationOfSymptomsSkeletonQuestion12: textValidationSchema,
+    examinationOfSymptomsSkeletonQuestion12: freeTextValidationSchema,
 
     //eğer 12 soru doldurulduysa ve "yok" dışında birşey seçilirse 13 ve 14. soru doldurulmalı
     examinationOfSymptomsSkeletonQuestion13: Yup.string().when('examinationOfSymptomsSkeletonQuestion12', {
@@ -864,7 +864,7 @@ export const flow3FormValidationSchema = Yup.object({
     anotherTest152: textValidationSchema,
     anotherTest153: textValidationSchema,
     anotherTest154: textValidationSchema,
-    anotherTest155: textValidationSchema,
+    anotherTest155: freeTextValidationSchema,
     anotherTest156: textValidationSchema,
     anotherTest157: textValidationSchema,
     anotherTest158: textValidationSchema,
