@@ -33,9 +33,9 @@ const SettingsOrderHistory = () => {
                         {orderHistory?.map((item, index) => (
                             <OrderHistoryCard
                                 key={item.Id}
-                                orderNumber={item.Detail.PurchaseId}
+                                orderNumber={item.Detail?.PurchaseId}
                                 date={item.Date}
-                                price={item.Detail.Price}
+                                price={item.Detail?.Price}
                                 name={new Date(item.Date).toLocaleDateString("tr-TR", {
                                     year: "numeric",
                                     month: "long",
@@ -43,7 +43,7 @@ const SettingsOrderHistory = () => {
                                 })}
                                 Id={item.Id}
                                 type={"TYPE"}
-                                invoiceURL={item.Detail.EInvoiceLink}
+                                invoiceURL={item.Detail?.EInvoiceLink}
                             />
                         ))}
                     </div>

@@ -113,7 +113,7 @@ const Egitimler = () => {
                     }} className="mx-auto md:h-[936px]  px-[20px] md:px-0 scrollbar-thin scrollbar-track-[white]  scrollbar-thumb-quaternary scrollbar-thumb-rounded  h-[700px]  lg:w-[1000px] overflow-auto max-w-[1000px] items-center lg:items-start flex gap-[20px] lg:flex-row flex-col ">
 
                         {loading && <div className="absolute top-[14%] z-[3] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
-                            <CircularProgress size={120} />
+                            <CircularProgress size={40} />
                         </div>}
                         {
                             (!loading && filteredTrainings.length) === 0 && <div className="flex flex-col w-full  items-center justify-start h-full">
