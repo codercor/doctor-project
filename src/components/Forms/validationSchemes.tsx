@@ -577,8 +577,12 @@ export const flow3FormValidationSchema = Yup.object({
     examinationOfSymptomsSkeletonQuestion10: textValidationSchema,
     examinationOfSymptomsSkeletonQuestion11: textValidationSchema,
     examinationOfSymptomsSkeletonQuestion12: textValidationSchema,
+
+    //kontrol edilecek.
     examinationOfSymptomsSkeletonQuestion13: textValidationSchema,
     examinationOfSymptomsSkeletonQuestion14: textValidationSchema,
+
+
     examinationOfSymptomsSkeletonQuestion15: textValidationSchema,
     examinationOfSymptomsSkeletonQuestion16: textValidationSchema,
     examinationOfSymptomsSkeletonQuestion17: textValidationSchema,
@@ -640,7 +644,7 @@ export const flow3FormValidationSchema = Yup.object({
     examinationOfSymptomsDigestionQuestion1: textValidationSchema,
     examinationOfSymptomsDigestionQuestion2: textValidationSchema,
     examinationOfSymptomsDigestionQuestion3: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion4: textValidationSchema,
+  
     examinationOfSymptomsDigestionQuestion5: textValidationSchema,
     examinationOfSymptomsDigestionQuestion6: textValidationSchema,
     examinationOfSymptomsDigestionQuestion7: textValidationSchema,
@@ -658,14 +662,8 @@ export const flow3FormValidationSchema = Yup.object({
     examinationOfSymptomsDigestionQuestion19: textValidationSchema,
     examinationOfSymptomsDigestionQuestion20: textValidationSchema,
     examinationOfSymptomsDigestionQuestion21: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion22: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion23: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion24: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion25: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion26: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion27: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion28: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion29: textValidationSchema,
+  
+   
     examinationOfSymptomsDigestionQuestion30: textValidationSchema,
     examinationOfSymptomsDigestionQuestion31: textValidationSchema,
     examinationOfSymptomsDigestionQuestion32: textValidationSchema,
@@ -675,6 +673,27 @@ export const flow3FormValidationSchema = Yup.object({
     examinationOfSymptomsDigestionQuestion36: textValidationSchema,
     examinationOfSymptomsDigestionQuestion37: textValidationSchema,
     examinationOfSymptomsDigestionQuestion38: textValidationSchema,
+
+    //yeni
+    examinationOfSymptomsDigestionQuestion39: freeTextValidationSchema,
+    //etkilenen
+    examinationOfSymptomsDigestionQuestion22: textValidationSchema,
+    examinationOfSymptomsDigestionQuestion23: textValidationSchema,
+    examinationOfSymptomsDigestionQuestion24: textValidationSchema,
+    examinationOfSymptomsDigestionQuestion25: textValidationSchema,
+    examinationOfSymptomsDigestionQuestion26: textValidationSchema,
+    examinationOfSymptomsDigestionQuestion27: textValidationSchema,
+    examinationOfSymptomsDigestionQuestion28: textValidationSchema,
+
+    examinationOfSymptomsDigestionQuestion40 : freeTextValidationSchema,
+    //etkilenen
+    examinationOfSymptomsDigestionQuestion29: textValidationSchema,
+
+
+    examinationOfSymptomsDigestionQuestion41 : freeTextValidationSchema,
+    // etkilenen
+    examinationOfSymptomsDigestionQuestion4: textValidationSchema,
+
     //another tests 130
     anotherTest1: textValidationSchema,
     anotherTest2: textValidationSchema,
@@ -697,13 +716,27 @@ export const flow3FormValidationSchema = Yup.object({
     anotherTest34: textValidationSchema, anotherTest35: textValidationSchema,
     anotherTest36: textValidationSchema, anotherTest37: textValidationSchema,
     anotherTest38: textValidationSchema, anotherTest39: textValidationSchema,
+   
+//kontrol edilecek.
     anotherTest40: textValidationSchema, anotherTest41: textValidationSchema,
+
+
     anotherTest42: textValidationSchema, anotherTest43: textValidationSchema,
     anotherTest44: textValidationSchema, anotherTest45: textValidationSchema,
-    anotherTest46: textValidationSchema, anotherTest47: textValidationSchema,
-    anotherTest48: textValidationSchema, anotherTest49: textValidationSchema,
-    anotherTest50: textValidationSchema, anotherTest51: textValidationSchema,
-    anotherTest52: textValidationSchema, anotherTest53: textValidationSchema,
+   
+    anotherTest51: textValidationSchema,
+    
+
+//kontrol edilecek.
+    anotherTest49: textValidationSchema,
+    anotherTest50: textValidationSchema, 
+    anotherTest52: textValidationSchema,
+    anotherTest48: textValidationSchema,
+    anotherTest46: textValidationSchema, 
+    anotherTest47: textValidationSchema,
+    
+    
+    anotherTest53: textValidationSchema,
     anotherTest54: textValidationSchema, anotherTest55: textValidationSchema,
     anotherTest56: textValidationSchema, anotherTest57: textValidationSchema,
     anotherTest58: textValidationSchema, anotherTest59: textValidationSchema,
@@ -770,10 +803,20 @@ export const flow3FormValidationSchema = Yup.object({
     anotherTest147: textValidationSchema,
     anotherTest148: textValidationSchema,
     anotherTest149: textValidationSchema,
+
+
+
+    // yeni kontrol edilecek
     anotherTest150: textValidationSchema,
     anotherTest151: freeTextValidationSchema,
     anotherTest152:textValidationSchema,
-    anotherTest153:textValidationSchema
+    anotherTest153:textValidationSchema,
+    anotherTest154:textValidationSchema,
+    anotherTest155:textValidationSchema,
+    anotherTest156:textValidationSchema,
+    anotherTest157:textValidationSchema,
+    anotherTest158:textValidationSchema,
+    anotherTest159:textValidationSchema,
 })
 
 
