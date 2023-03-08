@@ -123,7 +123,7 @@ export const flow3FormInitialValues = {
     },
     //currentDietOther: "",
     breakfast: "",
-    sy1:0,
+    sy1:"",
     sy2:"",
     sy3:"",
     sy4:"",
