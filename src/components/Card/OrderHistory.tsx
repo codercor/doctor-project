@@ -42,12 +42,12 @@ const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id
               <Text className="text-[#C17B32] text-[10px] md:text-[18px]">İade</Text>
                 <div onClick={
                     () => {
-                       price!= "0" &&
+                        price!= "0" &&
                     refundRequest()
                 }}> {price == "0" ?
                 (<Replay className="text-secondary !text-[36px] bg-emerald-500 bg-opacity-10 p-2 rounded-[20px_5px]" />
                 ) : (
-                <Replay className="text-secondary !text-[36px] bg-emerald-500 bg-opacity-90 p-2 rounded-[20px_5px] cursor-pointer" />) 
+                <Replay className="!text-slate-50 !text-[36px] bg-secondary p-2 rounded-[20px_5px] cursor-pointer" />) 
                 } </div>
             </div>
             <Button disabled={
