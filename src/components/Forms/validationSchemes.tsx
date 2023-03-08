@@ -39,7 +39,7 @@ export const flow2FormValidationSchema = Yup.object({
     childFoodDisorder: singleSelectValidationSchema,
     childFoodDisorderDesc: SelectIsValueValidation("childFoodDisorder"),
     foodDisorder: textValidationSchema,
-    foodDisorderDesc:SelectIsValueValidation("foodDisorder"),
+    foodDisorderDesc: SelectIsValueValidation("foodDisorder"),
     favoriteFood: textValidationSchema,
     mostEatenFood: textValidationSchema,
     foodPreparedBy: textValidationSchema,
@@ -60,7 +60,7 @@ export const flow1FormValidationSchema = Yup.object({
             /^[a-zA-ZşŞıİçÇöÖüÜ]+(?:[\s-][a-zA-ZşŞıİçÇöÖüÜ]+){1,3}$/,
             "Geçerli bir isim giriniz"
         ),
-    age: Yup.number().min(0,"Minumum 0 olabilir").required("Zorunlu alan"),
+    age: Yup.number().min(0, "Minumum 0 olabilir").required("Zorunlu alan"),
     gender: Yup.string()
         .required("Zorunlu alan")
         .oneOf(["kadın", "erkek", "diger"], "Cinsiyet seçiniz"),
@@ -78,12 +78,12 @@ export const flow1FormValidationSchema = Yup.object({
     meetingType: textValidationSchema,
 });
 const numberValidationNonRequired = Yup.number()
-export function SelectIsValueValidation(name:string,value:string = "evet"){
-return Yup.string().when(name, {
-    is: (name: string) => name === value,
-    then: Yup.string().required("Zorunlu alan"),
-    otherwise: Yup.string(),
-})
+export function SelectIsValueValidation(name: string, value: string = "evet") {
+    return Yup.string().when(name, {
+        is: (name: string) => name === value,
+        then: Yup.string().required("Zorunlu alan"),
+        otherwise: Yup.string(),
+    })
 }
 
 export const flow3FormValidationSchema = Yup.object({
@@ -97,11 +97,11 @@ export const flow3FormValidationSchema = Yup.object({
         then: Yup.string().required("Zorunlu alan"),
     }),
     name: textValidationSchema,
-    age: Yup.number().min(0,"Minumum 0 olabilir").required("Zorunlu alan"),
+    age: Yup.number().min(0, "Minumum 0 olabilir").required("Zorunlu alan"),
     birthDate: textValidationSchema,
     email: Yup.string()
-    .email("Geçerli bir email giriniz")
-    .required("Zorunlu alan"),
+        .email("Geçerli bir email giriniz")
+        .required("Zorunlu alan"),
     address: textValidationSchema,
     city: textValidationSchema,
     phoneCell: textValidationSchema,
@@ -110,7 +110,7 @@ export const flow3FormValidationSchema = Yup.object({
     emergencyContactRelation: textValidationSchema,
     emergencyContactPhoneCell: textValidationSchema,
     whereDidYouHear: textValidationSchema,
-    whereDidYouHearOther: SelectIsValueValidation("whereDidYouHear","Diğer"),
+    whereDidYouHearOther: SelectIsValueValidation("whereDidYouHear", "Diğer"),
     currentDisease: Yup.array().of(
         Yup.object().shape({
             problem: Yup.string().required("Zorunlu"),
@@ -158,7 +158,7 @@ export const flow3FormValidationSchema = Yup.object({
     foodsLike: textValidationSchema,
     foodsLikeDetail: SelectIsValueValidation("foodsLike"),
     threeMeal: textValidationSchema,
-    threeMealDetail: SelectIsValueValidation("threeMeal","hayır"),
+    threeMealDetail: SelectIsValueValidation("threeMeal", "hayır"),
     skipMeal: textValidationSchema,
     skipMealDetail: SelectIsValueValidation("skipMeal"),
     outsideMeal: textValidationSchema,
@@ -168,35 +168,35 @@ export const flow3FormValidationSchema = Yup.object({
     currentDiet: Yup.array().of(
         textValidationSchema
     ),
-    
+
     //currentDietOther: freeTextValidationSchema,
-    breakfast:textValidationSchema,
-    sy1:numberValidationNonRequired,
-    sy2:numberValidationNonRequired,
-    sy3:numberValidationNonRequired,
-    sy4:numberValidationNonRequired,
-    sy5:numberValidationNonRequired,
-    sy6:numberValidationNonRequired,
-    sy7:numberValidationNonRequired,
-    sy8:numberValidationNonRequired,
-    sy9:numberValidationNonRequired,
-    sy10:numberValidationNonRequired,
-    sy11:numberValidationNonRequired,
-    sy12:numberValidationNonRequired,
-    sy13:numberValidationNonRequired,
-    oy1:numberValidationNonRequired,
-    oy2:numberValidationNonRequired,
-    oy3:numberValidationNonRequired,
-    oy4:numberValidationNonRequired,
-    oy5:numberValidationNonRequired,
-    oy6:numberValidationNonRequired,
-    oy7:numberValidationNonRequired,
-    oy8:numberValidationNonRequired,
-    oy9:numberValidationNonRequired,
-    oy10:numberValidationNonRequired,
-    oy11:numberValidationNonRequired ,
-    oy12:numberValidationNonRequired,
-    oy13:numberValidationNonRequired,
+    breakfast: textValidationSchema,
+    sy1: numberValidationNonRequired,
+    sy2: numberValidationNonRequired,
+    sy3: numberValidationNonRequired,
+    sy4: numberValidationNonRequired,
+    sy5: numberValidationNonRequired,
+    sy6: numberValidationNonRequired,
+    sy7: numberValidationNonRequired,
+    sy8: numberValidationNonRequired,
+    sy9: numberValidationNonRequired,
+    sy10: numberValidationNonRequired,
+    sy11: numberValidationNonRequired,
+    sy12: numberValidationNonRequired,
+    sy13: numberValidationNonRequired,
+    oy1: numberValidationNonRequired,
+    oy2: numberValidationNonRequired,
+    oy3: numberValidationNonRequired,
+    oy4: numberValidationNonRequired,
+    oy5: numberValidationNonRequired,
+    oy6: numberValidationNonRequired,
+    oy7: numberValidationNonRequired,
+    oy8: numberValidationNonRequired,
+    oy9: numberValidationNonRequired,
+    oy10: numberValidationNonRequired,
+    oy11: numberValidationNonRequired,
+    oy12: numberValidationNonRequired,
+    oy13: numberValidationNonRequired,
     lunch: textValidationSchema,
     dinner: textValidationSchema,
     snacks: textValidationSchema,
@@ -238,7 +238,7 @@ export const flow3FormValidationSchema = Yup.object({
     oldAlcoholProblems: textValidationSchema,
     oldAlcoholProblemsWhatTime: SelectIsValueValidation("oldAlcoholProblems"),
     oldAlcoholProblemsDesc: SelectIsValueValidation("oldAlcoholProblems"),
-    oldAlcoholProblemsHelp:  SelectIsValueValidation("oldAlcoholProblems"),
+    oldAlcoholProblemsHelp: SelectIsValueValidation("oldAlcoholProblems"),
     recreationalDrug: textValidationSchema,
     recreationalDrugDesc: SelectIsValueValidation("recreationalDrug"),
     inhaledSubstance: textValidationSchema,
@@ -358,7 +358,7 @@ export const flow3FormValidationSchema = Yup.object({
         is: (val: any) => val.includes("cinsel yol ile bulaşan hastalık"),
         then: freeTextValidationSchema
     }),
-// son
+    // son
 
 
 
@@ -368,7 +368,7 @@ export const flow3FormValidationSchema = Yup.object({
     ABUse1Desc: SelectIsValueValidation("ABUse1"),
 
 
-//erkek
+    //erkek
     psa: freeTextValidationSchema,
     psaValue: freeTextValidationSchema,
     otherTest: freeTextValidationSchema,
@@ -578,9 +578,17 @@ export const flow3FormValidationSchema = Yup.object({
     examinationOfSymptomsSkeletonQuestion11: textValidationSchema,
     examinationOfSymptomsSkeletonQuestion12: textValidationSchema,
 
-    //kontrol edilecek.
-    examinationOfSymptomsSkeletonQuestion13: textValidationSchema,
-    examinationOfSymptomsSkeletonQuestion14: textValidationSchema,
+    //eğer 12 soru doldurulduysa ve "yok" dışında birşey seçilirse 13 ve 14. soru doldurulmalı
+    examinationOfSymptomsSkeletonQuestion13: Yup.string().when('examinationOfSymptomsSkeletonQuestion12', {
+        is: (examinationOfSymptomsSkeletonQuestion12: any) => examinationOfSymptomsSkeletonQuestion12 !== "yok" || examinationOfSymptomsSkeletonQuestion12 !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
+    examinationOfSymptomsSkeletonQuestion14: Yup.string().when('examinationOfSymptomsSkeletonQuestion12', {
+        is: (examinationOfSymptomsSkeletonQuestion12: any) => examinationOfSymptomsSkeletonQuestion12 !== "yok" || examinationOfSymptomsSkeletonQuestion12 !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
 
 
     examinationOfSymptomsSkeletonQuestion15: textValidationSchema,
@@ -644,9 +652,17 @@ export const flow3FormValidationSchema = Yup.object({
     examinationOfSymptomsDigestionQuestion1: textValidationSchema,
     examinationOfSymptomsDigestionQuestion2: textValidationSchema,
     examinationOfSymptomsDigestionQuestion3: textValidationSchema,
-  
-    examinationOfSymptomsDigestionQuestion5: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion6: textValidationSchema,
+
+    examinationOfSymptomsDigestionQuestion5: Yup.string().when('examinationOfSymptomsDigestionQuestion41', {
+        is: (v: any) => v !== "yok" || v !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
+    examinationOfSymptomsDigestionQuestion6: Yup.string().when('examinationOfSymptomsDigestionQuestion41', {
+        is: (v: any) => v !== "yok" || v !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
     examinationOfSymptomsDigestionQuestion7: textValidationSchema,
     examinationOfSymptomsDigestionQuestion8: textValidationSchema,
     examinationOfSymptomsDigestionQuestion9: textValidationSchema,
@@ -662,8 +678,8 @@ export const flow3FormValidationSchema = Yup.object({
     examinationOfSymptomsDigestionQuestion19: textValidationSchema,
     examinationOfSymptomsDigestionQuestion20: textValidationSchema,
     examinationOfSymptomsDigestionQuestion21: textValidationSchema,
-  
-   
+
+
     examinationOfSymptomsDigestionQuestion30: textValidationSchema,
     examinationOfSymptomsDigestionQuestion31: textValidationSchema,
     examinationOfSymptomsDigestionQuestion32: textValidationSchema,
@@ -677,22 +693,54 @@ export const flow3FormValidationSchema = Yup.object({
     //yeni
     examinationOfSymptomsDigestionQuestion39: freeTextValidationSchema,
     //etkilenen
-    examinationOfSymptomsDigestionQuestion22: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion23: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion24: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion25: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion26: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion27: textValidationSchema,
-    examinationOfSymptomsDigestionQuestion28: textValidationSchema,
+    examinationOfSymptomsDigestionQuestion22: Yup.string().when('examinationOfSymptomsDigestionQuestion39', {
+        is: (v: any) => v !== "yok" || v !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
+    examinationOfSymptomsDigestionQuestion23: Yup.string().when('examinationOfSymptomsDigestionQuestion39', {
+        is: (v: any) => v !== "yok" || v !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
+    examinationOfSymptomsDigestionQuestion24: Yup.string().when('examinationOfSymptomsDigestionQuestion39', {
+        is: (v: any) => v !== "yok" || v !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
+    examinationOfSymptomsDigestionQuestion25: Yup.string().when('examinationOfSymptomsDigestionQuestion39', {
+        is: (v: any) => v !== "yok" || v !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
+    examinationOfSymptomsDigestionQuestion26: Yup.string().when('examinationOfSymptomsDigestionQuestion39', {
+        is: (v: any) => v !== "yok" || v !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
+    examinationOfSymptomsDigestionQuestion27: Yup.string().when('examinationOfSymptomsDigestionQuestion39', {
+        is: (v: any) => v !== "yok" || v !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
+    examinationOfSymptomsDigestionQuestion28: Yup.string().when('examinationOfSymptomsDigestionQuestion39', {
+        is: (v: any) => v !== "yok" || v !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
 
-    examinationOfSymptomsDigestionQuestion40 : freeTextValidationSchema,
+    examinationOfSymptomsDigestionQuestion40: freeTextValidationSchema,
     //etkilenen
     examinationOfSymptomsDigestionQuestion29: textValidationSchema,
 
 
-    examinationOfSymptomsDigestionQuestion41 : freeTextValidationSchema,
+    examinationOfSymptomsDigestionQuestion41: freeTextValidationSchema,
     // etkilenen
-    examinationOfSymptomsDigestionQuestion4: textValidationSchema,
+    examinationOfSymptomsDigestionQuestion4: Yup.string().when('examinationOfSymptomsDigestionQuestion41', {
+        is: (v: any) => v !== "yok" || v !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
 
     //another tests 130
     anotherTest1: textValidationSchema,
@@ -716,26 +764,30 @@ export const flow3FormValidationSchema = Yup.object({
     anotherTest34: textValidationSchema, anotherTest35: textValidationSchema,
     anotherTest36: textValidationSchema, anotherTest37: textValidationSchema,
     anotherTest38: textValidationSchema, anotherTest39: textValidationSchema,
-   
-//kontrol edilecek.
+
+    //kontrol edilecek.
     anotherTest40: textValidationSchema, anotherTest41: textValidationSchema,
 
 
     anotherTest42: textValidationSchema, anotherTest43: textValidationSchema,
     anotherTest44: textValidationSchema, anotherTest45: textValidationSchema,
-   
-    anotherTest51: textValidationSchema,
-    
 
-//kontrol edilecek.
+    anotherTest51: textValidationSchema,
+
+
+    //kontrol edilecek.
     anotherTest49: textValidationSchema,
-    anotherTest50: textValidationSchema, 
+    anotherTest50: textValidationSchema,
     anotherTest52: textValidationSchema,
-    anotherTest48: textValidationSchema,
-    anotherTest46: textValidationSchema, 
+    anotherTest48: Yup.string().when('anotherTest155', {
+        is: (v: any) => v !== "yok" || v !== "",
+        then: Yup.string().required('Bu alan zorunludur'),
+        otherwise: Yup.string()
+    }),
+    anotherTest46: textValidationSchema,
     anotherTest47: textValidationSchema,
-    
-    
+
+
     anotherTest53: textValidationSchema,
     anotherTest54: textValidationSchema, anotherTest55: textValidationSchema,
     anotherTest56: textValidationSchema, anotherTest57: textValidationSchema,
@@ -758,8 +810,8 @@ export const flow3FormValidationSchema = Yup.object({
     anotherTest90: textValidationSchema, anotherTest91: textValidationSchema,
     anotherTest92: textValidationSchema, anotherTest93: textValidationSchema,
     anotherTest94: textValidationSchema, anotherTest95: textValidationSchema,
-    anotherTest96: textValidationSchema, 
-    
+    anotherTest96: textValidationSchema,
+
     //erkek
     anotherTest97: freeTextValidationSchema,
     anotherTest98: freeTextValidationSchema, anotherTest99: freeTextValidationSchema,
@@ -783,7 +835,7 @@ export const flow3FormValidationSchema = Yup.object({
     anotherTest126: freeTextValidationSchema, anotherTest127: freeTextValidationSchema,
     anotherTest128: freeTextValidationSchema, anotherTest129: freeTextValidationSchema,
     anotherTest130: freeTextValidationSchema,
- //kadın son
+    //kadın son
     anotherTest131: Yup.number().required("Bu alan zorunludur").min(1, "En az 1 olmalıdır").max(5, "En fazla 5 olmalıdır"),
     anotherTest132: Yup.number().required("Bu alan zorunludur").min(1, "En az 1 olmalıdır").max(5, "En fazla 5 olmalıdır"),
     anotherTest133: Yup.number().required("Bu alan zorunludur").min(1, "En az 1 olmalıdır").max(5, "En fazla 5 olmalıdır"),
@@ -799,7 +851,7 @@ export const flow3FormValidationSchema = Yup.object({
     anotherTest143: textValidationSchema,
     anotherTest144: textValidationSchema,
     anotherTest145: textValidationSchema,
- 
+
     anotherTest147: textValidationSchema,
     anotherTest148: textValidationSchema,
     anotherTest149: textValidationSchema,
@@ -809,14 +861,14 @@ export const flow3FormValidationSchema = Yup.object({
     // yeni kontrol edilecek
     anotherTest150: textValidationSchema,
     anotherTest151: freeTextValidationSchema,
-    anotherTest152:textValidationSchema,
-    anotherTest153:textValidationSchema,
-    anotherTest154:textValidationSchema,
-    anotherTest155:textValidationSchema,
-    anotherTest156:textValidationSchema,
-    anotherTest157:textValidationSchema,
-    anotherTest158:textValidationSchema,
-    anotherTest159:textValidationSchema,
+    anotherTest152: textValidationSchema,
+    anotherTest153: textValidationSchema,
+    anotherTest154: textValidationSchema,
+    anotherTest155: textValidationSchema,
+    anotherTest156: textValidationSchema,
+    anotherTest157: textValidationSchema,
+    anotherTest158: textValidationSchema,
+    anotherTest159: textValidationSchema,
 })
 
 
