@@ -18,7 +18,7 @@ const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id
     const refundRequest = () => {
         let toastId = toast.loading("İade talebiniz gönderiliyor...");
         request.post("/purchase/refund", {
-            PurchaseId: orderNumber
+            PurchaseId: Id
         }).then((res) => {
             toast.dismiss(toastId);
             toast.success("İade talebiniz başarıyla gönderildi.");
@@ -39,14 +39,21 @@ const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id
                 <Text className="text-[black] text-[12px] sm:text-[16px]">{price}₺</Text>
             </div>
             <div className="text-[10px] flex-col  flex font-nexa-light">
-                <Text className="text-[#C17B32] text-[10px] md:text-[18px]">İade</Text>
-                <div onClick={() => {
+              <Text className="text-[#C17B32] text-[10px] md:text-[18px]">İade</Text>
+                <div onClick={
+                    () => {
+                       price!= "0" &&
                     refundRequest()
-                }}> <Replay className="text-secondary !text-[36px] bg-secondary-light p-2 rounded-[20px_5px] cursor-pointer" /></div>
+                }}> {price == "0" ?
+                (<Replay className="text-secondary !text-[36px] bg-emerald-500 bg-opacity-10 p-2 rounded-[20px_5px]" />
+                ) : (
+                <Replay className="text-secondary !text-[36px] bg-emerald-500 bg-opacity-90 p-2 rounded-[20px_5px] cursor-pointer" />) 
+                } </div>
             </div>
             <Button disabled={
                 !invoiceURL
-            } onClick={
+            } 
+            onClick={
                 () => {
                     if (invoiceURL) {
                         window.open(invoiceURL, "_blank");
