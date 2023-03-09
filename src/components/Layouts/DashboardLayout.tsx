@@ -58,6 +58,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             setDashboardNavs([
                 {
                     text: "Anasayfa",
+                    href: "/",
+                    Icon: Home,
+                    admin: true
+                },
+                {
+                    text: "Eğitimlerim",
                     href: "/dashboard",
                     Icon: Home,
                     admin: true
@@ -134,6 +140,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             const userNavs = [
                 {
                     text: "Anasayfa",
+                    href: "/",
+                    Icon: Home
+                },
+                {
+                    text: "Eğitimlerim",
                     href: "/dashboard",
                     Icon: Home
                 },

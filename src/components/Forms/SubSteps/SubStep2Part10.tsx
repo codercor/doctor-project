@@ -405,7 +405,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 {
-                    values.examinationOfSymptomsSkeletonQuestion12 != "yok" && values.examinationOfSymptomsSkeletonQuestion12 != "" && <>
+                    values.examinationOfSymptomsSkeletonQuestion12 != "yok" && values.examinationOfSymptomsSkeletonQuestion12 != null && <>
                         <FormInputSelectOne
                             label="Gözler çevresinde"
                             name="examinationOfSymptomsSkeletonQuestion13"
@@ -507,8 +507,17 @@ export default function SubStep2Part10({
                     error={errors?.examinationOfSymptomsNervesQuestion5}
                     onChange={handleChange}
                 />
-                <FormInputSelectOne
-                    label="Konsantre olmada(Zorluk)"
+                 <FormInputSelectOne
+                    label="Zorluk"
+                    name="examinationOfSymptomsNervesQuestion26"
+                    options={HOS}
+                    value={values.examinationOfSymptomsNervesQuestion26}
+                    error={errors?.examinationOfSymptomsNervesQuestion26}
+                    onChange={handleChange}
+                />{
+                     values.examinationOfSymptomsNervesQuestion26 != "yok" && values.examinationOfSymptomsNervesQuestion26 != null && <>
+                        <FormInputSelectOne
+                    label="Konsantre olmada"
                     name="examinationOfSymptomsNervesQuestion6"
                     options={HOS}
                     value={values.examinationOfSymptomsNervesQuestion6}
@@ -516,7 +525,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
-                    label="Dengeyi sağlamada(Zorluk)"
+                    label="Dengeyi sağlamada"
                     name="examinationOfSymptomsNervesQuestion7"
                     options={HOS}
                     value={values.examinationOfSymptomsNervesQuestion7}
@@ -524,7 +533,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
-                    label="Düşünmede(Zorluk)"
+                    label="Düşünmede"
                     name="examinationOfSymptomsNervesQuestion8"
                     options={HOS}
                     value={values.examinationOfSymptomsNervesQuestion8}
@@ -532,7 +541,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
-                    label="Muhakeme yapmada(Zorluk)"
+                    label="Muhakeme yapmada"
                     name="examinationOfSymptomsNervesQuestion9"
                     options={HOS}
                     value={values.examinationOfSymptomsNervesQuestion9}
@@ -540,7 +549,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
-                    label="Konuşmada(Zorluk)"
+                    label="Konuşmada"
                     name="examinationOfSymptomsNervesQuestion10"
                     options={HOS}
                     value={values.examinationOfSymptomsNervesQuestion10}
@@ -548,13 +557,15 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
-                    label="Hafızada(Zorluk)"
+                    label="Hafızada"
                     name="examinationOfSymptomsNervesQuestion11"
                     options={HOS}
                     value={values.examinationOfSymptomsNervesQuestion11}
                     error={errors?.examinationOfSymptomsNervesQuestion11}
                     onChange={handleChange}
-                />
+                /></>
+                }
+               
                 <FormInputSelectOne
                     label="Baş dönmesi"
                     name="examinationOfSymptomsNervesQuestion12"
@@ -762,7 +773,7 @@ export default function SubStep2Part10({
                 <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">İdrar yolları</label>
 
                 <FormInputSelectOne
-                    label="Yatağııslatma"
+                    label="Yatağı ıslatma"
                     name="examinationOfSymptomsPeeQuestion1"
                     options={HOS}
                     value={values.examinationOfSymptomsPeeQuestion1}
@@ -879,7 +890,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 {
-                    values.examinationOfSymptomsDigestionQuestion41 != "yok" && values.examinationOfSymptomsDigestionQuestion41 != "" &&
+                    values.examinationOfSymptomsDigestionQuestion41 != "yok" && values.examinationOfSymptomsDigestionQuestion41 != null &&
                     <>
                         <FormInputSelectOne
                             label="Karnın alt bölümünde"
@@ -1038,7 +1049,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 {
-                    values.examinationOfSymptomsDigestionQuestion39 != "yok" && values.examinationOfSymptomsDigestionQuestion39 != "" && <>
+                    values.examinationOfSymptomsDigestionQuestion39 != "yok" && values.examinationOfSymptomsDigestionQuestion39 != null && <>
                         <FormInputSelectOne
                             label="Laktoz"
                             name="examinationOfSymptomsDigestionQuestion22"
@@ -1106,7 +1117,7 @@ export default function SubStep2Part10({
                     error={errors?.examinationOfSymptomsDigestionQuestion40}
                     onChange={handleChange}
                 />{
-                    values.examinationOfSymptomsDigestionQuestion40 === "evet" &&
+                    values.examinationOfSymptomsDigestionQuestion40 != "yok"&&values.examinationOfSymptomsDigestionQuestion40 != null  &&
                     <FormInputSelectOne
                         label="Sarı gözler ve cilt"
                         name="examinationOfSymptomsDigestionQuestion29"
@@ -1320,7 +1331,9 @@ export default function SubStep2Part10({
                     value={values.anotherTest160}
                     error={errors?.anotherTest160}
                     onChange={handleChange}
-                />{values.anotherTest160 == "evet" && <>
+                />
+                {
+                values.anotherTest160 != "yok" &&  values.anotherTest160 != null && <>
                     <FormInputSelectOne
                         label="İlkbahar"
                         name="anotherTest16"
@@ -1529,7 +1542,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 {
-                    values.anotherTest159 == "evet" && <>
+                    values.anotherTest159 != "yok" && values.anotherTest159 != null && <>
                         <FormInputSelectOne
                             label="El tırnakları"
                             name="anotherTest40"
@@ -1580,25 +1593,14 @@ export default function SubStep2Part10({
                 />
 
                 <FormInputSelectOne
-                    label="Diğer Büyümüş/Hassas"
-                    name="anotherTest158"
+                    label="Diğer Büyümüş/Hassas lenf bezleri"
+                    name="anotherTest153"
                     options={HOS}
-                    value={values.anotherTest158}
-                    error={errors?.anotherTest158}
+                    value={values.anotherTest153}
+                    error={errors?.anotherTest153}
                     onChange={handleChange}
                 />
-                {
-                    values.anotherTest158 != "yok" && values.anotherTest158 != "" && <>
-                        <FormInputSelectOne
-                            label="Diğer Büyümüş/Hassas lenf bezleri"
-                            name="anotherTest153"
-                            options={HOS}
-                            value={values.anotherTest153}
-                            error={errors?.anotherTest153}
-                            onChange={handleChange}
-                        />
-                    </>
-                }
+                 
 
                 <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Deri, Kuruluk</label>
 
@@ -1619,7 +1621,7 @@ export default function SubStep2Part10({
                     error={errors?.anotherTest154}
                     onChange={handleChange}
                 />{
-                    values.anotherTest154 == "evet" && <>
+                    values.anotherTest154 != "yok"&& values.anotherTest154 != null && <>
                         <FormInputSelectOne
                             label="çatlak var mı?"
                             name="anotherTest46"
@@ -1668,7 +1670,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 {
-                    values.anotherTest156 != "yok" && values.anotherTest156 != "" && <>
+                    values.anotherTest156 != "yok" && values.anotherTest156 != null && <>
                         <FormInputSelectOne
                             label="Çatlama var mı ?"
                             name="anotherTest49"
@@ -1704,7 +1706,7 @@ export default function SubStep2Part10({
                     value={values.anotherTest157}
                     error={errors?.anotherTest157}
                     onChange={handleChange}
-                />{values.anotherTest157 != "yok" && values.anotherTest157 != "" && <>
+                />{values.anotherTest157 != "yok" && values.anotherTest157 != null && <>
                     <FormInputSelectOne
                         label="Kepek var mı?"
                         name="anotherTest52"

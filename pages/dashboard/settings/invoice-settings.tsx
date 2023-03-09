@@ -89,15 +89,15 @@ const SettingsInvoiceSettings = () => {
         );
         useEffect(() => {
             if (values.Country == "Turkey") {
-                setCities(ililce.map((city) => {
+                setCities(ililce.sort((a,b) => a.il_adi<b.il_adi ? -1 : 1).map((city) => {
                     return { value: city.il_adi, label: city.il_adi };
                 }));
             } else {
                 setCities([]);
             }
             if (values.Country == "Turkey" && values.City) {
-                setDistricts((ililce.find((city) => city.il_adi === values.City)?.ilceler as any[])?.map((district) => {
-                    return { value: district.ilce_adi, label: district.ilce_adi };
+                setDistricts((ililce.find((city) => city.il_adi === values.City)?.ilceler as any[])?.sort((a,b) => a.il_adi<b.il_adi ? -1 : 1).map((district) => {
+                    return { value: district.ilce_adi, label: district.ilce_adi};
                 }));
             } else {
                 setDistricts([]);
