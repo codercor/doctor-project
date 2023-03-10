@@ -33,6 +33,7 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
                                     <TableCell align="left">Tarih</TableCell>
                                     <TableCell align="left">Kullanıcı</TableCell>
                                     <TableCell align="left">Eğitim</TableCell>
+                                    <TableCell align="left">Durum</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -54,6 +55,7 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
                                         </TableCell>
                                         <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{(row.User?.Information.Fullname || '-')} </p>}</TableCell>
                                         <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{(row?.Education?.Name || '-')}</p>}</TableCell>
+                                        <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{(row?.Detail?.IsCanceled == true ?"Aktif" :"İade" || '-')}</p>}</TableCell>
                                     </TableRow>
                                 )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kayıt bulunmamaktadır </h1>
                                 }

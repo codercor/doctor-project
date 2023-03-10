@@ -63,7 +63,7 @@ const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id
                 <Download className="text-[white]" />
                 <Text className="text-[white] hidden sm:block text-[12px]">E-Fatura</Text>
             </Button>
-            {IsCanceled && <span className="text-[12px] absolute text-red-500 bottom-0 right-1 z-9"> İdae edilmiştir </span>}
+            {IsCanceled && <span className="text-[12px] absolute text-red-500 bottom-0 right-1 z-9"> İade edilmiştir </span>}
         </div>
     </div>
 }
