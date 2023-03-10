@@ -122,14 +122,14 @@ const Account = () => {
 
         useEffect(() => {
             if (values.Country == "Turkey") {
-                setCities(ililce.map((city) => {
+                setCities(ililce.sort((a, b) => a.il_adi.localeCompare(b.il_adi)).map((city) => {
                     return { value: city.il_adi, label: city.il_adi };
                 }));
             } else {
                 setCities([]);
             }
             if (values.Country == "Turkey" && values.City?.length > 0) {
-                setDistricts((ililce.find((city) => city.il_adi === values.City)?.ilceler as any[])?.map((district) => {
+                setDistricts((ililce.find((city) => city.il_adi === values.City)?.ilceler as any[])?.sort((a, b) => a.ilce_adi.localeCompare(b.ilce_adi)).map((district) => {
                     return { value: district.ilce_adi, label: district.ilce_adi };
                 }));
             } else {

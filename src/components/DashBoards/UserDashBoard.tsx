@@ -42,7 +42,7 @@ const MyTrainings = () => {
             );
             toast.success('Kullanıcı eğitimleri yüklendi.', { id: _toast });
             console.log("filtered b", response.data.data);
-                let filtered = response.data.data.filter((item: any) => !item.Detail.IsCanceled && item.Detail.Status).map((item: any) => item.Education)
+                let filtered = response.data.data
             console.log("Filtered", filtered);
 
             setUserTrainings(filtered)

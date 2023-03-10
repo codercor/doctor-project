@@ -36,7 +36,7 @@ export const ATTACH_VIDEO_FOLDER = `${TRAINING}/video`
 
 
 //TODO change this url and util function
-export const TRAININGS_WITH_USER_ID = `${PAYMENT}/:UserId`;
+export const TRAININGS_WITH_USER_ID = `${PAYMENT}/education/:UserId`;
 
 import { logout } from '@app/User/user.slice'
 

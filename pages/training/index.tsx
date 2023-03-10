@@ -16,6 +16,7 @@ import { Zoom } from '@mui/material'
 import { toast } from 'react-hot-toast'
 import TL from '@components/Text/TL'
 import Head from 'next/dist/shared/lib/head'
+import request, { TRAININGS_WITH_USER_ID } from '@config'
 const TrainingDocumentCard = ({ title, url }: { title: string, url: string }) => {
     const handleDownload = () => {
         window.open(url, '_blank')
@@ -63,9 +64,11 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
         }} className='text-center !rounded-md w-full mt-4'> <VideocamTwoTone /> Zoom&apos;u Başlat </Button>}
         {((ZoomURL || Password) && isZoomOpen) && <div className='w-full bg-inherit hover:bg-[white] hover:font-nexa-bold hover:text-[black] shadow-2xl mt-5 pb-4 bg-quaternary-light'>
             {ZoomURL && <div className='flex flex-col  w-full h-[50px] items-center justify-center'>
-                <div className='flex items-center min-h-[50px] justify-center'>
+                <div onClick={() => {
+                    window.open(ZoomURL, '_blank')
+                }} className='flex items-center min-h-[50px] justify-center'>
                     <VideoCallRounded />
-                    <Link target={"_blank"} href={ZoomURL} > Zoom`&apos;a gir </Link>
+                    <span  > Zoom`&apos;a gir </span>
                 </div>
                 {IsAdmin && <div className='flex items-center'>
                     <Key />
@@ -189,10 +192,26 @@ export default function TrainingDetailPage() {
     type OneTraining = TrainingDataType & { Id?: string, Image?: string, }
     const [trainingData, setTrainingData] = useState<OneTraining | null>(null)
     const { getTrainingById, oneTraining } = useTraining();
-
+    const [UsersTrainings, setUserTrainings] = useState<any[]>([])
     console.log("query", query.id);
-    const { user: { IsAuthenticated, UsersTrainings, IsAdmin }, getUsersTrainings } = useUser();
+    const { user: { IsAuthenticated, IsAdmin, Id } } = useUser();
+    const getUsersTrainings = async () => {
+        const _toast = toast.loading("Kullanıcı eğitimleri yükleniyor...")
+        try {
+            const response = await request.get(
+                TRAININGS_WITH_USER_ID.replace(':UserId', Id),
+            );
 
+            console.log("filtered b", response.data.data);
+            let filtered = response.data.data
+            console.log("Filtered", filtered);
+
+            setUserTrainings(filtered)
+        }
+        catch (error) {
+            toast.error('Kullanıcı eğitimleri yüklenirken hata oluştu.', { id: _toast });
+        }
+    }
 
     const [hasUser, setHasUser] = useState(false)
     const [ownTraining, setOwnTraining] = useState(null)
