@@ -65,7 +65,7 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
             {ZoomURL && <div className='flex flex-col  w-full h-[50px] items-center justify-center'>
                 <div className='flex items-center min-h-[50px] justify-center'>
                     <VideoCallRounded />
-                    <Link target="_blank" href={ZoomURL} > Zoom`&apos;a gir </Link>
+                    <Link target={"_blank"} href={ZoomURL} > Zoom`&apos;a gir </Link>
                 </div>
                 {IsAdmin && <div className='flex items-center'>
                     <Key />

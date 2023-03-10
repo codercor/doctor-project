@@ -63,7 +63,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     admin: true
                 },
                 {
-                    text: "Eğitimlerim",
+                    text: "Panelim",
                     href: "/dashboard",
                     Icon: Home,
                     admin: true
