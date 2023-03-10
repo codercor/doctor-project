@@ -13,9 +13,10 @@ export type OrderHistoryCardProp = {
     invoiceURL: string | null
     Id: string;
     IsCanceled: boolean;
+    startDate: string;
 }
 
-const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id, IsCanceled }: OrderHistoryCardProp) => {
+const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id, IsCanceled ,startDate}: OrderHistoryCardProp) => {
     const refundRequest = () => {
         let toastId = toast.loading("İade talebiniz gönderiliyor...");
         request.post("/purchase/refund", {
@@ -42,7 +43,7 @@ const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id
             <div className="text-[10px] flex-col  flex font-nexa-light">
                 <Text className="text-[#C17B32] text-[10px] md:text-[18px]">İade</Text>
                 <button className="disabled:opacity-30" disabled={
-                    (Number(price) == 0 || IsCanceled)
+                    (Number(price) == 0 || IsCanceled || (new Date(startDate).getTime() < new Date().getTime()) )
                 } onClick={
                     () => {
                         refundRequest()
@@ -51,7 +52,7 @@ const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id
                 </button>
             </div>
             <Button disabled={
-                !invoiceURL
+                !invoiceURL || IsCanceled
             }
                 onClick={
                     () => {

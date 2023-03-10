@@ -66,6 +66,12 @@ export interface OrderHistoyItem {
         Price: string;
         IsCanceled: boolean;
     },
+    Education:{
+        Id:string;
+        GeneralDetail:{
+            StartDate: string;
+        }
+    }
     Date: string;
 }
 

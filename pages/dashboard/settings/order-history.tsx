@@ -45,6 +45,7 @@ const SettingsOrderHistory = () => {
                                 IsCanceled={item.Detail.IsCanceled}
                                 type={"TYPE"}
                                 invoiceURL={item.Detail?.EInvoiceLink}
+                                startDate ={item.Education?.GeneralDetail?.StartDate}
                             />
                         ))}
                     </div>
