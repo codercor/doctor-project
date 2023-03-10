@@ -3,6 +3,7 @@ import Text from "@components/Text";
 import request from "@config";
 import { BackpackSharp, Download, Replay } from "@mui/icons-material";
 import { toast } from "react-hot-toast";
+import useUser from "src/hooks/user.hook";
 
 export type OrderHistoryCardProp = {
     orderNumber: string;
@@ -16,16 +17,19 @@ export type OrderHistoryCardProp = {
     startDate: string;
 }
 
-const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id, IsCanceled ,startDate}: OrderHistoryCardProp) => {
+const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id, IsCanceled, startDate }: OrderHistoryCardProp) => {
+    const { getOrderHistory, user: { orderHistory } } = useUser();
     const refundRequest = () => {
         let toastId = toast.loading("İade talebiniz gönderiliyor...");
         request.post("/purchase/refund", {
             PurchaseId: Id
         }).then((res) => {
             toast.dismiss(toastId);
+            getOrderHistory();
             toast.success("İade talebiniz başarıyla gönderildi.");
         }).catch((err) => {
             toast.dismiss(toastId);
+            getOrderHistory();
             toast.error("İade talebiniz gönderilirken bir hata oluştu.");
         })
     }
@@ -43,7 +47,7 @@ const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id
             <div className="text-[10px] flex-col  flex font-nexa-light">
                 <Text className="text-[#C17B32] text-[10px] md:text-[18px]">İade</Text>
                 <button className="disabled:opacity-30" disabled={
-                    (Number(price) == 0 || IsCanceled || (new Date(startDate).getTime() < new Date().getTime()) )
+                    (Number(price) == 0 || IsCanceled || (new Date(startDate).getTime() < new Date().getTime()))
                 } onClick={
                     () => {
                         refundRequest()
