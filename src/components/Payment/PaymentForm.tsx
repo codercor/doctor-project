@@ -62,8 +62,8 @@ export default function PaymentForm({ EducationId, UserId }: { EducationId: stri
         // Cvc: "123",
         CardHolderName: "",
         CardNumber: "",
-        ExpireMonth: "",
-        ExpireYear: "",
+        ExpireMonth: "01",
+        ExpireYear: "2023",
         Cvc: "",
     });
     const { htmlContent } = useSelector(selectPayment)
