@@ -208,7 +208,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 />
                {
-                 values.medicalResumeBreathingQuestion7 != '' &&
+                 values.medicalResumeBreathingQuestion7 != '' &&values.medicalResumeBreathingQuestion7 != null  &&
                   <FormInputSelectOne
                       label= ''
                       name="medicalResumeBreathingQuestion7Desc"
@@ -286,7 +286,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 />
                 {
-                 values.medicalResumeGenitalQuestion8 != '' &&
+                 values.medicalResumeGenitalQuestion8 != '' &&values.medicalResumeGenitalQuestion8 != null&&
                   <FormInputSelectOne
                       label= ''
                       name="medicalResumeGenitalQuestion8Desc"
@@ -364,7 +364,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 />
                {
-                 values.medicalResumeMetabolicQuestion8 != '' &&
+                 values.medicalResumeMetabolicQuestion8 != ''  &&  values.medicalResumeMetabolicQuestion8 != null &&
                   <FormInputSelectOne
                       label= ''
                       name="medicalResumeMetabolicQuestion8Desc"
@@ -457,7 +457,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 />
                  {
-                 values.medicalResumeInflammatoryQuestion10 != '' &&
+                 values.medicalResumeInflammatoryQuestion10 != '' &&  values.medicalResumeInflammatoryQuestion10 != null &&
                   <FormInputSelectOne
                       label= ''
                       name="medicalResumeInflammatoryQuestion10Desc"
@@ -503,7 +503,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 />
                  {
-                 values.medicalResumeMusculoskeletalQuestion4 != '' &&
+                 values.medicalResumeMusculoskeletalQuestion4 != '' && values.medicalResumeMusculoskeletalQuestion4 != null&&
                   <FormInputSelectOne
                       label= ''
                       name="medicalResumeMusculoskeletalQuestion4Desc"
@@ -557,7 +557,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 />
                {
-                 values.medicalResumeLeatherQuestion5 != '' &&
+                 values.medicalResumeLeatherQuestion5 != ''&&  values.medicalResumeLeatherQuestion5 != null &&
                   <FormInputSelectOne
                       label= ''
                       name="medicalResumeLeatherQuestion5Desc"
@@ -658,7 +658,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 />
                {
-                 values.medicalResumeHeartQuestion11 != '' &&
+                 values.medicalResumeHeartQuestion11 != '' && values.medicalResumeHeartQuestion11 != null&&
                   <FormInputSelectOne
                       label= ''
                       name="medicalResumeHeartQuestion11Desc"
@@ -759,7 +759,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 />
                {
-                 values.medicalResumeNeurologicalQuestion11 != '' &&
+                 values.medicalResumeNeurologicalQuestion11 != '' && values.medicalResumeNeurologicalQuestion11 != null &&
                   <FormInputSelectOne
                       label= ''
                       name="medicalResumeNeurologicalQuestion11Desc"
@@ -820,8 +820,8 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 />
                 {
-                 values.medicalResumeCancerQuestion6 != '' &&
-                  <FormInputSelectOne
+                 values.medicalResumeCancerQuestion6 != ''&&values.medicalResumeCancerQuestion6 != null &&
+                  <FormInputSelectOne 
                       label= ''
                       name="medicalResumeCancerQuestion6Desc"
                       options={EOH}

@@ -2377,6 +2377,7 @@ export default function SubStep2Part10({
                             error={errors?.anotherTest129}
                             onChange={handleChange}
                         />
+                        <div className="mb-4">
                         <FormInputSelectOne
                             label="Ara kanama/lekelenme"
                             name="anotherTest130"
@@ -2385,6 +2386,7 @@ export default function SubStep2Part10({
                             error={errors?.anotherTest130}
                             onChange={handleChange}
                         />
+                        </div>
                     </>
                 }
             </div>
@@ -2395,6 +2397,7 @@ export default function SubStep2Part10({
                 name="pillEffect1"
                 onChange={handleChange}
                 value={values.pillEffect1}
+                error={errors.pillEffect1}
                 label="İlaç veya takviyeler olağan dışı yan etki veya sorunlara neden oldu mu?" />
             {
                 values.pillEffect1 === "evet" && <>
@@ -2402,6 +2405,7 @@ export default function SubStep2Part10({
                         name="pillEffect1Desc"
                         onChange={handleChange}
                         value={values.pillEffect1Desc}
+                        error={errors.pillEffect1Desc}
                         label="Evet ise açıklayınız:" />
                 </>
             }
@@ -2413,18 +2417,21 @@ export default function SubStep2Part10({
                 name="pillUse1"
                 onChange={handleChange}
                 value={values.pillUse1}
+                error={errors.pillUse1}
                 label="NSAID (Brufen, apranax vb), Aspirin?" />
             <FormInputSelectOne
                 options={EH}
                 name="pillUse2"
                 onChange={handleChange}
                 value={values.pillUse2}
+                error={errors.pillUse2}
                 label="Parol (parasetamol)?" />
             <FormInputSelectOne
                 options={EH}
                 name="pillUse3"
                 onChange={handleChange}
                 value={values.pillUse3}
+                error={errors.pillUse3}
                 label="Basit bloke edici ilaç (Lansor, Aprozol, Helicol, Nexium vb.)?" />
             <p className="font-nexa-bold">
                 Kaç kez antibiyotik kullandınız?
@@ -2435,6 +2442,7 @@ export default function SubStep2Part10({
                 name="ABUse1"
                 onChange={handleChange}
                 value={values.ABUse1}
+                error={errors.ABUse1}
                 label="Daha önce hiç uzun süreli antibiyotik kullandınız mı?" />
             {
                 values.ABUse1 === "evet" && <>
