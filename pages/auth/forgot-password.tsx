@@ -31,8 +31,15 @@ const Login = () => {
         } else {
             errors.Email = null;
         }
+        
         setValidationErrors(errors);
     }
+
+    useEffect(() => {
+        if (credentials.Email) {
+            registerValidation()
+        }
+    }, [credentials.Email])
     return (
         <AuthLayout>
             <Head>
