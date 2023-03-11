@@ -12,7 +12,7 @@ const useTraining = () => {
     }
 
     const getTrainingById = (id: string) => {
-        dispatch(_getTrainingById(id));
+        return dispatch(_getTrainingById(id));
     }
 
     const deleteTrainingById = (id: string) => {

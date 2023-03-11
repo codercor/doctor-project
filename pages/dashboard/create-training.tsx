@@ -16,7 +16,8 @@ import FormInput, { FormInputTextArea } from "@components/Forms/FormInput/FormIn
 import * as Yup from "yup";
 import { v4 } from "uuid";
 import { toast } from "react-hot-toast";
-import { Reorder } from "framer-motion"
+import { Reorder, useMotionValue } from "framer-motion"
+import { useRaisedShadow } from "src/hooks/use-raised-shadow";
 
 const formatDate = (date: string) => {
     console.log("date", date);
@@ -204,88 +205,22 @@ const CreateTraining = () => {
                                 <div className="bg-tertiary-flat min-w-[20px] min-h-[20px] h-fit rounded-full w-fit grid place-content-center px-2 text-[12px] text-[white] font-nexa-bold">
                                     {values.EducationSections.length} Adet
                                 </div>
-                                <div className="relative flex border-[1px] w-full pt-2 flex-col mt-4 snap-y h-[400px] scrollbar-thin scrollbar-thumb-quaternary border-[white] overflow-auto">
-                                    {/* {
-                                        trainingData.EducationSections.map((section, index) => (
-                                            <TrainingBranch Time={section.Time} onChanges={(data, order) => {
-                                                console.log("data", data);
-                                                console.log("order", order);
-                                                handleChangeBranch(data, index)
-                                            }} Order={index + 1} Content={section.Content} StartDate={section.StartDate} onDelete={() => { handleBranchDelete(index); }} key={index} />
-                                        ))
-                                    } */}
-                                    {
+                                <div className="relative flex w-full pt-2 flex-col mt-4 snap-y shadow-[inset_0_15px_30px_-15px_rgba(0,0,0,0.3)] h-[600px] scrollbar-thin scrollbar-thumb-quaternary border-red-400 overflow-auto">
 
-                                        // <div key={v4()} className="flex flex-col mt-4 border-2 p-1 relative snap-start">
-                                        //     <div onClick={() => { 
-
-                                        //     }} className="rounded-full w-[30px] h-[30px] grid place-content-center bg-red-400 text-[white] absolute right-[0px] top-[-8px]">
-                                        //         <Delete fontSize="small" />
-                                        //     </div>
-                                        //     {/* <Input value={value.Content} onChange={handleChange} name="Content" text="Alt Başlık" /> */}
-                                        //     <FormInput type="text" name={`EducationSections[${index}].Content`} label="Alt Başlık" onChange={_handleChange} />
-                                        //     <div className="flex flex-row gap-4">
-                                        //         {/* <Input value={value.StartDate} type="datetime-local" onChange={handleChange} name="StartDate" text="Eğitim Başlama Tarihi" /> */}
-                                        //         <FormInput type="datetime-local"  name={`EducationSections[${index}].StartDate`}  label="Eğitim Başlama Tarihi" onChange={_handleChange} />
-                                        //         {/* <Input value={value.toString()} type="number" min={0} onChange={handleChange} name="Time" text="Eğitim Süresi (dk)" /> */}
-                                        //         <FormInput type="number" name={`EducationSections[${index}].Time`} label="Eğitim Süresi (dk)" onChange={_handleChange} />
-                                        //     </div>
-                                        // </div>
-
-                                        // <NewTrainingBranches _handleChange={_handleChange} values={values} errors={errors} setFieldValue={setFieldValue} />
-                                        // <FieldArray name="EducationSections" validateOnChange={false} render={(arrHelpers) => {
-                                        //     return values.EducationSections.map((section, index) => {
-                                        //         return <>
-                                        //             <TrainingBranch Time={section.Time} onChanges={(data, order) => {
-                                        //                 console.log("data", data);
-                                        //                 setFieldValue(`EducationSections[${index}]`, data);
-                                        //             }} Order={index + 1} Content={section.Content} StartDate={section.StartDate}
-                                        //                 onDelete={() => {
-                                        //                     arrHelpers.remove(index);
-                                        //                 }} key={index}
-                                        //                 error={errors?.EducationSections && errors?.EducationSections[index]}
-
-                                        //             />
-                                        //         </>
-                                        //     })
-                                        // }
-                                        // } />
-                                    }
-                                    <Reorder.Group values={values.EducationSections} onReorder={(sections) => {
+                                    <Reorder.Group values={values.EducationSections} axis="y" onReorder={(sections) => {
 
                                         setFieldValue("EducationSections", sections);
                                     }}>
                                         {values.EducationSections.map((section, index) => (
-                                            <Reorder.Item key={section.Order} value={section}>
-                                                {/* <TrainingBranch Time={section.Time} onChanges={(data, order) => {
-                                                    console.log("data", data);
-                                                    setFieldValue(`EducationSections[${index}]`, data);
-                                                }} Order={index + 1} Content={section.Content} StartDate={section.StartDate}
-                                                    onDelete={() => {
-                                                        // arrHelpers.remove(index);
-                                                    }} key={index}
-                                                    error={errors?.EducationSections && errors?.EducationSections[index]}
-
-                                                /> */}
-
-
-                                                <div className="flex flex-col mt-4 border-2 p-1 relative snap-start">
-                                                    <div onClick={() => {
-                                                        setFieldValue("EducationSections", values.EducationSections.filter((_, i) => i !== index));
-                                                    }} className="rounded-full w-[30px] h-[30px] grid place-content-center bg-red-400 text-[white] absolute right-[0px] top-[-8px]">
-                                                        <Delete fontSize="small" />
-                                                    </div>
-                                                    {/* <Input value={value.Content} onChange={handleChange} name="Content" text="Alt Başlık" /> */}
-                                                    <FormInput type="text" name={`EducationSections[${index}].Content`} label="Alt Başlık" error={errors?.EducationSections && errors?.EducationSections[index]?.Content as string} onChange={_handleChange} />
-                                                    <div className="flex flex-row gap-4">
-                                                        {/* <Input value={value.StartDate} type="datetime-local" onChange={handleChange} name="StartDate" text="Eğitim Başlama Tarihi" /> */}
-                                                        <FormInput type="datetime-local" name={`EducationSections[${index}].StartDate`} label="Eğitim Başlama Tarihi" onChange={_handleChange} error={errors?.EducationSections && errors?.EducationSections[index]?.StartDate as string} />
-                                                        {/* <Input value={value.toString()} type="number" min={0} onChange={handleChange} name="Time" text="Eğitim Süresi (dk)" /> */}
-                                                        <FormInput type="number" name={`EducationSections[${index}].Time`} label="Eğitim Süresi (dk)" onChange={_handleChange} error={errors?.EducationSections && errors?.EducationSections[index]?.Time as string} />
-                                                    </div>
-                                                </div>
-
-                                            </Reorder.Item>
+                                            <SectionItem
+                                                _handleChange={_handleChange}
+                                                errors={errors}
+                                                values={values}
+                                                index={index}
+                                                setFieldValue={setFieldValue}
+                                                section={section}
+                                                key={section.Order}
+                                            />
                                         ))}
                                     </Reorder.Group>
                                 </div>
@@ -306,7 +241,45 @@ const CreateTraining = () => {
     );
 }
 
+const SectionItem = ({ values, setFieldValue, index, errors, _handleChange, section }: {
+    values: any,
+    setFieldValue: any,
+    index: number,
+    errors: any,
+    _handleChange: any,
+    section: any
 
+}) => {
+    const y = useMotionValue(0);
+    const boxShadow = useRaisedShadow(y);
+    return (
+        <Reorder.Item key={section.Order}
+            style={{ boxShadow, y }}
+            value={section}>
+            <div className="flex flex-col bg-white-500 h-[170px] mt-4 border-2 p-1 relative snap-start">
+                <div onClick={() => {
+                    setFieldValue("EducationSections", values.EducationSections.filter((_: any, i: number) => i !== index));
+                }} className="rounded-full w-[30px] h-[30px] grid place-content-center bg-red-400 text-[white] absolute right-[0px] top-[-8px]">
+                    <Delete fontSize="small" />
+                </div>
+                {/* <Input value={value.Content} onChange={handleChange} name="Content" text="Alt Başlık" /> */}
+                <FormInput type="text" name={`EducationSections[${index}].Content`} value={
+                    values.EducationSections[index].Content
+                } label="Alt Başlık" error={errors?.EducationSections && errors?.EducationSections[index]?.Content as string} onChange={_handleChange} />
+                <div className="flex flex-row gap-4">
+                    {/* <Input value={value.StartDate} type="datetime-local" onChange={handleChange} name="StartDate" text="Eğitim Başlama Tarihi" /> */}
+                    <FormInput type="datetime-local"
+                        value={values.EducationSections[index].StartDate}
+                        name={`EducationSections[${index}].StartDate`} label="Eğitim Başlama Tarihi" onChange={_handleChange} error={errors?.EducationSections && errors?.EducationSections[index]?.StartDate as string} />
+                    {/* <Input value={value.toString()} type="number" min={0} onChange={handleChange} name="Time" text="Eğitim Süresi (dk)" /> */}
+                    <FormInput type="number"
+                        value={values.EducationSections[index].Time.toString()}
+                        name={`EducationSections[${index}].Time`} label="Eğitim Süresi (dk)" onChange={_handleChange} error={errors?.EducationSections && errors?.EducationSections[index]?.Time as string} />
+                </div>
+            </div>
+        </Reorder.Item>
+    )
+}
 const TrainingBranch = ({ Content = "", StartDate = "", Time = 0, onChanges = () => { }, Order = 0, onDelete = () => { }, error }: TrainingBranchProps & { error?: any }) => {
     const [_tempBranchData, setTempBranchData] = React.useState<TrainingBranchType>({
         Order: Order,
