@@ -468,7 +468,7 @@ export default function SubStep2Part9({
                   />  
                }
 
-               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kasiskelet</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">Kas-iskelet</label>
                 <FormInputSelectOne
                     label="Fibromiyalji"
                     name="medicalResumeMusculoskeletalQuestion1"
@@ -516,7 +516,7 @@ export default function SubStep2Part9({
 
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Deri</label>
                 <FormInputSelectOne
-                    label="Egzema"
+                    label="Egzama"
                     name="medicalResumeLeatherQuestion1"
                     options={EOH}
                     value={values.medicalResumeLeatherQuestion1}

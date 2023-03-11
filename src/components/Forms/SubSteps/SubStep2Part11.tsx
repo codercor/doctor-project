@@ -78,7 +78,7 @@ export default function SubStep2Part11({
             </div>
 
             <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
-               <label className="font-nexa-bold text-[20px] text-[#4E929D]">5 (çokistekli) ile 1 (istekli değil) arasında derecelendirin:</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">5 (çok istekli) ile 1 (istekli değil) arasında derecelendirin:</label>
 
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">Sağlığınızı iyileştirmek için bunları yapmaya ne kadar isteklisiniz:</label>
 

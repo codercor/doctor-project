@@ -87,7 +87,7 @@ export default function SubStep2Part4({
     return (
         <>
             <div
-                className="min-h-[60px] w-full  pl-[20px] flex-col flex bg-[#E9EDD9]  text-[#5B623D] items-start justify-center">
+                className="min-h-[60px] w-full  pl-[20px] flex-col flex bg-[#E9EDD9]  text-[#5B623D] items-start justify-center mt-3">
                 <h2 className="font-nexa-regular text-[18px]">Yaşam şeklinin değerlendirilmesi</h2>
             </div>
             <h3 className="font-nexa-regular text-[22px] text-[#4E929D]">Uyku</h3>

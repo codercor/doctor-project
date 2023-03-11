@@ -155,7 +155,7 @@ function Flow3Form({ setSelectedStep }: PropsCanSelectStep) {
                                     }}
                                     className="w-[250px] rounded-[20px_5px] text-[white] bg-[#4E929D] h-[50px] border-2"
                                 >
-                                    Formu Gönder
+                                    Formu Kaydet
                                 </button>
                             </div>)
                         }

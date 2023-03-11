@@ -246,7 +246,7 @@ export default function SubStep2Part8({
                         error={errors?.psa}
                         onChange={handleChange}
                     />{
-                        
+
                         values.psa === "evet" && <>
                             <FormInputSelectOne
                                 label="PSA Seviyesi ?"
@@ -729,15 +729,15 @@ export default function SubStep2Part8({
                             { value: "yumurtalık kisti", label: "Yumurtalık kisti" },
                             { value: "pelvik inflamatuvar hastalık", label: "Pelvik inflamatuvar hastalık" },
                             { value: "genital kanser (yumurtalık, rahim, meme, vb)", label: "Genital kanser (yumurtalık, rahim, meme, vb)" },
-                            { value: "cinsel yol ile bulaşan hastalık (açıklayınız)", label: "Cinsel yol ile bulaşan hastalık (açıklayınız)" },
+                            { value: "cinsel yol ile bulaşan hastalık", label: "Cinsel yol ile bulaşan hastalık" },
                         ]}
                         name="gynecologicalSymptoms"
                         value={values.gynecologicalSymptoms}
                         error={errors?.gynecologicalSymptoms}
                     />{
-                        values.gynecologicalSymptoms?.includes("cinsel yol ile bulaşan hastalık (açıklayınız)") &&
+                        values.gynecologicalSymptoms?.includes("cinsel yol ile bulaşan hastalık") &&
                         <FormInput
-                            label={``}
+                            label={`Açıklayınız`}
                             value={values.gynecologicalSymptomsDesc}
                             error={errors.gynecologicalSymptomsDesc}
                             name="gynecologicalSymptomsDesc"
@@ -835,6 +835,11 @@ export default function SubStep2Part8({
 
             </>
             }
+
+            <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
+                <h2 className=" text-[18px]">Aile Öyküsü:</h2>
+            </div>
+            <label className="font-nexa-bold text-[20px] text-center text-[#4E929D]">Aile üyeleri ile ilgili Aşağıdaki tabloyu doldurunuz</label>
             <div className="w-full flex flex-col  font-nexa-regular h-[900px]">
                 <div className="grid grid-cols-14 font-nexa-regular text-[14px]">
                     <p className=" border-2  text-[14px]   h-full text-left">  </p>
@@ -881,8 +886,8 @@ export default function SubStep2Part8({
                     <input type="number" min={0} max={130} onChange={handleChange} value={values.oy10} name="oy10" className=" border-2 text-[14px] h-full text-left" />
                     <input type="number" min={0} max={130} onChange={handleChange} value={values.oy11} name="oy11" className=" border-2 text-[14px] h-full text-left" />
                     <input type="number" min={0} max={130} onChange={handleChange} value={values.oy12} name="oy12" className=" border-2 text-[14px] h-full text-left" />
-                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy13} name="oy13" className=" border-2 text-[14px] h-full text-left" />   
-                              {/* KOLONLAR */}
+                    <input type="number" min={0} max={130} onChange={handleChange} value={values.oy13} name="oy13" className=" border-2 text-[14px] h-full text-left" />
+                    {/* KOLONLAR */}
                     <div className=" border-2 w-full text text-[10px] flex flex-col  h-[750px] text-left">
                         <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Kanser</p>
                         <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Kalp hastalığı</p>
@@ -900,7 +905,7 @@ export default function SubStep2Part8({
                         <p className="border-b-2 h-[32px] flex items-center justify-center text-center">Depresyon</p>
                         <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Astım </p>
                         <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Alerjiler </p>
-                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Egzema </p>
+                        <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Egzama </p>
                         <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Otizm </p>
                         <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Hassas Bağırsak Sendromu </p>
                         <p className="border-b-2 h-[32px] flex items-center justify-center text-center"> Demans </p>
@@ -926,7 +931,7 @@ export default function SubStep2Part8({
                         <Field name="aHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="aHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="aHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="aHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="aHastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="aHastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
                         <Field name="aHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="aHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
@@ -951,7 +956,7 @@ export default function SubStep2Part8({
                         <Field name="bHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="bHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="bHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="bHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="bHastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="bHastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
                         <Field name="bHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="bHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
@@ -977,7 +982,7 @@ export default function SubStep2Part8({
                         <Field name="k1Hastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="k1Hastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="k1Hastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="k1Hastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="k1Hastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
                         <Field name="k1Hastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="k1Hastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
@@ -1002,7 +1007,7 @@ export default function SubStep2Part8({
                         <Field name="k2Hastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="k2Hastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="k2Hastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="k2Hastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="k2Hastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
                         <Field name="k2Hastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="k2Hastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
@@ -1027,7 +1032,7 @@ export default function SubStep2Part8({
                         <Field name="c1Hastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="c1Hastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="c1Hastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="c1Hastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="c1Hastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
                         <Field name="c1Hastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="c1Hastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
@@ -1052,7 +1057,7 @@ export default function SubStep2Part8({
                         <Field name="c2Hastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="c2Hastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="c2Hastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="c2Hastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="c2Hastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
                         <Field name="c2Hastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="c2Hastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
@@ -1077,7 +1082,7 @@ export default function SubStep2Part8({
                         <Field name="c3Hastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="c3Hastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="c3Hastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="c3Hastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="c3Hastaliklar" className="h-[32px] w-full" value="ahdh" type="checkbox" />
                         <Field name="c3Hastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="c3Hastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
@@ -1102,7 +1107,7 @@ export default function SubStep2Part8({
                         <Field name="c4Hastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="c4Hastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="c4Hastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="c4Hastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="c4Hastaliklar" className="h-[32px] w-full" value="adhd" type="checkbox" />
                         <Field name="c4Hastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="c4Hastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
@@ -1127,7 +1132,7 @@ export default function SubStep2Part8({
                         <Field name="aaHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="aaHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="aaHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="aaHastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="aaHastaliklar" className="h-[32px] w-full" value="adhd" type="checkbox" />
                         <Field name="aaHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="aaHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
@@ -1152,7 +1157,7 @@ export default function SubStep2Part8({
                         <Field name="abHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="abHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="abHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="abHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="abHastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="abHastaliklar" className="h-[32px] w-full" value="adhd" type="checkbox" />
                         <Field name="abHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="abHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
@@ -1177,7 +1182,7 @@ export default function SubStep2Part8({
                         <Field name="baHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="baHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="baHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="baHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="baHastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="baHastaliklar" className="h-[32px] w-full" value="adhd" type="checkbox" />
                         <Field name="baHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="baHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
@@ -1203,7 +1208,7 @@ export default function SubStep2Part8({
                         <Field name="ddHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="ddHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="ddHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="ddHastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="ddHastaliklar" className="h-[32px] w-full" value="adhd" type="checkbox" />
                         <Field name="ddHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="ddHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />
@@ -1229,7 +1234,7 @@ export default function SubStep2Part8({
                         <Field name="dgHastaliklar" className="h-[32px] w-full" value="depresyon" type="checkbox" />
                         <Field name="dgHastaliklar" className="h-[32px] w-full" value="astım" type="checkbox" />
                         <Field name="dgHastaliklar" className="h-[32px] w-full" value="alerji" type="checkbox" />
-                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="egzema" type="checkbox" />
+                        <Field name="dgHastaliklar" className="h-[32px] w-full" value="egzama" type="checkbox" />
                         <Field name="dgHastaliklar" className="h-[32px] w-full" value="adhd" type="checkbox" />
                         <Field name="dgHastaliklar" className="h-[32px] w-full" value="otizm" type="checkbox" />
                         <Field name="dgHastaliklar" className="h-[32px] w-full" value="hassas" type="checkbox" />

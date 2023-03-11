@@ -21,7 +21,7 @@ export default function SubStep2Part2({
     console.log("values",values)
     return (
         <>
-            <div className="min-h-[60px] w-full  pl-[20px] flex-col flex bg-[#E9EDD9]  text-[#5B623D] items-start justify-center">
+            <div className="min-h-[60px] w-full  pl-[20px] flex-col flex bg-[#E9EDD9]  text-[#5B623D] items-start justify-center mt-3">
                 <h2 className="font-nexa-regular text-[18px]">Şu anki sağlık durumunuz:</h2>
 
                 <h3 className="font-nexa-regular text-[14px]">Lütfen mevcut ve devam eden sağlık sorunlarınızı öncelik sırasına göre sıralayın</h3>

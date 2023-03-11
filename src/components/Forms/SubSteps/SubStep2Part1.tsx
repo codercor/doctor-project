@@ -13,7 +13,7 @@ export default function SubStep2Part1({
 }) {
   return (
     <>
-      <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start">
+      <div className="h-[60px] w-full pl-[20px] flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-start mt-3">
         <h2 className="font-nexa-regular text-[18px]">Genel Bilgiler</h2>
       </div>
       {/* <div className="flex min-h-[150px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">

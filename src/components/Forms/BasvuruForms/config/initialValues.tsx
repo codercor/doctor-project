@@ -212,7 +212,7 @@ export const flow3FormInitialValues = {
     job: "",
     oldJob: "",
     emotionalSupport: "",
-    emotionalSupportSelect: "",
+    emotionalSupportSelect: [],
     emotionalSupportOther: "",
     general: "",
     school: "",
@@ -501,6 +501,7 @@ export const flow3FormInitialValues = {
     examinationOfSymptomsNervesQuestion23: "",
     examinationOfSymptomsNervesQuestion24: "",
     examinationOfSymptomsNervesQuestion25: "",
+    examinationOfSymptomsNervesQuestion26:"",
 
 
     //examinationOfSymptomsHeartQuestion 11
@@ -566,6 +567,9 @@ export const flow3FormInitialValues = {
     examinationOfSymptomsDigestionQuestion36: "",
     examinationOfSymptomsDigestionQuestion37: "",
     examinationOfSymptomsDigestionQuestion38: "",
+    examinationOfSymptomsDigestionQuestion39:"",
+    examinationOfSymptomsDigestionQuestion40:"",
+    examinationOfSymptomsDigestionQuestion41:"",
     //another tests 130
     anotherTest1: "",
     anotherTest2: "",
@@ -654,6 +658,14 @@ export const flow3FormInitialValues = {
     anotherTest148: "",
     anotherTest149: "",
     anotherTest150: "",
+    anotherTest154: "",
+    anotherTest155: "",
+    anotherTest156: "",
+    anotherTest157: "",
+    anotherTest159:"",
+    anotherTest160:"",
+    anotherTest161:"",
+    anotherTest162:"",
     //TOG 
     tog1Date: "",
     tog1Result: "",

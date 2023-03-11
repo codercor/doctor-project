@@ -405,7 +405,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 {
-                    values.examinationOfSymptomsSkeletonQuestion12 != "yok" && values.examinationOfSymptomsSkeletonQuestion12 != null && <>
+                    values.examinationOfSymptomsSkeletonQuestion12 != "yok" && values.examinationOfSymptomsSkeletonQuestion12 != "" && <>
                         <FormInputSelectOne
                             label="Gözler çevresinde"
                             name="examinationOfSymptomsSkeletonQuestion13"
@@ -507,7 +507,7 @@ export default function SubStep2Part10({
                     error={errors?.examinationOfSymptomsNervesQuestion5}
                     onChange={handleChange}
                 />
-                 <FormInputSelectOne
+                <FormInputSelectOne
                     label="Zorluk"
                     name="examinationOfSymptomsNervesQuestion26"
                     options={HOS}
@@ -515,57 +515,57 @@ export default function SubStep2Part10({
                     error={errors?.examinationOfSymptomsNervesQuestion26}
                     onChange={handleChange}
                 />{
-                     values.examinationOfSymptomsNervesQuestion26 != "yok" && values.examinationOfSymptomsNervesQuestion26 != null && <>
+                    values.examinationOfSymptomsNervesQuestion26 != "yok" && values.examinationOfSymptomsNervesQuestion26 != "" && <>
                         <FormInputSelectOne
-                    label="Konsantre olmada"
-                    name="examinationOfSymptomsNervesQuestion6"
-                    options={HOS}
-                    value={values.examinationOfSymptomsNervesQuestion6}
-                    error={errors?.examinationOfSymptomsNervesQuestion6}
-                    onChange={handleChange}
-                />
-                <FormInputSelectOne
-                    label="Dengeyi sağlamada"
-                    name="examinationOfSymptomsNervesQuestion7"
-                    options={HOS}
-                    value={values.examinationOfSymptomsNervesQuestion7}
-                    error={errors?.examinationOfSymptomsNervesQuestion7}
-                    onChange={handleChange}
-                />
-                <FormInputSelectOne
-                    label="Düşünmede"
-                    name="examinationOfSymptomsNervesQuestion8"
-                    options={HOS}
-                    value={values.examinationOfSymptomsNervesQuestion8}
-                    error={errors?.examinationOfSymptomsNervesQuestion8}
-                    onChange={handleChange}
-                />
-                <FormInputSelectOne
-                    label="Muhakeme yapmada"
-                    name="examinationOfSymptomsNervesQuestion9"
-                    options={HOS}
-                    value={values.examinationOfSymptomsNervesQuestion9}
-                    error={errors?.examinationOfSymptomsNervesQuestion9}
-                    onChange={handleChange}
-                />
-                <FormInputSelectOne
-                    label="Konuşmada"
-                    name="examinationOfSymptomsNervesQuestion10"
-                    options={HOS}
-                    value={values.examinationOfSymptomsNervesQuestion10}
-                    error={errors?.examinationOfSymptomsNervesQuestion10}
-                    onChange={handleChange}
-                />
-                <FormInputSelectOne
-                    label="Hafızada"
-                    name="examinationOfSymptomsNervesQuestion11"
-                    options={HOS}
-                    value={values.examinationOfSymptomsNervesQuestion11}
-                    error={errors?.examinationOfSymptomsNervesQuestion11}
-                    onChange={handleChange}
-                /></>
+                            label="Konsantre olmada"
+                            name="examinationOfSymptomsNervesQuestion6"
+                            options={HOS}
+                            value={values.examinationOfSymptomsNervesQuestion6}
+                            error={errors?.examinationOfSymptomsNervesQuestion6}
+                            onChange={handleChange}
+                        />
+                        <FormInputSelectOne
+                            label="Dengeyi sağlamada"
+                            name="examinationOfSymptomsNervesQuestion7"
+                            options={HOS}
+                            value={values.examinationOfSymptomsNervesQuestion7}
+                            error={errors?.examinationOfSymptomsNervesQuestion7}
+                            onChange={handleChange}
+                        />
+                        <FormInputSelectOne
+                            label="Düşünmede"
+                            name="examinationOfSymptomsNervesQuestion8"
+                            options={HOS}
+                            value={values.examinationOfSymptomsNervesQuestion8}
+                            error={errors?.examinationOfSymptomsNervesQuestion8}
+                            onChange={handleChange}
+                        />
+                        <FormInputSelectOne
+                            label="Muhakeme yapmada"
+                            name="examinationOfSymptomsNervesQuestion9"
+                            options={HOS}
+                            value={values.examinationOfSymptomsNervesQuestion9}
+                            error={errors?.examinationOfSymptomsNervesQuestion9}
+                            onChange={handleChange}
+                        />
+                        <FormInputSelectOne
+                            label="Konuşmada"
+                            name="examinationOfSymptomsNervesQuestion10"
+                            options={HOS}
+                            value={values.examinationOfSymptomsNervesQuestion10}
+                            error={errors?.examinationOfSymptomsNervesQuestion10}
+                            onChange={handleChange}
+                        />
+                        <FormInputSelectOne
+                            label="Hafızada"
+                            name="examinationOfSymptomsNervesQuestion11"
+                            options={HOS}
+                            value={values.examinationOfSymptomsNervesQuestion11}
+                            error={errors?.examinationOfSymptomsNervesQuestion11}
+                            onChange={handleChange}
+                        /></>
                 }
-               
+
                 <FormInputSelectOne
                     label="Baş dönmesi"
                     name="examinationOfSymptomsNervesQuestion12"
@@ -890,7 +890,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 {
-                    values.examinationOfSymptomsDigestionQuestion41 != "yok" && values.examinationOfSymptomsDigestionQuestion41 != null &&
+                    values.examinationOfSymptomsDigestionQuestion41 != "yok" && values.examinationOfSymptomsDigestionQuestion41 != "" &&
                     <>
                         <FormInputSelectOne
                             label="Karnın alt bölümünde"
@@ -1049,7 +1049,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 {
-                    values.examinationOfSymptomsDigestionQuestion39 != "yok" && values.examinationOfSymptomsDigestionQuestion39 != null && <>
+                    values.examinationOfSymptomsDigestionQuestion39 != "yok" && values.examinationOfSymptomsDigestionQuestion39 != "" && <>
                         <FormInputSelectOne
                             label="Laktoz"
                             name="examinationOfSymptomsDigestionQuestion22"
@@ -1117,7 +1117,7 @@ export default function SubStep2Part10({
                     error={errors?.examinationOfSymptomsDigestionQuestion40}
                     onChange={handleChange}
                 />{
-                    values.examinationOfSymptomsDigestionQuestion40 != "yok"&&values.examinationOfSymptomsDigestionQuestion40 != null  &&
+                    values.examinationOfSymptomsDigestionQuestion40 != "yok" && values.examinationOfSymptomsDigestionQuestion40 != "" &&
                     <FormInputSelectOne
                         label="Sarı gözler ve cilt"
                         name="examinationOfSymptomsDigestionQuestion29"
@@ -1333,40 +1333,40 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 {
-                values.anotherTest160 != "yok" &&  values.anotherTest160 != null && <>
-                    <FormInputSelectOne
-                        label="İlkbahar"
-                        name="anotherTest16"
-                        options={HOS}
-                        value={values.anotherTest16}
-                        error={errors?.anotherTest16}
-                        onChange={handleChange}
-                    />
-                    <FormInputSelectOne
-                        label="Yaz"
-                        name="anotherTest17"
-                        options={HOS}
-                        value={values.anotherTest17}
-                        error={errors?.anotherTest17}
-                        onChange={handleChange}
-                    />
-                    <FormInputSelectOne
-                        label="Sonbahar"
-                        name="anotherTest18"
-                        options={HOS}
-                        value={values.anotherTest18}
-                        error={errors?.anotherTest18}
-                        onChange={handleChange}
-                    />
-                    <FormInputSelectOne
-                        label="Mevsim geçişlerinde"
-                        name="anotherTest19"
-                        options={HOS}
-                        value={values.anotherTest19}
-                        error={errors?.anotherTest19}
-                        onChange={handleChange}
-                    />
-                </>
+                    values.anotherTest160 != "yok" && values.anotherTest160 != "" && <>
+                        <FormInputSelectOne
+                            label="İlkbahar"
+                            name="anotherTest16"
+                            options={HOS}
+                            value={values.anotherTest16}
+                            error={errors?.anotherTest16}
+                            onChange={handleChange}
+                        />
+                        <FormInputSelectOne
+                            label="Yaz"
+                            name="anotherTest17"
+                            options={HOS}
+                            value={values.anotherTest17}
+                            error={errors?.anotherTest17}
+                            onChange={handleChange}
+                        />
+                        <FormInputSelectOne
+                            label="Sonbahar"
+                            name="anotherTest18"
+                            options={HOS}
+                            value={values.anotherTest18}
+                            error={errors?.anotherTest18}
+                            onChange={handleChange}
+                        />
+                        <FormInputSelectOne
+                            label="Mevsim geçişlerinde"
+                            name="anotherTest19"
+                            options={HOS}
+                            value={values.anotherTest19}
+                            error={errors?.anotherTest19}
+                            onChange={handleChange}
+                        />
+                    </>
                 }
 
                 <FormInputSelectOne
@@ -1542,7 +1542,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 {
-                    values.anotherTest159 != "yok" && values.anotherTest159 != null && <>
+                    values.anotherTest159 != "yok" && values.anotherTest159 != "" && <>
                         <FormInputSelectOne
                             label="El tırnakları"
                             name="anotherTest40"
@@ -1600,7 +1600,7 @@ export default function SubStep2Part10({
                     error={errors?.anotherTest153}
                     onChange={handleChange}
                 />
-                 
+
 
                 <label className="font-nexa-bold text-[20px] text-left text-[#4E929D]">Deri, Kuruluk</label>
 
@@ -1621,7 +1621,7 @@ export default function SubStep2Part10({
                     error={errors?.anotherTest154}
                     onChange={handleChange}
                 />{
-                    values.anotherTest154 != "yok"&& values.anotherTest154 != null && <>
+                    values.anotherTest154 != "yok" && values.anotherTest154 != "" && <>
                         <FormInputSelectOne
                             label="çatlak var mı?"
                             name="anotherTest46"
@@ -1670,7 +1670,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 {
-                    values.anotherTest156 != "yok" && values.anotherTest156 != null && <>
+                    values.anotherTest156 != "yok" && values.anotherTest156 != "" && <>
                         <FormInputSelectOne
                             label="Çatlama var mı ?"
                             name="anotherTest49"
@@ -1706,7 +1706,7 @@ export default function SubStep2Part10({
                     value={values.anotherTest157}
                     error={errors?.anotherTest157}
                     onChange={handleChange}
-                />{values.anotherTest157 != "yok" && values.anotherTest157 != null && <>
+                />{values.anotherTest157 != "yok" && values.anotherTest157 != "" && <>
                     <FormInputSelectOne
                         label="Kepek var mı?"
                         name="anotherTest52"
@@ -1811,7 +1811,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
-                    label="Egzema"
+                    label="Egzama"
                     name="anotherTest64"
                     options={HOS}
                     value={values.anotherTest64}
@@ -2258,134 +2258,161 @@ export default function SubStep2Part10({
                             onChange={handleChange}
                         />
                         <FormInputSelectOne
-                            label="Adet öncesi şişkinlik"
-                            name="anotherTest115"
+                            label="Adet öncesi"
+                            name="anotherTest161"
                             options={HOS}
-                            value={values.anotherTest115}
-                            error={errors?.anotherTest115}
+                            value={values.anotherTest161}
+                            error={errors?.anotherTest161}
                             onChange={handleChange}
-                        />
-                        <FormInputSelectOne
-                            label="Adet öncesi memelerde hassasiyet"
-                            name="anotherTest116"
-                            options={HOS}
-                            value={values.anotherTest116}
-                            error={errors?.anotherTest116}
-                            onChange={handleChange}
-                        />
-                        <FormInputSelectOne
-                            label="Adet öncesi karbohidrat özlemi"
-                            name="anotherTest117"
-                            options={HOS}
-                            value={values.anotherTest117}
-                            error={errors?.anotherTest117}
-                            onChange={handleChange}
-                        />
-                        <FormInputSelectOne
-                            label="Adet öncesi çikolata özlemi"
-                            name="anotherTest118"
-                            options={HOS}
-                            value={values.anotherTest118}
-                            error={errors?.anotherTest118}
-                            onChange={handleChange}
-                        />
-                        <FormInputSelectOne
-                            label="Adet öncesi kabızlık"
-                            name="anotherTest119"
-                            options={HOS}
-                            value={values.anotherTest119}
-                            error={errors?.anotherTest119}
-                            onChange={handleChange}
-                        />
-                        <FormInputSelectOne
-                            label="Adet öncesi uykusuzluk"
-                            name="anotherTest120"
-                            options={HOS}
-                            value={values.anotherTest120}
-                            error={errors?.anotherTest120}
-                            onChange={handleChange}
-                        />
-                        <FormInputSelectOne
-                            label="Adet öncesi ishal"
-                            name="anotherTest121"
-                            options={HOS}
-                            value={values.anotherTest121}
-                            error={errors?.anotherTest121}
-                            onChange={handleChange}
-                        />
-                        <FormInputSelectOne
-                            label="Adet öncesi yorgunluk/tükenmişlik"
-                            name="anotherTest122"
-                            options={HOS}
-                            value={values.anotherTest122}
-                            error={errors?.anotherTest122}
-                            onChange={handleChange}
-                        />
-                        <FormInputSelectOne
-                            label="Adet öncesi daha çok uyumak"
-                            name="anotherTest123"
-                            options={HOS}
-                            value={values.anotherTest123}
-                            error={errors?.anotherTest123}
-                            onChange={handleChange}
-                        />
-                        <FormInputSelectOne
-                            label="Adet öncesi sinirlilik"
-                            name="anotherTest124"
-                            options={HOS}
-                            value={values.anotherTest124}
-                            error={errors?.anotherTest124}
-                            onChange={handleChange}
-                        />
+                        />{
+                            values.anotherTest161 != "yok" && values.anotherTest161 != "" && <>
+
+                                <FormInputSelectOne
+                                    label="Şişkinlik"
+                                    name="anotherTest115"
+                                    options={HOS}
+                                    value={values.anotherTest115}
+                                    error={errors?.anotherTest115}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="Memelerde hassasiyet"
+                                    name="anotherTest116"
+                                    options={HOS}
+                                    value={values.anotherTest116}
+                                    error={errors?.anotherTest116}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="Karbohidrat özlemi"
+                                    name="anotherTest117"
+                                    options={HOS}
+                                    value={values.anotherTest117}
+                                    error={errors?.anotherTest117}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="Çikolata özlemi"
+                                    name="anotherTest118"
+                                    options={HOS}
+                                    value={values.anotherTest118}
+                                    error={errors?.anotherTest118}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="Kabızlık"
+                                    name="anotherTest119"
+                                    options={HOS}
+                                    value={values.anotherTest119}
+                                    error={errors?.anotherTest119}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="Uykusuzluk"
+                                    name="anotherTest120"
+                                    options={HOS}
+                                    value={values.anotherTest120}
+                                    error={errors?.anotherTest120}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="İshal"
+                                    name="anotherTest121"
+                                    options={HOS}
+                                    value={values.anotherTest121}
+                                    error={errors?.anotherTest121}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="Yorgunluk/tükenmişlik"
+                                    name="anotherTest122"
+                                    options={HOS}
+                                    value={values.anotherTest122}
+                                    error={errors?.anotherTest122}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="Daha çok uyumak"
+                                    name="anotherTest123"
+                                    options={HOS}
+                                    value={values.anotherTest123}
+                                    error={errors?.anotherTest123}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="Sinirlilik"
+                                    name="anotherTest124"
+                                    options={HOS}
+                                    value={values.anotherTest124}
+                                    error={errors?.anotherTest124}
+                                    onChange={handleChange}
+                                />
+                            </>
+                        }
+
                         <FormInputSelectOne
                             label="Adet dönemi kramplar"
-                            name="anotherTest125"
+                            name="anotherTest162"
                             options={HOS}
-                            value={values.anotherTest125}
-                            error={errors?.anotherTest125}
+                            value={values.anotherTest162}
+                            error={errors?.anotherTest162}
                             onChange={handleChange}
                         />
-                        <FormInputSelectOne
-                            label="Adet dönemi çok kanamalı"
-                            name="anotherTest126"
-                            options={HOS}
-                            value={values.anotherTest126}
-                            error={errors?.anotherTest126}
-                            onChange={handleChange}
-                        />
-                        <FormInputSelectOne
-                            label="Adet dönemi düzensiz"
-                            name="anotherTest127"
-                            options={HOS}
-                            value={values.anotherTest127}
-                            error={errors?.anotherTest127}
-                            onChange={handleChange}
-                        />
-                        <FormInputSelectOne
-                            label="Adet dönemi adet görmeme"
-                            name="anotherTest128"
-                            options={HOS}
-                            value={values.anotherTest128}
-                            error={errors?.anotherTest128}
-                            onChange={handleChange}
-                        />
-                        <FormInputSelectOne
-                            label="Adet dönemi kısa adet dönemi"
-                            name="anotherTest129"
-                            options={HOS}
-                            value={values.anotherTest129}
-                            error={errors?.anotherTest129}
-                            onChange={handleChange}
-                        />
+                        {
+                            values.anotherTest162 != "yok" && values.anotherTest162 != "" && <>
+
+                                <FormInputSelectOne
+                                    label="kramplar"
+                                    name="anotherTest125"
+                                    options={HOS}
+                                    value={values.anotherTest125}
+                                    error={errors?.anotherTest125}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="Kanaması"
+                                    name="anotherTest126"
+                                    options={HOS}
+                                    value={values.anotherTest126}
+                                    error={errors?.anotherTest126}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="Düzensiz"
+                                    name="anotherTest127"
+                                    options={HOS}
+                                    value={values.anotherTest127}
+                                    error={errors?.anotherTest127}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="Adet görmeme"
+                                    name="anotherTest128"
+                                    options={HOS}
+                                    value={values.anotherTest128}
+                                    error={errors?.anotherTest128}
+                                    onChange={handleChange}
+                                />
+                                <FormInputSelectOne
+                                    label="Kısa adet dönemi"
+                                    name="anotherTest129"
+                                    options={HOS}
+                                    value={values.anotherTest129}
+                                    error={errors?.anotherTest129}
+                                    onChange={handleChange}
+                                />
+                            </>
+                        }
+
                         <div className="mb-4">
-                        <FormInputSelectOne
-                            label="Ara kanama/lekelenme"
-                            name="anotherTest130"
-                            options={HOS}
-                            value={values.anotherTest130}
-                            error={errors?.anotherTest130}
-                            onChange={handleChange}
-                        />
+                            <FormInputSelectOne
+                                label="Ara kanama/lekelenme"
+                                name="anotherTest130"
+                                options={HOS}
+                                value={values.anotherTest130}
+                                error={errors?.anotherTest130}
+                                onChange={handleChange}
+                            />
                         </div>
                     </>
                 }
@@ -2433,7 +2460,7 @@ export default function SubStep2Part10({
                 value={values.pillUse3}
                 error={errors.pillUse3}
                 label="Basit bloke edici ilaç (Lansor, Aprozol, Helicol, Nexium vb.)?" />
-            <p className="font-nexa-bold">
+            <p className="text-[#4E929D] text-[16px] font-nexa-bold mt-2">
                 Kaç kez antibiyotik kullandınız?
             </p>
             <AKN values={values} handleChange={handleChange} />
@@ -2454,7 +2481,7 @@ export default function SubStep2Part10({
                         label="Evet ise açıklayınız:" />
                 </>
             }
-            <p className="font-nexa-bold">
+            <p className="text-[#4E929D] text-[16px] font-nexa-bold mt-2">
                 Oral steroid, kullandıysanız hangi sıklıkla (kortizon, prednizon vb.)?
             </p>
             <STK values={values} handleChange={handleChange} />
@@ -2462,7 +2489,7 @@ export default function SubStep2Part10({
     );
 }
 const AKN = ({ values, handleChange }: { values: any, handleChange: any }) => {
-    return (<div className="w-full flex flex-col py-4 font-nexa-regular min-h-[300px] my-1">
+    return (<div className="w-full flex flex-col font-nexa-regular min-h-[200px]">
         <table className="table-auto w-full  row-span-4 col-span-1">
             <thead className="table-header-group text-left">
                 <tr className="table-row border-2">
@@ -2517,7 +2544,7 @@ const AKN = ({ values, handleChange }: { values: any, handleChange: any }) => {
 }
 
 const STK = ({ values, handleChange }: { values: any, handleChange: any }) => {
-    return (<div className="w-full flex flex-col py-4 font-nexa-regular min-h-[300px] my-1">
+    return (<div className="w-full flex flex-col font-nexa-regular min-h-[210px]">
         <table className="table-auto w-full  row-span-4 col-span-1">
             <thead className="table-header-group text-left">
                 <tr className="table-row border-2">
