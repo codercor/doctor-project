@@ -123,7 +123,7 @@ const RegisterForm = () => {
             registerValidation()
             setRenderCount(renderCount + 1);
         }
-    }, [credentials])
+    }, [credentials.ConfirmPassword,credentials.Email,credentials.Password])
 
     const checkUserInformationCompleted = () => {
         if (!user) return false
@@ -183,6 +183,7 @@ const RegisterForm = () => {
                         <Text type="paragraph" className="text-red-500 text-[12px]">{validationErrors.Password}</Text>}
                     <Input onBlur={() => registerValidation()} text="Şifre Tekrar" value={credentials.ConfirmPassword}
                         type="password"
+                        onKeyUp={(e) => registerValidation()}
                         onChange={(e) => setCredentials({ ...credentials, ConfirmPassword: e.target.value })} />
                     {(typeof validationErrors.ConfirmPassword) && <Text type="paragraph"
                         className="text-red-500 text-[12px]">{validationErrors.ConfirmPassword}</Text>}

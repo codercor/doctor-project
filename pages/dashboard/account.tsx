@@ -26,6 +26,7 @@ import CountryCityService from "countries-cities";
 import ililce from '../../src/il-ilce'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { redirect } from "next/dist/server/api-utils";
 
 const Account = () => {
     const { user } = useAuth(); //TODO ADD -> update user
@@ -239,7 +240,13 @@ const Account = () => {
                 console.log("errors", errors);
                 if (Object.keys(errors).length > 0) {
                     toast.error("Lütfen tüm alanları doğru şekilde doldurunuz")
-                } else submitForm()
+                } else {
+                    submitForm();
+                    setTimeout(() => {
+                        router.push("/dashboard")
+                    }, 3000);
+                    
+                }
 
             }}
                 type="button"
