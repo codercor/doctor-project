@@ -16,6 +16,7 @@ import FormInput, { FormInputTextArea } from "@components/Forms/FormInput/FormIn
 import * as Yup from "yup";
 import { v4 } from "uuid";
 import { toast } from "react-hot-toast";
+import { Reorder } from "framer-motion"
 
 const formatDate = (date: string) => {
     console.log("date", date);
@@ -55,7 +56,7 @@ const validationSchema = Yup.object().shape({
     GeneralDetail: Yup.object().shape({
         StartDate: Yup.string().required("Bu alan zorunludur"),
         EndDate: Yup.string().required("Bu alan zorunludur"),
-        MaxParticipant: Yup.number().required("Bu alan zorunludur").min(0, "Maksimum katılımcı sayısı 0'dan küçük olamaz").max(200, "Maksimum katılımcı sayısı 200'den büyük olamaz"),
+        MaxParticipant: Yup.number().required("Bu alan zorunludur").min(0, "Maksimum katılımcı sayısı 0'dan küçük olamaz").max(500, "Maksimum katılımcı sayısı 500'den büyük olamaz"),
         VideoLink: Yup.string().required("Bu alan zorunludur").url("Geçerli bir link girin").matches(/^(https?\:\/\/)?((www\.)?youtube\.com|youtu\.be)\/.+$/, "Youtube linki giriniz")
     }),
     EducationSections: Yup.array().of(Yup.object().shape({
@@ -181,7 +182,7 @@ const CreateTraining = () => {
                                 <div>
                                     {/* <Input value={trainingData.GeneralDetail.MaxParticipant.toString()} type="number" min={0} max={200} onChange={handleGeneralDetailChange} name="MaxParticipant" text="Katılımcı Sayısı" /> */}
                                     <FormInput type="number" value={values.GeneralDetail.MaxParticipant.toString()} name="GeneralDetail.MaxParticipant" error={errors?.GeneralDetail?.MaxParticipant} label="Katılımcı Sayısı" onChange={_handleChange} />
-                                    <Text type="overline">**Katılımcı sayısı max 200 olabilir</Text>
+                                    <Text type="overline">**Katılımcı sayısı max 500 olabilir</Text>
                                 </div>
                                 <div className="flex justify-between mt-6">
                                     <div className="flex flex-col">
@@ -232,24 +233,61 @@ const CreateTraining = () => {
                                         // </div>
 
                                         // <NewTrainingBranches _handleChange={_handleChange} values={values} errors={errors} setFieldValue={setFieldValue} />
-                                        <FieldArray name="EducationSections" validateOnChange={false} render={(arrHelpers) => {
-                                            return values.EducationSections.map((section, index) => {
-                                                return <>
-                                                    <TrainingBranch Time={section.Time} onChanges={(data, order) => {
-                                                        console.log("data", data);
-                                                        setFieldValue(`EducationSections[${index}]`, data);
-                                                    }} Order={index + 1} Content={section.Content} StartDate={section.StartDate}
-                                                        onDelete={() => {
-                                                            arrHelpers.remove(index);
-                                                        }} key={index}
-                                                        error={errors?.EducationSections && errors?.EducationSections[index]}
+                                        // <FieldArray name="EducationSections" validateOnChange={false} render={(arrHelpers) => {
+                                        //     return values.EducationSections.map((section, index) => {
+                                        //         return <>
+                                        //             <TrainingBranch Time={section.Time} onChanges={(data, order) => {
+                                        //                 console.log("data", data);
+                                        //                 setFieldValue(`EducationSections[${index}]`, data);
+                                        //             }} Order={index + 1} Content={section.Content} StartDate={section.StartDate}
+                                        //                 onDelete={() => {
+                                        //                     arrHelpers.remove(index);
+                                        //                 }} key={index}
+                                        //                 error={errors?.EducationSections && errors?.EducationSections[index]}
 
-                                                    />
-                                                </>
-                                            })
-                                        }
-                                        } />
+                                        //             />
+                                        //         </>
+                                        //     })
+                                        // }
+                                        // } />
                                     }
+                                    <Reorder.Group values={values.EducationSections} onReorder={(sections) => {
+
+                                        setFieldValue("EducationSections", sections);
+                                    }}>
+                                        {values.EducationSections.map((section, index) => (
+                                            <Reorder.Item key={section.Order} value={section}>
+                                                {/* <TrainingBranch Time={section.Time} onChanges={(data, order) => {
+                                                    console.log("data", data);
+                                                    setFieldValue(`EducationSections[${index}]`, data);
+                                                }} Order={index + 1} Content={section.Content} StartDate={section.StartDate}
+                                                    onDelete={() => {
+                                                        // arrHelpers.remove(index);
+                                                    }} key={index}
+                                                    error={errors?.EducationSections && errors?.EducationSections[index]}
+
+                                                /> */}
+
+
+                                                <div className="flex flex-col mt-4 border-2 p-1 relative snap-start">
+                                                    <div onClick={() => {
+                                                        setFieldValue("EducationSections", values.EducationSections.filter((_, i) => i !== index));
+                                                    }} className="rounded-full w-[30px] h-[30px] grid place-content-center bg-red-400 text-[white] absolute right-[0px] top-[-8px]">
+                                                        <Delete fontSize="small" />
+                                                    </div>
+                                                    {/* <Input value={value.Content} onChange={handleChange} name="Content" text="Alt Başlık" /> */}
+                                                    <FormInput type="text" name={`EducationSections[${index}].Content`} label="Alt Başlık" error={errors?.EducationSections && errors?.EducationSections[index]?.Content as string} onChange={_handleChange} />
+                                                    <div className="flex flex-row gap-4">
+                                                        {/* <Input value={value.StartDate} type="datetime-local" onChange={handleChange} name="StartDate" text="Eğitim Başlama Tarihi" /> */}
+                                                        <FormInput type="datetime-local" name={`EducationSections[${index}].StartDate`} label="Eğitim Başlama Tarihi" onChange={_handleChange} error={errors?.EducationSections && errors?.EducationSections[index]?.StartDate as string} />
+                                                        {/* <Input value={value.toString()} type="number" min={0} onChange={handleChange} name="Time" text="Eğitim Süresi (dk)" /> */}
+                                                        <FormInput type="number" name={`EducationSections[${index}].Time`} label="Eğitim Süresi (dk)" onChange={_handleChange} error={errors?.EducationSections && errors?.EducationSections[index]?.Time as string} />
+                                                    </div>
+                                                </div>
+
+                                            </Reorder.Item>
+                                        ))}
+                                    </Reorder.Group>
                                 </div>
                                 <Button onClick={_handleSubmit} disabled={
                                     !(isValid && dirty && !!trainingImage)
