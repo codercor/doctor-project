@@ -136,7 +136,7 @@ export default function SubStep2Part7({
                     name="withBoyFriendAndGirlFriend"
                     options={livePoint}
                     value={values.withBoyFriendAndGirlFriend}
-                    error={errors?.withBoyFriendGirlFriend}
+                    error={errors?.withBoyFriendAndGirlFriend}
                     onChange={handleChange}
                 />
                 <FormInputSelectOne

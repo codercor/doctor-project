@@ -14,6 +14,7 @@ import UserContract from "@components/ContractContents/UserContract";
 import UserIlluminationContract from "@components/ContractContents/UserIlluminationContract";
 import request from "@config";
 import Head from "next/dist/shared/lib/head";
+import Script from "next/dist/client/script";
 
 const Register = () => <><RegisterForm /></>
 
@@ -101,6 +102,13 @@ const RegisterForm = () => {
         <AuthLayout>
             <Head>
                 <title> Kayıt Ol | Nazan Uysal Harzadın </title>
+                <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
+                <Script id="g-tag-2" strategy="afterInteractive">
+                    {`window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-D0HTKY3R5J');`}
+                </Script>
             </Head>
 
             <div

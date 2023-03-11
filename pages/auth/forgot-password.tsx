@@ -3,6 +3,7 @@ import Button from "@components/Button";
 import Input from "@components/Input/Input";
 import AuthLayout from "@components/Layouts/AuthLayout";
 import Text from "@components/Text";
+import Script from "next/dist/client/script";
 import Head from "next/dist/shared/lib/head";
 import { Router, useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -26,12 +27,12 @@ const Login = () => {
             Email: null,
         }
         // if (credentials.Email === '' || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(credentials.Email) === false) {
-            if (credentials.Email === '' || /^([_a-z0-9]+[\._a-z0-9]*)(\+[a-z0-9]+)?@(([a-z0-9-]+\.)*[a-z]{2,3})$/.test(credentials.Email) === false) {
+        if (credentials.Email === '' || /^([_a-z0-9]+[\._a-z0-9]*)(\+[a-z0-9]+)?@(([a-z0-9-]+\.)*[a-z]{2,3})$/.test(credentials.Email) === false) {
             errors.Email = 'Geçerli bir eposta giriniz';
         } else {
             errors.Email = null;
         }
-        
+
         setValidationErrors(errors);
     }
 
@@ -44,6 +45,13 @@ const Login = () => {
         <AuthLayout>
             <Head>
                 <title> Şifremi Unuttum | Nazan Uysal Harzadın </title>
+                <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
+                <Script id="g-tag-2" strategy="afterInteractive">
+                    {`window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-D0HTKY3R5J');`}
+                </Script>
             </Head>
             <div className="md:h-full h-[500px] w-[340px] md:w-full lg:w-[340px]  flex justify-center items-center rounded-[30px_5px]">
                 <div className="w-[380px] md:min-w-full 2xl:w-full h-[402px] flex flex-col items-center lg:mr-[62px]">

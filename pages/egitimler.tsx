@@ -16,6 +16,7 @@ import { getPublicTrainingsRequest } from "@app/Training/training.utils";
 import { TrainingDataType } from "@app/Training/training.types";
 import Head from "next/dist/shared/lib/head";
 import { CircularProgress } from '@mui/material'
+import Script from "next/script";
 
 
 const TrainingSearchInput = ({ value, onChange }: { value: string, onChange: (e: any) => void }) => {
@@ -91,6 +92,13 @@ const Egitimler = () => {
         <LandingLayout>
             <Head>
                 <title> Eğitimler | Nazan Uysal Harzadın </title>
+                <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
+                <Script id="g-tag-2" strategy="afterInteractive">
+                    {`window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-D0HTKY3R5J');`}
+                </Script>
             </Head>
             <Container className=" h-[300px] md:h-[300px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px]  md:bg-cover overflow-clip bg-[url(/images/png/egitimler-bg.png)]">
                 <Container className="grid  place-items-end !min-w-full backdrop-brightness-50   justify-center  pb-20 md:pb-22 h-full">

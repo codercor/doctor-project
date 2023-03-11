@@ -3,6 +3,7 @@ import Button from '@components/Button'
 import Input from '@components/Input/Input'
 import AuthLayout from '@components/Layouts/AuthLayout'
 import Text from '@components/Text'
+import Script from 'next/dist/client/script'
 import Head from 'next/dist/shared/lib/head'
 import Router from 'next/router'
 import React, { useEffect } from 'react'
@@ -63,6 +64,13 @@ const ResetContent = () => {
     return <div className="md:h-full h-[500px] w-[340px] md:w-full lg:w-[340px]  flex justify-center items-center rounded-[30px_5px]">
         <Head>
             <title> Yeni Şifre | Nazan Uysal Harzadın </title>
+            <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
+            <Script id="g-tag-2" strategy="afterInteractive">
+                {`window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-D0HTKY3R5J');`}
+            </Script>
         </Head>
         <div className="w-[380px] md:min-w-full 2xl:w-full h-[402px] flex flex-col items-center lg:mr-[62px]">
             <Text type="h3" className="text-white !text-[34px]">Yenile</Text>
