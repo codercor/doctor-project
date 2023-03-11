@@ -10,6 +10,7 @@ import AcademicsListModal from "@components/SozlesmeModal/AcademicsListModal";
 import SozlesmeModal from "@components/SozlesmeModal/SozlesmeModal";
 import Text from "@components/Text";
 import { NextPage } from "next";
+import Script from "next/dist/client/script";
 import Head from "next/dist/shared/lib/head";
 import Image from "next/image";
 import { useState } from "react";
@@ -19,6 +20,13 @@ const Hakkimda: NextPage = () => {
     return <LandingLayout>
         <Head>
             <title> Hakkımda | Nazan Uysal Harzadın </title>
+            <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
+            <Script id="g-tag-2" strategy="afterInteractive">
+                {`window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-D0HTKY3R5J');`}
+            </Script>
         </Head>
         <Container className=" h-[300px] md:h-[300px]  w-full bg-cover bg-no-repeat md:!max-w-full bg-center rounded-br-[120px] overflow-clip   md:bg-cover bg-[url(/images/png/hakkimda2.png)]">
             <Container className="md:!max-w-[1455px] grid  place-items-end min-w-full backdrop-brightness-50  justify-center pb-20 md:pb-22 h-full">
@@ -33,7 +41,7 @@ const Hakkimda: NextPage = () => {
                 </div>
 
             </div>
-            <div className="flex flex-col mx-auto max-w-[1250px]  gap-4 items-end justify-center"> 
+            <div className="flex flex-col mx-auto max-w-[1250px]  gap-4 items-end justify-center">
                 <p className="!font-nexa-regular p-[10px] lg:w-1/2 text-[16px]">1994 yılında Dokuz Eylül Üniversitesi Tıp Fakültesinden mezun oldum. Kütahya Simav’ da mecburi hizmetimi tamamladıktan sonra,
                     Tıpta Uzmanlık Sınavı ile aynı üniversitede Fizyoloji alanında uzmanlık eğitimine başladım. Aralık 1998’ de Fizyoloji Uzmanı, 2006’ da Fizyoloji doçenti, 2011 yılında 39 yaşımda Fizyoloji
                     profesörü oldum. Fizyoloji insan vücudunun normal işleyişini, normalden sapmaların hastalıklara gidişi nasıl etkilediğini, fizyopatolojik alanda hastalıkların kök nedenlerini inceleyen bir

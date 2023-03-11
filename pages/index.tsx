@@ -35,6 +35,13 @@ const Home: NextPage = () => {
     <LandingLayout>
       <Head>
         <title> Anasayfa | Nazan Uysal Harzadın </title>
+        <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
+        <Script id="g-tag-2" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-D0HTKY3R5J');`}
+        </Script>
       </Head>
       <Banner />
       <InfoBanner />
@@ -165,6 +172,7 @@ import { toast } from "react-hot-toast";
 import Head from "next/head";
 import { useDraggable } from "react-use-draggable-scroll";
 import { getPublicTrainingsRequest } from "@app/Training/training.utils";
+import Script from "next/dist/client/script";
 
 // eslint-disable-next-line react/display-name
 const FaqItem = React.forwardRef((({ item }: { item: any }, ref: Ref<HTMLDivElement>) => {

@@ -9,6 +9,7 @@ import { Facebook, Instagram, InstallDesktopSharp, Twitter, WhatsApp } from '@mu
 import BlogCard from '@components/Card/BlogCard'
 import { CircularProgress } from '@mui/material'
 import Head from 'next/dist/shared/lib/head'
+import Script from 'next/dist/client/script'
 
 const Blog = () => {
 
@@ -49,6 +50,13 @@ const Blog = () => {
         <LandingLayout backColor='light'>
             <Head>
                 <title> {blog?.Title || 'Blog'} | Nazan Uysal Harzadın </title>
+                <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
+                <Script id="g-tag-2" strategy="afterInteractive">
+                    {`window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-D0HTKY3R5J');`}
+                </Script>
             </Head>
             <>
                 <div className="h-[150px] "> </div>

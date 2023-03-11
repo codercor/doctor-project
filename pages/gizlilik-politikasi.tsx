@@ -3,13 +3,21 @@ import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
 import BeforeFooter from "@components/Section/BeforeFooter";
 import Text from "@components/Text";
+import Script from "next/dist/client/script";
 import Head from "next/dist/shared/lib/head";
 
 const Sozlesmeler = () => {
     return (
         <div className="overflow-hidden md:bg-none bg-primary-light">
-             <Head>
+            <Head>
                 <title> Gizlilik Politikası | Nazan Uysal Harzadın </title>
+                <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
+                <Script id="g-tag-2" strategy="afterInteractive">
+                    {`window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-D0HTKY3R5J');`}
+                </Script>
             </Head>
             <Container>
                 <Container className="md:!max-w-[1455px]">

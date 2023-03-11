@@ -17,6 +17,7 @@ import { freePayment, selectPayment } from '@app/Payment/payment.slice'
 import { Dispatch } from '@reduxjs/toolkit'
 import { LocalLoading } from 'pages/dashboard/appointment'
 import Head from 'next/dist/shared/lib/head'
+import Script from 'next/dist/client/script'
 
 export default function TrainingDetailPage() {
     const { query, push } = useRouter();
@@ -64,12 +65,12 @@ export default function TrainingDetailPage() {
         }
         setClickedToBuy(true)
     }
-    
+
 
 
     if (isFPaymentLoading) return <Loading message='Eğitim yükleniyor...' />
     if (!trainingData) return <Loading message='Eğitim yükleniyor...' />
-    if ((trainingData.Price - ((trainingData.Price * (trainingData.DiscountRate as number))/100)== 0)) return (<LandingLayout>
+    if ((trainingData.Price - ((trainingData.Price * (trainingData.DiscountRate as number)) / 100) == 0)) return (<LandingLayout>
         <Container className={"h-[300px] md:h-[250px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom  overflow-hidden rounded-br-[150px] md:bg-cover " + bgClass}>
             <Container className="md:!max-w-[1455px] grid  place-items-end  justify-center pb-20 md:pb-22 h-full">
                 <Text className="text-[#F2F2F2] text-[24px] md:text-[34px] font-nexa-bold z-50"> {oneTraining?.Name} Satın Alım</Text>
@@ -85,6 +86,13 @@ export default function TrainingDetailPage() {
         <LandingLayout>
             <Head>
                 <title> {trainingData?.Name || 'Eğitim'} | Nazan Uysal Harzadın </title>
+                <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
+                <Script id="g-tag-2" strategy="afterInteractive">
+                    {`window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-D0HTKY3R5J');`}
+                </Script>
             </Head>
             <Container className={"h-[300px] md:h-[250px]  !w-full bg-cover bg-no-repeat md:!max-w-full bg-right-bottom  overflow-hidden rounded-br-[150px] md:bg-cover " + bgClass}>
                 <Container className="md:!max-w-[1455px] grid  place-items-end  justify-center pb-20 md:pb-22 h-full">

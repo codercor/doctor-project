@@ -9,6 +9,7 @@ import useAuth from "src/hooks/auth.hook";
 import toast from "react-hot-toast";
 import { ErrorOutlined } from "@mui/icons-material";
 import Head from "next/dist/shared/lib/head";
+import Script from "next/dist/client/script";
 
 
 const Login = () => {
@@ -45,6 +46,13 @@ const Login = () => {
         <AuthLayout>
             <Head>
                 <title> Giriş Yap | Nazan Uysal Harzadın </title>
+                <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
+                <Script id="g-tag-2" strategy="afterInteractive">
+                    {`window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-D0HTKY3R5J');`}
+                </Script>
             </Head>
             <div
                 className="md:h-full h-[500px] w-[340px] md:w-full lg:w-[340px]  flex justify-center items-center rounded-[30px_5px]">

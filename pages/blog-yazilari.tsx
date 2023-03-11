@@ -8,6 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { request } from '@config';
 import blog from './blog';
 import Head from 'next/dist/shared/lib/head';
+import Script from 'next/dist/client/script';
 type Props = {}
 
 export interface Blog {
@@ -50,6 +51,13 @@ export default function BlogYazilari({ }: Props) {
         <LandingLayout backColor='light'>
             <Head>
                 <title> Blog Yazıları | Nazan Uysal Harzadın </title>
+                <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>
+                <Script id="g-tag-2" strategy="afterInteractive">
+                    {`window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-D0HTKY3R5J');`}
+                </Script>
             </Head>
             <div className="h-[150px] "> </div>
             <div className='relative text-[white] textx-[#314E53] flex justify-center items-center flex-col gap-[40px] w-full h-[481px]'>
