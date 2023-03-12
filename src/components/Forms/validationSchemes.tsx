@@ -44,6 +44,15 @@ export function SelectIsValueValidation(name: string, value: string = "evet") {
     })
 }
 
+export function SelectIsNumberValueValidation(name: string, value: string = "evet") {
+
+    return Yup.string().when(name, {
+        is: (val: string) => val === value,
+        then: Yup.number().min(0, "Minumum 0 olabilir").required("Zorunlu alan"),
+        otherwise: Yup.string(),
+    })
+}
+
 export function SelectIsValueValidationArray(name: string, value: string = "evet") {
 
     return Yup.array().when(name, {
@@ -182,7 +191,7 @@ export const flow3FormValidationSchema = Yup.object({
             reaction: Yup.string().required("Zorunlu"),
         })
     ),
-    sleepHours: textValidationSchema,
+    sleepHours: numberValidationNonRequired,
     sleepDifficulty: textValidationSchema,
     sleepQuality: textValidationSchema,
     sleepProblem: textValidationSchema,
@@ -355,9 +364,9 @@ export const flow3FormValidationSchema = Yup.object({
     birthComplicationDesc: SelectIsValueValidation("birthComplication"),
 
 
-    solidFoods: textValidationSchema,
-    wheat: textValidationSchema,
-    dairy: textValidationSchema,
+    solidFoods: numberValidationNonRequired,
+    wheat: numberValidationNonRequired,
+    dairy: numberValidationNonRequired,
     avoidedFood: textValidationSchema,
     avoidedFoodDesc: SelectIsValueValidation("avoidedFood"),
     sugarOrSweet: textValidationSchema,
@@ -411,35 +420,30 @@ export const flow3FormValidationSchema = Yup.object({
 
 
     //erkek
-    suitablePartsForYou: Yup.array().of(
-        freeTextValidationSchema
-    ),
-    suitablePartsForYouPeeDesc: Yup.string().when("suitablePartsForYou", {
-        is: (val: any) => val.includes("gece idrara çıkma"),
-        then: textValidationSchema
-    }),
-    suitablePartsForYouSexualDesc: Yup.string().when("suitablePartsForYou", {
-        is: (val: any) => val.includes("cinsel yol ile bulaşan hastalık"),
-        then: textValidationSchema
-    }),
+    anotherTest97: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
+    anotherTest98: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
+    anotherTest99: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
+    anotherTest100: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
+    anotherTest101: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
+    anotherTest102: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
+    anotherTest103: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
+    examinationOfSymptomsPeeQuestion8: gender == "Erkek" ? textValidationSchema :freeTextValidationSchema,
+    examinationOfSymptomsPeeQuestion9:gender == "Erkek" ? textValidationSchema :freeTextValidationSchema,
+    suitablePartsForYou: freeTextValidationSchema,
+    suitablePartsForYouPeeDesc: gender == "Erkek" ? SelectIsValueValidationArray("suitablePartsForYou","gece idrara çıkma") : freeTextValidationSchema,
+    suitablePartsForYouSexualDesc:  gender == "Erkek" ?  SelectIsValueValidationArray("suitablePartsForYou","cinsel yol ile bulaşan hastalık"):freeTextValidationSchema,
+    psa: gender == "Erkek" ? textValidationSchema :freeTextValidationSchema,
+    psaValue: SelectIsValueValidation("psa"),
+    otherTest: SelectIsValueValidation("psa"),
     // son
-
 
     pillUse1: textValidationSchema,
     pillUse2: textValidationSchema,
     pillUse3: textValidationSchema,
-
-    //erkek
     pillEffect1: textValidationSchema,
     pillEffect1Desc: SelectIsValueValidation("pillEffect1"),
     ABUse1: textValidationSchema,
     ABUse1Desc: SelectIsValueValidation("ABUse1"),
-    psa: freeTextValidationSchema,
-    psaValue: freeTextValidationSchema,
-    otherTest: freeTextValidationSchema,
-
-
-
     pregnancy: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
     pregnancyCount: gender == "Kadın" ? SelectIsValueValidation("pregnancy") : freeTextValidationSchema,
     low: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
@@ -500,17 +504,12 @@ export const flow3FormValidationSchema = Yup.object({
     anotherTest: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
     anotherTestDesc: gender == "Kadın" ? SelectIsValueValidation("anotherTest") : freeTextValidationSchema,
 
-
-
-
-
     medicalResumeDigestionQuestion1: textValidationSchema,
     medicalResumeDigestionQuestion2: textValidationSchema,
     medicalResumeDigestionQuestion3: textValidationSchema,
     medicalResumeDigestionQuestion4: textValidationSchema,
     medicalResumeDigestionQuestion5: textValidationSchema,
     medicalResumeDigestionQuestion6: textValidationSchema,
-
     medicalResumeBreathingQuestion1: textValidationSchema,
     medicalResumeBreathingQuestion2: textValidationSchema,
     medicalResumeBreathingQuestion3: textValidationSchema,
@@ -519,7 +518,6 @@ export const flow3FormValidationSchema = Yup.object({
     medicalResumeBreathingQuestion6: textValidationSchema,
     medicalResumeBreathingQuestion7: freeTextValidationSchema,
     medicalResumeBreathingQuestion7Desc: freeTextValidationSchema,
-
 
 
     medicalResumeGenitalQuestion1: textValidationSchema,
@@ -690,8 +688,6 @@ export const flow3FormValidationSchema = Yup.object({
     examinationOfSymptomsNervesQuestion11: SelectIsValueHOSValidation("examinationOfSymptomsNervesQuestion26"),
 
 
-
-
     examinationOfSymptomsHeartQuestion1: textValidationSchema,
     examinationOfSymptomsHeartQuestion2: textValidationSchema,
     examinationOfSymptomsHeartQuestion3: textValidationSchema,
@@ -712,10 +708,7 @@ export const flow3FormValidationSchema = Yup.object({
     examinationOfSymptomsPeeQuestion6: textValidationSchema,
     examinationOfSymptomsPeeQuestion7: textValidationSchema,
 
-    //erkek
-    examinationOfSymptomsPeeQuestion8: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
-    examinationOfSymptomsPeeQuestion9: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
-    examinationOfSymptomsPeeQuestion10: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
+    examinationOfSymptomsPeeQuestion10: textValidationSchema,
 
 
     examinationOfSymptomsDigestionQuestion1: textValidationSchema,
@@ -819,16 +812,9 @@ export const flow3FormValidationSchema = Yup.object({
     anotherTest94: textValidationSchema, anotherTest95: textValidationSchema,
     anotherTest96: textValidationSchema,
 
-    //erkek
-    anotherTest97: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
-    anotherTest98: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
-    anotherTest99: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
-    anotherTest100: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
-    anotherTest101: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
-    anotherTest102: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
-    anotherTest103: gender == "Erkek" ? textValidationSchema : freeTextValidationSchema,
+
     anotherTest104: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
-    //erkek son
+
 
     //kadın
     anotherTest105: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,

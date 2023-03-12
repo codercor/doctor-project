@@ -331,7 +331,7 @@ export default function SubStep2Part9({
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
-                    label="Metabolik sendrom/insulin direnc"
+                    label="Metabolik sendrom/insulin direnç"
                     name="medicalResumeMetabolicQuestion5"
                     options={EOH}
                     value={values.medicalResumeMetabolicQuestion5}

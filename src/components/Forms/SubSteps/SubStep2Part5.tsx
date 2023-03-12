@@ -363,7 +363,7 @@ export default function SubStep2Part5({
 
             <div className="flex flex-col py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInputSelectOne
-                    label="Daha önce sigara kullandını mı ?"
+                    label="Daha önce sigara kullandınız mı ?"
                     options={EH}
                     name="oldSmoke"
                     value={values.oldSmoke}

@@ -828,7 +828,9 @@ export default function SubStep2Part10({
                     error={errors?.examinationOfSymptomsPeeQuestion7}
                     onChange={handleChange}
                 />
-                {patientGender === "Erkek" && <><FormInputSelectOne
+                {
+                patientGender === "Erkek" && <>
+                <FormInputSelectOne
                     label="Prostat büyümesi"
                     name="examinationOfSymptomsPeeQuestion8"
                     options={HOS}
@@ -845,7 +847,10 @@ export default function SubStep2Part10({
                         error={errors?.examinationOfSymptomsPeeQuestion9}
                         onChange={handleChange}
                     />
-                </>}
+                </>
+                }
+                
+                
                 <FormInputSelectOne
                     label="Sıkışma"
                     name="examinationOfSymptomsPeeQuestion10"
@@ -2437,7 +2442,7 @@ export default function SubStep2Part10({
                 </>
             }
             <p className="font-nexa-bold">
-                Bunlardan herhangi birini düzenli olarak veya uzun süre kullandınız mı:
+                Bunlardan herhangi birini düzenli olarak veya uzun süre kullandınız mı?
             </p>
             <FormInputSelectOne
                 options={EH}
