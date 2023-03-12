@@ -511,7 +511,7 @@ export default function SubStep2Part8({
                         value={values.firstMenstrualAge}
                         error={errors.firstMenstrualAge}
                         name="firstMenstrualAge"
-                        type="text"
+                        type="number"
                         onChange={handleChange}
                     />
 

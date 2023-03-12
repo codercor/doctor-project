@@ -237,7 +237,6 @@ export const flow3FormInitialValues = {
     avoidedFood: "",
     sugarOrSweet: "",
     silverMercuryFiller: "",
-    silverMercuryFillerDesc: "",
     GoldFiller: "",
     GoldFillerDesc: "",
     rootCanalTreatment: "",

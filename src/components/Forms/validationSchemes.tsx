@@ -23,6 +23,8 @@ let gender = getGender();
 
 const numberValidationNonRequired = Yup.number().min(0, "Minumum 0 olabilir")
 
+const numberValidationRequired = Yup.number().min(0, "Minumum 0 olabilir").required("Zorunlu alan");
+
 export const multiSelectValidationSchema = Yup.array()
     .of(Yup.string())
     .required("Zorunlu alan")
@@ -45,13 +47,12 @@ export function SelectIsValueValidation(name: string, value: string = "evet") {
 }
 
 export function SelectIsNumberValueValidation(name: string, value: string = "evet") {
-
     return Yup.string().when(name, {
-        is: (val: string) => val === value,
+        is: (val: String) => {val == value},
         then: Yup.number().min(0, "Minumum 0 olabilir").required("Zorunlu alan"),
-        otherwise: Yup.string(),
+        otherwise: Yup.number().required("asd"),
     })
-}
+}numberValidationNonRequired
 
 export function SelectIsValueValidationArray(name: string, value: string = "evet") {
 
@@ -65,7 +66,6 @@ export function SelectValueIncludeValidation(name: string, value: string = "evet
 
     return Yup.string().when(name, {
         is: (val: string[]) => {
-            console.log(name, "val kanka ", val);
             val.includes(value)
         },
         then: Yup.string().required("Zorunlu alan"),
@@ -236,7 +236,7 @@ export const flow3FormValidationSchema = Yup.object({
     ),
 
     //currentDietOther: freeTextValidationSchema,
-    breakfast: textValidationSchema,
+   
     sy1: numberValidationNonRequired,
     sy2: numberValidationNonRequired,
     sy3: numberValidationNonRequired,
@@ -263,20 +263,21 @@ export const flow3FormValidationSchema = Yup.object({
     oy11: numberValidationNonRequired,
     oy12: numberValidationNonRequired,
     oy13: numberValidationNonRequired,
+    breakfast: textValidationSchema,
     lunch: textValidationSchema,
     dinner: textValidationSchema,
     snacks: textValidationSchema,
     beverages: textValidationSchema,
-    fruit: textValidationSchema,
-    vegetable: textValidationSchema,
-    legumes: textValidationSchema,
-    redMeat: textValidationSchema,
-    fish: textValidationSchema,
-    dairyProducts: textValidationSchema,
-    nutsAndSeeds: textValidationSchema,
-    oil: textValidationSchema,
-    cannedDrink: textValidationSchema,
-    dessert: textValidationSchema,
+    fruit: numberValidationRequired,
+    vegetable: numberValidationRequired,
+    legumes: numberValidationRequired,
+    redMeat: numberValidationRequired,
+    fish: numberValidationRequired,
+    dairyProducts: numberValidationRequired,
+    nutsAndSeeds: numberValidationRequired,
+    oil: numberValidationRequired,
+    cannedDrink: numberValidationRequired,
+    dessert: numberValidationRequired,
     caffeinatedBeverage: textValidationSchema,
     //caffeinatedBeverageYes: textValidationSchema,
     coffeQuantity: SelectIsValueValidation("caffeinatedBeverage"),
@@ -468,10 +469,10 @@ export const flow3FormValidationSchema = Yup.object({
     postPregnancyProblemsDesc: gender == "Kadın" ? SelectIsValueValidation("postPregnancyProblems") : freeTextValidationSchema,
 
     //date alan
-    firstMenstrualAge: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
+    firstMenstrualAge: gender == "Kadın" ? numberValidationRequired : freeTextValidationSchema,
     lastMenstrualAge: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
-    menstruationInterval: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
-    menstrualPeriod: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
+    menstruationInterval: gender == "Kadın" ? numberValidationRequired : freeTextValidationSchema,
+    menstrualPeriod: gender == "Kadın" ? numberValidationRequired : freeTextValidationSchema,
     menstrualCramp: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
     menstrualPain: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
     menstrualProblems: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
