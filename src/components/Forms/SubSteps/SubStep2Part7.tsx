@@ -248,7 +248,7 @@ export default function SubStep2Part7({
                     }
                 </div>
             </div>
-            <label className="font-nexa-bold text-[20px] text-[#4E929D]">Başlama yaşı:</label>
+            <label className="font-nexa-bold text-[20px] text-[#4E929D]">Başlama ayı:</label>
             <div className="flex  py-4 bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
                 <FormInput
                     label={`Katı gıdalar:`}
@@ -318,7 +318,8 @@ export default function SubStep2Part7({
                     error={errors?.silverMercuryFiller}
                     onChange={handleChange}
                 />{
-                    values.silverMercuryFiller === "evet" && <FormInput
+                    values.silverMercuryFiller === "evet" && 
+                    <FormInput
                         label={`Kaç Adet ?`}
                         value={values.silverMercuryFillerDesc}
                         error={errors.silverMercuryFillerDesc}
@@ -474,7 +475,7 @@ export default function SubStep2Part7({
                 }
 
                 <FormInputSelectOne
-                    label="Diğer diş sorunları (açıklayınız)"
+                    label="Diğer diş sorunları"
                     name="otherDentalProblems"
                     options={EH}
                     value={values.otherDentalProblems}
@@ -486,7 +487,7 @@ export default function SubStep2Part7({
                         value={values.otherDentalProblemsDesc}
                         error={errors.otherDentalProblemsDesc}
                         name="otherDentalProblemsDesc"
-                        type="number"
+                        type="text"
                         onChange={handleChange}
                     />
                 }

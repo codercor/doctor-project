@@ -754,7 +754,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
-                    label="Şişmişbilekler/ayaklar"
+                    label="Şişmiş bilekler/ayaklar"
                     name="examinationOfSymptomsHeartQuestion10"
                     options={HOS}
                     value={values.examinationOfSymptomsHeartQuestion10}
@@ -1182,7 +1182,7 @@ export default function SubStep2Part10({
                     onChange={handleChange}
                 />
                 <FormInputSelectOne
-                    label="Dışkıda sindirilmemişbesinler"
+                    label="Dışkıda sindirilmemiş besinler"
                     name="examinationOfSymptomsDigestionQuestion36"
                     options={HOS}
                     value={values.examinationOfSymptomsDigestionQuestion36}

@@ -12,7 +12,7 @@ const EH = [
 
 const EOH = [
     { value: "evet", label: "Evet" },
-    { value: "önce", label: "Önce" },
+    { value: "önce", label: "Geçmişte" },
     { value: "hayır", label: "Hayır" },
 ]
 
@@ -77,7 +77,7 @@ export default function SubStep2Part9({
                     <h2 className=" text-[18px]">Tıbbi Özgeçmiş: Hastalıklar/Durumlar</h2>
                 </div>
             <div className="flex flex-col py-4 bg-[#F9F9F9]  px-[30px] gap-[30px]">
-               <label className="font-nexa-bold text-[20px] text-[#4E929D]">EVET&apos; i işaretle = Şu anda varsa, ÖNCE&apos; yi işaretle = geçmişte varsa, Hayır&apos; ı işaretle = yok ise.</label>
+               <label className="font-nexa-bold text-[20px] text-[#4E929D]">EVET&apos; i işaretle = Şu anda varsa, GEÇMİŞTE&apos; yi işaretle = geçmişte varsa, Hayır&apos; ı işaretle = yok ise.</label>
 
                <label className="font-nexa-bold text-[20px] text-[#4E929D]">sindirim</label>
                 <FormInputSelectOne
