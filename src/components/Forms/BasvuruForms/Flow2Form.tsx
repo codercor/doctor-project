@@ -25,7 +25,34 @@ import classNames from "classnames";
 
 const validationSchema = flow2FormValidationSchema;
 const initialValues = flow2FormInitialValues;
-
+const ErrorHangling = [
+    { Key: "parrentTolarance", Page: "1", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "parrentTolaranceDesc", Page: "1", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "motherMilk", Page: "1", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "motherMilkDesc", Page: "1", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "motherMilkDesc1", Page: "1", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "solidFood", Page: "1", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "solidFoodDesc", Page: "1", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "babyAllergy", Page: "1", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "babyAllergyDesc", Page: "1", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "childFoodReact", Page: "2", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "childFoodReactDesc", Page: "2", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "childFoodAccess", Page: "2", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "childFoodDisorder", Page: "2", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "childFoodDisorderDesc", Page: "2", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "sleepHours", Page: "2", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "foodDisorder", Page: "3", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "foodDisorderDesc", Page: "3", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "favoriteFood", Page: "3", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "mostEatenFood", Page: "3", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "foodPreparedBy", Page: "3", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "foodPurchasedBy", Page: "3", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "cookingFrequency", Page: "3", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "mostNutritiousFood", Page: "3", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "leastNutritiousFood", Page: "3", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "extraInfo", Page: "4", Error: "Zorunlu Alanları Doldurunuz." },
+    { Key: "purposeOfFinal", Page: "4", Error: "Zorunlu Alanları Doldurunuz." },
+];
 
 const SubstepViever = ({ subSteps, activeSubStep }: { subSteps: any, activeSubStep: number }) => {
     return <>
@@ -105,12 +132,31 @@ function Flow2Form({ setSelectedStep }: PropsCanSelectStep) {
                             part == countOfSubSteps && (<div
                                 className="min-h-[112px] my-[10px] w-full px-[40px] rounded-[20px_5px] p-2 flex bg-[#E9EDD9]  text-[#5B623D] items-center justify-center">
                                 <button
+                                //  onClick={() => {
+                                //     console.log(errors, "hatalar");
+                                //     if (Object.keys(errors).length > 0) {
+                                //         console.log("flow 3 errors", errors);
+
+                                //         toast.error("Lütfen tüm alanları doldurunuz.")
+                                //     } else submitForm()
+                                // }}
                                     onClick={(e) => {
                                         e.preventDefault();
                                         console.log("errors", errors);
-                                        if (Object.keys(errors).length > 0) {
-                                            toast.error("Lütfen tüm alanları doldurunuz.")
-                                        } else submitForm()
+                                        const invalidKeys = Object.keys(errors).filter(key => {
+                                            return ErrorHangling.some(item => item.Key === key);
+                                        });
+                                        if (invalidKeys.length > 0) {
+                                            const errorMessages = invalidKeys.map(key => {
+                                                const errorItem = ErrorHangling.find(item => item.Key === key);
+                                                console.log("test", errorItem);
+                                                const page = errorItem != null ? errorItem.Page : 1;
+                                                setPart(page as number);
+                                                return toast.error(errorItem?.Error || "Lütfen tüm alanları doldurunuz.")
+                                            });
+                                        }
+
+                                        else submitForm()
                                     }}
                                     className="w-[250px] rounded-[20px_5px] text-[white] bg-[#4E929D] h-[50px] border-2"
                                 >
@@ -124,5 +170,7 @@ function Flow2Form({ setSelectedStep }: PropsCanSelectStep) {
         </Formik>
     );
 }
+
+
 
 export default Flow2Form;

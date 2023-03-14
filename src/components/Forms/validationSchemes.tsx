@@ -125,24 +125,21 @@ export const flow1FormValidationSchema = Yup.object({
 });
 
 export const flow2FormValidationSchema = Yup.object({
+    motherMilk: singleSelectValidationSchema,
+    motherMilkDesc: Yup.string().when("motherMilk", {
+        is: (motherMilk: string) => motherMilk === "anne sutu" || motherMilk === "Anne Sütü ve Formül Mama",
+        then: Yup.string().required("Zorunlu alan"),
+    }),
+    motherMilkDesc1: Yup.string().when("motherMilk", {
+        is: (motherMilk: string) => motherMilk === "formül mama" || motherMilk === "Anne Sütü ve Formül Mama",
+        then: Yup.string().required("Zorunlu alan"),
+    }),
     parrentTolarance: singleSelectValidationSchema,
     parrentTolaranceDesc: Yup.string().when("parrentTolarance", {
         is: (parrentTolarance: string) => parrentTolarance === "evet",
         then: Yup.string().required("Zorunlu alan"),
         otherwise: Yup.string(),
     }),
-    motherMilk: singleSelectValidationSchema,
-    motherMilkDesc: Yup.string().when("motherMilk", {
-        is: (motherMilk: string) => motherMilk === "anne sutu" || motherMilk === "Anne Sütü ve Formül Mama",
-        then: Yup.string().required("Zorunlu alan"),
-        otherwise: Yup.string(),
-    }),
-    motherMilkDesc1: Yup.string().when("motherMilk", {
-        is: (motherMilk: string) => motherMilk === "formül mama" || motherMilk === "Anne Sütü ve Formül Mama",
-        then: Yup.string().required("Zorunlu alan"),
-        otherwise: Yup.string(),
-    }),
-
     solidFood: singleSelectValidationSchema,
     solidFoodDesc: SelectIsValueValidation("solidFood"),
     babyAllergy: singleSelectValidationSchema,
@@ -166,15 +163,6 @@ export const flow2FormValidationSchema = Yup.object({
 });
 
 export const flow3FormValidationSchema = Yup.object({
-    motherMilk: singleSelectValidationSchema,
-    motherMilkDesc: Yup.string().when("motherMilk", {
-        is: (motherMilk: string) => motherMilk === "anne sutu" || motherMilk === "Anne Sütü ve Formül Mama",
-        then: Yup.string().required("Zorunlu alan"),
-    }),
-    motherMilkDesc1: Yup.string().when("motherMilk", {
-        is: (motherMilk: string) => motherMilk === "formül mama" || motherMilk === "Anne Sütü ve Formül Mama",
-        then: Yup.string().required("Zorunlu alan"),
-    }),
     //name: textValidationSchema,
     //age: Yup.number().min(0,"Minumum 0 olabilir").required("Zorunlu alan"),
     //birthDate: textValidationSchema,
@@ -527,6 +515,7 @@ export const flow3FormValidationSchema = Yup.object({
     medicalResumeDigestionQuestion4: textValidationSchema,
     medicalResumeDigestionQuestion5: textValidationSchema,
     medicalResumeDigestionQuestion6: textValidationSchema,
+    
     medicalResumeBreathingQuestion1: textValidationSchema,
     medicalResumeBreathingQuestion2: textValidationSchema,
     medicalResumeBreathingQuestion3: textValidationSchema,
@@ -633,6 +622,8 @@ export const flow3FormValidationSchema = Yup.object({
     examinationOfSymptomsGeneralQuestion13: textValidationSchema,
 
 
+
+    //burda kaldıı ErrorHangling array için
     examinationOfSymptomsEyesAndEarQuestion1: textValidationSchema,
     examinationOfSymptomsEyesAndEarQuestion2: textValidationSchema,
     examinationOfSymptomsEyesAndEarQuestion3: textValidationSchema,
