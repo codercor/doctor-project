@@ -15,7 +15,7 @@ const Settings = () => {
     const [isValid, setIsValid] = useState(false);
 
     useEffect(() => {
-        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(newPassword)) {
+        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@$!%*?&.]).{8,}$/gm.test(newPassword)) {
             setIsValid(true);
         }
         else {

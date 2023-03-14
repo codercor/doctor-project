@@ -68,7 +68,7 @@ export default function Forms() {
     useEffect(() => {
         console.log("key", key)
         localStorage.setItem(key, selectedStep.toString());
-        console.log(localStorage.getItem(key))
+        console.log(key, ":", localStorage.getItem(key))
         // setTheLockedSteps(selectedStep)
         if (!IsPatient) {
             Router.push("/dashboard")

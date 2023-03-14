@@ -1,0 +1,17 @@
+export default [
+    { "Key": "parrentTolarance", "Page": 1 },
+    { "Key": "parrentTolaranceDesc", "Page": 1 },
+    { "Key": "motherMilk", "Page": 1 },
+    { "Key": "motherMilkDesc", "Page": 1 },
+    { "Key": "motherMilkDesc1", "Page": 1 },
+    { "Key": "solidFood", "Page": 1 },
+    { "Key": "solidFoodDesc", "Page": 1 },
+    { "Key": "babyAllergy", "Page": 1 },
+    { "Key": "babyAllergyDesc", "Page": 1 },
+    { "Key": "childFoodReact", "Page": 2 },
+    { "Key": "childFoodReactDesc", "Page": 2 },
+    { "Key": "childFoodAccess", "Page": 2 },
+    { "Key": "childFoodDisorder", "Page": 2 },
+    { "Key": "childFoodDisorderDesc", "Page": 2 },
+    { "Key": "foodDisorder", "Page": 3 },
+    { "Key": "foodDisorderDesc", "Page": 3 }, { "Key": "favoriteFood", "Page": 3 }, { "Key": "mostEatenFood", "Page": 3 }, { "Key": "foodPreparedBy", "Page": 3 }, { "Key": "foodPurchasedBy", "Page": 3 }, { "Key": "cookingFrequency", "Page": 3 }, { "Key": "mostNutritiousFood", "Page": 3 }, { "Key": "leastNutritiousFood", "Page": 3 }, { "Key": "extraInfo", "Page": 4 }, { "Key": "purposeOfFinal", "Page": 4 }]

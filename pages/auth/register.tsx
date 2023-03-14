@@ -109,7 +109,7 @@ const RegisterForm = () => {
             errors.ConfirmPassword = null;
         }
 
-        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(credentials.Password)) {
+        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@$!%*?&.]).{8,}$/gm.test(credentials.Password)) {
             errors.Password = null;
         }
         else {

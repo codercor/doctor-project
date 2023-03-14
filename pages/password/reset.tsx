@@ -29,7 +29,7 @@ const ResetContent = () => {
     const [valid, setValid] = React.useState(true)
 
     const validate = () => {
-        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm.test(password)) {
+        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@$!%*?&.]).{8,}$/gm.test(password)) {
             setValid(true)
         }
         else {
