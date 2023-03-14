@@ -510,9 +510,7 @@ export const flow3FormValidationSchema = Yup.object({
     ),
     hormoneTherapy: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
     hormoneTherapyDesc: gender == "Kadın" ? SelectIsValueValidation("hormoneTherapy") : freeTextValidationSchema,
-    gynecologicalSymptoms: gender == "Kadın" ? Yup.array().of(
-        textValidationSchema
-    ): freeTextValidationSchema,
+    gynecologicalSymptoms: gender == "Kadın" ? Yup.array().required("Zorunlu alan").min(1, "En az birini seçiniz.") : Yup.array(),
     gynecologicalSymptomsDesc: SelectIsValueValidationArrayRequired("gynecologicalSymptoms","cinsel yol ile bulaşan hastalık"),// bakılacak
     smearTest: gender == "Kadın" ? textValidationSchema : freeTextValidationSchema,
     smearTestResponse: gender == "Kadın" ? SelectIsValueValidation("smearTest") : freeTextValidationSchema,
