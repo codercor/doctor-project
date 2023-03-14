@@ -115,7 +115,7 @@ export const Sections = [
     "other"
 ]
 
-export function generateForm(key: string, values: any, errors: any, handleChange: () => any | void, readOnly: boolean = false) {
+export function generateForm(key: string, values: any, errors: any, handleChange: (e: any) => any | void, readOnly: boolean = false) {
     const symptoms = Object.keys(values).filter((s) => s.startsWith(key))
 
     return (<>
@@ -128,8 +128,12 @@ export function generateForm(key: string, values: any, errors: any, handleChange
                     type="number"
                     error={errors[symptom]}
                     value={values[symptom]}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                        e.currentTarget.value = Number(e.currentTarget.value).toString()
+                        handleChange(e)
+                    }}
                     disabled={readOnly}
+
                 />
             </>))
 

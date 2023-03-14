@@ -142,7 +142,7 @@ export default function SubStep2Part1({
         />
 
       </div>
-      <div className="flex py-4 py-[10px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
+      <div className="flex py-[10px] bg-[#F9F9F9] items-center px-[30px] gap-[30px]  w-[full]">
         <div>
           <FormInputSelectOne
             label="Beni nereden duydunuz?"
