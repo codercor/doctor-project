@@ -45,7 +45,6 @@ const TrainingCard = ({
             <p className="text-[#3A356B] text-[16px] font-nexa-bold">{title}</p>
             <p className="text-[#7A7C6D] font-nexa-regular text-[14px] line-clamp-4 leading-[14px] ">
                 {description}
-                Misyonum, sağlığını olumlu beslenme ve yaşam tarzı değişikliği yoluyla dönüştürmek isteyen herkese kişiselleştirilmiş, özenli hizmetler sunmaktır. Sağlığınızı iyileştirme ve size faydalı bilgiler sunmak konusunda tutkuluyum.
             </p>
         </div>
         <div onClick={() => {
