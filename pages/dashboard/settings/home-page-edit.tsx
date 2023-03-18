@@ -191,14 +191,16 @@ const PressForm = ({ refreshPresses }: { refreshPresses: () => void }) => {
                 imageRef.current?.click();
             }} className='min-w-[120px] hover:cursor-pointer min-h-[90px] relative rounded-md overflow-hidden'>
                 <Image src={
-                    form.Image ? URL.createObjectURL(form.Image) : '/images/png/no-image.png'
+                    form.Image ? URL.createObjectURL(form.Image) : '/images/png/170.png'
                 } layout='fill' objectFit='cover' />
             </div>
             <div className="w-full h-fit justify-center items-end flex flex-col gap-[10px]">
                 <Input value={form.Title} onChange={(e) => setForm({ ...form, Title: e.target.value })} text={`Basın  Başlık (min 20/${form.Title.length} karakter)`} type="text" />
-                <Input value={form.Description} onChange={(e) => setForm({ ...form, Description: e.target.value })} text={`Basın Metin (min 50/${form.Description.length} karakter)`} type="text" />
+                {form.Title.length > 100 && <span className="text-red-500"> Max 100 karakter </span>}
+                <Input value={form.Description} onChange={(e) => setForm({ ...form, Description: e.target.value })} text={`Basın Metin (min 50/${form.Description.length}karakter)`} type="text" />
+                {form.Description.length > 200 && <span className="text-red-500"> Max 200 karakter </span>}
                 <Button disabled={
-                    ((!(form.Title.length >= 20 && form.Description.length >= 50 && form.Image)) || createLoading)
+                    ((!(form.Title.length >= 20 && form.Title.length <= 100 && form.Description.length >= 50 && form.Description.length <= 200 && form.Image)) || createLoading)
                 } onClick={async () => {
                     setCreateLoading(true);
                     createPress(form).then(() => {
