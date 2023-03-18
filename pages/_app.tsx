@@ -24,26 +24,25 @@ function MyApp({ Component, pageProps }: AppProps) {
       src="https://www.googletagmanager.com/gtag/js?id=D0HTKY3R5J"
       strategy="afterInteractive"
     />
-    <Script id="google-analytics" strategy="afterInteractive">
-      {`
+    <Script id="google-analytics" strategy="afterInteractive" dangerouslySetInnerHTML={{
+      __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', 'D0HTKY3R5J');
-        `}
-    </Script>
-    <Script id="google-analytics-2" strategy="afterInteractive">
-        {`
+        `}} />
+    <Script id="google-analytics-2" strategy="afterInteractive" dangerouslySetInnerHTML={{
+      __html: `
           window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
           ga('create', 'D0HTKY3R5J', 'auto');
           ga('send', 'pageview');
-        `}
-      </Script>
-      <Script
-        src="https://www.google-analytics.com/analytics.js"
-        strategy="afterInteractive"
-      />
+        `}}>
+    </Script>
+    <Script
+      src="https://www.google-analytics.com/analytics.js"
+      strategy="afterInteractive"
+    />
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         {/* <div className="absolute top-0 left-0 text-[24px] z-[999] bg-blue w-[50px]  h-[50px] backdrop-brightness-50 backdrop-blur-lg text-[red]">
