@@ -33,6 +33,17 @@ function MyApp({ Component, pageProps }: AppProps) {
           gtag('config', 'D0HTKY3R5J');
         `}
     </Script>
+    <Script id="google-analytics-2" strategy="afterInteractive">
+        {`
+          window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+          ga('create', 'D0HTKY3R5J', 'auto');
+          ga('send', 'pageview');
+        `}
+      </Script>
+      <Script
+        src="https://www.google-analytics.com/analytics.js"
+        strategy="afterInteractive"
+      />
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         {/* <div className="absolute top-0 left-0 text-[24px] z-[999] bg-blue w-[50px]  h-[50px] backdrop-brightness-50 backdrop-blur-lg text-[red]">
