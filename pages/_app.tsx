@@ -17,10 +17,22 @@ const persistor = persistStore(store, {}, function () {
 function MyApp({ Component, pageProps }: AppProps) {
   return (<>
     <Head>
-      <GoogleAnalytics trackPageViews strategy="lazyOnload" />
+      <GoogleAnalytics trackPageViews gaMeasurementId='D0HTKY3R5J' strategy="lazyOnload" />
     </Head>
     <NextNProgress height={10} color="#8C88BB" />
+    <Script
+      src="https://www.googletagmanager.com/gtag/js?id=D0HTKY3R5J"
+      strategy="afterInteractive"
+    />
+    <Script id="google-analytics" strategy="afterInteractive">
+      {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
 
+          gtag('config', 'D0HTKY3R5J');
+        `}
+    </Script>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         {/* <div className="absolute top-0 left-0 text-[24px] z-[999] bg-blue w-[50px]  h-[50px] backdrop-brightness-50 backdrop-blur-lg text-[red]">
