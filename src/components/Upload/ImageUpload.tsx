@@ -28,7 +28,7 @@ export default function Upload({ onChange, value }: UploadProps) {
         </div>
     </div>
     return (<>
-        <input type="file" accept="image/*" hidden ref={ref} onChange={(e) => {
+        <input type="file" accept=".jpg,.jpeg,.svg,.png" hidden ref={ref} onChange={(e) => {
             //2mb = 2 * 1024 * 1024
             if (e.target.files && e.target.files[0].size > (2 * 1024 * 1024)) {
                 setSizeError(true);

@@ -128,7 +128,7 @@ const Egitimler = () => {
                                 <Text className="text-[#949B64] text-[24px] font-nexa-bold">Eğitim bulunamadı</Text>
                             </div>
                         }
-                        <div className="flex flex-row flex-wrap items-center md:items-start  md:justify-center h-full gap-[10px]">
+                        <div className="flex flex-row flex-wrap items-start md:items-start  md:justify-center h-full gap-[10px]">
                             {
                                 filteredTrainings.map((training, index) =>
                                     <div key={v4()} className="min-h-[380px] h-[380px] min-w-[350px]">  <TrainingCard {...training} /></div>)

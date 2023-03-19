@@ -45,7 +45,7 @@ const SelectImage = ({
             <input
                 ref={ref}
                 type="file"
-                accept="image/*"
+                accept=".jpg,.jpeg,.svg,.png"
                 onChange={(e) => {
                     console.log("file", e.currentTarget.files, e.currentTarget.value);
                     if (e.currentTarget.files?.length) setFieldValue(name, e.currentTarget?.files[0])

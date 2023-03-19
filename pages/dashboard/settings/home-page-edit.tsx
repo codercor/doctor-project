@@ -86,8 +86,8 @@ const EditBanner = () => {
     useEffect(() => {
         console.log("banner data", bannerData);
         setFormValidation({
-            title: bannerData.Title.length > 20,
-            description: bannerData.Description.length > 50,
+            title: bannerData.Title.length > 20 && bannerData.Title.length < 100,
+            description: bannerData.Description.length > 50 && bannerData.Description.length < 200,
             imageSelected: editedBannerData.Image
         })
 
@@ -120,10 +120,10 @@ const EditBanner = () => {
         <EditBannerImage setImageFile={(f) => { setEditedBannerData({ Image: f }) }} image={bannerData.Image} />
         <Input value={bannerData.Title} onChange={(e) => {
             setBannerData({ ...bannerData, Title: e.target.value })
-        }} text="Banner Başlık (en az 20 karakter) " type="text" />
+        }} text="Banner Başlık (20 ile 100 karater arasında olmalıdır " type="text" />
         <Input value={bannerData.Description} onChange={(e) => {
             setBannerData({ ...bannerData, Description: e.target.value })
-        }} text="Banner Kısa Metin (en az 50 karakter)" type="text" />
+        }} text="Banner Kısa Metin (50 ile 200 karater arasında olmalıdır)" type="text" />
         <div className="w-full  flex justify-end mt-4 h-fit">
             <Button disabled={((!formValidation.title || !formValidation.description || !formValidation.imageSelected) || UpdateHomePageProcess.IsLoading)} type="secondary" className='!p-0 !px-[20px] w-fit justify-end !py-[10px] grid place-content-center ' onClick={() => {
                 (editedBannerData.Image && bannerData.Title && bannerData.Description) && adminUpdateBanner({
@@ -185,7 +185,7 @@ const PressForm = ({ refreshPresses }: { refreshPresses: () => void }) => {
     const [createLoading, setCreateLoading] = React.useState(false);
 
     return <>
-        <input ref={imageRef} accept="image/*" type="file" hidden />
+        <input ref={imageRef} accept=".jpg,.jpeg,.svg,.png" type="file" hidden />
         <div className="flex w-full shadow-lg !bg-[inherit] h-fit py-[10px] gap-[10px] items-center justify-between px-[10px]">
             <div onClick={() => {
                 imageRef.current?.click();

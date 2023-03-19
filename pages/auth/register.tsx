@@ -124,7 +124,7 @@ const RegisterForm = () => {
             registerValidation()
             setRenderCount(renderCount + 1);
         }
-    }, [credentials.ConfirmPassword,credentials.Email,credentials.Password])
+    }, [credentials.ConfirmPassword, credentials.Email, credentials.Password])
 
     const checkUserInformationCompleted = () => {
         if (!user) return false
@@ -205,7 +205,7 @@ const RegisterForm = () => {
                                 className="h-[24px] appearance-none w-[24px] bg-primary-flat checked:accent-white-100  checked:after:rounded-[5px_0px_5px_0] relative checked:after:w-[24px] checked:after:h-[24px] checked:after:absolute checked:after:grid checked:after:place-content-center checked:after:top-0 checked:left-0 checked:after:bg-[black] checked:after:content-['✓']"
                                 type="checkbox" />
                             <Text type="h4" className="!text-[14px] font-nexa-light !py-[10px]"><span onClick={() => {
-                                router.push('/sozlesmeler/kullanici-sozlesmesi')
+                                window.open('/sozlesmeler/kullanici-sozlesmesi', '_blank')
                             }} className="text-secondary cursor-pointer">Kullanıcı Sözleşmesi</span>’ni okudum anladım.</Text>
                         </div>
                         <div className="flex items-center leading-none gap-2">
@@ -216,7 +216,7 @@ const RegisterForm = () => {
                                 className="h-[24px] appearance-none w-[24px] bg-primary-flat checked:accent-black-100  checked:after:rounded-[5px_0px_5px_0] relative checked:after:w-[24px] checked:after:h-[24px] checked:after:absolute checked:after:grid checked:after:place-content-center checked:after:top-0 checked:left-0 checked:after:bg-[black] checked:after:content-['✓']"
                                 type="checkbox" />
                             <Text type="h4" className="!text-[14px] font-nexa-light !py-[10px]"><span onClick={() => {
-                                router.push('/sozlesmeler/aydinlatma-metni')
+                                window.open('/sozlesmeler/aydinlatma-metni', '_blank')
                             }} className="text-secondary cursor-pointer">Aydınlatma Metni</span>’ni okudum
                                 anladım.</Text>
                         </div>
