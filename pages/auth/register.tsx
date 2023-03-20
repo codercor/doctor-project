@@ -113,7 +113,7 @@ const RegisterForm = () => {
             errors.Password = null;
         }
         else {
-            errors.Password = 'Şifreniz en az 8 karakterden oluşmalı, en az bir büyük harf, bir küçük harf ve bir sayı içermelidir.';
+            errors.Password = 'Şifreniz en az 8 karakterden oluşmalı, en az bir büyük harf, bir küçük harf, bir sayı ve özel karakter(*,!,@,.) içermelidir.';
         }
 
         setValidationErrors(errors);
