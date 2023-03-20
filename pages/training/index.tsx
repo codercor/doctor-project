@@ -80,7 +80,7 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
     </div>
 }
 
-const BuyKit = ({ id, price, totalLength, DiscountRate }: { DiscountRate: number, id: string, price: number, totalLength: number }) => {
+const BuyKit = ({ id, price, totalLength, DiscountRate, isFull }: { DiscountRate: number, id: string, price: number, totalLength: number, isFull: boolean }) => {
     const { user: { IsAuthenticated, BillingDetail } } = useUser()
     const calculatedPrice = (Number(price) * ((100 - DiscountRate) / 100)).toFixed(2).toString();
     return <>
@@ -98,22 +98,25 @@ const BuyKit = ({ id, price, totalLength, DiscountRate }: { DiscountRate: number
             </div>
             <Text>{totalLength}dk</Text>
         </div>
-        <Button onClick={() => {
-            if (IsAuthenticated) {
-                // if (!BillingDetail.IdentityNumber) {
-                //     localStorage.setItem("after-complete-billing-details", '/training?id=' + id)
-                //     Router.push("/dashboard/settings/invoice-settings")
-                //     toast.error("Lütfen önce fatura bilgilerinizi tamamlayın")
-                // } else Router.push('/training/buy?id=' + id)
-                if (Number(calculatedPrice) == 0) {
-                    Router.push('/training/buy?id=' + id)
-                } else {
-                    Router.push("/dashboard/settings/invoice-settings?nextPage=/training/buy?id=" + id);
-                }
-            } else Router.push('/auth/login')
-        }} type="quaternary-flat" className='flex justify-center text-center mb-2' >
+        <Button
+            disabled={isFull}
+            onClick={() => {
+                if (IsAuthenticated) {
+                    // if (!BillingDetail.IdentityNumber) {
+                    //     localStorage.setItem("after-complete-billing-details", '/training?id=' + id)
+                    //     Router.push("/dashboard/settings/invoice-settings")
+                    //     toast.error("Lütfen önce fatura bilgilerinizi tamamlayın")
+                    // } else Router.push('/training/buy?id=' + id)
+                    if (Number(calculatedPrice) == 0) {
+                        Router.push('/training/buy?id=' + id)
+                    } else {
+                        Router.push("/dashboard/settings/invoice-settings?nextPage=/training/buy?id=" + id);
+                    }
+                } else Router.push('/auth/login')
+            }} type="quaternary-flat" className='flex justify-center text-center mb-2' >
             Satın Al
         </Button>
+        {isFull && <span className="text-red-500 text-[12px]"> Kontenjan doldu </span>}
     </>
 }
 
@@ -177,7 +180,8 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
                 </div>}
             </div>
             <div className="lg:w-[30%] self-start w-full h-full bg-[#F4F4F4] pt-[42px] pl-[32px] pr-[30px]">
-                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price} DiscountRate={training.DiscountRate} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
+                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price}
+                    isFull={Number((training as TrainingDataType & { SaleCount: number }).SaleCount) >= Number(training.GeneralDetail.MaxParticipant)} DiscountRate={training.DiscountRate} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
 
                 <Text type='h6' className='text-secondary-flat'>Eğitim Konuları</Text>
                 <div className="w-full scrollbar-thin pb-10  scrollbar-thumb-tertiary-light overflow-auto h-[90%]">
