@@ -34,7 +34,7 @@ const Settings = () => {
                         {/* <Input text="Mevcut Şifreniz" type="password" /> */}
                         <Input value={newPassword} onChange={(e) => setNewPassword(e.target.value)} text="Yeni Şifreniz" type="password" />
                         {isValid && <Text className="text-green-500">Şifreniz güvenli</Text>}
-                        {!isValid && <Text className="text-red-500">Şifreniz en az 8 karakterden oluşmalı, en az bir büyük harf, bir küçük harf ve bir sayı içermelidir.</Text>}
+                        {!isValid && <Text className="text-red-500">Şifreniz en az 8 karakterden oluşmalı, en az bir büyük harf, bir küçük harf, bir sayı ve özel karakter(*,!,@,.) içermelidir.</Text>}
                     </div>
                     <Button
                         disabled={!isValid}

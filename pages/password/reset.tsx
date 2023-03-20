@@ -79,7 +79,7 @@ const ResetContent = () => {
                 text="Yeni Şifre" type="password" />
             {
                 !valid && <span className="text-[#FF0000] text-[12px] font-nexa-regular">
-                    Şifreniz en az 8 karakterden oluşmalı, en az bir büyük harf, bir küçük harf ve bir sayı içermelidir.
+                   Şifreniz en az 8 karakterden oluşmalı, en az bir büyük harf, bir küçük harf, bir sayı ve özel karakter(*,!,@,.) içermelidir.
                 </span>
             }
             <Button disabled={valid && password.length == 0} onClick={submitReset} type="secondary" className="w-full mt-[20px] h-[48px] leading-none flex items-center justify-center">
