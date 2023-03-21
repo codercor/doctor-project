@@ -18,7 +18,7 @@ const Login = () => {
         Email: '',
         Password: ''
     });
-    const { user, login, error } = useAuth();
+    const { user, login, error, logout } = useAuth();
     const submitLogin = () => {
         login(credentials);
     }
@@ -41,6 +41,10 @@ const Login = () => {
         }
 
     }, [user])
+
+    useEffect(() => {
+        logout()
+    }, [])
 
     return (
         <AuthLayout>

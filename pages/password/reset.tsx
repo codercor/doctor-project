@@ -29,7 +29,7 @@ const ResetContent = () => {
     const [valid, setValid] = React.useState(true)
 
     const validate = () => {
-        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@$!%*?&.]).{8,}$/gm.test(password)) {
+        if (/^(?=.{8,20}$).*/gm.test(password)) {
             setValid(true)
         }
         else {
@@ -79,7 +79,7 @@ const ResetContent = () => {
                 text="Yeni Şifre" type="password" />
             {
                 !valid && <span className="text-[#FF0000] text-[12px] font-nexa-regular">
-                   Şifreniz en az 8 karakterden oluşmalı, en az bir büyük harf, bir küçük harf, bir sayı ve özel karakter(*,!,@,.) içermelidir.
+                    Şifreniz en az 8, en fazla 20 karakterden oluşmalı.
                 </span>
             }
             <Button disabled={valid && password.length == 0} onClick={submitReset} type="secondary" className="w-full mt-[20px] h-[48px] leading-none flex items-center justify-center">

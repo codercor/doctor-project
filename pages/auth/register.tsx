@@ -28,10 +28,15 @@ const RegisterForm = () => {
         ConfirmPassword: ''
     });
     const router = useRouter();
-
+    const [disabledButton, setDisabledButton] = useState<boolean>(false);
     const { user, register, error } = useAuth();
     const submitRegister = () => {
-        register(credentials);
+        setDisabledButton(true);
+        register(credentials).then(() => {
+            setDisabledButton(false);
+        }).catch(() => {
+            setDisabledButton(false);
+        })
     }
 
     useEffect(() => {
@@ -109,11 +114,11 @@ const RegisterForm = () => {
             errors.ConfirmPassword = null;
         }
 
-        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@$!%*?&.]).{8,}$/gm.test(credentials.Password)) {
+        if (/^(?=.{8,20}$).*/gm.test(credentials.Password)) {
             errors.Password = null;
         }
         else {
-            errors.Password = 'Şifreniz en az 8 karakterden oluşmalı, en az bir büyük harf, bir küçük harf, bir sayı ve özel karakter(*,!,@,.) içermelidir.';
+            errors.Password = 'Şifreniz en az 8, en fazla 20 karakterden oluşmalı.';
         }
 
         setValidationErrors(errors);
@@ -226,7 +231,8 @@ const RegisterForm = () => {
                         !sozlesmeler.aydinlatma.value ||
                         validationErrors.Email != null ||
                         validationErrors.Password != null ||
-                        validationErrors.ConfirmPassword != null
+                        validationErrors.ConfirmPassword != null  ||
+                        disabledButton
                     } onClick={submitRegister} type="secondary"
                         className="w-full mt-[20px] h-[48px] leading-none flex items-center justify-center">
                         <Text type="paragraph" className="!text-[14px] !py-[10px] font-nexa-regular">Üye ol</Text>

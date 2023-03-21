@@ -29,7 +29,7 @@ const RegisterForm = () => {
     });
     const router = useRouter();
     const [disabledButton, setDisabledButton] = useState<boolean>(false);
-    const { user, register, error } = useAuth();
+    const { user, register, error,logout } = useAuth();
 
 
     const [validationErrors, setValidationErrors] = useState<ValidationErrors>({
@@ -97,7 +97,9 @@ const RegisterForm = () => {
             registerValidation()
         }
     }, [credentials.Email])
-
+    useEffect(() => {
+        logout()
+    }, [])
     return (
         <AuthLayout>
             <Head>

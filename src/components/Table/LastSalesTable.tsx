@@ -1,8 +1,9 @@
-import { adminGetLastSalesRequest } from "@app/User/user.utils";
+// import { adminGetLastSalesRequest } from "@app/User/user.utils";
 import { useEffect, useState } from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { CircularProgress } from '@mui/material';
 import { Pagination } from '@mui/material'
+import request, { PAYMENT } from "@config";
 const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
     const [list, setList] = useState<any[]>([]);
     const [IsLoading, setIsLoading] = useState(false);
@@ -10,12 +11,26 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
 
     const [pageCount, setPageCount] = useState(1)
 
+    const adminGetLastSalesRequest = async (page: number) => {
+        try {
+            const response = await request.get(
+                PAYMENT + '?page=' + page
+            );
+            const data = await response.data;
+            console.log("Data", data);
+            
+            return data;
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
     useEffect(() => {
         setIsLoading(true);
         adminGetLastSalesRequest(page).then(res => {
             limited ? setList(res.data.slice(0, 5)) : setList(res.data);
             setIsLoading(false);
-            setPageCount(res.data.PageCount)
+            setPageCount(res.PageCount)
         }).catch(err => {
             setIsLoading(false);
         })
@@ -55,7 +70,7 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
                                         </TableCell>
                                         <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{(row.User?.Information.Fullname || '-')} </p>}</TableCell>
                                         <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{(row?.Education?.Name || '-')}</p>}</TableCell>
-                                        <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{(row?.Detail?.IsCanceled == false ?"Aktif" :"İade" || '-')}</p>}</TableCell>
+                                        <TableCell className="leading-none" align="left">{<p className="min-w-[120px] w-fit ">{(row?.Detail?.IsCanceled == true ? "Aktif" : "İade" || '-')}</p>}</TableCell>
                                     </TableRow>
                                 )) : <h1 className='text-center p-2 text-[18px] font-nexa-bold'> Kayıt bulunmamaktadır </h1>
                                 }
@@ -67,11 +82,11 @@ const LastSalesTable = ({ limited = true }: { limited?: boolean }) => {
                 </>
             }
 
-            <div className="flex w-full translate-y-10 mt-auto absolute bottom-0">
+          {!limited &&  <div className="flex w-full translate-y-10 mt-auto absolute bottom-0">
                 <Pagination siblingCount={3} variant="text" page={page} className="mx-auto w-fit" onChange={(e: any, value: number) => {
                     setPage(value)
                 }} count={pageCount} />
-            </div>
+            </div>}
         </div>
     </>
 }

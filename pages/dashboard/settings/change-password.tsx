@@ -15,12 +15,12 @@ const Settings = () => {
     const [isValid, setIsValid] = useState(false);
 
     useEffect(() => {
-        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@$!%*?&.]).{8,}$/gm.test(newPassword)) {
+        if (/^(?=.{8,20}$).*/gm.test(newPassword)) {
             setIsValid(true);
         }
         else {
             setIsValid(false);
-            //errors.Password = 'Şifreniz en az 8 karakterden oluşmalı, en az bir büyük harf, bir küçük harf ve bir sayı içermelidir.';
+            //errors.Password = 'Şifreniz en az 8, en fazla 20 karakterden oluşmalı.';
         }
     }, [newPassword]);
 
@@ -34,7 +34,7 @@ const Settings = () => {
                         {/* <Input text="Mevcut Şifreniz" type="password" /> */}
                         <Input value={newPassword} onChange={(e) => setNewPassword(e.target.value)} text="Yeni Şifreniz" type="password" />
                         {isValid && <Text className="text-green-500">Şifreniz güvenli</Text>}
-                        {!isValid && <Text className="text-red-500">Şifreniz en az 8 karakterden oluşmalı, en az bir büyük harf, bir küçük harf, bir sayı ve özel karakter(*,!,@,.) içermelidir.</Text>}
+                        {!isValid && <Text className="text-red-500">Şifreniz en az 8, en fazla 20 karakterden oluşmalı.</Text>}
                     </div>
                     <Button
                         disabled={!isValid}
