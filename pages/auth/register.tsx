@@ -29,7 +29,7 @@ const RegisterForm = () => {
     });
     const router = useRouter();
     const [disabledButton, setDisabledButton] = useState<boolean>(false);
-    const { user, register, error } = useAuth();
+    const { user, register, error, logout } = useAuth();
     const submitRegister = () => {
         setDisabledButton(true);
         register(credentials).then(() => {
@@ -56,7 +56,9 @@ const RegisterForm = () => {
             })
         }
     }, [router.query.id])
-
+    useEffect(() => {
+        logout();
+    }, [])
     type ValidationErrors = {
         Email: string | null,
         Password: string | null,
@@ -71,6 +73,8 @@ const RegisterForm = () => {
     useEffect(() => {
         console.log("validationErrors", validationErrors);
     }, [validationErrors])
+
+
 
     const [sozlesmeler, setSozlesmeler] = useState<{
         kullanici: {
@@ -231,7 +235,7 @@ const RegisterForm = () => {
                         !sozlesmeler.aydinlatma.value ||
                         validationErrors.Email != null ||
                         validationErrors.Password != null ||
-                        validationErrors.ConfirmPassword != null  ||
+                        validationErrors.ConfirmPassword != null ||
                         disabledButton
                     } onClick={submitRegister} type="secondary"
                         className="w-full mt-[20px] h-[48px] leading-none flex items-center justify-center">
