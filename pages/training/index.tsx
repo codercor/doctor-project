@@ -62,14 +62,14 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
         </div>
         {(IsAdmin && ZoomStartURL && isZoomOpen) && <Button type='quaternary-flat' onClick={() => {
             window.open(ZoomStartURL, '_blank')
-        }} className='text-center !rounded-md w-full mt-4'> <VideocamTwoTone /> Zoom&apos;u Başlat </Button>}
+        }} className='text-center !rounded-md w-full mt-4 text-[24px]'> <VideocamTwoTone /> Eğitim&apos;i Başlat </Button>}
         {((ZoomURL || Password) && isZoomOpen) && <div className='w-full bg-inherit hover:bg-[white] hover:font-nexa-bold hover:text-[black] shadow-2xl mt-5 pb-4 bg-quaternary-light'>
             {ZoomURL && <div className='flex flex-col  w-full h-[50px] items-center justify-center'>
                 <div onClick={() => {
                     window.open(ZoomURL, '_blank')
-                }} className='flex items-center min-h-[50px] justify-center'>
+                }} className='text-center !rounded-md w-full mt-4 text-[28px] text-[red] hover:cursor-pointer'>
                     <VideoCallRounded />
-                    <span  > Zoom`&apos;a gir </span>
+                    <span  > Eğitim&apos;e gir </span>
                 </div>
                 {IsAdmin && <div className='flex items-center'>
                     <Key />
