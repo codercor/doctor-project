@@ -4,6 +4,7 @@ import { CheckCircleOutlined, ErrorOutlineRounded } from '@mui/icons-material'
 import { useRouter } from 'next/dist/client/router'
 import Head from 'next/dist/shared/lib/head'
 import React, { useEffect } from 'react'
+import { toast } from 'react-hot-toast'
 
 const Success = () => {
     return <div className="w-full h-full bg-primary-light">
@@ -38,6 +39,9 @@ export default function PaymentFailed() {
 
         setTimeout(() => {
             push('/dashboard')
+            toast.success("Mail adresinizde ki açıklamaları kontrol ediniz.",{
+                duration: 5000,
+            });
         }, 4000)
 
     }, [Status])

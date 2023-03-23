@@ -3,6 +3,7 @@ import { RootState, AppThunk } from '../store';
 import { PaymentState, PaymentCredentials } from './payment.types';
 import { paymentRequest, freePaymentRequest } from './payment.utils';
 import Router from 'next/router';
+import { toast } from 'react-hot-toast';
 
 
 
@@ -36,7 +37,11 @@ export const freePayment = createAsyncThunk(
     'payment/freePayment',
     async (freePaymentCredentials: FreePaymentCredentials, thunkAPI) => {
         try {
-            return (await freePaymentRequest(freePaymentCredentials));
+            let res = await freePaymentRequest(freePaymentCredentials)
+            toast.success("Mail adresinizde ki açıklamaları kontrol ediniz.", {
+                duration: 5000,
+            });
+            return res;
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
         }
