@@ -235,11 +235,11 @@ const EditTraining = () => {
                                         <div className="flex flex-wrap  gap-4">
                                             <div className="flex-1">
                                                 {/* <Input type="datetime-local" inputClassName="text-[14px] flex-1" value={trainingData.GeneralDetail.StartDate} name="StartDate" onChange={handleGeneralDetailChange} text="Başlangıç Tarihi" /> */}
-                                                <FormInput type="datetime-local" value={values.GeneralDetail.StartDate} name="GeneralDetail.StartDate" error={errors?.GeneralDetail?.StartDate} label="Başlangıç Tarihi" onChange={_handleChange} />
+                                                <FormInput type="datetime-local" value={values.GeneralDetail.StartDate} name="GeneralDetail.StartDate" error={errors?.GeneralDetail?.StartDate} label="Başlangıç Tarihi" disabled onChange={_handleChange} />
                                             </div>
                                             <div className="flex-1">
                                                 {/* <Input type="datetime-local" inputClassName="text-[14px] flex-1" value={trainingData.GeneralDetail.EndDate} name="EndDate" onChange={handleGeneralDetailChange} text="Bitiş Tarihi" /> */}
-                                                <FormInput type="datetime-local" value={values.GeneralDetail.EndDate} name="GeneralDetail.EndDate" error={errors?.GeneralDetail?.EndDate} label="Bitiş Tarihi" onChange={_handleChange} />
+                                                <FormInput type="datetime-local" value={values.GeneralDetail.EndDate} name="GeneralDetail.EndDate" error={errors?.GeneralDetail?.EndDate} label="Bitiş Tarihi" disabled onChange={_handleChange} />
                                             </div>
                                         </div>
                                         {
