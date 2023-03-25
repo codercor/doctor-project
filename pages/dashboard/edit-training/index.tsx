@@ -318,7 +318,7 @@ const EditTraining = () => {
                                                     Time: 0,
                                                     Order: values.EducationSections.length + 1
                                                 }])
-                                            }} type="secondary" className="bg-tertiary w-[94px] h-[36px] !px-[16px] !py-[14px] gap-1 flex justify-center items-center !rounded-[10px_5px_10px_5px] min-h-[36px]">
+                                            }} type="secondary" disabled className="bg-tertiary w-[94px] h-[36px] !px-[16px] !py-[14px] gap-1 flex justify-center items-center !rounded-[10px_5px_10px_5px] min-h-[36px]">
                                                 <Add className="text-[white] text-[16px]" />
                                                 <Text className="text-[12px]">Ekle</Text>
                                             </Button>
@@ -327,6 +327,7 @@ const EditTraining = () => {
                                             {values.EducationSections.length} Adet
                                         </div>
                                         <div className="relative flex w-full pt-2 flex-col mt-4 snap-y shadow-[inset_0_15px_30px_-15px_rgba(0,0,0,0.3)] h-[600px] scrollbar-thin scrollbar-thumb-quaternary border-red-400 overflow-auto">
+                                           <div className="w-full backdrop-brightness-75 h-full absolute top-0 left-0 z-[99] "></div>
                                             <Reorder.Group axis="y" values={values.EducationSections} onReorder={(sections) => {
 
                                                 setFieldValue("EducationSections", sections);
