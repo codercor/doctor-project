@@ -198,6 +198,7 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
 
 export default function TrainingDetailPage() {
     const { query } = useRouter();
+    const [loading, setLoading] = useState(true)
     type OneTraining = TrainingDataType & { Id?: string, Image?: string, }
     const [trainingData, setTrainingData] = useState<OneTraining | null>(null)
     const { getTrainingById, oneTraining } = useTraining();
@@ -205,6 +206,7 @@ export default function TrainingDetailPage() {
     console.log("query", query.id);
     const { user: { IsAuthenticated, IsAdmin, Id } } = useUser();
     const getUsersTrainings = async () => {
+        setLoading(true)
         const _toast = toast.loading("Kullanıcı eğitimleri yükleniyor...")
         try {
             const response = await request.get(
@@ -216,9 +218,11 @@ export default function TrainingDetailPage() {
             console.log("Filtered", filtered);
 
             setUserTrainings(filtered)
+            setLoading(false)
         }
         catch (error) {
             toast.error('Kullanıcı eğitimleri yüklenirken hata oluştu.', { id: _toast });
+            setLoading(false)
         }
     }
 
@@ -240,7 +244,10 @@ export default function TrainingDetailPage() {
 
 
     useEffect(() => {
-        if (query.id) getTrainingById("" + query.id);
+        if (query.id) {
+            setLoading(true)
+            getTrainingById("" + query.id).then(() => setLoading(false)).catch(() => setLoading(false))
+        }
     }, [query.id]);
 
     useEffect(() => {
@@ -251,7 +258,7 @@ export default function TrainingDetailPage() {
     // if () return
     return (
         <LandingLayout>
-            {!trainingData && <Loading message='Eğitim yükleniyor...' />}
+            {loading && <Loading message='Eğitim yükleniyor...' />}
             <Head>
                 <title> {trainingData?.Name || 'Eğitim'} | Nazan Uysal Harzadın </title>
                 <Script id="g-tag-1" async src="https://www.googletagmanager.com/gtag/js?id=G-D0HTKY3R5J"></Script>

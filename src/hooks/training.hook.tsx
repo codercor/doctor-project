@@ -16,7 +16,7 @@ const useTraining = () => {
     }
 
     const deleteTrainingById = (id: string) => {
-        dispatch(_deleteTrainingById(id));
+        return dispatch(_deleteTrainingById(id));
     }
 
     return {

@@ -14,7 +14,7 @@ import { v4 } from 'uuid'
 import { CircularProgress, Pagination } from '@mui/material'
 import request, { ADMIN_TRAINING } from '@config'
 import { LocalLoading } from './appointment-management'
-const Training = ({ training }: { training: TrainingDataType }) => {
+const Training = ({ training, afterDelete }: { training: TrainingDataType, afterDelete: () => void }) => {
     const { deleteTrainingById } = useTraining();
     return <div className="flex  items-center mt-4  justify-between px-4 bg-[white] w-full h-[85px]">
         <div className="flex flex-col items-start justify-start gap-2">
@@ -33,8 +33,9 @@ const Training = ({ training }: { training: TrainingDataType }) => {
                 <Edit className="text-[white] !text-[16px] md:!text-[20px]" />
             </Button>
             <Button
-                onClick={() => {
-                    if (training?.Id) deleteTrainingById(training?.Id);
+                onClick={async () => {
+                    if (training?.Id) await deleteTrainingById(training?.Id);
+                    afterDelete();
                 }}
                 type="secondary" className="bg-[#CD2D2D] w-fit sm:!p-4  !p-2 gap-1 flex rounded-sm min-h-[36px]">
                 <Delete className="text-[white] !text-[16px] md:!text-[20px]" />
@@ -69,19 +70,15 @@ export default function Trainings() {
         }
 
     }
-
-
     useEffect(() => {
         console.log("çekelim", page);
 
         refetchAdminTrainings(page);
     }, [page])
 
-
-
     return (
         <DashboardLayout>
-            {loading && <LocalLoading message='Yükleniyor...'/>}
+            {loading && <LocalLoading message='Yükleniyor...' />}
             <div className=" md:h-[798px] flex flex-col  rounded-[30px_5px] bg-[#F4F4F4]">
                 <div className="w-full h-fit flex flex-col text-start items-center justify-start py-[26px] px-[30px]">
                     <div className="flex justify-between w-full">
@@ -102,7 +99,9 @@ export default function Trainings() {
                                 (deleteTrainingProcess.loading) ? <div className="w-[400px] h-[400px] mx-auto animate-pulse text-center bg-secondary-light flex flex-col justify-center items-center gap-2 rounded-full">
                                     <div>  <CircularProgress /></div>
                                     <Text type="h1" className="text-secondary !text-[20px]  w-full text-center">Siliniyor...</Text>
-                                </div> : adminTrainings.length ? adminTrainings.map((training) => <Training key={v4()} training={training} />) :
+                                </div> : adminTrainings.length ? adminTrainings.map((training) => <Training afterDelete={() => {
+                                    refetchAdminTrainings(page);
+                                }} key={v4()} training={training} />) :
                                     <div className='w-full h-full flex justify-center items-center flex-col gap-[10px]'>
                                         <School />
                                         <Text> Hiç eğitim yok... </Text>
