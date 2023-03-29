@@ -67,10 +67,10 @@ const Hakkimda: NextPage = () => {
                                 <li><span className="font-nexa-bold">1998-2023</span>:  Ulusal ve Uluslararası birçok bilimsel derginin gönüllü hakemler listesinde bulunmaktayım.</li>
                                 <li><span className="font-nexa-bold">2006-2023</span>:  TÜBİTAK’ ta ve Türkiye’ deki birçok üniversitenin bilimsel araştırma projeleri biriminde proje değerlendirme hakemi olarak çalıştım.</li>
                                 <li><span className="font-nexa-bold">2009- Halen </span>: BMC (British Medical Journal) Neuroscience dergisinin editörleri arasındayım.</li>
-                                <li><span className="font-nexa-bold">2013 </span>: Dokuz Eylül Üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Davranış Fizyoloji Bilim Dalının Kurulmasında çalıştı.</li>
+                                <li><span className="font-nexa-bold">2013 </span>: Dokuz Eylül Üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Davranış Fizyoloji Bilim Dalının Kurulmasında çalıştım.</li>
                             </ul>
                             <ul className="flex-[1]  list-none">
-                                <li><span className="font-nexa-bold">2016</span>: Dokuz Eylül Üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Merkezinin ve Etik Kurulunun Kurulmasında çalıştı.</li>
+                                <li><span className="font-nexa-bold">2016</span>: Dokuz Eylül Üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Merkezinin ve Etik Kurulunun Kurulmasında çalıştım.</li>
                                 <li><span className="font-nexa-bold">2016-2020:</span> Dokuz Eylül üniversitesi, Tıp Fakültesi Fizyoloji Anabilim Dalı, Deney Hayvanları Etik Kurulu (DEU-TF-HADYEK) Başkanı olarak çalıştım.</li>
                                 <li><span className="font-nexa-bold">2020-2022:</span> Dokuz Eylül Üniversitesi, Deney Hayvanları Etik Kurulu (DEU-HADYEK) Başkan Yardımcısı olarak çalıştım.</li>
                                 <li><span className="font-nexa-bold">2020-2021:</span> İstanbul Mutfak Sanatları Akademisi Fonksiyonel Beslenme Programı Eğitimi verdim.</li>
@@ -85,7 +85,7 @@ const Hakkimda: NextPage = () => {
                             <li className="text-[14px]"><span className="font-nexa-bold">1998</span>: Tıpta Uzmanlık: Dokuz Eylül Üniversitesi Tıp Fakültesi Fizyoloji Anabilim Dalı</li>
                             <li><span className="font-nexa-bold">2006</span>: Fizyoloji Doçenti</li>
                             <li><span className="font-nexa-bold">2011</span>: Fizyoloji Profesörü</li>
-                            <li><span className="font-nexa-bold">2022</span>: IFM Fonksiyonel Tıp Uygulayıcısı</li>
+                            <li><span className="font-nexa-bold">2021</span>: IFM Fonksiyonel Tıp Uygulayıcısı</li>
                         </ul>
                     </Text>
                     <button className="mt-[50px] hover:border-2 transition-all hover:bg-primary hover:text-secondary hover:rounded-[20px] my-4 py-2" onClick={() => { setShowAcademicList(true) }}> Akademik Makalelerimi Görmek İçin Tıklayın </button>

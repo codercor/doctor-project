@@ -51,8 +51,8 @@ const Footer = () => {
                             <Text type="paragraph" className="text-[white]">
                                 İLETİŞİM
                             </Text>
-                            <Text type="paragraph" className="text-[white] font-nexa-light text-[14px]">
-                                <a href="tel:+90 554 797 14 97">+90 554 797 14 97</a>
+                            <Text type="paragraph" className="text-[white] font-nexa-light !text-[14px]">
+                                destek@nazanuysalharzadin.com.tr
                             </Text>
                             <Text type="paragraph" className="text-[white] font-nexa-light !text-[14px]">
                                 info@nazanuysalharzadin.com.tr
