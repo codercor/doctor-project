@@ -180,11 +180,12 @@ export default function UserManagement() {
                     <Input onChange={(e) => {
                         setKeyword(e.currentTarget.value)
                     }} placeholder='E-Posta, telefon numarası veya kullanıcı adına göre ara' />
-                    <div onChange={() => {
+                    <div onClick={() => {
                         refresh()
                     }}
                         className='bg-quaternary-flat text-[white] min-w-[70px] rounded-[10px_20px_10px_20px]  h-full grid place-content-center'>
-                        <Refresh /></div>
+                        <Refresh />
+                    </div>
                 </div>
                 {list?.length > 0 ? <>
                     <TableContainer className='bg-[white] '>

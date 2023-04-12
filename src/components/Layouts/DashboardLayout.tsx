@@ -247,7 +247,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
                 })}>
                 <div onClick={() => {
-                    router.push("/")
+                    // router.push("/")
+                    window.open("/", "_blank")
                 }} className="md:w-[125px] md:h-[43px] mx-auto relative md:mt-[40px]">
                     <Image src="/images/svg/brandmark6.svg" layout="fill" objectFit="contain" />
                 </div>
