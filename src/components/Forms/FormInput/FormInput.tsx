@@ -28,6 +28,7 @@ interface FormInputProps {
   | "hidden";
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   value?: string;
   name?: string;
   error?: string;
@@ -45,6 +46,7 @@ const FormInput = ({
   type = "text",
   inputClass = "",
   disabled = false,
+  onBlur,
 }: FormInputProps) => {
   return (
     <div className="flex flex-col w-full">
@@ -72,6 +74,9 @@ const FormInput = ({
             return;
           }
         }}
+
+        onBlur={onBlur}
+
         className={classNames("text-[black] text-[16px] font-nexa-bold rounded-[5px_20px_0px_20px] disabled:opacity-60", {
           [inputClass]: inputClass ? true : true,
         })}
@@ -142,11 +147,12 @@ export const FormInputSelect = ({
 };
 
 interface FormInputTextAreaProps
-  extends Omit<FormInputProps, "onChange" | "onKeyUp"> {
+  extends Omit<FormInputProps, "onChange" | "onKeyUp" | "onBlur"> {
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onKeyUp?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
   maxLength?: number;
   inputClassName?: string;
+  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
 }
 
 export const FormInputTextArea = ({
@@ -159,6 +165,7 @@ export const FormInputTextArea = ({
   disabled = false,
   maxLength = 10000,
   inputClassName = "",
+  onBlur
 }: FormInputTextAreaProps) => {
   return (
     <div className="flex flex-col w-full">
@@ -168,6 +175,7 @@ export const FormInputTextArea = ({
         </label>
       )}
       <textarea
+        onBlur={onBlur}
         maxLength={maxLength}
         value={value}
         name={name}

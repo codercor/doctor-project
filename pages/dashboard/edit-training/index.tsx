@@ -183,7 +183,7 @@ const EditTraining = () => {
                     </div>
                     <Formik enableReinitialize={true} validationSchema={validationSchema} onSubmit={() => { }} initialValues={{ ...trainingData }}>
                         {
-                            ({ handleSubmit, values, handleChange: _handleChange, errors, setFieldValue, validateForm, dirty, status, isValid }) => {
+                            ({ handleSubmit, values, handleChange: _handleChange, errors, setFieldValue, validateForm, dirty, status, isValid, handleBlur }) => {
                                 console.log("errors", errors);
                                 const _handleSubmit = () => {
                                     if (Object.keys(errors).length > 0 && !!trainingImage) return;
@@ -224,22 +224,22 @@ const EditTraining = () => {
                                 return <form className='overflow-auto  w-full flex-col md:flex-row flex h-full bg-[#F4F4F4]' onSubmit={handleSubmit}>
                                     <div className="flex flex-col w-full pb-4 scrollbar-thin scrollbar-thumb-[#4E929D] border-2 overflow-auto  h-full pl-[32px] pr-[74px]">
                                         {/* <Input value={trainingData.Name} name="Name" onChange={handleChange} text="Eğitim Adı" /> */}
-                                        <FormInput type="text" value={values.Name} name="Name" error={errors?.Name} label="Eğitim Adı" onChange={_handleChange} />
+                                        <FormInput onBlur={handleBlur} type="text" value={values.Name} name="Name" error={errors?.Name} label="Eğitim Adı" onChange={_handleChange} />
                                         <div className="flex flex-col mt-1">
                                             {/* <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Eğitim Detayı</Text>
                                                 <textarea value={trainingData.Details} name="Details" onChange={handleChange} className="bg-primary-flat rounded-[5px_20px_0_20px] h-[147px] p-4" ></textarea> */}
-                                            <FormInputTextArea type="text" value={values.Details} name="Details" error={errors?.Details} label="Eğitim Detayı" onChange={_handleChange} />
+                                            <FormInputTextArea onBlur={handleBlur} type="text" value={values.Details} name="Details" error={errors?.Details} label="Eğitim Detayı" onChange={_handleChange} />
                                         </div>
                                         {/* <Input value={trainingData.GeneralDetail.VideoLink} name="VideoLink" onChange={handleGeneralDetailChange} text="Eğitim Videosu (Youtube URL)" /> */}
-                                        <FormInput type="text" value={values.GeneralDetail.VideoLink} name="GeneralDetail.VideoLink" error={errors?.GeneralDetail?.VideoLink} label="Eğitim Videosu (Youtube URL)" onChange={_handleChange} />
+                                        <FormInput onBlur={handleBlur} type="text" value={values.GeneralDetail.VideoLink} name="GeneralDetail.VideoLink" error={errors?.GeneralDetail?.VideoLink} label="Eğitim Videosu (Youtube URL)" onChange={_handleChange} />
                                         <div className="flex flex-wrap  gap-4">
                                             <div className="flex-1">
                                                 {/* <Input type="datetime-local" inputClassName="text-[14px] flex-1" value={trainingData.GeneralDetail.StartDate} name="StartDate" onChange={handleGeneralDetailChange} text="Başlangıç Tarihi" /> */}
-                                                <FormInput type="datetime-local" value={values.GeneralDetail.StartDate} name="GeneralDetail.StartDate" error={errors?.GeneralDetail?.StartDate} label="Başlangıç Tarihi" disabled onChange={_handleChange} />
+                                                <FormInput onBlur={handleBlur} type="datetime-local" value={values.GeneralDetail.StartDate} name="GeneralDetail.StartDate" error={errors?.GeneralDetail?.StartDate} label="Başlangıç Tarihi" disabled onChange={_handleChange} />
                                             </div>
                                             <div className="flex-1">
                                                 {/* <Input type="datetime-local" inputClassName="text-[14px] flex-1" value={trainingData.GeneralDetail.EndDate} name="EndDate" onChange={handleGeneralDetailChange} text="Bitiş Tarihi" /> */}
-                                                <FormInput type="datetime-local" value={values.GeneralDetail.EndDate} name="GeneralDetail.EndDate" error={errors?.GeneralDetail?.EndDate} label="Bitiş Tarihi" disabled onChange={_handleChange} />
+                                                <FormInput onBlur={handleBlur} type="datetime-local" value={values.GeneralDetail.EndDate} name="GeneralDetail.EndDate" error={errors?.GeneralDetail?.EndDate} label="Bitiş Tarihi" disabled onChange={_handleChange} />
                                             </div>
                                         </div>
                                         {
@@ -291,17 +291,17 @@ const EditTraining = () => {
                                         <div className="flex flex-row gap-2 flex-wrap">
                                             {/* <Input name="Price" value={trainingData.Price.toString()} type="number" onChange={handleChange} text="Eğitim Fiyatı" /> */}
                                             <div className="flex-1">
-                                                <FormInput type="number" value={values.Price.toString()} name="Price" error={errors?.Price} label="Eğitim Fiyatı" onChange={_handleChange} />
+                                                <FormInput  onBlur={handleBlur} type="number" value={values.Price.toString()} name="Price" error={errors?.Price} label="Eğitim Fiyatı" onChange={_handleChange} />
                                             </div>
                                             {/* <Input name="DiscountRate" value={trainingData.DiscountRate.toString()} max={100} min={0} type="number" onChange={handleChange} text="Eğitim İndirim %" /> */}
                                             <div className="flex-1">
-                                                <FormInput type="number" value={values.DiscountRate.toString()} name="DiscountRate" error={errors?.DiscountRate} label="Eğitim İndirim %" onChange={_handleChange} />
+                                                <FormInput  onBlur={handleBlur} type="number" value={values.DiscountRate.toString()} name="DiscountRate" error={errors?.DiscountRate} label="Eğitim İndirim %" onChange={_handleChange} />
                                             </div>
                                         </div>
                                         <div>
                                             {/* <Input value={trainingData.GeneralDetail.MaxParticipant.toString()} type="number" min={0} max={200} onChange={handleGeneralDetailChange} name="MaxParticipant" text="Katılımcı Sayısı" />
                                                 <Text type="overline">**Katılımcı sayısı max 200 olabilir</Text> */}
-                                            <FormInput type="number" value={values.GeneralDetail.MaxParticipant.toString()} name="GeneralDetail.MaxParticipant" error={errors?.GeneralDetail?.MaxParticipant} label="Katılımcı Sayısı" onChange={_handleChange} />
+                                            <FormInput  onBlur={handleBlur} type="number" value={values.GeneralDetail.MaxParticipant.toString()} name="GeneralDetail.MaxParticipant" error={errors?.GeneralDetail?.MaxParticipant} label="Katılımcı Sayısı" onChange={_handleChange} />
                                             <Text type="overline">**Katılımcı sayısı max 500 olabilir</Text>
                                         </div>
                                         <div className="flex justify-between mt-6">
@@ -327,7 +327,7 @@ const EditTraining = () => {
                                             {values.EducationSections.length} Adet
                                         </div>
                                         <div className="relative flex w-full pt-2 flex-col mt-4 snap-y shadow-[inset_0_15px_30px_-15px_rgba(0,0,0,0.3)] h-[600px] scrollbar-thin scrollbar-thumb-quaternary border-red-400 overflow-auto">
-                                           <div className="w-full backdrop-brightness-75 h-full absolute top-0 left-0 z-[99] "></div>
+                                            <div className="w-full backdrop-brightness-75 h-full absolute top-0 left-0 z-[99] "></div>
                                             <Reorder.Group axis="y" values={values.EducationSections} onReorder={(sections) => {
 
                                                 setFieldValue("EducationSections", sections);
@@ -384,21 +384,21 @@ const SectionItem = ({ values, setFieldValue, index, errors, _handleChange, sect
             value={section}>
             <div className="flex flex-col bg-white-500 h-[170px] mt-4 border-2 p-1 relative snap-start">
                 <div onClick={() => {
-                    setFieldValue("EducationSections", values.EducationSections.filter((_: any, i: number) => i !== index));
+                 //   setFieldValue("EducationSections", values.EducationSections.filter((_: any, i: number) => i !== index));
                 }} className="rounded-full w-[30px] h-[30px] grid place-content-center bg-red-400 text-[white] absolute right-[0px] top-[-8px]">
                     <Delete fontSize="small" />
                 </div>
                 {/* <Input value={value.Content} onChange={handleChange} name="Content" text="Alt Başlık" /> */}
-                <FormInput type="text" name={`EducationSections[${index}].Content`} value={
+                <FormInput disabled type="text" name={`EducationSections[${index}].Content`} value={
                     values.EducationSections[index].Content
                 } label="Alt Başlık" error={errors?.EducationSections && errors?.EducationSections[index]?.Content as string} onChange={_handleChange} />
                 <div className="flex flex-row gap-4">
                     {/* <Input value={value.StartDate} type="datetime-local" onChange={handleChange} name="StartDate" text="Eğitim Başlama Tarihi" /> */}
-                    <FormInput type="datetime-local"
+                    <FormInput disabled type="datetime-local"
                         value={values.EducationSections[index].StartDate}
                         name={`EducationSections[${index}].StartDate`} label="Eğitim Başlama Tarihi" onChange={_handleChange} error={errors?.EducationSections && errors?.EducationSections[index]?.StartDate as string} />
                     {/* <Input value={value.toString()} type="number" min={0} onChange={handleChange} name="Time" text="Eğitim Süresi (dk)" /> */}
-                    <FormInput type="number"
+                    <FormInput disabled type="number"
                         value={values.EducationSections[index].Time.toString()}
                         name={`EducationSections[${index}].Time`} label="Eğitim Süresi (dk)" onChange={_handleChange} error={errors?.EducationSections && errors?.EducationSections[index]?.Time as string} />
                 </div>
