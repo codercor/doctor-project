@@ -27,7 +27,7 @@ const Login = () => {
             Email: null,
         }
         // if (credentials.Email === '' || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(credentials.Email) === false) {
-        if (credentials.Email === '' || /^([_a-z0-9]+[\._a-z0-9]*)(\+[a-z0-9]+)?@(([a-z0-9-]+\.)*[a-z]{2,3})$/.test(credentials.Email) === false) {
+        if (credentials.Email === '' || /^([_a-z0-9]+[\._-a-z0-9]*)(\+[a-z0-9]+)?@(([a-z0-9-]+\.)*[a-z]{2,3})$/.test(credentials.Email) === false) {
             errors.Email = 'Geçerli bir eposta giriniz';
         } else {
             errors.Email = null;
