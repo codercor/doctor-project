@@ -10,6 +10,7 @@ import { Loading } from 'pages/dashboard/create-training';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import validator from 'card-validator'
+import { Height } from '@mui/icons-material';
 
 const Form = ({ htmlContent }: { htmlContent: string }) => {
     //get form from htmlContent
@@ -20,7 +21,6 @@ const Form = ({ htmlContent }: { htmlContent: string }) => {
 
 //webform0 id 
     useEffect(() => {
-        console.log("htmlcontent kardeş",htmlContent);
         //window.document.head.innerHTML=docx.head.innerHTML;
         //window.document.body.innerHTML=docx.body.innerHTML;
         if (ref) {
@@ -39,7 +39,7 @@ const Form = ({ htmlContent }: { htmlContent: string }) => {
             <Loading message='Lütfen sayfadan ayrılmayın...' />
         </div>
         <div ref={ref} dangerouslySetInnerHTML={{ __html: htmlContent }} />
-        <iframe srcDoc={htmlContent}></iframe>
+        <iframe style={{minHeight:"620px", minWidth:"700px"}} className='min-w-screen w-full h-full' srcDoc={htmlContent}></iframe>
     </>
     )
 }
@@ -73,8 +73,8 @@ export default function PaymentForm({ EducationId, UserId }: { EducationId: stri
         // Cvc: "123",
         CardHolderName: "",
         CardNumber: "",
-        ExpireMonth: "01",
-        ExpireYear: "2023",
+        ExpireMonth: "",
+        ExpireYear: "",
         Cvc: "",
     });
     const { htmlContent } = useSelector(selectPayment)
