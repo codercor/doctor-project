@@ -3,202 +3,1883 @@ import React from 'react'
 
 export default function KvkkContract() {
     return (
-        <div className='text-[16px] font-nexa-light'>
-
-            <p className="font-nexa-bold text-[18px]">Kişisel Verilerin Korunması ve İşlenmesi Politikası </p>
-
-            <p className="font-nexa-bold">   “Kişisel Verilerin Korunması Kanunu (KVKK)" Başvuru formuna kvkk.gov.tr adresinden ulaşabilirsiniz. </p>
-
-            <p className="text-[16px]">    Kişisel verilerin korunması, Dr. NAZAN UYSAL HARZADIN ’nun en önemli öncelikleri arasındadır. Kişisel verilerin güvenliği konusunda gereken hassasiyet gösterilmekte, hasta mahremiyetine ve hastalarımıza ait her türlü kişisel verinin mümkün olan en iyi şekilde ve özenle işlenerek muhafaza edilmesine büyük önem verilmektedir. Hastalarımız yansıra refakatçi, ziyaretçilerimiz, tüm çalışanlarımız ve işbirliğinde olduğumuz kurum ve kuruluş çalışanlarının; 6698 sayılı Kişisel Verilerin Korunması Kanunu ve Kişisel Sağlık Verilerinin İşlenmesi ve Mahremiyetinin Sağlanması hakkındaki yönetmelik ve ilgili mevzuatlara göre aşağıdaki temel ilkeler çerçevesinde Kişisel verileri korumak kurum politikası olarak benimsenmiştir.
-            </p>
-            <p className="text-[14px]">    • Kişisel verileri hukuka ve dürüstlük kurallarına uygun işleme,</p>
-            <p className="text-[14px]">    • Kişisel verileri doğru ve gerektiğinde güncel tutma,</p>
-            <p className="text-[14px]">    • Kişisel verileri belirli, açık ve meşru amaçlar için işleme,</p>
-            <p className="text-[14px]">    • Kişisel verileri işlendikleri amaçla bağlantılı, sınırlı ve ölçülü işleme,</p>
-            <p className="text-[14px]">    • Kişisel verileri ilgili mevzuatta öngörülen veya işlendikleri amaç için gerekli olan süre kadar muhafaza etme,</p>
-            <p className="text-[14px]">    • Kişisel veri sahiplerini aydınlatma ve bilgilendirme,</p>
-            <p className="text-[14px]">    • Kişisel veri sahiplerinin haklarını kullanması için gerekli sistemi kurma,</p>
-            <p className="text-[14px]">    • Kişisel verilerin muhafazasında gerekli tedbirleri alma,</p>
-            <p className="text-[14px]">    • Kişisel verilerin işleme amacının gereklilikleri doğrultusunda üçüncü kişilere aktarılmasında, ilgili mevzuata ve KVK Kurulu düzenlemelerine uygun davranma,</p>
-            <p className="text-[14px]">    • Özel nitelikli kişisel verilerin işlenmesine ve korunmasına gerekli hassasiyeti gösterme,</p>
-            <p className="text-[14px]">    • Kişisel verileri yasaya uygun olarak tanımlı şekil ve sürede silme ve imha etme</p>
-
-            <p className="font-nexa-bold"> Amaç </p>
-
-            <p>  Bu Politikanın ana amacı Dr. NAZAN UYSAL HARZADIN tarafından hukuka uygun bir biçimde yürütülen kişisel veri işleme faaliyeti ve kişisel verilerin korunmasına yönelik yapılanlar konusunda açıklamalarda bulunmak, bu kapsamda hastalarımız, ziyaretçilerimiz, çalışanlarımız ve kurum yetkililerimiz, işbirliği içinde olduğumuz kurumların çalışanları, hissedarları ve yetkilileri ve üçüncü kişiler başta olmak üzere kişisel verileri Kliniğimiz tarafından işlenen kişileri bilgilendirerek şeffaflığı sağlamaktır. Dr. NAZAN UYSAL HARZADIN tarafından işlenen kişisel veriler verilen sağlık hizmetlerine bağlı olarak değişebilmekle birlikte otomatik ya da otomatik olmayan yöntemlerle toplanmaktadır. Hasta temsilcilerimiz, hekimlerimiz, sağlık profesyonellerimiz, vd. çalışanlarımız, taşeron firmalar ve çalışanları ve her türlü ticari faaliyetler içine giren firmalar; çağrı merkezimiz ve benzeri yollarla sözlü, yazılı ya da elektronik olarak toplanan sağlık verileri başta olmak üzere özel nitelikli kişisel veriler ve genel nitelikli kişisel veriler, aşağıda yer alan amaçlarla işlenebilmektedir.</p>
-
-            <p> Tıbbî teşhis, tedavi ve bakım hizmetlerinin yürütülmesi, Kamu sağlığının korunması, koruyucu hekimlik sağlık hizmetleri ile finansmanının planlanması ve yönetimi; randevu hakkında hastalarımızı haberdar edebilme; kliniğimizin iç prosedürlerinin planlanması ve yönetilmesi, sağlık hizmetlerini geliştirme amacıyla analiz yapma; çalışanlarımızı eğitme ve geliştirme, çalışanlarımızın özlük süreçlerini ve yasal haklarını koruma, suistimal ve yetkisiz işlemlerin izlenmesi ve engellenmesi; risk yönetimi ve kalite geliştirme aktivitelerinin yerine getirilmesi; araştırma yapılması; yasal ve düzenleyici gereksinimlerin yerine getirilmesi; hizmetlerimiz karşılığında faturalandırma yapma; kimliğinizi teyit etme; Kliniğimizin ile anlaşmalı olan kurumlarla ilişkinizi teyit etme; sağlık hizmetlerinin finansmanı kapsamında özel sigorta şirketleri tarafından talep edilen her türlü bilgileri paylaşma; sağlık hizmetlerimize ilişkin her türlü soru ve şikâyetinize cevap verebilme; Kliniğimizin sistem ve uygulamalarının veri güvenliği kapsamında tüm gerekli teknik ve idari tedbirleri alma; size sunduğumuz sağlık hizmetlerinin geliştirilmesi ve iyileştirilmesi amacıyla sağlık hizmetleri kullanımınızı analiz etme ve sağlık verilerinizi saklama; ilgili mevzuat gereği saklanması gereken sağlık verilerinize ilişkin bilgileri muhafaza etme; anlaşmalı olduğumuz kurumlarla, Bankalar ve sağlık harcamaları tahsil edilen tüm kuruluşlar (kamu ve özel) size sunulan sağlık hizmetlerine ilişkin finansal mutabakat sağlanması; ilgili mevzuat uyarınca Sağlık Bakanlığı ve diğer kamu kurum ve kuruluşları ile talep edilen bilgileri paylaşma; hasta memnuniyetinin ölçülmesi, hasta memnuniyetinin arttırılması.</p>
-
-            <p> Kişisel veriler, her türlü sözlü, yazılı ya da elektronik ortamda, yukarıda yer verilen amaçlar ve sağlık hizmetlerinin belirlenen yasal çerçevede verilebilmesi ve bu çerçevede Dr. NAZAN UYSAL HARZADIN sözleşmeler ve yasal yükümlülüklerini gereği gibi eksiksiz yerine getirilebilmesi amacı ile toplanır ve işlenir.</p>
-
-            <p className="font-nexa-bold">  Kapsam </p>
-
-            <p>   Bu Politika; hastalarımız, refakatçilerimiz, ziyaretçilerimiz, kurum yetkilileri, çalışanlarımızın, işbirliği ve her türlü hukuki ilişki içinde olduğumuz kişi, kuruluş ve kurumların çalışanları, hissedarları ve yetkililerinin ve üçüncü kişilerin otomatik olan veya olmayan yollarla işlenen aşağıda tanımlı kişisel verilerini kapsar.
-            </p>
-            <p>   Ad, soyad, TC Kimlik numarası, pasaport numarası veya geçici TC Kimlik numarası, doğum yeri ve tarihi, cinsiyet, medeni hal, kliniğe özel protokol numarası ve hastaları tanımlayan diğer kimlik verileri; adres, telefon numarası, elektronik posta adresi vb iletişim verileri, ödeme ve faturalama bilgileri gibi finansal veriler; elektronik olan veya olmayan yöntemlerle edinilebilecek sesli ve dijital bilgiler; tüm tıbbî teşhis, muayene, tedavi ve bakım hizmetlerinin yürütülmesi sırasında elde edilen kişisel sağlık verisi başta olmak üzere genel ve özel nitelikli kişisel veriler; sağlık hizmetlerinin finansmanı ve planlaması amacıyla özel sağlık sigortasına ilişkin veriler ve Sosyal Güvenlik Kurumu verileri, internet siteleri üzerinden gönderilen sağlık ve kimlik verileri, görsel (dijital olan ve dijital olmayan) tüm kayıtlar
-            </p>
-            <p>   Kişisel veri sahipleri gruplarına göre bu politikanın uygulama kapsamı Politikanın tamamı olabileceği gibi (örneğin hastalarımız gibi); yalnızca bir kısım hükümleri de (örneğin yalnızca çalışanlarımız, tedarikçilerimiz vb) olabilecektir
-            </p>
-            <p>   Online hizmetlerini kullanmak üzere çağrı merkezi veya internet sitesi kullanıldığında, kurum içi intranette, eğitim, hastanenin düzenlemiş olduğu etkinliklere katılımda veya internet sayfaları ziyaret edildiğinde de kişisel veriler işlenebilecektir.
-            </p>
-
-
-
-            <p className="font-nexa-bold">  Tanımlar </p>
-
-            <p>Açık Rıza: Belirli bir konuya ilişkin, bilgilendirilmeye dayanan ve özgür iradeyle açıklanan rıza</p>
-            <p>Anonim Hale Getirme: Kişisel verinin, kişisel veri niteliğini kaybedecek ve bu durumun geri alınamayacağı şekilde değiştirilmesidir. Örneğin maskeleme, toplulaştırma, veri bozma vb. tekniklerle kişisel verinin bir gerçek kişi ile ilişkilendirilemeyecek hale getirilmesi</p>
-            <p>İş birliği İçerisinde Olduğumuz Kurumların Çalışanları, Hissedarları ve Yetkilileri: Kliniğimizin her türlü iş ilişkisi içerisinde bulunduğu kurumlarda (iş ortağı, tedarikçi gibi, ancak bunlarla sınırlı olmaksınız) çalışan, bu kurumların hissedarları ve yetkilileri dahil olmak üzere, gerçek kişiler</p>
-            <p>Kişisel Verilerin İşlenmesi: Kişisel verilerin tamamen veya kısmen otomatik olan ya da herhangi bir veri kayıt sisteminin parçası olmak kaydıyla otomatik olmayan yollarla elde edilmesi, kaydedilmesi, depolanması, muhafaza edilmesi, değiştirilmesi, yeniden düzenlenmesi, açıklanması, aktarılması, devralınması, elde edilebilir hâle getirilmesi, sınıflandırılması ya da kullanılmasının engellenmesi gibi veriler üzerinde gerçekleştirilen her türlü işlem</p>
-            <p>Kişisel Veri Sahibi: Kişisel verisi işlenen gerçek kişi. Örneğin hastalar ve çalışanlar</p>
-            <p>Kişisel Veri: Kimliği belirli veya belirlenebilir gerçek kişiye ilişkin her türlü bilgi. Dolayısıyla tüzel kişilere ilişkin bilgilerin işlenmesi Kanun kapsamında değildir. Örneğin ad soyad, TCKN, e-posta, adres, doğum tarihi, kredi kartı numarası, banka hesap numarası vb.</p>
-            <p>Hasta: Kliniğimize tetkik, tedavi için müracaat edip ayaktan ya da yatarak tedavi gören kişi</p>
-            <p>Özel Nitelikli Kişisel Veri: Irk, etnik köken, siyasi düşünce, felsefi inanç, din, mezhep veya diğer inançlar, kılık kıyafet, dernek vakıf ya da sendika üyeliği, sağlık, cinsel hayat, ceza mahkûmiyeti ve güvenlik tedbirleriyle ilgili veriler ile biyometrik ve genetik veriler özel nitelikli veriler</p>
-            <p>Kurum Yetkilisi: Kurumun Genel Müdürü ve diğer yetkili gerçek kişiler</p>
-            <p>Üçüncü Kişi: Kliniğimizin yukarıda bahsi geçen taraflarla arasındaki ticari işlem güvenliğini sağlamak veya bahsi geçen kişilerin haklarını korumak ve menfaat temin etmek üzere bu kişilerle ilişkili olan üçüncü taraf gerçek kişiler (Örneğin hizmet alınan firma çalışan veya yetkilileri, Refakatçi vb)</p>
-            <p>Veri İşleyen: Veri sorumlusunun verdiği yetkiye dayanarak onun adına kişisel veri işleyen gerçek ve tüzel kişidir. Örneğin Kliniğimizin verilerini tutan bilişim firması, hasta verilerini sisteme giren tüm çalışanlar</p>
-            <p>Veri Sorumlusu: Kişisel verilerin işlenme amaçlarını ve vasıtalarını belirleyen, verilerin sistematik bir şekilde tutulduğu yeri (veri kayıt sistemi) yöneten kişi</p>
-            <p>Ziyaretçi: Kliniğimizin sahip olduğu fiziksel alanlara çeşitli amaçlarla girmiş olan veya internet sitelerimizi ziyaret eden gerçek kişiler</p>
-
-            <p className="font-nexa-bold"> Politikanın ve İlgili Mevzuatın Uygulanması </p>
-
-            <p> Kişisel verilerin işlenmesi ve korunması yürürlükte bulunan ilgili kanuni düzenlemeler çerçevesinde yürütülür. Dr. NAZAN UYSAL HARZADIN Kişisel Verilerin Korunması Politikası güncel yönetmeliklerle uyumlu olarak hazırlanmıştır.
-            </p>
-            <p> Politika, ilgili mevzuat tarafından ortaya konulan kurallar çerçevesinde Dr. NAZAN UYSAL HARZADIN uygulamaları ile entegre edilerek oluşturulmuştur. KVK Kanunu’nda öngörülen yürürlük sürelerine bağlı kalarak gerekli hazırlıklarını yürütmektedir. Yukarıda belirtilen kişisel veriler gerektiğinde 3359 sayılı Sağlık Hizmetleri Temel Kanunu, 663 sayılı Sağlık Bakanlığı ve Bağlı Kuruluşlarının Teşkilat ve Görevleri Hakkında Kanun Hükmünde Kararname, Özel Hastaneler Yönetmeliği, Kişisel Sağlık Verilerinin İşlenmesi ve Mahremiyetinin Korunması Yönetmeliği ve Sağlık Bakanlığı düzenlemeleri vb. mevzuat hükümleri çerçevesinde işlenebilecek, kliniğimize ve/veya tedarikçilerimize ait fiziki arşivler ve bilişim sistemlerine nakledilecektir. Sonuç olarak Kişisel veriler kurum prosedürlerinde tanımlı yasal sürelere uygun olarak hem dijital hem de fiziki ortamda korunacaktır.
-            </p>
-            <p className="font-nexa-bold">  Kişisel Verilerin Güvenliğinin Sağlanması </p>
-
-            <p> Kliniğimiz, işlemekte olduğu kişisel verilerin hukuka aykırı olarak işlenmesini önlemek ve verilerin muhafazasını sağlamak için optimum güvenlik düzeyini sağlamaya yönelik gerekli teknik ve idari tedbirleri almakta, bu kapsamda gerekli denetimleri yapmakta veya yaptırmaktadır.</p>
-
-            <p> Kliniğimiz tarafından KVK Kanunu’nun 12nci maddesi uyarınca “veri güvenliğini” sağlamaya yönelik alınan aksiyonlar ve tedbirler aşağıda belirtilmektedir.</p>
-
-            <p>  • Kliniğimiz, kişisel verilerin hukuka uygun işlenmesini sağlamak için, teknolojik olanaklar ve uygulama maliyetine göre teknik ve idari önlemleri almaktadır. Çalışanlar, öğrendikleri kişisel verileri KVKK hükümlerine aykırı olarak başkasına açıklayamayacağı ve işleme amacı dışında kullanamayacağı ve bu yükümlülüğün görevden ayrılmalarından sonra da devam edeceği konusunda bilgilendirilmekte ve bu doğrultuda kendilerinden gerekli taahhütler alınmaktadır.</p>
-            <p> • Kliniğimiz, kişisel verilerin tedbirsizlikle veya yetkisiz olarak açıklanmasını, erişimini, aktarılmasını veya başka şekillerdeki tüm hukuka aykırı erişimi önlemek için teknik ve idari tedbirler almaktadır.</p>
-            <p> • Kliniğimiz, kişisel verilerin hukuka aykırı olarak işlenmesinin önlenmesi, verilere hukuka aykırı olarak erişilmesini önlenmesi ve verilerin hukuka uygun muhafazasını sağlanması konusunda kişisel verileri aktarmış olduğu iş ortakları ve tedarikçiler gibi veri işleyen kurumlar olarak farkındalıkları arttırmaktadır.</p>
-            <p> • Kliniğimizin veri sorumlusu olarak kişisel verileri işlerken uymak zorunda olduğu yükümlülükler ve bu konuda geliştirdiği hukuksal, idari ve teknik tedbirlere uyma zorunluluğu Kliniğimizin tedarikçi, iş ortağı gibi çeşitli sıfatlarla ilişkide olduğu veri işleyen kurumlara veri işleme konusunda gerçekleştirdikleri faaliyetin niteliğiyle uyumlu bir şekilde sözleşmeler yapılmaktadır</p>
-            <p> • Kliniğimiz kendi bünyesinde gerekli denetimleri yapmakta veya yaptırmaktadır. Bu denetim sonuçları Kurumun iç işleyişi kapsamında konu ile ilgili bölüme raporlanmakta ve alınan tedbirlerin iyileştirilmesi için gerekli faaliyetler yürütülmektedir.</p>
-            <p> • Kliniğimiz, KVK Kanunu’nun 12nci maddesine uygun olarak işlenen kişisel verilerin kanuni olmayan yollarla başkaları tarafından elde edilmesi halinde bu durumu en kısa sürede ilgili kişisel veri sahibine ve KVK Kurulu’na bildirilmesini sağlayan sistemi yürütmektedir.</p>
-
-            <p className="font-nexa-bold">  Veri Sahibinin Hakları; Hak Talep Etme, İletişim Kanalları ve Veri Sahiplerinin Taleplerinin Değerlendirilmesi </p>
-
-            <p> Kliniğimiz, kişisel veri sahiplerinin haklarının değerlendirilmesi ve kişisel veri sahiplerine gereken bilgilendirmenin yapılması için KVK Kanunu’nun 13üncü maddesine uygun olarak gerekli kanalları, iç işleyişi, idari ve teknik düzenlemeleri yürütmektedir.</p>
-            <p> Kişisel veri sahipleri aşağıda sıralanan haklarına ilişkin taleplerini yazılı olarak şahsen başvuru ile ve özel yetkili vekaletname ile Kliniğimize iletmeleri durumunda Kliniğimiz talebin niteliğine göre talebi en kısa sürede ve en geç otuz gün içinde ücretsiz olarak sonuçlandırmaktadır. Kişisel veri sahipleri;</p>
-            <p> • Kişisel veri işlenip işlenmediğini öğrenme,</p>
-            <p> • Kişisel verileri işlenmişse buna ilişkin bilgi talep etme,</p>
-            <p> • Kişisel verilerin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme,</p>
-            <p> • Yurt içinde veya yurt dışında kişisel verilerin aktarıldığı üçüncü kişileri bilme,</p>
-            <p> • Kişisel verilerin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme,</p>
-            <p> • Kişisel verilerin silinmesini veya yok edilmesini isteme,</p>
-            <p> • Kişisel verilerin düzeltilmesi, silinmesi ya da yok edilmesi halinde bu işlemlerin kişisel verilerin aktarıldığı üçüncü kişilere bildirilmesini isteme,</p>
-            <p> • İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle kişinin kendisi aleyhine bir sonucun ortaya çıkmasına itiraz etme,</p>
-            <p> • Kişisel verilerin kanuna aykırı olarak işlenmesi sebebiyle zarara uğraması hâlinde zararın giderilmesini talep etme haklarına sahiptir.</p>
-            <p></p>
-            <p> KVK Kanunu’nun 13üncü maddesinin 1inci fıkrası gereğince yukarıda belirtilen hakların kullanılması ile ilgili talebin “yazılı” olarak Kliniğimize (veri sorumlusuna) iletilmesi gerekmektedir.</p>
-            <p></p>
-            <p> KVK çerçevesinde belirtilen hakların kullanılması için, kimliği tespit edici gerekli bilgiler ve kullanmak istenilen haklara yönelik açıklamalarla birlikte talebin, Kanunun 11inci maddesinde belirtilen hangi hakkın kullanımına ilişkin olduğunun da belirtilerek Kliniğimize iletilmesi; Talebe ilişkin başvurunun daha hızlı ve etkili bir şekilde cevaplandırılmasını sağlayacaktır.</p>
-            <p></p>
-            <p> Özel Nitelikli Kişisel Verilerin Korunması</p>
-            <p> Kliniğimiz, kişisel verileri teknik ve idari olanakları ile titizlikle korumaktadır. Kliniğimizin tarafından alınan güvenlik önlemleri, teknolojik olanaklar, olası riskler göz önünde bulundurularak optimum düzeyde sağlanmaktadır.</p>
-            <p></p>
-            <p> Bir grup kişisel veri, hukuka aykırı olarak işlendiğinde kişilerin mağduriyetine veya ayrımcılığa sebep olma riski nedeniyle KVK Kanununda “özel nitelikli kişisel veri” olarak tanımlanmıştır.</p>
-            <p></p>
-            <p> Bu veriler; ırk, etnik köken, siyasi düşünce, felsefi inanç, din, mezhep veya diğer inançlar, kılık ve kıyafet, dernek, vakıf ya da sendika üyeliği, sağlık, cinsel hayat, ceza mahkumiyeti ve güvenlik tedbirleriyle ilgili veriler ile biyometrik ve genetik verilerdir.</p>
-            <p></p>
-            <p> KVK Kanunu ile “özel nitelikli” olarak belirlenen ve hukuka uygun olarak işlenen yukarıda tanımlı verilerin korunmasında hassasiyetle davranılmaktadır.</p>
-            <p></p>
-            <p> Kişisel Veri Sahibinin Aydınlatılması ve Bilgilendirilmesi</p>
-            <p> KVK Kanunu’nun 10uncu maddesine uygun olarak, kişisel verilerin elde edilmesi sırasında kişisel veri sahiplerini aydınlatmaktadır. Bu kapsamda Kliniğimiz tarafından kişisel veri sahiplerine kişisel verilerinin elde edilmesi sırasında Kliniğimizin kimliğini, kişisel verilerin hangi amaçla işleneceğini, işlenen kişisel verilerin kimlere ve hangi amaçla aktarılabileceği, kişisel veri toplamanın yöntemi ve hukuki sebebi ile kişisel veri sahibinin KVK Kanunu’nun11inci maddesi kapsamında sahip olduğu haklarla ilgili aydınlatma yapmaktadır.</p>
-            <p></p>
-            <p> Anayasa’nın 20nci maddesinde herkesin, kendisiyle ilgili kişisel veriler hakkında bilgilendirilme hakkına sahip olduğu ortaya konulmuştur. Bu doğrultuda KVK Kanunu’nun 11inci maddesinde kişisel veri sahibinin hakları arasında “bilgi talep etme” de sayılmıştır. Kliniğimiz bu kapsamda, Anayasa’nın 20inci ve KVK Kanunu’nun 11inci maddelerine uygun olarak kişisel veri sahibinin bilgi talep etmesi durumunda gerekli bilgilendirmeyi yapmaktadır.</p>
-            <p></p>
-            <p> Kliniğimiz kişisel veri sahipleri ile ilgililere, kişisel verilerin korunmasındaki kurum politikasını, çeşitli kamuoyuna açık dokümanlarla duyurarak, kişisel veri işleme faaliyetlerinde ilgilileri bilgilendirmeyi ve bu çerçevede hesap verilebilirliği ve şeffaflığı sağlamaktadır. Ayrıca Kliniğimiz ilgili kişileri; kişilerin “açık rıza” sına başvurduğu zamanlar başta olmak üzere, kendi faaliyetleri ve kanundaki maddeler hakkında farklı yöntemlerle de bilgilendirmektedir.</p>
-            <p></p>
-            <p> <p className="font-nexa-bold">  Kişisel Verilerin İşlenmesi </p></p>
-            <p> Kliniğimiz, Anayasa’nın 20’nci maddesine ve KVK Kanunu’nun 4ncü maddesine uygun olarak, kişisel verilerin işlenmesi konusunda; doğru ve güncel, hukuka ve dürüstlük kurallarına uygun; belirli, açık ve meşru amaçlar güderek; amaçla bağlantılı, sınırlı ve ölçülü bir biçimde kişisel veri işleme faaliyetinde bulunmaktadır.</p>
-            <p></p>
-            <p> Kliniğimiz kanunlarda öngörülen veya kişisel veri işleme amacının gerektirdiği süre kadar kişisel verileri muhafaza etmektedir.</p>
-            <p></p>
-            <p> Kliniğimiz, Anayasa’nın 20nci ve KVK Kanunu’nun 5inci maddeleri gereğince, kişisel verileri, kişisel verilerin işlenmesine ilişkin KVK Kanunu’nun 5inci maddesindeki şartlardan bir veya bir kaçına dayalı olarak işlemektedir.</p>
-            <p></p>
-            <p> Kliniğimiz, KVK Kanunu’nun 6ncı maddesine uygun olarak özel nitelikli kişisel verilerin işlenmesi bakımından öngörülen düzenlemelere uygun hareket etmektedir.</p>
-            <p></p>
-            <p> Kliniğimiz, KVK Kanunu’nun 8inci ve 9uncu maddelerine uygun olarak, kişisel verilerin aktarılması konusunda kanunda öngörülen ve KVK Kurulu tarafından ortaya konulan düzenlemelere uygun davranmaktadır.</p>
-            <p></p>
-            <p> Kişisel Verilerin Mevzuatta Öngörülen İlkelere Uygun Olarak İşlenmesi</p>
-            <p></p>
-            <p> <p className="font-nexa-bold">  Hukuka ve Dürüstlük Kuralına Uygun İşleme </p></p>
-            <p></p>
-            <p> Kliniğimiz; kişisel verilerin işlenmesinde yasal düzenlemelerle getirilen ilkeler ile genel güven ve dürüstlük kuralına uygun hareket etmektedir. Kliniğimiz, kişisel verilerin işlenmesinde orantılılık gerekliliklerini dikkate almaktadır, kişisel verileri amacın dışında kullanmamaktadır.</p>
-            <p></p>
-            <p> Kişisel Verilerin Doğru ve Gerektiğinde Güncel Olmasını Sağlama</p>
-            <p></p>
-            <p> Kliniğimiz; kişisel veri sahiplerinin temel haklarını ve kendi yasal menfaatlerini dikkate alarak işlediği kişisel verilerin doğru ve güncel olmasını sağlayacak gerekli önlemleri almaktadır.</p>
-            <p></p>
-            <p> Belirli, Açık ve Meşru Amaçlarla İşleme</p>
-            <p></p>
-            <p> Kliniğimiz, meşru ve hukuka uygun olan kişisel veri işleme amacını açık ve kesin olarak belirlemektedir. Kliniğimiz, kişisel verileri sunmakta olduğu hizmetle bağlantılı ve bunlar için gerekli olan kadar işlemektedir. Kliniğimiz tarafından kişisel verilerin hangi amaçla işleneceği henüz kişisel veri işleme faaliyeti başlamadan bildirilmektedir.</p>
-            <p></p>
-            <p> İşlendikleri Amaçla Bağlantılı, Sınırlı ve Ölçülü Olma</p>
-            <p></p>
-            <p> Kliniğimiz, kişisel verileri belirlenen amaçların gerçekleştirilebilmesine elverişli bir biçimde işlemekte ve amacın gerçekleştirilmesiyle ilgili olmayan veya ihtiyaç duyulmayan kişisel verilerin işlenmesinden kaçınmaktadır. Örneğin sonradan ortaya çıkması muhtemel ihtiyaçların karşılanmasına yönelik kişisel veri işleme faaliyeti yürütülmemektedir.</p>
-            <p></p>
-            <p> İlgili Mevzuatta Öngörülen veya İşlendikleri Amaç için Gerekli Olan Süre Kadar Muhafaza Etme</p>
-            <p></p>
-            <p> Kliniğimiz, kişisel verileri ancak ilgili mevzuatta belirtildiği veya işlendikleri amaç için gerekli olan süre kadar muhafaza etmektedir. Bu kapsamda, Kliniğimiz öncelikle ilgili mevzuatta kişisel verilerin saklanması için bir süre öngörülüp öngörülmediğini tespit etmekte, bir süre belirlenmişse bu süreye uygun davranmakta, bir süre belirlenmemişse kişisel verileri işlendikleri amaç için gerekli olan süre kadar saklamaktadır. Sürenin bitimi veya işlenmesini gerektiren sebeplerin ortadan kalkması halinde kişisel veriler Kliniğimiz tarafından silinmekte, yok edilmekte veya anonim hale getirilmektedir.</p>
-            <p></p>
-            <p> Kişisel Verilerin İşlenme Şartları</p>
-            <p> Kişisel verilerin korunması Anayasal bir haktır. Anayasa'nın 20nci maddesinin üçüncü fıkrası gereğince, kişisel veriler ancak kanunda öngörülen hallerde veya kişinin açık rızasıyla işlenebilecektir. Kliniğimiz bu doğrultuda ve Anayasa’ya uygun bir biçimde; kişisel verileri, ancak kanunda öngörülen hallerde veya kişinin açık rızasıyla işlemektedir.</p>
-            <p></p>
-            <p> Kliniğimiz tarafından kişisel verilerin işlenmesine yönelik hukuki dayanaklar farklılık gösterse de, her türlü kişisel veri işleme faaliyetinde 6698 sayılı Kanun’un 4ncü maddesinde belirtilen genel ilkelere uygun olarak hareket edilmektedir.</p>
-            <p></p>
-            <p> Kişisel veri sahibinin açık rıza vermesi, kişisel verilerin hukuka uygun olarak işlenmesine olanak tanıyan hukuki dayanaklardan yalnızca bir tanesidir. Açık rıza dışında, aşağıda yazan diğer şartlardan birinin varlığı durumunda da kişisel veriler işlenebilir. Kişisel veri işleme faaliyetinin dayanağı aşağıda belirtilen şartlardan yalnızca biri olabildiği gibi bu şartlardan birden fazlası da aynı kişisel veri işleme faaliyetinin dayanağı olabilir. İşlenen verilerin özel nitelikli kişisel veri olması halinde; aşağıda yer alan şartlar uygulanır.</p>
-            <p></p>
-            <p> • Kişisel Veri Sahibinin Açık Rızasının Bulunması</p>
-            <p> • Kanunlarda Açıkça Öngörülmesi</p>
-            <p> • Fiili İmkânsızlık Sebebiyle İlgilinin Açık Rızasının Alınamaması</p>
-            <p> • Sözleşmenin Kurulması veya İfasıyla Doğrudan İlgi Olması</p>
-            <p> • Kurumun Hukuki Yükümlülüğünü Yerine Getirmesi</p>
-            <p> • Kişisel Veri Sahibinin Kişisel Verisini Alenileştirmesi</p>
-            <p> • Bir Hakkın Tesisi veya Korunması için Veri İşlemenin Zorunlu Olması</p>
-            <p> • Kliniğimizin Meşru Menfaati için Veri İşlemenin Zorunlu Olması</p>
-            <p></p>
-            <p> <p className="font-nexa-bold">  Özel Nitelikli Kişisel Verilerin İşlenmesi </p></p>
-            <p> Kliniğimiz tarafından, KVK Kanunu ile “özel nitelikli” olarak belirlenen kişisel verilerin işlenmesinde, KVK Kanunu’nda öngörülen düzenlemelere hassasiyetle uygun davranılmaktadır.</p>
-            <p></p>
-            <p> KVK Kanunu’nun 6ncı maddesinde, hukuka aykırı olarak işlendiğinde kişilerin mağduriyetine veya ayrımcılığa sebep olma riski taşıyan bir takım kişisel veri “özel nitelikli” olarak belirlenmiştir. Bu veriler; ırk, etnik köken, siyasi düşünce, felsefi inanç, din, mezhep veya diğer inançlar, kılık ve kıyafet, dernek, vakıf ya da sendika üyeliği, sağlık, cinsel hayat, ceza mahkûmiyeti ve güvenlik tedbirleriyle ilgili veriler ile biyometrik ve genetik verilerdir.</p>
-            <p></p>
-            <p> KVK Kanunu’na uygun bir biçimde Kliniğimiz tarafından; özel nitelikli kişisel veriler, KVK Kurulu tarafından belirlenecek olan yeterli önlemlerin alınması kaydıyla aşağıdaki durumlarda işlenmektedir:</p>
-            <p></p>
-            <p> • Kişisel veri sahibinin açık rızası var ise veya</p>
-            <p> • Kişisel veri sahibinin açık rızası yok ise;</p>
-            <p> • Kişisel veri sahibinin sağlığı ve cinsel hayatı dışındaki özel nitelikli kişisel veriler, kanunlar da öngörülen hallerde,</p>
-            <p> • Kişisel veri sahibinin sağlığına ve cinsel hayatına ilişkin özel nitelikli kişisel verileri ise ancak kamu sağlığının korunması, koruyucu hekimlik, tıbbi teşhis, tedavi ve bakım hizmetlerinin yürütülmesi, sağlık hizmetleri ile finansmanının planlanması ve yönetimi amacıyla, sır saklama yükümlülüğü altında bulunan kişiler veya yetkili kurum ve kuruluşlar tarafından işlenmektedir.</p>
-            <p></p>
-            <p> <p className="font-nexa-bold">  Kişisel Verilerin Aktarılması </p></p>
-            <p> Kliniğimiz hukuka uygun olan kişisel veri işleme amaçları doğrultusunda gerekli güvenlik önlemlerini alarak kişisel veri sahibinin kişisel verilerini ve özel nitelikli kişisel verilerini üçüncü kişilere (üçüncü kişi şirketlere, kurumlara, grup şirketlerine, üçüncü gerçek kişilere) aktarabilmektedir. Kliniğimiz bu doğrultuda KVK Kanunu’nun 8inci maddesinde öngörülen düzenlemelere uygun hareket etmektedir.</p>
-            <p></p>
-            <p> Kişisel verileriniz, Kanun ve diğer mevzuat kapsamında ve yukarıda yer verilen amaçlarla Dr. NAZAN UYSAL HARZADIN, Tıp Merkezleri, Grup Şirketleri, Üniversiteler, Sağlık Bakanlığı, bağlı alt birimleri ve aile hekimliği merkezleri, özel sigorta şirketleri (sağlık, emeklilik ve hayat sigortası ve benzeri), Sosyal Güvenlik Kurumu, Emniyet Genel Müdürlüğü ve diğer kolluk kuvvetleri, Nüfus Genel Müdürlüğü, Türkiye Eczacılar Birliği, mahkemeler ve bununla bağlı kalmamak kaydı ile tüm kamu kurum ve kuruluşları, tıbbi teşhis için iş birliği içerisinde olduğumuz yurt içinde bulunan laboratuarlar, tıp merkezleri ve sağlık hizmeti sunan üçüncü kişiler, hastanın sevk edildiği veya hastanın kendisinin başvurduğu sağlık kuruluşu, yetki vermiş olduğunuz temsilcileriniz, bağlı olduğunuz ve/veya çalışmakta olduğunuz kurum, avukatlar, vergi danışmanları ve denetçiler de dâhil olmak üzere danışmanlık aldığımız üçüncü kişiler, düzenleyici ve denetleyici kurumlar ve resmi merciler, yurt içindeki sistemlere ve/veya Hastane’mizin bağlı bulunduğu şirketler topluluğu bünyesindeki şirketler, hizmetlerinden faydalandığımız veya işbirliği içerisinde olduğumuz tedarikçilerimiz, destek hizmet sağlayıcılarımız ve iş ortaklarımız (daha detaylı bilgi için Kliniğimize yazılı olarak başvurabilirsiniz) ile paylaşılabilecektir.</p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p> <p className="font-nexa-bold">  Kişisel Verilerin Yurtdışına Aktarılması </p></p>
-            <p> Dr. NAZAN UYSAL HARZADIN kişisel veri işleme amaçları doğrultusunda YURTDIŞINA veri aktarımı yapılmamaktadır.</p>
-            <p></p>
-            <p></p>
-            <p> Kişisel Verilerin Silinmesi, Yok Edilmesi Ve Anonimleştirilmesi Şartları</p>
-            <p> Türk Ceza Kanunu’nun 138’inci maddesinde ve KVK Kanunu’nun 7nci maddesinde düzenlendiği üzere ilgili kanun hükümlerine uygun olarak işlenmiş olmasına rağmen, işlenmesini gerektiren sebeplerin ortadan kalkması hâlinde Kliniğimizin ilgili prosedürlerine istinaden veya kişisel veri sahibinin talebi üzerine kişisel veriler silinir, yok edilir veya anonim hâle getirilir.</p>
-            <p> Bu kapsamda Kliniğimiz ilgili yükümlülüğünü yerine getirmek üzere ilgili iş birimlerini eğitmekte, görevlendirmekte ve farkındalıklarını arttırmaktadır.</p>
-            <p> Kliniğimiz binalarına gelen kişilerin isim ve soyadları elde edilirken ya da Kurum nezdinde asılan ya da diğer şekillerde misafirlerin erişimine sunulan metinler aracılığıyla söz konusu kişisel veri sahipleri bu kapsamda aydınlatılmaktadırlar.</p>
-            <p></p>
-            <p> Kliniğimiz tarafından güvenliğin sağlanması ve bu Politikada belirtilen amaçlarla; Kliniğimiz tarafından Bina ve Tesislerimiz içerisinde kalınan süre boyunca talep eden Ziyaretçilerimize internet erişimi sağlanabilmektedir. Bu durumda internet erişimlerine ilişkin log kayıtları 5651 Sayılı Kanun ve bu Kanuna göre düzenlenmiş olan mevzuatın amir hükümlerine göre kayıt altına alınmakta; bu kayıtlar ancak yetkili kamu kurum ve kuruluşları tarafından talep edilmesi veya Kurum içinde gerçekleştirilecek denetim süreçlerinde ilgili hukuki yükümlülüğümüzü yerine getirmek amacıyla işlenmektedir.</p>
-            <p></p>
-            <p> Bu çerçevede elde edilen log kayıtlarına yalnızca sınırlı sayıda Kurum çalışanının erişimi bulunmaktadır. Bahsi geçen kayıtlara erişimi olan Kurum çalışanları bu kayıtları yalnızca yetkili kamu kurum ve kuruluşundan gelen talep veya denetim süreçlerinde kullanmak üzere erişmekte ve hukuken yetkili olan kişilerle paylaşmaktadır. Kayıtlara erişimi olan sınırlı sayıda kişi gizlilik taahhütnamesi ile eriştiği verilerin gizliliğini koruyacağını beyan etmektedir.</p>
-            <p></p>
-            <p> Kliniğimiz sahibi olduğu internet sitelerinde; bu siteleri ziyaret eden kişilerin sitelerdeki ziyaretlerini ziyaret amaçlarıyla uygun bir şekilde gerçekleştirmelerini temin etmek; kendilerine özelleştirilmiş içerikler gösterebilmek ve çevrimiçi tanıtım faaliyetlerinde bulunabilmek maksadıyla teknik vasıtalarla site içerisindeki internet hareketleri kaydedilmektedir.</p>
-            <p></p>
-            <p> <p className="font-nexa-bold"> Politikanın Yürürlüğe Girmesi </p></p>
-            <p> Dr. NAZAN UYSAL HARZADIN Kişisel Verilerin Korunması ve İşlenmesi Politikası 01.12.2021 tarihinde yürürlüğe girer. Politikanın tamamının veya belirli maddelerinin yenilenmesi durumunda Politikanın yürürlük tarihi yenilenen madde için o maddenin revize edildiği tarihtir.</p>
-
-        </div>
+    <>    
+   <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Çerez Politikası</b>
+      </font>
+    </font>
+  </p>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.4in" }}>
+    <a name="_msoanchor_1" />
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        &nbsp;
+        NUH SAĞLIK DANIŞMANLIĞI VE EĞİTİM ANONİM ŞİRKETİ (
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>“KLİNİK”&nbsp;</b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        veya olarak anılacaktır) olarak,&nbsp;https://www.nazanuysalharzadin.com.tr/
+        &nbsp;web sitesinde&nbsp;(“
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Site</b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        ”), sitenin uzantılarında,&nbsp;uygulamalarımız yahut dijital ortamda
+        sizlerin kullanımına sunduğumuz benzeri tüm&nbsp;çevrimiçi&nbsp;veya
+        çevrimdışı&nbsp;mecralarımızı&nbsp;(anılan tüm mecralar birlikte&nbsp;“
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Platform</b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        ”&nbsp;olarak anılacaktır.)&nbsp;kullanımınız veya&nbsp;ziyaretiniz
+        sırasında sizlerin deneyimini&nbsp;geliştirmek için çerezler,
+        birtakım&nbsp;teknolojilerden (“
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>çerezler</b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        ”) faydalanmaktayız.&nbsp;
+        <br />
+        &nbsp;
+        <br />
+        Bu teknolojilerin kullanımı başta 6698 sayılı Kişisel Verilerin
+        Korunması Kanunu (“
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>KVKK” veya “Kanun</b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        ”) olmak üzere tabi olduğumuz mevzuata uygun şekilde
+        gerçekleştirilmektedir.
+        <br />
+        &nbsp;
+        <br />
+        İşbu&nbsp;Çerez Politikası’nın&nbsp;amacı,&nbsp;Platformların kullanımı
+        esnasında kullanılmakta olan&nbsp;çerezler kullanılarak kişisel
+        verilerin işlenmesi&nbsp;nedeniyle&nbsp;elde edilen kişisel verilere
+        ilişkin sizlere bilgi vermektir.&nbsp;&nbsp;İşbu metinde sitemizde ve
+        uygulamalarımızda hangi amaçlarla hangi tür çerezleri kullandığımızı ve
+        bu çerezleri nasıl kontrol edebileceğinizi sizlere açıklamak istiyoruz.
+        <br />
+        &nbsp;
+        <br />
+        KLİNİĞİMİZ sitesinde ve uygulamalarımızda kullandığımız çerezleri
+        gerekmesi durumunda kullanmaktan vazgeçebilir, bunların türlerini veya
+        fonksiyonlarını değiştirebilir veya sitemize ve uygulamalarımızda yeni
+        çerezler ekleyebiliriz. Dolayısıyla işbu Çerez Politikası’nın
+        hükümlerini dilediğimiz zaman değiştirme hakkını saklı tutarız. Güncel
+        Çerez Politikası üzerinde gerçekleştirilmiş olan her türlü değişiklik
+        sitede, uygulamada veya herhangi bir kamuya açık mecrada yayınlanmakla
+        birlikte yürürlük kazanacaktır. Son güncelleme tarihini metnin sonunda
+        bulabilirsiniz.
+        <br />
+        &nbsp;
+        <br />
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>
+          Kişisel verilerinizin KLİNİĞİMİZ tarafından işlenme amaçları konusunda
+          detaylı bilgilere;&nbsp;
+        </b>
+      </font>
+    </font>
+    <font color="#ff0000">
+      <font face="Times New Roman, serif">
+        <font size={3} style={{ fontSize: "12pt" }}>
+         <a href='/sozlesmeler/kvkk/' >KVKK Politikası</a>
+        </font>
+      </font>
+    </font>
+    <font color="#ff0000">
+      <font face="Times New Roman, serif">
+        <font size={3} style={{ fontSize: "12pt" }}>
+          &nbsp;
+        </font>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b> KLİNİĞİMİZ</b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}></font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>
+           <br /> Kişisel Verilerin Korunması ve İşlenmesi Politikası’ndan
+          ulaşabilirsiniz.
+        </b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <br />
+        &nbsp;
+        <br />
+        <br />
+        &nbsp;
+        <br />
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt"}}>
+        <b>Kişisel Veri Toplamanın Yöntemi ve Hukuki Sebebi</b>
+      </font>
+    </font>
+  </p>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "-0.3in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        Kişisel verileriniz, internet sitemizi ziyaretiniz kapsamında veya
+        uygulamalarımızı kullanmanız dolayısıyla elektronik ortamda çerezler
+        yoluyla KLİNİĞİMİZİN meşru menfaati hukuki sebebine dayalı olarak
+        toplanmaktadır. Hedefleme ve profilleme vasıtasıyla gerçekleştirilen
+        tanıtım faaliyetleri ise yalnızca açık rızanız olması halinde
+        gerçekleştirilmektedir.&nbsp;Toplanan kişisel verileriniz Kanun’un 5. ve
+        6. maddelerinde belirtilen kişisel veri işleme şartları ve amaçları
+        kapsamında işbu Çerez Politikası’nda belirtilen amaçlarla da
+        işlenebilmektedir.
+        <br />
+        &nbsp;
+        <br />
+        <br />
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Kişisel Verilerin Kimlere ve Hangi Amaçla Aktarılabileceği</b>
+      </font>
+    </font>
+  </p>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "-0.3in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <br />
+        KLİNİĞİMİZ, Çerez Politikası kapsamındaki kişisel verilerinizi yukarıda
+        belirtilen amaçların gerçekleştirilebilmesi ile sınırlı olarak ve
+        mevzuata uygun şekilde, kanunen yetkili kamu kurumlarıyla paylaşabiliriz
+        <br />
+      </font>
+    </font>
+    <br />
+    <br />
+  </p>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Hangi Çerezler Hangi Amaçlarla Kullanılmaktadır?</b> <br />
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <br />
+        KLİNİĞİMİZ sitesinde ve uygulamalarımızda çeşitli amaçlarla çerezler
+        kullanmakta ve bu çerezler vasıtasıyla kişisel verilerinizi
+        işlemekteyiz. Bu amaçlar başlıca şunlardır:
+      </font>
+    </font>
+  </p>
+  <ul>
+    <li>
+      <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            <b>
+              Site’nin ve uygulamaların çalışması için gerekli temel
+              fonksiyonları gerçekleştirmek.
+            </b>
+          </font>
+        </font>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            &nbsp;Örneğin, oturum açan üyelerin Site’de farklı sayfaları ziyaret
+            ederken tekrar şifre girmelerine gerek kalmaması.
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            <b>
+              Site’yi ve uygulamaları analiz etmek, Site’nin ve uygulamaların
+              performansını arttırmak.
+            </b>
+          </font>
+        </font>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            &nbsp;Örneğin, Site’nin üzerinde çalıştığı farklı sunucuların
+            entegrasyonu, Site’yi ziyaret edenlerin sayısının tespit edilmesi ve
+            buna göre performans ayarlarının yapılması ya da ziyaretçilerin
+            aradıklarını bulmalarının kolaylaştırılması.
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            <b>
+              Site’nin ve uygulamaların işlevselliğini arttırmak ve kullanım
+              kolaylığı sağlamak.&nbsp;
+            </b>
+          </font>
+        </font>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Örneğin, Site’yi ziyaret eden ziyaretçinin daha sonraki ziyaretinde
+            kullanıcı adı bilgisinin ya da arama sorgularının hatırlanması.
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            <b>
+              Kişiselleştirme, hedefleme ve reklamcılık faaliyeti
+              gerçekleştirmek.&nbsp;
+            </b>
+          </font>
+        </font>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Örneğin, ziyaretçilerin görüntüledikleri sayfa ve ürünler üzerinden
+            ziyaretçilerin ilgi alanlarıyla bağlantılı reklam
+            gösterilmesi.&nbsp;
+          </font>
+        </font>
+      </p>
+    </li>
+  </ul>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <br />
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Sitemizde ve Uygulamalarımızda Kullanılan Çerezler</b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <br />
+        Aşağıda sitemizde ve uygulamalarımızda kullandığımız farklı türdeki
+        çerezleri bulabilirsiniz. Sitemizde ve uygulamalarımızda hem birinci
+        parti çerezler (ziyaret ettiğiniz site tarafından yerleştirilen) hem de
+        üçüncü parti çerezleri (ziyaret ettiğiniz site haricindeki sunucular
+        tarafından yerleştirilen) kullanılmaktadır.
+        <br />
+        &nbsp;
+        <br />
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Zorunlu Çerezler</b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <br />
+        Belli çerezlerin kullanımı sitemizin ve uygulamalarımızın doğru biçimde
+        çalışması için zorunludur. Örneğin sitemizde oturum açtığınızda devreye
+        giren kimlik doğrulama çerezleri, sitemizde bir sayfadan diğerine
+        geçişinizde etkin olan oturumunuzun devam etmesini sağlamaktadır.
+      </font>
+    </font>
+  </p>
+  <p style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <br />
+    <br />
+  </p>
+  <table align="center" width={604} cellPadding={7} cellSpacing={0}>
+    <colgroup>
+      <col width={105} />
+      <col width={100} />
+      <col width={128} />
+      <col width={100} />
+      <col width={99} />
+    </colgroup>
+    <tbody>
+      <tr valign="top">
+        <td
+          width={105}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Hizmet Sağlayıcısı</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={100}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez İsmi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={128}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerezin Amacı</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={100}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Tipi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={99}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Süresi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td
+          width={105}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                AAA
+              </font>
+            </font>
+            <font color="#ff0000">
+              <font face="Times New Roman, serif">
+                <font size={3} style={{ fontSize: "12pt" }}>
+                  (ÖRNEK)
+                </font>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={100}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                xxx
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={128}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                Kullanıcının site üzerinde kullandığı dil seçeneğini saklar.
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={100}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                Gerekli
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={99}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                1 yıl
+              </font>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td
+          width={105}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                AAA
+              </font>
+            </font>
+            <font color="#ff0000">
+              <font face="Times New Roman, serif">
+                <font size={3} style={{ fontSize: "12pt" }}>
+                  (ÖRNEK)
+                </font>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={100}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                xxx
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={128}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                Kullanıcının mobil cihazlardan web sitesine girdiğinde mobil
+                görünüme yönlendirilip yönlendirilmediğini gösterir.
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={100}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                Gerekli
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={99}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                oturum sonu
+              </font>
+            </font>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <br />
+    <br />
+  </p>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Tercih Çerezleri</b>
+      </font>
+    </font>
+  </p>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        Bu çerezler sizlerin site ve uygulama üzerindeki tercihlerini ve
+        seçimlerinizi hatırlayarak sitemizde sunulan hizmetlerin sizin için
+        kişiselleşmesini sağlamaktadır. Örneğin sitemiz üzerindeki dil
+        seçiminizi veya bir metin okurken seçmiş olduğunuz font boyutunu
+        hatırlamamızı sağlar.
+      </font>
+    </font>
+  </p>
+  <table align="center" width={604} cellPadding={7} cellSpacing={0}>
+    <colgroup>
+      <col width={106} />
+      <col width={107} />
+      <col width={107} />
+      <col width={107} />
+      <col width={106} />
+    </colgroup>
+    <tbody>
+      <tr valign="top">
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Hizmet Sağlayıcısı</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez İsmi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerezin Amacı</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Tipi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Süresi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr valign="top">
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+      </tr>
+      <tr valign="top">
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <br />
+    <br />
+  </p>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Sosyal Medya Çerezleri</b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <br />
+        Bu çerezler sizlerin sosyal medya kullanımlarınız hakkında bilgilerin
+        toplanmasını sağlar. Örneğin Kişiselleştirilmiş reklamlar oluşturulması
+        ya da market araştırmaları yapılması için Facebook/Twitter hesaplarınıza
+        ait bilgilerin kullanılması için çerezler kullanılabilir.
+      </font>
+    </font>
+  </p>
+  <table align="center" width={604} cellPadding={7} cellSpacing={0}>
+    <colgroup>
+      <col width={106} />
+      <col width={107} />
+      <col width={107} />
+      <col width={107} />
+      <col width={106} />
+    </colgroup>
+    <tbody>
+      <tr valign="top">
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Hizmet Sağlayıcısı</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez İsmi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerezin Amacı</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Tipi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Süresi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr valign="top">
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+      </tr>
+      <tr valign="top">
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <br />
+    <br />
+  </p>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Performans ve Analiz Çerezleri</b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <br />
+        Bu çerezler sayesinde sitemizi ve uygulamalarımızı kullanımınızı ve
+        performans analizi yaparak sizlere verdiğimiz hizmetleri daha iyi hale
+        getirebiliyoruz. Örneğin bu çerezler sayesinde ziyaretçilerimizin en çok
+        hangi sayfaları görüntülediğini, sitemizin gerektiği gibi çalışıp
+        çalışmadığını ve olası problemleri tespit edebiliyoruz.
+      </font>
+    </font>
+  </p>
+  <table align="center" width={604} cellPadding={7} cellSpacing={0}>
+    <colgroup>
+      <col width={106} />
+      <col width={107} />
+      <col width={107} />
+      <col width={107} />
+      <col width={106} />
+    </colgroup>
+    <tbody>
+      <tr valign="top">
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Hizmet Sağlayıcısı</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez İsmi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerezin Amacı</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Tipi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Süresi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr valign="top">
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+      </tr>
+      <tr valign="top">
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <br />
+    <br />
+  </p>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Hedefleme veya reklam çerezleri</b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <br />
+        Sizlere sitemizde veya sitemiz haricindeki mecralarda ürün ve hizmet
+        tanıtımını yapmak için çerezler kullanıyoruz. Ayrıca bazı iş
+        ortaklarımızla sizlere sitemiz dahilinde veya dışında reklam ve tanıtım
+        yapmak için iş birliğine gidebiliriz. Örneğin, sitemizde gördüğünüz bir
+        reklama tıklayıp tıklamadığınızı, eğer reklam ilginizi çektikten sonra o
+        reklam yönlendirdiği sitedeki hizmetten faydalanıp faydalanmadığınızı
+        takip etmek için çerezler kullanılabilmektedir.
+      </font>
+    </font>
+  </p>
+  <table align="center" width={604} cellPadding={7} cellSpacing={0}>
+    <colgroup>
+      <col width={106} />
+      <col width={107} />
+      <col width={107} />
+      <col width={107} />
+      <col width={106} />
+    </colgroup>
+    <tbody>
+      <tr valign="top">
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Hizmet Sağlayıcısı</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez İsmi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerezin Amacı</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Tipi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                <b>Çerez Süresi</b>
+              </font>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr valign="top">
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+      </tr>
+      <tr valign="top">
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={107}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+        <td
+          width={106}
+          style={{ border: "1px solid #000000", padding: "0in 0.08in" }}
+        >
+          <p align="center" style={{ orphans: 2, widows: 2 }}>
+            <br />
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <br />
+    <br />
+  </p>
+  <p style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Çerezlerin Kullanımını Nasıl Kontrol Edebilirim?</b>
+      </font>
+    </font>
+  </p>
+  <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <br />
+        Çerez ve benzeri teknolojilerin kullanımı konusunda ziyaretçi ve
+        kullanıcılarımızın tercihleri bizler için esastır. Buna karşın,
+        Platform’un çalışması için zorunlu olan Çerezler’in kullanılması
+        gerekmektedir. Ek olarak bazı çerezlerin kapatılması halinde Platform’un
+        birtakım işlevlerinin kısmen ya da tamamen çalışmayabileceğini
+        hatırlatmak isteriz.
+        <br />
+        &nbsp;
+        <br />
+        Platform’da&nbsp;kullanılan&nbsp;çerezlere&nbsp;dair tercihlerinizi ne
+        şekilde yönetebileceğinize ilişkin bilgiler aşağıdaki gibidir: &nbsp;
+      </font>
+    </font>
+  </p>
+  <ul>
+    <li>
+      <p style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Ziyaretçiler,&nbsp;Platform’u&nbsp;görüntüledikleri tarayıcı
+            ayarlarını değiştirerek çerezlere ilişkin tercihlerini
+            kişiselleştirme imkânına sahiptir. Eğer kullanılmakta olan tarayıcı
+            bu imkânı sunmaktaysa, tarayıcı ayarları
+            üzerinden&nbsp;çerezlere&nbsp;ilişkin tercihleri değiştirmek
+            mümkündür. Böylelikle, tarayıcının sunmuş olduğu imkânlara göre
+            farklılık gösterebilmekle birlikte, veri sahiplerinin çerezlerin
+            kullanılmasını engelleme, çerez kullanılmadan önce uyarı almayı
+            tercih etme veya sadece bazı&nbsp;çerezleri&nbsp;devre bırakma ya da
+            silme imkânları bulunmaktadır.
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Bu konudaki tercihler kullanılan tarayıcıya göre değişiklik
+            göstermekle birlikte genel açıklamaya&nbsp;
+          </font>
+        </font>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            <u>https://www.aboutcookies.org/</u>
+          </font>
+        </font>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+              adresinden ulaşmak mümkündür. Çerezlere ilişkin tercihlerin,
+            ziyaretçinin&nbsp;Platform’a&nbsp;erişim sağladığı her bir cihaz
+            özelinde ayrı ayrı yapılması gerekebilecektir.&nbsp;
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Google Analytics tarafından yönetilen&nbsp;çerezleri&nbsp;kapatmak
+            için 
+          </font>
+        </font>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            <u>tıklayınız</u>
+          </font>
+        </font>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            .&nbsp;
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Google tarafından sağlanan kişiselleştirilmiş reklam deneyimini
+            yönetmek için 
+          </font>
+        </font>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            <u>tıklayınız</u>
+          </font>
+        </font>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            .&nbsp;
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Birçok firmanın reklam faaliyetleri için kullandığı çerezler
+            bakımından tercihler 
+          </font>
+        </font>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            <u>Your Online Choices</u>
+          </font>
+        </font>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            &nbsp;üzerinden yönetilebilir.&nbsp;
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Mobil cihazlar üzerinden&nbsp;çerezleri&nbsp;yönetmek için mobil
+            cihaza ait ayarlar menüsü kullanılabilir.&nbsp;
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Tarayıcınızın ayarlarını değiştirerek çerezlere ilişkin
+            tercihlerinizi kişiselleştirme imkânına sahipsiniz.
+          </font>
+        </font>
+      </p>
+    </li>
+  </ul>
+  <p align="center" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    &nbsp;
+  </p>
+  <table width="100%" cellPadding={1} cellSpacing={1}>
+    <colgroup>
+      <col width="42*" />
+      <col width="214*" />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td
+          width="17%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                Adobe Analytics
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width="83%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font color="#0563c1">
+              <u>
+                <a href="http://www.adobe.com/uk/privacy/opt-out.html">
+                  <font face="Times New Roman, serif">
+                    <font size={3} style={{ fontSize: "12pt" }}>
+                      http://www.adobe.com/uk/privacy/opt-out.html
+                    </font>
+                  </font>
+                </a>
+              </u>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td
+          width="17%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                AOL
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width="83%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font color="#0563c1">
+              <u>
+                <a href="https://help.aol.com/articles/restore-security-settings-and-enable-cookie-settings-on-browser">
+                  <font face="Times New Roman, serif">
+                    <font size={3} style={{ fontSize: "12pt" }}>
+                      https://help.aol.com/articles/restore-security-settings-and-enable-cookie-settings-on-browser
+                    </font>
+                  </font>
+                </a>
+              </u>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td
+          width="17%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                Google Adwords
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width="83%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font color="#0563c1">
+              <u>
+                <a href="https://support.google.com/ads/answer/2662922?hl=en">
+                  <font face="Times New Roman, serif">
+                    <font size={3} style={{ fontSize: "12pt" }}>
+                      https://support.google.com/ads/answer/2662922?hl=en
+                    </font>
+                  </font>
+                </a>
+              </u>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td
+          width="17%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                Google Analytics
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width="83%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font color="#0563c1">
+              <u>
+                <a href="https://tools.google.com/dlpage/gaoptout">
+                  <font face="Times New Roman, serif">
+                    <font size={3} style={{ fontSize: "12pt" }}>
+                      https://tools.google.com/dlpage/gaoptout
+                    </font>
+                  </font>
+                </a>
+              </u>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td
+          width="17%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                Google Chrome
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width="83%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font color="#0563c1">
+              <u>
+                <a href="http://www.google.com/support/chrome/bin/answer.py?hl=en&answer=95647">
+                  <font face="Times New Roman, serif">
+                    <font size={3} style={{ fontSize: "12pt" }}>
+                      http://www.google.com/support/chrome/bin/answer.py?hl=en&amp;answer=95647
+                    </font>
+                  </font>
+                </a>
+              </u>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td
+          width="17%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                Internet Explorer
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width="83%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font color="#0563c1">
+              <u>
+                <a href="https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies">
+                  <font face="Times New Roman, serif">
+                    <font size={3} style={{ fontSize: "12pt" }}>
+                      https://support.microsoft.com/en-us/help/17442/windows-internet-explorer-delete-manage-cookies
+                    </font>
+                  </font>
+                </a>
+              </u>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td
+          width="17%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                MozillaFirefox
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width="83%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font color="#0563c1">
+              <u>
+                <a href="http://support.mozilla.com/en-US/kb/Cookies">
+                  <font face="Times New Roman, serif">
+                    <font size={3} style={{ fontSize: "12pt" }}>
+                      http://support.mozilla.com/en-US/kb/Cookies
+                    </font>
+                  </font>
+                </a>
+              </u>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td
+          width="17%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                Opera
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width="83%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font color="#0563c1">
+              <u>
+                <a href="http://www.opera.com/browser/tutorials/security/privacy/">
+                  <font face="Times New Roman, serif">
+                    <font size={3} style={{ fontSize: "12pt" }}>
+                      http://www.opera.com/browser/tutorials/security/privacy/
+                    </font>
+                  </font>
+                </a>
+              </u>
+            </font>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td
+          width="17%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font face="Times New Roman, serif">
+              <font size={3} style={{ fontSize: "12pt" }}>
+                Safari:
+              </font>
+            </font>
+          </p>
+        </td>
+        <td
+          width="83%"
+          style={{ border: "2.25pt outset #000000", padding: "0in 0.02in" }}
+        >
+          <p align="center" style={{ orphans: 0, widows: 0 }}>
+            <font color="#0563c1">
+              <u>
+                <a href="https://support.apple.com/kb/ph19214?locale=tr_TR">
+                  <font face="Times New Roman, serif">
+                    <font size={3} style={{ fontSize: "12pt" }}>
+                      https://support.apple.com/kb/ph19214?locale=tr_TR
+                    </font>
+                  </font>
+                </a>
+              </u>
+            </font>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    &nbsp;
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <br />
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <b>Veri Sahibi Olarak Haklarınız Nelerdir?</b>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <br />
+        KVK Kanunu’nun 11. maddesi uyarınca veri sahipleri,
+      </font>
+    </font>
+  </p>
+  <ul>
+    <li>
+      <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Kişisel veri işlenip işlenmediğini öğrenme,
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Kişisel verileri işlenmişse buna ilişkin bilgi talep etme,
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Kişisel verilerin işlenme amacını ve bunların amacına uygun
+            kullanılıp kullanılmadığını öğrenme,
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Yurt içinde veya yurt dışında kişisel verilerin aktarıldığı üçüncü
+            kişileri bilme,
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Kişisel verilerin eksik veya yanlış işlenmiş olması hâlinde bunların
+            düzeltilmesini isteme ve bu kapsamda yapılan işlemin kişisel
+            verilerin aktarıldığı üçüncü kişilere bildirilmesini isteme,
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            KVK Kanunu ve ilgili diğer kanun hükümlerine uygun olarak işlenmiş
+            olmasına rağmen, işlenmesini gerektiren sebeplerin ortadan kalkması
+            hâlinde kişisel verilerin silinmesini veya yok edilmesini isteme ve
+            bu kapsamda yapılan işlemin kişisel verilerin aktarıldığı üçüncü
+            kişilere bildirilmesini isteme,
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz
+            edilmesi suretiyle kişinin kendisi aleyhine bir sonucun ortaya
+            çıkmasına itiraz etme,
+          </font>
+        </font>
+      </p>
+    </li>
+    <li>
+      <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+        <font face="Times New Roman, serif">
+          <font size={3} style={{ fontSize: "12pt" }}>
+            Kişisel verilerin kanuna aykırı olarak işlenmesi sebebiyle zarara
+            uğraması hâlinde zararın giderilmesini talep etme
+          </font>
+        </font>
+      </p>
+    </li>
+  </ul>
+  <p
+    align="justify"
+    style={{ lineHeight: "108%", textIndent: "0.25in", marginBottom: "0.11in" }}
+  >
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        haklarına sahiptir.
+        <br />
+        &nbsp;
+        <br />
+        Yukarıda sıralanan haklarınızla ilgili başvurularınızı{" "}
+      </font>
+    </font>
+    <font color="#ff0000">
+      <font face="Times New Roman, serif">
+        <font size={3} style={{ fontSize: "12pt" }}>
+          başvuru formuna link verilecek{" "}
+        </font>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        den ulaşabileceğiniz KLİNİĞİMİZ İlgili Kişi Başvuru Formu’nu doldurarak
+        KLİNİĞİMİZE iletebilirsiniz.&nbsp; Talebiniz 30 gün içinde
+        sonuçlandırılarak cevap iletilecektir. Talepler kural olarak ücretsiz
+        karşılanır ancak, talebin gereğini yerine getirmek masraf gerektiriyorsa
+        “Veri Sorumlusuna Başvuru Usul ve Esasları Hk. Tebliğ” madde 7’de
+        öngörülen;{" "}
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        <i>
+          “İlgili kişinin başvurusuna yazılı olarak cevap verilecekse, 10
+          sayfaya kadar ücret alınmaz. 10 sayfanın üzerindeki her sayfa için 1
+          TL işlem ücreti alınabilir. Başvuruya cevabın CD, flash bellek gibi
+          bir kayıt ortamında verilmesi halinde veri sorumlusu tarafından talep
+          edilebilecek ücret kayıt ortamının maliyetini geçemez.”
+        </i>
+      </font>
+    </font>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        Hükmü gereğince KLİNİĞİMİZ tarafından ücret istenebilecektir.{" "}
+      </font>
+    </font>
+  </p>
+  <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <br />
+    <br />
+  </p>
+  <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <br />
+    <br />
+  </p>
+  <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <br />
+    <br />
+  </p>
+  <p align="justify" style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <font face="Times New Roman, serif">
+      <font size={3} style={{ fontSize: "12pt" }}>
+        Son Güncelleme Tarihi: xx.xx.2020
+      </font>
+    </font>
+  </p>
+  <p style={{ lineHeight: "108%", marginBottom: "0.11in" }}>
+    <br />
+    <br />
+  </p>
+      </>
     )
 }

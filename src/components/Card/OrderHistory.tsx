@@ -15,10 +15,12 @@ export type OrderHistoryCardProp = {
     Id: string;
     IsCanceled: boolean;
     startDate: string;
+    educationName: string;
 }
 
-const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id, IsCanceled, startDate }: OrderHistoryCardProp) => {
+const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id, IsCanceled, startDate ,educationName}: OrderHistoryCardProp) => {
     const { getOrderHistory, user: { orderHistory } } = useUser();
+    
     const refundRequest = () => {
         let toastId = toast.loading("İade talebiniz gönderiliyor...");
         request.post("/purchase/refund", {
@@ -36,6 +38,10 @@ const OrderHistoryCard = ({ orderNumber, date, price, name, type, invoiceURL, Id
     return <div className="flex flex-col w-full min-w-[280px] relative px-[26px] py-[20px] bg-[white]">
         <Text className="text-[10px] text-[#9F9F9F]">11.10.2022 15.52</Text>
         <div className="flex justify-between items-center">
+            <div className="flex flex-col">
+                <Text className="text-[#C17B32] text-[12px] md:text-[18px]"> Eğitim Adı </Text>
+                <Text className="text-[black] text-[12px] sm:text-[16px]"> # {educationName} </Text>
+            </div>
             <div className="flex flex-col">
                 <Text className="text-[#C17B32] text-[12px] md:text-[18px]"> Tarih </Text>
                 <Text className="text-[black] text-[12px] sm:text-[16px]"> {name} </Text>

@@ -59,20 +59,18 @@ export interface UserState {
 
 export interface OrderHistoyItem {
     Id: string;
-    Detail: {
+    detail: {
         Id: string;
         PurchaseId: string;
         EInvoiceLink: string | null;
         Price: string;
         IsCanceled: boolean;
     },
-    Education:{
+    education:{
         Id:string;
-        GeneralDetail:{
-            StartDate: string;
-        }
+        Name:string;
     }
-    Date: string;
+    created_at: string;
 }
 
 export interface UserCredentials {

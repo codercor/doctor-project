@@ -32,20 +32,21 @@ const SettingsOrderHistory = () => {
                         }
                         {orderHistory?.map((item, index) => (
                             <OrderHistoryCard
+                                educationName={item.education?.Name}
                                 key={item.Id}
-                                orderNumber={item.Detail?.PurchaseId}
-                                date={item.Date}
-                                price={item.Detail?.Price}
-                                name={new Date(item.Date).toLocaleDateString("tr-TR", {
+                                orderNumber={item.detail?.PurchaseId}
+                                date={item.education.Name}
+                                price={item.detail?.Price}
+                                name={new Date(item.created_at).toLocaleDateString("tr-TR", {
                                     year: "numeric",
                                     month: "long",
                                     day: "2-digit",
                                 })}
                                 Id={item.Id}
-                                IsCanceled={item.Detail.IsCanceled}
+                                IsCanceled={item.detail?.IsCanceled}
                                 type={"TYPE"}
-                                invoiceURL={item.Detail?.EInvoiceLink}
-                                startDate ={item.Education?.GeneralDetail?.StartDate}
+                                invoiceURL={item.detail?.EInvoiceLink}
+                                startDate ={item.created_at}
                             />
                         ))}
                     </div>

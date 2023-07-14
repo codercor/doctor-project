@@ -15,20 +15,31 @@ const Form = ({ htmlContent }: { htmlContent: string }) => {
     //get form from htmlContent
     const ref = React.useRef<HTMLDivElement>(null);
 
+ let myDoc = new DOMParser();
+ let docx = myDoc.parseFromString(htmlContent, "text/html");
+
+//webform0 id 
     useEffect(() => {
+        console.log("htmlcontent kardeş",htmlContent);
+        //window.document.head.innerHTML=docx.head.innerHTML;
+        //window.document.body.innerHTML=docx.body.innerHTML;
         if (ref) {
-            console.log(ref, ref.current?.children)
             //@ts-ignore
-            ref.current?.children[1]?.submit();
+            ref.current?.querySelector("#webform0")?.submit();
+            //@ts-ignore
+            //docx.querySelector("#webform0").submit();
+            //@ts-ignore
+            //ref.current?.children[1]?.submit();
         };
 
     }, [ref])
 
     return (<>
-        <div className='h-screen w-screen top-0 left-0 fixed z-50 bg-secondary' >
+        <div className='hidden h-screen w-screen top-0 left-0 fixed z-50 bg-secondary' >
             <Loading message='Lütfen sayfadan ayrılmayın...' />
         </div>
         <div ref={ref} dangerouslySetInnerHTML={{ __html: htmlContent }} />
+        <iframe srcDoc={htmlContent}></iframe>
     </>
     )
 }
