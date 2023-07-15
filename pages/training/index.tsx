@@ -98,6 +98,8 @@ const BuyKit = ({ id, price, totalLength, DiscountRate, isFull }: { DiscountRate
             </div>
             <Text>{totalLength}dk</Text>
         </div>
+        <span className="text-red-500 text-[10px]"> Satın alma işleminizi tamamlayarak sözleşmeleri kabul etmiş olursunuz. </span>
+        <br />
         <Button
             disabled={isFull}
             onClick={() => {
@@ -116,7 +118,8 @@ const BuyKit = ({ id, price, totalLength, DiscountRate, isFull }: { DiscountRate
             }} type="quaternary-flat" className='flex justify-center text-center mb-2' >
             Satın Al
         </Button>
-        {isFull && <span className="text-red-500 text-[12px]"> Kontenjan doldu </span>}
+        
+        {isFull && <span className="text-red-500 font-bold text-[12px]"> Kontenjan doldu </span>}
     </>
 }
 
