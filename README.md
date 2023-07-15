@@ -6,7 +6,7 @@ First, run the development server:
 npm install
 npm run dev
 ```
-#### Panel Features
+#### Dashboard Features
 
 | Modules        | Admin           | User  |
 | ------------- |:-------------:| -----:|
