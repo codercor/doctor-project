@@ -77,7 +77,7 @@ export default function PaymentFailed() {
     } = useRouter()
     const [content, setContent] = React.useState(<></>)
     useEffect(() => {
-        if (Status === "1" && ErrorCode === null) {
+        if (Status === "1" && ErrorCode === "0") {
             setContent(<Success />);
           } else {
             setContent(<Failed errorCode={ErrorCode as string} />);
