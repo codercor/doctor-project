@@ -78,6 +78,14 @@ export default function PaymentForm({ EducationId, UserId }: { EducationId: stri
         Cvc: "",
     });
     const { htmlContent } = useSelector(selectPayment)
+
+    useEffect(() => {
+        if(htmlContent)
+        console.log('Select Payment',htmlContent)
+    
+      
+    }, [htmlContent])
+    
     useEffect(() => {
         htmlContent && console.log("htmlContent", (htmlContent));
     }, [htmlContent])
