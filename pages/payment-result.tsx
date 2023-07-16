@@ -20,7 +20,7 @@ const Failed = ({ errorCode }: { errorCode: string }) => {
     return <div className="w-full h-full bg-primary-light">
         <div className="w-[300px] h-full text-center grid place-content-center mx-auto">
             <ErrorOutlineRounded className='min-w-[100px] animate-pulse mb-4 mx-auto min-h-[100px] text-[#b63b3b]' />
-            {errorCode === null} ?? (<p className='font-nexa-bold'>{errorMessage}</p><br />)
+            {errorCode === null}  <p className='font-nexa-bold'>{errorMessage}</p><br />
             <p className='font-nexa-bold'> Satın alım işleminiz gerçekleştirilememiştir. Kullanıcı paneline yönlendiriliyorsunuz... </p>
         </div>
     </div>
@@ -77,7 +77,7 @@ export default function PaymentFailed() {
     } = useRouter()
     const [content, setContent] = React.useState(<></>)
     useEffect(() => {
-        if (Status === "1") {
+        if (Status === "1" && ErrorCode === null) {
             setContent(<Success />);
           } else {
             setContent(<Failed errorCode={ErrorCode as string} />);
