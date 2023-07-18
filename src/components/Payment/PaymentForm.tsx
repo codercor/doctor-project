@@ -16,10 +16,10 @@ const Form = ({ htmlContent }: { htmlContent: string }) => {
     //get form from htmlContent
     const ref = React.useRef<HTMLDivElement>(null);
 
- let myDoc = new DOMParser();
- let docx = myDoc.parseFromString(htmlContent, "text/html");
+    let myDoc = new DOMParser();
+    let docx = myDoc.parseFromString(htmlContent, "text/html");
 
-//webform0 id 
+    //webform0 id 
     useEffect(() => {
         //window.document.head.innerHTML=docx.head.innerHTML;
         //window.document.body.innerHTML=docx.body.innerHTML;
@@ -34,12 +34,22 @@ const Form = ({ htmlContent }: { htmlContent: string }) => {
 
     }, [ref])
 
+    useEffect(() => {
+
+        if (htmlContent) {
+            window.document.open()
+            window.document.write(htmlContent)
+            window.document.close()
+        }
+
+    }, [htmlContent])
+
     return (<>
         <div className='hidden h-screen w-screen top-0 left-0 fixed z-50 bg-secondary' >
             <Loading message='Lütfen sayfadan ayrılmayın...' />
         </div>
         <div ref={ref} dangerouslySetInnerHTML={{ __html: htmlContent }} />
-        <iframe style={{minHeight:"620px", minWidth:"700px"}} className='min-w-screen w-full h-full' srcDoc={htmlContent}></iframe>
+        <iframe style={{ minHeight: "620px", minWidth: "700px" }} className='min-w-screen w-full h-full' srcDoc={htmlContent}></iframe>
     </>
     )
 }
