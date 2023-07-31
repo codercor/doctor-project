@@ -1,4 +1,4 @@
-
+"use client";
 import { editTraining } from "@app/Training/training.slice";
 import Button from "@components/Button";
 import Input from "@components/Input/Input";
@@ -7,7 +7,7 @@ import Text from "@components/Text";
 import DocumentsUpload from "@components/Upload/DocumentsUpload";
 import ImageUpload from "@components/Upload/ImageUpload";
 import { Add, AddAPhoto, Close, Delete, DocumentScanner, Edit, Refresh } from "@mui/icons-material";
-import React, { useEffect } from "react";
+import React, { useEffect,useState,useRef } from "react";
 import { useDispatch } from "react-redux";
 import useTraining from "src/hooks/training.hook";
 import CircularProgress from '@mui/material/CircularProgress';
@@ -23,8 +23,8 @@ import { toast } from "react-hot-toast";
 import { Reorder, useMotionValue } from "framer-motion";
 import { useRaisedShadow } from "src/hooks/use-raised-shadow";
 import { LocalLoading } from "../appointment-management";
-
-import dynamic from "next/dynamic";
+import { CKEditor } from 'ckeditor4-react';
+import dynamic from 'next/dynamic';
 
 
 
@@ -105,6 +105,7 @@ const EditTraining = () => {
 
     useEffect(() => {
         console.log("XX RERENDER");
+        
 
         if (oneTraining) setTrainingData((oneTraining) as EditTrainingDataType);
     }, [oneTraining])
@@ -174,19 +175,16 @@ const EditTraining = () => {
     }
 
     const { editTrainingProcess } = useTraining();
-    const [ckShow, setCkShow] = React.useState(false);
+    // const [editorData, setEditorData] = useState("asdasdasdasdasd");
 
-    useEffect(() => {
-        setCkShow(true);
-    }, []);
-    //import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-    const ClassicEditor = dynamic(() => import('@ckeditor/ckeditor5-build-classic'), {
-        ssr: false
-    })
-    //import CK from '@ckeditor/ckeditor5-react';
-    const CK = dynamic(() => import('@ckeditor/ckeditor5-react'), {
-        ssr: false
-    })
+    // const CKEditor = dynamic(() => import('@ckeditor/ckeditor5-react'), {
+//     ssr: false // CKEditor 5'in sadece istemci tarafında yüklenmesini sağlar.
+//   });
+  
+//   const ClassicEditor = dynamic(() => import('@ckeditor/ckeditor5-editor-classic/src/classiceditor'), {
+//     ssr: false // ClassicEditor'ün sadece istemci tarafında yüklenmesini sağlar.
+//   });
+
     return (<>
         {
             loadingProcess.loading && <LocalLoading message={"Yükleniyor..."} />
@@ -247,12 +245,16 @@ const EditTraining = () => {
                                         <div className="flex flex-col mt-1">
                                             {/* <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Eğitim Detayı</Text>
                                                 <textarea value={trainingData.Details} name="Details" onChange={handleChange} className="bg-primary-flat rounded-[5px_20px_0_20px] h-[147px] p-4" ></textarea> */}
-                                            {ckShow && <CK.CKEditor editor={ClassicEditor} data={trainingData.Details}
-                                                onChange={(event: any, editor: any) => {
-                                                    const data = editor.getData();
+                                            <CKEditor
+                                            initData={values.Details} 
+                                            name={"Details"}
+                                            type="classic"
+                                            onChange={(event) => {
+                                                    const data = event.editor.getData();
+                                                    console.log("data emir emir emir", data);
                                                     setFieldValue("Details", data);
-                                                }}
-                                            />}
+                                                     }}
+                                            />
                                         </div>
                                         {/* <Input value={trainingData.GeneralDetail.VideoLink} name="VideoLink" onChange={handleGeneralDetailChange} text="Eğitim Videosu (Youtube URL)" /> */}
                                         <FormInput onBlur={handleBlur} type="text" value={values.GeneralDetail.VideoLink} name="GeneralDetail.VideoLink" error={errors?.GeneralDetail?.VideoLink} label="Eğitim Videosu (Youtube URL)" onChange={_handleChange} />

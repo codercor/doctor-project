@@ -12,6 +12,33 @@ const nextConfig = {
   },
   trailingSlash: true,
   staticPageGenerationTimeout: 120000,
+  
 }
+
+module.exports = {
+  // Diğer yapılandırma ayarları...
+
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+      use: [
+        {
+          loader: "postcss-loader",
+          options: {
+            ident: "postcss",
+            plugins: [
+              require("tailwindcss"),
+              require("autoprefixer"),
+              // İsteğe bağlı: Diğer postcss eklentilerini ekleyebilirsiniz.
+            ],
+          },
+        },
+      ],
+    });
+
+    return config;
+  },
+};
+
 
 module.exports = nextConfig
