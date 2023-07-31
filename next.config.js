@@ -11,6 +11,7 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
+  staticPageGenerationTimeout: 120000,
 }
 
 module.exports = nextConfig

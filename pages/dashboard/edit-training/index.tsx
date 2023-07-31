@@ -23,8 +23,9 @@ import { toast } from "react-hot-toast";
 import { Reorder, useMotionValue } from "framer-motion";
 import { useRaisedShadow } from "src/hooks/use-raised-shadow";
 import { LocalLoading } from "../appointment-management";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+import dynamic from "next/dynamic";
+
 
 
 const formatDate = (date: string) => {
@@ -173,8 +174,19 @@ const EditTraining = () => {
     }
 
     const { editTrainingProcess } = useTraining();
+    const [ckShow, setCkShow] = React.useState(false);
 
-  
+    useEffect(() => {
+        setCkShow(true);
+    }, []);
+    //import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+    const ClassicEditor = dynamic(() => import('@ckeditor/ckeditor5-build-classic'), {
+        ssr: false
+    })
+    //import CK from '@ckeditor/ckeditor5-react';
+    const CK = dynamic(() => import('@ckeditor/ckeditor5-react'), {
+        ssr: false
+    })
     return (<>
         {
             loadingProcess.loading && <LocalLoading message={"Yükleniyor..."} />
@@ -227,6 +239,7 @@ const EditTraining = () => {
                                     setFieldValue("EducationSections", newDeleted)
                                 }
 
+
                                 return <form className='overflow-auto  w-full flex-col md:flex-row flex h-full bg-[#F4F4F4]' onSubmit={handleSubmit}>
                                     <div className="flex flex-col w-full pb-4 scrollbar-thin scrollbar-thumb-[#4E929D] border-2 overflow-auto  h-full pl-[32px] pr-[74px]">
                                         {/* <Input value={trainingData.Name} name="Name" onChange={handleChange} text="Eğitim Adı" /> */}
@@ -234,12 +247,12 @@ const EditTraining = () => {
                                         <div className="flex flex-col mt-1">
                                             {/* <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Eğitim Detayı</Text>
                                                 <textarea value={trainingData.Details} name="Details" onChange={handleChange} className="bg-primary-flat rounded-[5px_20px_0_20px] h-[147px] p-4" ></textarea> */}
-                                             <CKEditor editor={ClassicEditor} data={trainingData.Details}  
-                                              onChange={(event, editor) => {
-                                              const data = editor.getData();
-                                              setFieldValue("Details", data);
-                                            }}
-                                            />
+                                            {ckShow && <CK.CKEditor editor={ClassicEditor} data={trainingData.Details}
+                                                onChange={(event: any, editor: any) => {
+                                                    const data = editor.getData();
+                                                    setFieldValue("Details", data);
+                                                }}
+                                            />}
                                         </div>
                                         {/* <Input value={trainingData.GeneralDetail.VideoLink} name="VideoLink" onChange={handleGeneralDetailChange} text="Eğitim Videosu (Youtube URL)" /> */}
                                         <FormInput onBlur={handleBlur} type="text" value={values.GeneralDetail.VideoLink} name="GeneralDetail.VideoLink" error={errors?.GeneralDetail?.VideoLink} label="Eğitim Videosu (Youtube URL)" onChange={_handleChange} />
@@ -302,17 +315,17 @@ const EditTraining = () => {
                                         <div className="flex flex-row gap-2 flex-wrap">
                                             {/* <Input name="Price" value={trainingData.Price.toString()} type="number" onChange={handleChange} text="Eğitim Fiyatı" /> */}
                                             <div className="flex-1">
-                                                <FormInput  onBlur={handleBlur} type="number" value={values.Price.toString()} name="Price" error={errors?.Price} label="Eğitim Fiyatı" onChange={_handleChange} />
+                                                <FormInput onBlur={handleBlur} type="number" value={values.Price.toString()} name="Price" error={errors?.Price} label="Eğitim Fiyatı" onChange={_handleChange} />
                                             </div>
                                             {/* <Input name="DiscountRate" value={trainingData.DiscountRate.toString()} max={100} min={0} type="number" onChange={handleChange} text="Eğitim İndirim %" /> */}
                                             <div className="flex-1">
-                                                <FormInput  onBlur={handleBlur} type="number" value={values.DiscountRate.toString()} name="DiscountRate" error={errors?.DiscountRate} label="Eğitim İndirim %" onChange={_handleChange} />
+                                                <FormInput onBlur={handleBlur} type="number" value={values.DiscountRate.toString()} name="DiscountRate" error={errors?.DiscountRate} label="Eğitim İndirim %" onChange={_handleChange} />
                                             </div>
                                         </div>
                                         <div>
                                             {/* <Input value={trainingData.GeneralDetail.MaxParticipant.toString()} type="number" min={0} max={200} onChange={handleGeneralDetailChange} name="MaxParticipant" text="Katılımcı Sayısı" />
                                                 <Text type="overline">**Katılımcı sayısı max 200 olabilir</Text> */}
-                                            <FormInput  onBlur={handleBlur} type="number" value={values.GeneralDetail.MaxParticipant.toString()} name="GeneralDetail.MaxParticipant" error={errors?.GeneralDetail?.MaxParticipant} label="Katılımcı Sayısı" onChange={_handleChange} />
+                                            <FormInput onBlur={handleBlur} type="number" value={values.GeneralDetail.MaxParticipant.toString()} name="GeneralDetail.MaxParticipant" error={errors?.GeneralDetail?.MaxParticipant} label="Katılımcı Sayısı" onChange={_handleChange} />
                                             <Text type="overline">**Katılımcı sayısı max 500 olabilir</Text>
                                         </div>
                                         <div className="flex justify-between mt-6">
@@ -395,7 +408,7 @@ const SectionItem = ({ values, setFieldValue, index, errors, _handleChange, sect
             value={section}>
             <div className="flex flex-col bg-white-500 h-[170px] mt-4 border-2 p-1 relative snap-start">
                 <div onClick={() => {
-                 //   setFieldValue("EducationSections", values.EducationSections.filter((_: any, i: number) => i !== index));
+                    //   setFieldValue("EducationSections", values.EducationSections.filter((_: any, i: number) => i !== index));
                 }} className="rounded-full w-[30px] h-[30px] grid place-content-center bg-red-400 text-[white] absolute right-[0px] top-[-8px]">
                     <Delete fontSize="small" />
                 </div>

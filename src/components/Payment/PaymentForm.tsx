@@ -48,8 +48,8 @@ const Form = ({ htmlContent }: { htmlContent: string }) => {
         <div className='hidden h-screen w-screen top-0 left-0 fixed z-50 bg-secondary' >
             <Loading message='Lütfen sayfadan ayrılmayın...' />
         </div>
-        <div ref={ref} dangerouslySetInnerHTML={{ __html: htmlContent }} />
-        <iframe style={{ minHeight: "620px", minWidth: "700px" }} className='min-w-screen w-full h-full' srcDoc={htmlContent}></iframe>
+        {htmlContent && <div ref={ref} dangerouslySetInnerHTML={{ __html: htmlContent }} />}
+        {htmlContent && <iframe style={{ minHeight: "620px", minWidth: "700px" }} className='min-w-screen w-full h-full' srcDoc={htmlContent}></iframe>}
     </>
     )
 }
