@@ -1,3 +1,4 @@
+
 import { editTraining } from "@app/Training/training.slice";
 import Button from "@components/Button";
 import Input from "@components/Input/Input";
@@ -22,6 +23,10 @@ import { toast } from "react-hot-toast";
 import { Reorder, useMotionValue } from "framer-motion";
 import { useRaisedShadow } from "src/hooks/use-raised-shadow";
 import { LocalLoading } from "../appointment-management";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+
 const formatDate = (date: string) => {
     console.log("date", date);
     const newDate = new Date(date)
@@ -43,6 +48,7 @@ export interface TrainingBranchType {
     Time: number;
 }
 */
+
 
 const validationSchema = Yup.object().shape({
     Name: Yup.string().required("Bu alan zorunludur"),
@@ -168,7 +174,7 @@ const EditTraining = () => {
 
     const { editTrainingProcess } = useTraining();
 
-
+  
     return (<>
         {
             loadingProcess.loading && <LocalLoading message={"Yükleniyor..."} />
@@ -228,7 +234,12 @@ const EditTraining = () => {
                                         <div className="flex flex-col mt-1">
                                             {/* <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Eğitim Detayı</Text>
                                                 <textarea value={trainingData.Details} name="Details" onChange={handleChange} className="bg-primary-flat rounded-[5px_20px_0_20px] h-[147px] p-4" ></textarea> */}
-                                            <FormInputTextArea onBlur={handleBlur} type="text" value={values.Details} name="Details" error={errors?.Details} label="Eğitim Detayı" onChange={_handleChange} />
+                                             <CKEditor editor={ClassicEditor} data={trainingData.Details}  
+                                              onChange={(event, editor) => {
+                                              const data = editor.getData();
+                                              setFieldValue("Details", data);
+                                            }}
+                                            />
                                         </div>
                                         {/* <Input value={trainingData.GeneralDetail.VideoLink} name="VideoLink" onChange={handleGeneralDetailChange} text="Eğitim Videosu (Youtube URL)" /> */}
                                         <FormInput onBlur={handleBlur} type="text" value={values.GeneralDetail.VideoLink} name="GeneralDetail.VideoLink" error={errors?.GeneralDetail?.VideoLink} label="Eğitim Videosu (Youtube URL)" onChange={_handleChange} />

@@ -8,6 +8,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useMediaQuery } from 'react-responsive'
 import Router from "next/router";
 import { ArrowForwardIos } from "@mui/icons-material";
+import ReactHtmlParser from 'html-react-parser';
 export type TrainingCardProps = {
     image: string;
     title: string;
@@ -44,7 +45,7 @@ const TrainingCard = ({
         <div className="relative flex-col flex  px-[25px] pt-[20px]">
             <p className="text-[#3A356B] text-[16px] font-nexa-bold">{title}</p>
             <p className="text-[#7A7C6D] font-nexa-regular text-[14px] line-clamp-4 leading-[14px] ">
-                {description}
+                {ReactHtmlParser(description)}
             </p>
         </div>
         <div onClick={() => {

@@ -10,6 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^38.1.1",
+    "@ckeditor/ckeditor5-react": "^6.1.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@kodingdotninja/use-tailwind-breakpoint": "^0.0.5",
@@ -39,6 +41,7 @@
     "react-google-drive-picker": "^1.2.0",
     "react-horizontal-scrolling-menu": "^3.2.3",
     "react-hot-toast": "^2.4.0",
+    "react-html-parser": "^2.0.2",
     "react-indiana-drag-scroll": "^3.0.3-alpha",
     "react-password-checklist": "^1.4.3",
     "react-phone-input-2": "^2.15.1",

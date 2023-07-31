@@ -18,6 +18,8 @@ import TL from '@components/Text/TL'
 import Head from 'next/dist/shared/lib/head'
 import request, { TRAININGS_WITH_USER_ID } from '@config'
 import Script from 'next/dist/client/script'
+import ReactHtmlParser from 'html-react-parser';
+
 const TrainingDocumentCard = ({ title, url }: { title: string, url: string }) => {
     const handleDownload = () => {
         window.open(url, '_blank')
@@ -98,8 +100,6 @@ const BuyKit = ({ id, price, totalLength, DiscountRate, isFull }: { DiscountRate
             </div>
             <Text>{totalLength}dk</Text>
         </div>
-        <span className="text-red-500 text-[10px]"> Satın alma işleminizi tamamlayarak sözleşmeleri kabul etmiş olursunuz. </span>
-        <br />
         <Button
             disabled={isFull}
             onClick={() => {
@@ -118,7 +118,9 @@ const BuyKit = ({ id, price, totalLength, DiscountRate, isFull }: { DiscountRate
             }} type="quaternary-flat" className='flex justify-center text-center mb-2' >
             Satın Al
         </Button>
-        
+           <span className="text-[10px]"> Satın alma işleminizi tamamlayarak <a className='text-red-500 ' href='/sozlesmeler/mesafeli-satis-sozlesmesi' target='_blank'>Mesafeli Satış Sözleşmesi</a>'ni kabul etmiş olursunuz. </span>
+        <br />
+        <br />
         {isFull && <span className="text-red-500 font-bold text-[12px]"> Kontenjan doldu </span>}
     </>
 }
@@ -154,7 +156,7 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
             <div className="w-full lg:w-[70%] overflow-auto scrollbar-thin scrollbar-thumb-tertiary-light bg-[#F9FBFC]  h-full pt-[42px] px-[10px] md:pl-[32px] md:pr-[40px]">
                 <Text type='h6' className='text-secondary-flat'>Eğitim Detayı</Text>
                 <Text type="paragraph" className='font-nexa-bold text-[#949493] mt-[30px]'>
-                    {training.Details}
+                    {ReactHtmlParser(training.Details)}
                 </Text>
                 <div className='w-full h-[300px] md:h-[370px]  mt-[24px]'>
                     {(() => {
