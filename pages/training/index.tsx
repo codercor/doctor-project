@@ -20,6 +20,8 @@ import request, { TRAININGS_WITH_USER_ID } from '@config'
 import Script from 'next/dist/client/script'
 import ReactHtmlParser from 'html-react-parser';
 
+
+
 const TrainingDocumentCard = ({ title, url }: { title: string, url: string }) => {
     const handleDownload = () => {
         window.open(url, '_blank')
@@ -82,7 +84,7 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
     </div>
 }
 
-const BuyKit = ({ id, price, totalLength, DiscountRate, isFull }: { DiscountRate: number, id: string, price: number, totalLength: number, isFull: boolean }) => {
+const BuyKit = ({ id, price, EducationName,totalLength, DiscountRate, isFull }: { DiscountRate: number, id: string,EducationName:string, price: number, totalLength: number, isFull: boolean }) => {
     const { user: { IsAuthenticated, BillingDetail } } = useUser()
     const calculatedPrice = (Number(price) * ((100 - DiscountRate) / 100)).toFixed(2).toString();
     return <>
@@ -101,7 +103,7 @@ const BuyKit = ({ id, price, totalLength, DiscountRate, isFull }: { DiscountRate
             <Text>{totalLength}dk</Text>
         </div>
         <Button
-            disabled={isFull}
+            disabled={isFull || EducationName === "Test Eğitimi - Lütfen Eğitime Katılmayınız..!"}
             onClick={() => {
                 if (IsAuthenticated) {
                     // if (!BillingDetail.IdentityNumber) {
@@ -185,7 +187,7 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
                 </div>}
             </div>
             <div className="lg:w-[30%] self-start w-full h-full bg-[#F4F4F4] pt-[42px] pl-[32px] pr-[30px]">
-                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price}
+                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price} EducationName={training.Name}
                     isFull={Number((training as TrainingDataType & { SaleCount: number }).SaleCount) >= Number(training.GeneralDetail.MaxParticipant)} DiscountRate={training.DiscountRate} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
 
                 <Text type='h6' className='text-secondary-flat'>Eğitim Konuları</Text>

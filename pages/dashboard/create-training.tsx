@@ -18,6 +18,8 @@ import { v4 } from "uuid";
 import { toast } from "react-hot-toast";
 import { Reorder, useMotionValue } from "framer-motion"
 import { useRaisedShadow } from "src/hooks/use-raised-shadow";
+import { CKEditor } from 'ckeditor4-react';
+import dynamic from 'next/dynamic';
 
 const formatDate = (date: string) => {
     console.log("date", date);
@@ -140,7 +142,17 @@ const CreateTraining = () => {
                                 <div className="flex flex-col mt-1">
                                     {/* <Text type="h4" className="text-deepgreen-100 !text-[14px]  !py-[10px]">Eğitim Detayı</Text>
                                      <textarea value={trainingData.Details} name="Details" onChange={handleChange} className="bg-primary-flat rounded-[5px_20px_0_20px] h-[147px] p-4" ></textarea> */}
-                                    <FormInputTextArea type="text" value={values.Details} name="Details" error={errors?.Details} label="Eğitim Detayı" onChange={_handleChange} />
+                                    {/* <FormInputTextArea type="text" value={values.Details} name="Details" error={errors?.Details} label="Eğitim Detayı" onChange={_handleChange} /> */}
+                                    <CKEditor
+                                            initData={values.Details} 
+                                            name={"Details"}
+                                            type="classic"
+                                            onChange={(event) => {
+                                                    const data = event.editor.getData();
+                                                    console.log("data emir emir emir", data);
+                                                    setFieldValue("Details", data);
+                                                     }}
+                                            />
                                 </div>
                                 {/* <Input value={trainingData.GeneralDetail.VideoLink} name="VideoLink" onChange={handleGeneralDetailChange} text="Eğitim Videosu (Youtube URL)" /> */}
                                 <FormInput type="text" value={values.GeneralDetail.VideoLink} name="GeneralDetail.VideoLink" error={errors?.GeneralDetail?.VideoLink} label="Eğitim Videosu (Youtube URL)" onChange={_handleChange} />
