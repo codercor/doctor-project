@@ -84,7 +84,7 @@ const TrainingSection = ({ Order, Content, StartDate, Time, Password, ZoomURL, Z
     </div>
 }
 
-const BuyKit = ({ id, price, EducationName,totalLength, DiscountRate, isFull }: { DiscountRate: number, id: string,EducationName:string, price: number, totalLength: number, isFull: boolean }) => {
+const BuyKit = ({ id, price, EducationName,totalLength, DiscountRate, isFull ,DeveloperId}: { DeveloperId: string ,DiscountRate: number, id: string,EducationName:string, price: number, totalLength: number, isFull: boolean }) => {
     const { user: { IsAuthenticated, BillingDetail } } = useUser()
     const calculatedPrice = (Number(price) * ((100 - DiscountRate) / 100)).toFixed(2).toString();
     return <>
@@ -103,7 +103,8 @@ const BuyKit = ({ id, price, EducationName,totalLength, DiscountRate, isFull }: 
             <Text>{totalLength}dk</Text>
         </div>
         <Button
-            disabled={isFull || EducationName === "Test Eğitimi - Lütfen Eğitime Katılmayınız..!"}
+        //diğer kullanıcılar satın almaması için developer ortam için düzenlendi.
+            disabled={isFull || (EducationName !== "Test Eğitimi - Lütfen Eğitime Katılmayınız..!" && DeveloperId !== "d0760c17-bffc-4feb-982d-ff364e3d5021") || (EducationName !== "Test Eğitimi - Lütfen Eğitime Katılmayınız..!" && DeveloperId !== "972baa02-5c40-437b-9183-69ca924b075d")}
             onClick={() => {
                 if (IsAuthenticated) {
                     // if (!BillingDetail.IdentityNumber) {
@@ -147,10 +148,11 @@ const TrainingVideoCard = ({ url, title }: VideoDataType) => {
     </div>
 }
 
-const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | null, hasUser: boolean }) => {
+const TrainingContent = ({ loginUser,training, hasUser }: { loginUser: string,training: TrainingDataType | null, hasUser: boolean }) => {
     const { user: { IsAdmin } } = useUser()
     console.log("User has", hasUser);
     console.log("TRAINING", training);
+    console.log("lginuser emir", loginUser);
 
     if (!training) return <Loading message="Yükleniyor..." />
     return <div className="pb-10 flex justify-center items-center w-full bg-[white] ">
@@ -177,17 +179,18 @@ const TrainingContent = ({ training, hasUser }: { training: TrainingDataType | n
                     })}
                 </div>}
                 {((IsAdmin || hasUser) && training?.Videos?.length as number > 0) && <div className='w-full mt-10 mb-10'>
-                    <Text type='h6' className='text-secondary-flat'>Videolar</Text>
+                    <Text type='h6' className='text-secondary-flat'>Dersler </Text>
                     <div className="flex w-full gap-2">
                         {(training?.Videos) && training?.Videos.map((item, index) => {
-                            return <TrainingVideoCard key={v4()} title={`Video ${index + 1}`} url={item.Link} />
+                            return <TrainingVideoCard key={v4()} title={`Ders ${index + 1}`} url={item.Link} />
                         })}
                     </div>
-
+                    <br />
+                    <Text type='overline' className='text-secondary-flat'>- Ders kayıtlarını izlemek için sitemize kayıt olduğunuz e-mail adresi ile Google hesabı oluşturmanız gerekmektedir. https://accounts.google.com</Text>
                 </div>}
             </div>
             <div className="lg:w-[30%] self-start w-full h-full bg-[#F4F4F4] pt-[42px] pl-[32px] pr-[30px]">
-                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price} EducationName={training.Name}
+                {(!IsAdmin && !hasUser) && <BuyKit id={(training as TrainingDataType & { Id: string })?.Id} price={training.Price} EducationName={training.Name} DeveloperId={loginUser}
                     isFull={Number((training as TrainingDataType & { SaleCount: number }).SaleCount) >= Number(training.GeneralDetail.MaxParticipant)} DiscountRate={training.DiscountRate} totalLength={training.EducationSections.reduce((pre, item) => item.Time + pre, 0)} />}
 
                 <Text type='h6' className='text-secondary-flat'>Eğitim Konuları</Text>
@@ -221,6 +224,8 @@ export default function TrainingDetailPage() {
             );
 
             console.log("filtered b", response.data.data);
+            console.log("user ıd emir", Id);
+            setLoginUser(Id);
             let filtered = response.data.data
             console.log("Filtered", filtered);
 
@@ -235,6 +240,7 @@ export default function TrainingDetailPage() {
 
     const [hasUser, setHasUser] = useState(false)
     const [ownTraining, setOwnTraining] = useState(null)
+    const [loginUser, setLoginUser] = useState("");
     useEffect(() => {
         if (IsAdmin) return;
         if (IsAuthenticated) {
@@ -282,7 +288,7 @@ export default function TrainingDetailPage() {
                 </Container>
                 <Image src={trainingData?.Image as string || ''} layout="fill" objectFit="cover" />
             </Container>
-            <TrainingContent hasUser={hasUser} training={hasUser ? ownTraining : oneTraining} />
+            <TrainingContent loginUser={loginUser} hasUser={hasUser} training={hasUser ? ownTraining : oneTraining} />
         </LandingLayout>
     )
 }
