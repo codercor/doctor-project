@@ -20,8 +20,8 @@ export default function SelectDriveItem({ setSelectedDriveItemId, isActive }: {
 
     const handleOpenPicker = () => {
         openPicker({
-            clientId: "88309483258-vjvt7ofrbe2l8uk63vb1rgcgjadj9ufq.apps.googleusercontent.com",
-            developerKey: "AIzaSyDG7-kURnNfgH4L4TZRpUh2juPSypOkm8Q",
+            clientId: "877318254248-bqebj5tabgj0fus2op38o2l3cpduja7q.apps.googleusercontent.com",
+            developerKey: "AIzaSyDaaNMjK7kkpu-cf7boZYkxiYnGVJ4w-NI",
             viewId: "DOCS_VIDEOS",
             // token: token, // pass oauth token in case you already have one
             showUploadView: true,
