@@ -5,6 +5,7 @@ import SelectDriveItem from '@components/Input/SelectDriveItem'
 import Button from '@components/Button'
 import { attachDriveItemToTraining } from '@app/User/user.utils'
 import { LinearProgress } from '@mui/material'
+import { set } from 'nprogress'
 
 export default function TrainingDocuments() {
     const [selectedTrainingId, setSelectedTrainingId] = React.useState('')
@@ -12,6 +13,7 @@ export default function TrainingDocuments() {
     const [selectDriveIsActive, setSelectDriveIsActive] = React.useState(false)
     const [valid, setValid] = React.useState(false)
     const [loading, setLoading] = React.useState(false)
+    const [IsSeen, setIsSeen] = React.useState(false);
 
     const handleChange = (event: any) => {
         setSelectedTrainingId(event.target.value as string)
@@ -48,9 +50,14 @@ export default function TrainingDocuments() {
             })
     }
 
+    
+    const changeStatus = () =>{
+        console.log('changeStatus', IsSeen);
+        setIsSeen(!IsSeen);
+    }
+
     return (
         <DashboardLayout>
-
             <div className=" md:h-fit py-[50px] gap-4 flex flex-col md:px-[100px] items-center rounded-[30px_5px] bg-[#F4F4F4]">
                 {loading ? <div className="w-full">
                     <LinearProgress color="secondary" />
@@ -71,6 +78,12 @@ export default function TrainingDocuments() {
                             }} className='h-fit w-fit' type="secondary" disabled={!valid}>Eşleştir</Button>
                         </div></>}
             </div>
+            <Button onClick={() => { changeStatus() }} className='h-fit w-fit justify-center' type="secondary">Eğitimleri Göster</Button>
+            {IsSeen ?( <div className=" md:h-fit py-[50px] gap-4 flex flex-col md:px-[100px] items-center rounded-[30px_5px] bg-[#F4F4F4]">
+                test asdasd
+                </div>):null
+                 }
         </DashboardLayout>
+        
     )
 }

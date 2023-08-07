@@ -28,6 +28,7 @@
     "formik": "^2.2.9",
     "framer-motion": "^10.2.4",
     "gapi-script": "^1.2.0",
+    "googleapis": "^123.0.0",
     "html-react-parser": "^4.2.0",
     "js-google-auth": "^2.0.1",
     "lorem-ipsum": "^2.0.8",
